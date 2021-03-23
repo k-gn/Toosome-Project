@@ -19,7 +19,7 @@
     <!-- Header Start -->
     <header>
         <h1 class="logo">
-            <a href="index-main.html">
+            <a href="index.jsp">
                 A THREESOME PLACE
             </a>
         </h1>
@@ -508,8 +508,8 @@
     <div class="button-bar-block">
         <div class="button-bar">
             <ul class="online-icon">
-                <li><a href="#"><img src="../img/conversation.png" alt=""><span>온라인상담</span></a></li>
-                <li><a href="#"><img src="../img/giftbox.png" alt=""><span>온라인주문</span></a></li>
+                <li><a href="#"><img src="resources/img/conversation.png" alt=""><span>온라인상담</span></a></li>
+                <li><a href="#"><img src="resources/img/giftbox.png" alt=""><span>온라인주문</span></a></li>
             </ul>
         </div>
     </div>
