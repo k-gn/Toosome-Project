@@ -93,8 +93,9 @@
         <div class="full-cover"></div>
 
         <ul class="log">
-          <li><a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a></li>
-          <li><a onclick="location.href='/subpages/agreement/agreement.jsp'">SIGN UP</a></li>
+          <!-- <li><a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a></li> -->
+          <li><a href="resources/html/subpage/signin/login.html">LOGIN</a></li>
+          <li><a onclick="location.href='agreement'">SIGN UP</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </header>
