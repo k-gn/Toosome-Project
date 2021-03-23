@@ -14,11 +14,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="resources/css/adminpages/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="resources/css/adminpages/admin_main.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="sidebar" data-color="danger" data-background-color="white">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -40,7 +41,111 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <!-- your sidebar here -->
+          <!-- nav item start -->
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">content_paste</i>
+              <p>회원 관리</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">contact_page</i>
+              <p>운영자 관리</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">shopping_cart</i>
+              <p>상품 관리</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">location_ons</i>
+              <p>주문/배송 관리</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">table_view</i>
+              <p>판매 현황</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">language</i>
+              <p>통계</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="material-icons">library_books</i>
+              <p>게시판 관리</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="material-icons">build</i>
+              <p>설정</p>
+            </a>
+            <div class="sub-nav member">
+              <ul>
+           		<li>회원 리스트</li>
+           		<li>휴면회원 관리</li>
+           		<li>탈퇴회원 관리</li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -98,6 +203,7 @@
       </footer>
     </div>
   </div>
+  <script src="resources/js/adminpages/admin_main.js"></script>
 </body>
 
 </html>

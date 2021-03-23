@@ -1,9 +1,4 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: kkn
-=======
-Built-By: zxbdh
->>>>>>> e29c19757db0646409df977555c05edd75856378
 Build-Jdk: 1.8.0_271
 Created-By: Maven Integration for Eclipse
-

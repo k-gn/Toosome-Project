@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.sub-nav {
+	display: none;
+	margin-top: 10px;
+	transition: all 0.4s;
+	opacity: 0;
+}
+
+.sub-nav ul {
+	font-size: 14px;
+	margin-left: 30px;
+	transition: all 0.1s;
+}
+
+.sub-nav ul li:hover {
+	transform: translateX(5px);
+	cursor: pointer;
+}
+
+.display {
+	display: block;
+	opacity: 1;
+}
