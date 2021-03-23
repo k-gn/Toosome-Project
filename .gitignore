@@ -11,9 +11,4 @@ Servers
 
 *.class
 *.springBeans
-# sbteclipse plugin
-.target
-### Maven ###
-target/
 
-*.MF
