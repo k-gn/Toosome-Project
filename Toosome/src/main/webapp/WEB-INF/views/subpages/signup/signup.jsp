@@ -14,7 +14,7 @@
   <!-- 우편번호 api -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="resources/js/subpages/signup/signup.js"></script>
-  <title>A THREESOME PLACE</title>
+  <title>A TOOSOME PLACE</title>
 </head>
 <body>
   <div id="container">
@@ -252,5 +252,6 @@
       </div>
       <!-- Footer End -->
   </div>
+ </div>
 </body>
 </html>

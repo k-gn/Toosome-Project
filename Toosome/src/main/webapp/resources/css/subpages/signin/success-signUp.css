@@ -1,0 +1,59 @@
+@charset "utf-8";
+@font-face {
+    font-family: gsdr;
+    src: url(../../font/a고속도로.ttf) format('truetype');
+}
+
+.login-container {
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 600px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.login-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.login-container .title-container .login-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+
+
+
+#container .signup-text {
+    height: 250px;
+    margin-top: 50px;
+}
+#container .signup-text .comment {
+    height: 400px;
+}
+#container .signup-text .comment h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#container .signup-text .comment h3 {
+    text-align: center;
+    color: #888;
+}
+#container .signup-text .comment a {
+    display: block;
+    width: 300px;
+    height: 50px;
+    background-color: #A62326;
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    margin: 50px auto;
+}
+#container .footer {
+
+}

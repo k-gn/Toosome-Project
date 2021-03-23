@@ -1,0 +1,104 @@
+@charset "utf-8";
+@font-face {
+    font-family: gsdr;
+    src: url(../../font/a고속도로.ttf) format('truetype');
+  }
+#container .fake-header {
+    width: 100%;
+    height: 120px;
+    visibility: hidden;
+}
+/**************************** login-form *********************************/
+
+.login-container {
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 600px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.login-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.login-container .title-container .login-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+
+.login-form {
+    height: 500px;
+    margin-top: 50px;
+}
+.login-form form {
+    height: 500px;
+    
+}
+.login-form form input[type="text"],
+.login-form form input[type="password"] {
+    display: block;
+    width: 500px;
+    height: 50px;
+    margin: 20px auto;
+    padding-left: 5px;
+    background-color: #38383b;
+    font-size: 20px;
+    color: #fff;
+} 
+.login-form form input[type="submit"] {
+    display: block;
+    width: 510px;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #A62326;
+    color: #fff;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+.login-form .login-value {
+    display: flex;
+}
+.login-form .login-value .kaka {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    float: left;
+}
+.login-form .login-value .kaka img {
+    width: auto;
+    height: 50px;
+}
+.login-form .login-value > div {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form form ul {
+    max-width: 600px;
+    margin: 50px auto;
+    height: 30px;
+    /* background-color: #fff; */
+}
+.login-form form ul li {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.login-form form ul li:first-child {
+    border-right: 1px solid #000;
+    box-sizing: border-box;
+}
+.login-form form ul li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+}
