@@ -11,3 +11,5 @@ Servers
 
 *.class
 *.springBeans
+
+MANIFEST.MF
