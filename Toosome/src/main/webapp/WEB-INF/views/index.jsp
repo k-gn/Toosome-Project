@@ -93,8 +93,9 @@
         <div class="full-cover"></div>
 
         <ul class="log">
-          <li><a href="../login/login.html">LOGIN</a></li>
-          <li><a href="../login/signup/pages/signup.html">SIGN UP</a></li>
+          <!-- <li><a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a></li> -->
+          <li><a href="resources/html/subpage/signin/login.html">LOGIN</a></li>
+          <li><a onclick="location.href='agreement'">SIGN UP</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </header>
@@ -315,6 +316,7 @@
             <article class="art4"><a href="#"></a></article>
             <article class="art5"><a href="#"></a></article>
           </div>
+          <a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a>
         </div>
       </div>
     </div>
