@@ -8,9 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/reset.css">
     <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/signin/success-signUp.css">
+    <link rel="stylesheet" href="resources/css/subpages/brandstory/brandStory.css">
     <script src="resources/js/jquery-3.1.1.js"></script>
+    <script src="resources/js/jquery.easing.1.3.js"></script>
     <script src="resources/js/script.js"></script>
+    <script src="resources/js/subpages/brandstory/brandStory.js"></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -79,21 +81,34 @@
                 <li><a href="#">FAQ</a></li>
             </ul>
         </header>
+        <!-- header-end -->
 
-        <div class="login-container">
+        <div class="brandstory-container">
             <div class="title-container">
                 <img class="title-logo" src="resources/img/subpages/share/banner.png" alt="">
-                <span class="login-title">회원가입완료</span>
+                <span class="brandstory-title">BrandStory</span>
             </div>
-            <div class="signup-text">
-                <div class="comment">
-                    <h2>회원가입이 정상적으로 완료되었습니다.</h2>
-                    <h3>로그인 후 이용해주세요.</h3>
 
-                    <a href="#">Log In</a>
+            <div class="content-box">
+                <div class="menu-btn">
+                    <ul class="btn-tab">
+                        <li class="select"><a href="#">투썸플레이스 소개</a></li>
+                        <li><a href="#">투썸플레이스 히스토리</a></li>
+                        <li><a href="#">투썸플레이스 BI</a></li>
+                    </ul>
+                </div>
+                <div class="menu-contents">
+                    <ul class="tab-img">
+                        <li><img src="resources/img/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
+                        <li><img src="resources/img/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
+                        <li><img src="resources/img/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+
+        <!-- footer-start -->
         <div class="footer">
             <div class="foot-cover">
                 <ul class="foot-first cf">
