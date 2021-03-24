@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/subpages/signin/login.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="resources/js/subpages/signin/jquery-3.1.1.js"></script>
-<script src="resources/js/subpages/signin/script.js"></script>
+<script src="resources/js/jquery-3.1.1.js"></script>
+<script src="resources/js/script.js"></script>
 <script src="resources/js/subpages/signin/login.js"></script>
 <title>A TOOSOME PLACE</title>
 </head>
@@ -20,8 +20,8 @@
 <!-- Header Start -->
     <header>
         <h1 class="logo">
-            <a href="index.jsp">
-                A THREESOME PLACE
+            <a href="#">
+                A TOOSOME PLACE
             </a>
         </h1>
         <nav>
