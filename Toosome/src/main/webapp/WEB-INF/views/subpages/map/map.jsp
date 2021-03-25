@@ -6,19 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/resources/css/reset.css">
-    <link rel="stylesheet" href="/resources/css/subpages/signin/main.css">
-    <link rel="stylesheet" href="/resources/css/subpages/signin/success-signUp.css">
-    <script src="/resources/js/jquery-3.1.1.js"></script>
-    <script src="/resources/js/script.js"></script>
-=======
     <link rel="stylesheet" href="resources/css/reset.css">
     <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/signin/success-signUp.css">
+    <link rel="stylesheet" href="resources/css/subpages/map/map.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040&libraries=services"></script>
+	<script
+	    type="text/javascript"
+	    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040"
+	></script>
     <script src="resources/js/jquery-3.1.1.js"></script>
-    <script src="resources/js/script.js"></script>
->>>>>>> 3961a95442afd9340cc4405ec6bad4eda6c9fe63
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -87,21 +83,26 @@
                 <li><a href="#">FAQ</a></li>
             </ul>
         </header>
-
-        <div class="login-container">
-            <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-                <span class="login-title">회원가입완료</span>
-            </div>
-            <div class="signup-text">
-                <div class="comment">
-                    <h2>회원가입이 정상적으로 완료되었습니다.</h2>
-                    <h3>로그인 후 이용해주세요.</h3>
-
-                    <a href="#">Log In</a>
-                </div>
-            </div>
-        </div>
+		<!-- section start -->
+        <section class="section">
+        	<div class="map_wrap">
+			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			    <div id="menu_wrap" class="bg_white">
+			        <div class="option">
+			            <div>
+			                <form onsubmit="searchPlaces(); return false;">
+			                    키워드 : <input type="text" value="투썸플레이스" id="keyword" size="15"> 
+			                    <button type="submit">검색하기</button> 
+			                </form>
+			            </div>
+			        </div>
+			        <hr>
+			        <ul id="placesList"></ul>
+			        <div id="pagination"></div>
+			    </div>
+			</div>
+        </section>
+        <!-- section end -->
         <div class="footer">
             <div class="foot-cover">
                 <ul class="foot-first cf">
@@ -139,5 +140,6 @@
             
         </div>
     </div>
+    <script src="resources/js/subpages/map/map.js"></script>
 </body>
 </html>
