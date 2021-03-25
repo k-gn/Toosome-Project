@@ -1,16 +1,13 @@
 @charset "utf-8";
 @font-face {
   font-family: gsdr;
-  src: url(../../font/a고속도로.ttf) format('truetype');
+  src: url(/resources/font/a고속도로.ttf) format('truetype');
 }
 @font-face {
   font-family: copper;
-  src: url(../../font/Copperplate\ Gothic\ Bold\ Regular.ttf) format('truetype');
+  src: url(/resources/font/Copperplate\ Gothic\ Bold\ Regular.ttf) format('truetype');
 }
-/* Copperplate Gothic Bold Regular */
-/* #container / header / .logo / a / img */
-/* #container / header / nav / .nav / .main-title / a */
-/* #container / header / nav / .nav / .main-title / .sub-con /  li / a */
+
 body {
   font-family: '맑은 고딕';
 }
@@ -264,7 +261,7 @@ header .log li:hover a::before {
 .button-logo .button-img {
   width: 90px;
   height: 90px;
-  background: url('../../img/buttonlogo.png') no-repeat center / contain;
+  background: url('/resources/img/buttonlogo.png') no-repeat center / contain;
   transform: scale(0.8);
 }
 .button-logo a.offbutton {
@@ -632,34 +629,34 @@ header .log li:hover a::before {
 }
 
 .footer .foot-cover .f_sns article.art1 a {
-  background-image: url('../../img/ins.svg');
+  background-image: url('/resources/img/ins.svg');
 }
 .footer .foot-cover .f_sns article.art1 a:hover {
-  background-image: url('../../img/on_ins.svg');
+  background-image: url('/resources/img/on_ins.svg');
 }
 .footer .foot-cover .f_sns article.art2 a {
-  background-image: url('../../img/fac.svg');
+  background-image: url('/resources/img/fac.svg');
 }
 .footer .foot-cover .f_sns article.art2 a:hover {
-  background-image: url('../../img/on_fac.svg');
+  background-image: url('/resources/img/on_fac.svg');
 }
 .footer .foot-cover .f_sns article.art3 a {
-  background-image: url('../../img/you.svg');
+  background-image: url('/resources/img/you.svg');
 }
 .footer .foot-cover .f_sns article.art3 a:hover {
-  background-image: url('../../img/on_you.svg');
+  background-image: url('/resources/img/on_you.svg');
 }
 .footer .foot-cover .f_sns article.art4 a {
-  background-image: url('../../img/blo.svg');
+  background-image: url('/resources/img/blo.svg');
 }
 .footer .foot-cover .f_sns article.art4 a:hover {
-  background-image: url('../../img/on_blo.svg');
+  background-image: url('/resources/img/on_blo.svg');
 }
 .footer .foot-cover .f_sns article.art5 a {
-  background-image: url('../../img/tw.svg');
+  background-image: url('/resources/img/tw.svg');
 }
 .footer .foot-cover .f_sns article.art5 a:hover {
-  background-image: url('../../img/on_tw.svg');
+  background-image: url('/resources/img/on_tw.svg');
 }
 
 /******************** footer-end ***************************/

@@ -106,6 +106,7 @@ hs_err_pid*
 .nfs*
 
 ### Maven ###
+Toosome/target/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

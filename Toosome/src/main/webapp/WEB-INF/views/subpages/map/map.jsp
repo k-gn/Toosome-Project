@@ -14,7 +14,9 @@
 	    type="text/javascript"
 	    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040"
 	></script>
-    <script src="resources/js/jquery-3.1.1.js"></script>
+    <script src="resources/js/share/jquery-3.1.1.js"></script>
+    <script src="resources/js/share/nav_footer.js"></script>
+    <script src="resources/js/subpages/map/map.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>

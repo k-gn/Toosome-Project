@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/reset.css">
-<link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/css/subpages/signin/login.css">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/main.css">
+<link rel="stylesheet" href="/resources/css/subpages/signin/login.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="resources/js/jquery-3.1.1.js"></script>
-<script src="resources/js/script.js"></script>
-<script src="resources/js/subpages/signin/login.js"></script>
+<script src="/resources/js/share/jquery-3.1.1.js"></script>
+<script src="/resources/js/share/nav_footer.js"></script>
+<script src="/resources/js/subpages/signin/login.js"></script>
 <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -87,16 +87,16 @@
 
 	<div class="login-container">
 		<div class="title-container">
-			<img class="title-logo" src="resources/img/subpages/share/banner.png" alt=""/>
+			<img class="title-logo" src="/resources/img/subpages/share/banner.png" alt=""/>
 			<span class="login-title">로그인</span>
 		</div>
 		<div class="login-form">
-			<form action="#" method="GET">
+			<form action="#" method="POST">
 				<input type="text" name="userId" value="" id="ID" placeholder="이메일을 입력해주세요." required />
 				<input type="password" name="password" value="" id="PW" placeholder="비밀번호를 입력해주세요." required />
 				<input type="submit" value="로그인">
 				<div class="login-value">
-					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="resources/img/subpages/signin/kakao_login.png" alt=""></a>
+					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
 					<!-- 네이버 부분 -->
 				</div>
 			</form>
