@@ -10,8 +10,16 @@ public class LoginController {
 	public String agreement() {
 		return "subpages/agreement/agreement";
 	}
+	@GetMapping("/signin")
+	public String signin() {
+		return "subpages/signin/signin";
+	}
 	@GetMapping("/signup")
 	public String signup() {
 		return "subpages/signup/signup";
+	}
+	@GetMapping("/brandstory")
+	public String brand() {
+		return "subpages/brandstory/brandStory";
 	}
 }

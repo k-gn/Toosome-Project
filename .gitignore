@@ -7,6 +7,7 @@ Servers
 
 ### Eclipse ###
 .metadata
+.metadata/
 
 
 *.class
@@ -16,6 +17,7 @@ Servers
 
 *.MF
 ### Maven ###
+Toosome/target/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

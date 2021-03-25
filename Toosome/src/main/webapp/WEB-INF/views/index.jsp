@@ -19,26 +19,25 @@
     />
     <link
       rel="shortcut icon"
-      href="/resources/img/AnyConv.com__favicon.ico"
+      href="resources/img/AnyConv.com__favicon.ico"
       type="image/x-icon"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="/resources/js/jquery.mousewheel.min.js"></script>
-    <script src="/resources/js/slick.js"></script>
-    <script src="/resources/js/jquery.bxslider.js"></script>
-    <script src="/resources/js/script.js"></script>
-    <title>A TWOSOME PLACE</title>
+    <script src="/resources/js/share/jquery-3.1.1.js"></script>
+    <script src="/resources/js/main/jquery.mousewheel.min.js"></script>
+    <script src="/resources/js/main/slick.js"></script>
+    <script src="/resources/js/main/script.js"></script>
+    <title>A TOOSOME PLACE</title>
   </head>
   <body>
     <div id="container">
       <header>
         <h1 class="logo">
-          <a href="index.html">
-            A THREESOME PLACE
+          <a href="#">
+            A TOOSOME PLACE
           </a>
         </h1>
         <nav>
@@ -46,7 +45,7 @@
             <li class="menu-title">
               <a href="#">ABOUT US</a>
               <ul class="sub-con">
-                <li><a href="#">브랜드이야기</a></li>
+                <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
                 <li><a href="#">커피이야기</a></li>
                 <li><a href="#">디저트이야기</a></li>
                 <li><a href="#">브랜드필름</a></li>
@@ -91,8 +90,8 @@
         </nav>
         <div class="full-cover"></div>
         <ul class="log">
-          <li><a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a></li>
-          <li><a onclick="location.href='/agreement'">SIGN UP</a></li>
+          <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
+          <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </header>

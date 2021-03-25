@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="/resources/css/subpages/signup/signup.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/resources/img/AnyConv.com__favicon.ico" type="image/x-icon">
-  <script src="resources/js/jquery-3.1.1.js"></script>
+  <script src="resources/js/share/jquery-3.1.1.js"></script>
+  <script src="resources/js/share/nav_footer.js"></script>
   <!-- 우편번호 api -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/resources/js/subpages/signup/signup.js"></script>
+  <script src="/resources/js/subpages/signup/signup.js" defer></script>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -78,7 +79,7 @@
         <div class="full-cover"></div>
 
         <ul class="log">
-            <li><a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a></li>
+            <li><a onclick="location.href='/signin'">LOGIN</a></li>
          	<li><a onclick="location.href='/agreement'">SIGN UP</a></li>
             <li><a href="#">FAQ</a></li>
         </ul>

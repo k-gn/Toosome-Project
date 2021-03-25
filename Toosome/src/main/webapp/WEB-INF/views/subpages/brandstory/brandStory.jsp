@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="resources/css/reset.css">
     <link rel="stylesheet" href="resources/css/main.css">
     <link rel="stylesheet" href="resources/css/subpages/brandstory/brandStory.css">
-    <script src="resources/js/jquery-3.1.1.js"></script>
-    <script src="resources/js/jquery.easing.1.3.js"></script>
-    <script src="resources/js/script.js"></script>
+    <script src="resources/js/share/jquery-3.1.1.js"></script>
+    <script src="resources/js/share/nav_footer.js"></script>
     <script src="resources/js/subpages/brandstory/brandStory.js"></script>
     <title>A TOOSOME PLACE</title>
 </head>
