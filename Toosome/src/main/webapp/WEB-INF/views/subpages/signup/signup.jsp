@@ -22,7 +22,7 @@
     <header>
         <h1 class="logo">
             <a href="index.jsp">
-                A THREESOME PLACE
+                A TOOSOME PLACE
             </a>
         </h1>
         <nav>
