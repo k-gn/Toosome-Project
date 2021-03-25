@@ -22,4 +22,8 @@ public class LoginController {
 	public String brand() {
 		return "subpages/brandstory/brandStory";
 	}
+	@GetMapping("/event")
+	public String event() {
+		return "subpages/event/event";
+	}
 }
