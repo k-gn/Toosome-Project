@@ -72,9 +72,9 @@
             <li class="menu-title">
               <a href="#">WHAT'S NEW</a>
               <ul class="sub-con">
-                <li><a href="#">이벤트</a></li>
+                <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
                 <li><a href="#">멤버쉽&제휴카드</a></li>
-                <li><a href="#">공지사항</a></li>
+                <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
                 <li><a href="#">기업 및 단체구매 안내</a></li>
               </ul>
             </li>

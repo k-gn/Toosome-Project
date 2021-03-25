@@ -1,4 +1,5 @@
-@charset "utf-8";
+@charset "UTF-8";
+
 @font-face {
   font-family: gsdr;
   src: url(/resources/font/a고속도로.ttf) format('truetype');
@@ -380,13 +381,13 @@ header .log li:hover a::before {
   width: 90%;
 }
 /******************** buttonLogo-end *********************/
+/******************** section start **********************/
 
 .signup-container {
-  display: block;
   margin: 150px auto;
-  padding: 15px;
+  padding: 30px 15px 50px;
   box-sizing: border-box;
-  max-width: 600px;
+  max-width: 1000px;
   border: 1px solid #eee;
   border-radius: 7px;
   box-shadow: 0 2px 3px #eee;
@@ -405,176 +406,109 @@ header .log li:hover a::before {
   color: black;
 }
 
-.signup-form-container {
-  margin-top: 50px;
+.title-logo {
+	display: block;
+	width: 60%;
+	height: auto;
+	margin: 0 auto;
 }
 
-.signform-email-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.tab-container {
+	max-width: 800px;
+	height: auto;
+	margin: 50px auto;
 }
 
-.validation {
-  display: none;
-  padding-top: 5px;
-  color: red;
+.tabs {
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+	border: 1px solid #dddddd;
+	border-right: none;
 }
 
-#email-auth-form {
-  display: none;
+.tabs li {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	border-right: 1px solid #dddddd;
+	cursor: pointer;
 }
 
-.submit-auth-btn:disabled,
-.email-auth-btn:disabled {
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  background-color: #999;
-  color: white;
-  margin-bottom: 15px;
-  font-size: 1rem;
+.tabs li:hover {
+	text-decoration: underline;
 }
 
-.submit-auth-btn:enabled,
-.email-auth-btn:enabled {
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
-  background-color: #a62326;
-  color: white;
-  margin-bottom: 15px;
-  font-size: 1rem;
+.tabs .active {
+	color: white;
+	background: #a62326;
 }
 
-.submit-auth-btn:enabled:hover,
-.email-auth-btn:enabled:hover {
-  text-decoration: underline;
+[data-tab-content] {
+	display: none;
 }
 
-.auth-info-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: red;
-  font-size: 0.9rem;
-  padding: 0 20px 10px;
+.active[data-tab-content] {
+	display: block;
 }
 
-.email-auth-time {
-  font-size: 1.2rem;
+.ing-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-.email-auth-ok {
-  display: none;
-  color: red;
-  text-align: right;
-  padding-right: 10px;
+.ing-content li {
+	box-sizing: border-box;
+	padding: 10px 20px 30px;
 }
 
-.signup-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px;
-  margin-top: 50px;
+.ing-content li a {
+	display: block;
+	text-align: center;
 }
 
-.signup-wrapper span {
-  font-size: 1.2rem;
-  font-family: gsdr;
-  margin-bottom: 15px;
+.ing-content li img {
+	width: 280px;
+	height: auto;
+	margin-bottom: 5px;
+	background: red;
 }
 
-.signup-form {
-  height: 50px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  padding-left: 15px;
+.ing-content li a p:first-of-type {
+	font-size: 0.875rem;
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
-.signup-form:focus {
-  outline: none;
+.ing-content li a p:last-of-type {
+	font-size: 0.75rem;
+	margin-top: 10px;
 }
 
-.signup-form-tb {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+@media ( min-width:768px ) and ( max-width:1023px ) { /* 태블릿 */
+	.ing-content {
+		justify-content: center;
+	}
 }
 
-.signup-form-tb select {
-  width: 150px;
+@media ( max-width:767px) { /* 모바일 */
+	.tabs {
+		font-size: 0.875rem;
+		/* word-break: non-CJK; */
+	}
+
+	.ing-content {
+		justify-content: space-around;
+	}
 }
 
-.signup-form-tb input {
-  width: 150px;
-}
 
-.post-search {
-  height: 50px;
-  padding: 8px;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background-color: #a62326;
-  color: white;
-  font-size: 1.1rem;
-}
 
-.post-search:focus {
-  outline: none;
-}
 
-.post-search:hover {
-  text-decoration: underline;
-}
-
-.signform-btn-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px;
-  margin-bottom: 50px;
-}
-
-.signform-btn:disabled {
-  display: block;
-  background: #ccc;
-  width: 400px;
-  height: 50px;
-  border-radius: 5px;
-  border: none;
-  font-size: 1.2rem;
-  font-family: gsdr;
-}
-
-.signform-btn:focus {
-  outline: none;
-}
-
-.signform-btn:enabled {
-  display: block;
-  width: 400px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  font-size: 1.2rem;
-  font-family: gsdr;
-  background: #a62326;
-  color: white;
-}
-
-.signform-btn:enabled:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width: 640px) {
-  .signup-container {
-    min-width: 320px;
-  }
-}
-
+/******************** section end **********************/
 /******************** footer-start **************************/
 .footer {
   width: 100%;
