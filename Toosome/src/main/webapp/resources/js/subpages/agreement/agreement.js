@@ -127,6 +127,7 @@ $(function () {
   const signupHandler = (e) => {
     if (!signupBtn.disabled) {
       alert('회원가입 진행');
+      location.href='/signup';
     }
   };
 
