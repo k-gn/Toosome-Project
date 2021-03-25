@@ -7,19 +7,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="resources/css/reset.css" />
+    <link rel="stylesheet" href="/resources/css/reset.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/main.css" />
-    <link rel="stylesheet" href="resources/css/slick.css" />
-    <link rel="stylesheet" href="resources/css/slick-theme.css" />
+    <link rel="stylesheet" href="/resources/css/main.css" />
+    <link rel="stylesheet" href="/resources/css/slick.css" />
+    <link rel="stylesheet" href="/resources/css/slick-theme.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link
       rel="shortcut icon"
-      href="resources/img/AnyConv.com__favicon.ico"
+      href="/resources/img/AnyConv.com__favicon.ico"
       type="image/x-icon"
     />
     <link
@@ -27,10 +27,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="resources/js/jquery.mousewheel.min.js"></script>
-    <script src="resources/js/slick.js"></script>
-    <script src="resources/js/jquery.bxslider.js"></script>
-    <script src="resources/js/script.js"></script>
+    <script src="/resources/js/jquery.mousewheel.min.js"></script>
+    <script src="/resources/js/slick.js"></script>
+    <script src="/resources/js/jquery.bxslider.js"></script>
+    <script src="/resources/js/script.js"></script>
     <title>A TWOSOME PLACE</title>
   </head>
   <body>
@@ -89,13 +89,10 @@
             </li>
           </ul>
         </nav>
-
         <div class="full-cover"></div>
-
         <ul class="log">
-          <!-- <li><a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a></li> -->
-          <li><a href="resources/html/subpage/signin/login.html">LOGIN</a></li>
-          <li><a onclick="location.href='agreement'">SIGN UP</a></li>
+          <li><a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a></li>
+          <li><a onclick="location.href='/agreement'">SIGN UP</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </header>
@@ -114,88 +111,87 @@
           <div class="img_box">
             <ul class="new-menu-box cf">
               <li>
-                <a href="#"><img src="resources/img/c-001.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/c-001.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/c-002.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/c-002.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/c-003.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/c-003.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/c-004.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/c-004.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/c-005.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/c-005.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-001.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-001.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-002.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-002.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-003.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-003.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-004.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-004.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-005.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-005.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-006.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-006.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-007.PNG" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-007.PNG" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-008.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-008.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/h-009.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/h-009.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-001.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-001.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-002.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-002.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-003.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-003.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-004.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-004.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-005.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-005.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-006.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-006.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-007.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-007.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-008.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-008.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-009.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-009.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-010.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-010.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-011.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-011.png" alt="" /></a>
               </li>
               <li>
-                <a href="#"><img src="resources/img/K-012.png" alt="" /></a>
+                <a href="#"><img src="/resources/img/K-012.png" alt="" /></a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
       <div class="section">
         <div class="quick-menu">
           <div class="quick-menu-coffee">
@@ -242,14 +238,14 @@
           <ul class="online-icon">
             <li>
               <a href="#"
-                ><img src="resources/img/conversation.png" alt="" /><span
+                ><img src="/resources/img/conversation.png" alt="" /><span
                   >온라인상담</span
                 ></a
               >
             </li>
             <li>
               <a href="#"
-                ><img src="resources/img/giftbox.png" alt="" /><span
+                ><img src="/resources/img/giftbox.png" alt="" /><span
                   >온라인주문</span
                 ></a
               >
@@ -316,7 +312,7 @@
             <article class="art4"><a href="#"></a></article>
             <article class="art5"><a href="#"></a></article>
           </div>
-          <a onclick="location.href='resources/html/subpage/signin/login.html'">LOGIN</a>
+          <a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a>
         </div>
       </div>
     </div>

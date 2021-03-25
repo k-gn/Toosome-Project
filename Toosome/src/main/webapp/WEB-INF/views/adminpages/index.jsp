@@ -13,8 +13,8 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
-  <link href="resources/css/adminpages/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  <link href="resources/css/adminpages/admin_main.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="/resources/css/adminpages/admin_main.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -203,7 +203,7 @@
       </footer>
     </div>
   </div>
-  <script src="resources/js/adminpages/admin_main.js"></script>
+  <script src="/resources/js/adminpages/admin_main.js"></script>
 </body>
 
 </html>

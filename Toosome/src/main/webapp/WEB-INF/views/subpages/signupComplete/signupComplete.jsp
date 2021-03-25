@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/reset.css">
-    <link rel="stylesheet" href="resources/css/subpages/signin/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/signin/success-signUp.css">
-    <script src="resources/js/jquery-3.1.1.js"></script>
-    <script src="resources/js/script.js"></script>
+    <link rel="stylesheet" href="/resources/css/reset.css">
+    <link rel="stylesheet" href="/resources/css/subpages/signin/main.css">
+    <link rel="stylesheet" href="/resources/css/subpages/signin/success-signUp.css">
+    <script src="/resources/js/jquery-3.1.1.js"></script>
+    <script src="/resources/js/script.js"></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -82,7 +82,7 @@
 
         <div class="login-container">
             <div class="title-container">
-                <img class="title-logo" src="resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
                 <span class="login-title">회원가입완료</span>
             </div>
             <div class="signup-text">

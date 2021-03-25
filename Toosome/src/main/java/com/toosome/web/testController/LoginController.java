@@ -10,10 +10,8 @@ public class LoginController {
 	public String agreement() {
 		return "subpages/agreement/agreement";
 	}
-	
 	@GetMapping("/signup")
 	public String signup() {
 		return "subpages/signup/signup";
 	}
-	
 }
