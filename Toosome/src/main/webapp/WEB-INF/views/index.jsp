@@ -56,7 +56,7 @@
               <a href="#" onclick="location.href='/menu'">MENU</a>
               <ul class="sub-con">
                 <li><a href="#">NEW</a></li>
-                <li><a href="#">커피&음료</a></li>
+                <li><a href="#">커피&amp;음료</a></li>
                 <li><a href="#">디저트</a></li>
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
@@ -71,20 +71,22 @@
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">WHAT'S NEW</a>
+              <a href="#">WHAT'S NEWS</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
-                <li><a href="#">멤버쉽&제휴카드</a></li>
+                <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
-                <li><a href="#">기업 및 단체구매 안내</a></li>
+                <li><a href="#" onclick="">뉴스</a></li>
+                <li><a href="#" onclick="">QnA</a></li>
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">FRANCHISE</a>
+              <a href="#">OTHERS</a>
               <ul class="sub-con">
                 <li><a href="#">창업정보</a></li>
                 <li><a href="#">가맹점 전용 금융 상품</a></li>
                 <li><a href="#">창업설명회</a></li>
+                <li><a href="#">기업 및 단체구매 안내</a></li>
               </ul>
             </li>
           </ul>
@@ -93,6 +95,7 @@
         <ul class="log">
           <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
           <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
+          <li><a href="#">BASKET</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </header>
@@ -109,7 +112,7 @@
         <div class="new-cover">
           <p class="new">NEW</p>
           <div class="img_box">
-            <ul class="new-menu-box cf">
+            <ul class="new-menu-box cf slider autoplay2">
               <li>
                 <a href="#"><img src="/resources/img/c-001.png" alt="" /></a>
               </li>
@@ -197,7 +200,7 @@
           <div class="quick-menu-coffee">
             <div class="coffee">
               <a href="#"></a>
-              <span class="quick-title">Coffee & Cake</span>
+              <span class="quick-title">Coffee &amp; Cake</span>
             </div>
             <div class="coffee-ment">
               <h3>전문가의 섬세함으로<br />완성한 최상의 커피</h3>
@@ -213,7 +216,7 @@
           <div class="quick-menu-beverage">
             <div class="beverage">
             <a href="#"></a>
-              <span class="quick-title">Tumbler & Goods</span>
+              <span class="quick-title">Tumbler &amp; Goods</span>
             </div>
             <div class="beverage-ment">
               <h3>일상에 가치를 더하는<br />라이프스타일 MD 상품</h3>
@@ -283,6 +286,7 @@
             <li><a href="#">위치기반서비스 이용약관</a></li>
             <li><a href="#">이메일 무단수집거부</a></li>
             <li><a href="#">법적고지</a></li>
+            <li><a href="#">사이트맵</a></li>
           </ul>
           <ul class="foot-second cf">
             <li>
