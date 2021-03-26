@@ -1,0 +1,194 @@
+@charset "utf-8";
+@font-face {
+    font-family: gsdr;
+    src: url(../../font/a고속도로.ttf) format('truetype');
+}
+/* .menu-container > .title-container > .menu-title */
+
+.menu-container {
+    max-width: 980px;
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.menu-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.menu-container .title-container .menu-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+.menu-container .title-container .title-logo {
+    display: flex;
+    width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.menu-container .tab-container {
+    margin-top: 50px;
+}
+.menu-container .tab-container .menu-btn {
+    width: 100%;
+    height: 70px;
+}
+.menu-container .tab-container .menu-btn .btn-tab {
+    position: relative;
+    box-sizing: border-box;
+}
+.menu-container .tab-container .menu-btn .btn-tab li {
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #38383b;
+    box-sizing: border-box;
+    border: 3px solid #fff;
+    border-right: none;
+}
+.menu-container .tab-container .menu-btn .btn-tab li.select {
+    /* background-color: #A62326; */
+}
+.menu-container .tab-container .menu-btn .btn-tab li:nth-child(5) {
+    border-right: 3px solid #fff;
+}
+.menu-container .tab-container .menu-btn .btn-tab li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+    text-align: center;
+    font-size: 18px;
+    font-family: gsdr;
+    color: #fff;
+}
+.menu-container .tab-container .menu-btn .btn-tab .ani-border {
+    position: absolute;
+    width: 20%;
+    height: 75px;
+    box-sizing: border-box;
+    border: 8px solid #A62326;
+}
+
+
+
+
+
+
+.menu-container .tab-container .menu-content {
+    padding: 10px;
+    margin-top: 10px;
+}
+.menu-container .tab-container .menu-content ul {
+    width: 100%;
+    display: none;
+}
+.menu-container .tab-container .menu-content ul:first-child {
+    display: block;
+}
+.menu-container .tab-container .menu-content ul h3 {
+    font-family: gsdr;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #A62326;
+}
+.menu-container .tab-container .menu-content ul li {
+    width: 25%;
+    height: 100px;
+    display: flex;
+    float: left;
+    margin-bottom: 10px;
+}
+.menu-container .tab-container .menu-content ul li a {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+    background-color: red;
+}
+.menu-container .tab-container .menu-content ul li:nth-child(2) a {
+    background-color: orange;
+} 
+.menu-container .tab-container .menu-content ul li:nth-child(3) a {
+    background-color: yellow;
+} 
+.menu-container .tab-container .menu-content ul li:nth-child(4) a {
+    background-color: green;
+} 
+.menu-container .tab-container .menu-content ul li:last-child a {
+    background-color: blue;
+} 
+.menu-container .tab-container .menu-content ul li:nth-child(3) a span {
+    color: #000;
+} 
+.menu-container .tab-container .menu-content ul li a span {
+    text-align: center;
+    color: #fff;
+    line-height: 90px;
+}
+.menu-container .tab-container .menu-content ul#beverage li:nth-child(1) a {
+    background-color: navy;
+}
+.menu-container .tab-container .menu-content ul#beverage li:nth-child(2) a {
+    background-color: violet;
+}
+.menu-container .tab-container .menu-content ul#beverage li:nth-child(3) a {
+    background-color: indianred;
+}
+.menu-container .tab-container .menu-content ul#beverage li:nth-child(4) a {
+    background-color: olivedrab;
+}
+.menu-container .tab-container .menu-content ul#beverage li:nth-child(5) a {
+    background-color: blanchedalmond;
+}
+.menu-container .tab-container .menu-content ul#dessert li:nth-child(1) a {
+    background-color: antiquewhite;
+}
+.menu-container .tab-container .menu-content ul#dessert li:nth-child(2) a {
+    background-color: aqua;
+}
+.menu-container .tab-container .menu-content ul#dessert li:nth-child(3) a {
+    background-color: aquamarine;
+}
+.menu-container .tab-container .menu-content ul#dessert li:nth-child(4) a {
+    background-color: beige;
+}
+.menu-container .tab-container .menu-content ul#dessert li:nth-child(5) a {
+    background-color: bisque;
+}
+.menu-container .tab-container .menu-content ul#delhi li:nth-child(1) a {
+    background-color: black;
+}
+.menu-container .tab-container .menu-content ul#delhi li:nth-child(2) a {
+    background-color: blanchedalmond;
+}
+.menu-container .tab-container .menu-content ul#delhi li:nth-child(3) a {
+    background-color: blue;
+}
+.menu-container .tab-container .menu-content ul#delhi li:nth-child(4) a {
+    background-color: blueviolet;
+}
+.menu-container .tab-container .menu-content ul#delhi li:nth-child(5) a {
+    background-color: brown;
+}
+.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(1) a {
+    background-color: burlywood;
+}
+.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(2) a {
+    background-color: cadetblue;
+}
+.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(3) a {
+    background-color: chartreuse;
+}
+.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(4) a {
+    background-color: chocolate;
+}
+.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(5) a {
+    background-color: coral;
+}
