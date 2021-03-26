@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/reset.css">
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/brandstory/brandStory.css">
-    <script src="resources/js/share/jquery-3.1.1.js"></script>
-    <script src="resources/js/share/nav_footer.js"></script>
-    <script src="resources/js/subpages/brandstory/brandStory.js"></script>
+    <link rel="stylesheet" href="/resources/css/reset.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/subpages/event/event.css">
+    <script src="/resources/js/share/jquery-3.1.1.js"></script>
+    <script src="/resources/js/share/nav_footer.js"></script>
+    <script src="/resources/js/subpages/event/event.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -81,32 +81,121 @@
             </ul>
         </header>
         <!-- header-end -->
-
-        <div class="brandstory-container">
-            <div class="title-container">
-                <img class="title-logo" src="resources/img/subpages/share/banner.png" alt="">
-                <span class="brandstory-title">BrandStory</span>
-            </div>
-
-            <div class="content-box">
-                <div class="menu-btn">
-                    <ul class="btn-tab">
-                        <li class="select"><a href="#">투썸플레이스 소개</a></li>
-                        <li><a href="#">투썸플레이스 히스토리</a></li>
-                        <li><a href="#">투썸플레이스 BI</a></li>
-                    </ul>
-                </div>
-                <div class="menu-contents">
-                    <ul class="tab-img">
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
+		<!-- section start -->
+        <section>
+	      <div class="signup-container">
+	        <div class="title-container">
+	          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
+	          <span class="signup-title">이벤트</span>
+	        </div>
+	        <div class="tab-container">
+	        	<ul class="tabs">
+	        		<li data-tab-target="#ing" class="active">진행중인 이벤트</li>
+	        		<li data-tab-target="#store">매장별 이벤트</li>
+	        		<li data-tab-target="#end">종료된 이벤트</li>
+	        	</ul>
+	        </div>
+	        <div class="tab-content">
+		        <div id="ing" data-tab-content class="active">
+					<ul class="ing-content">
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+					</ul>
+		        </div>
+		        <div id="store" data-tab-content>
+		        	<ul class="ing-content">
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+					</ul>	        
+		        </div>
+		        <div id="end" data-tab-content>
+		        	<ul class="ing-content">
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
+								<p>투썸플레이스X무직타이거 프로모션</p>
+								<p>2021.03.20~2021.03.30</p>														
+							</a>
+						</li>
+					</ul>
+		        </div>	        
+	        </div>
+	      </div>
+	    </section>
+		<!-- section end -->
         <!-- footer-start -->
         <div class="footer">
             <div class="foot-cover">
@@ -131,7 +220,7 @@
                 </ul>
                 <ul class="foot-last cf">
                     <li>통신판매업종신고증 : 제 2018-서울중구-0353호</li>
-                    <li>대표이메일 : helpmaster@twosome.co.kr</li>
+                    <li>대표이메일 : helpmaster@toosome.co.kr</li>
                     <li> Copyright &copy; 2020 A TWOSOME PLACE CO. LTD. ALL RIGHTS RESERVED.</li>
                 </ul>
                 <div class="f_sns">

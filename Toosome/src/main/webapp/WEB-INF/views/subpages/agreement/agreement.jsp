@@ -10,9 +10,10 @@
   <link rel="stylesheet" href="/resources/css/subpages/agreement/agreement.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/resources/img/AnyConv.com__favicon.ico" type="image/x-icon">
-  <script src="/resources/js/jquery-3.1.1.js"></script>
-  <script src="/resources/js/subpages/agreement/agreement.js"></script>
-  <title>A THREESOME PLACE</title>
+  <script src="resources/js/share/jquery-3.1.1.js"></script>
+  <script src="/resources/js/share/nav_footer.js"></script>
+  <script src="/resources/js/subpages/agreement/agreement.js" defer></script>
+  <title>A TOOSOME PLACE</title>
 </head>
 <body>
   <div id="container">
@@ -76,7 +77,7 @@
         <div class="full-cover"></div>
 
         <ul class="log">
-            <li><a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a></li>
+            <li><a onclick="location.href='/signin'">LOGIN</a></li>
             <li><a onclick="location.href='/agreement'">SIGN UP</a></li>
             <li><a href="#">FAQ</a></li>
         </ul>
@@ -93,7 +94,7 @@
         <div class="contents-container">
           <div class="sign-all">
             <span class="sign-all-info">전체 동의</span>
-            <div class="sign-all-btn" href="#bottom"></div>
+            <div class="sign-all-btn"></div>
           </div>
           <div class="sign-each-wrapper">
           <div class="sign-each">
@@ -551,6 +552,7 @@
           </div>
       </div>
       <!-- Footer End -->
+  	</div>
   </div>
 </body>
 </html>
