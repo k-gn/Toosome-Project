@@ -6,7 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/resources/css/reset.css">
+  <link rel="stylesheet" href="/resources/css/share/reset.css">
+  <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
   <link rel="stylesheet" href="/resources/css/subpages/signup/signup.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/resources/img/AnyConv.com__favicon.ico" type="image/x-icon">
@@ -19,10 +20,9 @@
 </head>
 <body>
   <div id="container">
-    <!-- Header Start -->
     <header>
         <h1 class="logo">
-            <a href="index.jsp">
+            <a href="#">
                 A TOOSOME PLACE
             </a>
         </h1>
@@ -197,24 +197,6 @@
       </div>
     </section>
     <!-- Section End -->
-
-    <!-- Fixed Button Start-->
-    <div class="button-logo">
-      <div class="button-img"></div>
-      <a class="offbutton" href="#">
-          <span class="button-text">Click!!</span>
-      </a>
-      <a class="onbutton" href="#">Click!!</a>
-    </div>
-    <div class="button-bar-block">
-        <div class="button-bar">
-            <ul class="online-icon">
-                <li><a href="#"><img src="/resources/img/conversation.png" alt=""><span>온라인상담</span></a></li>
-                <li><a href="#"><img src="/resources/img/giftbox.png" alt=""><span>온라인주문</span></a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Fixed Button End -->
 
     <!-- Footer Start -->
     <div class="footer">
