@@ -6,17 +6,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/reset.css">
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/map/map.css">
+    <link rel="stylesheet" href="/resources/css/share/reset.css">
+    <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+    <link rel="stylesheet" href="/resources/css/subpages/map/map.css">
+    <link
+      rel="shortcut icon"
+      href="/resources/img/AnyConv.com__favicon.ico"
+      type="image/x-icon"
+    />
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040&libraries=services"></script>
 	<script
 	    type="text/javascript"
 	    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040"
 	></script>
-    <script src="resources/js/share/jquery-3.1.1.js"></script>
-    <script src="resources/js/share/nav_footer.js"></script>
-    <script src="resources/js/subpages/map/map.js" defer></script>
+    <script src="/resources/js/share/jquery-3.1.1.js"></script>
+    <script src="/resources/js/share/nav_footer.js"></script>
+    <script src="/resources/js/subpages/map/map.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -142,6 +147,5 @@
             
         </div>
     </div>
-    <script src="resources/js/subpages/map/map.js"></script>
 </body>
 </html>

@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-@font-face {
-  font-family: gsdr;
-  src: url(../../font/a고속도로.ttf) format('truetype');
-}
-
 .section {
   box-sizing: border-box;
   margin-top: 120px;

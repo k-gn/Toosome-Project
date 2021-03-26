@@ -6,12 +6,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/reset.css">
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/subpages/brandstory/brandStory.css">
-    <script src="resources/js/share/jquery-3.1.1.js"></script>
-    <script src="resources/js/share/nav_footer.js"></script>
-    <script src="resources/js/subpages/brandstory/brandStory.js"></script>
+    <link rel="stylesheet" href="/resources/css/share/reset.css">
+    <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+    <link rel="stylesheet" href="/resources/css/subpages/brandstory/brandStory.css">
+    <link
+      rel="shortcut icon"
+      href="/resources/img/AnyConv.com__favicon.ico"
+      type="image/x-icon"
+    />
+    <script src="/resources/js/share/jquery-3.1.1.js"></script>
+    <script src="/resources/js/share/nav_footer.js"></script>
+    <script src="/resources/js/subpages/brandstory/brandStory.js"></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -84,7 +89,7 @@
 
         <div class="brandstory-container">
             <div class="title-container">
-                <img class="title-logo" src="resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
                 <span class="brandstory-title">BrandStory</span>
             </div>
 
@@ -98,9 +103,9 @@
                 </div>
                 <div class="menu-contents">
                     <ul class="tab-img">
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
-                        <li><img src="resources/img/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
+                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
+                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
+                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
                     </ul>
                 </div>
             </div>
