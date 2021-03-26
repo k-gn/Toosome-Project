@@ -71,13 +71,8 @@
   overflow: hidden;
 }
 #new-menu .img_box .new-menu-box {
-  width: 800%;
+  width: 100%;
   margin-top: 50px;
-}
-#new-menu .img_box .new-menu-box li {
-  width: 3.125%;
-  float: left;
-  position: relative;
 }
 #new-menu .img_box .new-menu-box li a {
   width: 320px;
@@ -97,6 +92,12 @@
   transform: translateY(-5%);
 }
 
+#new-menu .img_box .new-menu-box .slick-prev {
+  left: 0px !important;
+}
+#new-menu .img_box .new-menu-box .slick-next {
+  right: 0px !important;
+}
 /******************** newMenu-end *********************/
 
 /******************** section-start *********************/
