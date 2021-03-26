@@ -26,4 +26,20 @@ public class LoginController {
 	public String event() {
 		return "subpages/event/event";
 	}
+	@GetMapping("/menu")
+	public String menu() {
+		return "subpages/menu/menu";
+	}
+	@GetMapping("/coffeestory")
+	public String coffeestory() {
+		return "subpages/coffeeStory/coffeeStory";
+	}
+	@GetMapping("/dessertstory")
+	public String dessertStory() {
+		return "subpages/dessertStory/dessertStory";
+	}
+	@GetMapping("/brandfilm")
+	public String brandFilm() {
+		return "subpages/brandFilm/brandFilm";
+	}
 }

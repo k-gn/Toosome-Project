@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+/******************** coffeestory **********************/
+.coffeestory-container {
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 980px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.coffeestory-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.coffeestory-container .title-container .coffeestory-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+.coffeestory-container .title-container .title-logo {
+    display: flex;
+    width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+.coffeestory-container .contents {
+    margin-top: 50px;
+}
+.coffeestory-container .contents img {
+    display: block;
+    margin: 0 auto;
+}
