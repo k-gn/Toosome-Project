@@ -46,13 +46,13 @@
               <a href="#">ABOUT US</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
-                <li><a href="#">커피이야기</a></li>
-                <li><a href="#">디저트이야기</a></li>
-                <li><a href="#">브랜드필름</a></li>
+                <li><a href="#" onclick="location.href='/coffeestory'">커피이야기</a></li>
+                <li><a href="#" onclick="location.href='/dessertstory'">디저트이야기</a></li>
+                <li><a href="#" onclick="location.href='/brandfilm'">브랜드필름</a></li>
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">MENU</a>
+              <a href="#" onclick="location.href='/menu'">MENU</a>
               <ul class="sub-con">
                 <li><a href="#">NEW</a></li>
                 <li><a href="#">커피&음료</a></li>
