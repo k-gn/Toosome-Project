@@ -45,30 +45,15 @@ $(function () {
     autoplaySpeed: 3000,
   });
 
-  var newClone = $('#new-menu .img_box .new-menu-box li:lt(6)').clone();
-  $('#new-menu .img_box .new-menu-box').append(newClone);
-
-  var rep;
-  var h = 0;
-  timer2();
-
-  function timer2() {
-    rep = setInterval(function () {
-      if (h == 26) {
-        h = 0;
-        $('#new-menu .img_box .new-menu-box').css('margin-left', 0);
-      }
-      h++;
-      $('#new-menu .img_box .new-menu-box')
-        .stop()
-        .animate(
-          {
-            'margin-left': -h * 25 + '%',
-          },
-          600
-        );
-    }, 3000);
-  }
+  $(".autoplay2").slick({
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  });
 
   $('.button-logo a.offbutton').click(function () {
     $(this).css('display', 'none');
