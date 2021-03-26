@@ -42,4 +42,8 @@ public class LoginController {
 	public String brandFilm() {
 		return "subpages/brandFilm/brandFilm";
 	}
+	@GetMapping("/admin")
+	public String admin() {
+		return "adminpages/index";
+	}
 }
