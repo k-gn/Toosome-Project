@@ -26,4 +26,8 @@ public class LoginController {
 	public String event() {
 		return "subpages/event/event";
 	}
+	@GetMapping("/admin")
+	public String admin() {
+		return "adminpages/index";
+	}
 }
