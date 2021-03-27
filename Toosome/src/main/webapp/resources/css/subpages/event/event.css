@@ -2,7 +2,7 @@
 
 .signup-container {
   margin: 150px auto;
-  padding: 30px 15px 50px;
+  padding: 30px 15px 20px;
   box-sizing: border-box;
   max-width: 1000px;
   border: 1px solid #eee;
@@ -70,6 +70,10 @@
 	display: block;
 }
 
+.active {
+	display: block;
+}
+
 .ing-content {
 	display: flex;
 	flex-wrap: wrap;
@@ -84,14 +88,20 @@
 .ing-content li a {
 	display: block;
 	text-align: center;
+	transition: al .2s; 
 }
 
-.ing-content li img {
+.ing-content li a:hover {
+	transform: scale(1.05);
+}
+
+.ing-content li a img {
 	width: 280px;
 	height: auto;
 	margin-bottom: 5px;
 	background: red;
 }
+
 
 .ing-content li a p:first-of-type {
 	font-size: 0.875rem;
@@ -121,3 +131,18 @@
 	}
 }
 
+.load-more {
+	display: block;
+	margin: 0 auto;
+	width: 70px;
+	height: 70px;
+	outline: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.load-more img {
+	width: 100%;
+	height: 100%;
+}
