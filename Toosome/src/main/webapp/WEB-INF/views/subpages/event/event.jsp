@@ -97,101 +97,19 @@
 	        </div>
 	        <div class="tab-content">
 		        <div id="ing" data-tab-content class="active">
-					<ul class="ing-content">
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e01.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-					</ul>
+					<ul class="ing-content"></ul>
+					<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
 		        </div>
 		        <div id="store" data-tab-content>
-		        	<ul class="ing-content">
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e02.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-					</ul>	        
+		        	<ul class="ing-content"></ul>
+		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>		        
 		        </div>
 		        <div id="end" data-tab-content>
-		        	<ul class="ing-content">
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="/resources/img/subpages/event/e03.jpg" alt="#">
-								<p>투썸플레이스X무직타이거 프로모션</p>
-								<p>2021.03.20~2021.03.30</p>														
-							</a>
-						</li>
-					</ul>
-		        </div>	        
+		        	<ul class="ing-content"></ul>
+		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
+		        </div>
+		        <!-- Load More Btn -->
+		                
 	        </div>
 	      </div>
 	    </section>
