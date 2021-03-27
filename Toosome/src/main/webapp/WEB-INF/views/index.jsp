@@ -96,7 +96,7 @@
           <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
           <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
           <li><a href="#">BASKET</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="#" onclick="location.href='/faq'">FAQ</a></li>
         </ul>
       </header>
       <div id="img-wrap" class="img-slide">

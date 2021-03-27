@@ -46,4 +46,8 @@ public class LoginController {
 	public String admin() {
 		return "adminpages/index";
 	}
+	@GetMapping("/faq")
+	public String faq() {
+		return "subpages/faq/faq";
+	}
 }
