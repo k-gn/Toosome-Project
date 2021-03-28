@@ -46,17 +46,13 @@ public class LoginController {
 	public String admin() {
 		return "adminpages/index";
 	}
-<<<<<<< HEAD
-<<<<<<< .merge_file_a23840
-=======
 	@GetMapping("/franchise")
 	public String franchise() {
 		return "subpages/franchise/franchise";
   }
->>>>>>> 88bb0d8a29e5cd4c5cde9112fcc7c0f248e3c386
 	@GetMapping("/faq")
 	public String faq() {
-		return "subpages/faq/faq"
+		return "subpages/faq/faq";
 	}
 	@GetMapping("/notice")
 	public String notice() {
@@ -69,13 +65,5 @@ public class LoginController {
 	@GetMapping("/qna")
 	public String qna() {
 		return "subpages/qna/qna";
-<<<<<<< HEAD
-=======
-	@GetMapping("/franchise")
-	public String franchise() {
-		return "subpages/franchise/franchise";
->>>>>>> .merge_file_a16312
-=======
->>>>>>> 88bb0d8a29e5cd4c5cde9112fcc7c0f248e3c386
 	}
 }
