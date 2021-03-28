@@ -1,0 +1,291 @@
+@charset "utf-8";
+
+/************************** brandstory ***********************************/
+.franchise-container {
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 980px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.franchise-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.franchise-container .title-container .franchise-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+.franchise-container .title-container .title-logo {
+    display: flex;
+    width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.franchise-container .contents {
+    width: 100%;
+}
+.franchise-container .contents .img-title {
+    width: 710px;
+    height: 228px;
+    margin: 0 auto;
+    position: relative;
+    background: url("../../../img/subpages/franchise/f.jpg") no-repeat center /contain;
+}
+.franchise-container .contents .img-title img {
+    position: absolute;
+    width: auto;
+    height: 90px;
+    top: 35%;
+    left: 5%;
+}
+
+.franchise-container .contents .click-way {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    /* background: olive; */
+    position: relative;
+}
+.franchise-container .contents .click-way article {
+    width: 160px;
+    height: 100px;
+    position: absolute;
+}
+.franchise-container .contents .click-way article .art-display {
+    position: absolute;
+    display: none;
+    top: 150px;
+    width: 550px;
+    height: 100px;
+    background: no-repeat center /cover;
+    box-sizing: border-box;
+    border-top: 2px solid #B52B36;
+    border-bottom: 2px solid #B52B36;
+}
+.franchise-container .contents .click-way article.click-on .art-display {
+    display: block;
+}
+.franchise-container .contents .click-way article a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.franchise-container .contents .click-way article.click-on a {
+    background-position: 0 -100px;
+}
+.franchise-container .contents .click-way article.art4.click-on a,
+.franchise-container .contents .click-way article.art5.click-on a  {
+    background-position: 0 -110px;
+}
+.franchise-container .contents .click-way article.art2 {
+    left: 200px;
+}
+.franchise-container .contents .click-way article.art3 {
+    left: 400px;
+}
+.franchise-container .contents .click-way article.art4 {
+    height: 110px;
+    left: 600px;
+}
+.franchise-container .contents .click-way article.art5 {
+    height: 110px;
+    top: 150px;
+    left: 600px;
+}
+.franchise-container .contents .click-way article.art6 {
+    top: 300px;
+    left: 600px;
+}
+.franchise-container .contents .click-way article.art7 {
+    top: 300px;
+    left: 400px;
+}
+.franchise-container .contents .click-way article.art8 {
+    top: 300px;
+    left: 200px;
+}
+.franchise-container .contents .click-way article.art9 {
+    top: 300px;
+    left: 0px;
+}
+
+.franchise-container .contents .click-way article.art1 .art-display {
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info01.gif");
+}
+.franchise-container .contents .click-way article.art2 .art-display {
+    left: -200px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info02.gif");
+}
+.franchise-container .contents .click-way article.art3 .art-display {
+    left: -400px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info03.gif");
+}
+.franchise-container .contents .click-way article.art4 .art-display {
+    left: -600px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info04.gif");
+}
+.franchise-container .contents .click-way article.art5 .art-display {
+    top: 0px;
+    left: -600px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info05.gif");
+}
+.franchise-container .contents .click-way article.art6 .art-display {
+    top: -150px;
+    left: -600px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info06.gif");
+}
+.franchise-container .contents .click-way article.art7 .art-display {
+    top: -150px;
+    left: -400px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info07.gif");
+}
+.franchise-container .contents .click-way article.art8 .art-display {
+    top: -150px;
+    left: -200px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info08.gif");
+}
+.franchise-container .contents .click-way article.art9 .art-display {
+    top: -150px;
+    border: 2px solid #B52B36;
+    background-image: url("../../../img/subpages/franchise/txt_procedure_info09.gif");
+}
+
+.franchise-container .contents .click-way article.art1 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_01.gif");
+}
+.franchise-container .contents .click-way article.art2 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_02.gif");
+}
+.franchise-container .contents .click-way article.art3 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_03.gif");
+}
+.franchise-container .contents .click-way article.art4 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_04.gif");
+}
+.franchise-container .contents .click-way article.art5 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_05.gif");
+}
+.franchise-container .contents .click-way article.art6 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_06.gif");
+}
+.franchise-container .contents .click-way article.art7 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_07.gif");
+}
+.franchise-container .contents .click-way article.art8 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_08.gif");
+}
+.franchise-container .contents .click-way article.art9 a{
+    background-image: url("../../../img/subpages/franchise/txt_procedure_09.gif");
+}
+
+.contents2 table thead tr th {
+    text-align: center;
+}
+.contents2 table tbody > tr > td:first-child {
+    text-align: center;
+    color: #914331;
+    font-weight: bold;
+}
+.contents2 table tbody tr .line {
+    line-height: 85px;
+}
+.contents2 p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.contents2 .sub-title {
+    width: 100%;
+    padding-top: 20px;
+}
+.contents2 .sub-title li:first-child {
+    font-weight: bold;
+    float: left;
+}
+.contents2 .sub-title li:last-child {
+    float: right;
+}
+
+.franchise-container .star-text li{
+    font-size: 12px;
+    color: #999;
+}
+.franchise-container .call {
+    margin-top: 30px;
+}
+.franchise-container .call img {
+    display: block;
+    margin: 0 auto;
+}
+
+.franchise-container .down-box {
+    margin-top: 50px;
+}
+.franchise-container .down-box p {
+    font-weight: bold;
+}
+.franchise-container .down-box .download {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+.franchise-container .down-box .download li {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 330px;
+    box-sizing: border-box;
+    background: no-repeat center /contain;
+}
+.franchise-container .down-box .download li:first-child {
+    background-image: url("../../../img/subpages/franchise/brochure_down01.png");
+}
+.franchise-container .down-box .download li:nth-child(2) {
+    background-image: url("../../../img/subpages/franchise/brochure_down02.png");
+}
+.franchise-container .down-box .download li:last-child {
+    background-image: url("../../../img/subpages/franchise/brochure_down03.png");
+}
+.franchise-container .down-box .download li .thumbneil {
+
+}
+.franchise-container .down-box .download li span {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+
+}
+.franchise-container .down-box .download li span::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background: #000;
+    top: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.franchise-container .down-box .download li button {
+    display: block;
+    width: 200px;
+    margin: 230px auto 0;
+    background: #a62326;
+    color: #fff;
+    font-weight: bold;
+}
