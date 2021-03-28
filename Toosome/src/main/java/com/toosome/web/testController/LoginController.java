@@ -46,4 +46,8 @@ public class LoginController {
 	public String admin() {
 		return "adminpages/index";
 	}
+	@GetMapping("/franchise")
+	public String franchise() {
+		return "subpages/franchise/franchise";
+	}
 }

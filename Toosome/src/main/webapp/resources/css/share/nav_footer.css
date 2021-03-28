@@ -258,7 +258,7 @@ header .log li:hover a::before {
 /******************** footer-start **************************/
 .footer {
   width: 100%;
-  height: 100px;
+  height: 200px;
   padding: 40px 0;
   background-color: #000;
 }
