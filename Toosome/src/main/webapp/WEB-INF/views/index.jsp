@@ -76,8 +76,8 @@
                 <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
                 <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
-                <li><a href="#" onclick="">뉴스</a></li>
-                <li><a href="#" onclick="">QnA</a></li>
+                <li><a href="#" onclick="location.href='/news'">뉴스</a></li>
+                <li><a href="#" onclick="location.href='/qna'">QnA</a></li>
               </ul>
             </li>
             <li class="menu-title">
@@ -96,7 +96,7 @@
           <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
           <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
           <li><a href="#">BASKET</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="#" onclick="location.href='/faq'">FAQ</a></li>
         </ul>
       </header>
       <div id="img-wrap" class="img-slide">

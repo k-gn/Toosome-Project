@@ -49,5 +49,21 @@ public class LoginController {
 	@GetMapping("/franchise")
 	public String franchise() {
 		return "subpages/franchise/franchise";
+  }
+	@GetMapping("/faq")
+	public String faq() {
+		return "subpages/faq/faq"
+	}
+	@GetMapping("/notice")
+	public String notice() {
+		return "subpages/notice/notice";
+	}
+	@GetMapping("/news")
+	public String news() {
+		return "subpages/news/news";
+	}
+	@GetMapping("/qna")
+	public String qna() {
+		return "subpages/qna/qna";
 	}
 }

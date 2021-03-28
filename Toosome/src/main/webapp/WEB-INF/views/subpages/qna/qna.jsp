@@ -6,17 +6,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-    <link rel="stylesheet" href="/resources/css/subpages/event/event.css">
+    <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
     <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"
       type="image/x-icon"
     />
-    <script src="/resources/js/share/jquery-3.1.1.js"></script>
-    <script src="/resources/js/share/nav_footer.js"></script>
-    <script src="/resources/js/subpages/event/event.js" defer></script>
+  	<script src="/resources/js/share/jquery-3.1.1.js"></script>
+  	<script src="/resources/js/share/nav_footer.js"></script>
+  	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -42,7 +43,7 @@
                         <a href="#">MENU</a>
                         <ul class="sub-con">
                             <li><a href="#">NEW</a></li>
-                            <li><a href="#">커피&음료</a></li>
+                            <li><a href="#">커피&amp;음료</a></li>
                             <li><a href="#">디저트</a></li>
                             <li><a href="#">델리</a></li>
                             <li><a href="#">홀케이크</a></li>
@@ -57,10 +58,10 @@
                         </ul>
                     </li>
                     <li class="menu-title">
-                        <a href="#">WHAT'S NEW</a>
+                        <a href="#">WHAT'S NEWS</a>
                         <ul class="sub-con">
                             <li><a href="#">이벤트</a></li>
-                            <li><a href="#">멤버쉽&제휴카드</a></li>
+                            <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">기업 및 단체구매 안내</a></li>
                         </ul>
@@ -88,36 +89,46 @@
         <!-- header-end -->
 		<!-- section start -->
         <section>
-	      <div class="signup-container">
-	        <div class="title-container">
-	          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
-	          <span class="signup-title">이벤트</span>
-	        </div>
-	        <div class="tab-container">
-	        	<ul class="tabs">
-	        		<li data-tab-target="#ing" class="active">진행중인 이벤트</li>
-	        		<li data-tab-target="#store">매장별 이벤트</li>
-	        		<li data-tab-target="#end">종료된 이벤트</li>
-	        	</ul>
-	        </div>
-	        <div class="tab-content">
-		        <div id="ing" data-tab-content class="active">
-					<ul class="ing-content"></ul>
-					<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
-		        </div>
-		        <div id="store" data-tab-content>
-		        	<ul class="ing-content"></ul>
-		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>		        
-		        </div>
-		        <div id="end" data-tab-content>
-		        	<ul class="ing-content"></ul>
-		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
-		        </div>
-		        <!-- Load More Btn -->
-		                
-	        </div>
-	      </div>
-	    </section>
+        	<div class="sub-header-container">
+        		<h3>QnA</h3>
+        		<nav class="navigation-container">
+        			<ul>
+        				<li><a href="#">HOME</a></li>
+        				<li><a href="#">WHAT'S NEWS</a></li>
+        				<li><a href="#">QnA</a></li>
+        			</ul>
+        		</nav>
+        	</div>
+			<p>고객 한 분 한 분의 의견에 귀 기울이는 투썸플레이스가 되겠습니다</p>
+        	<div class="search-container">
+        		<div class="search-wrapper">
+        			<input type="search" placeholder="검색어를 입력하세요">
+        			<button>검색</button>
+        		</div>
+        	</div>
+        	<table summary="qna" class="qna-table">
+        		<caption class="qna-cap">qna 번호,잠금여부,제목,날짜,조회수</caption>
+        		<colgroup>
+        			<col width="5%">
+        			<col width="10%">
+        			<col width="65%">
+        			<col width="10%">
+        			<col width="10%">
+        		</colgroup>
+        		<thead>
+        			<tr>
+        				<th scope="col">NO</th>
+        				<th scope="col">잠금여부</th>
+        				<th scope="col">제목</th>
+        				<th scope="col">날짜</th>
+        				<th scope="col">조회수</th>
+        			</tr>
+        		</thead>
+        		<tbody id="qna">
+        		</tbody>
+        	</table>
+        	<div id="pagination"></div>
+        </section>
 		<!-- section end -->
         <!-- footer-start -->
         <div class="footer">
@@ -143,7 +154,7 @@
                 </ul>
                 <ul class="foot-last cf">
                     <li>통신판매업종신고증 : 제 2018-서울중구-0353호</li>
-                    <li>대표이메일 : helpmaster@toosome.co.kr</li>
+                    <li>대표이메일 : helpmaster@twosome.co.kr</li>
                     <li> Copyright &copy; 2020 A TWOSOME PLACE CO. LTD. ALL RIGHTS RESERVED.</li>
                 </ul>
                 <div class="f_sns">
