@@ -76,7 +76,7 @@
                 <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
                 <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
-                <li><a href="#" onclick="">뉴스</a></li>
+                <li><a href="#" onclick="location.href='/news'">뉴스</a></li>
                 <li><a href="#" onclick="">QnA</a></li>
               </ul>
             </li>
