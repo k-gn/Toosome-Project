@@ -50,4 +50,8 @@ public class LoginController {
 	public String faq() {
 		return "subpages/faq/faq";
 	}
+	@GetMapping("/notice")
+	public String notice() {
+		return "subpages/notice/notice";
+	}
 }
