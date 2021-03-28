@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-    <link rel="stylesheet" href="/resources/css/subpages/faq/faq.css">
+    <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
     <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"
@@ -17,7 +17,7 @@
     />
   	<script src="/resources/js/share/jquery-3.1.1.js"></script>
   	<script src="/resources/js/share/nav_footer.js"></script>
-  	<script src="/resources/js/subpages/faq/faq.js" defer></script>
+  	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -43,7 +43,7 @@
                         <a href="#">MENU</a>
                         <ul class="sub-con">
                             <li><a href="#">NEW</a></li>
-                            <li><a href="#">커피&음료</a></li>
+                            <li><a href="#">커피&amp;음료</a></li>
                             <li><a href="#">디저트</a></li>
                             <li><a href="#">델리</a></li>
                             <li><a href="#">홀케이크</a></li>
@@ -61,7 +61,7 @@
                         <a href="#">WHAT'S NEWS</a>
                         <ul class="sub-con">
                             <li><a href="#">이벤트</a></li>
-                            <li><a href="#">멤버쉽&제휴카드</a></li>
+                            <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">기업 및 단체구매 안내</a></li>
                         </ul>
@@ -90,113 +90,44 @@
 		<!-- section start -->
         <section>
         	<div class="sub-header-container">
-        		<h3>FAQ</h3>
+        		<h3>QnA</h3>
         		<nav class="navigation-container">
         			<ul>
         				<li><a href="#">HOME</a></li>
-        				<li><a href="#">FAQ</a></li>
+        				<li><a href="#">WHAT'S NEWS</a></li>
+        				<li><a href="#">QnA</a></li>
         			</ul>
         		</nav>
         	</div>
-			<p>TOOSOME PLACE에 대한 문의사항을 쉽고 빠르게 찾아보세요.</p>
+			<p>고객 한 분 한 분의 의견에 귀 기울이는 투썸플레이스가 되겠습니다</p>
         	<div class="search-container">
         		<div class="search-wrapper">
         			<input type="search" placeholder="검색어를 입력하세요">
         			<button>검색</button>
         		</div>
         	</div>
-        	<div class="faq-container">
-	        	<div class="faq-wrapper active">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-	        	<div class="faq-wrapper">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-	        	<div class="faq-wrapper">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-	        	<div class="faq-wrapper">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-	        	<div class="faq-wrapper">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-	        	<div class="faq-wrapper">
-	        		<div class="faq-question">
-	       				<div>
-	       					<span>Q</span>
-		        			<span>[카드등록] 혜택을 받기 위해서는 꼭 멤버십을 등록해야 하나요?</span>
-	       				</div>
-	       				<button class="accordion"><img src="/resources/img/subpages/share/down.png" alt="#"></button>
-	        		</div>
-	       			<div class="faq-answer">
-	       				<div>
-		       				<span>A</span>
-			        		<span>고객 정보를 통해 고객님의 계정으로 할인, 포인트 적립등이 가능하기 때문입니다.</span>
-	       				</div>
-	       			</div>
-	        	</div>
-        	</div>
+        	<table summary="qna" class="qna-table">
+        		<caption class="qna-cap">qna 번호,잠금여부,제목,날짜,조회수</caption>
+        		<colgroup>
+        			<col width="5%">
+        			<col width="10%">
+        			<col width="65%">
+        			<col width="10%">
+        			<col width="10%">
+        		</colgroup>
+        		<thead>
+        			<tr>
+        				<th scope="col">NO</th>
+        				<th scope="col">잠금여부</th>
+        				<th scope="col">제목</th>
+        				<th scope="col">날짜</th>
+        				<th scope="col">조회수</th>
+        			</tr>
+        		</thead>
+        		<tbody id="qna">
+        		</tbody>
+        	</table>
+        	<div id="pagination"></div>
         </section>
 		<!-- section end -->
         <!-- footer-start -->

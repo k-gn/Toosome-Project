@@ -1,26 +1,26 @@
 const pagination = document.getElementById('pagination');
-const noticeBoard = document.getElementById('notice');
+const qnaBoard = document.getElementById('qna');
 
 // 테스트 데이터
 const testData = [
-	{id: "1", title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "2", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "3", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "4", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "5", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "6", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "7", title: "설 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "8", title: "추석 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "9", title: "성탄절 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "10", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "11", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "12", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "13", title: "여름 휴가 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "14", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "15", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "16", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "17", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "18", title: "연말 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
+	{id: "1", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "2", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "3", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "4", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "5", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "6", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "7", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "8", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "9", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "10", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "11", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "12", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "13", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "14", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "15", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "16", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "17", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
+	{id: "18", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
 ];
 
 let currentPage = 1; // 현재 페이지
@@ -42,6 +42,8 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let itemElement = `
 			<tr>
 				<td>${item.id}</td>
+				<td><img class="lock" src=${item.isLocked ? "/resources/img/subpages/qna/lock.png" 
+				: "/resources/img/subpages/qna/unlock.png"}></td>
 				<td class="left">${item.title}</td>
 				<td>${item.date}</td>
 				<td>${item.count}</td>
@@ -82,7 +84,7 @@ const btnHandler = (e,items,page) => {
 	// 현재 페이지 이동
 	currentPage = page;
 	// 누른 페이지 데이터 출력
-	displayList(items, noticeBoard, rows, currentPage);
+	displayList(items, qnaBoard, rows, currentPage);
 	// 이전 버튼 비활성화
 	let currentBtn = document.querySelector('#pagination button.active');
 	currentBtn.classList.remove('active');
@@ -91,5 +93,5 @@ const btnHandler = (e,items,page) => {
 };
 
 // event hook
-displayList(testData, noticeBoard, rows, currentPage);
+displayList(testData, qnaBoard, rows, currentPage);
 setPagination(testData, pagination, rows);

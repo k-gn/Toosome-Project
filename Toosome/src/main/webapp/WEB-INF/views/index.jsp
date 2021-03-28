@@ -77,7 +77,7 @@
                 <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
                 <li><a href="#" onclick="location.href='/news'">뉴스</a></li>
-                <li><a href="#" onclick="">QnA</a></li>
+                <li><a href="#" onclick="location.href='/qna'">QnA</a></li>
               </ul>
             </li>
             <li class="menu-title">
