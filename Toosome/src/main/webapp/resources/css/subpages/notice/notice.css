@@ -99,81 +99,69 @@ section > p {
 	text-decoration: underline;
 }
 
-.faq-container {
+.notice-cap {
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	font-size: 0;
+	height: 0;
+	display: none;
+}
+
+.notice-table {
+	width: 100%;
+	height: auto;
 	margin-top: 1.25rem;
 	margin-bottom: 1.25rem;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
 	border-top: 2px solid #666666;
 	border-bottom: 2px solid #666666;
-	font-family: 'Noto Sans KR', sans-serif;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.faq-wrapper {
-	padding: 0.9375rem 0;
+.notice-table thead tr th {
+	border-bottom: 2px solid #666666;
+	padding: 17px 0;
 }
 
-.faq-wrapper.active .faq-question .accordion {
-	transform: rotate(180deg);
+#notice tr td {
+	text-align: center;
+	font-size: 0.875rem;
+	border-bottom: 1px solid #dddddd;
+	padding: 17px 0;
 }
 
-.faq-wrapper.active .faq-answer {
-	display: block;
-}
-
-.faq-question {
-	display: flex;
-	justify-content: space-between;
+#notice .left {
+	text-align: left;
+	padding: 17px;
 	cursor: pointer;
-	margin-bottom: 0.625rem;
 }
 
-.faq-question > div {
-	display: flex;	
+#notice .left:hover {
+	text-decoration: underline;
 }
 
-.faq-question > div span:first-child {
-	color: #a62326;
-	font-weight: bold;
-	padding-right: 0.625rem;
-}
-
-.faq-question > div span:last-child{
-	color: black;
-}
-
-.accordion {
-	border: none;
-	background: none;
-	cursor: pointer;
-	outline: none;
-	transition: all 0.2s;
-}
-
-.accordion img {
-	width: 1.25rem;
+#pagination {
+	width: 12.5rem;
 	height: 1.25rem;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.faq-answer {
-	display: none;
-	background: #eee;
-	padding: 0.625rem;
-	border-radius: 0.625rem;
+#pagination button {
+	cursor: pointer;
+	border: none;
+	outline: none;
+	appearance: none;
+	background: none;
+	padding: 0 17px;
 }
 
-.faq-answer > div {
-	display: flex;
+#pagination button:hover {
+	text-decoration: underline;
 }
 
-.faq-answer > div span:first-child {
-	color: #a62326;
-	font-weight: bold;
-	padding-right: 0.625rem;
+#pagination button.active {
+	color: red;
+	text-decoration: underline;
 }
-
-.faq-answer > div span:last-child {
-	color: black;
-	padding-right: 0.625rem;
-}
-
