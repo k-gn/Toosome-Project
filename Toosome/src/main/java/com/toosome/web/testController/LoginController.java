@@ -46,6 +46,7 @@ public class LoginController {
 	public String admin() {
 		return "adminpages/index";
 	}
+<<<<<<< .merge_file_a23840
 	@GetMapping("/faq")
 	public String faq() {
 		return "subpages/faq/faq";
@@ -61,5 +62,10 @@ public class LoginController {
 	@GetMapping("/qna")
 	public String qna() {
 		return "subpages/qna/qna";
+=======
+	@GetMapping("/franchise")
+	public String franchise() {
+		return "subpages/franchise/franchise";
+>>>>>>> .merge_file_a16312
 	}
 }
