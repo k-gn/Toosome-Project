@@ -58,4 +58,8 @@ public class LoginController {
 	public String news() {
 		return "subpages/news/news";
 	}
+	@GetMapping("/qna")
+	public String qna() {
+		return "subpages/qna/qna";
+	}
 }

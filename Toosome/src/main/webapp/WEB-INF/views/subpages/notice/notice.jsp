@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                     <li class="menu-title">
-                        <a href="#">WHAT'S NEW</a>
+                        <a href="#">WHAT'S NEWS</a>
                         <ul class="sub-con">
                             <li><a href="#">이벤트</a></li>
                             <li><a href="#">멤버쉽&amp;제휴카드</a></li>
@@ -94,7 +94,7 @@
         		<nav class="navigation-container">
         			<ul>
         				<li><a href="#">HOME</a></li>
-        				<li><a href="#">WHAT'S NEW</a></li>
+        				<li><a href="#">WHAT'S NEWS</a></li>
         				<li><a href="#">공지사항</a></li>
         			</ul>
         		</nav>
