@@ -7,19 +7,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/resources/css/reset.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/main.css" />
-    <link rel="stylesheet" href="/resources/css/slick.css" />
-    <link rel="stylesheet" href="/resources/css/slick-theme.css" />
+    <link rel="stylesheet" href="/resources/css/share/reset.css" />
+    <link rel="stylesheet" href="/resources/css/share/nav_footer.css" />
+    <link rel="stylesheet" href="/resources/css/main/main.css" />
+    <link rel="stylesheet" href="/resources/css/main/slick.css" />
+    <link rel="stylesheet" href="/resources/css/main/slick-theme.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link
       rel="shortcut icon"
-      href="resources/img/AnyConv.com__favicon.ico"
+      href="/resources/img/AnyConv.com__favicon.ico"
       type="image/x-icon"
     />
     <link
@@ -46,16 +47,16 @@
               <a href="#">ABOUT US</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
-                <li><a href="#">커피이야기</a></li>
-                <li><a href="#">디저트이야기</a></li>
-                <li><a href="#">브랜드필름</a></li>
+                <li><a href="#" onclick="location.href='/coffeestory'">커피이야기</a></li>
+                <li><a href="#" onclick="location.href='/dessertstory'">디저트이야기</a></li>
+                <li><a href="#" onclick="location.href='/brandfilm'">브랜드필름</a></li>
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">MENU</a>
+              <a href="#" onclick="location.href='/menu'">MENU</a>
               <ul class="sub-con">
                 <li><a href="#">NEW</a></li>
-                <li><a href="#">커피&음료</a></li>
+                <li><a href="#">커피&amp;음료</a></li>
                 <li><a href="#">디저트</a></li>
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
@@ -70,20 +71,22 @@
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">WHAT'S NEW</a>
+              <a href="#">WHAT'S NEWS</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
-                <li><a href="#">멤버쉽&제휴카드</a></li>
+                <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
-                <li><a href="#">기업 및 단체구매 안내</a></li>
+                <li><a href="#" onclick="location.href='/news'">뉴스</a></li>
+                <li><a href="#" onclick="location.href='/qna'">QnA</a></li>
               </ul>
             </li>
             <li class="menu-title">
-              <a href="#">FRANCHISE</a>
+              <a href="#">OTHERS</a>
               <ul class="sub-con">
-                <li><a href="#">창업정보</a></li>
-                <li><a href="#">가맹점 전용 금융 상품</a></li>
-                <li><a href="#">창업설명회</a></li>
+                <li><a href="#" onclick="location.href='/franchise'">창업정보</a></li>
+                <li><a href="#" onclick="location.href='/franchisepay'">가맹점 전용 금융 상품</a></li>
+                <li><a href="#" onclick="location.href='/explanation'">창업설명회</a></li>
+                <li><a href="#">기업 및 단체구매 안내</a></li>
               </ul>
             </li>
           </ul>
@@ -92,7 +95,8 @@
         <ul class="log">
           <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
           <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="#">BASKET</a></li>
+          <li><a href="#" onclick="location.href='/faq'">FAQ</a></li>
         </ul>
       </header>
       <div id="img-wrap" class="img-slide">
@@ -108,7 +112,7 @@
         <div class="new-cover">
           <p class="new">NEW</p>
           <div class="img_box">
-            <ul class="new-menu-box cf">
+            <ul class="new-menu-box cf slider autoplay2">
               <li>
                 <a href="#"><img src="/resources/img/c-001.png" alt="" /></a>
               </li>
@@ -196,7 +200,7 @@
           <div class="quick-menu-coffee">
             <div class="coffee">
               <a href="#"></a>
-              <span class="quick-title">Coffee & Cake</span>
+              <span class="quick-title">Coffee &amp; Cake</span>
             </div>
             <div class="coffee-ment">
               <h3>전문가의 섬세함으로<br />완성한 최상의 커피</h3>
@@ -212,7 +216,7 @@
           <div class="quick-menu-beverage">
             <div class="beverage">
             <a href="#"></a>
-              <span class="quick-title">Tumbler & Goods</span>
+              <span class="quick-title">Tumbler &amp; Goods</span>
             </div>
             <div class="beverage-ment">
               <h3>일상에 가치를 더하는<br />라이프스타일 MD 상품</h3>
@@ -236,7 +240,7 @@
         <div class="button-bar">
           <ul class="online-icon">
             <li>
-              <a href="#"
+              <a href="#" onclick="location.href='/admin'"
                 ><img src="/resources/img/conversation.png" alt="" /><span
                   >온라인상담</span
                 ></a
@@ -275,13 +279,14 @@
       <div class="footer">
         <div class="foot-cover">
           <ul class="foot-first cf">
-            <li><a href="#">사이트맵</a></li>
+            <li><a href="#" onclick="location.href='/sitemap'">사이트맵</a></li>
             <li><a href="#">리쿠르트</a></li>
             <li><a href="#">이용약관</a></li>
             <li class="yellow"><a href="#">개인정보처리방침</a></li>
             <li><a href="#">위치기반서비스 이용약관</a></li>
             <li><a href="#">이메일 무단수집거부</a></li>
             <li><a href="#">법적고지</a></li>
+            <li><a href="#">사이트맵</a></li>
           </ul>
           <ul class="foot-second cf">
             <li>

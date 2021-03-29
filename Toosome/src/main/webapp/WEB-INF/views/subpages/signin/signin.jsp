@@ -6,9 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/main.css">
+<link rel="stylesheet" href="/resources/css/share/reset.css">
+<link rel="stylesheet" href="/resources/css/share/nav_footer.css">
 <link rel="stylesheet" href="/resources/css/subpages/signin/login.css">
+<link
+  rel="shortcut icon"
+  href="/resources/img/AnyConv.com__favicon.ico"
+  type="image/x-icon"
+/>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/resources/js/share/jquery-3.1.1.js"></script>
 <script src="/resources/js/share/nav_footer.js"></script>
@@ -98,6 +103,7 @@
 				<div class="login-value">
 					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
 					<!-- 네이버 부분 -->
+					
 				</div>
 			</form>
 		</div>

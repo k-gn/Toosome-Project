@@ -15,6 +15,11 @@
   <!-- Material Kit CSS -->
   <link href="/resources/css/adminpages/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <link href="/resources/css/adminpages/admin_main.css" rel="stylesheet" />
+  <link
+    rel="shortcut icon"
+    href="/resources/img/AnyConv.com__favicon.ico"
+    type="image/x-icon"
+  />
 </head>
 
 <body>
