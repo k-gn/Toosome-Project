@@ -66,4 +66,8 @@ public class LoginController {
 	public String qna() {
 		return "subpages/qna/qna";
 	}
+	@GetMapping("/testsns")
+	public String testsns() {
+		return "testsns";
+	}
 }
