@@ -7,7 +7,7 @@ let storeItems = 6;
 let endItems = 6;
 
 // test data
-const ingData = [
+const ingOriginData = [
 	{id: 1, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e02.jpg"},
 	{id: 2, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e01.jpg"},
 	{id: 3, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e02.jpg"},
@@ -25,7 +25,9 @@ const ingData = [
 	{id: 15, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e04.jpg"},
 ];
 
-const storeData = [
+const ingTestData = [...ingOriginData].reverse();
+
+const storeOriginData = [
 	{id: 1, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e01.jpg"},
 	{id: 2, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e01.jpg"},
 	{id: 3, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e02.jpg"},
@@ -40,17 +42,21 @@ const storeData = [
 	{id: 12, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e03.jpg"},
 ];
 
-const endData = [
+const storeTestData = [...storeOriginData].reverse();
+
+const endOriginData = [
 	{id: 1, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e03.jpg"},
 	{id: 2, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e02.jpg"},
 	{id: 3, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e01.jpg"},
 	{id: 4, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e04.jpg"},
 ];
 
+const endTestData = [...endOriginData].reverse();
+
 window.onload = () => {
 	currentItems = 6;
 	const ingUl = document.querySelector('#ing .ing-content');
-	const elements = getElements(ingData, currentItems);
+	const elements = getElements(ingTestData, currentItems);
 	elements.forEach(element => {
 		ingUl.appendChild(element);			
 	});
@@ -119,18 +125,18 @@ const tabHandler = (tab) => {
 	switch(tab.dataset.tabTarget) {
 		case '#ing':
 			currentItems = 6;
-			elements = getElements(ingData, currentItems);
-			showMoreBtn(moreBtns[0], ingData, currentItems);
+			elements = getElements(ingTestData, currentItems);
+			showMoreBtn(moreBtns[0], ingTestData, currentItems);
 			break;
 		case '#store':
 			storeItems = 6;
-			elements = getElements(storeData, storeItems);
-			showMoreBtn(moreBtns[1], storeData, storeItems);
+			elements = getElements(storeTestData, storeItems);
+			showMoreBtn(moreBtns[1], storeTestData, storeItems);
 			break;
 		case '#end':
 			endItems = 6;
-			elements = getElements(endData, endItems);
-			showMoreBtn(moreBtns[2], endData, endItems);
+			elements = getElements(endTestData, endItems);
+			showMoreBtn(moreBtns[2], endTestData, endItems);
 			break;
 	};
 	// 처음 보여줄 element 생성 후 삽입
@@ -170,18 +176,18 @@ const loadMore = (tab) => {
 	switch(tab) {
 		case '#ing':
 			currentItems += 6;
-			newElements = getElements(ingData, currentItems);
-			showMoreBtn(moreBtns[0], ingData, currentItems);
+			newElements = getElements(ingTestData, currentItems);
+			showMoreBtn(moreBtns[0], ingTestData, currentItems);
 			break;
 		case '#store':
 			storeItems += 6;
-			newElements = getElements(storeData, storeItems);
-			showMoreBtn(moreBtns[1], storeData, storeItems);
+			newElements = getElements(storeTestData, storeItems);
+			showMoreBtn(moreBtns[1], storeTestData, storeItems);
 			break;
 		case '#end':
 			endItems += 6;
-			newElements = getElements(endData, endItems);
-			showMoreBtn(moreBtns[2], endData, endItems);
+			newElements = getElements(endTestData, endItems);
+			showMoreBtn(moreBtns[2], endTestData, endItems);
 			break;
 	}
 	// 다음 컨텐츠 출력
