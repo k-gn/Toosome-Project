@@ -58,6 +58,10 @@ public class LoginController {
 	public String notice() {
 		return "subpages/notice/notice";
 	}
+	@GetMapping("/notice-detail")
+	public String noticeDetail() {
+		return "subpages/notice/noticeDetail/noticeDetail";
+	}
 	@GetMapping("/news")
 	public String news() {
 		return "subpages/news/news";
