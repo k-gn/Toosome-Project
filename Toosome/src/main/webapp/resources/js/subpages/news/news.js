@@ -2,7 +2,7 @@ const pagination = document.getElementById('pagination');
 const newsBoard = document.getElementById('news');
 
 // 테스트 데이터
-const testData = [
+const originData = [
 	{id: "1", img: "/resources/img/subpages/news/n001.jpg", title: "리저브R 전용 음료 4종 출시", date: "2020-03-25", count: "0"},
 	{id: "2", img: "/resources/img/subpages/news/n001.jpg", title: "신규 리저브 카페 출시", date: "2020-03-25", count: "0"},
 	{id: "3", img: "/resources/img/subpages/news/n002.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
@@ -22,6 +22,8 @@ const testData = [
 	{id: "17", img: "/resources/img/subpages/news/n003.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
 	{id: "18", img: "/resources/img/subpages/news/n002.jpg", title: "연말 연휴 투썸플레이스 매장별 할인 안내", date: "2020-03-25", count: "0"},
 ];
+
+const testData = [...originData].reverse();
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수

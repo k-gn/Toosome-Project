@@ -107,14 +107,8 @@
         		<a href="#" onclick="location.href='/notice'">목록</a>
         	</div>
         	<table summary="NoticeLocator" class="notice-locator">
-        		<tr class="prev">
-        			<td colspan="1"><a href="#">이전글</a></td>
-        			<td colspan="3"><a href="#">해당 글이 존재하지 않습니다.</a></td>
-        		</tr>
-        		<tr class="next">
-        			<td colspan="1"><a href="#">다음글</a></td>
-        			<td colspan="3"><a href="#">시스템 개선 사항</a></td>
-        		</tr>
+        		<tr class="prev"></tr>
+        		<tr class="next"></tr>
         	</table>
         </section>
 		<!-- section end -->

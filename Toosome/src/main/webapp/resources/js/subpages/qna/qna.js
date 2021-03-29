@@ -2,7 +2,7 @@ const pagination = document.getElementById('pagination');
 const qnaBoard = document.getElementById('qna');
 
 // 테스트 데이터
-const testData = [
+const originData = [
 	{id: "1", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
 	{id: "2", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
 	{id: "3", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
@@ -22,6 +22,8 @@ const testData = [
 	{id: "17", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
 	{id: "18", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
 ];
+
+const testData = [...originData].reverse();
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수

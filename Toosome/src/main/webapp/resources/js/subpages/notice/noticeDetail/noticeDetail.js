@@ -4,12 +4,26 @@ const prev = document.querySelector('.prev'); // 이전글
 const next = document.querySelector('.next'); // 다음글
 
 // 테스트 데이터
-const testData = {
-	id: "1", 
-	title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", 
-	date: "2020-03-25", 
-	content: "안녕하세요. 투썸플레이스입니다. 보다 나은 투썸플레이스 서비스 제공을 위해 시스템 서버 점검을 아래와 같이 진행합니다."
-};
+const testData = [
+	{
+		id: null, 
+		title: null, 
+		date: null, 
+		content: null
+	},
+	{
+		id: 18, 
+		title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", 
+		date: "2020-03-25", 
+		content: "안녕하세요. 투썸플레이스입니다. 보다 나은 투썸플레이스 서비스 제공을 위해 시스템 서버 점검을 아래와 같이 진행합니다."
+	},
+	{
+		id: 17, 
+		title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", 
+		date: "2020-03-25", 
+		content: "안녕하세요. 투썸플레이스입니다. 보다 나은 투썸플레이스 서비스 제공을 위해 시스템 서버 점검을 아래와 같이 진행합니다."
+	}
+];
 
 // parameter 받아오는 함수
 const getParam = (param) => {
@@ -25,26 +39,66 @@ const getParam = (param) => {
 }
 
 // 리스트 출력
-const displayDetail = (title, content, item) => {
+const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
 	
-	// 받은 데이터로 새 타이틀 생성 후 삽입
-	let newTitle = document.createElement('tr');
-	let titleElement = `
-		<th colspan="3">${item.title}</th>
-		<th colspan="1">${item.date}</th>
-	`;
-	newTitle.innerHTML = titleElement;
-	title.appendChild(newTitle);
+	if(items[1].id === +index) {
+		// 받은 데이터로 새 타이틀 생성 후 삽입
+		let newTitle = document.createElement('tr');
+		let titleElement = `
+			<th colspan="3">${items[1].title}</th>
+			<th colspan="1">${items[1].date}</th>
+		`;
+		newTitle.innerHTML = titleElement;
+		title.appendChild(newTitle);
+		
+		// 받은 데이터로 새 본문 생성 후 삽입
+		let newContent = document.createElement('tr');
+		let contentElement = `
+			<td colspan="4">${items[1].content}</td>
+		`;
+		newContent.innerHTML = contentElement;
+		content.appendChild(newContent);
+		
+		displayLocator(items, index);
+	} else {
+		alert('잘못된 요청입니다');
+		window.history.go(-1);
+	}
+};
+
+// 이전글, 다음글 생성 함수
+const displayLocator = (items, index) => {
+	// 이전글 생성 후 삽입
+	if(items[0].id !== +index + 1) {
+		let newPrev = `
+			<td colspan="1"><a href="#">이전글</a></td>
+    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+		`;
+		prev.innerHTML = newPrev;
+	} else {
+		let newPrev = `
+			<td colspan="1"><a href="#">이전글</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].title}</a></td>
+		`;
+		prev.innerHTML = newPrev;
+	};
 	
-	// 받은 데이터로 새 본문 생성 후 삽입
-	let newContent = document.createElement('tr');
-	let contentElement = `
-		<td colspan="4">${item.content}</td>
-	`;
-	newContent.innerHTML = contentElement;
-	content.appendChild(newContent);
+	// 다음글 생성 후 삽입
+	if(items[2].id !== +index - 1) {
+		let newNext = `
+			<td colspan="1"><a href="#">다음글</a></td>
+    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+		`;
+		next.innerHTML = newNext;
+	} else {
+		let newNext = `
+			<td colspan="1"><a href="#">다음글</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].title}</a></td>
+		`;
+		next.innerHTML = newNext;
+	}
 };
 
 window.onload = () => {
@@ -54,5 +108,5 @@ window.onload = () => {
 		index로 서버에 해당 게시글 요청
 	*/
 	
-	displayDetail(detailTitle, detailContent, testData);
+	displayDetail(detailTitle, detailContent, testData, index);
 }
