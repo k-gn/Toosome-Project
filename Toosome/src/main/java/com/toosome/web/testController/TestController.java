@@ -94,4 +94,8 @@ public class LoginController {
 	public String sitemap() {
 		return "subpages/siteMap/siteMap";
 	}
+	@GetMapping("/map")
+	public String map() {
+		return "subpages/map/map";
+	}
 }
