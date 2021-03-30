@@ -2,7 +2,7 @@ const pagination = document.getElementById('pagination');
 const noticeBoard = document.getElementById('notice');
 
 // 테스트 데이터
-const testData = [
+const originData = [
 	{id: "1", title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
 	{id: "2", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
 	{id: "3", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
@@ -23,8 +23,16 @@ const testData = [
 	{id: "18", title: "연말 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
 ];
 
+const testData = [...originData].reverse();
+
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
+
+// 게시판 상세 페이지로 이동 함수
+const locateNoticeDetail = (index) => {
+	// index를 갖고 상세 페이지로 이동
+	window.location.href = '/notice-detail?index='+index;
+}
 
 // 리스트 출력
 const displayList = (items, wrapper, rowsPerPage, page) => {
@@ -42,7 +50,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let itemElement = `
 			<tr>
 				<td>${item.id}</td>
-				<td class="left">${item.title}</td>
+				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.id})">${item.title}</a></td>
 				<td>${item.date}</td>
 				<td>${item.count}</td>
 			</tr>

@@ -84,8 +84,8 @@
               <a href="#">OTHERS</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/franchise'">창업정보</a></li>
-                <li><a href="#">가맹점 전용 금융 상품</a></li>
-                <li><a href="#">창업설명회</a></li>
+                <li><a href="#" onclick="location.href='/franchisepay'">가맹점 전용 금융 상품</a></li>
+                <li><a href="#" onclick="location.href='/explanation'">창업설명회</a></li>
                 <li><a href="#">기업 및 단체구매 안내</a></li>
               </ul>
             </li>
@@ -279,7 +279,7 @@
       <div class="footer">
         <div class="foot-cover">
           <ul class="foot-first cf">
-            <li><a href="#">사이트맵</a></li>
+            <li><a href="#" onclick="location.href='/sitemap'">사이트맵</a></li>
             <li><a href="#">리쿠르트</a></li>
             <li><a href="#">이용약관</a></li>
             <li class="yellow"><a href="#">개인정보처리방침</a></li>
