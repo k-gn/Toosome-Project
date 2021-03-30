@@ -4,6 +4,7 @@ const fragment = document.createDocumentFragment();
 // 지도를 표시할 div
 const container = document.querySelector('#map');
 const keyword = document.querySelector('#keyword');
+const searchBtn = document.querySelector('#search-btn');
 
 // 지도 초기 옵션
 const options = {
@@ -79,12 +80,11 @@ const placeSearchCB = (data, status, pagnition) => {
 
 // 지도 검색 요청
 const searchPlaces = (places, coords) => {
-  // let keyword = document.getElementById('keyword').value ?? '투썸플레이스';
   keyword.value = addrName + ' 투썸플레이스';
   if (!keyword.value.replace(/^\s+|\s+$/g, '')) {
     alert('검색어를 입력해주세요');
     return;
-  }
+  };
 
   // 장소검색 객체를 통해 키워드로 장소검색 요청
   places.keywordSearch(keyword.value, placeSearchCB, {
@@ -94,6 +94,26 @@ const searchPlaces = (places, coords) => {
 	sort: kakao.maps.services.SortBy.DISTANCE,
 	useMapBounds: true
   });
+};
+
+// 검색 버튼 클릭 핸들러
+const searchHandler = () => {
+	if (!keyword.value.replace(/^\s+|\s+$/g, '')) {
+      alert('검색어를 입력해주세요');
+      return;
+    };
+	let value = keyword.value + ' 투썸플레이스';
+	place.keywordSearch(value, placeSearchCB);
+	
+	geocoder.addressSearch(keyword.value, (result, status) => {
+		// 정상적으로 검색이 완료되면 지도 이동
+		if(status === kakao.maps.services.Status.OK) {
+			const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			map.setCenter(coords);
+		} else {
+			alert('주소명을 정확히 입력해주세요!');
+		};
+	});
 };
 
 // 검색 결과 목록, 마커 클릭시 장소명을 표출할 인포윈도우
@@ -155,13 +175,21 @@ const getListItem = (index, places) => {
     `;
   } else {
     itemStr += `<span>${places.address_name}</span>`;
-  }
+  };
 
   itemStr += `<span class="tel">${places.phone}</span></div>`;
 
   el.innerHTML = itemStr;
   el.className = 'item';
-
+  el.addEventListener('click', () => {
+	geocoder.addressSearch(places.road_address_name, (result, status) => {
+		// 정상적으로 검색이 완료되면 지도 이동
+		if(status === kakao.maps.services.Status.OK) {
+			const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			map.setCenter(coords);
+		};
+	});
+  });
   return el;
 };
 
@@ -227,7 +255,7 @@ const displayPagnition = (pagination) => {
   // 기존에 추가된 페이지번호 삭제
   while (paginationEl.hasChildNodes()) {
     paginationEl.removeChild(paginationEl.lastChild);
-  }
+  };
 
   for (let i = 1; i <= pagination.last; i++) {
     let el = document.createElement('a');
@@ -242,7 +270,7 @@ const displayPagnition = (pagination) => {
           pagination.gotoPage(i);
         };
       })(i);
-    }
+    };
 
     fragment.appendChild(el);
   }
@@ -261,7 +289,7 @@ const displayInfoWindow = (marker, title) => {
 const removeAllChildNods = (el) => {
   while (el.hasChildNodes()) {
     el.removeChild(el.lastChild);
-  }
+  };
 };
 
 
@@ -286,7 +314,7 @@ window.onload = () => {
 	  moveCenter(locPosition, map);
 	  // 키워드로 장소 검색
 	  searchPlaces(place, locPosition);
-	}
+	};
 	
 	// 중심좌표 바뀔때마다 실행되는 event
 	kakao.maps.event.addListener(map, 'dragend', () => {
@@ -299,4 +327,4 @@ window.onload = () => {
 	  // 키워드로 장소 검색
 	  searchPlaces(place, coords);
 	});
-}
+};
