@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+section {
+	width: 1000px;
+	height: auto;
+	box-sizing: border-box;
+	border: 1px solid #eee;
+	box-shadow: 0 2px 3px #ccc;
+	margin: 150px auto 70px;
+	padding: 30px;
+	color: #222222;
+}
+
+.sub-header-container {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+.sub-header-container h3 {
+	font-family: gsdr;
+	font-size: 1.5rem;
+}
+
+.navigation-container {
+	width: 30%;
+	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 0;
+}
+
+.navigation-container ul {
+	display: flex;
+}
+
+.navigation-container ul li a {
+	font-size: 0.75rem;
+	color: #666666;
+}
+
+.navigation-container ul li a:hover {
+	text-decoration: underline;
+}
+
+.navigation-container ul li::after {
+	content: "\00a0>\00a0";
+}
+
+.navigation-container ul li:last-child::after {
+	content: "";
+}
+
+section > p {
+	font-size: 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 30px 0;
+}
+
+.search-container {
+	width: 100%;
+	height: 70px;
+	background: rgba(102,102,102,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.search-wrapper {
+	width: 40%;
+	height: auto;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.search-wrapper > input {
+	outline: none;
+	appearance: none;
+	width: 350px;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	margin-right: 0.625rem;
+	padding-left: 5px;
+}
+
+.search-wrapper > button {
+	outline: none;
+	appearance: none;
+	width: 42px;
+	height: 30px;
+	border-radius: 5px;
+	border: none;
+	background: #a62326;
+	color: white;
+	cursor: pointer;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin-right: 0.9375rem;
+}
+
+.search-wrapper > button:hover {
+	text-decoration: underline;
+}
+
+.notice-cap {
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	font-size: 0;
+	height: 0;
+	display: none;
+}
+
+.notice-table {
+	width: 100%;
+	height: auto;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	border-top: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.notice-table thead tr th {
+	border-bottom: 2px solid #666666;
+	padding: 17px 0;
+	font-size: 0.9375rem;
+}
+
+#notice tr td {
+	text-align: center;
+	font-size: 0.875rem;
+	border-bottom: 1px solid #dddddd;
+	padding: 17px 0;
+}
+
+#notice .left {
+	text-align: left;
+	padding: 17px;
+	cursor: pointer;
+}
+
+#notice .left:hover {
+	text-decoration: underline;
+}
+
+#pagination {
+	width: 12.5rem;
+	height: 1.25rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#pagination button {
+	cursor: pointer;
+	border: none;
+	outline: none;
+	appearance: none;
+	background: none;
+	padding: 0 17px;
+}
+
+#pagination button:hover {
+	text-decoration: underline;
+}
+
+#pagination button.active {
+	color: red;
+	text-decoration: underline;
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.siteMap-container {
+    margin: 150px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 980px;
+    border: 1px solid #eee;
+    border-radius: 7px;
+    box-shadow: 0 2px 3px #eee;
+}
+.siteMap-container .title-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.siteMap-container .title-container .siteMap-title {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-family: gsdr;
+    color: #000;
+}
+.siteMap-container .title-container .title-logo {
+    display: flex;
+    width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+.siteMap-container .contents {
+    margin-top: 50px;
+}
+
+.siteMap-container .contents .table thead tr th,
+.siteMap-container .contents .table tbody tr td {
+    text-align: center;
+}
+.siteMap-container .contents .table .color-red tr {
+    background-color: #B52B36;
+}
+.siteMap-container .contents .table thead tr th {
+    color: #fff;
+}
+
+.siteMap-container .contents a {
+    color: #000;
+    text-decoration: none;
+}
+.siteMap-container .contents tbody tr td:hover a {
+    text-decoration: underline;
+}

@@ -1,61 +1,4 @@
-$(function () {
-  /* nav jquery start */
-  $('#container header').mouseover(function () {
-    // $(this).css("background-color", "#38383b");
-    $(this).addClass('on');
-  });
-  $('#container header').mouseleave(function () {
-    $(this).removeClass('on');
-  });
-  $('.nav > .menu-title').mouseover(function () {
-    $('header .full-cover').stop().fadeIn(300);
-    $('.nav > .menu-title > .sub-con').stop().fadeIn(400);
-  });
-  $('.nav > .menu-title').mouseleave(function () {
-    $('header .full-cover').stop().fadeOut(300);
-    $('.nav > .menu-title > .sub-con').stop().fadeOut(400);
-  });
-
-  $('.button-logo a.offbutton').click(function () {
-    $(this).css('display', 'none');
-    $('.button-logo a.onbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: 0,
-      },
-      1000
-    );
-
-    return false;
-  });
-  /* nav jquery end */
-
-  /* fixed-btn jquery start */
-  $('.button-logo a.onbutton').click(function () {
-    $(this).css('display', 'none');
-    $('.button-logo a.offbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: '100%',
-      },
-      1000
-    );
-    return false;
-  });
-
-  $(document).click(function () {
-    $('.button-logo a.onbutton').css('display', 'none');
-    $('.button-logo a.offbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: '100%',
-      },
-      1000
-    );
-    return false;
-  });
-
-  /* signup javascript start */
+ /* signup javascript start */
   const allBtn = document.querySelector('.sign-all-btn'); // 전체동의 버튼
   const btns = document.querySelectorAll('.sign-each-btn'); // 나머지 버튼들
   const signupBtn = document.querySelector('.signup-btn'); // 회원가입 버튼
@@ -126,7 +69,7 @@ $(function () {
   // 회원가입 버튼 핸들러
   const signupHandler = (e) => {
     if (!signupBtn.disabled) {
-      alert('회원가입 진행');
+      location.href='/signup';
     }
   };
 
@@ -139,5 +82,3 @@ $(function () {
   signupBtn.addEventListener('click', signupHandler);
 
   /* signup javascript end */
-});
-/* fixed-btn jquery end */
