@@ -28,6 +28,16 @@ const testData = [...originData].reverse();
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
 
+// 게시판 상세 페이지로 이동 함수
+const locateQnaDetail = (index, isLocked) => {
+	if(!isLocked) {
+		// index를 갖고 상세 페이지로 이동
+		window.location.href = '/qna-detail?index='+index;
+	} else {
+		confirm('비밀번호를 입력해주세요');
+	};
+};
+
 // 리스트 출력
 const displayList = (items, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = ""; // 테이블 초기화
@@ -42,14 +52,12 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let item = paginatedItems[i];
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<tr>
-				<td>${item.id}</td>
-				<td><img class="lock" src=${item.isLocked ? "/resources/img/subpages/qna/lock.png" 
-				: "/resources/img/subpages/qna/unlock.png"}></td>
-				<td class="left">${item.title}</td>
-				<td>${item.date}</td>
-				<td>${item.count}</td>
-			</tr>
+			<td>${item.id}</td>
+			<td><img class="lock" src=${item.isLocked ? "/resources/img/subpages/qna/lock.png" 
+			: "/resources/img/subpages/qna/unlock.png"}></td>
+			<td class="left"><a href="#" onclick="locateQnaDetail(${item.id},${item.isLocked})">${item.title}</a></td>
+			<td>${item.date}</td>
+			<td>${item.count}</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);

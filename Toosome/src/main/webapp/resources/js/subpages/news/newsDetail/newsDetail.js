@@ -1,5 +1,5 @@
-const detailTitle = document.querySelector('.news-table thead'); // 공지 세부 타이틀
-const detailContent = document.querySelector('#newsDetail'); // 공지 세부 본문
+const detailTitle = document.querySelector('.news-table thead'); // 뉴스 세부 타이틀
+const detailContent = document.querySelector('#newsDetail'); // 뉴스 세부 본문
 const prev = document.querySelector('.prev'); // 이전글
 const next = document.querySelector('.next'); // 다음글
 
