@@ -9,4 +9,8 @@ public class ProductController {
 	public String product() {
 		return "subpages/product/product";
 	}
+	
+	// Product image & Product event 관련 추가...
+	
+	// Orders과 Order_Refund 관련 추가
 }

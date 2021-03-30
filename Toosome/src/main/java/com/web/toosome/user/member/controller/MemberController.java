@@ -19,4 +19,7 @@ public class MemberController {
 		return "subpages/signupComplete/signupComplete";
 	}
 	
+	// 회원가입 관련
+	// 회원가입 시 인증 절차 포함
+	
 }

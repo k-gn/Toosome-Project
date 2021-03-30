@@ -7,4 +7,9 @@ public class MenuController {
 	public String menu() {
 		return "subpages/menu/menu";
 	}
+	
+	// Menu Image & Menu Event 관련 추가
+	
+	// Menu Order & Menu Refund
+	
 }
