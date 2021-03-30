@@ -187,6 +187,7 @@ const getListItem = (index, places) => {
 		if(status === kakao.maps.services.Status.OK) {
 			const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 			map.setCenter(coords);
+			keyword.value = `${places.road_address_name}`;
 		};
 	});
   });
@@ -200,7 +201,7 @@ let markers = [];
 const addMarker = (position, idx) => {
   // 마커 이미지
   const imageSrc =
-    'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png';
+    '/resources/img/subpages/map/marker.png';
   const imageSize = new kakao.maps.Size(36, 37);
   const imageOptions = {
     spriteSize: new kakao.maps.Size(36, 691),
@@ -279,7 +280,12 @@ const displayPagnition = (pagination) => {
 
 // 검색결과 목록, 마커 click event
 const displayInfoWindow = (marker, title) => {
-  let content = `<div style="padding:5px;z-index:1;">${title}</div>`;
+  let content = `
+	<div style="width:auto;height:auto;background:rgba(214, 92, 92, 0.3);padding:10px;z-index:1;text-align:center;border:none;">
+		<img src="/resources/img/logo.png">
+		<p style="font-size:1rem;font-weight:bold;background-color:white;border-radius:5px;margin-top:10px;padding:4px;">${title}</p>
+	</div>
+  `;
 
   infoWindow.setContent(content);
   infoWindow.open(map, marker);

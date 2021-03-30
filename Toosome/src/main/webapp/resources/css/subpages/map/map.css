@@ -41,6 +41,10 @@
   z-index: 1;
   font-size: 1rem;
   border-radius: 10px;
+  -ms-overflow-style: none;
+}
+#menu_wrap::-webkit-scrollbar{
+  display:none; 
 }
 .bg_white {
   background: #fff;
@@ -110,18 +114,21 @@
 #placesList .item span {
   display: block;
   margin-top: 4px;
+  font-size: 0.875rem;
 }
 #placesList .item h5,
 #placesList .item .info {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 1rem;
 }
 #placesList .item .info {
   padding: 10px 0 10px 55px;
 }
 #placesList .info .gray {
   color: #8a8a8a;
+  font-size: 0.875rem;
 }
 #placesList .info .jibun {
   padding-left: 26px;
@@ -130,6 +137,7 @@
 }
 #placesList .info .tel {
   color: #009900;
+  font-size: 0.8125rem;
 }
 #placesList .item .markerbg {
   float: left;
