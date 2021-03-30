@@ -28,6 +28,12 @@ const testData = [...originData].reverse();
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
 
+// 게시판 상세 페이지로 이동 함수
+const locateNewsDetail = (index) => {
+	// index를 갖고 상세 페이지로 이동
+	window.location.href = '/news-detail?index='+index;
+}
+
 // 리스트 출력
 const displayList = (items, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = ""; // 테이블 초기화
@@ -44,8 +50,8 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let itemElement = `
 			<tr>
 				<td>${item.id}</td>
-				<td><img class="img" src="${item.img}"></td>
-				<td class="left">${item.title}</td>
+				<td><a href="#" onclick="locateNewsDetail(${item.id})"><img class="img" src="${item.img}"></a></td>
+				<td class="left"><a href="#" onclick="locateNewsDetail(${item.id})">${item.title}</a></td>
 				<td>${item.date}</td>
 				<td>${item.count}</td>
 			</tr>
