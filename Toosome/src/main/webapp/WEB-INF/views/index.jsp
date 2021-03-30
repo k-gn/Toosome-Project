@@ -67,7 +67,7 @@
             <li class="menu-title">
               <a href="#">STORE</a>
               <ul class="sub-con">
-                <li><a href="#">매장안내</a></li>
+                <li><a href="#" onclick="location.href='/map'">매장안내</a></li>
               </ul>
             </li>
             <li class="menu-title">
@@ -102,9 +102,9 @@
       <div id="img-wrap" class="img-slide">
         <div class="slide">
           <ul class="slide-imgs cf slider autoplay">
-            <li><img src="resources/img/1.png" alt="" /></li>
-            <li><img src="resources/img/2.png" alt="" /></li>
-            <li><img src="resources/img/3.png" alt="" /></li>
+            <li><img src="/resources/img/1.png" alt="" /></li>
+            <li><img src="/resources/img/2.png" alt="" /></li>
+            <li><img src="/resources/img/3.png" alt="" /></li>
           </ul>
         </div>
       </div>
