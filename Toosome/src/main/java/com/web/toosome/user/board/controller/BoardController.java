@@ -35,17 +35,17 @@ public class BoardController {
 		return "subpages/iat/iat";
 	}
 
-	@GetMapping("/notice-detail")
+	@GetMapping("/notice-detail")	// notice 상세 페이지
 	public String noticeDetail() {
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 
-	@GetMapping("/news-detail")
+	@GetMapping("/news-detail")		// news 상세 페이지
 	public String newsDetail() {
 		return "subpages/news/newsDetail/newsDetail";
 	}
 
-	@GetMapping("/qna-detail")
+	@GetMapping("/qna-detail")		// qna 상세 페이지
 	public String qnaDetail() {
 		return "subpages/qna/qnaDetail/qnaDetail";
 	}
