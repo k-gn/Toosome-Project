@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+.nutrient-container {
+  margin: 150px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 980px;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  box-shadow: 0 2px 3px #eee;
+}
+.nutrient-container .title-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.nutrient-container .title-container .nutrient-title {
+  margin-top: 50px;
+  font-size: 1.5rem;
+  font-family: gsdr;
+  color: #000;
+}
+.nutrient-container .title-container .title-logo {
+  display: flex;
+  width: 600px;
+  height: auto;
+  margin: 0 auto;
+}
+.nutrient-container .contents {
+  margin-top: 50px;
+}
+
+.nutrient-container .contents .menu-tab {
+  width: 400px;
+  height: 50px;
+  display: flex;
+  float: left;
+}
+.nutrient-container .contents .menu-tab li {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  border-right: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.nutrient-container .contents .menu-tab li.click {
+  background-color: #a62326;
+}
+.nutrient-container .contents .menu-tab li:last-child {
+  border-right: 1px solid #000;
+}
+.nutrient-container .contents .menu-tab li a {
+  display: flex;
+  color: #000;
+  font-family: gsdr;
+  text-decoration: none;
+}
+.nutrient-container .contents .menu-tab li.click a {
+  color: #fff;
+}
+.nutrient-container .contents .menu-tab li:hover a {
+  text-decoration: underline;
+}
+
+.nutrient-container .contents .search {
+  float: right;
+  margin-top: 20px;
+}
+
+.nutrient-container .contents table thead tr th {
+  text-align: center;
+  border-right: 1px solid #fff;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+.nutrient-container .contents table thead tr th:last-child,
+.nutrient-container .contents table tbody tr td:last-child {
+  border-right: none;
+}
+
+.nutrient-container .contents table thead tr th:first-child,
+.nutrient-container .contents table thead tr th:nth-child(2),
+.nutrient-container .contents table thead tr th:nth-child(3) {
+  line-height: 40px;
+}
+.nutrient-container .contents table tbody tr td {
+  text-align: center;
+  font-size: 13px;
+  box-sizing: border-box;
+} 
