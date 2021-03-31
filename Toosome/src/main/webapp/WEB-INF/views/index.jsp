@@ -271,7 +271,7 @@
                 id="search"
                 placeholder="매장명 또는 주소를 입력해 주세요."
               />
-              <input type="submit" value="" />
+              <input id="search-button" type="submit" value="" />
             </fieldset>
           </form>
         </div>
