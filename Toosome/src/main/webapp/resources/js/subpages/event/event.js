@@ -49,6 +49,7 @@ const endOriginData = [
 	{id: 2, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e02.jpg"},
 	{id: 3, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e01.jpg"},
 	{id: 4, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e04.jpg"},
+	{id: 5, title: "투썸플레이스X무직타이거 프로모션", period: "2021.03.20~2021.03.30", img: "/resources/img/subpages/event/e04.jpg"},
 ];
 
 const endTestData = [...endOriginData].reverse();
