@@ -14,4 +14,8 @@ public class TestController {
   public String testsns() {
     return "testsns";
   }
+  @GetMapping("/testemail")
+  public String testemail() {
+	  return "testemail";
+  }
 }

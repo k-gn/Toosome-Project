@@ -122,8 +122,8 @@
   // 이메일 인증 버튼 핸들러
   const emailAuthHandler = (e) => {
     e.preventDefault();
-    alert('인증번호 전송 완료');
-    emailAuthForm.style.display = 'block';
+    //alert('인증번호 전송 완료');
+    //emailAuthForm.style.display = 'block';
     startTimer();
     authCodeForm.focus();
   };
@@ -434,3 +434,29 @@
   submitBtn.addEventListener('click', submitBtnHandler);
 
   /* signupForm javascript end */
+
+/* 인증번호 이메일 전송 */
+		
+		$(".email-auth-btn").click(function() {
+
+			var email = $(".signup-form.email").val(); // 입력한 이메일 
+			var cehckBox = $(".signup-form.auth");        // 인증번호 입력란
+			var code = "";
+			
+			$.ajax({
+
+				type : "GET",
+				url : "emailCheck?email=" + email,
+				success:function(data){
+		            
+		            //console.log("data : " + data);
+					cehckBox.attr("disabled",false);
+		            $("#email-auth-form").css("display","block");
+					alert('인증번호 전송 완료');
+					code = data;
+		        }
+			});
+
+		});
+		
+		
