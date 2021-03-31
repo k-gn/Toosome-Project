@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-    <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
+    <link rel="stylesheet" href="/resources/css/subpages/qna/qnaDetail/qnaDetail.css">
     <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"
@@ -17,7 +17,7 @@
     />
   	<script src="/resources/js/share/jquery-3.1.1.js"></script>
   	<script src="/resources/js/share/nav_footer.js"></script>
-  	<script src="/resources/js/subpages/qna/qna.js" defer></script>
+  	<script src="/resources/js/subpages/qna/qnaDetail/qnaDetail.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -99,36 +99,28 @@
         			</ul>
         		</nav>
         	</div>
-			<p>고객 한 분 한 분의 의견에 귀 기울이는 투썸플레이스가 되겠습니다</p>
-        	<div class="search-container">
-        		<div class="search-wrapper">
-        			<input type="search" placeholder="검색어를 입력하세요">
-        			<button>검색</button>
-        			<button onclick="location.href='/qna-enrollment'">등록</button>
-        		</div>
-        	</div>
-        	<table summary="qna" class="qna-table">
-        		<caption class="qna-cap">qna 번호,잠금여부,제목,날짜,조회수</caption>
+        	<table summary="QnADetail" class="qna-table">
         		<colgroup>
-        			<col width="5%">
-        			<col width="10%">
-        			<col width="65%">
-        			<col width="10%">
-        			<col width="10%">
+        			<col width="70%">
+        			<col width="15%">
+        			<col width="15%">
         		</colgroup>
-        		<thead>
-        			<tr>
-        				<th scope="col">NO</th>
-        				<th scope="col">잠금여부</th>
-        				<th scope="col">제목</th>
-        				<th scope="col">날짜</th>
-        				<th scope="col">조회수</th>
-        			</tr>
-        		</thead>
-        		<tbody id="qna">
-        		</tbody>
+        		<thead></thead>
+        		<tbody id="qnaDetail"></tbody>
         	</table>
-        	<div id="pagination"></div>
+        	<div class="list-btn">
+        		<a href="#" onclick="location.href='/qna'">목록</a>
+        	</div>
+        	<h3>답변</h3>
+        	<table summary="QnAComment" class="comment-table">
+        		<colgroup>
+        			<col width="70%">
+        			<col width="15%">
+        			<col width="15%">
+        		</colgroup>
+        		<thead></thead>
+        		<tbody id="comment"></tbody>
+        	</table>
         </section>
 		<!-- section end -->
         <!-- footer-start -->

@@ -6,11 +6,14 @@ const container = document.querySelector('#map');
 const keyword = document.querySelector('#keyword');
 const searchBtn = document.querySelector('#search-btn');
 
+// index의 매장찾기 검색 후 넘어왔는지 여부
 let isFromSection = false;
 
 // 어디를 경유해서 왔는지 판별하는 함수
 const isFromWhere = () => {
-	location.href.includes('address') ? isFromSection = true : isFromSection = false;
+	location.href.includes('address') ? 
+	isFromSection = true 
+	: isFromSection = false;
 };
 
 // parameter 받아오는 함수
