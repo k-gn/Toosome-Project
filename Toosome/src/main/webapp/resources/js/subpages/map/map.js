@@ -6,6 +6,30 @@ const container = document.querySelector('#map');
 const keyword = document.querySelector('#keyword');
 const searchBtn = document.querySelector('#search-btn');
 
+// index의 매장찾기 검색 후 넘어왔는지 여부
+let isFromSection = false;
+
+// 어디를 경유해서 왔는지 판별하는 함수
+const isFromWhere = () => {
+	location.href.includes('address') ? 
+	isFromSection = true 
+	: isFromSection = false;
+};
+
+// parameter 받아오는 함수
+const getParam = (param) => {
+	let url = location.href;
+	let params = (url.slice(url.indexOf('?') + 1)).split('=');
+	let [ variable, value ] = params;
+	if(variable.toUpperCase() === param.toUpperCase()) {
+		return decodeURIComponent(value);
+	} else {
+		/* error code 작성 */
+		alert('경고!\n올바른 요청이 아닙니다.');
+	};
+};
+
+
 // 지도 초기 옵션
 const options = {
   center: new kakao.maps.LatLng(37.57123325991645, 126.9911719400817),
@@ -56,10 +80,16 @@ const place = new kakao.maps.services.Places();
 // 장소 검색이 완료되었을때의 콜백함수
 const placeSearchCB = (data, status, pagnition) => {
   if (status === kakao.maps.services.Status.OK) {
+	// 검색 결과의 첫 번째 데이터 좌표 생성 후 이동
+	let coords = new kakao.maps.LatLng(data[0].y,data[0].x);
+	map.setCenter(coords);
+	
     // OK시 검색목록, 마커 출력
     displayPlaces(data);
+	
     // 페이지번호 표시
     displayPagnition(pagnition);
+
   } else if (status === kakao.maps.services.Status.ZERO_RESULT || status === kakao.map.services.Status.ERROR){
 		// 검색결과 목록에 추가된 항목들을 제거
   		removeAllChildNods(listEl);
@@ -104,16 +134,6 @@ const searchHandler = () => {
     };
 	let value = keyword.value + ' 투썸플레이스';
 	place.keywordSearch(value, placeSearchCB);
-	
-	geocoder.addressSearch(keyword.value, (result, status) => {
-		// 정상적으로 검색이 완료되면 지도 이동
-		if(status === kakao.maps.services.Status.OK) {
-			const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			map.setCenter(coords);
-		} else {
-			alert('주소명을 정확히 입력해주세요!');
-		};
-	});
 };
 
 // 검색 결과 목록, 마커 클릭시 장소명을 표출할 인포윈도우
@@ -187,6 +207,7 @@ const getListItem = (index, places) => {
 		if(status === kakao.maps.services.Status.OK) {
 			const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 			map.setCenter(coords);
+			keyword.value = `${places.road_address_name}`;
 		};
 	});
   });
@@ -200,7 +221,7 @@ let markers = [];
 const addMarker = (position, idx) => {
   // 마커 이미지
   const imageSrc =
-    'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png';
+    '/resources/img/subpages/map/marker.png';
   const imageSize = new kakao.maps.Size(36, 37);
   const imageOptions = {
     spriteSize: new kakao.maps.Size(36, 691),
@@ -279,7 +300,12 @@ const displayPagnition = (pagination) => {
 
 // 검색결과 목록, 마커 click event
 const displayInfoWindow = (marker, title) => {
-  let content = `<div style="padding:5px;z-index:1;">${title}</div>`;
+  let content = `
+	<div style="width:auto;height:auto;background:rgba(214, 92, 92, 0.3);padding:10px;z-index:1;text-align:center;border:none;">
+		<img src="/resources/img/logo.png">
+		<p style="font-size:1rem;font-weight:bold;background-color:white;border-radius:5px;margin-top:10px;padding:4px;">${title}</p>
+	</div>
+  `;
 
   infoWindow.setContent(content);
   infoWindow.open(map, marker);
@@ -292,39 +318,50 @@ const removeAllChildNods = (el) => {
   };
 };
 
+// 중심좌표 바뀔때마다 실행되는 event
+kakao.maps.event.addListener(map, 'dragend', () => {
+  // const level = map.getLevel();
+  // 현재위치 중심좌표 구하기
+  let coords = map.getCenter();
+
+  searchAddrFromCoords(coords.getLng(), coords.getLat(), getAddressName);
+
+  // 키워드로 장소 검색
+  searchPlaces(place, coords);
+});
+
 
 window.onload = () => {
-	// Geolocation 사용 가능여부 확인
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition((position) => {
-	    let lat = position.coords.latitude; // 위도
-	    let lon = position.coords.longitude; // 경도
-	
-	    const locPosition = new kakao.maps.LatLng(lat, lon);
-	    moveCenter(locPosition, map);
+	isFromWhere();
+
+	// gnb를 경유해서 넘어온 경우
+	if(!isFromSection) {
+		// Geolocation 사용 가능여부 확인
+		if (navigator.geolocation) {
+		  navigator.geolocation.getCurrentPosition((position) => {
+		    let lat = position.coords.latitude; // 위도
+		    let lon = position.coords.longitude; // 경도
 		
-	  // 키워드로 장소 검색
-	  searchPlaces(place, locPosition);
-	  });
-	} else {
-	  const locPosition = new kakao.maps.LatLng(
-	    37.57123325991645,
-	    126.9911719400817
-	  );
-	  moveCenter(locPosition, map);
-	  // 키워드로 장소 검색
-	  searchPlaces(place, locPosition);
+		    const locPosition = new kakao.maps.LatLng(lat, lon);
+		    moveCenter(locPosition, map);
+			
+		  // 키워드로 장소 검색
+		  searchPlaces(place, locPosition);
+		  });
+		} else {
+		  const locPosition = new kakao.maps.LatLng(
+		    37.57123325991645,
+		    126.9911719400817
+		  );
+		  moveCenter(locPosition, map);
+		  // 키워드로 장소 검색
+		  searchPlaces(place, locPosition);
+		};
+	} else { // section에서 검색으로 넘어온 경우
+		let temp = getParam('address');
+		let searchValue = temp + ' 투썸플레이스';
+		place.keywordSearch(searchValue, placeSearchCB);
+	
+		keyword.value = searchValue;
 	};
-	
-	// 중심좌표 바뀔때마다 실행되는 event
-	kakao.maps.event.addListener(map, 'dragend', () => {
-	  // const level = map.getLevel();
-	  // 현재위치 중심좌표 구하기
-	  let coords = map.getCenter();
-	
-	  searchAddrFromCoords(coords.getLng(), coords.getLat(), getAddressName);
-	
-	  // 키워드로 장소 검색
-	  searchPlaces(place, coords);
-	});
 };

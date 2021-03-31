@@ -61,7 +61,7 @@
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
                 <li><a href="#">상품</a></li>
-                <li><a href="#">영양성분표</a></li>
+                <li><a href="#" onclick="location.href='/nutrienta'">영양성분표</a></li>
               </ul>
             </li>
             <li class="menu-title">
@@ -74,7 +74,7 @@
               <a href="#">WHAT'S NEWS</a>
               <ul class="sub-con">
                 <li><a href="#" onclick="location.href='/event'">이벤트</a></li>
-                <li><a href="#">멤버쉽&amp;제휴카드</a></li>
+                <li><a href="#" onclick="location.href='/membership'">멤버쉽</a></li>
                 <li><a href="#" onclick="location.href='/notice'">공지사항</a></li>
                 <li><a href="#" onclick="location.href='/news'">뉴스</a></li>
                 <li><a href="#" onclick="location.href='/qna'">QnA</a></li>
@@ -86,7 +86,7 @@
                 <li><a href="#" onclick="location.href='/franchise'">창업정보</a></li>
                 <li><a href="#" onclick="location.href='/franchisepay'">가맹점 전용 금융 상품</a></li>
                 <li><a href="#" onclick="location.href='/explanation'">창업설명회</a></li>
-                <li><a href="#">기업 및 단체구매 안내</a></li>
+                <li><a href="#" onclick="location.href='/allbuy'">기업 및 단체구매 안내</a></li>
               </ul>
             </li>
           </ul>
@@ -271,7 +271,7 @@
                 id="search"
                 placeholder="매장명 또는 주소를 입력해 주세요."
               />
-              <input type="submit" value="" />
+              <input id="search-button" type="submit" value="" />
             </fieldset>
           </form>
         </div>

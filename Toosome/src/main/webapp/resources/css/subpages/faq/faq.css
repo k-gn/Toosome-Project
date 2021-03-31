@@ -70,29 +70,36 @@ section > p {
 }
 
 .search-wrapper {
-	width: 40%;
+	width: 60%;
 	height: auto;
 	display: flex;
 	justify-content: flex-end;
 }
 
 .search-wrapper > input {
+	outline: none;
+	appearance: none;
 	width: 350px;
-	height: 30px;
+	height: 40px;
 	border-radius: 5px;
 	border: 1px solid #eee;
-	margin-right: 0.625rem;
+	margin-right: 0.9375rem;
+	padding-left: 5px;
 }
 
 .search-wrapper > button {
-	width: 42px;
-	height: 30px;
+	outline: none;
+	appearance: none;
+	width: 60px;
+	height: 40px;
 	border-radius: 5px;
 	border: none;
 	background: #a62326;
 	color: white;
 	cursor: pointer;
+	padding: 5px;
 	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
 	margin-right: 0.9375rem;
 }
 
