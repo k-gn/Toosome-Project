@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
-    <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+    <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
     <link rel="stylesheet" href="/resources/css/subpages/franchise/franchise.css">
     <link
       rel="shortcut icon"

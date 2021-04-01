@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/resources/css/share/reset.css">
-  <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+  <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"

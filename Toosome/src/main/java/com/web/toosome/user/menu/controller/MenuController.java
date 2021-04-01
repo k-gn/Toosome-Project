@@ -3,9 +3,15 @@ package com.web.toosome.user.menu.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 public class MenuController {
+  
 	@GetMapping("/menu") // 이거 cafe로 변경 요망
 	public String menu() {
 		return "subpages/menu/menu";
+	}
+	
+	@GetMapping("/product") // product
+	public String product() {
+		return "subpages/product/product";
 	}
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
@@ -22,6 +28,7 @@ public class MenuController {
 	public String nutrient3() {
 		return "subpages/nutrient/nutrient3";
 	}
+
 
 	@GetMapping("/nutrient4") // 영양성분표 페이지4
 	public String nutrient4() {

@@ -6,22 +6,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-    <link rel="stylesheet" href="/resources/css/subpages/map/map.css">
+    <link rel="stylesheet" href="/resources/css/subpages/event/eventDetail/eventDetail.css">
     <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"
       type="image/x-icon"
     />
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040&libraries=services"></script>
-	<script
-	    type="text/javascript"
-	    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b759e877ed36b4bafeb58f95cbe040"
-	></script>
-    <script src="/resources/js/share/jquery-3.1.1.js"></script>
-    <script src="/resources/js/share/nav_footer.js"></script>
-    <script src="/resources/js/subpages/map/map.js" defer></script>
+  	<script src="/resources/js/share/jquery-3.1.1.js"></script>
+  	<script src="/resources/js/share/nav_footer.js"></script>
+  	<script src="/resources/js/subpages/event/eventDetail/eventDetail.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -47,7 +43,7 @@
                         <a href="#">MENU</a>
                         <ul class="sub-con">
                             <li><a href="#">NEW</a></li>
-                            <li><a href="#">커피&음료</a></li>
+                            <li><a href="#">커피&amp;음료</a></li>
                             <li><a href="#">디저트</a></li>
                             <li><a href="#">델리</a></li>
                             <li><a href="#">홀케이크</a></li>
@@ -62,10 +58,10 @@
                         </ul>
                     </li>
                     <li class="menu-title">
-                        <a href="#">WHAT'S NEW</a>
+                        <a href="#">WHAT'S NEWS</a>
                         <ul class="sub-con">
                             <li><a href="#">이벤트</a></li>
-                            <li><a href="#">멤버쉽&제휴카드</a></li>
+                            <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">기업 및 단체구매 안내</a></li>
                         </ul>
@@ -90,26 +86,33 @@
                 <li><a href="#">FAQ</a></li>
             </ul>
         </header>
+        <!-- header-end -->
 		<!-- section start -->
-        <section class="section">
-        	<div class="map_wrap">
-			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			    <div id="menu_wrap" class="bg_white">
-			        <div class="option">
-			            <div>
-			                <form>
-			                    <input type="text" value="투썸플레이스" id="keyword" size="15"> 
-			                    <button id="search-btn">검색</button> 
-			                </form>
-			            </div>
-			        </div>
-			        <hr>
-			        <ul id="placesList"></ul>
-			        <div id="pagination"></div>
-			    </div>
-			</div>
+        <section>
+        	<div class="sub-header-container">
+        		<h3>이벤트</h3>
+        		<nav class="navigation-container">
+        			<ul>
+        				<li><a href="/">HOME</a></li>
+        				<li><a href="/sitemap">WHAT'S NEWS</a></li>
+        				<li><a href="/event">이벤트</a></li>
+        			</ul>
+        		</nav>
+        	</div>
+        	<table summary="EventDetail" class="event-table">
+        		<thead></thead>
+        		<tbody id="eventDetail"></tbody>
+        	</table>
+        	<div class="list-btn">
+        		<a href="/event">목록</a>
+        	</div>
+        	<table summary="EventLocator" class="event-locator">
+        		<tr class="prev"></tr>
+        		<tr class="next"></tr>
+        	</table>
         </section>
-        <!-- section end -->
+		<!-- section end -->
+        <!-- footer-start -->
         <div class="footer">
             <div class="foot-cover">
                 <ul class="foot-first cf">

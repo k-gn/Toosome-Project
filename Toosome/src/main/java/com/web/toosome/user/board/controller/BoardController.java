@@ -10,7 +10,7 @@ public class BoardController {
 		return "subpages/event/event";
 	}
 	
-	@GetMapping("/event-detail")		// 이벤트 상세 페이지
+	@GetMapping("/event-detail") // 이벤트 상세 페이지
 	public String eventDetail() {
 		return "subpages/event/eventDetail/eventDetail";
 	}
@@ -40,22 +40,22 @@ public class BoardController {
 		return "subpages/iat/iat";
 	}
 
-	@GetMapping("/notice-detail")	// notice 상세 페이지
+	@GetMapping("/notice-detail") // notice 상세 페이지
 	public String noticeDetail() {
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 
-	@GetMapping("/news-detail")		// news 상세 페이지
+	@GetMapping("/news-detail")	// news 상세 페이지
 	public String newsDetail() {
 		return "subpages/news/newsDetail/newsDetail";
 	}
 
-	@GetMapping("/qna-detail")		// qna 상세 페이지
+	@GetMapping("/qna-detail") // qna 상세 페이지
 	public String qnaDetail() {
 		return "subpages/qna/qnaDetail/qnaDetail";
 	}
 	
-	@GetMapping("/qna-enrollment")		// qna 등록 페이지
+	@GetMapping("/qna-enrollment") // qna 등록 페이지
 	public String qnaEnrollment() {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}
