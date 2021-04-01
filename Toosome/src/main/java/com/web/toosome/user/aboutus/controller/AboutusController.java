@@ -20,9 +20,17 @@ public class AboutusController {
 		return "subpages/dessertStory/dessertStory";
 	}
 
-	@GetMapping("/brandfilm")
-	public String brandFilm() {
-		return "subpages/brandFilm/brandFilm";
+	@GetMapping("/brandfilm1")
+	public String brandFilm1() {
+		return "subpages/brandFilm/brandFilm1";
+	}
+	@GetMapping("/brandfilm2")
+	public String brandFilm2() {
+		return "subpages/brandFilm/brandFilm2";
+	}
+	@GetMapping("/brandfilm3")
+	public String brandFilm3() {
+		return "subpages/brandFilm/brandFilm3";
 	}
 
 }
