@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+.member-container {
+  margin: 150px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 980px;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  box-shadow: 0 2px 3px #eee;
+}
+.member-container .title-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.member-container .title-container .member-title {
+  margin-top: 50px;
+  font-size: 1.5rem;
+  font-family: gsdr;
+  color: #000;
+}
+.member-container .title-container .title-logo {
+  display: flex;
+  width: 600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.member-container .contents {
+  margin-top: 50px;
+}
+
+.member-container .contents .membership-text {
+  width: 90%;
+  height: 300px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #eee;
+  position: relative;
+}
+.member-container .contents .membership-text .mb-logo {
+  width: 100px;
+  height: 60px;
+  float: left;
+}
+.member-container .contents .membership-text .mb-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.member-container .contents .membership-text .tit {
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: #a62326;
+  font-weight: bold;
+  font-size: 30px;
+}
+.member-container .contents .membership-text .comment {
+  float: none;
+  position: absolute;
+  font-size: 0.9375rem;
+  bottom: 70px;
+  color: #333;
+}
+.member-container .contents .membership-text .card {
+  display: block;
+  width: 300px;
+  height: auto;
+  float: right;
+  margin-top: 50px;
+}
+.member-container .contents .membership-text a {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background-color: #a62326;
+  padding: 7px;
+  border-radius: 7px;
+  color: #fff;
+  box-shadow: 2px 2px 2px #000;
+}
+.member-container .contents .membership-text a:active {
+  box-shadow: none;
+}
+.member-container .contents .membership-text a:hover {
+  text-decoration: underline;
+}
+.member-container .contents .member-text {
+  width: 93%;
+  margin: 50px auto;
+  font-size: 1.125rem;
+  color: #777;
+  font-weight: bold;
+}
+
+.benefit {
+  width: 95%;
+  margin: 0 auto 50px;
+  border-top: 3px solid #ccc;
+  border-bottom: 3px solid #ccc;
+}
+.benefit .bene-list {
+  display: flex;
+  padding: 10px;
+  border-bottom: 2px dashed #eee;
+}
+.benefit .bene-list:first-child {
+  padding-top: 20px;
+}
+.benefit .bene-list:last-child {
+  border-bottom: none;
+  padding-bottom: 20px;
+}
+.benefit .bene-list .img-box {
+  display: flex;
+  align-items: center;
+}
+.benefit .bene-list .benefit-contents {
+  margin-left: 10px;
+}
+.benefit .bene-list .benefit-contents > li > strong {
+  color: #a62326;
+}
+.benefit .bene-list .benefit-contents .true-contents {
+  margin-top: 10px;
+}
+.benefit .bene-list .benefit-contents .true-contents li {
+  list-style: disc;
+  margin-left: 20px;
+  font-size: 12px;
+  color: #333;
+}

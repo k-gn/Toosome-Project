@@ -104,6 +104,7 @@
         		<div class="search-wrapper">
         			<input type="search" placeholder="검색어를 입력하세요">
         			<button>검색</button>
+        			<button onclick="location.href='/qna-enrollment'">등록</button>
         		</div>
         	</div>
         	<table summary="qna" class="qna-table">
