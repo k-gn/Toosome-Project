@@ -148,6 +148,16 @@
             </tr>
           </tbody>
         </table>
+        <form action="#" method="get">
+		    <input type="file">
+		    <div class="qna-radio-container">
+                 <span class="title">공개 범위</span>
+                 <input type="radio" name="openScope" value="public" checked>공개
+                 <input type="radio" name="openScope" value="private">비공개
+              </div>
+		</form>
+
+        
       </div>
     </div>
 

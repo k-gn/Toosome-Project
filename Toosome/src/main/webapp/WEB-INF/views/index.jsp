@@ -258,7 +258,7 @@
       </div>
       <div class="map">
         <div class="form-cover">
-          <form action="#" method="get">
+          <form action="#" method="post">
             <h1>STORE</h1>
 
             <fieldset>
@@ -273,6 +273,7 @@
               />
               <input id="search-button" type="submit" value="" />
             </fieldset>
+            
           </form>
         </div>
       </div>
