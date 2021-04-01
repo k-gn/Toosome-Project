@@ -9,6 +9,11 @@ public class BoardController {
 	public String event() {
 		return "subpages/event/event";
 	}
+	
+	@GetMapping("/event-detail")		// 이벤트 상세 페이지
+	public String eventDetail() {
+		return "subpages/event/eventDetail/eventDetail";
+	}
 
 	@GetMapping("/faq")
 	public String faq() {
