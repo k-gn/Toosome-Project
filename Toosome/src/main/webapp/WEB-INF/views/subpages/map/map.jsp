@@ -99,7 +99,7 @@
 			            <div>
 			                <form>
 			                    <input type="text" value="투썸플레이스" id="keyword" size="15"> 
-			                    <button id="search-btn" onclick="searchHandler();">검색</button> 
+			                    <button id="search-btn">검색</button> 
 			                </form>
 			            </div>
 			        </div>
