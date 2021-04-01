@@ -3,31 +3,36 @@ package com.web.toosome.user.menu.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 public class MenuController {
-	@GetMapping("/menu") // ÀÌ°Å cafe·Î º¯°æ ¿ä¸Á
+	@GetMapping("/menu") // ï¿½Ì°ï¿½ cafeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public String menu() {
 		return "subpages/menu/menu";
 	}
+	
+	@GetMapping("/product") // product
+	public String product() {
+		return "subpages/product/product";
+	}
 
-	@GetMapping("/nutrient1") // ¿µ¾ç¼ººĞÇ¥ ÆäÀÌÁö1
+	@GetMapping("/nutrient1") // ï¿½ï¿½ï¿½ç¼ºï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
 	public String nutrient1() {
 		return "subpages/nutrient/nutrient1";
 	}
 
-	@GetMapping("/nutrient2") // ¿µ¾ç¼ººĞÇ¥ ÆäÀÌÁö2
+	@GetMapping("/nutrient2") // ï¿½ï¿½ï¿½ç¼ºï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
 	public String nutrient2() {
 		return "subpages/nutrient/nutrient2";
 	}
 
-	@GetMapping("/nutrient3") // ¿µ¾ç¼ººĞÇ¥ ÆäÀÌÁö3
+	@GetMapping("/nutrient3") // ï¿½ï¿½ï¿½ç¼ºï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3
 	public String nutrient3() {
 		return "subpages/nutrient/nutrient3";
 	}
 
-	@GetMapping("/nutrient4") // ¿µ¾ç¼ººĞÇ¥ ÆäÀÌÁö4
+	@GetMapping("/nutrient4") // ï¿½ï¿½ï¿½ç¼ºï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4
 	public String nutrient4() {
 		return "subpages/nutrient/nutrient4";
 	}
-	// Menu Image & Menu Event °ü·Ã Ãß°¡
+	// Menu Image & Menu Event ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 
 	// Menu Order & Menu Refund
 
