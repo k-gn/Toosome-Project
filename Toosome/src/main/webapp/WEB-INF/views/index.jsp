@@ -49,7 +49,7 @@
                 <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
                 <li><a href="#" onclick="location.href='/coffeestory'">커피이야기</a></li>
                 <li><a href="#" onclick="location.href='/dessertstory'">디저트이야기</a></li>
-                <li><a href="#" onclick="location.href='/brandfilm'">브랜드필름</a></li>
+                <li><a href="#" onclick="location.href='/brandfilm1'">브랜드필름</a></li>
               </ul>
             </li>
             <li class="menu-title">
@@ -60,7 +60,7 @@
                 <li><a href="#">디저트</a></li>
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
-                <li><a href="#">상품</a></li>
+                <li><a href="#" onclick="location.href='/product'">상품</a></li>
                 <li><a href="#" onclick="location.href='/nutrienta'">영양성분표</a></li>
               </ul>
             </li>
@@ -258,7 +258,7 @@
       </div>
       <div class="map">
         <div class="form-cover">
-          <form action="#" method="get">
+          <form action="#" method="post">
             <h1>STORE</h1>
 
             <fieldset>
@@ -273,6 +273,7 @@
               />
               <input id="search-button" type="submit" value="" />
             </fieldset>
+            
           </form>
         </div>
       </div>
