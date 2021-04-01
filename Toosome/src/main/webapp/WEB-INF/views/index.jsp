@@ -60,7 +60,7 @@
                 <li><a href="#">디저트</a></li>
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
-                <li><a href="#">상품</a></li>
+                <li><a href="#" onclick="location.href='/product'">상품</a></li>
                 <li><a href="#" onclick="location.href='/nutrienta'">영양성분표</a></li>
               </ul>
             </li>
