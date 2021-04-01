@@ -70,7 +70,6 @@ public class SnsController {
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getLocalizedMessage());
 		} finally {
-			client
 		}
 		return "true";
 	}
