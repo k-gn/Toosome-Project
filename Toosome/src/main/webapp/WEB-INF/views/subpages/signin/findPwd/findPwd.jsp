@@ -94,18 +94,13 @@
        		아래 인증 방법을 통해 비밀번호를 재설정 할 수 있습니다.</p><br>
        		<p>계정을 찾으려면 <a href="/find-id">이곳</a>을 눌러주세요.</p>
        	</div>
-       	<form class="find-container">
-       		<div class="find-wrapper">
-       			<span>이메일 </span>
-  	     		<input type="text" name="email" id="email">
+       	<div class="sns-auth-container">
+       		<p>핸드폰 인증</p>
+       		<div class="sns-auth">
+       			<img src="/resources/img/subpages/signin/auth_sns.png" alt="#">
+       			<button id="sns">인증하기</button>
        		</div>
-       		<div class="find-wrapper">
-	       		<span>이&nbsp;&nbsp;&nbsp;름 </span>
-	       		<input type="text" name="name" id="name">
-       		</div>
-       		<input type="submit" id="submit" value="인증키 발급">
-       	</form>
-       	
+       	</div>    	
     </section>
     <!-- Section End -->
 

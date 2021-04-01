@@ -127,7 +127,8 @@ const searchPlaces = (places, coords) => {
 };
 
 // 검색 버튼 클릭 핸들러
-const searchHandler = () => {
+const searchHandler = (e) => {
+	e.preventDefault();
 	if (!keyword.value.replace(/^\s+|\s+$/g, '')) {
       alert('검색어를 입력해주세요');
       return;
@@ -175,9 +176,6 @@ const displayPlaces = (places) => {
   // 검색결과 항목을 목록 Element로 추가
   listEl.appendChild(fragment);
   menuEl.scrollTop = 0;
-
-  // 검색된 장소 위치 기준으로 지도 범위 재설정
-  // map.setBounds(bounds);
 };
 
 // 검색결과 항목을 Element로 반환
@@ -330,6 +328,7 @@ kakao.maps.event.addListener(map, 'dragend', () => {
   searchPlaces(place, coords);
 });
 
+searchBtn.addEventListener('click', searchHandler);
 
 window.onload = () => {
 	isFromWhere();
