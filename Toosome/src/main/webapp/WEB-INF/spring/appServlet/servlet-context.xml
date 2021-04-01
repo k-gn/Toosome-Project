@@ -24,6 +24,4 @@
 	<context:component-scan base-package="com.web.toosome" />
 	<context:component-scan base-package="com.toosome.web" />
 	
-	
-	
 </beans:beans>

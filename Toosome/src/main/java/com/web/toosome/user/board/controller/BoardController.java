@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BoardController {
-	@GetMapping("/event") // ÀÌº¥Æ® °øÁö °Ô½ÃÆÇ
+	@GetMapping("/event") // ì´ë²¤íŠ¸ ê³µì§€ ê²Œì‹œíŒ
 	public String event() {
 		return "subpages/event/event";
 	}
 	
-	@GetMapping("/event-detail")		// ÀÌº¥Æ® »ó¼¼ ÆäÀÌÁö
+	@GetMapping("/event-detail") // ì´ë²¤íŠ¸ ìƒì„¸ í˜ì´ì§€
 	public String eventDetail() {
 		return "subpages/event/eventDetail/eventDetail";
 	}
@@ -35,27 +35,27 @@ public class BoardController {
 		return "subpages/qna/qna";
 	}
 
-	@GetMapping("/iat") // ¼ººĞºĞ¼®Ç¥
+	@GetMapping("/iat") // ì„±ë¶„ë¶„ì„í‘œ
 	public String iat() {
 		return "subpages/iat/iat";
 	}
 
-	@GetMapping("/notice-detail")	// notice »ó¼¼ ÆäÀÌÁö
+	@GetMapping("/notice-detail") // notice ìƒì„¸ í˜ì´ì§€
 	public String noticeDetail() {
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 
-	@GetMapping("/news-detail")		// news »ó¼¼ ÆäÀÌÁö
+	@GetMapping("/news-detail")	// news ìƒì„¸ í˜ì´ì§€
 	public String newsDetail() {
 		return "subpages/news/newsDetail/newsDetail";
 	}
 
-	@GetMapping("/qna-detail")		// qna »ó¼¼ ÆäÀÌÁö
+	@GetMapping("/qna-detail") // qna ìƒì„¸ í˜ì´ì§€
 	public String qnaDetail() {
 		return "subpages/qna/qnaDetail/qnaDetail";
 	}
 	
-	@GetMapping("/qna-enrollment")		// qna µî·Ï ÆäÀÌÁö
+	@GetMapping("/qna-enrollment") // qna ë“±ë¡ í˜ì´ì§€
 	public String qnaEnrollment() {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}

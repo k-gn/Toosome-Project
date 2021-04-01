@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ProductController {
-	@GetMapping("/product") // ÁÖ¹®°¡´ÉÇÑ »óÇ° ¸®½ºÆ®
+	@GetMapping("/product") // ì£¼ë¬¸ê°€ëŠ¥í•œ ìƒí’ˆ ë¦¬ìŠ¤íŠ¸
 	public String product() {
 		return "subpages/product/product";
 	}
 	
-	// Product image & Product event °ü·Ã Ãß°¡...
+	// Product image & Product event ê´€ë ¨ ì¶”ê°€...
 	
-	// Orders°ú Order_Refund °ü·Ã Ãß°¡
+	// Ordersê³¼ Order_Refund ê´€ë ¨ ì¶”ê°€
 }
