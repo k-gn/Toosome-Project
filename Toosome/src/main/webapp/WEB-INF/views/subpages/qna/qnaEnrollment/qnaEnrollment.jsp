@@ -129,8 +129,9 @@
         		</div>
         		<div class="qna-img-container">
         			<span class="title">이미지 첨부</span>
+        			<input type="text" id="file-path" readonly>
         			<label for="input-file">업로드</label>
-        			<input type="file" name="file" id="input-file">
+        			<input type="file" name="file" id="input-file" accept="image/*">	
         		</div>
         		<div class="qna-radio-container">
         			<span class="title">공개 범위</span>

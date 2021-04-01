@@ -1,28 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.security.SecureRandom"  %>
-<%@ page import="java.math.BigInteger" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/share/reset.css">
-<link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-<link rel="stylesheet" href="/resources/css/subpages/signin/login.css">
-<link
-  rel="shortcut icon"
-  href="/resources/img/AnyConv.com__favicon.ico"
-  type="image/x-icon"
-/>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="/resources/js/share/jquery-3.1.1.js"></script>
-<script src="/resources/js/share/nav_footer.js"></script>
-<script src="/resources/js/subpages/signin/login.js"></script>
-<title>A TOOSOME PLACE</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/resources/css/share/reset.css">
+  <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+  <link rel="stylesheet" href="/resources/css/subpages/signin/findPwd/findPwd.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="/resources/img/AnyConv.com__favicon.ico" type="image/x-icon">
+  <script src="/resources/js/share/jquery-3.1.1.js"></script>
+  <script src="/resources/js/share/nav_footer.js"></script>
+  <script src="/resources/js/subpages/signin/findPwd/findPwd.js" defer></script>
+  <title>A TOOSOME PLACE</title>
 </head>
 <body>
-<div id="container">
-<!-- Header Start -->
+  <div id="container">
     <header>
         <h1 class="logo">
             <a href="#">
@@ -82,39 +77,38 @@
         <div class="full-cover"></div>
 
         <ul class="log">
-            <li><a href="#">LOGIN</a></li>
-            <li><a href="#">SIGN UP</a></li>
+            <li><a onclick="location.href='/signin'">LOGIN</a></li>
+         	<li><a onclick="location.href='/agreement'">SIGN UP</a></li>
             <li><a href="#">FAQ</a></li>
         </ul>
     </header>
     <!-- Header End -->
 
+    <!-- Section Start -->
+	<section>
+       	<div class="info">
+       		<h3>비밀번호 재설정</h3>
+       		<img src="/resources/img/subpages/share/warning.png" alt="#">
+       		<h3>잠깐!</h3>
+       		<p>투썸플레이스는 고객님의 비밀번호를 기억하지 않습니다.<br>
+       		아래 인증 방법을 통해 비밀번호를 재설정 할 수 있습니다.</p><br>
+       		<p>계정을 찾으려면 <a href="/find-id">이곳</a>을 눌러주세요.</p>
+       	</div>
+       	<form class="find-container">
+       		<div class="find-wrapper">
+       			<span>이메일 </span>
+  	     		<input type="text" name="email" id="email">
+       		</div>
+       		<div class="find-wrapper">
+	       		<span>이&nbsp;&nbsp;&nbsp;름 </span>
+	       		<input type="text" name="name" id="name">
+       		</div>
+       		<input type="submit" id="submit" value="인증키 발급">
+       	</form>
+       	
+    </section>
+    <!-- Section End -->
 
-	<div class="login-container">
-		<div class="title-container">
-			<img class="title-logo" src="/resources/img/subpages/share/banner.png" alt=""/>
-			<span class="login-title">로그인</span>
-		</div>
-		<div class="login-form">
-			<form action="#" method="POST">
-				<input type="text" name="userId" value="" id="ID" placeholder="이메일을 입력해주세요." required />
-				<input type="password" name="password" value="" id="PW" placeholder="비밀번호를 입력해주세요." required />
-				<input type="submit" value="로그인">
-				<div class="login-value">
-					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
-					<!-- 네이버 부분 -->
-					
-				</div>
-			</form>
-		</div>
-		<div class="btn-box">
-			<a href="#" onclick="location.href='/signup'">회원가입</a>
-			<a href="#" onclick="location.href='/find-id'">아이디 찾기</a>
-			<a href="#" onclick="location.href='/find-pwd'">비밀번호 찾기</a>
-		</div>
-	</div>
-	
-	
     <!-- Footer Start -->
     <div class="footer">
       <div class="foot-cover">
@@ -153,5 +147,6 @@
       <!-- Footer End -->
   </div>
  </div>
+ 
 </body>
 </html>

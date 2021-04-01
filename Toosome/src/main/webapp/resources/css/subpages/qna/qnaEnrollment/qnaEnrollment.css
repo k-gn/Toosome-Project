@@ -127,7 +127,7 @@ section {
 
 .qna-title-container input {
 	outline: none;
-	width: 350px;
+	width: 80%;
 	height: 30px;
 	border: 1px solid #222;
 	border-radius: 5px;
@@ -157,7 +157,26 @@ section {
 }
 
 .qna-img-container input {
-	position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0 none;
+	width: 70%;
+	height: 30px;
+	border: 1px solid #222;
+	border-radius: 5px;
+	font-size: 1rem;
+	padding-left: 5px;
+	background: #eee;
+	cursor: default;
+	margin-right: 10px;
+}
+
+#input-file {
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip: rect(0, 0, 0, 0); 
+	border: 0 none;
 }
 
 .qna-img-container label {
