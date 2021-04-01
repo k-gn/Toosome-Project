@@ -1,9 +1,26 @@
 package com.web.toosome.admin.sns.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SnsController {
-	/*
+
 	// 문자 인증 테스트
 	@ResponseBody
 	@RequestMapping("/sendSms")
@@ -53,11 +70,11 @@ public class SnsController {
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getLocalizedMessage());
 		} finally {
-			client.getConnectionManager().shutdown();
+			client
 		}
 		return "true";
 	}
-*/
+
 	@Autowired
     private JavaMailSenderImpl mailSender;
 	
