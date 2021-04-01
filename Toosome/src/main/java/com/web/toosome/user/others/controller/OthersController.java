@@ -5,27 +5,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class OthersController {
-	@GetMapping("/franchise")	// 창업정보 페이지
+	@GetMapping("/franchise")	
 	public String franchise() {
 		return "subpages/franchise/franchise";
 	}
 
-	@GetMapping("/franchisepay")	// 가맹점 전용 금융상품 페이지
+	@GetMapping("/franchisepay")	
 	public String franchisepay() {
 		return "subpages/franchisePay/franchisePay";
 	}
 
-	@GetMapping("/explanation")	// 창업 설명 페이지
+	@GetMapping("/explanation")	
 	public String explanation() {
 		return "subpages/explanation/explanation";
 	}
 
-	@GetMapping("/allbuy") // 단체구매 페이지
+	@GetMapping("/allbuy") 
 	public String allBuy() {
 		return "subpages/allBuy/allBuy";
 	}
 
-	@GetMapping("/sitemap")	// 메뉴바 Map 페이지
+	@GetMapping("/sitemap")	
 	public String sitemap() {
 		return "subpages/siteMap/siteMap";
 	}

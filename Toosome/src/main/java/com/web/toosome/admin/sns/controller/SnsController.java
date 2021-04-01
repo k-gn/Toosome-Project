@@ -32,19 +32,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SnsController {
 
-	// ¹®ÀÚ ÀÎÁõ Å×½ºÆ®
+	// ë¬¸ì ì¸ì¦ í…ŒìŠ¤íŠ¸
 	@ResponseBody
 	@RequestMapping("/sendSms")
 	public String sendSms(String receiver) {
-		// 6ÀÚ¸® ÀÎÁõ ÄÚµå »ı¼º
+		// 6ìë¦¬ ì¸ì¦ ì½”ë“œ ìƒì„±
 		int rand = (int) (Math.random() * 899999) + 100000;
-		// ÀÎÁõ ÄÚµå¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÏ´Â ÄÚµå´Â »ı·«Çß½À´Ï´Ù.
-		// ¹®ÀÚ º¸³»±â
+		// ì¸ì¦ ì½”ë“œë¥¼ ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥í•˜ëŠ” ì½”ë“œëŠ” ìƒëµí–ˆìŠµë‹ˆë‹¤.
+		// ë¬¸ì ë³´ë‚´ê¸°
 		String hostname = "api.bluehouselab.com";
 		String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM),
-				// Ã»±â¿Í·¦¿¡ µî·ÏÇÑ Application Id ¿Í API key ¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+				// ì²­ê¸°ì™€ë©ì— ë“±ë¡í•œ Application Id ì™€ API key ë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.
 				new UsernamePasswordCredentials("Application Id", "API key"));
 		AuthCache authCache = new BasicAuthCache();
 		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
@@ -55,8 +55,8 @@ public class SnsController {
 		try {
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-			// ¹®ÀÚ¿¡ ´ëÇÑ Á¤º¸
-			String json = "{\"sender\":\"º¸³»´Â »ç¶÷\",\"receivers\":[\"" + receiver + "\"],\"content\":\"¹®ÀÚ ³»¿ë\"}";
+			// ë¬¸ìì— ëŒ€í•œ ì •ë³´
+			String json = "{\"sender\":\"ë³´ë‚´ëŠ” ì‚¬ëŒ\",\"receivers\":[\"" + receiver + "\"],\"content\":\"ë¬¸ì ë‚´ìš©\"}";
 			StringEntity se = new StringEntity(json, "UTF-8");
 			httpPost.setEntity(se);
 			HttpResponse httpResponse = client.execute(httpPost, context);
@@ -69,16 +69,14 @@ public class SnsController {
 			}
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getLocalizedMessage());
-		} finally {
-			client
-		}
+		} 
 		return "true";
 	}
 
 	@Autowired
     private JavaMailSenderImpl mailSender;
 	
-	// ÀÌ¸ŞÀÏ ÀÎÁõ
+	// ì´ë©”ì¼ ì¸ì¦
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailCheck(String email) throws Exception {
@@ -86,19 +84,19 @@ public class SnsController {
 		Random random = new Random();
 		int checkNum = random.nextInt(899999) + 100000;
 
-		/* ÀÌ¸ŞÀÏ º¸³»±â */
-		String setFrom = "qkd2186@naver.com"; // ¹ß½ÅÀÚ ¸ŞÀÏ
-		String toMail = email; // ¼ö½ÅÀÚ ¸ŞÀÏ
-		String title = "È¸¿ø°¡ÀÔ ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù."; // ¸ŞÀÏ Á¦¸ñ
-		String content = "È¨ÆäÀÌÁö¸¦ ¹æ¹®ÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù." + "<br><br>" + "ÀÎÁõ ¹øÈ£´Â " + checkNum + "ÀÔ´Ï´Ù." + "<br>" // ¸ŞÀÏ ³»¿ë
-				+ "ÇØ´ç ÀÎÁõ¹øÈ£¸¦ ÀÎÁõ¹øÈ£ È®ÀÎ¶õ¿¡ ±âÀÔÇÏ¿© ÁÖ¼¼¿ä.";
+		/* ì´ë©”ì¼ ë³´ë‚´ê¸° */
+		String setFrom = "qkd2186@naver.com"; // ë°œì‹ ì ë©”ì¼
+		String toMail = email; // ìˆ˜ì‹ ì ë©”ì¼
+		String title = "íšŒì›ê°€ì… ì¸ì¦ ì´ë©”ì¼ ì…ë‹ˆë‹¤."; // ë©”ì¼ ì œëª©
+		String content = "í™ˆí˜ì´ì§€ë¥¼ ë°©ë¬¸í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤." + "<br><br>" + "ì¸ì¦ ë²ˆí˜¸ëŠ” " + checkNum + "ì…ë‹ˆë‹¤." + "<br>" // ë©”ì¼ ë‚´ìš©
+				+ "í•´ë‹¹ ì¸ì¦ë²ˆí˜¸ë¥¼ ì¸ì¦ë²ˆí˜¸ í™•ì¸ë€ì— ê¸°ì…í•˜ì—¬ ì£¼ì„¸ìš”.";
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");	// true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");	// true ì‚¬ìš©ì´ìœ  : ë‹¨ìˆœ í…ìŠ¤ë§Œ ë³´ë‚¼ë ¤ë©´ trueë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. html í—ˆìš©ì˜ ì˜ë¯¸
 			helper.setFrom(setFrom);
 			helper.setTo(toMail);
 			helper.setSubject(title);
-			helper.setText(content, true);	// true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			helper.setText(content, true);	// true ì‚¬ìš©ì´ìœ  : ë‹¨ìˆœ í…ìŠ¤ë§Œ ë³´ë‚¼ë ¤ë©´ trueë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. html í—ˆìš©ì˜ ì˜ë¯¸
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();

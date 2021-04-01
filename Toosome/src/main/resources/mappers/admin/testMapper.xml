@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.toosome.web.testController.TestMapper">
+
+	<resultMap type="com.toosome.web.testController.AdminVO" id="adminMap">
+		<id property="adminsId" column="ADMINS_ID"/>
+		<result property="adminsPassword" column="ADMINS_PASSWORD"/>
+		<result property="adminsPosition" column="ADMINS_POSITION"/>
+	</resultMap>
+
+	<select id="getAdminList" resultMap="adminMap">
+		SELECT * FROM ADMINS
+	</select>
+</mapper>

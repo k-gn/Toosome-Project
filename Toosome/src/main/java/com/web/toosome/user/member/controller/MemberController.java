@@ -19,7 +19,6 @@ public class MemberController {
 		return "subpages/signupComplete/signupComplete";
 	}
 	
-	// È¸¿ø°¡ÀÔ °ü·Ã
-	// È¸¿ø°¡ÀÔ ½Ã ÀÎÁõ ÀıÂ÷ Æ÷ÇÔ
-	
+	// íšŒì›ê°€ì… ê´€ë ¨
+	// íšŒì›ê°€ì… ì‹œ ì¸ì¦ ì ˆì°¨ í¬í•¨	
 }

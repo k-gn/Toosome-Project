@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MemberShipController {
-	@GetMapping("/membership") // 멤버쉽 페이지
+	@GetMapping("/membership") 
 	public String memberShip() {
 		return "subpages/memberShip/memberShip";
 	}
