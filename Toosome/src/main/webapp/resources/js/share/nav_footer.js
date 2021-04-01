@@ -43,7 +43,7 @@ $(function () {
     return false;
   });
 
-  $(document).click(function () {
+  /*$(document).click(function () {
     $('.button-logo a.onbutton').css('display', 'none');
     $('.button-logo a.offbutton').css('display', 'block');
     $('.button-bar').stop().animate(
@@ -53,6 +53,6 @@ $(function () {
       1000
     );
     return false;
-  });
+  });*/
 });
 /* fixed-btn jquery end */
