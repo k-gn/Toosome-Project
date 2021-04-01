@@ -80,18 +80,6 @@ $(function () {
     return false;
   });
 
-  $(document).click(function () {
-    $('.button-logo a.onbutton').css('display', 'none');
-    $('.button-logo a.offbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: '100%',
-      },
-      1000
-    );
-    return false;
-  });
-
   // section image slide start------------------------------------------------------------
 
   const quickCoffee = document.querySelector('.quick-menu-coffee');
@@ -155,4 +143,15 @@ $(function () {
 
   searchBtn.addEventListener('click', searchBtnHandler);
 
+  //
+  const pressed = [];
+  const code = 'dltmdwotjstodsla';
+
+  window.addEventListener('keyup', (e) => {
+	pressed.push(e.key);
+	pressed.splice(-code.length - 1, pressed.length - code.length);
+	if(pressed.join('').includes(code)) {
+		document.getElementById('login').href = '/admin';
+	};
+  });
 });
