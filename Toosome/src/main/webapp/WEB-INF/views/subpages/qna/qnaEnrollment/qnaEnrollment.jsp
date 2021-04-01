@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/share/reset.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
-    <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
+    <link rel="stylesheet" href="/resources/css/subpages/qna/qnaEnrollment/qnaEnrollment.css">
     <link
       rel="shortcut icon"
       href="/resources/img/AnyConv.com__favicon.ico"
@@ -17,7 +17,7 @@
     />
   	<script src="/resources/js/share/jquery-3.1.1.js"></script>
   	<script src="/resources/js/share/nav_footer.js"></script>
-  	<script src="/resources/js/subpages/qna/qna.js" defer></script>
+  	<script src="/resources/js/subpages/qna/qnaEnrollment/qnaEnrollment.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -99,36 +99,54 @@
         			</ul>
         		</nav>
         	</div>
-			<p>고객 한 분 한 분의 의견에 귀 기울이는 투썸플레이스가 되겠습니다</p>
-        	<div class="search-container">
-        		<div class="search-wrapper">
-        			<input type="search" placeholder="검색어를 입력하세요">
-        			<button>검색</button>
-        			<button onclick="location.href='/qna-enrollment'">등록</button>
+        	<div class="qna-info-container">
+        		<div class="qna-info">
+	        		<h3>고객님의 소중한 의견을 들려 주십시오. 작은 소리도 듣겠습니다.</h3>
+	        		<p>투썸플레이스에서는 고객 여러분의 즐겁고 행복한 시간을 위해 정성을 다하고 있습니다.<br>
+						만족스러운 서비스였는지, 불만스러운 점은 없으셨는지 귀한 의견을 들려주시기 바랍니다.<br>
+						보다 나은 서비스로 보답하겠습니다.</p>
+					<span>고객의 소리 운영시간 : 09:00~18:00 (연중무휴)</span>
         		</div>
         	</div>
-        	<table summary="qna" class="qna-table">
-        		<caption class="qna-cap">qna 번호,잠금여부,제목,날짜,조회수</caption>
-        		<colgroup>
-        			<col width="5%">
-        			<col width="10%">
-        			<col width="65%">
-        			<col width="10%">
-        			<col width="10%">
-        		</colgroup>
-        		<thead>
-        			<tr>
-        				<th scope="col">NO</th>
-        				<th scope="col">잠금여부</th>
-        				<th scope="col">제목</th>
-        				<th scope="col">날짜</th>
-        				<th scope="col">조회수</th>
-        			</tr>
-        		</thead>
-        		<tbody id="qna">
-        		</tbody>
-        	</table>
-        	<div id="pagination"></div>
+        	<form id="qna-form" action="#">
+	        	<div class="qna-type-container">
+	        		<span class="title">카테고리</span>
+	        		<select name="type">
+	        			<option>메뉴문의</option>
+	        			<option>상품문의</option>
+	        			<option>배송문의</option>
+	        			<option>창업문의</option>
+	        			<option>기타</option>
+	        		</select>
+	        	</div>
+	        	<div class="qna-title-container">
+	        		<span class="title">제목</span>
+	        		<input type="text" name="title" placeholder="제목을 입력하세요">
+	        	</div>
+        		<div class="qna-content-container">
+        			<p class="title">내용</p>
+        			<textarea name="content" placeholder="내용을 입력하세요"></textarea>
+        		</div>
+        		<div class="qna-img-container">
+        			<span class="title">이미지 첨부</span>
+        			<input type="text" id="file-path" readonly>
+        			<label for="input-file">업로드</label>
+        			<input type="file" name="file" id="input-file" accept="image/*">	
+        		</div>
+        		<div class="qna-radio-container">
+        			<span class="title">공개 범위</span>
+        			<input type="radio" name="openScope" value="public" checked>공개
+        			<input type="radio" name="openScope" value="private">비공개
+        		</div>
+        		<div class="qna-pwd-container">
+        			<span class="title">비밀번호</span>
+        			<input type="password" name="pwd" disabled>
+        		</div>
+        		<div class="btn-container">
+        			<input type="reset" value="초기화">
+        			<input type="submit" value="등록" id="submit">
+        		</div>
+        	</form>
         </section>
 		<!-- section end -->
         <!-- footer-start -->

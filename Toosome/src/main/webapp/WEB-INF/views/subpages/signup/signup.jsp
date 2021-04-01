@@ -114,7 +114,7 @@
                 <span>인증번호 입력</span>
                 <input class="submit-auth-btn" type="button" value="확인" disabled="disabled">
               </div>
-              <input class="signup-form auth" type="text" name="auth" placeholder="이메일 주소를 입력해주세요">
+              <input class="signup-form auth" type="text" name="auth" placeholder="인증번호를 입력해주세요">
               <p class="validation auth"></p>
             </div>
           </div>
@@ -236,5 +236,6 @@
       <!-- Footer End -->
   </div>
  </div>
+ 
 </body>
 </html>

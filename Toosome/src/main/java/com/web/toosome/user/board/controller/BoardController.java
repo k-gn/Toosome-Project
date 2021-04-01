@@ -49,4 +49,9 @@ public class BoardController {
 	public String qnaDetail() {
 		return "subpages/qna/qnaDetail/qnaDetail";
 	}
+	
+	@GetMapping("/qna-enrollment")		// qna 등록 페이지
+	public String qnaEnrollment() {
+		return "subpages/qna/qnaEnrollment/qnaEnrollment";
+	}
 }
