@@ -32,19 +32,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SnsController {
 
-	// ¹®ÀÚ ÀÎÁõ Å×½ºÆ®
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 	@ResponseBody
 	@RequestMapping("/sendSms")
 	public String sendSms(String receiver) {
-		// 6ÀÚ¸® ÀÎÁõ ÄÚµå »ý¼º
+		// 6ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 		int rand = (int) (Math.random() * 899999) + 100000;
-		// ÀÎÁõ ÄÚµå¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÏ´Â ÄÚµå´Â »ý·«Çß½À´Ï´Ù.
-		// ¹®ÀÚ º¸³»±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String hostname = "api.bluehouselab.com";
 		String url = "https://" + hostname + "/smscenter/v1.0/sendsms";
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM),
-				// Ã»±â¿Í·¦¿¡ µî·ÏÇÑ Application Id ¿Í API key ¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+				// Ã»ï¿½ï¿½Í·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Application Id ï¿½ï¿½ API key ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Õ´Ï´ï¿½.
 				new UsernamePasswordCredentials("Application Id", "API key"));
 		AuthCache authCache = new BasicAuthCache();
 		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
@@ -55,8 +55,8 @@ public class SnsController {
 		try {
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-			// ¹®ÀÚ¿¡ ´ëÇÑ Á¤º¸
-			String json = "{\"sender\":\"º¸³»´Â »ç¶÷\",\"receivers\":[\"" + receiver + "\"],\"content\":\"¹®ÀÚ ³»¿ë\"}";
+			// ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			String json = "{\"sender\":\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½\",\"receivers\":[\"" + receiver + "\"],\"content\":\"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½\"}";
 			StringEntity se = new StringEntity(json, "UTF-8");
 			httpPost.setEntity(se);
 			HttpResponse httpResponse = client.execute(httpPost, context);
@@ -69,8 +69,6 @@ public class SnsController {
 			}
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getLocalizedMessage());
-		} finally {
-			client
 		}
 		return "true";
 	}
@@ -78,7 +76,7 @@ public class SnsController {
 	@Autowired
     private JavaMailSenderImpl mailSender;
 	
-	// ÀÌ¸ÞÀÏ ÀÎÁõ
+	// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailCheck(String email) throws Exception {
@@ -86,19 +84,19 @@ public class SnsController {
 		Random random = new Random();
 		int checkNum = random.nextInt(899999) + 100000;
 
-		/* ÀÌ¸ÞÀÏ º¸³»±â */
-		String setFrom = "qkd2186@naver.com"; // ¹ß½ÅÀÚ ¸ÞÀÏ
-		String toMail = email; // ¼ö½ÅÀÚ ¸ÞÀÏ
-		String title = "È¸¿ø°¡ÀÔ ÀÎÁõ ÀÌ¸ÞÀÏ ÀÔ´Ï´Ù."; // ¸ÞÀÏ Á¦¸ñ
-		String content = "È¨ÆäÀÌÁö¸¦ ¹æ¹®ÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù." + "<br><br>" + "ÀÎÁõ ¹øÈ£´Â " + checkNum + "ÀÔ´Ï´Ù." + "<br>" // ¸ÞÀÏ ³»¿ë
-				+ "ÇØ´ç ÀÎÁõ¹øÈ£¸¦ ÀÎÁõ¹øÈ£ È®ÀÎ¶õ¿¡ ±âÀÔÇÏ¿© ÁÖ¼¼¿ä.";
+		/* ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+		String setFrom = "qkd2186@naver.com"; // ï¿½ß½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String toMail = email; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String title = "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½."; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String content = "È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æ¹®ï¿½ï¿½ï¿½Ö¼Å¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½." + "<br><br>" + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ " + checkNum + "ï¿½Ô´Ï´ï¿½." + "<br>" // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				+ "ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ È®ï¿½Î¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.";
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");	// true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");	// true ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½Ü¼ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æµï¿½ ï¿½È´ï¿½. html ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½
 			helper.setFrom(setFrom);
 			helper.setTo(toMail);
 			helper.setSubject(title);
-			helper.setText(content, true);	// true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			helper.setText(content, true);	// true ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½Ü¼ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æµï¿½ ï¿½È´ï¿½. html ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
