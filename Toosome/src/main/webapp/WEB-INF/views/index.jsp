@@ -49,7 +49,7 @@
                 <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
                 <li><a href="#" onclick="location.href='/coffeestory'">커피이야기</a></li>
                 <li><a href="#" onclick="location.href='/dessertstory'">디저트이야기</a></li>
-                <li><a href="#" onclick="location.href='/brandfilm'">브랜드필름</a></li>
+                <li><a href="#" onclick="location.href='/brandfilm1'">브랜드필름</a></li>
               </ul>
             </li>
             <li class="menu-title">
