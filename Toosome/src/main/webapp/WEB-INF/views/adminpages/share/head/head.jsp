@@ -14,3 +14,7 @@
   href="/resources/img/AnyConv.com__favicon.ico"
   type="image/x-icon"
 />
+<script src="/resources/js/adminpages/main/core/jquery.min.js"></script>
+<script src="/resources/js/adminpages/main/core/popper.min.js"></script>
+<script src="/resources/js/adminpages/main/core/bootstrap-material-design.min.js"></script>
+<script src="/resources/js/adminpages/main/share/sidebar.js"></script>
