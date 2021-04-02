@@ -49,7 +49,7 @@
                 <li><a href="#" onclick="location.href='/brandstory'">브랜드이야기</a></li>
                 <li><a href="#" onclick="location.href='/coffeestory'">커피이야기</a></li>
                 <li><a href="#" onclick="location.href='/dessertstory'">디저트이야기</a></li>
-                <li><a href="#" onclick="location.href='/brandfilm'">브랜드필름</a></li>
+                <li><a href="#" onclick="location.href='/brandfilm1'">브랜드필름</a></li>
               </ul>
             </li>
             <li class="menu-title">
@@ -60,7 +60,7 @@
                 <li><a href="#">디저트</a></li>
                 <li><a href="#">델리</a></li>
                 <li><a href="#">홀케이크</a></li>
-                <li><a href="#">상품</a></li>
+                <li><a href="#" onclick="location.href='/product'">상품</a></li>
                 <li><a href="#" onclick="location.href='/nutrienta'">영양성분표</a></li>
               </ul>
             </li>
@@ -93,10 +93,10 @@
         </nav>
         <div class="full-cover"></div>
         <ul class="log">
-          <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
-          <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
+          <li><a href="/signin" id="login">LOGIN</a></li>
+          <li><a href="/agreement">SIGN UP</a></li>
           <li><a href="#">BASKET</a></li>
-          <li><a href="#" onclick="location.href='/faq'">FAQ</a></li>
+          <li><a href="/faq">FAQ</a></li>
         </ul>
       </header>
       <div id="img-wrap" class="img-slide">
@@ -240,7 +240,7 @@
         <div class="button-bar">
           <ul class="online-icon">
             <li>
-              <a href="#" onclick="location.href='/admin'"
+              <a href="#"
                 ><img src="/resources/img/conversation.png" alt="" /><span
                   >온라인상담</span
                 ></a
@@ -258,7 +258,7 @@
       </div>
       <div class="map">
         <div class="form-cover">
-          <form action="#" method="get">
+          <form action="#" method="post">
             <h1>STORE</h1>
 
             <fieldset>
@@ -273,6 +273,7 @@
               />
               <input id="search-button" type="submit" value="" />
             </fieldset>
+            
           </form>
         </div>
       </div>
@@ -316,7 +317,6 @@
             <article class="art4"><a href="#"></a></article>
             <article class="art5"><a href="#"></a></article>
           </div>
-          <a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a>
         </div>
       </div>
     </div>

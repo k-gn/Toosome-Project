@@ -57,21 +57,21 @@ const endTestData = [...endOriginData].reverse();
 window.onload = () => {
 	currentItems = 6;
 	const ingUl = document.querySelector('#ing .ing-content');
-	const elements = getElements(ingTestData, currentItems);
+	const elements = getElements('ing', ingTestData, currentItems);
 	elements.forEach(element => {
 		ingUl.appendChild(element);			
 	});
-	showMoreBtn(moreBtns[0], ingData, currentItems);
+	showMoreBtn(moreBtns[0], ingTestData, currentItems);
 };
 
 // 데이터 받아서 처음에 보여줄 element 생성
-const getElements = (data, number) => {
+const getElements = (type, data, number) => {
 	let results = [];
 	if(data.length >= number) {
 		results = data.slice(number-6,number).map((result) => {
 			const li = document.createElement('li');
 			li.innerHTML = `
-				<a href="#">
+				<a href="/event-detail?type=${type}&index=${result.id}">
 					<img src=${result.img} alt="#">
 					<p>${result.title}</p>
 					<p>${result.period}</p>														
@@ -84,7 +84,7 @@ const getElements = (data, number) => {
 		results = data.slice(number-6).map((result) => {
 			const li = document.createElement('li');
 			li.innerHTML = `
-				<a href="#">
+				<a href="/event-detail?type=${type}&index=${result.id}">
 					<img src=${result.img} alt="#">
 					<p>${result.title}</p>
 					<p>${result.period}</p>														
@@ -126,17 +126,17 @@ const tabHandler = (tab) => {
 	switch(tab.dataset.tabTarget) {
 		case '#ing':
 			currentItems = 6;
-			elements = getElements(ingTestData, currentItems);
+			elements = getElements('ing', ingTestData, currentItems);
 			showMoreBtn(moreBtns[0], ingTestData, currentItems);
 			break;
 		case '#store':
 			storeItems = 6;
-			elements = getElements(storeTestData, storeItems);
+			elements = getElements('store', storeTestData, storeItems);
 			showMoreBtn(moreBtns[1], storeTestData, storeItems);
 			break;
 		case '#end':
 			endItems = 6;
-			elements = getElements(endTestData, endItems);
+			elements = getElements('end', endTestData, endItems);
 			showMoreBtn(moreBtns[2], endTestData, endItems);
 			break;
 	};
@@ -177,17 +177,17 @@ const loadMore = (tab) => {
 	switch(tab) {
 		case '#ing':
 			currentItems += 6;
-			newElements = getElements(ingTestData, currentItems);
+			newElements = getElements('ing', ingTestData, currentItems);
 			showMoreBtn(moreBtns[0], ingTestData, currentItems);
 			break;
 		case '#store':
 			storeItems += 6;
-			newElements = getElements(storeTestData, storeItems);
+			newElements = getElements('store', storeTestData, storeItems);
 			showMoreBtn(moreBtns[1], storeTestData, storeItems);
 			break;
 		case '#end':
 			endItems += 6;
-			newElements = getElements(endTestData, endItems);
+			newElements = getElements('end', endTestData, endItems);
 			showMoreBtn(moreBtns[2], endTestData, endItems);
 			break;
 	}
