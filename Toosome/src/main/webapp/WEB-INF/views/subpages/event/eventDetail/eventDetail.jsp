@@ -1,17 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../css/reset.css">
-    <link rel="stylesheet" href="../../../css/main.css">
-    <link rel="stylesheet" href="../../../css/subpages/signin/login.css">
-    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <script src="../../../js/subpages/signin/login.js"></script>
-    <script src="../../../js/jquery-3.1.1.js"></script>
-    <script src="../../../js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/share/reset.css">
+    <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
+    <link rel="stylesheet" href="/resources/css/subpages/event/eventDetail/eventDetail.css">
+    <link
+      rel="shortcut icon"
+      href="/resources/img/AnyConv.com__favicon.ico"
+      type="image/x-icon"
+    />
+  	<script src="/resources/js/share/jquery-3.1.1.js"></script>
+  	<script src="/resources/js/share/nav_footer.js"></script>
+  	<script src="/resources/js/subpages/event/eventDetail/eventDetail.js" defer></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -19,7 +25,6 @@
         <header>
             <h1 class="logo">
                 <a href="#">
-                    <!-- <img src="./img/logo_bottom.png" alt=""> -->
                     A TOOSOME PLACE
                 </a>
             </h1>
@@ -38,7 +43,7 @@
                         <a href="#">MENU</a>
                         <ul class="sub-con">
                             <li><a href="#">NEW</a></li>
-                            <li><a href="#">커피&음료</a></li>
+                            <li><a href="#">커피&amp;음료</a></li>
                             <li><a href="#">디저트</a></li>
                             <li><a href="#">델리</a></li>
                             <li><a href="#">홀케이크</a></li>
@@ -53,10 +58,10 @@
                         </ul>
                     </li>
                     <li class="menu-title">
-                        <a href="#">WHAT'S NEW</a>
+                        <a href="#">WHAT'S NEWS</a>
                         <ul class="sub-con">
                             <li><a href="#">이벤트</a></li>
-                            <li><a href="#">멤버쉽&제휴카드</a></li>
+                            <li><a href="#">멤버쉽&amp;제휴카드</a></li>
                             <li><a href="#">공지사항</a></li>
                             <li><a href="#">기업 및 단체구매 안내</a></li>
                         </ul>
@@ -81,36 +86,33 @@
                 <li><a href="#">FAQ</a></li>
             </ul>
         </header>
-
-        <!-- <div class="fake-header"></div> -->
-        <div class="login-container">
-            <div class="title-container">
-                <img class="title-logo" src="../../../img/subpages/share/banner.png" alt="">
-                <span class="login-title">로그인</span>
-            </div>
-            <div class="login-form">
-                <form action="#" method="GET">
-                    <input type="text" name="userId" value="" id="ID" placeholder="이메일을 입력해주세요." required />
-                    <input type="password" name="password" value="" id="PW" placeholder="비밀번호를 입력해주세요." required />
-                    <input type="submit" value="로그인">
-                    <div class="login-value">
-                        <!-- 카카오 로그인 -->
-                        <a class="kaka" href="javascript:kakaoLogin()"><img src="../../../img/subpages/signin/kakao_login.png" alt=""></a>
-                        <!-- 네이버 로그인 -->
-                        <div id="naver_id_login"></div>
-                    </div>
-                       
-                    <ul class="cf">
-                        <li><a onclick="location.href=''">회원가입</a></li>
-                        <li><a href="#">ID / PW 찾기</a></li>
-                    </ul>
-                </form>
-                
-            </div>
-        </div>
-        
-        
-
+        <!-- header-end -->
+		<!-- section start -->
+        <section>
+        	<div class="sub-header-container">
+        		<h3>이벤트</h3>
+        		<nav class="navigation-container">
+        			<ul>
+        				<li><a href="/">HOME</a></li>
+        				<li><a href="/sitemap">WHAT'S NEWS</a></li>
+        				<li><a href="/event">이벤트</a></li>
+        			</ul>
+        		</nav>
+        	</div>
+        	<table summary="EventDetail" class="event-table">
+        		<thead></thead>
+        		<tbody id="eventDetail"></tbody>
+        	</table>
+        	<div class="list-btn">
+        		<a href="/event">목록</a>
+        	</div>
+        	<table summary="EventLocator" class="event-locator">
+        		<tr class="prev"></tr>
+        		<tr class="next"></tr>
+        	</table>
+        </section>
+		<!-- section end -->
+        <!-- footer-start -->
         <div class="footer">
             <div class="foot-cover">
                 <ul class="foot-first cf">
@@ -148,18 +150,5 @@
             
         </div>
     </div>
-    <script>
-        
-        var naver_id_login = new naver_id_login(
-        "wVWBkaEzBLyUAWQGF1Rf",
-        "http://localhost:8080/Toosome/resources/html/subpage/signin/naver-callback.html"
-        );
-        var state = naver_id_login.getUniqState();
-        naver_id_login.setButton("green", 3, 50);
-        naver_id_login.setDomain("http://localhost:8080/Toosome/resources/html/subpage/signin/login.html");
-        naver_id_login.setState(state);
-        naver_id_login.setPopup();
-        naver_id_login.init_naver_id_login();
-    </script>
 </body>
 </html>

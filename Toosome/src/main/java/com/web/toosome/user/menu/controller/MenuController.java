@@ -5,27 +5,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MenuController {
-	@GetMapping("/menu") // �̰� cafe�� ���� ���
+  
+	@GetMapping("/menu") // 이거 cafe로 변경 요망
 	public String menu() {
 		return "subpages/menu/menu";
 	}
 
-	@GetMapping("/nutrient1") // ���缺��ǥ ������1
+	@GetMapping("/nutrient1") // 영양성분표 페이지1
 	public String nutrient1() {
 		return "subpages/nutrient/nutrient1";
 	}
 
-	@GetMapping("/nutrient2") // ���缺��ǥ ������2
+	@GetMapping("/nutrient2") // 영양성분표 페이지2
 	public String nutrient2() {
 		return "subpages/nutrient/nutrient2";
 	}
 
-	@GetMapping("/nutrient3") // ���缺��ǥ ������3
+	@GetMapping("/nutrient3") // 영양성분표 페이지3
 	public String nutrient3() {
 		return "subpages/nutrient/nutrient3";
 	}
 
-	@GetMapping("/nutrient4") // ���缺��ǥ ������4
+
+	@GetMapping("/nutrient4") // 영양성분표 페이지4
 	public String nutrient4() {
 		return "subpages/nutrient/nutrient4";
 	}
@@ -55,7 +57,7 @@ public class MenuController {
 		return "subpages/menu/wholecakeDetail/wholecakeDetail";
 	}
 	
-	// Menu Image & Menu Event ���� �߰�
+
 
 	// Menu Order & Menu Refund
 

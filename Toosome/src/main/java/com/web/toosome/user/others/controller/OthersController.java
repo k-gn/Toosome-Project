@@ -5,27 +5,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class OthersController {
-	@GetMapping("/franchise")	// Ã¢¾÷Á¤º¸ ÆäÀÌÁö
+	@GetMapping("/franchise") // ì°½ì—…ì •ë³´ í˜ì´ì§€	
 	public String franchise() {
 		return "subpages/franchise/franchise";
 	}
 
-	@GetMapping("/franchisepay")	// °¡¸ÍÁ¡ Àü¿ë ±İÀ¶»óÇ° ÆäÀÌÁö
+	@GetMapping("/franchisepay") // ê°€ë§¹ì  ì „ìš© ê¸ˆìœµìƒí’ˆ í˜ì´ì§€	
 	public String franchisepay() {
 		return "subpages/franchisePay/franchisePay";
 	}
 
-	@GetMapping("/explanation")	// Ã¢¾÷ ¼³¸í ÆäÀÌÁö
+	@GetMapping("/explanation") // ì°½ì—… ì„¤ëª… í˜ì´ì§€	
 	public String explanation() {
 		return "subpages/explanation/explanation";
 	}
 
-	@GetMapping("/allbuy") // ´ÜÃ¼±¸¸Å ÆäÀÌÁö
+	@GetMapping("/allbuy") // ë‹¨ì²´êµ¬ë§¤ í˜ì´ì§€
 	public String allBuy() {
 		return "subpages/allBuy/allBuy";
 	}
 
-	@GetMapping("/sitemap")	// ¸Ş´º¹Ù Map ÆäÀÌÁö
+	@GetMapping("/sitemap")	// ë©”ë‰´ë°” Map í˜ì´ì§€
 	public String sitemap() {
 		return "subpages/siteMap/siteMap";
 	}

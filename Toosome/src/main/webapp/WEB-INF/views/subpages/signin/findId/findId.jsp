@@ -92,20 +92,15 @@
        		<h3>잠깐!</h3>
        		<p>투썸플레이스는 고객님의 이메일을 아이디로 사용하고 있습니다.<br>
        		먼저, 사용했을 만한 이메일로 <a href="/signin">로그인</a>을 시도해보세요.</p><br>
-       		<p>계정을 찾으려면 사용했을 만한 이메일, 이름으로 검색하세요.</p>
+       		<p>계정을 찾으시려면 아래 인증 방법을 선택하세요.</p>
        	</div>
-       	<form class="find-container">
-       		<div class="find-wrapper">
-       			<span>이메일 </span>
-  	     		<input type="text" name="email" id="email">
+       	<div class="sns-auth-container">
+       		<p>핸드폰 인증</p>
+       		<div class="sns-auth">
+       			<img src="/resources/img/subpages/signin/auth_sns.png" alt="#">
+       			<button id="sns">인증하기</button>
        		</div>
-       		<div class="find-wrapper">
-	       		<span>이&nbsp;&nbsp;&nbsp;름 </span>
-	       		<input type="text" name="name" id="name">
-       		</div>
-       		<input type="submit" id="submit" value="검색">
-       	</form>
-       	
+       	</div>
     </section>
     <!-- Section End -->
 

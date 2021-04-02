@@ -11,14 +11,15 @@ public class LoginController {
 	}
 	
 	@GetMapping("/find-id")
-	public String findId() { // ¾ÆÀÌµğ Ã£±â
+	public String findId() { // ì•„ì´ë”” ì°¾ê¸°
 		return "subpages/signin/findId/findId";
 	}
 	
 	@GetMapping("/find-pwd")
-	public String findPwd() { // ºñ¹Ğ¹øÈ£ Ã£±â
+	public String findPwd() { // ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 		return "subpages/signin/findPwd/findPwd";
 	}
 	
-	// ·Î±×ÀÎ °ü·Ã 
+	// ë¡œê·¸ì¸ ê´€ë ¨ 
+	
 }
