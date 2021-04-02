@@ -15338,7 +15338,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a {
   margin: 10px 15px 0;
   border-radius: 3px;
-  color: #3C4858;
+  color: #222222;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -15619,6 +15619,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 @media (min-width: 991px) {
+	
   .sidebar-mini .visible-on-sidebar-regular {
     display: none !important;
   }
@@ -19195,7 +19196,7 @@ Copyright (c) 2015 Daniel Eden
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: #282828;
+    background-color: white;
     display: block;
     content: "";
     z-index: 1;
