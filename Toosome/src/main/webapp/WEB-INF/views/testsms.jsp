@@ -10,30 +10,30 @@
 <title>문자 인증</title>
 </head>
 <body>
-	<input type="text" name="phone" id="phone" placeholder="받는 사람 번호" />
-	<button onclick="sendSms();">전송</button>
+	<input class="sms_phone_number_box" type="text" name="phone" placeholder="받는 사람 번호">
+	<input class="sms_phone_btn" type="button" value="전송">
 	<br />
 	<br />
 	<input type="text" name="sms" id="sms" placeholder="인증 번호 입력" />
 	<button onclick="phoneCheck();">인증</button>
-	<script>
-	function sendSms() {
-		$.ajax({ 
-			url: "<%=request.getContextPath()%>/sendSms",
-				data : {
-					receiver : $("#phone").val()
-				},
-				type : "post",
-				success : function(result) {
-					if (result == "true") {
-						console.log(result);
-					} else {
-						alert("인증번호 전송 실패");
-					}
-				}
-			});
-		}
-		function phoneCheck() {
+<script>
+$(".sms_phone_btn").click(function() {
+
+	var phone_number = $(".sms_phone_number_box").val(); // 입력한 이메일 
+	var phone_number_check = "";
+	
+	$.ajax({
+
+		type : "GET",
+		url : "sendSms?phone=" + phone_number,
+		success:function(data){
+			console.log("data : " + data);
+			phone_number_check = data;
+        }
+	});
+
+});
+<%--	function phoneCheck() {
 			$.ajax({
 				url : "<%=request.getContextPath()%>/smsCheck",
 				type : "post",
@@ -48,7 +48,7 @@
 					}
 				}
 			});
-		}
+		} --%>
 	</script>
 </body>
 </html>

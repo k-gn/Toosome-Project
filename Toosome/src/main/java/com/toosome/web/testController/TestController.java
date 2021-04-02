@@ -11,8 +11,8 @@ public class TestController {
 		return "adminpages/index";
 	}
 
-	@GetMapping("/testsns")
-	public String testSns() {
-		return "testSns";
+	@GetMapping("/testsms")
+	public String testsms() {
+		return "testsms";
 	}
 }
