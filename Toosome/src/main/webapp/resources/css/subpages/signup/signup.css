@@ -64,6 +64,7 @@
   color: white;
   margin-bottom: 15px;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .submit-auth-btn:enabled:hover,
