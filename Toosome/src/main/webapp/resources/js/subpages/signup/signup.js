@@ -1,14 +1,14 @@
  /* signupForm javascript start */
 
   /* 이메일 인증 활성화 */
-  const emailForm = document.querySelector('.signup-form.email');
-  const emailErr = document.querySelector('.validation.email');
-  const emailAuthBtn = document.querySelector('.email-auth-btn');
-  const emailAuthForm = document.querySelector('#email-auth-form');
-  const emailAuthTimer = document.querySelector('.email-auth-time');
-  const submitAuthBtn = document.querySelector('.submit-auth-btn');
-  const authCodeForm = document.querySelector('.signup-form.auth');
-  const authErr = document.querySelector('.validation.auth');
+  const emailForm = document.querySelector('.signup-form.email'); // 이메일 입력폼
+  const emailErr = document.querySelector('.validation.email'); // 이메일 오류메세지
+  const emailAuthBtn = document.querySelector('.email-auth-btn'); // 이메일 인증요청 버튼
+  const emailAuthForm = document.querySelector('#email-auth-form'); // 이메일 인증 박스
+  const emailAuthTimer = document.querySelector('.email-auth-time'); // 이메일 인증 타이머
+  const submitAuthBtn = document.querySelector('.submit-auth-btn'); // 이메일 인증키 확인 버튼
+  const authCodeForm = document.querySelector('.signup-form.auth'); // 이메일 인증키 입력폼
+  const authErr = document.querySelector('.validation.auth'); // 이메일 인증 오류메시지
   const pwd1Form = document.querySelector('.signup-form.pwd1');
   const pwd1Err = document.querySelector('.validation.pwd1');
   const pwd2Form = document.querySelector('.signup-form.pwd2');
@@ -30,8 +30,9 @@
   const submitBtn = document.querySelector('.signform-btn');
   const signupForm = document.querySelector('.signup-form-container');
 
-  let isAuthenticated = true; // 인증 여부
+  let isAuthenticated = false; // 인증 여부
   let countdown; // 카운트다운
+  let code;
 
   // 이메일 유효성 검사
   const emailFormCheck = (e) => {
@@ -52,7 +53,7 @@
       emailForm.style.border = '1px solid #ccc';
       emailErr.style.display = 'none';
       emailAuthBtn.disabled = false;
-    }
+    };
   };
 
   // 인증번호 유효성 검사
@@ -74,7 +75,7 @@
       authCodeForm.style.border = '1px solid #ccc';
       authErr.style.display = 'none';
       submitAuthBtn.disabled = false;
-    }
+    };
     activateSubmitBtn();
   };
 
@@ -106,7 +107,7 @@
         emailAuthBtn.disabled = false;
         alert('시간 초과\n버튼을 다시 눌러주세요');
         return;
-      }
+      };
 
       displayTimeLeft(secondsLeft);
     }, 1000);
@@ -119,22 +120,48 @@
     timer(seconds);
   };
 
-  // 이메일 인증 버튼 핸들러
+/*  // 이메일 인증 버튼 핸들러
   const emailAuthHandler = (e) => {
     e.preventDefault();
-    //alert('인증번호 전송 완료');
-    //emailAuthForm.style.display = 'block';
+	requestAuthCode();
+    alert('인증번호 전송 완료\n이메일의 인증번호를 확인해주세요.');
+    emailAuthForm.style.display = 'block';
     startTimer();
     authCodeForm.focus();
-  };
+  };*/
 
+  /* 인증번호 이메일 전송 */
+		
+  $(emailAuthBtn).click(function() {
+
+	let email = $(emailForm).val(); // 입력한 이메일 
+	
+	$.ajax({
+
+		type : "GET",
+		url : "emailCheck?email=" + email,
+		success:function(data){
+            
+            $(emailAuthForm).css("display","block");
+			alert('인증번호 전송 완료\n이메일의 인증번호를 확인해주세요.');
+			startTimer();
+			$(authCodeForm).focus();
+			code = data;
+        }
+	});
+  });
+  
   // 인증번호 확인 버튼 핸들러
   const submitAuthBtnHandler = (e) => {
     e.preventDefault();
 
-    /*
-      서버와 인증번호 대조 코드 입력
-    */
+	if(authCodeForm.value === code) {
+		isAuthenticated = true;
+		code = '';
+	} else {
+		isAuthenticated = false;
+	}
+    
     if (!isAuthenticated) {
       alert('인증번호 인증 실패');
       return;
@@ -142,7 +169,7 @@
       alert('인증번호 인증 성공');
       emailAuthForm.style.display = 'none';
       pwd1Form.focus();
-    }
+    };
   };
 
   // 비밀번호1 유효성 검사
@@ -164,7 +191,7 @@
     } else {
       pwd1Form.style.border = '1px solid #ccc';
       pwd1Err.style.display = 'none';
-    }
+    };
     activateSubmitBtn();
   };
 
@@ -319,7 +346,7 @@
 
   emailForm.addEventListener('keyup', emailFormCheck);
   emailForm.addEventListener('blur', emailFormCheck);
-  emailAuthBtn.addEventListener('click', emailAuthHandler);
+/*  emailAuthBtn.addEventListener('click', emailAuthHandler);*/
   authCodeForm.addEventListener('keyup', authFormCheck);
   authCodeForm.addEventListener('blur', authFormCheck);
   submitAuthBtn.addEventListener('click', submitAuthBtnHandler);
@@ -435,28 +462,8 @@
 
   /* signupForm javascript end */
 
-/* 인증번호 이메일 전송 */
-		
-		$(".email-auth-btn").click(function() {
 
-			var email = $(".signup-form.email").val(); // 입력한 이메일 
-			var cehckBox = $(".signup-form.auth");        // 인증번호 입력란
-			var code = "";
-			
-			$.ajax({
 
-				type : "GET",
-				url : "emailCheck?email=" + email,
-				success:function(data){
-		            
-		            //console.log("data : " + data);
-					cehckBox.attr("disabled",false);
-		            $("#email-auth-form").css("display","block");
-					alert('인증번호 전송 완료');
-					code = data;
-		        }
-			});
 
-		});
 		
 		
