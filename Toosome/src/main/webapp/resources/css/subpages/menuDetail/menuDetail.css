@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+.menuDetail-container {
+  margin: 150px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 980px;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  box-shadow: 0 2px 3px #eee;
+}
+.menuDetail-container .title-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-direction: column; */
+  /* text-align: center; */
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+}
+.menuDetail-container .title-container .menuDetail-title {
+  display: flex;
+  font-size: 1.25rem;
+  font-family: gsdr;
+  color: #eee;
+}
+.menuDetail-container .title-container .menuDetail-title.big {
+  color: #000;
+  font-size: 2rem;
+}
+.menuDetail-container .contents img {
+  display: block;
+  margin: 0 auto;
+}
+.menuDetail-container .contents .star {
+  margin: 10px auto;
+  width: 340px;
+}
+.menuDetail-container .contents .star li:first-child {
+  float: right;
+}
+.menuDetail-container .contents .star li {
+  height: 24px;
+  font-weight: bold;
+}
+.menuDetail-container .contents .star li:last-child {
+  float: left;
+}
+.menuDetail-container .contents .star li img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 6px;
+}
+.menuDetail-container .contents h3 {
+  text-align: center;
+  font-weight: bold;
+}
+.menuDetail-container .contents .title-text {
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+}
+.menuDetail-container .contents .table-cover {
+  width: 80%;
+  margin: 10px auto;
+}
+.menuDetail-container .contents .table-cover table tbody tr td:last-child {
+  text-align: right;
+}
+.menuDetail-container .contents .notice-box {
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin: 50px 0;
+  border-bottom: 2px solid #000;
+}
+.menuDetail-container .contents .notice-box li {
+  font-size: 13px;
+}
+
+.menuDetail-container .contents .comment-box {
+  display: flex;
+  flex-direction: column;
+}
+.menuDetail-container .contents .comment-box .btn-group {
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  height: 30px !important;
+}
+.menuDetail-container .contents .comment-box .btn-group button {
+  margin-left: 10px;
+  display: block;
+  width: 50px;
+  font-size: 15px;
+  /* font-weight: bold; */
+}
+.menuDetail-container .contents .comment-box .btn-group button:nth-child(2) {
+  width: 80px;
+}
+.menuDetail-container .contents .comment-box .one-comment {
+  width: 100%;
+  margin-top: 20px;
+}
+.menuDetail-container .contents .comment-box .one-comment li:first-child {
+  float: left;
+  width: 40%;
+  font-weight: bold;
+  font-size: 18px;
+} 
+.menuDetail-container .contents .comment-box .one-comment li:last-child {
+  float: right;
+  width: 60%;
+  text-align: right;
+  font-size: 13px;
+  color: #999;
+}
+
+
+
+
+
+
+
+
+
+.menuDetail-container .contents .form1 {
+  width: 100%;
+  height: 50px;
+  background-color: #e9e9e9;
+  border-bottom: 2px solid #333;
+  display: flex;
+  flex-direction: row;
+}
+.menuDetail-container .contents .form1 .star-catch-cover {
+  width: 105px;
+  height: 20px;
+  margin-top: 15px;
+  padding-left: 15px;
+  display: flex;
+  position: relative;
+}
+.menuDetail-container .contents .form1 .star-catch-cover .star-catch {
+  width: 90px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #333;
+}
+.menuDetail-container .contents .form1 .star-catch-cover .star-catch .star_img {
+  width: 65px;
+  height: 100%;
+  margin: 0;
+  display: none;
+}
+.menuDetail-container .contents .form1 .star-catch-cover .star-catch .star_img.star {
+  display: block;
+}
+.menuDetail-container .contents .form1 .star-catch-cover .star-catch .star_img img {
+  display: block;
+  margin-top: 2.5px;
+  width: 65px;
+  height: 12px;
+} 
+.menuDetail-container .contents .form1 .star-catch-cover .star-drop {
+  width: 90px;
+  height: 85px;
+  background-color: #fff;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* background-color: salmon; */
+}
+.menuDetail-container .contents .form1 .star-catch-cover .star-drop li {
+  width: 65px;
+  margin-bottom: 5px;
+}
+.menuDetail-container .contents .form1 .star-catch-cover .triangle-cover {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: -1px;
+  right: 0;
+}
+.menuDetail-container .contents .form1 input[type="text"] {
+  display: flex;
+  width: 80%;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 5px;
+}
+.menuDetail-container .contents .form1 input[type="submit"] {
+  margin-left: 10px;
+  height: 30px;
+  margin-top: 10px;
+  width: 50px;
+}
+.menuDetail-container .contents .form2 {
+  width: 100%;
+}
+.menuDetail-container .contents .form2 .comment-end {
+  width: 100%;
+  padding: 20px 5px;
+}
+.menuDetail-container .contents .form2 .comment-end li {
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid #333;
+}
+.menuDetail-container .contents .form2 .comment-end li span {
+  display: flex;
+  height: 100%;
+}
+.menuDetail-container .contents .form2 .comment-end li .star-fin {
+  width: 12%;
+  margin-top: 9px;
+}
+.menuDetail-container .contents .form2 .comment-end li .star-fin img {
+  display: block;
+  width: 65px;
+  height: 12px;
+}
+.menuDetail-container .contents .form2 .comment-end li .cocom {
+  width: 63%;
+  padding-top: 4px;
+  height: 26px;
+  font-size: 15px;
+}
+.menuDetail-container .contents .form2 .comment-end li .nik {
+  width: 15%;
+}
+.menuDetail-container .contents .form2 .comment-end li .dat {
+  width: 10%;
+}
