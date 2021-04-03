@@ -93,10 +93,10 @@
         </nav>
         <div class="full-cover"></div>
         <ul class="log">
-          <li><a href="#" onclick="location.href='/signin'">LOGIN</a></li>
-          <li><a href="#" onclick="location.href='/agreement'">SIGN UP</a></li>
+          <li><a href="/signin" id="login">LOGIN</a></li>
+          <li><a href="/agreement">SIGN UP</a></li>
           <li><a href="#">BASKET</a></li>
-          <li><a href="#" onclick="location.href='/faq'">FAQ</a></li>
+          <li><a href="/faq">FAQ</a></li>
         </ul>
       </header>
       <div id="img-wrap" class="img-slide">
@@ -240,7 +240,7 @@
         <div class="button-bar">
           <ul class="online-icon">
             <li>
-              <a href="#" onclick="location.href='/admin'"
+              <a href="#"
                 ><img src="/resources/img/conversation.png" alt="" /><span
                   >온라인상담</span
                 ></a
@@ -317,7 +317,6 @@
             <article class="art4"><a href="#"></a></article>
             <article class="art5"><a href="#"></a></article>
           </div>
-          <a onclick="location.href='/resources/html/subpage/signin/login.html'">LOGIN</a>
         </div>
       </div>
     </div>
