@@ -35,8 +35,6 @@ public class MemberController {
 		return "subpages/signupComplete/signupComplete";
 	}
 
-	// �쉶�썝媛��엯 �떆 �씤利� �젅李� �룷�븿
-	// �쉶�썝媛��엯 愿��젴
 	@PostMapping("/signup")
 	@ResponseBody
 	public String register(@RequestBody MemberVO member) {

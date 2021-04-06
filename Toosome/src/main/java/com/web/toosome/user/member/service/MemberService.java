@@ -22,7 +22,7 @@ public class MemberService implements IMemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// �씠硫붿씪 以묐났 泥댄겕
+	// 이메일 중복 체크
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
@@ -30,7 +30,7 @@ public class MemberService implements IMemberService {
 		return flag;
 	}
 
-	// �씪諛� �쉶�썝媛��엯
+	// 회원 등록
 	@Override
 	public void register(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
