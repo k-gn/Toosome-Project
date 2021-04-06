@@ -1,10 +1,4 @@
-var breakCards = true;
-
-var searchVisible = 0;
-var transparent = true;
-
-var transparentDemo = true;
-var fixedTop = false;
+// responsive sidebar start ---------------------------------
 
 var mobile_menu_visible = 0,
   mobile_menu_initialized = false,
@@ -68,6 +62,11 @@ $(document).ready(function() {
 	    $('html').addClass('nav-open');
 	    mobile_menu_visible = 1;
 	  }
+	});
+	
+	// // sidebar subNav accordion event hook
+	subNavs.forEach((subNav) => {
+	subNav.addEventListener('click', () => navHandler(subNav));	
 	});
 });
 
@@ -144,4 +143,33 @@ function debounce(func, wait, immediate) {
     }, wait);
     if (immediate && !timeout) func.apply(context, args);
   };
-}
+};
+
+// responsive sidebar end -------------------------------------------
+
+// sidebar subNav accordion start ------------------------------------
+
+const subNavs = document.querySelectorAll('.nav-item'); // 네비 아이템
+const childNavs = document.querySelectorAll('.sub-nav'); // 아코디언 아이템
+
+// active 초기화
+const navInit = () => {
+	subNavs.forEach(subNav => {
+		subNav.classList.remove('active');
+	});
+};
+// 아코디언 초기화
+const childInit = () => {
+	childNavs.forEach(child => {
+		child.classList.remove('display');
+	});
+};
+// 네비 버튼 핸들러
+const navHandler = (subNav) => {
+	navInit();
+	childInit();
+	subNav.classList.add('active');
+	subNav.childNodes[3].classList.add('display');
+};
+
+// sidebar subNav accordion end ------------------------------------
