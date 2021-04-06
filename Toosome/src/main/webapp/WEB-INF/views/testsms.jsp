@@ -43,9 +43,9 @@
                                 	url : "sendEmail?phoneNumber=" + phoneNumber,
                                 	success : function(win) {
 										alert("회원님의 아이디는"+ win +"입니다.");
+		                                document.location.href = "/signin";
 									}
                                 });
-                                document.location.href = "/signin";
                             } else {
                                 alert('error')
                             }

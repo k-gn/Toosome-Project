@@ -41,11 +41,11 @@
                                 $.ajax({
                                 	type : "GET",
                                 	url : "sendRepassword?phoneNumber=" + phoneNumber,
-                                	success : function(win) {
-										alert("회원님의 비밀번호를 재설정하였습니다. 변경된 비밀번호는 ["+ win +"]입니다.");
+                                	success : (win) => {
+										alert("변경된 비밀번호는 ["+ win +"]입니다.");
+		                                document.location.href = "/signin";
 									}
                                 });
-                                document.location.href = "/signin";
                             } else {
                                 alert('error')
                             }

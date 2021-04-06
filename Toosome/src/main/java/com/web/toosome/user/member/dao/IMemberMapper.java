@@ -20,6 +20,6 @@ public interface IMemberMapper {
 	public MemberVO getPassword(MemberVO vo);
 	
 	// 비밀번호 찾기 랜덤비밀번호 전송
-	public MemberVO getRepassword(MemberVO vo);
+	public int getRepassword(MemberVO vo);
 	
 }

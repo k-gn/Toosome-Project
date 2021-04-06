@@ -91,7 +91,7 @@ public class MemberController {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberName(email);
-		MemberVO result = mapper.getPassword(vo);
+		MemberVO result = mapper.getMail(vo);
 		System.out.println(result);
 		if (result.getMemberEmail().equals(email)) {
 			Random random = new Random();
@@ -103,7 +103,6 @@ public class MemberController {
 		} else {
 			return "18";
 		}
-
 	}
 	
 	// 찾은 아이디 보여주기
@@ -116,7 +115,9 @@ public class MemberController {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberPassword(num);
-		MemberVO result = mapper.getRepassword(vo);
+		mapper.getRepassword(vo);
+		MemberVO result = mapper.getPassword(vo);
+		System.out.println(result.getMemberPassword());
 		return result.getMemberPassword();
 	}
 }
