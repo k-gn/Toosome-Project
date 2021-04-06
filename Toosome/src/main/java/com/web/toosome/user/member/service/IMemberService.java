@@ -4,12 +4,14 @@ import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberService {
 
-	// 이메일 중복 체크
+	// �씠硫붿씪 以묐났 泥댄겕
 	public boolean emailDupCheck(String email);
 
-	// 일반 회원가입
+	// �씪諛� �쉶�썝媛��엯
 	public void register(MemberVO member);
 
-	// 회원 조회
+	// �쉶�썝 議고쉶
 	public MemberVO getUserByEmail(String email);
+	
+	public void certifiedPhoneNumber(String phoneNumber, String num);
 }
