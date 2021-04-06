@@ -19,7 +19,7 @@ public class SnsController {
     private JavaMailSenderImpl mailSender;
 	
 	// 이메일 인증
-	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public String emailCheck(String email) throws Exception {
 		
