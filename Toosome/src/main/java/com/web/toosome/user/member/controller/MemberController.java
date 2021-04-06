@@ -57,7 +57,6 @@ public class MemberController {
 	@Autowired
 	MemberDAO memberDAO;
 
-	// 단일 문자(인증용도)
 	@ResponseBody
 	@RequestMapping("/sendSms")
 	public String sendSms(String phoneNumber, String smsName) {

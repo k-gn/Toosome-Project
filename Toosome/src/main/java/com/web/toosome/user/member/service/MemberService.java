@@ -22,6 +22,7 @@ public class MemberService implements IMemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	// 이메일 중복 체크
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
@@ -29,6 +30,7 @@ public class MemberService implements IMemberService {
 		return flag;
 	}
 
+	// 회원 등록
 	@Override
 	public void register(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
@@ -48,10 +50,10 @@ public class MemberService implements IMemberService {
 		System.out.println("3");
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("to", phoneNumber); // 諛쒖떊踰덊샇
-		params.put("from", "01056592176"); // �닔�떊踰덊샇
+		params.put("to", phoneNumber); // 발신번호
+		params.put("from", "01056592176"); // 수신번호
 		params.put("type", "SMS");
-		params.put("text", "CoolSMS<br>" + "�씤利� 踰덊샇�뒗 " + num + "�엯�땲�떎." + "�빐�떦 �씤利앸쾲�샇瑜� �씤利앸쾲�샇 �솗�씤���뿉 湲곗엯�븯�뿬 二쇱꽭�슂.");
+		params.put("text", "CoolSMS<br>" + "인증 번호는 " + num + "입니다." + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.");
 		params.put("app_version", "test app 1.2"); // application name and version
 		System.out.println("4");
 		try {

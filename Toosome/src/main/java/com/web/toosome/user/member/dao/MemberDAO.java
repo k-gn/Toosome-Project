@@ -16,7 +16,7 @@ public class MemberDAO extends SqlSessionDaoSupport {
 	}
 
 	public MemberVO getSMS(MemberVO vo) {
-		System.out.println("---> MyBatis·Î selectSMS() ±â´É Ã³¸®");
+		System.out.println("---> MyBatisï¿½ï¿½ selectSMS()");
 		return (MemberVO) getSqlSession().selectOne("MemberDAO.getSMS", vo);
 	}
 }
