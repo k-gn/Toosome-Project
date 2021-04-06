@@ -54,13 +54,12 @@
 		SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
 	</select>
 	
-	<select id="getPassword" resultMap="memberMap">
-		SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
-	</select>
-	
 	<update id="getRepassword" parameterType="memberVO">
 		UPDATE MEMBER SET MEMBER_PASSWORD=#{memberPassword} WHERE MEMBER_PHONE=#{memberPhone}
 	</update>
-	
+		
+	<select id="getPassword" resultMap="memberMap">
+		SELECT MEMBER_PASSWORD FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
+	</select>
 	
 </mapper>
