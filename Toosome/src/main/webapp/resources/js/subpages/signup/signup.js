@@ -33,6 +33,9 @@
   let isAuthenticated = false; // 인증 여부
   let countdown; // 카운트다운
   let code;
+  
+  let csrfTokenValue = $("meta[name='_csrf']").attr("content");
+  let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
 
   // 이메일 유효성 검사
   const emailFormCheck = (e) => {
@@ -51,11 +54,37 @@
       emailErr.style.display = 'block';
     } else {
       emailForm.style.border = '1px solid #ccc';
-      emailErr.style.display = 'none';
-      emailAuthBtn.disabled = false;
+      const email = $(".signup-form.email").val();
+      
+       $(document).ajaxSend(function(e, xhr, options) { 
+    	 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+       }); 
+      
+	  $.ajax({
+		type: "POST",
+		url: "/emailDupCheck",	
+		headers: {
+           "Content-Type": "application/json"
+        },
+		data: email,
+		dataType: "text",
+		success: function(result) {
+			if(result === "OK") {
+				emailForm.style.border = '2px solid green';
+				$(".validation.email").html("<p style='color:green;'>사용 가능한 이메일 입니다.</p>");	
+				emailAuthBtn.disabled = false;					
+			} else {
+				emailForm.style.border = '2px solid red';
+				$(".validation.email").html("<p style='color:red;'>이메일이 중복됩니다.</p>");						
+			}
+		},
+		error: function() {
+			console.log("통신 실패!");
+		}
+	  });
     };
   };
-
+  
   // 인증번호 유효성 검사
   const authFormCheck = (e) => {
     e.preventDefault();
@@ -78,7 +107,7 @@
     };
     activateSubmitBtn();
   };
-
+  
   // 남은 시간 표시 함수
   const displayTimeLeft = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -120,28 +149,16 @@
     timer(seconds);
   };
 
-/*  // 이메일 인증 버튼 핸들러
-  const emailAuthHandler = (e) => {
-    e.preventDefault();
-	requestAuthCode();
-    alert('인증번호 전송 완료\n이메일의 인증번호를 확인해주세요.');
-    emailAuthForm.style.display = 'block';
-    startTimer();
-    authCodeForm.focus();
-  };*/
-
   /* 인증번호 이메일 전송 */
-		
   $(emailAuthBtn).click(function() {
-
 	let email = $(emailForm).val(); // 입력한 이메일 
-	
 	$.ajax({
 
 		type : "GET",
 		url : "emailCheck?email=" + email,
 		success:function(data){
-            
+            emailForm.style.border = '1px solid #ccc';
+    		emailErr.style.display = 'none';
             $(emailAuthForm).css("display","block");
 			alert('인증번호 전송 완료\n이메일의 인증번호를 확인해주세요.');
 			startTimer();
@@ -454,15 +471,55 @@
   };
 
   const submitBtnHandler = (e) => {
-    alert('회원가입 성공');
-    signupForm.submit();
+    //이메일
+	const email = $(".signup-form.email").val();
+	//패스워드
+	const password = $(".signup-form.pwd1").val();
+	//이름
+	const name = $(".signup-form.name").val();
+	// 생년월일
+	const birth = $(".signup-form.year").val() + "-" + $(".signup-form.month").val() + "-" + $(".signup-form.date").val();
+	const birthDate = new Date(birth);
+	// 핸드폰 번호
+	const phone = $(".signup-form.agency").val() + "-" + $(".signup-form.tel1").val() + "-" + $(".signup-form.tel2").val();
+	// 주소
+	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
+	const member = {
+		memberEmail: email,
+		memberPassword: password,
+		memberName: name,
+		memberBirth: birthDate,
+		memberPhone: phone,
+		memberAddress: address
+	};
+	
+	//클라이언트에서 서버와 통신하는 ajax함수(비동기 통신) 
+	$.ajax({
+		type: "POST", //서버에 전송하는 HTTP요청 방식
+		url: "/signup", //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "text", //응답받을 데이터의 형태
+		data: JSON.stringify(member), //서버로 전송할 데이터
+		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log("통신 성공!: " + result);
+			if(result === "success") {
+				alert("회원가입에 성공했습니다!");
+				location.href="/signin";
+			} else {
+				alert("회원가입에 실패했습니다!");
+			}
+		}, 
+		error: function() {
+			console.log("통신 실패!");
+		} 
+	});
   };
 
   submitBtn.addEventListener('click', submitBtnHandler);
 
   /* signupForm javascript end */
-
-
 
 
 		

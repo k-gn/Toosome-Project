@@ -96,15 +96,16 @@
 			<span class="login-title">로그인</span>
 		</div>
 		<div class="login-form">
-			<form action="#" method="POST">
-				<input type="text" name="userId" value="" id="ID" placeholder="이메일을 입력해주세요." required />
-				<input type="password" name="password" value="" id="PW" placeholder="비밀번호를 입력해주세요." required />
+			<form action="/login" method="POST">
+				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." required />
+				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
 				<input type="submit" value="로그인">
 				<div class="login-value">
 					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
 					<!-- 네이버 부분 -->
 					
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
 		</div>
 		<div class="btn-box">

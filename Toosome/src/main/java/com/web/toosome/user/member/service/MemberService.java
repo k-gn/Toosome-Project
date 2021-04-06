@@ -3,13 +3,46 @@ package com.web.toosome.user.member.service;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.web.toosome.user.member.dao.IMemberMapper;
+import com.web.toosome.user.member.vo.MemberVO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
-public class MemberService {
+public class MemberService implements IMemberService {
+	
+	@Autowired
+	private IMemberMapper mapper;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	// ï¿½ì” ï§ë¶¿ì”ª ä»¥ë¬ë‚¬ ï§£ëŒ„ê²•
+	public boolean emailDupCheck(String email) {
+		boolean flag = true;
+		int result = mapper.emailDupCheck(email);
+		if(result > 0) flag = false;
+		return flag;
+	}
+
+	// ï¿½ì”ªè«›ï¿½ ï¿½ì‰¶ï¿½ìåª›ï¿½ï¿½ì—¯
+	@Override
+	public void register(MemberVO member) {
+		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
+		member.setMemberPassword(encodePassword);
+		mapper.register(member);
+	}
+	
+	@Override
+	public MemberVO getUserByEmail(String email) {
+		return mapper.getUserByEmail(email);
+	}
+	
 	public void certifiedPhoneNumber(String phoneNumber, String num) {
 		String api_key = "NCSYDBSNPVO2LUFF";
 		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
@@ -17,10 +50,10 @@ public class MemberService {
 		System.out.println("3");
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("to", phoneNumber); // ¹ß½Å¹øÈ£
-		params.put("from", "01056592176"); // ¼ö½Å¹øÈ£
+		params.put("to", phoneNumber); // ë°œì‹ ë²ˆí˜¸
+		params.put("from", "01056592176"); // ìˆ˜ì‹ ë²ˆí˜¸
 		params.put("type", "SMS");
-		params.put("text", "CoolSMS<br>" + "ÀÎÁõ ¹øÈ£´Â " + num + "ÀÔ´Ï´Ù." + "ÇØ´ç ÀÎÁõ¹øÈ£¸¦ ÀÎÁõ¹øÈ£ È®ÀÎ¶õ¿¡ ±âÀÔÇÏ¿© ÁÖ¼¼¿ä.");
+		params.put("text", "CoolSMS<br>" + "ì¸ì¦ ë²ˆí˜¸ëŠ” " + num + "ì…ë‹ˆë‹¤." + "í•´ë‹¹ ì¸ì¦ë²ˆí˜¸ë¥¼ ì¸ì¦ë²ˆí˜¸ í™•ì¸ë€ì— ê¸°ì…í•˜ì—¬ ì£¼ì„¸ìš”.");
 		params.put("app_version", "test app 1.2"); // application name and version
 		System.out.println("4");
 		try {

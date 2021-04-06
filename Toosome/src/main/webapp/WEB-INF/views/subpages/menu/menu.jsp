@@ -107,7 +107,7 @@
                 <div class="menu-content">
                     <ul id="new" class="cf">
                         <h3>NEW</h3>
-                        <li><a href="#"><span>신메뉴1</span></a></li>
+                        <li><a href="#" onclick="location.href='/newdetail'"><span>신메뉴1</span></a></li>
                         <li><a href="#"><span>신메뉴2</span></a></li>
                         <li><a href="#"><span>신메뉴3</span></a></li>
                         <li><a href="#"><span>신메뉴4</span></a></li>
@@ -115,7 +115,7 @@
                     </ul>
                     <ul id="beverage" class="cf">
                         <h3>beverage</h3>
-                        <li><a href="#"><span>음료1</span></a></li>
+                        <li><a href="#" onclick="location.href='/beveragedetail'"><span>음료1</span></a></li>
                         <li><a href="#"><span>음료2</span></a></li>
                         <li><a href="#"><span>음료3</span></a></li>
                         <li><a href="#"><span>음료4</span></a></li>
@@ -123,7 +123,7 @@
                     </ul>
                     <ul id="dessert" class="cf">
                         <h3>dessert</h3>
-                        <li><a href="#"><span>디저트1</span></a></li>
+                        <li><a href="#" onclick="location.href='/dessertdetail'"><span>디저트1</span></a></li>
                         <li><a href="#"><span>디저트2</span></a></li>
                         <li><a href="#"><span>디저트3</span></a></li>
                         <li><a href="#"><span>디저트4</span></a></li>
@@ -131,7 +131,7 @@
                     </ul>
                     <ul id="delhi" class="cf">
                         <h3>delhi</h3>
-                        <li><a href="#"><span>델리1</span></a></li>
+                        <li><a href="#" onclick="location.href='/delhidetail'"><span>델리1</span></a></li>
                         <li><a href="#"><span>델리2</span></a></li>
                         <li><a href="#"><span>델리3</span></a></li>
                         <li><a href="#"><span>델리4</span></a></li>
@@ -139,7 +139,7 @@
                     </ul>
                     <ul id="whole-cake" class="cf">
                         <h3>whole cake</h3>
-                        <li><a href="#"><span>홀케이크1</span></a></li>
+                        <li><a href="#" onclick="location.href='/wholecakedetail'"><span>홀케이크1</span></a></li>
                         <li><a href="#"><span>홀케이크2</span></a></li>
                         <li><a href="#"><span>홀케이크3</span></a></li>
                         <li><a href="#"><span>홀케이크4</span></a></li>
