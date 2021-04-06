@@ -45,6 +45,22 @@
 		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_ENABLED)
 		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, 0)
 	</insert>
+
+	<select id="getSMS" resultMap="memberMap">
+        SELECT MEMBER_NAME FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
+    </select>
+	
+	<select id="getMail" resultMap="memberMap">
+		SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
+	</select>
+	
+	<select id="getPassword" resultMap="memberMap">
+		SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
+	</select>
+	
+	<update id="getRepassword" parameterType="memberVO">
+		UPDATE MEMBER SET MEMBER_PASSWORD=#{memberPassword} WHERE MEMBER_PHONE=#{memberPhone}
+	</update>
 	
 	
 </mapper>

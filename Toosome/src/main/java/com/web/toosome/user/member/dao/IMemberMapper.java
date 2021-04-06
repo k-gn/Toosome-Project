@@ -12,4 +12,17 @@ public interface IMemberMapper {
 
 	// 회원 조회
 	public MemberVO getUserByEmail(String email);
+	
+	// 아이디 찾기
+	public MemberVO getSMS(MemberVO vo);
+	
+	// 아이디 찾기 ID 전송.
+	public MemberVO getMail(MemberVO vo);
+	
+	// 비밀번호 찾기
+	public MemberVO getPassword(MemberVO vo);
+	
+	// 비밀번호 찾기 랜덤비밀번호 전송
+	public MemberVO getRepassword(MemberVO vo);
+	
 }

@@ -11,8 +11,14 @@ public class TestController {
 		return "adminpages/index";
 	}
 
-	@GetMapping("/testsns")
-	public String testSns() {
-		return "testSns";
+	@GetMapping("/testsms")
+	public String testsms() {
+		return "testsms";
 	}
+	
+	@GetMapping("/testsms2")
+	public String testsms2() {
+		return "testsms2";
+	}
+	
 }
