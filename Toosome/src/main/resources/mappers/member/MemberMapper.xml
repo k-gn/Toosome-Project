@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.member.dao.IMemberMapper">
+
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+		<result property="memberEnabled" column="MEMBER_ENABLED"/>
+		<collection property="authList" resultMap="authMap" />
+	</resultMap>
+
+	<resultMap type="com.web.toosome.user.member.vo.AuthVO" id="authMap">
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberAuth" column="MEMBER_AUTH" />
+	</resultMap>
+
+	<!-- 이메일 중복 검증 sql -->
+	<select id="emailDupCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<!-- 이메일로 회원 조회 -->
+	<select id="getUserByEmail" resultMap="memberMap">
+		SELECT
+		 mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_ENABLED, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
+		FROM
+		 MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		WHERE mem.MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<!-- 이메일, 비밀번호, 이름, 생년월일, 전화번호, 주소  등록 -->
+	<insert id="register">
+		INSERT INTO 
+		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_ENABLED)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, 0)
+	</insert>
+	
+	
+</mapper>

@@ -3,7 +3,6 @@ package com.toosome.web.dao;
 import static org.junit.Assert.fail;
 
 import java.sql.Connection;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -14,9 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.toosome.web.testController.AdminVO;
-import com.toosome.web.testController.TestMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -31,9 +27,6 @@ public class DataSourceTest {
 
 	@Setter(onMethod_ = { @Autowired })
 	private SqlSessionFactory sqlSessionFactory;
-	
-	@Autowired
-	private TestMapper mapper;
 	
 	@Test
 	public void testConnection() {
@@ -56,12 +49,4 @@ public class DataSourceTest {
 		}
 	}
 	
-	@Test
-	public void testQuery() {
-		System.out.println(mapper);
-		List<AdminVO> adminList = mapper.getAdminList();
-		for(AdminVO vo : adminList) {
-			System.out.println(vo);
-		}
-	}
 }
