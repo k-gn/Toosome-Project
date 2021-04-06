@@ -4,12 +4,12 @@ import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberMapper {
 
-	// ì´ë©”ì¼ ì¤‘ë³µ ì²´í¬
+	// ÀÌ¸ŞÀÏ Áßº¹ Ã¼Å©
 	public Integer emailDupCheck(String email);
 
-	// ì¼ë°˜ íšŒì›ê°€ì…
+	// È¸¿ø µî·Ï
 	public void register(MemberVO member);
 
-	// íšŒì› ì¡°íšŒ
+	// ÀÌ¸ŞÀÏ·Î È¸¿ø Á¶È¸
 	public MemberVO getUserByEmail(String email);
 }
