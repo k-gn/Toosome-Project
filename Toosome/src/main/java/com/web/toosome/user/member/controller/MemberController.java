@@ -1,7 +1,16 @@
 package com.web.toosome.user.member.controller;
 
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.web.toosome.user.member.dao.MemberDAO;
+import com.web.toosome.user.member.service.MemberService;
+import com.web.toosome.user.member.vo.MemberVO;
 
 @Controller
 public class MemberController {
@@ -14,11 +23,38 @@ public class MemberController {
 	public String signup() {
 		return "subpages/signup/signup";
 	}
+
 	@GetMapping("/signupcomplete")
 	public String signupComplete() {
 		return "subpages/signupComplete/signupComplete";
 	}
-	
-	// íšŒì›ê°€ì… ê´€ë ¨
-	// íšŒì›ê°€ì… ì‹œ ì¸ì¦ ì ˆì°¨ í¬í•¨	
+
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	MemberDAO memberDAO;
+
+	// ´ÜÀÏ ¹®ÀÚ(ÀÎÁõ¿ëµµ)
+	@ResponseBody
+	@RequestMapping("/sendSms")
+	public String sendSms(String phoneNumber, String smsName) {
+		System.out.println("1");
+		MemberVO vo = new MemberVO();
+		vo.setMemberPhone(phoneNumber);
+		vo.setMemberName(smsName);
+		MemberVO result = memberDAO.getSMS(vo);
+		System.out.println(result);
+		if (result.getMemberName().equals(smsName)) {
+			Random random = new Random();
+			int checkNum = random.nextInt(899999) + 100000;
+			String num = Integer.toString(checkNum);
+			System.out.println("2");
+			memberService.certifiedPhoneNumber(phoneNumber, num);
+			return num;
+		} else {
+			return "18";
+		}
+
+	}
+
 }

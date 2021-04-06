@@ -1,21 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="SnsDAO">
-
-	<select id="selectSnsAccreditation" parameterType="SNS_ACCREDITATION">
-		SELECT * FROM SNS_ACCREDITATION 
-	</select>
-
-	<insert id="insertSnsAccreditation" parameterType="SNS_ACCREDITATION">
-		INSERT INTO SNS_ACCREDITATION (SNS_ACCREDITATION_ID,  SNS_ACCREDITATION_RANDOM)
-		VALUES(#{value1},#{value2})
-	</insert>
-
-	<delete id="insertSnsAccreditation" parameterType="SNS_ACCREDITATION">
-		DELETE FROM SNS_ACCREDITATION WHERE
-		SNS_ACCREDITATION_ID = #{param1}
-	</delete>
-
-</mapper>
