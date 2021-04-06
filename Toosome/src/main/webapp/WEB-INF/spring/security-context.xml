@@ -17,6 +17,7 @@
 			password-parameter="memberPassword"
 			login-page="/signin" 
 			default-target-url="/" />
+			
 		<security:logout logout-url="/logout"
 			logout-success-url="/signin" invalidate-session="true" />
 	</security:http>

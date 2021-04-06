@@ -9,4 +9,6 @@ public interface IMemberService {
 	public void register(MemberVO member);
 
 	public MemberVO getUserByEmail(String email);
+	
+	public void certifiedPhoneNumber(String phoneNumber, String num);
 }

@@ -10,6 +10,6 @@ public interface IMemberMapper {
 	// 회원 등록
 	public void register(MemberVO member);
 
-	// 이메일로 회원 조회
+	
 	public MemberVO getUserByEmail(String email);
 }
