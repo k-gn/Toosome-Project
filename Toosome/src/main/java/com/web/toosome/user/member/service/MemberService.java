@@ -2,6 +2,7 @@ package com.web.toosome.user.member.service;
 
 import java.util.HashMap;
 
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +23,7 @@ public class MemberService implements IMemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// 이메일 중복 체크
+	// �씠硫붿씪 以묐났 泥댄겕
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
@@ -30,7 +31,7 @@ public class MemberService implements IMemberService {
 		return flag;
 	}
 
-	// 회원 등록
+	// �씪諛� �쉶�썝媛��엯
 	@Override
 	public void register(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
@@ -43,6 +44,7 @@ public class MemberService implements IMemberService {
 		return mapper.getUserByEmail(email);
 	}
 	
+	@Override
 	public void certifiedPhoneNumber(String phoneNumber, String num) {
 		String api_key = "NCSYDBSNPVO2LUFF";
 		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
@@ -64,4 +66,5 @@ public class MemberService implements IMemberService {
 			System.out.println(e.getCode());
 		}
 	}
+	
 }

@@ -15,4 +15,10 @@ public class TestController {
 	public String testsms() {
 		return "testsms";
 	}
+	
+	@GetMapping("/testsms2")
+	public String testsms2() {
+		return "testsms2";
+	}
+	
 }
