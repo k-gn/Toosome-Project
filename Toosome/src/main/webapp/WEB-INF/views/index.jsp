@@ -258,7 +258,7 @@
       </div>
       <div class="map">
         <div class="form-cover">
-          <form action="#" method="post">
+          <form action="/map?" method="GET">
             <h1>STORE</h1>
 
             <fieldset>
@@ -267,7 +267,7 @@
               </legend>
               <input
                 type="search"
-                name="store"
+                name="address"
                 id="search"
                 placeholder="매장명 또는 주소를 입력해 주세요."
               />

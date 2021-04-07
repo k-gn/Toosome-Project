@@ -6,6 +6,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+  
   <link rel="stylesheet" href="/resources/css/share/reset.css">
   <link rel="stylesheet" href="/resources/css/share/nav_footer.css">
   <link rel="stylesheet" href="/resources/css/subpages/signup/signup.css">
@@ -93,7 +96,7 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">회원가입</span>
         </div>
-        <form class="signup-form-container" action="#" method="post">
+        <form class="signup-form-container" action="/signup" method="post">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
               <span>이메일</span>
@@ -139,15 +142,15 @@
               <input class="signup-form year" type="text" name="year" placeholder="년(4자)">
               <select class="signup-form month" name="month">
                 <option value="default" selected>월</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">4</option>
-                <option value="4">3</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
@@ -160,7 +163,7 @@
             <span>전화번호</span>
             <div class="signup-form-tb">
               <select class="signup-form agency" name="phone1">
-                <option value="default" selected>010</option>
+                <option value="010" selected>010</option>
                 <option value="011">011</option>
                 <option value="016">016</option>
                 <option value="017">017</option>
