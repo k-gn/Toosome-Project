@@ -88,7 +88,9 @@ public class MemberService implements IMemberService {
 	// 비밀번호 찾기 랜덤비밀번호 전송
 	@Override
 	public int getRepassword(MemberVO vo) {
-		return mapper.getRepassword(vo);
+		String repass = bCryptPasswordEncoder.encode(vo.getMemberPassword());
+		vo.setMemberPassword(repass);
+		return  mapper.getRepassword(vo);
 	}
 	
 }

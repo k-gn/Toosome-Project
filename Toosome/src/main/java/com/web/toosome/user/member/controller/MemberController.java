@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.web.toosome.user.member.dao.IMemberMapper;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 
@@ -98,7 +97,7 @@ public class MemberController {
 		System.out.println(result);
 		if (result.getMemberEmail().equals(email)) {
 			Random random = new Random();
-			int checkNum = random.nextInt(899999) + 100000;
+			int checkNum = random.nextInt(899999) + 100000; // 랜덤한 6자리 인증번호 생성.
 			String num = Integer.toString(checkNum);
 			System.out.println("2");
 			service.certifiedPhoneNumber(phoneNumber, num);
@@ -113,7 +112,7 @@ public class MemberController {
 	@RequestMapping("/sendRepassword")
 	public String sendRepassword(String phoneNumber) {
 		Random random = new Random();
-		int checkNum = random.nextInt(899999) + 100000;
+		int checkNum = random.nextInt(899999) + 100000;  // 랜덤한 6자리 비밀번호 생성.
 		String num = Integer.toString(checkNum);
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
@@ -121,6 +120,6 @@ public class MemberController {
 		service.getRepassword(vo);
 		MemberVO result = service.getPassword(vo);
 		System.out.println(result.getMemberPassword());
-		return result.getMemberPassword();
+		return num;
 	}
 }
