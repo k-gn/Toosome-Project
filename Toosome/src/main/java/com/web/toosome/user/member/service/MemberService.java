@@ -23,7 +23,8 @@ public class MemberService implements IMemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// �씠硫붿씪 以묐났 泥댄겕
+	// 이메일 중복 확인
+	@Override
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
@@ -31,7 +32,7 @@ public class MemberService implements IMemberService {
 		return flag;
 	}
 
-	// �씪諛� �쉶�썝媛��엯
+	// 회원 등록
 	@Override
 	public void register(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
@@ -39,11 +40,13 @@ public class MemberService implements IMemberService {
 		mapper.register(member);
 	}
 	
+	// 이메일로 회원 조회
 	@Override
 	public MemberVO getUserByEmail(String email) {
 		return mapper.getUserByEmail(email);
 	}
 	
+	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	@Override
 	public void certifiedPhoneNumber(String phoneNumber, String num) {
 		String api_key = "NCSYDBSNPVO2LUFF";
@@ -65,6 +68,27 @@ public class MemberService implements IMemberService {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCode());
 		}
+	}
+	
+	// 아이디 찾기
+	@Override
+	public MemberVO getSMS(MemberVO vo) {
+		return mapper.getSMS(vo);
+	}
+	// 이메일 찾기
+	@Override
+	public MemberVO getMail(MemberVO vo) {
+		return mapper.getMail(vo);
+	}
+	// 비밀번호 찾기
+	@Override
+	public MemberVO getPassword(MemberVO vo) {
+		return mapper.getPassword(vo);
+	}
+	// 비밀번호 찾기 랜덤비밀번호 전송
+	@Override
+	public int getRepassword(MemberVO vo) {
+		return mapper.getRepassword(vo);
 	}
 	
 }
