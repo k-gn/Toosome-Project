@@ -11,19 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.member.dao.IMemberMapper;
-import com.web.toosome.user.member.dao.MemberDAO;
-import com.web.toosome.user.member.service.MemberService;
+import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private MemberService service;
-
+	private IMemberService service;
+	
 	@GetMapping("/agreement")
 	public String agreement() {
 		return "subpages/agreement/agreement";
+	}
+	
+	@GetMapping("/signup")
+	public String signup() {
+		return "subpages/signup/signup";
 	}
 
 	@GetMapping("/signupcomplete")
@@ -40,6 +44,7 @@ public class MemberController {
 		return "success";
 	}
 
+	// 이메일 중복 확인
 	@PostMapping("/emailDupCheck")
 	@ResponseBody
 	public String emailDupCheck(@RequestBody String email) {
@@ -49,14 +54,6 @@ public class MemberController {
 		else
 			return "NO";
 	}
-
-	@Autowired
-	MemberService memberService;
-	
-	@Autowired
-	MemberDAO memberDAO;
-
-	private IMemberMapper mapper;
 	
 	// 아이디 찾기 인증번호 전송
 	@ResponseBody
@@ -65,7 +62,7 @@ public class MemberController {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberName(smsName);
-		MemberVO result = mapper.getSMS(vo);
+		MemberVO result = service.getSMS(vo);
 		System.out.println(result);
 		if (result.getMemberName().equals(smsName)) {
 			Random random = new Random();
@@ -86,7 +83,7 @@ public class MemberController {
 	public String sendEmail(String phoneNumber) {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
-		MemberVO result = mapper.getMail(vo);
+		MemberVO result = service.getMail(vo);
 		return result.getMemberEmail();
 	}
 	
@@ -97,7 +94,7 @@ public class MemberController {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberName(email);
-		MemberVO result = mapper.getMail(vo);
+		MemberVO result = service.getMail(vo);
 		System.out.println(result);
 		if (result.getMemberEmail().equals(email)) {
 			Random random = new Random();
@@ -121,8 +118,8 @@ public class MemberController {
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberPassword(num);
-		mapper.getRepassword(vo);
-		MemberVO result = mapper.getPassword(vo);
+		service.getRepassword(vo);
+		MemberVO result = service.getPassword(vo);
 		System.out.println(result.getMemberPassword());
 		return result.getMemberPassword();
 	}

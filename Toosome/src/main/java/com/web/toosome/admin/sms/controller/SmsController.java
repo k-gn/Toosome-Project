@@ -16,95 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SmsController {
 	
-//
-//	// ±×·ì ¹®ÀÚ¸¦ À§ÇÑ »ı¼º
-//	public void createGroup() {
-//		GroupMessage coolsms = new GroupMessage("NCSYDBSNPVO2LUFF", "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD");
-//
-//		// Optional parameters for your own needs
-//		HashMap<String, String> params = new HashMap<String, String>();
-//		UUID uuid = UUID.randomUUID();
-//		params.put("charset", "utf8"); // utf8, euckr default value is utf8
-//		params.put("srk", uuid.toString()); // Solution key
-//		params.put("mode", "test"); // If 'test' value, refund cash to point
-//		params.put("delay", "10"); // '0~20' delay messages
-//		params.put("force_sms", "true"); // true is always send sms ( default true )
-//		params.put("app_version", "test app 1.2"); // App version
-//
-//		try {
-//			JSONObject createdGroup = (JSONObject) coolsms.createGroup(params); // create group
-//			System.out.println(createdGroup.toString());
-//		} catch (CoolsmsException e) {
-//			System.out.println(e.getMessage());
-//			System.out.println(e.getCode());
-//
-//		}
-//	}
-//
-//	// ±×·ì ¹®ÀÚ¸¦ À§ÇÑ listÃâ·Â
-//	public void getGroupList() {
-//		GroupMessage coolsms = new GroupMessage("NCSYDBSNPVO2LUFF", "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD");
-//
-//		try {
-//			JSONObject obj = (JSONObject) coolsms.getGroupList();
-//			System.out.println(obj.toString());
-//		} catch (CoolsmsException e) {
-//			System.out.println(e.getMessage());
-//			System.out.println(e.getCode());
-//		}
-//	}
-//
-//	// ±×·ì¿¡ ¸Ş¼¼Áö ÀúÀå
-//	public void putMessageToGroup(String groupId) {
-//
-//		GroupMessage coolsms = new GroupMessage("NCSYDBSNPVO2LUFF", "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD");
-//
-//		HashMap<String, String> params1 = new HashMap<String, String>();
-//		HashMap<String, String> params2 = new HashMap<String, String>();
-//		HashMap<String, String> params3 = new HashMap<String, String>();
-//		// options(to, from, text) are mandatory. must be filled
-//		params1.put("to", "01037220151");
-//		params1.put("from", "01056592176");
-//		params1.put("text", "Springboot group sms send test by soohyeon");
-//		params1.put("group_id", groupId); // Group ID
-//
-//		// options(to, from, text) are mandatory. must be filled
-//		params2.put("to", "01040178803");
-//		params2.put("from", "01056592176");
-//		params2.put("text", "Springboot group sms send test by soohyeon");
-//		params2.put("group_id", groupId); // Group ID
-//
-//		try {
-//			JSONObject obj = (JSONObject) coolsms.addMessages(params1);
-//			System.out.println(obj.toString());
-//			JSONObject obj3 = (JSONObject) coolsms.addMessages(params3);
-//			System.out.println(obj3.toString());
-//		} catch (CoolsmsException e) {
-//			System.out.println(e.getMessage());
-//			System.out.println(e.getCode());
-//		}
-//	}
-//
-//	// ±×·ì¿¡ ÀúÀåµÈ ¸Ş¼¼Áö¸¦ ´ÜÃ¼ Àü¼Û
-//	public void sendGroupSms(String groupId) {
-//		GroupMessage coolsms = new GroupMessage("NCSYDBSNPVO2LUFF", "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD");
-//
-//		// group_id, message_ids are mandatory.
-//		String group_id = groupId; // Group ID
-//
-//		try {
-//			JSONObject obj = (JSONObject) coolsms.sendGroupMessage(group_id);
-//			System.out.println(obj.toString());
-//		} catch (CoolsmsException e) {
-//			System.out.println(e.getMessage());
-//			System.out.println(e.getCode());
-//		}
-//	}
-
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 
-	// ÀÌ¸ŞÀÏ ÀÎÁõ
+	// ì´ë©”ì¼ ì¸ì¦
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailCheck(String email) throws Exception {
@@ -112,20 +27,20 @@ public class SmsController {
 		Random random = new Random();
 		int checkNum = random.nextInt(899999) + 100000;
 
-		/* ÀÌ¸ŞÀÏ º¸³»±â */
-		String setFrom = "qkd2186@naver.com"; // ¹ß½ÅÀÚ ¸ŞÀÏ
-		String toMail = email; // ¼ö½ÅÀÚ ¸ŞÀÏ
-		String title = "È¸¿ø°¡ÀÔ ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù."; // ¸ŞÀÏ Á¦¸ñ
-		String content = "È¨ÆäÀÌÁö¸¦ ¹æ¹®ÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù." + "<br><br>" + "ÀÎÁõ ¹øÈ£´Â " + checkNum + "ÀÔ´Ï´Ù." + "<br>" // ¸ŞÀÏ ³»¿ë
-				+ "ÇØ´ç ÀÎÁõ¹øÈ£¸¦ ÀÎÁõ¹øÈ£ È®ÀÎ¶õ¿¡ ±âÀÔÇÏ¿© ÁÖ¼¼¿ä.";
+		/* ì´ë©”ì¼ ë³´ë‚´ê¸° */
+		String setFrom = "qkd2186@naver.com"; // ë°œì‹ ì ë©”ì¼
+		String toMail = email; // ìˆ˜ì‹ ì ë©”ì¼
+		String title = "íšŒì›ê°€ì… ì¸ì¦ ì´ë©”ì¼ ì…ë‹ˆë‹¤."; // ë©”ì¼ ì œëª©
+		String content = "í™ˆí˜ì´ì§€ë¥¼ ë°©ë¬¸í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤." + "<br><br>" + "ì¸ì¦ ë²ˆí˜¸ëŠ” " + checkNum + "ì…ë‹ˆë‹¤." + "<br>" // ë©”ì¼ ë‚´ìš©
+				+ "í•´ë‹¹ ì¸ì¦ë²ˆí˜¸ë¥¼ ì¸ì¦ë²ˆí˜¸ í™•ì¸ë€ì— ê¸°ì…í•˜ì—¬ ì£¼ì„¸ìš”.";
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8"); // true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦
-																						// »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8"); // true ì‚¬ìš©ì´ìœ  : ë‹¨ìˆœ í…ìŠ¤ë§Œ ë³´ë‚¼ë ¤ë©´ trueë¥¼
+																						// ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. html í—ˆìš©ì˜ ì˜ë¯¸
 			helper.setFrom(setFrom);
 			helper.setTo(toMail);
 			helper.setSubject(title);
-			helper.setText(content, true); // true »ç¿ëÀÌÀ¯ : ´Ü¼ø ÅØ½º¸¸ º¸³¾·Á¸é true¸¦ »ç¿ëÇÏÁö ¾Ê¾Æµµ µÈ´Ù. html Çã¿ëÀÇ ÀÇ¹Ì
+			helper.setText(content, true); // true ì‚¬ìš©ì´ìœ  : ë‹¨ìˆœ í…ìŠ¤ë§Œ ë³´ë‚¼ë ¤ë©´ trueë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. html í—ˆìš©ì˜ ì˜ë¯¸
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
