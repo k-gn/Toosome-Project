@@ -120,17 +120,12 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-		
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.9.4</version>
 		</dependency>
 
 		<!-- Logging -->
@@ -231,14 +226,13 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		<!-- coolSMS 관련 -->
+
 		<dependency>
 			<groupId>net.nurigo</groupId>
 			<artifactId>javaSDK</artifactId>
 			<version>2.2</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>

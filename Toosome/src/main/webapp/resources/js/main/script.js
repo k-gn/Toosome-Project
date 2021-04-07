@@ -132,18 +132,7 @@ $(function () {
 
   // section image slide end------------------------------------------------------------
   
-  // sesarch store start ---------------------------------------------------------------
-  const inputValue = document.querySelector('#search');
-  const searchBtn = document.querySelector('#search-button');
-
-  const searchBtnHandler = () => {
-	let value = inputValue.value;
-	location.href = `/map?address=${encodeURIComponent(value)}`;
-  };
-
-  searchBtn.addEventListener('click', searchBtnHandler);
-
-  //
+  // admin login
   const pressed = [];
   const code = 'dltmdwotjstodsla';
 

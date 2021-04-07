@@ -2,6 +2,7 @@ package com.web.toosome.user.member.service;
 
 import java.util.HashMap;
 
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +23,8 @@ public class MemberService implements IMemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// 이메일 중복 체크
+	// 이메일 중복 확인
+	@Override
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
@@ -38,11 +40,14 @@ public class MemberService implements IMemberService {
 		mapper.register(member);
 	}
 	
+	// 이메일로 회원 조회
 	@Override
 	public MemberVO getUserByEmail(String email) {
 		return mapper.getUserByEmail(email);
 	}
 	
+	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
+	@Override
 	public void certifiedPhoneNumber(String phoneNumber, String num) {
 		String api_key = "NCSYDBSNPVO2LUFF";
 		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
@@ -64,4 +69,26 @@ public class MemberService implements IMemberService {
 			System.out.println(e.getCode());
 		}
 	}
+	
+	// 아이디 찾기
+	@Override
+	public MemberVO getSMS(MemberVO vo) {
+		return mapper.getSMS(vo);
+	}
+	// 이메일 찾기
+	@Override
+	public MemberVO getMail(MemberVO vo) {
+		return mapper.getMail(vo);
+	}
+	// 비밀번호 찾기
+	@Override
+	public MemberVO getPassword(MemberVO vo) {
+		return mapper.getPassword(vo);
+	}
+	// 비밀번호 찾기 랜덤비밀번호 전송
+	@Override
+	public int getRepassword(MemberVO vo) {
+		return mapper.getRepassword(vo);
+	}
+	
 }

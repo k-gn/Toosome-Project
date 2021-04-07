@@ -56,9 +56,9 @@
       emailForm.style.border = '1px solid #ccc';
       const email = $(".signup-form.email").val();
       
-       $(document).ajaxSend(function(e, xhr, options) { 
-    	 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
-       }); 
+      $(document).ajaxSend(function(e, xhr, options) { 
+        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+      }); 
       
 	  $.ajax({
 		type: "POST",
