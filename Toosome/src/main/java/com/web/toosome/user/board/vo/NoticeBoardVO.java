@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class NoticeBoardVO {
-	private String noticeBoardId;
+	private Integer noticeBoardId;
 	private String noticeBoardTitle;
 	private String noticeBoardContent;
 	private Integer noticeBoardViewCount;
