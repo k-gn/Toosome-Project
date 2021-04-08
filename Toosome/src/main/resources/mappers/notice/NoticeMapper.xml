@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<select id="getBoardList" resultType="com.web.toosome.user.board.vo.NoticeBoardVO">
-	<![CDATA[select * from notice_board]]>
+	SELECT * FROM ORDER NOTICE_BOARD
 	</select>
 
 
