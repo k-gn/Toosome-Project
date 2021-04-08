@@ -2,17 +2,16 @@ package com.web.toosome.user.board.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
-public interface IBoardMapper {
+public interface IBoardNoticeMapper {
 
-	// 조회 기능
-	//@Select("select * from notice_board")
-	public List<NoticeBoardVO> getBoardList();
+	// 글목록 조회 기능
+	
+	public List<NoticeBoardVO> getNoticeBoardList();
 
 	// 해당 글 상세 조회
+	
 	public void getBoard(NoticeBoardVO noticeboard);
 	
 	// 검색 기능
