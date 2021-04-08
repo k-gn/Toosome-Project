@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.user.member.dao.IMemberMapper;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -33,11 +34,13 @@ public class MemberService implements IMemberService {
 	}
 
 	// 회원 등록
+	@Transactional
 	@Override
 	public void register(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 		member.setMemberPassword(encodePassword);
 		mapper.register(member);
+		mapper.registerMemberAuth(member.getMemberEmail());
 	}
 	
 	// 이메일로 회원 조회

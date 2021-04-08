@@ -22,33 +22,32 @@
 		<security:form-login
 			username-parameter="memberEmail"
 			password-parameter="memberPassword"
-			login-page="/signin" 
-			login-processing-url="/signin"
-			default-target-url="/" 
+			login-page="/adminSignin" 
+			login-processing-url="/adminSignin"
 			authentication-success-handler-ref="customLoginSuccess"
 		/>
 		<security:csrf disabled="false"/> 
-	</security:http> -->
+	</security:http>  -->
 	
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
 		<security:intercept-url pattern="/signup" access="isAnonymous()" />
 		<security:intercept-url pattern="/signin" access="isAnonymous()" />
-		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/agreement" access="isAnonymous()" />
+		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')" />
 		<security:form-login
 			username-parameter="memberEmail"
 			password-parameter="memberPassword"
 			login-page="/signin" 
 			login-processing-url="/signin"
-			default-target-url="/" 
 			authentication-success-handler-ref="customLoginSuccess"
 			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
 		<security:logout
 			logout-url="/dologout"
-			logout-success-url="/"
+			logout-success-url="/signin"
 			invalidate-session="true"
-			delete-cookies="true"/>
+			delete-cookies="JSESSION_ID"/>
 			
 		<security:access-denied-handler ref="customAccessDenied"/>
 	</security:http>
