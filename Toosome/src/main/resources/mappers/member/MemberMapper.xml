@@ -39,11 +39,15 @@
 		WHERE mem.MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
-	<!-- 이메일, 비밀번호, 이름, 생년월일, 전화번호, 주소  등록 -->
+	<!-- 회원 가입 -->
 	<insert id="register">
 		INSERT INTO 
 		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_ENABLED)
 		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, 0)
+	</insert>
+	<insert id="registerMemberAuth">
+		INSERT INTO MEMBER_AUTH
+		VALUES(#{email}, 'ROLE_USER')
 	</insert>
 
 	<!-- 아이디, 비밀번호 찾기 -->
