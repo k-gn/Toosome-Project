@@ -21,4 +21,9 @@ public class TestController {
 		return "testsms2";
 	}
 	
+	@GetMapping("/import1")
+	public String import1() {
+		return "import";
+	}
+	
 }
