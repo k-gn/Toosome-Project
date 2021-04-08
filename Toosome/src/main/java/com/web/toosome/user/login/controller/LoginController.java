@@ -22,5 +22,4 @@ public class LoginController {
 		return "subpages/signin/findPwd/findPwd";
 	}
 	
-	
 }
