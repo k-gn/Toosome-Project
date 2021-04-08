@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.web.toosome.user.member.vo.MemberVO" alias="memberVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.NoticeBoardVO" alias="noticeBoardVO"/>
+		<typeAlias type="com.web.toosome.user.board.vo.FaqBoardVO" alias="faqBoardVO"/>
 	</typeAliases>
 </configuration>
