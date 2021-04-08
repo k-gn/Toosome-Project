@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.board.dao.IFaqBoardMapper">
+
+	<resultMap type="faqBoardVO" id="FaqBoardMap">
+		<id property="faqBoardId" column="FAQ_BOARD_ID"/>
+		<result property="faqBoardTitle" column="FAQ_BOARD_TITLE"/>
+		<result property="faqBoardContent" column="FAQ_BOARD_CONTENT"/>
+	</resultMap>
+	
+	<select id="getFaqBoardList" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD
+	</select>
+
+
+	
+</mapper>
