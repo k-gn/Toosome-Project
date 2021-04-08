@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
   <h1 class="logo">
     <a href="#">
@@ -58,12 +59,23 @@
   </nav>
   <div class="full-cover"></div>
   <ul class="log">
-    <li><a href="/signin" id="login">LOGIN</a></li>
-    <li><a href="/agreement">SIGN UP</a></li>
-    <li><a href="#">BASKET</a></li>
-    <li><a href="/faq">FAQ</a></li>
+  	<c:if test="${member == null}">
+	    <li><a href="/signin" id="login">LOGIN</a></li>
+	    <li><a href="/agreement">SIGN UP</a></li>
+	    <li><a href="/basket">BASKET</a></li>
+	    <li><a href="/faq">FAQ</a></li>
+  	</c:if>
+  	<c:if test="${member != null}">
+	    <li><a href="#" id="logout" onclick="document.getElementById('dologout').submit();">LOGOUT</a></li>
+	    <li><a href="/mypage">MYPAGE</a></li>
+	    <li><a href="/basket">BASKET</a></li>
+	    <li><a href="/faq">FAQ</a></li>
+  	</c:if>
   </ul>
   
+  <form id="dologout" action="/dologout" method="POST">
+    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+  </form>
 
   <div class="menu-bar">
     <span class="long-bar bar"></span>

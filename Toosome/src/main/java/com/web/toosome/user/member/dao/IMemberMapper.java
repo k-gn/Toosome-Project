@@ -9,6 +9,9 @@ public interface IMemberMapper {
 
 	// 회원 등록
 	public void register(MemberVO member);
+	
+	// 회원 권한 등록
+	public void registerMemberAuth(String email);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);
