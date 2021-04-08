@@ -23,5 +23,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 		System.out.println("id : " + member.getMemberEmail());
 		return member == null ? null : new CustomUser(member);
 	}
-
 }
