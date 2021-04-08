@@ -1,3 +1,4 @@
+/*
 package com.toosome.web;
 
 import org.junit.Test;
@@ -22,6 +23,7 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testGetList() {
-		mapper.getNoticeBoardList().forEach(board -> log.info(board));
+		mapper.getNoticeBoardList(NoticeBoardVO vo).forEach(board -> log.info(board));
 	}
 }
+*/

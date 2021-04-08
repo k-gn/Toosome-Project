@@ -8,7 +8,7 @@ public interface IBoardNoticeService {
 	
 	// 글목록 조회 기능
 	
-	public List<NoticeBoardVO> getNoticeBoardList();
+	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo);
 
 	// 해당 글 상세 조회
 	
