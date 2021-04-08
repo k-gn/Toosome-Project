@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.web.toosome.user.board.dao.IBoardMapper;
+import com.web.toosome.user.board.dao.IBoardNoticeMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,10 +18,10 @@ public class BoardMapperTests {
 
 	
 	@Setter(onMethod_ = @Autowired)
-	private IBoardMapper mapper;
+	private IBoardNoticeMapper mapper;
 	
 	@Test
 	public void testGetList() {
-		mapper.getBoardList().forEach(board -> log.info(board));
+		mapper.getNoticeBoardList().forEach(board -> log.info(board));
 	}
 }
