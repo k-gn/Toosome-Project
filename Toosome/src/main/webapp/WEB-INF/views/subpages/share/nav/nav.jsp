@@ -129,5 +129,12 @@
         </ul>
       </li>
     </ul>
+    
+    <ul class="m-log">
+      <li><a href="/signin">LOGIN</a></li>
+      <li><a href="/agreement">SIGN UP</a></li>
+      <li><a href="#">BASKET</a></li>
+      <li><a href="/faq">FAQ</a></li>
+    </ul>
   </div>
 </header>
