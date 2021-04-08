@@ -36,7 +36,9 @@
 	
 	<!-- Properties -->
 	<context:property-placeholder location="classpath:config/jdbc/database.properties"/>
-
+	
+	
+	
 	<!-- DB Setting -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${jdbc.driver}"/>
@@ -57,5 +59,6 @@
 	
 	<!-- Mybatis Bean Scan -->
 	<mybatis-spring:scan base-package="com.web.toosome.user.member.dao"/>
+	<mybatis-spring:scan base-package="com.web.toosome.user.board.dao"/>
 	
 </beans>
