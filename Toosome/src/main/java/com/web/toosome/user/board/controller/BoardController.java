@@ -1,7 +1,14 @@
 package com.web.toosome.user.board.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.web.toosome.user.board.service.IFaqBoardService;
+import com.web.toosome.user.board.vo.FaqBoardVO;
 
 @Controller
 public class BoardController {
@@ -14,9 +21,16 @@ public class BoardController {
 	public String eventDetail() {
 		return "subpages/event/eventDetail/eventDetail";
 	}
-
+	
+	@Autowired
+	private IFaqBoardService faqBoardService;
+	
 	@GetMapping("/faq")
-	public String faq() {
+	public String faq(FaqBoardVO faqBoardVO, Model model) {
+		System.out.println("FAQ 내용가져오기 : Controller");
+		List<FaqBoardVO> faqBoardList = faqBoardService.getFaqBoardList(faqBoardVO);
+		model.addAttribute("faqBoardList",faqBoardList);
+		System.out.println(model);
 		return "subpages/faq/faq";
 	}
 
