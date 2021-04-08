@@ -10,7 +10,7 @@ public class TestController {
 	public String admin() {
 		return "adminpages/index";
 	}
-
+	
 	@GetMapping("/testsms")
 	public String testsms() {
 		return "testsms";
@@ -21,7 +21,7 @@ public class TestController {
 		return "testsms2";
 	}
 	
-	@GetMapping("/import1")
+	@GetMapping("/import1")  // 결제 화면...
 	public String import1() {
 		return "import";
 	}
