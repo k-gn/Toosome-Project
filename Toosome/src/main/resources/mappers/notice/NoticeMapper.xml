@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.web.toosome.user.board.INoticeBoardMapper">
+<mapper namespace="com.web.toosome.user.board.dao.IBoardMapper">
 
-	<resultMap type="NoticeBoardVO" id="NoticeBoardMap">
+	<resultMap type="noticeBoardVO" id="NoticeBoardMap">
 		<id property="noticeBoardId" column="NOTICE_BOARD_ID"/>
 		<result property="noticeBoardTitle" column="NOTICE_BOARD_TITLE"/>
 		<result property="noticeBoardContent" column="NOTICE_BOARD_CONTENT"/>
@@ -12,8 +12,8 @@
 	
 	</resultMap>
 	
-	<select id="getBoardList" resultType="com.web.toosome.user.board.vo.NoticeBoardVO">
-	SELECT * FROM ORDER NOTICE_BOARD
+	<select id="getBoardList" resultMap="NoticeBoardMap">
+		SELECT * FROM ORDER NOTICE_BOARD
 	</select>
 
 
