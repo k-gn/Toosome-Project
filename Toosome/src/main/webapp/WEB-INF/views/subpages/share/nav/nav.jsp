@@ -27,7 +27,7 @@
           <li><a href="/menu-delhi">델리</a></li>
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product">상품</a></li>
-          <li><a href="/nutrienta">영양성분표</a></li>
+          <li><a href="/nutrient1">영양성분표</a></li>
         </ul>
       </li>
       <li class="menu-title">

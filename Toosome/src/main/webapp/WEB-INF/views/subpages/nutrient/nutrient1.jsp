@@ -23,10 +23,10 @@
 
       <div class="contents">
         <ul class="menu-tab">
-          <li class="click"><a href="#" onclick="location.href='/nutrienta'">디저트</a></li>
-          <li><a href="#" onclick="location.href='/nutrientb'">케이크</a></li>
-          <li><a href="#" onclick="location.href='/nutrientc'">커피 &amp; 음료</a></li>
-          <li><a href="#" onclick="location.href='/nutrientd'">델리</a></li>
+          <li class="click"><a href="/nutrient1">디저트</a></li>
+          <li><a href="/nutrient2">케이크</a></li>
+          <li><a href="/nutrient3">커피 &amp; 음료</a></li>
+          <li><a href="/nutrient4">델리</a></li>
         </ul>
 
         <div class="search">
@@ -72,15 +72,7 @@
               <td>10/1</td>
             </tr>
           </tbody>
-        </table>
-        <form action="#" method="get">
-		    <input type="file">
-		    <div class="qna-radio-container">
-                 <span class="title">공개 범위</span>
-                 <input type="radio" name="openScope" value="public" checked>공개
-                 <input type="radio" name="openScope" value="private">비공개
-              </div>
-		</form>      
+        </table>  
       </div>
     </div>
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>

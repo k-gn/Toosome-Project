@@ -6,9 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MenuController {
   
-	@GetMapping("/menu") // 이거 cafe로 변경 요망
-	public String menu() {
-		return "subpages/menu/menu";
+	@GetMapping("/menu-new") // 이거 cafe로 변경 요망 
+	public String menuNew() {
+		return "subpages/menu/menuNew";
+	}
+	@GetMapping("/menu-beverage")
+	public String menuBeverage() {
+		return "subpages/menu/menuBeverage";
+	}
+	@GetMapping("/menu-delhi")
+	public String menuDelhi() {
+		return "subpages/menu/menuDelhi";
+	}
+	@GetMapping("/menu-dessert")
+	public String menuDessert() {
+		return "subpages/menu/menuDessert";
+	}
+	@GetMapping("/menu-wholecake")
+	public String menuWholecake() {
+		return "subpages/menu/menuWholecake";
 	}
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
