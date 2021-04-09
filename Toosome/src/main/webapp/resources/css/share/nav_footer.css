@@ -506,7 +506,7 @@ header .mobile-nav .m-log li a:hover {
 /* mobile */
 
 
-@media screen and (max-width: 1430px) { 
+@media screen and (max-width: 1920px) { 
   nav {
     height: 60px;
     margin-top: 60px !important;
@@ -520,7 +520,7 @@ header .mobile-nav .m-log li a:hover {
     margin: 0;
     position: absolute;
     top: 20px;
-    right: 80px;
+    right: 0px;
   }
 }
 @media screen and (max-width: 1200px) {
