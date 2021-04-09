@@ -25,10 +25,10 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<tr>
-				<td>${item.id}</td>
-				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.id})">${item.title}</a></td>
-				<td>${item.date}</td>
-				<td>${item.count}</td>
+				<td>${item.noticeBoardId}</td>
+				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.noticeBoardId})">${item.noticeBoardTitle}</a></td>
+				<td>${item.noticeBoardRegdate}</td>
+				<td>${item.noticeBoardViewCount}</td>
 			</tr>
 		`;
 		newItem.innerHTML = itemElement;
@@ -88,7 +88,8 @@ const getPage = () => {
 	$.ajax({
 		url: '/noticelist',
 		success: (res) => {
-			console.log(res);			
+			displayList(res, noticeBoard, rows, currentPage);
+			setPagination(res, pagination, rows);			
 		}
 	});
 };
