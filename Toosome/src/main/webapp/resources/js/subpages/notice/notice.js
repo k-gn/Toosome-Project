@@ -22,12 +22,16 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < paginatedItems.length; i++) {
 		let item = paginatedItems[i];
+		// 날짜 변환
+		let date = new Date(item.noticeBoardRegdate);
+		let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<tr>
 				<td>${item.noticeBoardId}</td>
 				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.noticeBoardId})">${item.noticeBoardTitle}</a></td>
-				<td>${item.noticeBoardRegdate}</td>
+				<td>${newDate}</td>
 				<td>${item.noticeBoardViewCount}</td>
 			</tr>
 		`;
@@ -73,10 +77,6 @@ const btnHandler = (e,items,page) => {
 	// 누른 버튼 활성화
 	e.target.classList.add('active');
 };
-
-// event hook
-/*displayList(testData, noticeBoard, rows, currentPage);
-setPagination(testData, pagination, rows);*/
 
 // onload시 AJAX 요청
 $(document).ready(() => {
