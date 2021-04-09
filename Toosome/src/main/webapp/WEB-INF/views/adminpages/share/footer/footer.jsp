@@ -15,7 +15,7 @@
       &copy;
       <script>
         document.write(new Date().getFullYear())
-      </script>, made by toomsome team</i>
+      </script>, made by toomsome team
       <a href="/" target="_blank">Go to main</a> 
     </div>
   </div>
