@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
   <h1 class="logo">
-    <a href="#">
+    <a href="/">
       A TOOSOME PLACE
     </a>
   </h1>
@@ -27,7 +27,7 @@
           <li><a href="/menu-delhi">델리</a></li>
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product">상품</a></li>
-          <li><a href="/nutrienta">영양성분표</a></li>
+          <li><a href="/nutrient1">영양성분표</a></li>
         </ul>
       </li>
       <li class="menu-title">
@@ -128,6 +128,13 @@
           <li><a href="/allbuy">기업 및 단체구매 안내</a></li>
         </ul>
       </li>
+    </ul>
+    
+    <ul class="m-log">
+      <li><a href="/signin">LOGIN</a></li>
+      <li><a href="/agreement">SIGN UP</a></li>
+      <li><a href="#">BASKET</a></li>
+      <li><a href="/faq">FAQ</a></li>
     </ul>
   </div>
 </header>

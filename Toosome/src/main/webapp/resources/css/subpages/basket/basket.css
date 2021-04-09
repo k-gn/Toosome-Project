@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+section {
+	max-width: 1000px;
+	height: 1000px;
+	box-sizing: border-box;
+	margin: 150px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #eee;
+	box-shadow: 0 2px 3px #ccc;
+}
+
+section > p {
+	font-family: gsdr;
+	font-size: 1.5rem;
+	margin: 50px 0;
+}
+
+.process-container {
+	width: 500px;
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 50px;
+}
+
+.process-container div {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.process-container div img {
+	width: 40px;
+	height: 40px;
+	border-radius: 30%;
+	border: 1px solid #ccc;
+	padding: 15px;
+	background-color: #eee;
+}
+
+.process-container div:first-child img {
+	border: 2px solid #a62326;
+	background: #fff;
+}
+
+.process-container div:first-child span {
+	color: #a62326;
+}
+
+.process-container div span {
+	font-size: 0.75rem;
+	color: #666;
+}
+
+section table {
+	width: 100%;
+	height: auto;
+}
+
+.order-container {
+	width: 100%;
+	height: auto;
+}
+
+.btn-box button {
+	outline: none;
+	appearance: none;
+	width: 150px;
+	height: 50px;
+	padding: 10px 15px;
+	border: 2px solid #a62326;
+	border-radius: 15px;
+	background: #fff;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: #222;
+	cursor: pointer;
+	margin-right: 15px;
+}
+
+.btn-box button:last-child {
+	margin-right: 0;
+}
+
+.btn-box button:last-child {
+	border: none;
+	background: #a62326;
+	color: white;
+}
+
+.btn-box button:hover {
+	text-decoration: underline;
+}
+

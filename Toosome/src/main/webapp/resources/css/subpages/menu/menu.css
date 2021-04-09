@@ -53,7 +53,7 @@
     border-right: none;
 }
 .menu-container .tab-container .menu-btn .btn-tab li.select {
-    /* background-color: #A62326; */
+    background-color: #A62326;
 }
 .menu-container .tab-container .menu-btn .btn-tab li:nth-child(5) {
     border-right: 3px solid #fff;
@@ -68,14 +68,6 @@
     font-family: gsdr;
     color: #fff;
 }
-.menu-container .tab-container .menu-btn .btn-tab .ani-border {
-    position: absolute;
-    width: 20%;
-    height: 75px;
-    box-sizing: border-box;
-    border: 8px solid #A62326;
-}
-
 
 
 

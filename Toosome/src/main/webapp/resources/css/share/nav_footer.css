@@ -180,7 +180,7 @@ header .full-cover {
 header .log {
   float: right;
   margin: 24px 80px 0 0;
-  width: 300px;
+  width: 400px;
   height: 21px;
 }
 header .log li {
@@ -267,6 +267,7 @@ header .menu-bar {
   z-index: 99;
   top: 0;
   right: 40px;
+  cursor: pointer;
   /* background-color: #333; */
 }
 header .menu-bar .bar {
@@ -320,6 +321,7 @@ header .mobile-nav {
   background-color: #38383b;
   transition: all 0.3s;
   display: none;
+  z-index: 99999999999999999999999;
 }
 header .mobile-nav.clickNav {
   right: 0;
@@ -352,6 +354,37 @@ header .mobile-nav .m-nav > li > ul {
 
 /* mobile nav end */
 
+/* mobile login start */
+
+
+header .mobile-nav .m-log {
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto;
+  gap: 2px;
+  background-color: #fff;
+}
+header .mobile-nav .m-log li {
+  width: 100%;
+  box-sizing: border-box;
+  /* border: 1px solid #fff; */
+  background-color: #a62326;
+}
+header .mobile-nav .m-log li a {
+  color: #fff;
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+}
+header .mobile-nav .m-log li a:hover {
+  text-decoration: underline;
+}
+
+/* mobile login end */
 
 
 

@@ -12,6 +12,11 @@ public class LoginController {
 		return "subpages/signin/signin";
 	}
 	
+	@GetMapping("/admin/signin")
+	public String adminsignin(String error, String logout, Model model) {
+		return "adminpages/subpages/login/adminLogin";
+	}
+	
 	@GetMapping("/find-id")
 	public String findId() { 
 		return "subpages/signin/findId/findId";
@@ -21,6 +26,5 @@ public class LoginController {
 	public String findPwd() { 
 		return "subpages/signin/findPwd/findPwd";
 	}
-	
 	
 }

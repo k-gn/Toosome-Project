@@ -140,7 +140,7 @@ $(function () {
 	pressed.push(e.key);
 	pressed.splice(-code.length - 1, pressed.length - code.length);
 	if(pressed.join('').includes(code)) {
-		document.getElementById('login').href = '/admin';
+		document.getElementById('login').href = '/admin/signin';
 	};
   });
 });

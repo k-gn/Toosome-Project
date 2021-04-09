@@ -35,7 +35,7 @@
         <div class="product-box">
           <ul class="all cf">
             <li>
-              <a href="#">
+              <a href="/product-detail">
                 <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
                 <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
                 <button>온라인 주문</button>

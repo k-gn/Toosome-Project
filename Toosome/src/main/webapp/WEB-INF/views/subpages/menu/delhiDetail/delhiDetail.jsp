@@ -35,7 +35,7 @@
             </ul>
             <h3>자몽 시트러스 프라페</h3>
             <p class="title-text">자몽의 새콤 달콤한 맛으로 지친 몸과 마음을 힐링하는 과일 프라페</p>
-          
+            <input type="button" value="기프티콘 구매" class="gift">
             <div class="table-cover">
               <table class="table">
                 <tbody>
