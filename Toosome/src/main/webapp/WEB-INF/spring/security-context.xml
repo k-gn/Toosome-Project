@@ -17,17 +17,17 @@
 		class="com.web.toosome.security.CustomAccessDeniedHandler" />
 
 	<!-- 어드민 로그인 페이지 완성 시 활성화 -->
-	<!-- <security:http auto-config="true" pattern="/admin/**" use-expressions="true">
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+	<security:http auto-config="true" pattern="/admin/**" use-expressions="true">
+		<!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
 		<security:form-login
-			username-parameter="memberEmail"
-			password-parameter="memberPassword"
-			login-page="/adminSignin" 
-			login-processing-url="/adminSignin"
+			username-parameter="adminId"
+			password-parameter="adminPwd"
+			login-page="/admin/signin" 
+			login-processing-url="/admin/signin"
 			authentication-success-handler-ref="customLoginSuccess"
 		/>
 		<security:csrf disabled="false"/> 
-	</security:http>  -->
+	</security:http>
 	
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
 		<security:intercept-url pattern="/signup" access="isAnonymous()" />
