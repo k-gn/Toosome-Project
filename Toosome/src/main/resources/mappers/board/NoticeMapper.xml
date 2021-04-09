@@ -7,7 +7,7 @@
 		<id property="noticeBoardId" column="NOTICE_BOARD_ID"/>
 		<result property="noticeBoardTitle" column="NOTICE_BOARD_TITLE"/>
 		<result property="noticeBoardContent" column="NOTICE_BOARD_CONTENT"/>
-	 	<result property="noticeBoardView" column="NOTICE_BOARD_VIEW_COUNT"/> 
+	 	<result property="noticeBoardViewCount" column="NOTICE_BOARD_VIEW_COUNT"/> 
 		<result property="noticeBoardRegdate" column="NOTICE_BOARD_REG_DATE"/>
 	
 	</resultMap>
