@@ -180,7 +180,7 @@ header .full-cover {
 header .log {
   float: right;
   margin: 24px 80px 0 0;
-  width: 300px;
+  width: 400px;
   height: 21px;
 }
 header .log li {
@@ -267,6 +267,7 @@ header .menu-bar {
   z-index: 99;
   top: 0;
   right: 40px;
+  cursor: pointer;
   /* background-color: #333; */
 }
 header .menu-bar .bar {
@@ -320,6 +321,7 @@ header .mobile-nav {
   background-color: #38383b;
   transition: all 0.3s;
   display: none;
+  z-index: 99999999999999999999999;
 }
 header .mobile-nav.clickNav {
   right: 0;
