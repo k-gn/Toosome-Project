@@ -16,6 +16,14 @@ import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private IFaqBoardService faqBoardService;
+	
+	@Autowired
+	private IBoardNoticeService noticeBoardService;
+	
+	
+	
 	@GetMapping("/event") // 이벤트 공지 게시판
 	public String event() {
 		return "subpages/event/event";
@@ -26,11 +34,6 @@ public class BoardController {
 		return "subpages/event/eventDetail/eventDetail";
 	}
 	
-	@Autowired
-	private IFaqBoardService faqBoardService;
-	
-	@Autowired
-	private IBoardNoticeService noticeBoardService;
 	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
@@ -56,6 +59,7 @@ public class BoardController {
 		//System.out.println(model);
 		//return "subpages/notice/notice";
 	}
+	
 
 	@GetMapping("/news")
 	public String news() {
