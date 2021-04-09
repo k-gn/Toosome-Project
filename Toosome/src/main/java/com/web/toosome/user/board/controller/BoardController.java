@@ -54,6 +54,7 @@ public class BoardController {
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO, Model model) throws Exception {
 		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
+		System.out.println(noticeBoardList);
 		return noticeBoardList;
 //		return model.addAttribute("noticeBoardList", noticeBoardList);
 		//System.out.println(model);
