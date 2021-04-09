@@ -14,7 +14,11 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		response.sendRedirect("/signin");
+		String uri = request.getRequestURI();
+		if(uri.contains("admin")) 
+			response.sendRedirect("/admin/signin");
+		else 
+			response.sendRedirect("/signin");
 	}
 
 }

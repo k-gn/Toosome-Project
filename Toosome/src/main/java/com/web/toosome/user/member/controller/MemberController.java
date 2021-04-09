@@ -39,7 +39,7 @@ public class MemberController {
 	@PostMapping("/signup")
 	@ResponseBody
 	public String register(@RequestBody MemberVO member) {
-		service.register(member);
+		service.registerMember(member);
 		return "success";
 	}
 
