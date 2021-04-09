@@ -6,16 +6,23 @@ import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 public interface IBoardNoticeService {
 	
-	// 글목록 조회 기능
-	
-	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo);
+	//글목록 조회 기능
+	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo) throws Exception;
 
-	// 해당 글 상세 조회
+	//해당글  조회
+	public NoticeBoardVO getBoard(NoticeBoardVO noticeboard) throws Exception;
 	
-	public void getBoard(NoticeBoardVO noticeboard);
+	//글 추가
+	public void insertNoticeBoardList() throws Exception;
 	
-	// 검색 기능
+	//글 업데이트
+	public void update(NoticeBoardVO noticeboard) throws Exception;
 	
-	// 
+	//글 삭제
+	public void delete(int noticeBoardId) throws Exception;
+	
+	
+	
+
 
 }
