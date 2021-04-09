@@ -131,10 +131,18 @@
     </ul>
     
     <ul class="m-log">
+    <c:if test="${member == null}">
       <li><a href="/signin">LOGIN</a></li>
       <li><a href="/agreement">SIGN UP</a></li>
       <li><a href="#">BASKET</a></li>
       <li><a href="/faq">FAQ</a></li>
+    </c:if>
+    <c:if test="${member != null}">
+      <li><a href="#" id="logout" onclick="document.getElementById('dologout').submit();">LOGOUT</a></li>
+      <li><a href="/mypage">MYPAGE</a></li>
+      <li><a href="/basket">BASKET</a></li>
+      <li><a href="/faq">FAQ</a></li>
+    </c:if>
     </ul>
   </div>
 </header>
