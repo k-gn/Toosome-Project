@@ -9,13 +9,14 @@
 	<title>A TOOSOME PLACE</title>
 </head>
 <body>
+<div class="bg"></div>
 <div id="container">
 	<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
 	<div class="login-container">
 		<div class="title-container">
 			<img class="title-logo" src="/resources/img/subpages/share/banner.png" alt=""/>
-			<span class="login-title">로그인</span>
+			<span class="login-title">Welcome!</span><span>투썸플레이스에 오신 것을 환영합니다</span>
 		</div>
 		<div class="login-form">
 			<form action="/signin" method="POST">
