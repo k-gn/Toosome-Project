@@ -1,0 +1,274 @@
+@charset "utf-8";
+
+.productDetail-container {
+  margin: 150px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 980px;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  box-shadow: 0 2px 3px #eee;
+}
+.productDetail-container .contents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.productDetail-container .contents img{
+  display: flex;
+  /* width: 50%; */
+  /* justify-content: center; */
+}
+
+.productDetail-container .contents .star {
+  width: 60%;
+  /* height: 50px; */
+  position: relative;
+}
+.productDetail-container .contents .star li {
+  width: 100%;
+  text-align: right;
+  height: 24px;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+}
+.productDetail-container .contents .star li.strong {
+  font-size: 24px;
+
+}
+.productDetail-container .contents .star li.title-text {
+  margin-top: 10px;
+  color: #999;
+}
+.productDetail-container .contents .star li.order-btn {
+  height: 30px;
+  text-align: left;
+  position: static;
+}
+.productDetail-container .contents .star li.order-btn input[type="button"] {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 0;
+  right: 0;
+  background-color: #A62326;
+  color: #fff;
+  cursor: pointer;
+}
+.productDetail-container .contents .star li img {
+  display: block;
+  width: auto;
+  height: 12px;
+  position: absolute;
+  top: 6px;
+  right: 0;
+}
+
+
+
+.productDetail-container .contents .notice-box {
+  width: 100%;
+  /* grid-column-end: auto; */
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin: 50px 0;
+  border-bottom: 2px solid #000;
+}
+.productDetail-container .contents .notice-box li {
+  font-size: 13px;
+}
+
+
+
+.productDetail-container .contents .comment-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.productDetail-container .contents .comment-box .precaution {
+  width: 100%;
+  border-bottom: 2px solid #333;
+  margin-bottom: 50px;
+}
+.productDetail-container .contents .comment-box .precaution .pretitle {
+  color: #A62326;
+}
+.productDetail-container .contents .comment-box .precaution .precau {
+  background-color: #e9e9e9;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.productDetail-container .contents .comment-box .precaution .precau li {
+  font-size: 13px;
+}
+.productDetail-container .contents .comment-box .precaution .precau li span {
+  margin-top: 5px;
+  color: #A62326;
+  font-weight: bold;
+  font-size: 16px;
+}
+.productDetail-container .contents .comment-box .precaution .precau li .one {
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.productDetail-container .contents .comment-box .precaution .precau li .one li {
+  list-style: disc;
+}
+
+
+
+
+
+
+
+.productDetail-container .contents .comment-box .btn-group {
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  height: 30px !important;
+}
+.productDetail-container .contents .comment-box .btn-group button {
+  margin-left: 10px;
+  display: block;
+  width: 50px;
+  font-size: 15px;
+  /* font-weight: bold; */
+}
+.productDetail-container .contents .comment-box .btn-group button:nth-child(2) {
+  width: 80px;
+}
+.productDetail-container .contents .comment-box .one-comment {
+  width: 100%;
+  margin-top: 20px;
+}
+.productDetail-container .contents .comment-box .one-comment li:first-child {
+  float: left;
+  width: 40%;
+  font-weight: bold;
+  font-size: 18px;
+} 
+.productDetail-container .contents .comment-box .one-comment li:last-child {
+  float: right;
+  width: 60%;
+  text-align: right;
+  font-size: 13px;
+  color: #999;
+}
+
+
+
+.productDetail-container .contents .form1 {
+  width: 100%;
+  height: 50px;
+  background-color: #e9e9e9;
+  border-bottom: 2px solid #333;
+  display: flex;
+  flex-direction: row;
+}
+.productDetail-container .contents .form1 .star-catch-cover {
+  width: 105px;
+  height: 20px;
+  margin-top: 15px;
+  padding-left: 15px;
+  display: flex;
+  position: relative;
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-catch {
+  width: 90px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #333;
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-catch .star_img {
+  width: 65px;
+  height: 100%;
+  margin: 0;
+  display: none;
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-catch .star_img.star {
+  display: block;
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-catch .star_img img {
+  display: block;
+  margin-top: 2.5px;
+  width: 65px;
+  height: 12px;
+} 
+.productDetail-container .contents .form1 .star-catch-cover .star-drop {
+  width: 90px;
+  height: 85px;
+  background-color: #fff;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* background-color: salmon; */
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-drop li {
+  width: 65px;
+  margin-bottom: 5px;
+}
+.productDetail-container .contents .form1 .star-catch-cover .triangle-cover {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: -1px;
+  right: 10px;
+}
+.productDetail-container .contents .form1 input[type="text"] {
+  display: flex;
+  width: 77%;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 5px;
+}
+.productDetail-container .contents .form1 input[type="submit"] {
+  margin-left: 15px;
+  height: 30px;
+  margin-top: 10px;
+  width: 50px;
+}
+.productDetail-container .contents .form2 {
+  width: 100%;
+}
+.productDetail-container .contents .form2 .comment-end {
+  width: 100%;
+  padding: 20px 5px;
+}
+.productDetail-container .contents .form2 .comment-end li {
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid #333;
+}
+.productDetail-container .contents .form2 .comment-end li span {
+  display: flex;
+  height: 100%;
+}
+.productDetail-container .contents .form2 .comment-end li .star-fin {
+  width: 12%;
+  margin-top: 9px;
+}
+.productDetail-container .contents .form2 .comment-end li .star-fin img {
+  display: block;
+  width: 65px;
+  height: 12px;
+}
+.productDetail-container .contents .form2 .comment-end li .cocom {
+  width: 63%;
+  padding-top: 4px;
+  height: 26px;
+  font-size: 15px;
+}
+.productDetail-container .contents .form2 .comment-end li .nik {
+  width: 15%;
+}
+.productDetail-container .contents .form2 .comment-end li .dat {
+  width: 10%;
+}
