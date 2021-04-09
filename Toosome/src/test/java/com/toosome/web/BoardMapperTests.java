@@ -1,4 +1,7 @@
+
 package com.toosome.web;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.web.toosome.user.board.dao.IBoardNoticeMapper;
+import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +25,10 @@ public class BoardMapperTests {
 	private IBoardNoticeMapper mapper;
 	
 	@Test
-	public void testGetList() {
-		mapper.getNoticeBoardList().forEach(board -> log.info(board));
+	public void testNoticeBoardList(NoticeBoardVO vo) {
+		System.out.println(vo);
+		mapper.getNoticeBoardList(vo);
+		System.out.println(mapper.getNoticeBoardList(vo));
+
 	}
 }

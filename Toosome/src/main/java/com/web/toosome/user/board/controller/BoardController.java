@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 @Controller
 public class BoardController {
@@ -25,7 +29,10 @@ public class BoardController {
 	@Autowired
 	private IFaqBoardService faqBoardService;
 	
-	@GetMapping("/faq")
+	@Autowired
+	private IBoardNoticeService noticeBoardService;
+	
+	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
 		System.out.println("FAQ 내용가져오기 : Controller");
 		List<FaqBoardVO> faqBoardList = faqBoardService.getFaqBoardList(faqBoardVO);
@@ -34,9 +41,19 @@ public class BoardController {
 		return "subpages/faq/faq";
 	}
 
-	@GetMapping("/notice")
-	public String notice() {
+	@RequestMapping(value = "/notice") //게시판 화면
+	public String noticeView() {
 		return "subpages/notice/notice";
+	}
+	
+	@GetMapping(value = "/noticelist", produces = "application/json") // 게시판 목록 조회값
+	@ResponseBody
+	public Model notice(NoticeBoardVO noticeboardVO, Model model) throws Exception {
+		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
+		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
+		return model.addAttribute("noticeBoardList", noticeBoardList);
+		//System.out.println(model);
+		//return "subpages/notice/notice";
 	}
 
 	@GetMapping("/news")
