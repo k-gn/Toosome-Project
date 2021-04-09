@@ -7,8 +7,11 @@ public interface IMemberService {
 	// 이메일 중복확인
 	public boolean emailDupCheck(String email);
 
-	// 회원 등록
-	public void register(MemberVO member);
+	// 회원 등록 (사용자)
+	public void registerMember(MemberVO member);
+
+	// 회원 등록 (관리자)
+	public void registerAdmin(MemberVO member);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);

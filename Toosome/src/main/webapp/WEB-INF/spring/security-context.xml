@@ -16,17 +16,25 @@
 	<bean id="customAccessDenied"
 		class="com.web.toosome.security.CustomAccessDeniedHandler" />
 
-	<!-- 어드민 로그인 페이지 완성 시 활성화 -->
 	<security:http auto-config="true" pattern="/admin/**" use-expressions="true">
-		<!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
+		<security:intercept-url pattern="/admin/signin" access="isAnonymous()" />
+		<security:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_HEAD','ROLE_ADMIN')"/>
 		<security:form-login
 			username-parameter="adminId"
 			password-parameter="adminPwd"
 			login-page="/admin/signin" 
 			login-processing-url="/admin/signin"
 			authentication-success-handler-ref="customLoginSuccess"
+			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
+		<security:logout
+			logout-url="/dologout"
+			logout-success-url="/admin/signin"
+			invalidate-session="true"
+			delete-cookies="JSESSION_ID"/>
+			
+		<security:access-denied-handler ref="customAccessDenied"/>
 	</security:http>
 	
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
