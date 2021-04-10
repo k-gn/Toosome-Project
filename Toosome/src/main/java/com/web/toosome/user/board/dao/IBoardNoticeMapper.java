@@ -12,9 +12,9 @@ public interface IBoardNoticeMapper {
 
 	// 해당 글 상세 조회
 	
-	public void getBoard(NoticeBoardVO noticeboard);
+	public NoticeBoardVO getNoticeBoard(NoticeBoardVO noticeboard);
 	
-	// 검색 기능
+	
 	
 	// 
 }

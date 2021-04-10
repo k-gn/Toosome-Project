@@ -19,7 +19,7 @@
         </ul>
       </li>
       <li class="menu-title">
-        <a href="/menu">MENU</a>
+        <a href="/menu-new">MENU</a>
         <ul class="sub-con">
           <li><a href="/menu-new">NEW</a></li>
           <li><a href="/menu-beverage">커피&amp;음료</a></li>

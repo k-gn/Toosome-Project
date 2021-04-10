@@ -54,12 +54,26 @@ public class BoardController {
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO, Model model) throws Exception {
 		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
+		System.out.println(noticeBoardList);
 		return noticeBoardList;
 //		return model.addAttribute("noticeBoardList", noticeBoardList);
 		//System.out.println(model);
 		//return "subpages/notice/notice";
 	}
 	
+	@RequestMapping(value ="/noticedetail") //해당 게시물 화면
+	public String noticeDetailView() {
+		return "subpages/notice/noticeDetail/noticeDetail";
+	}
+	
+	@GetMapping(value = "/notice-detail", produces = "application/json") // 해당 게시물 조회값
+	@ResponseBody
+	public NoticeBoardVO notice(NoticeBoardVO noticeboardVO) throws Exception {
+		System.out.println("공지사항 세부 게시판 네용 보여주기 : Controller");
+		NoticeBoardVO noticeBoard = noticeBoardService.getBoard(noticeboardVO);
+		System.out.println(noticeBoard);
+		return noticeBoard;
+	}
 
 	@GetMapping("/news")
 	public String news() {

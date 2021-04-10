@@ -32,12 +32,8 @@
         RESERVED.
       </li>
     </ul>
-    <div class="f_sns">
-      <article class="art1"><a href="#"></a></article>
-      <article class="art2"><a href="#"></a></article>
-      <article class="art3"><a href="#"></a></article>
-      <article class="art4"><a href="#"></a></article>
-      <article class="art5"><a href="#"></a></article>
-    </div>
+    <div class="addthis_inline_share_toolbox_jro3"></div>
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60687a2158f87593"></script>
   </div>
 </div>

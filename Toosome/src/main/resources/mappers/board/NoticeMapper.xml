@@ -20,6 +20,9 @@
 		INSERT INTO NOTICE_BOARD VAULES(#{noticeBoardId}, #{noticeBoardTitle}, #{noticeBoardContent}, #{noticeBoardView}, #{noticeBoardRegdate})
 	
 	</insert> -->
+	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
+		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}
+	</select>
 
 
 	

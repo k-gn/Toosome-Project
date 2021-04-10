@@ -21,7 +21,7 @@ public class BoardNoticeService implements IBoardNoticeService {
 
 	@Override
 	public NoticeBoardVO getBoard(NoticeBoardVO noticeboard) throws Exception {
-		return null;
+		 return mapper.getNoticeBoard(noticeboard);
 	}
 
 	@Override
