@@ -73,7 +73,7 @@
 	border-radius: 10px;
 	padding-left: 10px;
 	font-size: 1.125rem;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .login-form input:focus {
@@ -96,4 +96,9 @@
 
 .login-form button:hover {
 	text-decoration: underline;
+}
+
+.valid {
+	color: red;
+	margin: 10px auto;
 }
