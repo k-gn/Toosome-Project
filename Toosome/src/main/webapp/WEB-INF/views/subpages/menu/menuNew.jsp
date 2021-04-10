@@ -30,7 +30,7 @@
                 <div class="menu-content">
                     <ul id="new" class="cf">
                         <h3>NEW</h3>
-                        <li><a href="#" onclick="location.href='/newdetail'"><span>신메뉴1</span></a></li>
+                        <li><a href="/newdetail"><span>신메뉴1</span></a></li>
                         <li><a href="#"><span>신메뉴2</span></a></li>
                         <li><a href="#"><span>신메뉴3</span></a></li>
                         <li><a href="#"><span>신메뉴4</span></a></li>
