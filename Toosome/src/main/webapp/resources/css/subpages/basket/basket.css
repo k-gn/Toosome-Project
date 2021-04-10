@@ -138,3 +138,12 @@ section table {
   color: #ff0000;
   font-weight: bold;
 }
+
+
+.basket-table input[type="button"] {
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	font-family: gsdr;
+	color: #999;
+}
