@@ -8,13 +8,14 @@
 .bg {
 	width: 100vw;
 	height: 100vh;
-	background: url('/resources/img/main-img2.png');
+	background: url('/resources/img/main-img2.png') no-repeat center center;
+	background-size: cover;
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
 	filter: blur(5px);
-	opacity: 0.8;
+	opacity: 0.6;
 }
 
 .login-container {
