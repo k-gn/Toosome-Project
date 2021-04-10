@@ -31,7 +31,7 @@
     max-width: 600px;
     border: 1px solid #eee;
     border-radius: 7px;
-    box-shadow: 0 2px 3px #ccc;
+    box-shadow: 0 4px 5px #ccc;
     background: rgba(255,255,255,0.8);
 }
 .login-container .title-container {
@@ -76,7 +76,7 @@
 }
 .login-form form input[type="submit"] {
 	outline: none;
-	apearance: none;
+	appearance: none;
 	border: none;
 	border-radius: 5px;
     display: block;

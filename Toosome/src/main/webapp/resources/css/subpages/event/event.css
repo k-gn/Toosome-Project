@@ -1,13 +1,14 @@
 @charset "UTF-8";
 
-.signup-container {
+.event-container {
   margin: 150px auto;
   padding: 30px 15px 20px;
   box-sizing: border-box;
   max-width: 1000px;
   border: 1px solid #eee;
   border-radius: 7px;
-  box-shadow: 0 2px 3px #eee;
+  box-shadow: 0 4px 5px #ccc;
+  background: #fff;
   color: #222222;
 }
 
@@ -17,7 +18,7 @@
   text-align: center;
 }
 
-.signup-title {
+.event-title {
   margin-top: 50px;
   font-size: 1.5rem;
   font-family: gsdr;
