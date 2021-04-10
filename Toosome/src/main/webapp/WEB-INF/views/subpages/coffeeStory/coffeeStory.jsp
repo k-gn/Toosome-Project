@@ -21,6 +21,8 @@
                 <img src="/resources/img/subpages/coffeeStory/img_coffeestory.png" alt="">
             </div>
         </div>
+        <img class="bg1" src="/resources/img/subpages/coffeeStory/coffee3.png" alt="#">
+        <img class="bg2" src="/resources/img/subpages/coffeeStory/coffee2.png" alt="#">
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>
