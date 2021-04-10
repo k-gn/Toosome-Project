@@ -5,17 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="bcryptPasswordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	<bean id="customUserService"
-		class="com.web.toosome.security.CustomUserDetailsService" />
-	<bean id="customLoginSuccess"
-		class="com.web.toosome.security.CustomLoginSuccessHandler" />
-	<bean id="customLoginFail"
-		class="com.web.toosome.security.CustomLoginFailHandler" />
-	<bean id="customAccessDenied"
-		class="com.web.toosome.security.CustomAccessDeniedHandler" />
-
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserService" class="com.web.toosome.security.CustomUserDetailsService" />
+	<bean id="customLoginSuccess" class="com.web.toosome.security.CustomLoginSuccessHandler" />
+	<bean id="customAccessDenied" class="com.web.toosome.security.CustomAccessDeniedHandler" />
+	
+	<!-- admin -->
 	<security:http auto-config="true" pattern="/admin/**" use-expressions="true">
 		<security:intercept-url pattern="/admin/signin" access="isAnonymous()" />
 		<security:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_HEAD','ROLE_ADMIN')"/>
@@ -25,7 +20,6 @@
 			login-page="/admin/signin" 
 			login-processing-url="/admin/signin"
 			authentication-success-handler-ref="customLoginSuccess"
-			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
 		<security:logout
@@ -33,10 +27,10 @@
 			logout-success-url="/admin/signin"
 			invalidate-session="true"
 			delete-cookies="JSESSION_ID"/>
-			
 		<security:access-denied-handler ref="customAccessDenied"/>
 	</security:http>
 	
+	<!-- member -->
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
 		<security:intercept-url pattern="/signup" access="isAnonymous()" />
 		<security:intercept-url pattern="/signin" access="isAnonymous()" />
@@ -48,7 +42,6 @@
 			login-page="/signin" 
 			login-processing-url="/signin"
 			authentication-success-handler-ref="customLoginSuccess"
-			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
 		<security:logout
@@ -56,10 +49,10 @@
 			logout-success-url="/signin"
 			invalidate-session="true"
 			delete-cookies="JSESSION_ID"/>
-			
 		<security:access-denied-handler ref="customAccessDenied"/>
 	</security:http>
 	
+	<!-- authentication -->
 	<security:authentication-manager>
 		<security:authentication-provider
 			user-service-ref="customUserService">

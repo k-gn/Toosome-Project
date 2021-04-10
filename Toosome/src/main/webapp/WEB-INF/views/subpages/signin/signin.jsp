@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@
 			<form action="/signin" method="POST">
 				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." required />
 				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
+				<div class="valid">${loginFailMsg}</div>
 				<input type="submit" value="로그인">
 				<div class="login-value">
 					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>

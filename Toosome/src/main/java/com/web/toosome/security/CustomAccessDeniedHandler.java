@@ -15,10 +15,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		String uri = request.getRequestURI();
-		if(uri.contains("admin")) 
-			response.sendRedirect("/admin");
-		else 
-			response.sendRedirect("/");
+		if(uri.contains("admin")) {
+			System.out.println("accessErrorAdmin");
+			response.sendRedirect("/accessErrorAdmin");
+		}
+		else {
+			System.out.println("accessErrorMember");
+			response.sendRedirect("/accessErrorMember");
+		}
 	}
 
 }
