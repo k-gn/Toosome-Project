@@ -30,7 +30,7 @@
                 <div class="menu-content">
                     <ul id="delhi" class="cf">
                         <h3>delhi</h3>
-                        <li><a href="#"><span>델리1</span></a></li>
+                        <li><a href="/delhidetail"><span>델리1</span></a></li>
                         <li><a href="#"><span>델리2</span></a></li>
                         <li><a href="#"><span>델리3</span></a></li>
                         <li><a href="#"><span>델리4</span></a></li>

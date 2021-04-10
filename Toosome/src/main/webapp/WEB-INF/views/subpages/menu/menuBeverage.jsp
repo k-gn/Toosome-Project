@@ -30,7 +30,7 @@
                 <div class="menu-content">
                     <ul id="beverage" class="cf">
                         <h3>beverage</h3>
-                        <li><a href="#"><span>음료1</span></a></li>
+                        <li><a href="/beveragedetail"><span>음료1</span></a></li>
                         <li><a href="#"><span>음료2</span></a></li>
                         <li><a href="#"><span>음료3</span></a></li>
                         <li><a href="#"><span>음료4</span></a></li>
