@@ -13,10 +13,10 @@
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<!-- section start -->
         <section>
-	      <div class="signup-container">
+	      <div class="event-container">
 	        <div class="title-container">
 	          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
-	          <span class="signup-title">이벤트</span>
+	          <span class="event-title">이벤트</span>
 	        </div>
 	        <div class="tab-container">
 	        	<ul class="tabs">

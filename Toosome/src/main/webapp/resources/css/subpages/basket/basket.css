@@ -2,10 +2,10 @@
 
 section {
 	max-width: 1000px;
-	height: 1000px;
+  padding-bottom: 50px;
 	box-sizing: border-box;
 	margin: 150px auto;
-	display: flex;
+	display: flex !important;
 	flex-direction: column;
 	align-items: center;
 	border: 1px solid #eee;
@@ -32,8 +32,9 @@ section > p {
 }
 
 .process-container div img {
-	width: 40px;
-	height: 40px;
+	display: block;
+  width: 80px;
+	height: 80px;
 	border-radius: 30%;
 	border: 1px solid #ccc;
 	padding: 15px;
@@ -46,11 +47,12 @@ section > p {
 }
 
 .process-container div:first-child span {
-	color: #a62326;
+  color: #a62326;
 }
 
 .process-container div span {
-	font-size: 0.75rem;
+	font-size: 0.95rem;
+	margin-top: 10px;
 	color: #666;
 }
 
@@ -94,3 +96,54 @@ section table {
 	text-decoration: underline;
 }
 
+
+
+
+.table-box {
+  width: 90%;
+  margin: 50px auto;
+  background-color: #fff;
+}
+
+
+
+.total-table {
+  width: 90%;
+  margin: 50px auto;
+  padding: 5px;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+.total-table .total-title {
+  width: 50%;
+  float: left;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.total-table .table {
+  width: 50%;
+  float: left;
+}
+.total-table .table tbody tr td:first-child {
+  color: #444;
+}
+.total-table .table tbody tr td:last-child {
+  text-align: end;
+}
+.total-table .table tbody tr.final-pay td {
+  border-top: 1px solid #a62326 !important;
+}
+.total-table .table tbody tr td .product-total {
+  font-size: 1.25rem;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+
+.basket-table input[type="button"] {
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	font-family: gsdr;
+	color: #999;
+}

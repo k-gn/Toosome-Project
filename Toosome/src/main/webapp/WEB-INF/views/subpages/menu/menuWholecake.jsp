@@ -30,7 +30,7 @@
                 <div class="menu-content">
                     <ul id="whole-cake" class="cf">
                         <h3>whole cake</h3>
-                        <li><a href="#"><span>홀케이크1</span></a></li>
+                        <li><a href="/wholecakedetail"><span>홀케이크1</span></a></li>
                         <li><a href="#"><span>홀케이크2</span></a></li>
                         <li><a href="#"><span>홀케이크3</span></a></li>
                         <li><a href="#"><span>홀케이크4</span></a></li>
