@@ -8,6 +8,7 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserService" class="com.web.toosome.security.CustomUserDetailsService" />
 	<bean id="customLoginSuccess" class="com.web.toosome.security.CustomLoginSuccessHandler" />
+	<bean id="customLoginFail" class="com.web.toosome.security.CustomLoginFailHandler" />
 	<bean id="customAccessDenied" class="com.web.toosome.security.CustomAccessDeniedHandler" />
 	
 	<!-- admin -->
@@ -20,6 +21,7 @@
 			login-page="/admin/signin" 
 			login-processing-url="/admin/signin"
 			authentication-success-handler-ref="customLoginSuccess"
+			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
 		<security:logout
@@ -42,6 +44,7 @@
 			login-page="/signin" 
 			login-processing-url="/signin"
 			authentication-success-handler-ref="customLoginSuccess"
+			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
 		<security:logout

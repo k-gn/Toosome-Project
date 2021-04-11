@@ -18,8 +18,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		if(uri.contains("admin")) {
 			System.out.println("accessErrorAdmin");
 			response.sendRedirect("/accessErrorAdmin");
-		}
-		else {
+		} else {
 			System.out.println("accessErrorMember");
 			response.sendRedirect("/accessErrorMember");
 		}
