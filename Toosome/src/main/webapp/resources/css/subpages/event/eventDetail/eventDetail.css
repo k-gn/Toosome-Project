@@ -6,7 +6,8 @@ section {
 	color: #222222;
 	box-sizing: border-box;
 	border: 1px solid #eee;
-	box-shadow: 0 2px 3px #ccc;
+	box-shadow: 0 4px 5px #ccc;
+    background: #fff;
 	margin: 150px auto 70px;
 	padding: 30px;
 }
