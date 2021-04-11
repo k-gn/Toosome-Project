@@ -13,13 +13,13 @@ public interface IBoardNoticeService {
 	public NoticeBoardVO getBoard(NoticeBoardVO noticeboard) throws Exception;
 	
 	//글 추가
-	public void insertNoticeBoardList() throws Exception;
+	public void insertNoticeBoard() throws Exception;
 	
 	//글 업데이트
-	public void update(NoticeBoardVO noticeboard) throws Exception;
+	public void updateNoticeBoard(NoticeBoardVO noticeboard) throws Exception;
 	
 	//글 삭제
-	public void delete(int noticeBoardId) throws Exception;
+	public void deleteNoticeBoard(int noticeBoardId) throws Exception;
 	
 	
 	

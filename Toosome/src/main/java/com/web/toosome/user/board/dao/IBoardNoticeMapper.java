@@ -16,5 +16,10 @@ public interface IBoardNoticeMapper {
 	
 	
 	
-	// 
+	public void updateNoticeBoard(NoticeBoardVO noticeboard) ;
+		
+
+
+	public void deleteNoticeBoard(int noticeBoardId);
+	
 }

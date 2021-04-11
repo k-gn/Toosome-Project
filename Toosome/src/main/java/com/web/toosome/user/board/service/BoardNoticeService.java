@@ -24,20 +24,21 @@ public class BoardNoticeService implements IBoardNoticeService {
 		 return mapper.getNoticeBoard(noticeboard);
 	}
 
+
 	@Override
-	public void insertNoticeBoardList() throws Exception {
+	public void insertNoticeBoard() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(NoticeBoardVO noticeboard) throws Exception {
+	public void updateNoticeBoard(NoticeBoardVO noticeboard) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int noticeBoardId) throws Exception {
+	public void deleteNoticeBoard(int noticeBoardId) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

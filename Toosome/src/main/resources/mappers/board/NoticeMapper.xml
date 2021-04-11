@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<select id="getNoticeBoardList" resultMap="NoticeBoardMap">
-		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD
+		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD
 	</select>
 	
 <!--  <insert id="insertNoticeBoard" resultMap="NoticeBoardMap">
@@ -23,6 +23,10 @@
 	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
 		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}
 	</select>
+	
+	<!--  <update id="updateNoticeBoard" >
+		UPDATE NOTICE_BOARD NOTICE_BOARD_TITLE = #{}, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT SET WHERE NOTICE_BOARD_ID = #{noticeBoardId}
+	</update> -->
 
 
 	
