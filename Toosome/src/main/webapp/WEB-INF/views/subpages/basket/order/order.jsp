@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link rel="stylesheet" href="/resources/css/subpages/basket/order/order.css">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/resources/js/subpages/basket/basket.js" defer></script>
   <script src="/resources/js/subpages/basket/order/order.js"></script>
 <title>A TOOSOME PLACE</title>
