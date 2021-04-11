@@ -42,8 +42,8 @@
 	<!-- 회원 가입 (사용자) -->
 	<insert id="registerMember">
 		INSERT INTO 
-		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS)
-		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1)
+		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_PLATFORM_TYPE)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, #{platFormType})
 	</insert>
 	<insert id="registerMemberAuth">
 		INSERT INTO MEMBER_AUTH

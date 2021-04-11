@@ -21,3 +21,14 @@ function kakaoLogin() {
 // 네이버 키값/ 콜백
 // "wVWBkaEzBLyUAWQGF1Rf",
 //   "http://192.168.35.234:5500/naver-callback.html"
+function loginWithNaver() {
+    $.ajax({
+        url: '/nsignin',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+}
