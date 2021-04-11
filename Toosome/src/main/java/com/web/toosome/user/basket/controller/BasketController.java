@@ -10,5 +10,10 @@ public class BasketController {
 	public String basket() {
 		return "subpages/basket/basket";
 	}
+
+	@GetMapping("/order") // 주문
+	public String order() {
+		return "subpages/basket/order/order";
+	}
 	
 }

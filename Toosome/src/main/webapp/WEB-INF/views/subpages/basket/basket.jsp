@@ -52,7 +52,7 @@
               <td><img src="" alt=""></td>
               <td><span class="name"></span></td>
               <td>
-                <input type="number" min="1" max="10" name="quantity" value="0" id="quantity"/>
+                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
               </td>
               <td>
                 <span class="point"></span>
@@ -64,7 +64,7 @@
                 <span class="total"></span>
               </td>
               <td>
-                <button type="button" onclick="deleteRow(this);">삭제</button>
+                <input type="button" value="X" onclick="deleteRow(this);">
               </td>
             </tr>
 
@@ -73,7 +73,7 @@
               <td><img src="" alt=""></td>
               <td><span class="name"></span></td>
               <td>
-                <input type="number" min="1" max="10" name="quantity" value="0" id="quantity"/>
+                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
               </td>
               <td>
                 <span class="point"></span>
@@ -85,7 +85,7 @@
                 <span class="total"></span>
               </td>
               <td>
-                <button type="button" onclick="deleteRow(this);">삭제</button>
+                <input type="button" value="X" onclick="deleteRow(this);">
               </td>
             </tr>
 
@@ -153,7 +153,7 @@
       <div class="btn-box">
         <button>계속 쇼핑하기</button>
         <button>선택상품구매</button>
-        <button>전체상품구매</button>
+        <button onclick="location.href='/order'">전체상품구매</button>
       </div> 		 	
     </section>
 		<!-- section end -->
