@@ -13,15 +13,18 @@ public class BoardNoticeService implements IBoardNoticeService {
 
 	@Autowired
 	private IBoardNoticeMapper mapper;
+	
 
 	@Override
 	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo) throws Exception {
+		System.out.println(mapper.getNoticeBoardList(vo));
 		return mapper.getNoticeBoardList(vo);
 	}
 
 	@Override
-	public NoticeBoardVO getBoard(NoticeBoardVO noticeboard) throws Exception {
-		 return mapper.getNoticeBoard(noticeboard);
+	public NoticeBoardVO getNoticeBoard(String index) throws Exception {
+		System.out.println(mapper.getNoticeBoard(index)+"서비스"); 			
+		return mapper.getNoticeBoard(index);
 	}
 
 
