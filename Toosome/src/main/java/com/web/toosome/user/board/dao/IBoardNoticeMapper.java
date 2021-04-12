@@ -12,7 +12,7 @@ public interface IBoardNoticeMapper {
 
 	// 해당 글 상세 조회
 	
-	public NoticeBoardVO getNoticeBoard(String index);
+	public List<NoticeBoardVO> getNoticeBoard(String index);
 	
 	
 	

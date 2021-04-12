@@ -60,19 +60,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value ="/notice-detail") //해당 게시물 상세 화면
-	public String noticeDetailView(String index, Model model) throws Exception {
+	public String noticeDetailView(String index) throws Exception {
 		
 		System.out.println("notice-detail 화면 출력: " + index);
-		NoticeBoardVO noticeBoard = noticeBoardService.getNoticeBoard(index);
-		model.addAttribute("noticeBoard",noticeBoard);
+		//NoticeBoardVO noticeBoard = noticeBoardService.getNoticeBoard(index);
+		//model.addAttribute("noticeBoard",noticeBoard);
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 	
 	
 	@GetMapping(value = "/noticedetail", produces = "application/json") // 해당 게시물 조회값
 	@ResponseBody
-	public NoticeBoardVO noticeDetail(String index) throws Exception {	
-		NoticeBoardVO noticeBoard = noticeBoardService.getNoticeBoard(index);
+	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
+		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}

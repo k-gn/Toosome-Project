@@ -10,7 +10,7 @@ public interface IBoardNoticeService {
 	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo) throws Exception;
 
 	//해당글  조회
-	public NoticeBoardVO getNoticeBoard(String index) throws Exception;
+	public List<NoticeBoardVO> getNoticeBoard(String index) throws Exception;
 	
 	//글 추가
 	public void insertNoticeBoard() throws Exception;
