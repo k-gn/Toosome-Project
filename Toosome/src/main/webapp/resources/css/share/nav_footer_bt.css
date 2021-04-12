@@ -12,6 +12,10 @@
   font-family: godic;
   src: url(../../font/a타이틀고딕2.ttf) format('truetype');
 }
+@font-face {
+  font-family: maple;
+  src: url(../../font/Maplestory Light.ttf) format('truetype');
+}
 
 body {
   font-family: '맑은 고딕';
