@@ -12,6 +12,7 @@ public interface IBoardNoticeService {
 	//해당글  조회
 	public List<NoticeBoardVO> getNoticeBoard(String index) throws Exception;
 	
+	
 	//글 추가
 	public void insertNoticeBoard() throws Exception;
 	
@@ -20,6 +21,9 @@ public interface IBoardNoticeService {
 	
 	//글 삭제
 	public void deleteNoticeBoard(int noticeBoardId) throws Exception;
+
+	//글 검색
+	public List<NoticeBoardVO> getSearchNotice(String keyword) throws Exception;
 	
 	
 	

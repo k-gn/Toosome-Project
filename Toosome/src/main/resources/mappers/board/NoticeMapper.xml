@@ -12,6 +12,10 @@
 	
 	</resultMap>
 	
+	<select id="getSearchNotice" resultMap="NoticeBoardMap">
+		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD WHERE NOTICE_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%')
+	
+	</select>
 
 	
 	
