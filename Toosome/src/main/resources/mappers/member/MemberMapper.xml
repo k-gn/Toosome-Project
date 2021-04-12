@@ -33,7 +33,7 @@
 	<!-- 이메일로 회원 조회 -->
 	<select id="getUserByEmail" resultMap="memberMap">
 		SELECT
-		 mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
+		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
 		FROM
 		 MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		WHERE mem.MEMBER_EMAIL = #{memberEmail}
@@ -42,8 +42,8 @@
 	<!-- 회원 가입 (사용자) -->
 	<insert id="registerMember">
 		INSERT INTO 
-		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS)
-		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1)
+		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_PLATFORM_TYPE)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, #{platFormType})
 	</insert>
 	<insert id="registerMemberAuth">
 		INSERT INTO MEMBER_AUTH
@@ -73,5 +73,4 @@
 	<select id="getPassword" resultMap="memberMap">
 		SELECT MEMBER_PASSWORD FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
 	</select>
-	
 </mapper>

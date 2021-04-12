@@ -73,7 +73,7 @@ function chkPoint(amt, pnt, min, unit) {
 
     if (pnt > amt) {
       //결제금액보다 포인트가 더 클 때
-      v_point = amt; //사용할 포인트는 결제금액과 동일하게 설정
+      v_point = amt - (amt % unit); //사용할 포인트는 결제금액과 동일하게 설정
     }
   }
   document.getElementById("use_pnt").value = v_point; //input 값 설정
@@ -85,6 +85,7 @@ function changePoint(amt, pnt, min, unit) {
   //input값을 불러옴 > left_pnt 변경 > 최종결제 변경
   //amt : 최초 결제 금액 / pnt : 사용가능,남은 포인트 / min : 사용 가능 최소 포인트 / unit : 사용단위
   var v_point = parseInt(document.getElementById("use_pnt").value); //사용할 포인트 (input 입력값)
+
   if (v_point > pnt) {
     //입력값이 사용가능 포인트보다 클때
     v_point = pnt;
@@ -112,6 +113,19 @@ function changePoint(amt, pnt, min, unit) {
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
 }
 
+function pointValidate() {
+ var v_point = document.getElementById("use_pnt").value; //사용할 포인트 (input 입력값)
+  if (v_point === '' || isNaN(v_point)) {
+	v_point = 0;
+	document.getElementById("use_pnt").value = v_point; //input 값 재설정
+	document.getElementById("result_pnt").innerHTML = v_point;
+	var v_left = document.getElementsByName("left_pnt"); //사용가능 마일리지, 남은 포인트 값 설정
+    for (var i = 0; i < v_left.length; i++) {
+      v_left[i].innerHTML = v_point; //= 전체 포인트 중에 사용할 포인트빼고 남은 포인트
+    }
+  }
+}
+
 $(function () {
   $("#same").click(function () {
     var same = this.checked;
@@ -125,8 +139,11 @@ $(function () {
 
     if (same == true) {
       $("#order2 form .or2-wrap table input").attr("readonly", true);
+      $("#order2 form .or2-wrap table input").filter("#postText").attr("readonly", false);
     } else {
       $("#order2 form .or2-wrap table input").attr("readonly", false);
     }
   });
+
+  document.getElementById("use_pnt").addEventListener('change', pointValidate);
 });
