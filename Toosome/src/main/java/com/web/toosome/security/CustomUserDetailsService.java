@@ -19,8 +19,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(member == null) {
 			 throw new UsernameNotFoundException("username " + username + " not found");
 		}
-		System.out.println("**************Found user***************");
-		System.out.println("id : " + member.getMemberEmail());
+		if(member.getMemberPassword() == null) {
+			member.setMemberPassword("");
+		}
 		return member == null ? null : new CustomUser(member);
 	}
 }

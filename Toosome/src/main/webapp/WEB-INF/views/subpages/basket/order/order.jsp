@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link rel="stylesheet" href="/resources/css/subpages/basket/order/order.css">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/resources/js/subpages/basket/basket.js" defer></script>
   <script src="/resources/js/subpages/basket/order/order.js"></script>
 <title>A TOOSOME PLACE</title>
@@ -222,7 +223,7 @@
                   배송 유의사항
                 </td>
                 <td>
-                  <input type="text" name="postText" placeholder="예) 부재시 경비실에 맡겨주세요.">
+                  <input type="text" name="postText" id="postText" placeholder="예) 부재시 경비실에 맡겨주세요.">
                 </td>
               </tbody>
             </table>
@@ -241,7 +242,7 @@
                 총 상품금액
               </td>
               <td>
-                <span class="product-pay">944,377,980</span> 원
+                <span class="product-pay">7980</span> 원
               </td>
             </tr>
             <tr>
@@ -254,20 +255,20 @@
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue">944377980</span>원</td>
+              <td><span class="bold txt_blue">7980</span>원</td>
             </tr>
             <tr>
               <td> 포 인 트 </td>
               <td>
                 사용가능 포인트 : <span name="left_pnt">12345678</span>p <span><br/>
-                <input type="checkbox" id="chk_use" onclick="chkPoint(944377980,12345678,3000,100)">&nbsp;포인트 전체 사용</span>
+                <input type="checkbox" id="chk_use" onclick="chkPoint(7980,12345678,3000,100)">&nbsp;포인트 전체 사용</span>
                 <span style="color: #ff0000; font-size: 16px;">(포인트는 최소 3000p부터 100p단위로 사용 가능합니다.)</span>
               </td>
             </tr>
             <tr>
               <td></td>
               <td>
-                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(944377980,12345678,3000,100)"></span> p 
+                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(7980,12345678,3000,100)"></span> p 
                 <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">12345678</span>p )
               </td>
             </tr>
@@ -275,7 +276,7 @@
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">944377980</span> 원</p>
+          <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">7980</span> 원</p>
           <input type="submit" value="결제하기">
         </div>
         

@@ -110,7 +110,7 @@
                 주문 금액
               </td>
               <td>
-                <span class="product-pay">944,377,980</span> 원
+                <span class="product-pay">7,980</span> 원
               </td>
             </tr>
             <tr>
@@ -142,7 +142,7 @@
                 최종 결제 금액
               </td>
               <td>
-                <span class="product-total">944,377,980</span> 원
+                <span class="product-total">7,980</span> 원
               </td>
             </tr>
 
