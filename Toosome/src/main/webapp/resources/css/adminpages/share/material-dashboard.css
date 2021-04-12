@@ -19772,6 +19772,11 @@ Copyright (c) 2015 Daniel Eden
 	cursor: pointer;
 }
 
+.nav .nav-item .sub-nav ul li a {
+	margin: 0;
+	padding: 0;
+}
+
 .display {
 	display: block;
 	opacity: 1;

@@ -35,18 +35,74 @@
                         <tbody>
                           <tr>
                             <td>
-                              <span>검색어</span>
+                              <span><strong>검색어</strong></span>
                             </td>
                             <td>
-                              <select name="searchType">
-                                <option value="all">전체</option>
-                                <option value="id">ID(E-mail)</option>
-                                <option value="name">이름</option>
-                              </select>
+                              <div class="select-box">
+	                              <select name="searchType" class="search-select" id="searchType">
+	                                <option value="all">전체</option>
+	                                <option value="id">ID(E-mail)</option>
+	                                <option value="name">이름</option>
+	                              </select>
+	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                              </div>
                               <input type="text" id="search-text" name="keyword" placeholder="검색어 입력">
                             </td>
                           </tr>
-                          
+                          <tr>
+                            <td>
+                              <span><strong>가입유형</strong></span>
+                            </td>
+                            <td>
+                         	  <div class="select-box">
+	                              <select name="memberType" class="search-select" id="memberType">
+	                                <option value="whole">전체</option>
+	                                <option value="normal">일반회원</option>
+	                                <option value="simple">간편회원</option>
+	                              </select>
+	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><strong>회원가입일</strong></span>
+                            </td>
+                            <td>
+                              <div class="select-box">
+	                              <select name="joinDate" class="search-select" id="joinDate" onchange="changeHandler(this)">
+	                                <option value="total">전체조회</option>
+	                                <option value="use">기간선택</option>
+	                                <option value="notUse">미사용</option>
+	                              </select>
+	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                              </div>
+                              <div id="joinDatePeriod" class="date-picker">
+                              	<button class="period on" value="0">오늘</button>
+                              	<button class="period" value="1w">1주일</button>
+                              	<button class="period" value="1m">1개월</button>
+                              	<button class="period" value="3m">3개월</button>
+                              	<button class="period" value="6m">6개월</button>
+                              	<button class="period" value="1y">1년</button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><strong>최종로그인일</strong></span>
+                            </td>
+                            <td>
+                              <div class="select-box">
+	                              <select name="loginDate" class="search-select" id="loginDate">
+	                                <option value="total">전체</option>
+	                                <option value="use">기간선택</option>
+	                                <option value="notUse">미사용</option>
+	                                <option value="nologin">로그인일자 없는 회원</option>
+	                              </select>
+	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                              </div>
+                            </td>
+                          </tr>          
                         </tbody>
                       </table>
                     </form>
