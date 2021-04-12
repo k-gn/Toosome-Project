@@ -1,5 +1,7 @@
 package com.web.toosome.user.member.dao;
 
+import java.util.Map;
+
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberMapper {
@@ -34,4 +36,6 @@ public interface IMemberMapper {
 	// 비밀번호 찾기 랜덤비밀번호 전송
 	public int getRepassword(MemberVO vo);
 	
+	// 사용자 플랫폼 타입 변경
+	public void updatePlatForm(Map<String, String> map);
 }

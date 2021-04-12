@@ -76,6 +76,22 @@ public class BoardController {
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
+	
+	
+	@GetMapping(value = "/search", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<NoticeBoardVO> searchNotice(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<NoticeBoardVO> searchnotice = noticeBoardService.getSearchNotice(keyword);
+		System.out.println("검색 값넘기기: " +searchnotice);
+		return searchnotice;
+		}else {
+			return null;
+		}
+		
+	}
+	
 
 	@GetMapping("/news")
 	public String news() {

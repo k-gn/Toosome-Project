@@ -18,11 +18,27 @@ function kakaoLogin() {
     },
   });
 }
+*/
+
+function loginWithKakao() {
+  $.ajax({
+     url: '/ksignin',
+       type: 'get',
+       async: false,
+       dataType: 'text',
+       success: function (res) {
+			let _left = (window.screen.width/2) - (500/2);
+   			let _top = (window.screen.height/2) - (500/2);
+			console.log(_left);
+			console.log(_top);
+			window.open(res, 'Toosome', "width=500, height=500, location=no, menubar=no, top=" + _top + ", left=" + _left);
+       }
+   });
+}
 
 // 네이버 키값/ 콜백
 // "wVWBkaEzBLyUAWQGF1Rf",
 //   "http://192.168.35.234:5500/naver-callback.html"
-*/
 
 
 function loginWithNaver() {
@@ -32,7 +48,11 @@ function loginWithNaver() {
         async: false,
         dataType: 'text',
         success: function (res) {
-            location.href = res;
+            let _left = (window.screen.width/2) - (500/2);
+   			let _top = (window.screen.height/2) - (700/2);
+			console.log(_left);
+			console.log(_top);
+			window.open(res, 'Toosome', "width=500, height=700, location=no, menubar=no, top=" + _top + ", left=" + _left);
         }
     });
 }

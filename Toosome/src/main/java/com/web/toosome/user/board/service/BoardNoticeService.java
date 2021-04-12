@@ -27,7 +27,7 @@ public class BoardNoticeService implements IBoardNoticeService {
 		return mapper.getNoticeBoard(index);
 	}
 
-
+	
 	@Override
 	public void insertNoticeBoard() throws Exception {
 		// TODO Auto-generated method stub
@@ -44,6 +44,11 @@ public class BoardNoticeService implements IBoardNoticeService {
 	public void deleteNoticeBoard(int noticeBoardId) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<NoticeBoardVO> getSearchNotice(String keyword) throws Exception{
+		return mapper.getSearchNotice(keyword);
 	}
 	
 

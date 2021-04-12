@@ -15,6 +15,11 @@ public interface IBoardNoticeMapper {
 	public List<NoticeBoardVO> getNoticeBoard(String index);
 	
 	
+	// 글 검색 기능
+	public List<NoticeBoardVO> getSearchNotice(String keyword);
+	
+	
+	
 	
 	public void updateNoticeBoard(NoticeBoardVO noticeboard) ;
 		
