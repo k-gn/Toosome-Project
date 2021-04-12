@@ -56,7 +56,6 @@ public class LoginController {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 로그인 사용자 정보를 읽어온다.
-		String apiResult = naverLoginBO.getUserProfile(oauthToken);
 
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(naverLoginBO.getUserProfile(oauthToken));
@@ -72,7 +71,7 @@ public class LoginController {
 			service.registerMember(member);
 		}
 		loginUtil.loginWithoutForm(email);
-		session.setAttribute("member", email);
+		session.setAttribute("member", member);
 		return "redirect:/";
 	}
 
@@ -94,12 +93,12 @@ public class LoginController {
 	// access denied control
 	@GetMapping("/accessErrorAdmin")
 	public String accessDeniedAdmin(Authentication auth, Model model) {
-		return "adminpages/subpages/login/adminLogin";
+		return "redirect:/";
 	}
 
 	@GetMapping("/accessErrorMember")
 	public String accessDeniedMember(Authentication auth, Model model) {
-		return "subpages/signin/signin";
+		return "redirect:/";
 	}
 
 	// login fail control
