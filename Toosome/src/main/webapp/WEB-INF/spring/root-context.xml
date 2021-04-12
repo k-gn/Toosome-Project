@@ -62,6 +62,7 @@
 	<!-- Mybatis Bean Scan -->
 	<mybatis-spring:scan base-package="com.web.toosome.user.member.dao"/>
 	<mybatis-spring:scan base-package="com.web.toosome.user.board.dao"/>
+	<mybatis-spring:scan base-package="com.web.toosome.user.terms.dao"/>
 	
 	<!-- 트랜잭션 빈 등록 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

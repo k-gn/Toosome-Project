@@ -39,6 +39,9 @@ function loginWithKakao() {
 // 네이버 키값/ 콜백
 // "wVWBkaEzBLyUAWQGF1Rf",
 //   "http://192.168.35.234:5500/naver-callback.html"
+*/
+
+
 function loginWithNaver() {
     $.ajax({
         url: '/nsignin',
@@ -54,3 +57,4 @@ function loginWithNaver() {
         }
     });
 }
+

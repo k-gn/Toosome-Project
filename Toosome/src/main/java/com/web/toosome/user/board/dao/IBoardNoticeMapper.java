@@ -12,9 +12,19 @@ public interface IBoardNoticeMapper {
 
 	// 해당 글 상세 조회
 	
-	public NoticeBoardVO getNoticeBoard(NoticeBoardVO noticeboard);
+	public List<NoticeBoardVO> getNoticeBoard(String index);
+	
+	
+	// 글 검색 기능
+	public List<NoticeBoardVO> getSearchNotice(String keyword);
 	
 	
 	
-	// 
+	
+	public void updateNoticeBoard(NoticeBoardVO noticeboard) ;
+		
+
+
+	public void deleteNoticeBoard(int noticeBoardId);
+	
 }
