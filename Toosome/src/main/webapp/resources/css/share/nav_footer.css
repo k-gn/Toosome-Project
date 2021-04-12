@@ -12,6 +12,10 @@
   font-family: godic;
   src: url(../../font/a타이틀고딕2.ttf) format('truetype');
 }
+@font-face {
+  font-family: maple;
+  src: url(../../font/Maplestory\ Light.ttf) format('truetype');
+}
 
 body {
   font-family: '맑은 고딕';
@@ -469,7 +473,7 @@ header .mobile-nav .m-log li a:hover {
     margin: 0;
     position: absolute;
     top: 20px;
-    right: 0px;
+    right: 80px;
   }
 }
 @media screen and (max-width: 1120px) { 

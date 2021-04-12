@@ -507,7 +507,7 @@
 			console.log("통신 성공!: " + result);
 			if(result === "success") {
 				alert("회원가입에 성공했습니다!");
-				location.href="/signin";
+				location.href="/signupcomplete";
 			} else {
 				alert("회원가입에 실패했습니다!");
 			}

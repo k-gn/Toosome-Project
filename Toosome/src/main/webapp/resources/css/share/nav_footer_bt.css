@@ -12,6 +12,10 @@
   font-family: godic;
   src: url(../../font/a타이틀고딕2.ttf) format('truetype');
 }
+@font-face {
+  font-family: maple;
+  src: url(../../font/Maplestory Light.ttf) format('truetype');
+}
 
 body {
   font-family: '맑은 고딕';
@@ -181,7 +185,7 @@ header .full-cover {
 header .log {
   float: right;
   margin: 24px 80px 0 0;
-  width: 300px;
+  width: 400px;
   height: 21px;
 }
 header .log li {
