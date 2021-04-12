@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberVO{
 	
 	private Integer memberId;
 	private String memberName;
@@ -21,5 +21,4 @@ public class MemberVO {
 	private Date lastLoginDate;
 	private Integer memberRePassword;
 	private List<AuthVO> authList;
-	
 }

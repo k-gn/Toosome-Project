@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.terms.dao.ITermsMapper">
+
+	<resultMap type="termsVO" id="termsMap">
+		<id property="termsId" column="TERMS_ID"/>
+		<result property="termsTitle" column="TERMS_TITLE"/>
+		<result property="termsContent" column="TERMS_CONTENT"/>
+	</resultMap>
+	
+	<select id="getTermsList" resultMap="termsMap">
+		SELECT TERMS_TITLE, TERMS_CONTENT FROM TERMS
+	</select>
+
+</mapper>

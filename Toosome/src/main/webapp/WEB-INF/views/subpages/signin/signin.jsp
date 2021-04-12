@@ -26,7 +26,7 @@
 				<div class="valid">${loginFailMsg}</div>
 				<input type="submit" value="로그인">
 				<div class="login-value">
-					<a class="kaka" onclick="javascript:kakaoLogin()"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
+					<a href="#"><img src="/resources/img/subpages/signin/kakao_login.png" alt=""></a>
 					<!-- 네이버 부분 -->
 					<a class="naver" onclick="loginWithNaver()"><img src="/resources/img/subpages/signin/naver_login.png"/></a>
 				</div>

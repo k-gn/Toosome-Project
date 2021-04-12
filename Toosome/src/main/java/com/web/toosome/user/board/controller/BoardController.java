@@ -51,27 +51,29 @@ public class BoardController {
 	
 	@GetMapping(value = "/noticelist", produces = "application/json") // 게시판 목록 조회값
 	@ResponseBody
-	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO, Model model) throws Exception {
+	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO) throws Exception {
 		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
 		System.out.println(noticeBoardList);
 		return noticeBoardList;
-//		return model.addAttribute("noticeBoardList", noticeBoardList);
-		//System.out.println(model);
-		//return "subpages/notice/notice";
+
 	}
 	
-	@RequestMapping(value ="/noticedetail") //해당 게시물 화면
-	public String noticeDetailView() {
+	@RequestMapping(value ="/notice-detail") //해당 게시물 상세 화면
+	public String noticeDetailView(String index) throws Exception {
+		
+		System.out.println("notice-detail 화면 출력: " + index);
+		//NoticeBoardVO noticeBoard = noticeBoardService.getNoticeBoard(index);
+		//model.addAttribute("noticeBoard",noticeBoard);
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 	
-	@GetMapping(value = "/notice-detail", produces = "application/json") // 해당 게시물 조회값
+	
+	@GetMapping(value = "/noticedetail", produces = "application/json") // 해당 게시물 조회값
 	@ResponseBody
-	public NoticeBoardVO notice(NoticeBoardVO noticeboardVO) throws Exception {
-		System.out.println("공지사항 세부 게시판 네용 보여주기 : Controller");
-		NoticeBoardVO noticeBoard = noticeBoardService.getBoard(noticeboardVO);
-		System.out.println(noticeBoard);
+	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
+		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
+		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
 
@@ -89,12 +91,12 @@ public class BoardController {
 	public String iat() {
 		return "subpages/iat/iat";
 	}
-
+/*
 	@GetMapping("/notice-detail") // notice 상세 페이지
 	public String noticeDetail() {
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
-
+*/
 	@GetMapping("/news-detail")	// news 상세 페이지
 	public String newsDetail() {
 		return "subpages/news/newsDetail/newsDetail";

@@ -19,10 +19,6 @@ public class MemberController {
 	@Autowired
 	private IMemberService service;
 	
-	@GetMapping("/agreement")
-	public String agreement() {
-		return "subpages/agreement/agreement";
-	}
 	
 	@GetMapping("/signup")
 	public String signup() {
@@ -127,4 +123,5 @@ public class MemberController {
 		System.out.println(result.getMemberPassword());
 		return num;
 	}
+	
 }

@@ -12,8 +12,12 @@
 	
 	</resultMap>
 	
+
+	
+	
 	<select id="getNoticeBoardList" resultMap="NoticeBoardMap">
-		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD
+		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD;
+		
 	</select>
 	
 <!--  <insert id="insertNoticeBoard" resultMap="NoticeBoardMap">
@@ -21,9 +25,19 @@
 	
 	</insert> -->
 	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
-		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}
+		
+		<!-- UPDATE NOTICE_BORAD SET NOTICE_BOARD_COUNT = #{noticeBoardCount}+1 WHERE NOTICE_BOARD_ID = #{noticeBoardId} -->
+		<![CDATA[ SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID >= #{index}-1 AND NOTICE_BOARD_ID <= #{index}+1 ]]>
+	<!--   SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = 1; -->
 	</select>
-
-
+	
+	<!--  <update id="updateNoticeBoard" parameterType="hashMap">
+		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = #{}, NOTICE_BOARD_COUTENT = #{}, NOTICE_BOARD_REG_DATE = #{} WHERE NOTICE_BOARD_ID = #{noticeBoardId}
+	</update> -->
+<!--  
+	<delete id="deleteNoticeBoard" parameterType="">
+		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}	
+	</delete>
+-->
 	
 </mapper>
