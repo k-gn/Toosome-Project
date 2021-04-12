@@ -22,7 +22,6 @@ public class KakaoUserInfo {
 	 
 	        try {
 	            final HttpResponse response = client.execute(post);
-	            final int responseCode = response.getStatusLine().getStatusCode();
 	            // JSON 형태 반환값 처리
 	            ObjectMapper mapper = new ObjectMapper();
 	            returnNode = mapper.readTree(response.getEntity().getContent());

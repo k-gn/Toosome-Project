@@ -1,7 +1,7 @@
 package com.web.toosome.user.member.service;
 
 import java.util.HashMap;
-
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +105,15 @@ public class MemberService implements IMemberService {
 		String repass = bCryptPasswordEncoder.encode(vo.getMemberPassword());
 		vo.setMemberPassword(repass);
 		return  mapper.getRepassword(vo);
+	}
+
+	// 플랫폼 타입 변경
+	@Override
+	public void updatePlatForm(String email, String type) {
+		Map<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("type", type);
+		mapper.updatePlatForm(map);
 	}
 
 }
