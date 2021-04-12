@@ -21,6 +21,5 @@ public class LoginController {
 	public String findPwd() { 
 		return "subpages/signin/findPwd/findPwd";
 	}
-	
-	
+
 }

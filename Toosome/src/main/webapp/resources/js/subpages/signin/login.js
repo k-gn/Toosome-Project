@@ -1,3 +1,4 @@
+/*
 // 카카오 키값
 window.Kakao.init("d6137d33ec400707192855ef058d4a62");
 
@@ -21,3 +22,4 @@ function kakaoLogin() {
 // 네이버 키값/ 콜백
 // "wVWBkaEzBLyUAWQGF1Rf",
 //   "http://192.168.35.234:5500/naver-callback.html"
+*/
