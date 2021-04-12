@@ -469,7 +469,7 @@ header .mobile-nav .m-log li a:hover {
     margin: 0;
     position: absolute;
     top: 20px;
-    right: 0px;
+    right: 80px;
   }
 }
 @media screen and (max-width: 1120px) { 
