@@ -21,12 +21,16 @@ const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
 	
-	if(items[1].id === +index) {
+	// 날짜 변환
+	let date = new Date(items[1].noticeBoardRegdate);
+	let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+	
+	if(items[1].noticeBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">${items[1].title}</th>
-			<th colspan="1">${items[1].date}</th>
+			<th colspan="3">${items[1].noticeBoardTitle}</th>
+			<th colspan="1">${newDate}</th>
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);
@@ -34,7 +38,7 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		let contentElement = `
-			<td colspan="4">${items[1].content}</td>
+			<td colspan="4">${items[1].noticeBoardContent}</td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
@@ -49,43 +53,64 @@ const displayDetail = (title, content, items, index) => {
 // 이전글, 다음글 생성 함수
 const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
-	if(items[0].id !== +index + 1) {
+	if(items[0].noticeBoardId !== +index + 1) {
 		let newPrev = `
-			<td colspan="1"><a href="#">이전글</a></td>
+			<td colspan="1">윗글</th>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
-			<td colspan="1"><a href="#">이전글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].title}</a></td>
+			<td colspan="1">윗글</th>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].noticeBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].id !== +index - 1) {
+	if(items[2].noticeBoardId !== +index - 1) {
 		let newNext = `
-			<td colspan="1"><a href="#">다음글</a></td>
+			<td colspan="1">아랫글</td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
-			<td colspan="1"><a href="#">다음글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].title}</a></td>
+			<td colspan="1">아랫글</td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].noticeBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
 };
 
-window.onload = () => {
+// document ready시 실행 
+$(document).ready(() => {
+	// param의 index 빼오기
 	let index = getParam('index');
-	
+	// 게시글 데이터 요청 AJAX
 	$.ajax({
-		url: '/noticedetail',
-		success: (res) => {		
-			displayDetail(detailTitle, detailContent, res, index);
+		url: '/noticedetail?index='+index,
+		success: (res) => {
+			// 데이터 역순		
+			const newRes = res.reverse();
+			// 처음 혹은 마지막 게시물
+			if(newRes.length === 2) {
+				// null data 생성
+				const nullData = {
+					noticeBoardId: null,
+					noticeBoardTitle: null,
+					noticeBoardContent: null,
+					noticeBoardViewCount: null,
+					noticeBoardRegdate: null
+				};
+				// 첫 게시물 
+				if(+newRes[1].noticeBoardId === 1) {
+					newRes.push(nullData);
+				} else { // 마지막 게시물
+					newRes.unshift(nullData);
+				}
+			}
+			displayDetail(detailTitle, detailContent, newRes, index);
 		}
 	});	
-}
+});

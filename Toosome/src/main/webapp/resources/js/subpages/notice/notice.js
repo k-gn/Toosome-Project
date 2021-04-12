@@ -88,8 +88,10 @@ const getPage = () => {
 	$.ajax({
 		url: '/noticelist',
 		success: (res) => {
-			displayList(res, noticeBoard, rows, currentPage);
-			setPagination(res, pagination, rows);			
+			const newRes = res.reverse();
+			
+			displayList(newRes, noticeBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);			
 		}
 	});
 };
