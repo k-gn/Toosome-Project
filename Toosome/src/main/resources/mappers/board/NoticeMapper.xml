@@ -27,7 +27,7 @@
 	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
 		
 		<!-- UPDATE NOTICE_BORAD SET NOTICE_BOARD_COUNT = #{noticeBoardCount}+1 WHERE NOTICE_BOARD_ID = #{noticeBoardId} -->
-		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{index}; 
+		<![CDATA[ SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID >= #{index}-1 AND NOTICE_BOARD_ID <= #{index}+1 ]]>
 	<!--   SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = 1; -->
 	</select>
 	

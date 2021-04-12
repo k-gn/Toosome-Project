@@ -22,7 +22,7 @@ public class BoardNoticeService implements IBoardNoticeService {
 	}
 
 	@Override
-	public NoticeBoardVO getNoticeBoard(String index) throws Exception {
+	public List<NoticeBoardVO> getNoticeBoard(String index) throws Exception {
 		System.out.println(mapper.getNoticeBoard(index)+"서비스"); 			
 		return mapper.getNoticeBoard(index);
 	}
