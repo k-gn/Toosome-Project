@@ -68,7 +68,7 @@ public class LoginController {
 			member.setMemberName(name);
 			member.setPlatFormType("naver");
 			service.registerMember(member);
-		} else if(email.equals(member.getMemberEmail()) && member.getPlatFormType().equals("kakao")) {
+		} else if(email.equals(member.getMemberEmail()) && "kakao".equals(member.getPlatFormType())) {
 			service.updatePlatForm(email, "naver");
 			member = service.getUserByEmail(email);
 		}
@@ -113,7 +113,7 @@ public class LoginController {
 			member.setMemberName(name);
 			member.setPlatFormType("kakao");
 			service.registerMember(member);
-		}else if(email.equals(member.getMemberEmail()) && member.getPlatFormType().equals("naver")) {
+		}else if(email.equals(member.getMemberEmail()) && "naver".equals(member.getPlatFormType())) {
 			service.updatePlatForm(email, "kakao");
 			member = service.getUserByEmail(email);
 		}
