@@ -37,8 +37,10 @@ public class MemberService implements IMemberService {
 	@Transactional
 	@Override
 	public void registerMember(MemberVO member) {
-		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
-		member.setMemberPassword(encodePassword);
+		if(member.getMemberPassword() != null) {
+			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
+			member.setMemberPassword(encodePassword);
+		}
 		mapper.registerMember(member);
 		mapper.registerMemberAuth(member.getMemberEmail());
 	}

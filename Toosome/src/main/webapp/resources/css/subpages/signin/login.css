@@ -104,7 +104,22 @@
 .login-form .login-value .kaka img {
     width: auto;
     height: 50px;
+    cursor: pointer;
 }
+
+.login-form .login-value .naver {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    float: right;
+}
+
+.login-form .login-value .naver img {
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+}
+
 .login-form .login-value > div {
     width: 50%;
     display: flex;
@@ -159,4 +174,10 @@
 .btn-box a:hover {
 	text-decoration: underline;
 	color: #A62326;
+}
+
+.valid {
+	color: red;
+	margin: 10px auto;
+	padding-left: 30px;
 }
