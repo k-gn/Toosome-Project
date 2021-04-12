@@ -12,9 +12,14 @@ public interface IBoardNoticeMapper {
 
 	// 해당 글 상세 조회
 	
-	public NoticeBoardVO getNoticeBoard(NoticeBoardVO noticeboard);
+	public NoticeBoardVO getNoticeBoard(String index);
 	
 	
 	
-	// 
+	public void updateNoticeBoard(NoticeBoardVO noticeboard) ;
+		
+
+
+	public void deleteNoticeBoard(int noticeBoardId);
+	
 }
