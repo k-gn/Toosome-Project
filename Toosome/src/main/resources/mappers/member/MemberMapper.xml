@@ -73,4 +73,9 @@
 	<select id="getPassword" resultMap="memberMap">
 		SELECT MEMBER_PASSWORD FROM MEMBER WHERE MEMBER_PHONE=#{memberPhone}
 	</select>
+	
+	<!-- 플랫폼 타입 변경 -->
+	<update id="updatePlatForm">
+		UPDATE MEMBER SET MEMBER_PLATFORM_TYPE = #{type} WHERE MEMBER_EMAIL = #{email}
+	</update>
 </mapper>

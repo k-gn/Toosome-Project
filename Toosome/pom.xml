@@ -126,6 +126,20 @@
 			<artifactId>spring-security-oauth2-client</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
+		
+		<!-- httpcore -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpcore</artifactId>
+		    <version>4.4.14</version>
+		</dependency>
+		
+		<!-- httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version>
+		</dependency>
 
 		<!-- Spring security -->
 		<dependency>
