@@ -24,6 +24,7 @@
 			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
+		
 		<security:logout
 			logout-url="/dologout"
 			logout-success-url="/admin/signin"
@@ -47,6 +48,7 @@
 			authentication-failure-handler-ref="customLoginFail"
 		/>
 		<security:csrf disabled="false"/> 
+		
 		<security:logout
 			logout-url="/dologout"
 			logout-success-url="/signin"

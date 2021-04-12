@@ -1,13 +1,18 @@
 package com.web.toosome.user.login.controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.web.toosome.user.login.common.LoginUtil;
 import com.web.toosome.user.login.naver.NaverLoginBO;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -27,6 +33,9 @@ public class LoginController {
 
 	@Autowired
 	private IMemberService service;
+	
+	@Autowired
+	private LoginUtil loginUtil;
 
 	@GetMapping("/signin")
 	public String signin() {
@@ -40,6 +49,7 @@ public class LoginController {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		return naverAuthUrl;
 	}
+
 	// naver login proc
 	@GetMapping("/nsignproc")
 	public String naverSignin(Model model, String code, String state, HttpSession session) throws Exception {
@@ -61,7 +71,8 @@ public class LoginController {
 			member.setPlatFormType("naver");
 			service.registerMember(member);
 		}
-		session.setAttribute("member", member.getMemberEmail());
+		loginUtil.loginWithoutForm(email);
+		session.setAttribute("member", email);
 		return "redirect:/";
 	}
 

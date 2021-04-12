@@ -19,6 +19,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(member == null) {
 			 throw new UsernameNotFoundException("username " + username + " not found");
 		}
+		if(member.getMemberPassword() == null) {
+			member.setMemberPassword("");
+		}
 		return member == null ? null : new CustomUser(member);
 	}
 }

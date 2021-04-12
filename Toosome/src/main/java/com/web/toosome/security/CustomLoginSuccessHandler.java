@@ -35,7 +35,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			GrantedAuthority authority= authList.next();
 			if(authority.getAuthority().equals("ROLE_HEAD") | authority.getAuthority().equals("ROLE_ADMIN")) {
 				url="/admin";
-				System.out.println("ADMIN");
 			}
 		}
 		
