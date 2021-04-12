@@ -6,12 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 @Controller
 public class BoardController {
+	@Autowired
+	private IFaqBoardService faqBoardService;
+	
+	@Autowired
+	private IBoardNoticeService noticeBoardService;
+	
+	
+	
 	@GetMapping("/event") // 이벤트 공지 게시판
 	public String event() {
 		return "subpages/event/event";
@@ -22,10 +34,8 @@ public class BoardController {
 		return "subpages/event/eventDetail/eventDetail";
 	}
 	
-	@Autowired
-	private IFaqBoardService faqBoardService;
 	
-	@GetMapping("/faq")
+	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
 		System.out.println("FAQ 내용가져오기 : Controller");
 		List<FaqBoardVO> faqBoardList = faqBoardService.getFaqBoardList(faqBoardVO);
@@ -34,9 +44,35 @@ public class BoardController {
 		return "subpages/faq/faq";
 	}
 
-	@GetMapping("/notice")
-	public String notice() {
+	@RequestMapping(value = "/notice") //게시판 화면
+	public String noticeView() {
 		return "subpages/notice/notice";
+	}
+	
+	@GetMapping(value = "/noticelist", produces = "application/json") // 게시판 목록 조회값
+	@ResponseBody
+	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO, Model model) throws Exception {
+		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
+		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
+		System.out.println(noticeBoardList);
+		return noticeBoardList;
+//		return model.addAttribute("noticeBoardList", noticeBoardList);
+		//System.out.println(model);
+		//return "subpages/notice/notice";
+	}
+	
+	@RequestMapping(value ="/noticedetail") //해당 게시물 화면
+	public String noticeDetailView() {
+		return "subpages/notice/noticeDetail/noticeDetail";
+	}
+	
+	@GetMapping(value = "/notice-detail", produces = "application/json") // 해당 게시물 조회값
+	@ResponseBody
+	public NoticeBoardVO notice(NoticeBoardVO noticeboardVO) throws Exception {
+		System.out.println("공지사항 세부 게시판 네용 보여주기 : Controller");
+		NoticeBoardVO noticeBoard = noticeBoardService.getBoard(noticeboardVO);
+		System.out.println(noticeBoard);
+		return noticeBoard;
 	}
 
 	@GetMapping("/news")

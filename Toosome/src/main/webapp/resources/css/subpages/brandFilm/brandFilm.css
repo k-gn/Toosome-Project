@@ -12,7 +12,8 @@
     max-width: 980px;
     border: 1px solid #eee;
     border-radius: 7px;
-    box-shadow: 0 2px 3px #eee;
+    box-shadow: 0 4px 5px #ccc;
+    background: #fff;
 }
 .brandfilm-container .title-container {
     display: flex;

@@ -9,6 +9,10 @@ public class ProductController {
 	public String product() {
 		return "subpages/product/product";
 	}
+	@GetMapping("/product-detail") // 주문가능한 상품 리스트
+	public String productDetail() {
+		return "subpages/product/productDetail/productDetail";
+	}
 	
 	// Product image & Product event 관련 추가...
 	

@@ -15,16 +15,35 @@ public class BoardNoticeService implements IBoardNoticeService {
 	private IBoardNoticeMapper mapper;
 
 	@Override
-	public List<NoticeBoardVO> getNoticeBoardList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo) throws Exception {
+		return mapper.getNoticeBoardList(vo);
 	}
 
 	@Override
-	public void getBoard(NoticeBoardVO noticeboard) {
+	public NoticeBoardVO getBoard(NoticeBoardVO noticeboard) throws Exception {
+		 return mapper.getNoticeBoard(noticeboard);
+	}
+
+	@Override
+	public void insertNoticeBoardList() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void update(NoticeBoardVO noticeboard) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int noticeBoardId) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+
 	
 	
 	

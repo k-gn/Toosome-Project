@@ -35,13 +35,11 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			GrantedAuthority authority= authList.next();
 			if(authority.getAuthority().equals("ROLE_HEAD") | authority.getAuthority().equals("ROLE_ADMIN")) {
 				url="/admin";
-				System.out.println("ADMIN");
 			}
 		}
 		
 		MemberVO member = mapper.getUserByEmail(authentication.getName());
-		session.setAttribute("member", member);
-		
+		session.setAttribute("member", member.getMemberEmail());
 		response.sendRedirect(url);
 	}
 

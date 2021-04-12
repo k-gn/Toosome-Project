@@ -7,13 +7,21 @@
 		<id property="noticeBoardId" column="NOTICE_BOARD_ID"/>
 		<result property="noticeBoardTitle" column="NOTICE_BOARD_TITLE"/>
 		<result property="noticeBoardContent" column="NOTICE_BOARD_CONTENT"/>
-	 	<result property="noticeBoardView" column="NOTICE_BOARD_VIEW_COUNT"/> 
+	 	<result property="noticeBoardViewCount" column="NOTICE_BOARD_VIEW_COUNT"/> 
 		<result property="noticeBoardRegdate" column="NOTICE_BOARD_REG_DATE"/>
 	
 	</resultMap>
 	
 	<select id="getNoticeBoardList" resultMap="NoticeBoardMap">
-		SELECT * FROM NOTICE_BOARD
+		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_REG_DATE, NOTICE_BOARD_VIEW_COUNT FROM NOTICE_BOARD
+	</select>
+	
+<!--  <insert id="insertNoticeBoard" resultMap="NoticeBoardMap">
+		INSERT INTO NOTICE_BOARD VAULES(#{noticeBoardId}, #{noticeBoardTitle}, #{noticeBoardContent}, #{noticeBoardView}, #{noticeBoardRegdate})
+	
+	</insert> -->
+	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
+		SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}
 	</select>
 
 

@@ -1,29 +1,5 @@
-const pagination = document.getElementById('pagination');
-const noticeBoard = document.getElementById('notice');
-
-// 테스트 데이터
-const originData = [
-	{id: "1", title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "2", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "3", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "4", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "5", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "6", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "7", title: "설 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "8", title: "추석 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "9", title: "성탄절 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "10", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "11", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "12", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "13", title: "여름 휴가 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "14", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "15", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "16", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "17", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "18", title: "연말 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-];
-
-const testData = [...originData].reverse();
+const pagination = document.getElementById('pagination'); // 페이징 처리
+const noticeBoard = document.getElementById('notice'); // 게시판
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
@@ -46,13 +22,17 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < paginatedItems.length; i++) {
 		let item = paginatedItems[i];
+		// 날짜 변환
+		let date = new Date(item.noticeBoardRegdate);
+		let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<tr>
-				<td>${item.id}</td>
-				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.id})">${item.title}</a></td>
-				<td>${item.date}</td>
-				<td>${item.count}</td>
+				<td>${item.noticeBoardId}</td>
+				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.noticeBoardId})">${item.noticeBoardTitle}</a></td>
+				<td>${newDate}</td>
+				<td>${item.noticeBoardViewCount}</td>
 			</tr>
 		`;
 		newItem.innerHTML = itemElement;
@@ -98,6 +78,18 @@ const btnHandler = (e,items,page) => {
 	e.target.classList.add('active');
 };
 
-// event hook
-displayList(testData, noticeBoard, rows, currentPage);
-setPagination(testData, pagination, rows);
+// onload시 AJAX 요청
+$(document).ready(() => {
+	getPage();
+});
+
+// AJAX 요청 함수
+const getPage = () => {
+	$.ajax({
+		url: '/noticelist',
+		success: (res) => {
+			displayList(res, noticeBoard, rows, currentPage);
+			setPagination(res, pagination, rows);			
+		}
+	});
+};

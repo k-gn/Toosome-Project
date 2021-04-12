@@ -45,15 +45,36 @@ $(function () {
     autoplaySpeed: 3000,
   });
 
-  $(".autoplay2").slick({
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  });
+	$(".autoplay2").slick({
+	    dots: false,
+	    infinite: true,
+	    speed: 1000,
+	    slidesToShow: 4,
+	    slidesToScroll: 1,
+	    autoplay: true,
+	    autoplaySpeed: 2000,
+		
+		responsive: [ // 반응형 웹 구현
+			{
+				breakpoint: 1480, // 화면 사이즈 1480px
+				settings: {
+					slidesToShow: 3
+				}
+			},
+			{
+				breakpoint: 1135, // 화면 사이즈 1135px
+				settings: {
+					slidesToShow: 2
+				}
+			},
+			{
+				breakpoint: 770, // 화면 사이즈 770px
+				settings: {
+					slidesToShow: 1
+				}
+			}
+		]
+	});
 
   $('.button-logo a.offbutton').click(function () {
     $(this).css('display', 'none');
@@ -140,7 +161,7 @@ $(function () {
 	pressed.push(e.key);
 	pressed.splice(-code.length - 1, pressed.length - code.length);
 	if(pressed.join('').includes(code)) {
-		document.getElementById('login').href = '/admin';
+		document.getElementById('login').href = '/admin/signin';
 	};
   });
 });

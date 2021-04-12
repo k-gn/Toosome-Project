@@ -20,13 +20,14 @@ body {
 /* start */
 #container {
   width: 100%;
+  overflow: hidden;
 }
 
 #container header {
   width: 100%;
   height: 120px;
   position: fixed;
-  z-index: 999999;
+  z-index: 9999;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -180,7 +181,7 @@ header .full-cover {
 header .log {
   float: right;
   margin: 24px 80px 0 0;
-  width: 300px;
+  width: 400px;
   height: 21px;
 }
 header .log li {
@@ -269,6 +270,7 @@ header .menu-bar {
   z-index: 99;
   top: 0;
   right: 40px;
+  cursor: pointer;
   /* background-color: #333; */
 }
 header .menu-bar .bar {
@@ -322,6 +324,7 @@ header .mobile-nav {
   background-color: #38383b;
   transition: all 0.3s;
   display: none;
+  z-index: 999999999;
 }
 header .mobile-nav.clickNav {
   right: 0;
@@ -354,6 +357,38 @@ header .mobile-nav .m-nav > li > ul {
 
 /* mobile nav end */
 
+/* mobile login start */
+
+
+header .mobile-nav .m-log {
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto;
+  gap: 2px;
+  background-color: #fff;
+}
+header .mobile-nav .m-log li {
+  width: 100%;
+  box-sizing: border-box;
+  /* border: 1px solid #fff; */
+  background-color: #a62326;
+}
+header .mobile-nav .m-log li a {
+  color: #fff;
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+}
+header .mobile-nav .m-log li a:hover {
+  text-decoration: underline;
+}
+
+/* mobile login end */
+
 
 
 
@@ -361,7 +396,7 @@ header .mobile-nav .m-nav > li > ul {
 /******************** footer-start **************************/
 .footer {
   width: 100%;
-  height: 200px;
+  height: 250px;
   padding: 40px 0;
   background-color: #000;
 }
@@ -415,58 +450,6 @@ header .mobile-nav .m-nav > li > ul {
 .footer .foot-cover ul.foot-last li:last-child {
   color: #999;
 }
-.footer .foot-cover .f_sns {
-  width: 210px;
-  height: 30px;
-  position: absolute;
-  top: 35px;
-  right: 40px;
-}
-.footer .foot-cover .f_sns article {
-  float: left;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.footer .foot-cover .f_sns article a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: all 0.4s;
-  background: no-repeat center contain;
-}
-
-.footer .foot-cover .f_sns article.art1 a {
-  background-image: url('../../img/ins.svg');
-}
-.footer .foot-cover .f_sns article.art1 a:hover {
-  background-image: url('../../img/on_ins.svg');
-}
-.footer .foot-cover .f_sns article.art2 a {
-  background-image: url('../../img/fac.svg');
-}
-.footer .foot-cover .f_sns article.art2 a:hover {
-  background-image: url('../../img/on_fac.svg');
-}
-.footer .foot-cover .f_sns article.art3 a {
-  background-image: url('../../img/you.svg');
-}
-.footer .foot-cover .f_sns article.art3 a:hover {
-  background-image: url('../../img/on_you.svg');
-}
-.footer .foot-cover .f_sns article.art4 a {
-  background-image: url('../../img/blo.svg');
-}
-.footer .foot-cover .f_sns article.art4 a:hover {
-  background-image: url('../../img/on_blo.svg');
-}
-.footer .foot-cover .f_sns article.art5 a {
-  background-image: url('../../img/tw.svg');
-}
-.footer .foot-cover .f_sns article.art5 a:hover {
-  background-image: url('../../img/on_tw.svg');
-}
 
 /******************** footer-end ***************************/
 
@@ -476,7 +459,7 @@ header .mobile-nav .m-nav > li > ul {
 /* mobile */
 
 
-@media screen and (max-width: 1430px) { 
+@media screen and (max-width: 1920px) { 
   nav {
     height: 60px;
     margin-top: 60px !important;

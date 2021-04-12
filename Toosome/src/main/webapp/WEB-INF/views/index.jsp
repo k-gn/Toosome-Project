@@ -29,9 +29,9 @@
       <div id="img-wrap" class="img-slide">
         <div class="slide">
           <ul class="slide-imgs cf slider autoplay">
-            <li><img src="/resources/img/1.png" alt="" /></li>
-            <li><img src="/resources/img/2.png" alt="" /></li>
-            <li><img src="/resources/img/3.png" alt="" /></li>
+            <li class="img1"></li>
+            <li class="img2"></li>
+            <li class="img3"></li>
           </ul>
         </div>
       </div>

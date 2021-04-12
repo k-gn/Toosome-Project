@@ -33,14 +33,25 @@ public class MemberService implements IMemberService {
 		return flag;
 	}
 
-	// 회원 등록
+	// 회원 등록 (사용자)
 	@Transactional
 	@Override
-	public void register(MemberVO member) {
+	public void registerMember(MemberVO member) {
+		if(member.getMemberPassword() != null) {
+			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
+			member.setMemberPassword(encodePassword);
+		}
+		mapper.registerMember(member);
+		mapper.registerMemberAuth(member.getMemberEmail());
+	}
+	
+	// 관리자
+	@Override
+	public void registerAdmin(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 		member.setMemberPassword(encodePassword);
-		mapper.register(member);
-		mapper.registerMemberAuth(member.getMemberEmail());
+		mapper.registerAdmin(member);
+		mapper.registerAdminAuth(member.getMemberEmail());
 	}
 	
 	// 이메일로 회원 조회
@@ -95,5 +106,5 @@ public class MemberService implements IMemberService {
 		vo.setMemberPassword(repass);
 		return  mapper.getRepassword(vo);
 	}
-	
+
 }

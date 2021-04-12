@@ -35,6 +35,8 @@
                 </div>
             </div>
         </div>
+        <img class="bg1" src="/resources/img/subpages/brandstory/wondo2.png" alt="#">
+        <img class="bg2" src="/resources/img/subpages/brandstory/wondo3.png" alt="#">
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>

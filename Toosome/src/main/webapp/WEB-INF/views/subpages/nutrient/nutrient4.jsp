@@ -23,10 +23,10 @@
 
       <div class="contents">
         <ul class="menu-tab">
-          <li><a href="#" onclick="location.href='/nutrienta'">디저트</a></li>
-          <li><a href="#" onclick="location.href='/nutrientb'">케이크</a></li>
-          <li><a href="#" onclick="location.href='/nutrientc'">커피 &amp; 음료</a></li>
-          <li class="click"><a href="#" onclick="location.href='/nutrientd'">델리</a></li>
+          <li><a href="/nutrient1">디저트</a></li>
+          <li><a href="/nutrient2">케이크</a></li>
+          <li><a href="/nutrient3">커피 &amp; 음료</a></li>
+          <li class="click"><a href="/nutrient4">델리</a></li>
         </ul>
 
         <div class="search">

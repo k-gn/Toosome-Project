@@ -32,7 +32,7 @@
 
   let isAuthenticated = false; // 인증 여부
   let countdown; // 카운트다운
-  let code;
+  let code; // 인증코드
   
   let csrfTokenValue = $("meta[name='_csrf']").attr("content");
   let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
@@ -184,6 +184,7 @@
       return;
     } else {
       alert('인증번호 인증 성공');
+	  clearInterval(countdown);
       emailAuthForm.style.display = 'none';
       pwd1Form.focus();
     };
@@ -506,7 +507,7 @@
 			console.log("통신 성공!: " + result);
 			if(result === "success") {
 				alert("회원가입에 성공했습니다!");
-				location.href="/signin";
+				location.href="/signupcomplete";
 			} else {
 				alert("회원가입에 실패했습니다!");
 			}

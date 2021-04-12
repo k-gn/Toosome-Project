@@ -6,10 +6,21 @@
   height: 100vh;
   position: relative;
 }
-#img-wrap .slide .slide-imgs li img {
+#img-wrap .slide .slide-imgs li {
   display: block;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+	background: no-repeat center /cover;
+  
+}
+#img-wrap .slide .slide-imgs li.img1 {
+	background-image: url("../../img/1.png");
+}
+#img-wrap .slide .slide-imgs li.img2 {
+	background-image: url("../../img/2.png");
+}
+#img-wrap .slide .slide-imgs li.img3 {
+	background-image: url("../../img/3.png");
 }
 #img-wrap .slide p {
   position: absolute;

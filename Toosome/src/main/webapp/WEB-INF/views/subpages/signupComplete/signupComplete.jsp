@@ -20,8 +20,7 @@
                 <div class="comment">
                     <h2>회원가입이 정상적으로 완료되었습니다.</h2>
                     <h3>로그인 후 이용해주세요.</h3>
-
-                    <a href="#">Log In</a>
+                    <a href="/signin">Log In</a>
                 </div>
             </div>
         </div>

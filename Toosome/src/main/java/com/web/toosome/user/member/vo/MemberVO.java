@@ -20,6 +20,5 @@ public class MemberVO{
 	private Integer status;
 	private Date lastLoginDate;
 	private Integer memberRePassword;
-	private Integer memberEnabled;
 	private List<AuthVO> authList;
 }
