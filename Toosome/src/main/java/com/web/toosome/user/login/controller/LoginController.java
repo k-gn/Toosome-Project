@@ -49,6 +49,7 @@ public class LoginController {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 로그인 사용자 정보를 읽어온다.
+		String apiResult = naverLoginBO.getUserProfile(oauthToken);
 
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(naverLoginBO.getUserProfile(oauthToken));
