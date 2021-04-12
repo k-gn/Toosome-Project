@@ -33,6 +33,11 @@ public class MemberController {
 	public String signupComplete() {
 		return "subpages/signupComplete/signupComplete";
 	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "subpages/myPage/myPage";
+	}
 
 	// 회원가입 시 인증 절차 포함
 	// 회원가입 관련
