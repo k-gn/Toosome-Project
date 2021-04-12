@@ -3,28 +3,6 @@ const detailContent = document.querySelector('#noticeDetail'); // 공지 세부 
 const prev = document.querySelector('.prev'); // 이전글
 const next = document.querySelector('.next'); // 다음글
 
-// 테스트 데이터
-const testData = [
-	{
-		id: null, 
-		title: null, 
-		date: null, 
-		content: null
-	},
-	{
-		id: 18, 
-		title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", 
-		date: "2020-03-25", 
-		content: "안녕하세요. 투썸플레이스입니다. 보다 나은 투썸플레이스 서비스 제공을 위해 시스템 서버 점검을 아래와 같이 진행합니다."
-	},
-	{
-		id: 17, 
-		title: "새해 연휴 투썸플레이스 매장 영업시간 변경 안내", 
-		date: "2020-03-25", 
-		content: "안녕하세요. 투썸플레이스입니다. 보다 나은 투썸플레이스 서비스 제공을 위해 시스템 서버 점검을 아래와 같이 진행합니다."
-	}
-];
-
 // parameter 받아오는 함수
 const getParam = (param) => {
 	let url = location.href;
@@ -104,9 +82,10 @@ const displayLocator = (items, index) => {
 window.onload = () => {
 	let index = getParam('index');
 	
-	/*
-		index로 서버에 해당 게시글 요청
-	*/
-	
-	displayDetail(detailTitle, detailContent, testData, index);
+	$.ajax({
+		url: '/noticedetail',
+		success: (res) => {		
+			displayDetail(detailTitle, detailContent, res, index);
+		}
+	});	
 }

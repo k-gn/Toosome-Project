@@ -265,6 +265,7 @@
       <!-- Footer -->
       <jsp:include page="/WEB-INF/views/adminpages/share/footer/footer.jsp"></jsp:include>
       <!-- End Footer -->
+      </div>
     </div>
   </div>
   <script>
