@@ -25,6 +25,10 @@
         		</nav>
         	</div>
         	<table summary="NoticeDetail" class="notice-table">
+        		<colgroup>
+        			<col width="80%">
+        			<col width="20%">
+        		</colgroup>
         		<thead></thead>
         		<tbody id="noticeDetail"></tbody>
         	</table>
@@ -32,8 +36,14 @@
         		<a href="#" onclick="location.href='/notice'">목록</a>
         	</div>
         	<table summary="NoticeLocator" class="notice-locator">
-        		<tr class="prev"></tr>
-        		<tr class="next"></tr>
+        		<colgroup>
+        			<col width="20%">
+        			<col width="80%">
+        		</colgroup>
+        		<tbody>
+	        		<tr class="prev"></tr>
+	        		<tr class="next"></tr>
+        		</tbody>
         	</table>
         </section>
 		<!-- section end -->
