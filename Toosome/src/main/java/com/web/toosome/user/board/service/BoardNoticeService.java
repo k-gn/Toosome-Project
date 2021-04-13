@@ -50,6 +50,12 @@ public class BoardNoticeService implements IBoardNoticeService {
 	public List<NoticeBoardVO> getSearchNotice(String keyword) throws Exception{
 		return mapper.getSearchNotice(keyword);
 	}
+
+	@Override
+	public void NoticeBoardCount() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 
