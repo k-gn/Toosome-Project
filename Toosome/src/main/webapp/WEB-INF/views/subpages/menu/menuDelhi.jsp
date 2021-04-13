@@ -32,7 +32,7 @@
                     <ul id="delhi" class="cf">
                         <h3>delhi</h3>
                         <c:forEach var="menuDelhiList" items="${menuDelhiList}">
-							<li><a href="/beveragedetail"><img
+							<li><a href="/beveragedetail?menunum=${menuBeverageList.menuId}"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDelhiList.menuImageVO.menuImageRoute}/${menuDelhiList.menuImageVO.menuImageName}.${menuDelhiList.menuImageVO.menuImageExtention}">${menuDelhiList.menuMainTitle}</a></li>
 							<a href="#">${menuDelhiList.menuSubTitle} <span
 								class="com">${menuDelhiList.menuPrice}</span>

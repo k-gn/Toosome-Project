@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.toosome.user.menu.dao.IMenuMapper">
 
-	<resultMap type="menuVO" id="menuMap">
+	<resultMap type="menuVO" id="menuVO">
 		<id property="menuId" column="MENU_ID"/>
 		<result property="menuMainTitle" column="MENU_MAIN_TITLE"/>
 		<result property="menuSubTitle" column="MENU_SUB_TITLE"/>
@@ -27,8 +27,9 @@
 	</resultMap>
 	
 	
-	<select id="getnewList" resultMap="menuMap">
-		SELECT A.MENU_MAIN_TITLE,
+	<select id="getnewList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,
 		 A.MENU_CONTENT,
 		 A.MENU_PRICE,
@@ -38,8 +39,9 @@
 		 FROM MENU A INNER
 		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_NEW=1;
 	</select>
-	<select id="getbeverageList" resultMap="menuMap">
-		SELECT A.MENU_MAIN_TITLE,
+	<select id="getbeverageList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,
 		 A.MENU_CONTENT,
 		 A.MENU_PRICE,
@@ -49,8 +51,9 @@
 		 FROM MENU A INNER
 		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=1;
 	</select>
-	<select id="getdelhiList" resultMap="menuMap">
-		SELECT A.MENU_MAIN_TITLE,
+	<select id="getdelhiList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,
 		 A.MENU_CONTENT,
 		 A.MENU_PRICE,
@@ -60,8 +63,9 @@
 		 FROM MENU A INNER
 		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=2;
 	</select>
-	<select id="getdessertList" resultMap="menuMap">
-		SELECT A.MENU_MAIN_TITLE,
+	<select id="getdessertList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,
 		 A.MENU_CONTENT,
 		 A.MENU_PRICE,
@@ -71,8 +75,9 @@
 		 FROM MENU A INNER
 		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=3;
 	</select>
-	<select id="getwholecaketList" resultMap="menuMap">
-		SELECT A.MENU_MAIN_TITLE,
+	<select id="getwholecaketList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,
 		 A.MENU_CONTENT,
 		 A.MENU_PRICE,
@@ -82,5 +87,16 @@
 		 FROM MENU A INNER
 		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=4;
 	</select>
-
+	<select id="getbeverageDetail" resultMap="menuVO" parameterType="menuVO">
+		SELECT A.MENU_ID,
+		 A.MENU_MAIN_TITLE,
+		 A.MENU_SUB_TITLE,
+		 A.MENU_CONTENT,
+		 A.MENU_PRICE,
+		 B.MENU_IMAGE_NAME,
+		 B.MENU_IMAGE_EXTENTION,
+		 B.MENU_IMAGE_ROUTE
+		 FROM MENU A INNER
+		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
+	</select>
 </mapper>

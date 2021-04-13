@@ -81,4 +81,32 @@ public class MenuService implements IMenuService {
 	public List<MenuVO> getwholecaketList(MenuVO menuVO) {
 		return mapper.getwholecaketList(menuVO);
 	}
+
+	@Override
+	public MenuVO getnewDetail(MenuVO menuVO) {
+		return mapper.getnewDetail(menuVO);
+	}
+
+	@Override
+	public MenuVO getbeverageDetail(MenuVO menuVO) {
+		return mapper.getbeverageDetail(menuVO);
+	}
+
+	@Override
+	public MenuVO getdelhiDetail(MenuVO menuVO) {
+		return mapper.getdelhiDetail(menuVO);
+	}
+
+	@Override
+	public MenuVO getdessertDetail(MenuVO menuVO) {
+		return mapper.getdessertDetail(menuVO);
+	}
+
+	@Override
+	public MenuVO getwholecakeDetail(MenuVO menuVO) {
+		return mapper.getwholecakeDetail(menuVO);
+	}
+
+	
+	
 }
