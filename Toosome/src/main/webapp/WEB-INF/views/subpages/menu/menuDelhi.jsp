@@ -32,11 +32,16 @@
                     <ul id="delhi" class="cf">
                         <h3>delhi</h3>
                         <c:forEach var="menuDelhiList" items="${menuDelhiList}">
-							<li><a href="/menuDetail?menuId=${menuDelhiList.menuId}"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDelhiList.menuImageVO.menuImageRoute}/${menuDelhiList.menuImageVO.menuImageName}.${menuDelhiList.menuImageVO.menuImageExtention}">${menuDelhiList.menuMainTitle}</a></li>
-							<a href="#">${menuDelhiList.menuSubTitle} <span
-								class="com">${menuDelhiList.menuPrice}</span>
-							</a>
+							<li>
+								<a href="/menuDetail?menuId=${menuDelhiList.menuId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDelhiList.menuImageVO.menuImageRoute}/${menuDelhiList.menuImageVO.menuImageName}.${menuDelhiList.menuImageVO.menuImageExtention}" alt="">
+									<span>${menuDelhiList.menuMainTitle}</span> 
+									<div class="pay-box">
+										<span class="com" style="float: left;">${menuDelhiList.menuPrice}</span>
+										<span style="float: left;">&nbsp;원</span>
+									</div>
+								</a>
+							</li>
 						</c:forEach>
                     </ul>
                 </div>

@@ -118,11 +118,11 @@ const searchPlaces = (places, coords) => {
 
   // 장소검색 객체를 통해 키워드로 장소검색 요청
   places.keywordSearch(keyword.value, placeSearchCB, {
-    x: coords.getLng(),
-    y: coords.getLat(),
+    location: coords,
 	radius: 1000,
+	size: 10,
 	sort: kakao.maps.services.SortBy.DISTANCE,
-	useMapBounds: true
+	useMapBounds: false,
   });
 };
 
@@ -138,7 +138,10 @@ const searchHandler = (e) => {
 };
 
 // 검색 결과 목록, 마커 클릭시 장소명을 표출할 인포윈도우
-const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+const infoWindow = new kakao.maps.InfoWindow({ 
+	zIndex: 1,
+	disableAutoPan: true, 
+});
 
 // 검색 결과 목록, 마커를 표출하는 함수
 const displayPlaces = (places) => {
@@ -152,23 +155,20 @@ const displayPlaces = (places) => {
 
   places.map((place, i) => {
     // 마커 생성 후 지도에 표시
-    const placePosition = new kakao.maps.LatLng(place.y, place.x);
-    const marker = addMarker(placePosition, i);
+    let placePosition = new kakao.maps.LatLng(place.y, place.x);
+    let marker = addMarker(placePosition, i);
     // 검색 결과 항목 Element 생성
-    const itemEl = getListItem(i, place);
-
-    // 검색된 장소 기준 지도 범위 재설정
-    // bounds.extend(placePosition);
+    let itemEl = getListItem(i, place);
 
     // 마커, 검색결과 mouseover&out event
-    ((marker, title) => {
-      kakao.maps.event.addListener(marker, 'mouseover', () => {
-        displayInfoWindow(marker, title);
+    ((marker, title, address, tel, url, coords) => {
+      kakao.maps.event.addListener(marker, 'click', () => {
+		infoWindow.close();
+        displayInfoWindow(marker, title, address, tel, url);
+		map.setCenter(coords);
       });
-      kakao.maps.event.addListener(marker, 'mouseout', () => {
-        infoWindow.close();
-      });
-    })(marker, place.place_name);
+    })(marker, place.place_name, place.road_address_name, place.phone, place.place_url, placePosition);
+
 
     fragment.appendChild(itemEl);
   });
@@ -236,24 +236,8 @@ const addMarker = (position, idx) => {
     image: markerImage,
   });
 
-  // 현재위치 중심좌표 구하기
-  let coords = map.getCenter();
-
-  // 마커의 position 구하기
-  const c2 = position;
-  
-  // 현재 중심좌표와 마커의 직선거리 계산
-  const poly = new kakao.maps.Polyline({
-	path: [coords, c2]
-  });
-  const dist = poly.getLength();
-
-  if(dist < 1000) {
-	marker.setMap(map);
-    markers.push(marker);
-  } else {
-	marker.setMap(null);
-  }
+  marker.setMap(map); // 지도 위에 마커를 표출합니다
+  markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 
   return marker;
 };
@@ -296,12 +280,22 @@ const displayPagnition = (pagination) => {
   paginationEl.appendChild(fragment);
 };
 
-// 검색결과 목록, 마커 click event
-const displayInfoWindow = (marker, title) => {
+// 검색결과 목록, 마커 mouseover event
+const displayInfoWindow = (marker, title, address, tel, url) => {
   let content = `
-	<div style="width:auto;height:auto;background:rgba(214, 92, 92, 0.3);padding:10px;z-index:1;text-align:center;border:none;">
-		<img src="/resources/img/logo.png">
-		<p style="font-size:1rem;font-weight:bold;background-color:white;border-radius:5px;margin-top:10px;padding:4px;">${title}</p>
+	<div class="infoWindow">
+		<div class="info-title">
+			<p>${title}</p>		
+		</div>
+		<div class="info-content">
+			<div>
+				<p>${address}</p>
+				<p>${tel}</p>
+			</div>
+			<a href="${url}" target="_blank">
+				<img src="/resources/img/subpages/map/kakao_map.png" alt="#">
+			</a>		
+		</div>
 	</div>
   `;
 
@@ -315,18 +309,6 @@ const removeAllChildNods = (el) => {
     el.removeChild(el.lastChild);
   };
 };
-
-// 중심좌표 바뀔때마다 실행되는 event
-kakao.maps.event.addListener(map, 'dragend', () => {
-  // const level = map.getLevel();
-  // 현재위치 중심좌표 구하기
-  let coords = map.getCenter();
-
-  searchAddrFromCoords(coords.getLng(), coords.getLat(), getAddressName);
-
-  // 키워드로 장소 검색
-  searchPlaces(place, coords);
-});
 
 searchBtn.addEventListener('click', searchHandler);
 
@@ -360,7 +342,7 @@ window.onload = () => {
 		let temp = getParam('address');
 		let searchValue = temp + ' 투썸플레이스';
 		place.keywordSearch(searchValue, placeSearchCB);
-	
+		
 		keyword.value = searchValue;
 	};
 };

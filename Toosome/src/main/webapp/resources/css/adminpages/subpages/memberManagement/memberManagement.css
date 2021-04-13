@@ -31,7 +31,7 @@
 }
 
 .date-picker {
-	display: inline;
+	display: none;
 	margin-left: 30px;
 }
 
@@ -44,6 +44,11 @@
 	border-radius: 10px;
 	background: #fff;
 	cursor: pointer;
+	margin-right: 5px;
+}
+
+.period:focus {
+	outline: none;
 }
 
 .period:hover {

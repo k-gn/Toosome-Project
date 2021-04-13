@@ -13,6 +13,9 @@ public interface IBoardNoticeService {
 	public List<NoticeBoardVO> getNoticeBoard(String index) throws Exception;
 	
 	
+	//글 조회수 증가
+	public int NoticeBoardCount(String index)throws Exception;
+	
 	//글 추가
 	public void insertNoticeBoard() throws Exception;
 	
