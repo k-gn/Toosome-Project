@@ -29,15 +29,27 @@ public class MenuController {
 		return "subpages/menu/menuBeverage";
 	}
 	@GetMapping("/menu-delhi")
-	public String menuDelhi() {
+	public String menuDelhi(MenuVO menuVO, Model model) {
+		System.out.println("델리 메뉴 출력");
+		List<MenuVO> menuDelhiList = menuService.getdelhiList(menuVO);
+		model.addAttribute("menuDelhiList",menuDelhiList);
+		System.out.println(model);
 		return "subpages/menu/menuDelhi";
 	}
 	@GetMapping("/menu-dessert")
-	public String menuDessert() {
+	public String menuDessert(MenuVO menuVO, Model model) {
+		System.out.println("디저트 메뉴 출력");
+		List<MenuVO> menuDessertList = menuService.getdessertList(menuVO);
+		model.addAttribute("menuDessertList",menuDessertList);
+		System.out.println(model);
 		return "subpages/menu/menuDessert";
 	}
 	@GetMapping("/menu-wholecake")
-	public String menuWholecake() {
+	public String menuWholecake(MenuVO menuVO, Model model) {
+		System.out.println("홀케이크 메뉴 출력");
+		List<MenuVO> menuWholecakeList = menuService.getwholecaketList(menuVO);
+		model.addAttribute("menuWholecakeList",menuWholecakeList);
+		System.out.println(model);
 		return "subpages/menu/menuWholecake";
 	}
 
