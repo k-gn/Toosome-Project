@@ -26,7 +26,6 @@
 		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE"/>
 	</resultMap>
 	
-	
 	<select id="getnewList" resultMap="menuMap">
 		SELECT A.MENU_MAIN_TITLE,
 		 A.MENU_SUB_TITLE,

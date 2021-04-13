@@ -47,11 +47,13 @@
       emailForm.style.border = '2px solid red';
       emailErr.innerHTML = '이메일 주소 입력란이 비어있습니다';
       emailErr.style.display = 'block';
+      emailAuthBtn.disabled = true;
     } else if (!emailPattern.test(value)) {
       emailForm.style.border = '2px solid red';
       emailErr.innerHTML = '';
       emailErr.innerHTML = '이메일 주소가 올바르지 않습니다';
       emailErr.style.display = 'block';
+	  emailAuthBtn.disabled = true;
     } else {
       emailForm.style.border = '1px solid #ccc';
       const email = $(".signup-form.email").val();
@@ -70,10 +72,11 @@
 		dataType: "text",
 		success: function(result) {
 			if(result === "OK") {
+				emailAuthBtn.disabled = false;					
 				emailForm.style.border = '2px solid green';
 				$(".validation.email").html("<p style='color:green;'>사용 가능한 이메일 입니다.</p>");	
-				emailAuthBtn.disabled = false;					
 			} else {
+				emailAuthBtn.disabled = true;					
 				emailForm.style.border = '2px solid red';
 				$(".validation.email").html("<p style='color:red;'>이메일이 중복됩니다.</p>");						
 			}

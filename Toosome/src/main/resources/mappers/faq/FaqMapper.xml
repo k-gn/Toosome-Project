@@ -13,6 +13,6 @@
 		SELECT * FROM FAQ_BOARD
 	</select>
 
-
+	
 	
 </mapper>

@@ -10,6 +10,5 @@
 		<typeAlias type="com.web.toosome.user.terms.vo.TermsVO" alias="termsVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuVO" alias="menuVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
-		
 	</typeAliases>
 </configuration>
