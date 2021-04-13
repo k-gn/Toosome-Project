@@ -18,7 +18,7 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">회원정보수정</span>
         </div>
-        <form class="signup-form-container" action="/signup" method="post">
+        <form class="signup-form-container" action="#" method="post">
           
           <div class="signup-wrapper">
             <span>이름</span>
