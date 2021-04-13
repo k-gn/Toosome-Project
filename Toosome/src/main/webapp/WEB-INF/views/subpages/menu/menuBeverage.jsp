@@ -34,7 +34,7 @@
 						<h3>beverage</h3>
 						<c:forEach var="menuBeverageList" items="${menuBeverageList}">
 							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/1.${menuBeverageList.menuImageVO.menuImageExtention}">${menuBeverageList.menuMainTitle}</a></li>
+									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuBeverageList.menuImageVO.menuImageRoute}/${menuBeverageList.menuImageVO.menuImageName}.${menuBeverageList.menuImageVO.menuImageExtention}">${menuBeverageList.menuMainTitle}</a></li>
 							<a href="#">${menuBeverageList.menuSubTitle} <span
 								class="com">${menuBeverageList.menuPrice}</span>
 							</a>
