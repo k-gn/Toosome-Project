@@ -23,21 +23,20 @@ import com.web.toosome.user.menu.vo.MenuVO;
 
 @Service
 public class MenuService implements IMenuService {
-	
+
 	@Autowired
 	private IMenuMapper mapper;
-	
+
 	public int s3Upload(MultipartFile file, String fname) {
 		AmazonS3 amazonS3 = null;
 		String bucket = null;
-		
-		AWSCredentials creds = new BasicAWSCredentials("AKIA2EEFD7LC3HPT4W5F", "HysDDMERwtehAGKvBMK35xeUr2NsM++Bwz66l615");
-		amazonS3 = 
-				AmazonS3ClientBuilder.standard()
-					.withCredentials(new AWSStaticCredentialsProvider(creds))
-					.withRegion(Regions.AP_NORTHEAST_2)       // region
-					.withForceGlobalBucketAccessEnabled(true) // access
-					.build();
+
+		AWSCredentials creds = new BasicAWSCredentials("AKIA2EEFD7LC3HPT4W5F",
+				"HysDDMERwtehAGKvBMK35xeUr2NsM++Bwz66l615");
+		amazonS3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds))
+				.withRegion(Regions.AP_NORTHEAST_2) // region
+				.withForceGlobalBucketAccessEnabled(true) // access
+				.build();
 		bucket = "toosome";
 		TransferManager tm = TransferManagerBuilder.standard().withS3Client(amazonS3).build();
 		PutObjectRequest request;
@@ -47,12 +46,12 @@ public class MenuService implements IMenuService {
 			metadata.setContentType("image/jpeg");
 			request = new PutObjectRequest(bucket, fname, file.getInputStream(), metadata)
 					.withCannedAcl(CannedAccessControlList.PublicRead);
-			//amazonS3.putObject(request);
+			// amazonS3.putObject(request);
 			Upload upload = tm.upload(request);
 			upload.waitForCompletion();
 			return 1;
 		} catch (Exception e) {
-			//TODO Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
 		}
@@ -62,4 +61,25 @@ public class MenuService implements IMenuService {
 	public List<MenuVO> getbeverageList(MenuVO menuVO) {
 		return mapper.getbeverageList(menuVO);
 	}
+
+	@Override
+	public List<MenuVO> getdelhiList(MenuVO menuVO) {
+		return mapper.getdelhiList(menuVO);
+	}
+
+	@Override
+	public List<MenuVO> getdessertList(MenuVO menuVO) {
+		return mapper.getdessertList(menuVO);
+	}
+
+	@Override
+	public List<MenuVO> getwholecaketList(MenuVO menuVO) {
+		return mapper.getwholecaketList(menuVO);
+	}
+
+	@Override
+	public List<MenuVO> getnewList(MenuVO menuVO) {
+		return mapper.getnewList(menuVO);
+	}
+
 }
