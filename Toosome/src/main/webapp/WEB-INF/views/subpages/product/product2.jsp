@@ -20,8 +20,8 @@
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
-            <li class="click"><a href="/product">전체</a></li>
-            <li><a href="/product2">커피상품</a></li>
+            <li><a href="/product">전체</a></li>
+            <li class="click"><a href="/product2">커피상품</a></li>
             <li><a href="/product3">커피웨어/기타</a></li>
             <li><a href="/product4">기프트세트</a></li>
           </ul>
@@ -29,60 +29,6 @@
     	
         <div class="product-box">
           <ul class="all">
-            <li>
-              <a href="/product-detail">
-                <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
-                <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
-                <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
-				  <span style="float: left;">&nbsp;원</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
-                <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
-                <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
-				  <span style="float: left;">&nbsp;원</span>
-                </div>
-                
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
-                <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
-                <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
-				  <span style="float: left;">&nbsp;원</span>
-                </div>
-                
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
-                <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
-                <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
-				  <span style="float: left;">&nbsp;원</span>
-                </div>
-                
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="/resources/img/subpages/product/2514_small_img.txt" alt="">
-                <span>투썸 에이리스트 캡슐커피 버라이어티 키프트 팩</span>
-                <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
-				  <span style="float: left;">&nbsp;원</span>
-                </div>
-                
-              </a>
-            </li>
             <li>
               <a href="#">
                 <img src="/resources/img/subpages/product/choco_small_img.txt" alt="">
