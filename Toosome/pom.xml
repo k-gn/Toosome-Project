@@ -141,6 +141,15 @@
 		    <version>4.5.13</version>
 		</dependency>
 
+		<!-- aws-java-sdk-s3 -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.996</version>
+		</dependency>
+
+
+
 		<!-- Spring security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -273,7 +282,7 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-	
+
 
 
 

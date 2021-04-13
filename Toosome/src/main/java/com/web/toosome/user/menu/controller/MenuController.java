@@ -1,29 +1,59 @@
 package com.web.toosome.user.menu.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.web.toosome.user.menu.service.IMenuService;
+import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
 public class MenuController {
+	
+	@Autowired
+	private IMenuService menuService;
   
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망 
-	public String menuNew() {
+	public String menuNew(MenuVO menuVO, Model model) {
+		System.out.println("신메뉴 출력");
+		List<MenuVO> menuNewList = menuService.getnewList(menuVO);
+		model.addAttribute("menuNewList",menuNewList);
+		System.out.println(model);
 		return "subpages/menu/menuNew";
 	}
 	@GetMapping("/menu-beverage")
-	public String menuBeverage() {
+	public String menuBeverage(MenuVO menuVO, Model model) {
+		System.out.println("음료 메뉴 출력");
+		List<MenuVO> menuBeverageList = menuService.getbeverageList(menuVO);
+		model.addAttribute("menuBeverageList",menuBeverageList);
+		System.out.println(model);
 		return "subpages/menu/menuBeverage";
 	}
 	@GetMapping("/menu-delhi")
-	public String menuDelhi() {
+	public String menuDelhi(MenuVO menuVO, Model model) {
+		System.out.println("델리 메뉴 출력");
+		List<MenuVO> menuDelhiList = menuService.getdelhiList(menuVO);
+		model.addAttribute("menuDelhiList",menuDelhiList);
+		System.out.println(model);
 		return "subpages/menu/menuDelhi";
 	}
 	@GetMapping("/menu-dessert")
-	public String menuDessert() {
+	public String menuDessert(MenuVO menuVO, Model model) {
+		System.out.println("디저트 메뉴 출력");
+		List<MenuVO> menuDessertList = menuService.getdessertList(menuVO);
+		model.addAttribute("menuDessertList",menuDessertList);
+		System.out.println(model);
 		return "subpages/menu/menuDessert";
 	}
 	@GetMapping("/menu-wholecake")
-	public String menuWholecake() {
+	public String menuWholecake(MenuVO menuVO, Model model) {
+		System.out.println("홀케이크 메뉴 출력");
+		List<MenuVO> menuWholecakeList = menuService.getwholecaketList(menuVO);
+		model.addAttribute("menuWholecakeList",menuWholecakeList);
+		System.out.println(model);
 		return "subpages/menu/menuWholecake";
 	}
 
