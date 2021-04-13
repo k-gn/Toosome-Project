@@ -29,8 +29,8 @@ public class NewsBoardService implements INewsBoardService {
 
 	@Override
 	public List<NewsBoardVO> getSearchNews(String keyword) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("뉴스 검색기능 : " + mapper.getSearchNews(keyword));
+		return mapper.getNewsBoard(keyword);
 	}
 
 }

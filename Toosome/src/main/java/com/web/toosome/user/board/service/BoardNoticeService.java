@@ -52,8 +52,8 @@ public class BoardNoticeService implements IBoardNoticeService {
 	}
 
 	@Override
-	public void NoticeBoardCount() throws Exception {
-		// TODO Auto-generated method stub
+	public int NoticeBoardCount(String index) throws Exception {
+		return mapper.NoticeBoardCount(index);
 		
 	}
 	
