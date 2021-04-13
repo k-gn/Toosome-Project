@@ -35,6 +35,11 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
+	@GetMapping("/memberupdate")
+	public String memberupdate() {
+		return "subpages/myPage/memberUpdate/memberUpdate";
+	}
+
 	// 회원가입 시 인증 절차 포함
 	// 회원가입 관련
 	@PostMapping("/signup")
