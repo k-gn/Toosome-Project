@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- 우편번호 api -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/resources/js/subpages/myPage/memberUpdate/memberUpdate.js" defer></script>
+  <script src="/resources/js/subpages/signup/signup.js" defer></script>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
