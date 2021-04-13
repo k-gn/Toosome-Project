@@ -19,7 +19,7 @@ public interface IBoardNoticeMapper {
 	public List<NoticeBoardVO> getSearchNotice(String keyword);
 	
 	//조회수 업데이트 기능
-	public void NoticeBoardCount(String index);
+	public int NoticeBoardCount(String index);
 	
 	
 	

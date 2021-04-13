@@ -9,5 +9,7 @@ public interface INewsBoardMapper {
 	public List<NewsBoardVO> getNewsBoardList(NewsBoardVO vo);
 	
 	public List<NewsBoardVO> getNewsBoard(String index);
+	
+	public List<NewsBoardVO> getSearchNews(String keyword);
 
 }

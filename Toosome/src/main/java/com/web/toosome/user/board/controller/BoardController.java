@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -78,13 +77,16 @@ public class BoardController {
 	@GetMapping(value = "/noticedetail", produces = "application/json") // 해당 게시물 조회값
 	@ResponseBody
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
+		
+		int count = noticeBoardService.NoticeBoardCount(index);
+		System.out.println(count);
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
 	
 	
-	@GetMapping(value = "/search", produces = "application/json") // 게시판 검색기능
+	@GetMapping(value = "/noticesearch", produces = "application/json") // 게시판 검색기능
 	@ResponseBody
 	public List<NoticeBoardVO> searchNotice(String keyword) throws Exception {	
 		
@@ -111,6 +113,21 @@ public class BoardController {
 		System.out.println(newsboard);
 		return newsboard;
 	}
+	
+	@GetMapping(value = "/newssearch", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<NewsBoardVO> searchNews(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<NewsBoardVO> searchnews = newsBoardService.getSearchNews(keyword);
+		System.out.println("검색 값넘기기: " +searchnews);
+		return searchnews;
+		}else {
+			return null;
+		}
+		
+	}
+	
 	
 	@GetMapping("/qna")
 	public String qna() {

@@ -14,7 +14,7 @@ public interface IBoardNoticeService {
 	
 	
 	//글 조회수 증가
-	public void NoticeBoardCount()throws Exception;
+	public int NoticeBoardCount(String index)throws Exception;
 	
 	//글 추가
 	public void insertNoticeBoard() throws Exception;
