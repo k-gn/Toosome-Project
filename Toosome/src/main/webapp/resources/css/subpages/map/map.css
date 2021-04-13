@@ -205,3 +205,41 @@
   cursor: default;
   color: #777;
 }
+
+.infoWindow {
+	width: 100%;
+	height: 100%;
+}
+
+.info-title {
+	padding: 10px;
+	background: #a62326;
+	color: white;
+	text-align: center;
+}
+
+.info-title p {
+	white-space: pre;
+	font-family: gsdr;
+	font-size: 0.9375rem;
+}
+
+.info-content {
+	display: flex;
+	justify-content: space-around;
+	height: auto;
+	padding: 10px;
+	text-align: center;
+}
+
+.info-content p {
+	font-size: 0.6875rem;
+	color: #666;
+	margin-bottom: 5px;
+	margin-right: 10px;
+}
+
+.info-content a img {
+	width: 30px;
+	height: 30px;
+}
