@@ -22,9 +22,7 @@ public class LoginUtil {
 
 	public void loginWithoutForm(String email) {
 		MemberVO member = service.getUserByEmail(email);
-		System.out.println(member);
 		String roleStr = member.getAuthList().get(0).getMemberAuth();
-		System.out.println(roleStr);
 		List<GrantedAuthority> roles = new ArrayList<>(1);
 		roles.add(new SimpleGrantedAuthority(roleStr));
 		Authentication auth = new UsernamePasswordAuthenticationToken(member, null, roles);
