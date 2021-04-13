@@ -31,11 +31,11 @@
                 <div class="menu-content">
                     <ul id="whole-cake" class="cf">
                         <h3>whole cake</h3>
-                        <c:forEach var="getwholecaketList" items="${getwholecaketList}">
+                        <c:forEach var="menuWholecakeList" items="${menuWholecakeList}">
 							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${getwholecaketList.menuImageVO.menuImageRoute}/${getwholecaketList.menuImageVO.menuImageName}.${getwholecaketList.menuImageVO.menuImageExtention}">${getwholecaketList.menuMainTitle}</a></li>
-							<a href="#">${getwholecaketList.menuSubTitle} <span
-								class="com">${getwholecaketList.menuPrice}</span>
+									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}">${menuWholecakeList.menuMainTitle}</a></li>
+							<a href="#">${menuWholecakeList.menuSubTitle} <span
+								class="com">${menuWholecakeList.menuPrice}</span>
 							</a>
 						</c:forEach>
                     </ul>

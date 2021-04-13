@@ -58,6 +58,11 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
+	public List<MenuVO> getnewList(MenuVO menuVO) {
+		return mapper.getnewList(menuVO);
+	}
+	
+	@Override
 	public List<MenuVO> getbeverageList(MenuVO menuVO) {
 		return mapper.getbeverageList(menuVO);
 	}
@@ -76,10 +81,4 @@ public class MenuService implements IMenuService {
 	public List<MenuVO> getwholecaketList(MenuVO menuVO) {
 		return mapper.getwholecaketList(menuVO);
 	}
-
-	@Override
-	public List<MenuVO> getnewList(MenuVO menuVO) {
-		return mapper.getnewList(menuVO);
-	}
-
 }

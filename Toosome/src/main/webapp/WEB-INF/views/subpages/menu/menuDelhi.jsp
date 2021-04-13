@@ -31,11 +31,11 @@
                 <div class="menu-content">
                     <ul id="delhi" class="cf">
                         <h3>delhi</h3>
-                        <c:forEach var="getdelhiList" items="${getdelhiList}">
+                        <c:forEach var="menuDelhiList" items="${menuDelhiList}">
 							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${getdelhiList.menuImageVO.menuImageRoute}/${getdelhiList.menuImageVO.menuImageName}.${getdelhiList.menuImageVO.menuImageExtention}">${getdelhiList.menuMainTitle}</a></li>
-							<a href="#">${getdelhiList.menuSubTitle} <span
-								class="com">${getdelhiList.menuPrice}</span>
+									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDelhiList.menuImageVO.menuImageRoute}/${menuDelhiList.menuImageVO.menuImageName}.${menuDelhiList.menuImageVO.menuImageExtention}">${menuDelhiList.menuMainTitle}</a></li>
+							<a href="#">${menuDelhiList.menuSubTitle} <span
+								class="com">${menuDelhiList.menuPrice}</span>
 							</a>
 						</c:forEach>
                     </ul>

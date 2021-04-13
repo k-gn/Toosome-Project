@@ -17,7 +17,11 @@ public class MenuController {
 	private IMenuService menuService;
   
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망 
-	public String menuNew() {
+	public String menuNew(MenuVO menuVO, Model model) {
+		System.out.println("신메뉴 출력");
+		List<MenuVO> menuNewList = menuService.getnewList(menuVO);
+		model.addAttribute("menuNewList",menuNewList);
+		System.out.println(model);
 		return "subpages/menu/menuNew";
 	}
 	@GetMapping("/menu-beverage")
