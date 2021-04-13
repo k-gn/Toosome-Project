@@ -8,6 +8,6 @@
 		<typeAlias type="com.web.toosome.user.board.vo.NoticeBoardVO" alias="noticeBoardVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.FaqBoardVO" alias="faqBoardVO"/>
 		<typeAlias type="com.web.toosome.user.terms.vo.TermsVO" alias="termsVO"/>
-		
+		<typeAlias type="com.web.toosome.user.board.vo.NewsBoardVO" alias="newsBoardVO"/>
 	</typeAliases>
 </configuration>
