@@ -43,11 +43,11 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<tr>
-				<td>${item.id}</td>
-				<td><a href="#" onclick="locateNewsDetail(${item.id})"><img class="img" src="${item.img}"></a></td>
-				<td class="left"><a href="#" onclick="locateNewsDetail(${item.id})">${item.title}</a></td>
+				<td>${item.newsBoardId}</td>
+				<td><a href="#" onclick="locateNewsDetail(${item.newsBoardId})"><img class="img" src="${item.newsBoardImageRoute+item.newsBoardImageName}.${item.newsBoardImageExtention}"></a></td>
+				<td class="left"><a href="#" onclick="locateNewsDetail(${item.newsBoardId})">${item.newsBoardTitle}</a></td>
 				<td>${newDate}</td>
-				<td>${item.count}</td>
+				<td>${item.newsBoardViewCount}</td>
 			</tr>
 		`;
 		newItem.innerHTML = itemElement;
