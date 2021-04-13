@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.menu.dao.IMenuMapper">
+
+	<resultMap type="menuVO" id="menuMap">
+		<id property="menuId" column="MENU_ID"/>
+		<result property="menuMainTitle" column="MENU_MAIN_TITLE"/>
+		<result property="menuSubTitle" column="MENU_SUB_TITLE"/>
+		<result property="menuContent" column="MENU_CONTENT"/>
+		<result property="menuPrice" column="MENU_PRICE"/>
+		<result property="menuType" column="MENU_TYPE"/>
+		<result property="menuRegDate" column="MENU_REG_DATE"/>
+		<result property="menuStartDay" column="MENU_START_DAY"/>
+		<result property="menuCheckCount" column="MENU_CHECK_COUNT"/>
+		<result property="menuState" column="MENU_STATE"/>
+		<result property="menuNew" column="MENU_NEW"/>
+		<collection property="menuImageVO" resultMap="menuImageVO"/>
+	</resultMap>
+
+	<resultMap type="menuImageVO" id="menuImageVO">
+		<result property="menuImageId" column="MENU_IMAGE_ID"/>
+		<result property="menuMenuId" column="MENU_MENU_ID"/>
+		<result property="menuImageName" column="MENU_IMAGE_NAME"/>
+		<result property="menuImageExtention" column="MENU_IMAGE_EXTENTION"/>
+		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE"/>
+	</resultMap>
+	
+	<select id="getbeverageList" resultMap="menuMap">
+		SELECT A.MENU_MAIN_TITLE,
+		 A.MENU_SUB_TITLE,
+		 A.MENU_CONTENT,
+		 A.MENU_PRICE,
+		 B.MENU_IMAGE_NAME,
+		 B.MENU_IMAGE_EXTENTION,
+		 B.MENU_IMAGE_ROUTE
+		 FROM MENU A INNER
+		 JOIN MENU_IMAGE B ON A.MENU_ID = B.MENU_MENU_ID;
+	</select>
+
+</mapper>

@@ -1,17 +1,31 @@
 package com.web.toosome.user.menu.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.web.toosome.user.menu.service.IMenuService;
+import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
 public class MenuController {
+	
+	@Autowired
+	private IMenuService menuService;
   
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망 
 	public String menuNew() {
 		return "subpages/menu/menuNew";
 	}
 	@GetMapping("/menu-beverage")
-	public String menuBeverage() {
+	public String menuBeverage(MenuVO menuVO, Model model) {
+		System.out.println("음료 메뉴 출력");
+		List<MenuVO> menuBeverageList = menuService.getbeverageList(menuVO);
+		model.addAttribute("menuBeverageList",menuBeverageList);
+		System.out.println(model);
 		return "subpages/menu/menuBeverage";
 	}
 	@GetMapping("/menu-delhi")
