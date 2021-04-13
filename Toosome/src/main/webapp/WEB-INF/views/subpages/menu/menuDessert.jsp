@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,13 @@
                 <div class="menu-content">
                     <ul id="dessert" class="cf">
                         <h3>dessert</h3>
-                        <li><a href="/dessertdetail"><span>디저트1</span></a></li>
-                        <li><a href="#"><span>디저트2</span></a></li>
-                        <li><a href="#"><span>디저트3</span></a></li>
-                        <li><a href="#"><span>디저트4</span></a></li>
-                        <li><a href="#"><span>디저트5</span></a></li>
+                        <c:forEach var="menuDessertList" items="${menuDessertList}">
+							<li><a href="/beveragedetail"><img
+									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDessertList.menuImageVO.menuImageRoute}/${menuDessertList.menuImageVO.menuImageName}.${menuDessertList.menuImageVO.menuImageExtention}">${menuDessertList.menuMainTitle}</a></li>
+							<a href="#">${menuDessertList.menuSubTitle} <span
+								class="com">${menuDessertList.menuPrice}</span>
+							</a>
+						</c:forEach>
                     </ul>
                 </div>
             </div>
