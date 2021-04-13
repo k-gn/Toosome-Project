@@ -20,8 +20,10 @@
           <li>TOOSOME a-LIST CAPSULE COFFEE VARIETY GIFT PACK</li>
           <li class="strong">투썸 에이리스트 캡슐커피 버라이어티 기프트팩</li>
           <li class="title-text">투썸의 노하우로 만들어진 3가지 원두를 모두 즐길 수 있는 시즌한정 버라이어티팩</li>
+          <li class="product-pay"><span>1000 원</span></li>
           <li class="order-btn">
-            <input type="button" value="온라인주문">
+            <input type="button" class="online" value="온라인주문">
+            <input type="button" class="basket" value="장바구니 담기">
           </li>
         </ul>
         
