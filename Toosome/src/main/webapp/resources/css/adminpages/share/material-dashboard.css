@@ -3587,11 +3587,10 @@ tbody.collapse.show {
 }
 
 .dropdown-menu {
-  position: absolute;
+  /* position: absolute;
   top: 100%;
-  left: 0;
+  left: 0; */
   z-index: 1000;
-  display: none;
   float: left;
   min-width: 10rem;
   padding: 0.5rem 0;
@@ -14708,7 +14707,7 @@ h2.title {
   color: #555;
 }
 
-.dropdown-menu {
+/* .dropdown-menu {
   display: none;
   padding: 0.3125rem 0;
   border: 0;
@@ -14718,7 +14717,7 @@ h2.title {
   will-change: transform, opacity;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
+} */
 
 .dropdown-menu.showing {
   animation-name: bmd-dropdown-animation;
@@ -14893,7 +14892,7 @@ a[aria-expanded="true"] .caret,
   }
 }
 
-.dropdown-menu.bootstrap-datetimepicker-widget {
+/* .dropdown-menu.bootstrap-datetimepicker-widget {
   opacity: 0;
   transform: scale(0);
   transition-duration: 0.3s;
@@ -14911,7 +14910,7 @@ a[aria-expanded="true"] .caret,
   opacity: 1;
   transform: scale(1);
   top: 0;
-}
+} */
 
 .togglebutton {
   vertical-align: middle;
@@ -19659,10 +19658,10 @@ Copyright (c) 2015 Daniel Eden
     border-top-color: white;
   }
 
-  .dropdown-menu {
+/*   .dropdown-menu {
     display: none;
   }
-
+ */
   .navbar-fixed-top {
     -webkit-backface-visibility: hidden;
   }

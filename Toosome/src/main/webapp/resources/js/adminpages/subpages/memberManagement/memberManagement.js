@@ -28,5 +28,20 @@ periods.forEach((period) => {
 		e.preventDefault();
 		removeOn();
 		period.classList.toggle('on');
-	})
-})
+	});
+});
+
+// 기간선택 달력 Jquery
+$(document).ready(() => {
+	$('#datetimepicker1').datetimepicker({ format: 'L'});
+	$('#datetimepicker2').datetimepicker({ 
+		format: 'L',
+		useCurrent: false
+	});
+	$("#datetimepicker1").on("change.datetimepicker", function (e) {
+		$('#datetimepicker2').datetimepicker('minDate', e.date);
+	});
+	$("#datetimepicker2").on("change.datetimepicker", function (e) {
+		$('#datetimepicker1').datetimepicker('maxDate', e.date);
+	}); 
+}); 
