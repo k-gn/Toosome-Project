@@ -34,7 +34,7 @@
 					<ul id="beverage" class="cf">
 						<c:forEach var="menuBeverageList" items="${menuBeverageList}">
 							<li>
-								<a href="/beveragedetail">
+								<a href="/menuDetail?menuId=${menuBeverageList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuBeverageList.menuImageVO.menuImageRoute}/${menuBeverageList.menuImageVO.menuImageName}.${menuBeverageList.menuImageVO.menuImageExtention}" alt="">
 									<span>${menuBeverageList.menuMainTitle}</span> 
 									<div class="pay-box">

@@ -77,32 +77,15 @@ public class MenuController {
 	public String nutrient4() {
 		return "subpages/nutrient/nutrient4";
 	}
-
-	@GetMapping("/beveragedetail") // menu Detail page
-	public String beverageDetail() {
-		return "subpages/menu/beverageDetail/beverageDetail";
-	}
-
-	@GetMapping("/delhidetail") // menu Detail page
-	public String delhiDetail() {
-		return "subpages/menu/delhiDetail/delhiDetail";
-	}
-
-	@GetMapping("/dessertdetail") // menu Detail page
-	public String dessertDetail() {
-		return "subpages/menu/dessertDetail/dessertDetail";
-	}
-
-	@GetMapping("/newdetail") // menu Detail page
-	public String newDetail() {
-		return "subpages/menu/newDetail/newDetail";
-	}
-
-	@GetMapping("/wholecakedetail") // menu Detail page
-	public String wholecakeDetail() {
-		return "subpages/menu/wholecakeDetail/wholecakeDetail";
-	}
 	
+	@GetMapping("/menuDetail") // menu Detail page
+	public String beverageDetail(MenuVO menuVO, Model model) {
+		System.out.println("음료 메뉴 디테일 출력");
+		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
+		model.addAttribute("menubeverageDetail",menubeverageDetail);
+		System.out.println(model);
+		return "subpages/menu/menuDetail/menuDetail";
+	}
 
 
 	// Menu Order & Menu Refund

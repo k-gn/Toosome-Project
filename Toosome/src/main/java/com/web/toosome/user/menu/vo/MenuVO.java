@@ -1,7 +1,6 @@
 package com.web.toosome.user.menu.vo;
 
 import java.sql.Date;
-import java.util.List;
 
 import lombok.Data;
 
@@ -19,5 +18,6 @@ public class MenuVO {
 	private Integer menuState;
 	private Integer menuNew;
 	private MenuImageVO menuImageVO;
+	private IatVO iatVO;
 	
 }
