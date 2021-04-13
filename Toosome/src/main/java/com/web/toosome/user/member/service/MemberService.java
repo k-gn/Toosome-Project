@@ -36,22 +36,25 @@ public class MemberService implements IMemberService {
 	// 회원 등록 (사용자)
 	@Transactional
 	@Override
-	public void registerMember(MemberVO member) {
+	public int registerMember(MemberVO member) {
 		if(member.getMemberPassword() != null) {
 			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 			member.setMemberPassword(encodePassword);
 		}
-		mapper.registerMember(member);
+		int result = mapper.registerMember(member);
 		mapper.registerMemberAuth(member.getMemberEmail());
+		return result;
 	}
 	
 	// 관리자
+	@Transactional
 	@Override
-	public void registerAdmin(MemberVO member) {
+	public int registerAdmin(MemberVO member) {
 		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 		member.setMemberPassword(encodePassword);
-		mapper.registerAdmin(member);
+		int result = mapper.registerAdmin(member);
 		mapper.registerAdminAuth(member.getMemberEmail());
+		return result;
 	}
 	
 	// 이메일로 회원 조회
@@ -114,6 +117,18 @@ public class MemberService implements IMemberService {
 		map.put("email", email);
 		map.put("type", type);
 		mapper.updatePlatForm(map);
+	}
+
+	// 아이디로 회원 정보 조회
+	@Override
+	public MemberVO getUserById(int id) {
+		return mapper.getUserById(id);
+	}
+
+	// 회원정보 수정
+	@Override
+	public int updateMember(MemberVO vo) {
+		return mapper.updateMember(vo);
 	}
 
 }

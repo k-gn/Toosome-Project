@@ -482,7 +482,7 @@
 	const birth = $(".signup-form.year").val() + "-" + $(".signup-form.month").val() + "-" + $(".signup-form.date").val();
 	const birthDate = new Date(birth);
 	// 핸드폰 번호
-	const phone = $(".signup-form.agency").val() + $(".signup-form.tel1").val() + $(".signup-form.tel2").val();
+	const phone = $(".signup-form.agency").val() + "-" + $(".signup-form.tel1").val() + "-" + $(".signup-form.tel2").val();
 	// 주소
 	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
 	const member = {
@@ -510,6 +510,7 @@
 				location.href="/signupcomplete";
 			} else {
 				alert("회원가입에 실패했습니다!");
+				location.href="/signup";
 			}
 		}, 
 		error: function() {

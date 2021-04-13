@@ -33,7 +33,7 @@
 			</form>
 		</div>
 		<div class="btn-box">
-			<a href="#" onclick="location.href='/signup'">회원가입</a>
+			<a href="#" onclick="location.href='/agreement'">회원가입</a>
 			<a href="#" onclick="location.href='/find-id'">아이디 찾기</a>
 			<a href="#" onclick="location.href='/find-pwd'">비밀번호 찾기</a>
 		</div>

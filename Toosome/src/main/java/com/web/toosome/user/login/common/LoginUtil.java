@@ -28,4 +28,16 @@ public class LoginUtil {
 		Authentication auth = new UsernamePasswordAuthenticationToken(member, null, roles);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
+	
+	public void socialLoginProc(String email, String name, String type, MemberVO member) {
+		if (member == null) {
+			member = new MemberVO();
+			member.setMemberEmail(email);
+			member.setMemberName(name);
+			member.setPlatFormType("naver");
+			service.registerMember(member);
+		} else if(email.equals(member.getMemberEmail()) && type.equals(member.getPlatFormType())) {
+			service.updatePlatForm(email, "naver");
+		}
+	}
 }

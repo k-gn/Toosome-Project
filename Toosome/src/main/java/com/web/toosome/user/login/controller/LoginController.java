@@ -61,19 +61,12 @@ public class LoginController {
 		String email = (String) jsonObject.get("email");
 		String name = (String) jsonObject.get("name");
 		MemberVO member = service.getUserByEmail(email);
-		if (member == null) {
-			member = new MemberVO();
-			member.setMemberEmail(email);
-			member.setMemberName(name);
-			member.setPlatFormType("naver");
-			service.registerMember(member);
-		} else if(email.equals(member.getMemberEmail()) && "kakao".equals(member.getPlatFormType())) {
-			service.updatePlatForm(email, "naver");
-			member = service.getUserByEmail(email);
-		}
 		
+		loginUtil.socialLoginProc(email, name, "kakao", member);
 		loginUtil.loginWithoutForm(email);
-		session.setAttribute("member", member);
+		
+		member = service.getUserByEmail(email);
+		session.setAttribute("id", member.getMemberId());
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html; charset=utf-8");
@@ -106,19 +99,12 @@ public class LoginController {
         String name = properties.path("nickname").asText();
         String email = kakao_account.path("email").asText();
         MemberVO member = service.getUserByEmail(email);
-		if (member == null) {
-			member = new MemberVO();
-			member.setMemberEmail(email);
-			member.setMemberName(name);
-			member.setPlatFormType("kakao");
-			service.registerMember(member);
-		}else if(email.equals(member.getMemberEmail()) && "naver".equals(member.getPlatFormType())) {
-			service.updatePlatForm(email, "kakao");
-			member = service.getUserByEmail(email);
-		}
-		
+        
+		loginUtil.socialLoginProc(email, name, "naver", member);
 		loginUtil.loginWithoutForm(email);
-		session.setAttribute("member", member);
+		
+		member = service.getUserByEmail(email);
+		session.setAttribute("id", member.getMemberId());
 
         PrintWriter out = response.getWriter();
 		response.setContentType("text/html; charset=utf-8");

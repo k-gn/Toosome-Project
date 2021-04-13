@@ -1,9 +1,14 @@
 package com.web.toosome.user.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,9 +40,37 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
-	@GetMapping("/memberupdate")
-	public String memberupdate() {
+	@GetMapping("/mypage/memberupdate")
+	public String memberupdate(Model model, HttpSession session) {
+		Integer id = (Integer) session.getAttribute("id");
+		MemberVO member = service.getUserById(id);
+		Map<String, String> map = new HashMap<>();
+		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
+			String[] phoneArr = member.getMemberPhone().split("-");
+			map.put("tel1", phoneArr[0]);
+			map.put("tel2", phoneArr[1]);
+			map.put("tel3", phoneArr[2]);
+			
+			String[] addressArr = member.getMemberAddress().split("-");
+			map.put("address1", addressArr[0]);
+			map.put("address2", addressArr[1]);
+			map.put("address3", addressArr[2]);
+		}else {
+			map.put("tel1", "010");
+		}
+		model.addAttribute("map", map);
+		model.addAttribute("member", member);
+		
 		return "subpages/myPage/memberUpdate/memberUpdate";
+	}
+	
+	// 회원 정보 수정 처리
+	@PostMapping("/mypage/memberupdate")
+	@ResponseBody
+	public String memberupdate(@RequestBody MemberVO member) {
+		int result = service.updateMember(member);
+		if(result > 0) return "success";
+		else return "fail";
 	}
 
 	// 회원가입 시 인증 절차 포함
@@ -45,8 +78,9 @@ public class MemberController {
 	@PostMapping("/signup")
 	@ResponseBody
 	public String register(@RequestBody MemberVO member) {
-		service.registerMember(member);
-		return "success";
+		int result = service.registerMember(member);
+		if(result > 0) return "success";
+		else return "fail";
 	}
 
 	// 이메일 중복 확인
