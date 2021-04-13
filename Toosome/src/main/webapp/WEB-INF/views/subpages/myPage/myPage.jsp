@@ -26,7 +26,7 @@
                   주소, 전화번호, e-mail등<br/>
                   <strong>개인정보를 수정</strong>할 수 있습니다.
                 </p>
-                <input type="button" value="개인정보 수정">
+                <input type="button" value="개인정보 수정" onclick="location.href='/memberupdate'">
               </li>
 
               <li>

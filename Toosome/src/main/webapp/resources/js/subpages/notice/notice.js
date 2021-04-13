@@ -1,8 +1,11 @@
 const pagination = document.getElementById('pagination'); // 페이징 처리
 const noticeBoard = document.getElementById('notice'); // 게시판
+const searchBtn = document.getElementById('search-btn'); // 검색 버튼
+const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
+let url = ''; // URL
 
 // 게시판 상세 페이지로 이동 함수
 const locateNoticeDetail = (index) => {
@@ -14,6 +17,16 @@ const locateNoticeDetail = (index) => {
 const displayList = (items, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = ""; // 테이블 초기화
 	page--;
+	
+	// 검색 결과가 없을 경우
+	if(items.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="4">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+	}
 	
 	let start = rowsPerPage * page; // 시작 번호
 	let end = start + rowsPerPage; // 끝 번호
@@ -28,12 +41,10 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<tr>
-				<td>${item.noticeBoardId}</td>
-				<td class="left"><a href="#" onclick="locateNoticeDetail(${item.noticeBoardId})">${item.noticeBoardTitle}</a></td>
-				<td>${newDate}</td>
-				<td>${item.noticeBoardViewCount}</td>
-			</tr>
+			<td>${item.noticeBoardId}</td>
+			<td class="left"><a href="#" onclick="locateNoticeDetail(${item.noticeBoardId})">${item.noticeBoardTitle}</a></td>
+			<td>${newDate}</td>
+			<td>${item.noticeBoardViewCount}</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
@@ -78,15 +89,10 @@ const btnHandler = (e,items,page) => {
 	e.target.classList.add('active');
 };
 
-// onload시 AJAX 요청
-$(document).ready(() => {
-	getPage();
-});
-
 // AJAX 요청 함수
-const getPage = () => {
+const getPage = (url) => {
 	$.ajax({
-		url: '/noticelist',
+		url,
 		success: (res) => {
 			const newRes = res.reverse();
 			
@@ -95,3 +101,31 @@ const getPage = () => {
 		}
 	});
 };
+
+// 검색 버튼 핸들러
+const searchHandler = () => {
+	// 유효성 검사
+	if(searchInput.value === '') {
+		alert('검색어를 입력하세요.');
+		return;
+	} else { // 검색어값 있을시
+		let keyword = searchInput.value;
+		url = '/search?keyword='+keyword;
+		getPage(url);		
+	}
+};
+
+// 검색 event hook
+searchBtn.addEventListener('click', searchHandler);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+});
+
+// onload시 AJAX 요청
+$(document).ready(() => {
+	url = '/noticelist';
+	getPage(url);
+});
+
