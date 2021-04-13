@@ -9,6 +9,18 @@ public class ProductController {
 	public String product() {
 		return "subpages/product/product";
 	}
+	@GetMapping("/product2") // 주문가능한 상품 리스트
+	public String product2() {
+		return "subpages/product/product2";
+	}
+	@GetMapping("/product3") // 주문가능한 상품 리스트
+	public String product3() {
+		return "subpages/product/product3";
+	}
+	@GetMapping("/product4") // 주문가능한 상품 리스트
+	public String product4() {
+		return "subpages/product/product4";
+	}
 	@GetMapping("/product-detail") // 주문가능한 상품 리스트
 	public String productDetail() {
 		return "subpages/product/productDetail/productDetail";
