@@ -1,32 +1,11 @@
 const pagination = document.getElementById('pagination');
 const newsBoard = document.getElementById('news');
-
-// 테스트 데이터
-const originData = [
-	{id: "1", img: "/resources/img/subpages/news/n001.jpg", title: "리저브R 전용 음료 4종 출시", date: "2020-03-25", count: "0"},
-	{id: "2", img: "/resources/img/subpages/news/n001.jpg", title: "신규 리저브 카페 출시", date: "2020-03-25", count: "0"},
-	{id: "3", img: "/resources/img/subpages/news/n002.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "4", img: "/resources/img/subpages/news/n003.jpg", title: "신규 리저브 카페 출시", date: "2020-03-25", count: "0"},
-	{id: "5", img: "/resources/img/subpages/news/n001.jpg", title: "리저브R 전용 음료 4종 출시", date: "2020-03-25", count: "0"},
-	{id: "6", img: "/resources/img/subpages/news/n002.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "7", img: "/resources/img/subpages/news/n003.jpg", title: "설 연휴 투썸플레이스 할인", date: "2020-03-25", count: "0"},
-	{id: "8", img: "/resources/img/subpages/news/n001.jpg", title: "추석 연휴 투썸플레이스 특별 할인", date: "2020-03-25", count: "0"},
-	{id: "9", img: "/resources/img/subpages/news/n003.jpg", title: "성탄절 연휴 투썸플레이스 매장 영업시간 변경 안내", date: "2020-03-25", count: "0"},
-	{id: "10", img: "/resources/img/subpages/news/n003.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "11", img: "/resources/img/subpages/news/n002.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "12", img: "/resources/img/subpages/news/n001.jpg", title: "리저브R 전용 음료 4종 출시", date: "2020-03-25", count: "0"},
-	{id: "13", img: "/resources/img/subpages/news/n003.jpg", title: "여름 휴가 투썸플레이스 할인 안내", date: "2020-03-25", count: "0"},
-	{id: "14", img: "/resources/img/subpages/news/n002.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "15", img: "/resources/img/subpages/news/n003.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "16", img: "/resources/img/subpages/news/n001.jpg", title: "리저브R 전용 음료 4종 출시", date: "2020-03-25", count: "0"},
-	{id: "17", img: "/resources/img/subpages/news/n003.jpg", title: "시스템 개선 및 점검 사항", date: "2020-03-25", count: "0"},
-	{id: "18", img: "/resources/img/subpages/news/n002.jpg", title: "연말 연휴 투썸플레이스 매장별 할인 안내", date: "2020-03-25", count: "0"},
-];
-
-const testData = [...originData].reverse();
+const searchBtn = document.getElementById('search-btn'); // 검색 버튼
+const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
+let url = ''; // URL
 
 // 게시판 상세 페이지로 이동 함수
 const locateNewsDetail = (index) => {
@@ -39,6 +18,16 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = ""; // 테이블 초기화
 	page--;
 	
+	// 검색 결과가 없을 경우
+	if(items.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="4">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+	}
+	
 	let start = rowsPerPage * page; // 시작 번호
 	let end = start + rowsPerPage; // 끝 번호
 	// 데이터를 rows만큼 끊어온다
@@ -46,14 +35,19 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < paginatedItems.length; i++) {
 		let item = paginatedItems[i];
+		
+		// 날짜 변환
+		let date = new Date(item.newsBoardRegdate);
+		let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<tr>
-				<td>${item.id}</td>
-				<td><a href="#" onclick="locateNewsDetail(${item.id})"><img class="img" src="${item.img}"></a></td>
-				<td class="left"><a href="#" onclick="locateNewsDetail(${item.id})">${item.title}</a></td>
-				<td>${item.date}</td>
-				<td>${item.count}</td>
+				<td>${item.newsBoardId}</td>
+				<td><a href="#" onclick="locateNewsDetail(${item.newsBoardId})"><img class="img" src="${item.newsBoardImageRoute+item.newsBoardImageName}.${item.newsBoardImageExtention}"></a></td>
+				<td class="left"><a href="#" onclick="locateNewsDetail(${item.newsBoardId})">${item.newsBoardTitle}</a></td>
+				<td>${newDate}</td>
+				<td>${item.newsBoardViewCount}</td>
 			</tr>
 		`;
 		newItem.innerHTML = itemElement;
@@ -99,7 +93,43 @@ const btnHandler = (e,items,page) => {
 	e.target.classList.add('active');
 };
 
-// event hook
-displayList(testData, newsBoard, rows, currentPage);
-setPagination(testData, pagination, rows);
+// AJAX 요청 함수
+const getPage = (url) => {
+	$.ajax({
+		url,
+		success: (res) => {
+			const newRes = res.reverse();
+			
+			displayList(newRes, newsBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);			
+		}
+	});
+};
+
+// 검색 버튼 핸들러
+const searchHandler = () => {
+	// 유효성 검사
+	if(searchInput.value === '') {
+		alert('검색어를 입력하세요.');
+		return;
+	} else { // 검색어값 있을시
+		let keyword = searchInput.value;
+		url = '/search?keyword='+keyword;
+		getPage(url);		
+	}
+};
+
+// 검색 event hook
+searchBtn.addEventListener('click', searchHandler);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+});
+
+// onload시 AJAX 요청
+$(document).ready(() => {
+	url = '/newslist'
+	getPage(url);
+})
 
