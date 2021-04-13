@@ -30,11 +30,14 @@
 	</insert> -->
 	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
 		
-		<!-- UPDATE NOTICE_BORAD SET NOTICE_BOARD_COUNT = #{noticeBoardCount}+1 WHERE NOTICE_BOARD_ID = #{noticeBoardId} -->
+		
 		<![CDATA[ SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID >= #{index}-1 AND NOTICE_BOARD_ID <= #{index}+1 ]]>
 	<!--   SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = 1; -->
 	</select>
 	
+	<update id="NoticeBoardCount">
+	UPDATE NOTICE_BORAD SET NOTICE_BOARD_COUNT = #{noticeBoardCount}+1 WHERE NOTICE_BOARD_ID = #{index};
+	</update>
 	<!--  <update id="updateNoticeBoard" parameterType="hashMap">
 		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = #{}, NOTICE_BOARD_COUTENT = #{}, NOTICE_BOARD_REG_DATE = #{} WHERE NOTICE_BOARD_ID = #{noticeBoardId}
 	</update> -->
