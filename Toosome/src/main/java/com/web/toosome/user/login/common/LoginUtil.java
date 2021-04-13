@@ -29,15 +29,21 @@ public class LoginUtil {
 		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
 	
-	public void socialLoginProc(String email, String name, String type, MemberVO member) {
+	public boolean socialLoginProc(String email, String name, String type, MemberVO member) {
+		boolean flag = false;
 		if (member == null) {
 			member = new MemberVO();
 			member.setMemberEmail(email);
 			member.setMemberName(name);
 			member.setPlatFormType("naver");
 			service.registerMember(member);
+			return flag;
 		} else if(email.equals(member.getMemberEmail()) && type.equals(member.getPlatFormType())) {
 			service.updatePlatForm(email, "naver");
+			return flag;
+		} else {
+			flag = true;
+			return flag;
 		}
 	}
 }
