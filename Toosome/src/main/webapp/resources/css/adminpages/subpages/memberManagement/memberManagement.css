@@ -35,6 +35,10 @@
 	margin-left: 30px;
 }
 
+.calendar-wrapper {
+	display: flex;
+}
+
 .period {
 	outline: none;
 	appearance: none;
@@ -59,4 +63,43 @@
 	background: #a62326;
 	color: #fff;
 	border: none;
+}
+
+.card-header.card-header-primary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.list-btn-box {
+	display: flex;
+	align-items: center;
+}
+
+#excel-down {
+	outline: none;
+	appearance: none;
+	width: 170px;
+	height: 40px;
+	border: none;
+	background: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 20px;
+	font-size: 1rem;
+}
+
+#excel-down i {
+	font-size: 1.125rem;
+	margin-right: 5px;
+}
+
+#memberList-select {
+	width: 170px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding-left: 10px;
+	font-size: 1rem;
 }
