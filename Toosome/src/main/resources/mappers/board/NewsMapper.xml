@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="getNewsBoard" resultMap="NewsBoardMap">
-		SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{index};
+		<![CDATA[ SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID >= #{index}-1 AND NEWS_BOARD_ID <= #{index}+1 ]]>
 	</select>
 	
 </mapper>
