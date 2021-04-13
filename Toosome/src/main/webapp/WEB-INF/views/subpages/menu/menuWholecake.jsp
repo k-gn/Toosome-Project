@@ -32,7 +32,7 @@
                     <ul id="whole-cake" class="cf">
                         <h3>whole cake</h3>
                         <c:forEach var="menuWholecakeList" items="${menuWholecakeList}">
-							<li><a href="/beveragedetail?menunum=${menuBeverageList.menuId}"><img
+							<li><a href="/menuDetail?menuId=${menuWholecakeList.menuId}"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}">${menuWholecakeList.menuMainTitle}</a></li>
 							<a href="#">${menuWholecakeList.menuSubTitle} <span
 								class="com">${menuWholecakeList.menuPrice}</span>

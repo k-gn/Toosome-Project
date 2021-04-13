@@ -47,32 +47,32 @@
 					<table class="table">
 						<tbody>
 							<tr class="table-active">
-								<td>총 용량</td>
-								<td>414ml (총제공량 : 1잔)</td>
+								<td>총 용량(ml/잔)</td>
+								<td>${menubeverageDetail.iatVO.iatWeight} (총제공량 : ${menubeverageDetail.iatVO.iatFullSupply})</td>
 							</tr>
 							<tr>
-								<td>1회 제공량</td>
-								<td>414ml</td>
+								<td>1회 제공량(ml)</td>
+								<td>${menubeverageDetail.iatVO.iatOneSupply}</td>
 							</tr>
 							<tr>
 								<td>열량(Kcal)</td>
-								<td>190Kcal</td>
+								<td>${menubeverageDetail.iatVO.iatKcal}</td>
 							</tr>
 							<tr>
 								<td>당류(g/%)</td>
-								<td>44g/44%</td>
+								<td>${menubeverageDetail.iatVO.iatSugars}</td>
 							</tr>
 							<tr>
 								<td>단백질(g/%)</td>
-								<td>1g/1%</td>
+								<td>${menubeverageDetail.iatVO.iatProtein}</td>
 							</tr>
 							<tr>
 								<td>포화지방(g/%)</td>
-								<td>0g/0%</td>
+								<td>${menubeverageDetail.iatVO.iatSaturatedFat}</td>
 							</tr>
 							<tr>
 								<td>나트륨(mg/%)</td>
-								<td>50mg/3%</td>
+								<td>${menubeverageDetail.iatVO.iatNatrium}</td>
 							</tr>
 						</tbody>
 					</table>

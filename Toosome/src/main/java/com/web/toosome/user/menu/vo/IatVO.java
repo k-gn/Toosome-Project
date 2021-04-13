@@ -13,6 +13,6 @@ public class IatVO {
 	private String iatSugars;
 	private String iatProtein;
 	private String iatSaturatedFat;
-	private String iatNatriun;
+	private String iatNatrium;
 	
 }

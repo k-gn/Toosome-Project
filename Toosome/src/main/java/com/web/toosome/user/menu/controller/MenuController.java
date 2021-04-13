@@ -78,51 +78,14 @@ public class MenuController {
 		return "subpages/nutrient/nutrient4";
 	}
 	
-	@GetMapping("/newdetail") // menu Detail page
-	public String newDetail(MenuVO menuVO, Model model) {
-		System.out.println("음료 메뉴 디테일 출력");
-		MenuVO menunewDetail = menuService.getnewDetail(menuVO);
-		model.addAttribute("menunewDetail",menunewDetail);
-		System.out.println(model);
-		return "subpages/menu/newDetail/newDetail";
-	}
-	
-	@GetMapping("/beveragedetail") // menu Detail page
+	@GetMapping("/menuDetail") // menu Detail page
 	public String beverageDetail(MenuVO menuVO, Model model) {
 		System.out.println("음료 메뉴 디테일 출력");
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail",menubeverageDetail);
 		System.out.println(model);
-		return "subpages/menu/beverageDetail/beverageDetail";
+		return "subpages/menu/menuDetail/menuDetail";
 	}
-
-	@GetMapping("/delhidetail") // menu Detail page
-	public String delhiDetail(MenuVO menuVO, Model model) {
-		System.out.println("음료 메뉴 디테일 출력");
-		MenuVO menubeverageDetai = menuService.getdelhiDetail(menuVO);
-		model.addAttribute("menubeverageDetai",menubeverageDetai);
-		System.out.println(model);
-		return "subpages/menu/delhiDetail/delhiDetail";
-	}
-
-	@GetMapping("/dessertdetail") // menu Detail page
-	public String dessertDetail(MenuVO menuVO, Model model) {
-		System.out.println("음료 메뉴 디테일 출력");
-		MenuVO menubeverageDetai = menuService.getdessertDetail(menuVO);
-		model.addAttribute("menubeverageDetai",menubeverageDetai);
-		System.out.println(model);
-		return "subpages/menu/dessertDetail/dessertDetail";
-	}
-
-	@GetMapping("/wholecakedetail") // menu Detail page
-	public String wholecakeDetail(MenuVO menuVO, Model model) {
-		System.out.println("음료 메뉴 디테일 출력");
-		MenuVO menubeverageDetai = menuService.getwholecakeDetail(menuVO);
-		model.addAttribute("menubeverageDetai",menubeverageDetai);
-		System.out.println(model);
-		return "subpages/menu/wholecakeDetail/wholecakeDetail";
-	}
-	
 
 
 	// Menu Order & Menu Refund
