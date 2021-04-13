@@ -18,7 +18,7 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">개인정보</span>
         </div>
-        <form class="signup-form-container" action="#">
+        <div class="signup-form-container">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
               <span>이메일</span>
@@ -52,10 +52,10 @@
             <p class="validation addr2"></p>
           </div>
           <div class="signform-btn-wrapper">
-            <input class="signform-btn" type="submit" value="정보수정" style="margin-bottom: 30px;">
-            <input class="signform-btn" type="submit" value="마이페이지로">
+            <a class="signform-btn" style="margin-bottom: 30px;">정보수정</a>
+            <a class="signform-btn">개인정보확인</a>
           </div>
-        </form>
+        </div>
       </div>
     </section>
     <!-- Section End -->
