@@ -29,8 +29,8 @@
                     </ul>
                 </div>
                 <div class="menu-content">
-                    <ul id="delhi" class="cf">
                         <h3>delhi</h3>
+                    <ul id="delhi" class="cf">
                         <c:forEach var="menuDelhiList" items="${menuDelhiList}">
 							<li>
 								<a href="/beveragedetail">
@@ -51,4 +51,11 @@
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>
+<script>
+const coms = document.querySelectorAll('.com');
+coms.forEach((com => {
+    let num = +(com.innerHTML);
+    com.innerHTML = num.toLocaleString('en');
+}))
+</script>
 </html>

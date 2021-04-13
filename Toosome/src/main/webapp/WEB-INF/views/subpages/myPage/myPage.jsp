@@ -62,7 +62,8 @@
             <li>
               <a href="#">마이투썸</a>
               <ul>
-                <li><a href="#">개인정보관리</a></li>
+                <li><a href="/mypage">개인정보관리</a></li>
+                <li><a href="/membercheck">개인정보</a></li>
                 <li><a href="#">마이멤버십</a></li>
               </ul>
             </li>
@@ -70,18 +71,14 @@
               <a href="#">고객센터</a>
               <ul>
                 <li><a href="#">FAQ</a></li>
-                <li><a href="#">고객의 소리</a></li>
               </ul>
-            </li>
-            <li>
-              <a href="#">뉴스 및 공지</a>
             </li>
             <li>
               <a href="#">온라인 주문</a>
               <ul>
                 <li><a href="#">이용안내</a></li>
                 <li><a href="#">투썸바구니</a></li>
-                <li><a href="#">주문 확인 및 취소</a></li>
+                <li><a href="#">결제내역</a></li>
               </ul>
             </li>
             <li>
@@ -91,9 +88,6 @@
                 <li><a href="#">매장채용안내</a></li>
                 <li><a href="#">아카데미등록안내</a></li>
               </ul>
-            </li>
-            <li>
-              <a href="#">사이트맵</a>
             </li>
           </ul>
         </div>

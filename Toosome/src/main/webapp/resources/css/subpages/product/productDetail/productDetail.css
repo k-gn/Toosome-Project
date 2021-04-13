@@ -48,11 +48,21 @@
   text-align: left;
   position: static;
 }
-.productDetail-container .contents .star li.order-btn input[type="button"] {
+.productDetail-container .contents .star li.order-btn .online {
   position: absolute;
   width: 100px;
   height: 30px;
   bottom: 0;
+  right: 0;
+  background-color: #A62326;
+  color: #fff;
+  cursor: pointer;
+}
+.productDetail-container .contents .star li.order-btn .basket {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  bottom: 50px;
   right: 0;
   background-color: #A62326;
   color: #fff;
