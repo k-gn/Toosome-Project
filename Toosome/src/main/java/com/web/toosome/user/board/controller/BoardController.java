@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IFaqBoardService;
+import com.web.toosome.user.board.service.INewsBoardService;
 import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 @Controller
@@ -21,6 +23,9 @@ public class BoardController {
 	
 	@Autowired
 	private IBoardNoticeService noticeBoardService;
+	
+	@Autowired
+	private INewsBoardService newsBoardService;
 	
 	
 	
@@ -72,13 +77,16 @@ public class BoardController {
 	@GetMapping(value = "/noticedetail", produces = "application/json") // 해당 게시물 조회값
 	@ResponseBody
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
+		
+		int count = noticeBoardService.NoticeBoardCount(index);
+		System.out.println(count);
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
 	
 	
-	@GetMapping(value = "/search", produces = "application/json") // 게시판 검색기능
+	@GetMapping(value = "/noticesearch", produces = "application/json") // 게시판 검색기능
 	@ResponseBody
 	public List<NoticeBoardVO> searchNotice(String keyword) throws Exception {	
 		
@@ -92,12 +100,35 @@ public class BoardController {
 		
 	}
 	
-
-	@GetMapping("/news")
-	public String news() {
+	
+	@RequestMapping("/news")  //뉴스 화면 띄우는 주소값
+	public String newsView() {
 		return "subpages/news/news";
 	}
 
+	@GetMapping(value = "/newslist", produces = "application/json") //뉴스화면리스트로 가는 값
+	@ResponseBody
+	public List<NewsBoardVO> news(NewsBoardVO vo)throws Exception{
+		List<NewsBoardVO> newsboard = newsBoardService.getNewsBoardList(vo);
+		System.out.println(newsboard);
+		return newsboard;
+	}
+	
+	@GetMapping(value = "/newssearch", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<NewsBoardVO> searchNews(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<NewsBoardVO> searchnews = newsBoardService.getSearchNews(keyword);
+		System.out.println("검색 값넘기기: " +searchnews);
+		return searchnews;
+		}else {
+			return null;
+		}
+		
+	}
+	
+	
 	@GetMapping("/qna")
 	public String qna() {
 		return "subpages/qna/qna";
@@ -107,15 +138,19 @@ public class BoardController {
 	public String iat() {
 		return "subpages/iat/iat";
 	}
-/*
-	@GetMapping("/notice-detail") // notice 상세 페이지
-	public String noticeDetail() {
-		return "subpages/notice/noticeDetail/noticeDetail";
-	}
-*/
-	@GetMapping("/news-detail")	// news 상세 페이지
-	public String newsDetail() {
+
+	@RequestMapping("/news-detail")	// news 상세 페이지
+	public String newsDetailView() {
 		return "subpages/news/newsDetail/newsDetail";
+	}
+	
+	
+	@GetMapping(value="/newsdetail", produces = "application/json" )
+	@ResponseBody
+	public List<NewsBoardVO> newsDetail(String index)throws Exception{
+		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoard(index);
+		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
+		return newsdetail;
 	}
 
 	@GetMapping("/qna-detail") // qna 상세 페이지

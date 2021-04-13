@@ -30,14 +30,19 @@
 					</ul>
 				</div>
 				<div class="menu-content">
+					<h3>beverage</h3>
 					<ul id="beverage" class="cf">
-						<h3>beverage</h3>
 						<c:forEach var="menuBeverageList" items="${menuBeverageList}">
-							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuBeverageList.menuImageVO.menuImageRoute}/${menuBeverageList.menuImageVO.menuImageName}.${menuBeverageList.menuImageVO.menuImageExtention}">${menuBeverageList.menuMainTitle}</a></li>
-							<a href="#">${menuBeverageList.menuSubTitle} <span
-								class="com">${menuBeverageList.menuPrice}</span>
-							</a>
+							<li>
+								<a href="/menuDetail?menuId=${menuBeverageList.menuId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuBeverageList.menuImageVO.menuImageRoute}/${menuBeverageList.menuImageVO.menuImageName}.${menuBeverageList.menuImageVO.menuImageExtention}" alt="">
+									<span>${menuBeverageList.menuMainTitle}</span> 
+									<div class="pay-box">
+										<span class="com" style="float: left;">${menuBeverageList.menuPrice}</span>
+										<span style="float: left;">&nbsp;원</span>
+									</div>
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>

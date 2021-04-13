@@ -73,6 +73,11 @@ public class MemberController {
 		else return "fail";
 	}
 
+	@GetMapping("/membercheck")
+	public String membercheck() {
+		return "subpages/myPage/memberCheck/memberCheck";
+	}
+
 	// 회원가입 시 인증 절차 포함
 	// 회원가입 관련
 	@PostMapping("/signup")

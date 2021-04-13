@@ -27,8 +27,8 @@
 			<p>TOOSOME PLACE의 뉴스를 확인하세요</p>
         	<div class="search-container">
         		<div class="search-wrapper">
-        			<input type="search" placeholder="검색어를 입력하세요">
-        			<button>검색</button>
+        			<input id="search-input" type="search" placeholder="검색어를 입력하세요">
+        			<button id="search-btn">검색</button>
         		</div>
         	</div>
         	<table summary="news" class="news-table">

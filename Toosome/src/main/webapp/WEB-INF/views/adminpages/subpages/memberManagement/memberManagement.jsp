@@ -32,6 +32,10 @@
                   <div class="table-responsive">
                     <form action="">
                       <table class="table">
+                      	<colgroup>
+                      		<col width="15%">
+                      		<col width="85%">
+                      	</colgroup>
                         <tbody>
                           <tr>
                             <td>
@@ -78,8 +82,7 @@
 	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                               </div>
                               <div id="joinDatePeriod" class="date-picker">
-                              	<button class="period on" value="0">오늘</button>
-                              	<button class="period" value="1w">1주일</button>
+                              	<button class="period" value="0">오늘</button>
                               	<button class="period" value="1m">1개월</button>
                               	<button class="period" value="3m">3개월</button>
                               	<button class="period" value="6m">6개월</button>

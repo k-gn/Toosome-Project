@@ -71,117 +71,52 @@
 }
 
 
-
-
-
 .menu-container .tab-container .menu-content {
     padding: 10px;
     margin-top: 10px;
 }
-.menu-container .tab-container .menu-content ul {
-    width: 100%;
-    display: none;
-}
-.menu-container .tab-container .menu-content ul:first-child {
-    display: block;
-}
-.menu-container .tab-container .menu-content ul h3 {
+.menu-container .tab-container .menu-content h3 {
     font-family: gsdr;
     font-size: 20px;
     margin-bottom: 20px;
     color: #A62326;
 }
-.menu-container .tab-container .menu-content ul li {
-    width: 25%;
-    height: 100px;
+.menu-container .tab-container .menu-content ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 30px;
+}
+.nu-container .tab-container .menu-content ul li { 
+    width: 100%;
+    /* height: 300px; */
     display: flex;
     float: left;
     margin-bottom: 10px;
 }
 .menu-container .tab-container .menu-content ul li a {
-    display: flex;
-    width: 90%;
-    height: 90%;
-    justify-content: center;
-    background-color: red;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #white;
+    font-family: maple;
+    box-shadow: 0 4px 5px #ccc;
+    /* background-color: red; */
+} 
+.menu-container .tab-container .menu-content ul li a img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    /* margin: 0 auto; */
 }
-.menu-container .tab-container .menu-content ul li:nth-child(2) a {
-    background-color: orange;
-} 
-.menu-container .tab-container .menu-content ul li:nth-child(3) a {
-    background-color: yellow;
-} 
-.menu-container .tab-container .menu-content ul li:nth-child(4) a {
-    background-color: green;
-} 
-.menu-container .tab-container .menu-content ul li:last-child a {
-    background-color: blue;
-} 
-.menu-container .tab-container .menu-content ul li:nth-child(3) a span {
-    color: #000;
-} 
 .menu-container .tab-container .menu-content ul li a span {
     text-align: center;
-    color: #fff;
-    line-height: 90px;
+    display: block;
+    color: #000;
+    line-height: 30px;
 }
-.menu-container .tab-container .menu-content ul#beverage li:nth-child(1) a {
-    background-color: navy;
-}
-.menu-container .tab-container .menu-content ul#beverage li:nth-child(2) a {
-    background-color: violet;
-}
-.menu-container .tab-container .menu-content ul#beverage li:nth-child(3) a {
-    background-color: indianred;
-}
-.menu-container .tab-container .menu-content ul#beverage li:nth-child(4) a {
-    background-color: olivedrab;
-}
-.menu-container .tab-container .menu-content ul#beverage li:nth-child(5) a {
-    background-color: blanchedalmond;
-}
-.menu-container .tab-container .menu-content ul#dessert li:nth-child(1) a {
-    background-color: antiquewhite;
-}
-.menu-container .tab-container .menu-content ul#dessert li:nth-child(2) a {
-    background-color: aqua;
-}
-.menu-container .tab-container .menu-content ul#dessert li:nth-child(3) a {
-    background-color: aquamarine;
-}
-.menu-container .tab-container .menu-content ul#dessert li:nth-child(4) a {
-    background-color: beige;
-}
-.menu-container .tab-container .menu-content ul#dessert li:nth-child(5) a {
-    background-color: bisque;
-}
-.menu-container .tab-container .menu-content ul#delhi li:nth-child(1) a {
-    background-color: black;
-}
-.menu-container .tab-container .menu-content ul#delhi li:nth-child(2) a {
-    background-color: blanchedalmond;
-}
-.menu-container .tab-container .menu-content ul#delhi li:nth-child(3) a {
-    background-color: blue;
-}
-.menu-container .tab-container .menu-content ul#delhi li:nth-child(4) a {
-    background-color: blueviolet;
-}
-.menu-container .tab-container .menu-content ul#delhi li:nth-child(5) a {
-    background-color: brown;
-}
-.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(1) a {
-    background-color: burlywood;
-}
-.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(2) a {
-    background-color: cadetblue;
-}
-.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(3) a {
-    background-color: chartreuse;
-}
-.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(4) a {
-    background-color: chocolate;
-}
-.menu-container .tab-container .menu-content ul#whole-cake li:nth-child(5) a {
-    background-color: coral;
+.menu-container .tab-container .menu-content ul li a .pay-box {
+	height: 30px;
+	display: flex;
+	justify-content: center;
 }

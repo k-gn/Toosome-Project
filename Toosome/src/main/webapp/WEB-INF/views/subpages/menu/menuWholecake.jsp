@@ -29,14 +29,19 @@
                     </ul>
                 </div>
                 <div class="menu-content">
-                    <ul id="whole-cake" class="cf">
                         <h3>whole cake</h3>
+                    <ul id="whole-cake" class="cf">
                         <c:forEach var="menuWholecakeList" items="${menuWholecakeList}">
-							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}">${menuWholecakeList.menuMainTitle}</a></li>
-							<a href="#">${menuWholecakeList.menuSubTitle} <span
-								class="com">${menuWholecakeList.menuPrice}</span>
-							</a>
+							<li>
+								<a href="/menuDetail?menuId=${menuWholecakeList.menuId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}" alt="">
+									<span>${menuWholecakeList.menuMainTitle}</span> 
+									<div class="pay-box">
+										<span class="com" style="float: left;">${menuWholecakeList.menuPrice}</span>
+										<span style="float: left;">&nbsp;원</span>
+									</div>
+								</a>
+							</li>
 						</c:forEach>
                     </ul>
                 </div>
@@ -46,4 +51,11 @@
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>
+<script>
+const coms = document.querySelectorAll('.com');
+coms.forEach((com => {
+    let num = +(com.innerHTML);
+    com.innerHTML = num.toLocaleString('en');
+}))
+</script>
 </html>

@@ -30,14 +30,19 @@
 					</ul>
 				</div>
 				<div class="menu-content">
+					<h3>NEW</h3>
 					<ul id="new" class="cf">
-						<h3>NEW</h3>
 						<c:forEach var="menuNewList" items="${menuNewList}">
-							<li><a href="/beveragedetail"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuNewList.menuImageVO.menuImageRoute}/${menuNewList.menuImageVO.menuImageName}.${menuNewList.menuImageVO.menuImageExtention}">${menuNewList.menuMainTitle}</a></li>
-							<a href="#">${menuNewList.menuSubTitle} <span
-								class="com">${menuNewList.menuPrice}</span>
-							</a>
+							<li>
+								<a href="/menuDetail?menuId=${menuNewList.menuId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuNewList.menuImageVO.menuImageRoute}/${menuNewList.menuImageVO.menuImageName}.${menuNewList.menuImageVO.menuImageExtention}" alt="">
+									<span>${menuNewList.menuMainTitle}</span> 
+									<div class="pay-box">
+										<span class="com" style="float: left;">${menuNewList.menuPrice}</span>
+										<span style="float: left;">&nbsp;원</span>
+									</div>
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -47,4 +52,11 @@
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 	</div>
 </body>
+<script>
+const coms = document.querySelectorAll('.com');
+coms.forEach((com => {
+    let num = +(com.innerHTML);
+    com.innerHTML = num.toLocaleString('en');
+}))
+</script>
 </html>

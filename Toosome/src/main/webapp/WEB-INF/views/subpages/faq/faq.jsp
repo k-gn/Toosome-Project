@@ -8,6 +8,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
+<link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+   />
 <link rel="stylesheet" href="/resources/css/subpages/faq/faq.css">
 <script src="/resources/js/subpages/faq/faq.js" defer></script>
 <title>A TOOSOME PLACE</title>

@@ -8,7 +8,12 @@
 		<typeAlias type="com.web.toosome.user.board.vo.NoticeBoardVO" alias="noticeBoardVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.FaqBoardVO" alias="faqBoardVO"/>
 		<typeAlias type="com.web.toosome.user.terms.vo.TermsVO" alias="termsVO"/>
+
+		<typeAlias type="com.web.toosome.user.board.vo.NewsBoardVO" alias="newsBoardVO"/>
+
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuVO" alias="menuVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
+		<typeAlias type="com.web.toosome.user.menu.vo.IatVO" alias="iatVO"/>
+
 	</typeAliases>
 </configuration>
