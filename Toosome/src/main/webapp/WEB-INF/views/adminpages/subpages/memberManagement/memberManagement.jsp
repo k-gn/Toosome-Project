@@ -29,141 +29,143 @@
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class=card-title>회원 리스트</h4>
+                  <div class="list-btn-box">
+                    <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
+                    <button id="search-submit"><i class="material-icons">search</i>검색</button>  
+                  </div>                  
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <form action="">
-                      <table class="table">
-                      	<colgroup>
-                      		<col width="15%">
-                      		<col width="85%">
-                      	</colgroup>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <span><strong>검색어</strong></span>
-                            </td>
-                            <td>
-                              <div class="select-box">
-	                              <select name="searchType" class="search-select" id="searchType">
-	                                <option value="all">전체</option>
-	                                <option value="id">ID(E-mail)</option>
-	                                <option value="name">이름</option>
-	                              </select>
-	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                              </div>
-                              <input type="text" id="search-text" name="keyword" placeholder="검색어 입력">
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span><strong>가입유형</strong></span>
-                            </td>
-                            <td>
-                         	  <div class="select-box">
-	                              <select name="memberType" class="search-select" id="memberType">
-	                                <option value="whole">전체</option>
-	                                <option value="normal">일반회원</option>
-	                                <option value="simple">간편회원</option>
-	                              </select>
-	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span><strong>회원가입일</strong></span>
-                            </td>
-                            <td>
-                              <div class="select-box">
-	                              <select name="joinDate" class="search-select" id="joinDate" onchange="joinChangeHandler(this)">
-	                                <option value="total">전체조회</option>
-	                                <option value="join-use">기간선택</option>
-	                                <option value="notUse">미사용</option>
-	                              </select>
-	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                              </div>
-                              <div id="joinDatePeriod" class="date-picker">
-                              	<button class="period join" value="0d">오늘</button>
-                              	<button class="period join" value="1M">1개월</button>
-                              	<button class="period join" value="3M">3개월</button>
-                              	<button class="period join" value="6M">6개월</button>
-                              	<button class="period join" value="1y">1년</button>
-                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+                     <table class="table">
+                     	<colgroup>
+                     		<col width="15%">
+                     		<col width="85%">
+                     	</colgroup>
+                       <tbody>
+                         <tr>
+                           <td>
+                             <span><strong>검색어</strong></span>
+                           </td>
+                           <td>
+                             <div class="select-box">
+                              <select name="searchType" class="search-select" id="searchType">
+                                <option value="all">전체</option>
+                                <option value="id">ID(E-mail)</option>
+                                <option value="name">이름</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                             <input type="text" id="search-text" name="keyword" placeholder="검색어 입력">
+                           </td>
+                         </tr>
+                         <tr>
+                           <td>
+                             <span><strong>가입유형</strong></span>
+                           </td>
+                           <td>
+                        	  <div class="select-box">
+                              <select name="memberType" class="search-select" id="memberType">
+                                <option value="whole">전체</option>
+                                <option value="normal">일반회원</option>
+                                <option value="simple">간편회원</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                           </td>
+                         </tr>
+                         <tr>
+                           <td>
+                             <span><strong>회원가입일</strong></span>
+                           </td>
+                           <td>
+                             <div class="select-box">
+                              <select name="joinDate" class="search-select" id="joinDate" onchange="joinChangeHandler(this)">
+                                <option value="total">전체조회</option>
+                                <option value="join-use">기간선택</option>
+                                <option value="notUse">미사용</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                             <div id="joinDatePeriod" class="date-picker">
+                             	<button class="period join" value="0d">오늘</button>
+                             	<button class="period join" value="1M">1개월</button>
+                             	<button class="period join" value="3M">3개월</button>
+                             	<button class="period join" value="6M">6개월</button>
+                             	<button class="period join" value="1y">1년</button>
+                             	<div class="calendar-wrapper">
+                              	<div class="col-md-3">
+                              		<div class="form-group">
+                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
+                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              				</div>
+                              			</div>
+                              		</div>
                               	</div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span><strong>최종로그인일</strong></span>
-                            </td>
-                            <td>
-                              <div class="select-box">
-	                              <select name="loginDate" class="search-select" id="loginDate" onchange="logChangeHandler(this)">
-	                                <option value="total">전체</option>
-	                                <option value="log-use">기간선택</option>
-	                                <option value="notUse">미사용</option>
-	                                <option value="nologin">로그인일자 없는 회원</option>
-	                              </select>
-	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                              </div>
-                              <div id="loginDatePeriod" class="date-picker">
-                              	<button class="period login" value="0d">오늘</button>
-                              	<button class="period login" value="1M">1개월</button>
-                              	<button class="period login" value="3M">3개월</button>
-                              	<button class="period login" value="6M">6개월</button>
-                              	<button class="period login" value="1y">1년</button>
-                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+                              	<span>&nbsp;~&nbsp;</span>
+                              	<div class="col-md-3">
+                              		<div class="form-group">
+                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
+                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              				</div>
+                              			</div>
+                              		</div>
                               	</div>
-                              </div>
-                            </td>
-                          </tr>          
-                        </tbody>
-                      </table>
-                    </form>
+                             	</div>
+                             </div>
+                           </td>
+                         </tr>
+                         <tr>
+                           <td>
+                             <span><strong>최종로그인일</strong></span>
+                           </td>
+                           <td>
+                             <div class="select-box">
+                              <select name="loginDate" class="search-select" id="loginDate" onchange="logChangeHandler(this)">
+                                <option value="total">전체조회</option>
+                                <option value="log-use">기간선택</option>
+                                <option value="notUse">미사용</option>
+                                <option value="nologin">로그인일자 없는 회원</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                             <div id="loginDatePeriod" class="date-picker">
+                             	<button class="period login" value="0d">오늘</button>
+                             	<button class="period login" value="1M">1개월</button>
+                             	<button class="period login" value="3M">3개월</button>
+                             	<button class="period login" value="6M">6개월</button>
+                             	<button class="period login" value="1y">1년</button>
+                             	<div class="calendar-wrapper">
+                              	<div class="col-md-3">
+                              		<div class="form-group">
+                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
+                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              				</div>
+                              			</div>
+                              		</div>
+                              	</div>
+                              	<span>&nbsp;~&nbsp;</span>
+                              	<div class="col-md-3">
+                              		<div class="form-group">
+                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
+                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              				</div>
+                              			</div>
+                              		</div>
+                              	</div>
+                             	</div>
+                             </div>
+                           </td>
+                         </tr>          
+                       </tbody>
+                     </table>
                   </div>
                 </div>
               </div>
@@ -178,12 +180,15 @@
                   <h4 class="card-title ">검색 결과: 6건</h4>
                   <div class="list-btn-box">
                     <button id="excel-down"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
-                    <select id="memberList-select">
-                      <option value="30">30개씩 보기</option>
-                      <option value="50">50개씩 보기</option>
-                      <option value="100">100개씩 보기</option>
-                      <option value="200">200개씩 보기</option>
-                    </select>
+                    <div class="select-box">
+	                    <select id="memberList-select">
+	                      <option value="30">30개씩 보기</option>
+	                      <option value="50">50개씩 보기</option>
+	                      <option value="100">100개씩 보기</option>
+	                      <option value="200">200개씩 보기</option>
+	                    </select>
+	                    <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                    </div>
                   </div>
                 </div>
                 <div class="card-body">
