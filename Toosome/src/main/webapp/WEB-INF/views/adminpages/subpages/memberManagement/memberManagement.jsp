@@ -76,24 +76,24 @@
                             </td>
                             <td>
                               <div class="select-box">
-	                              <select name="joinDate" class="search-select" id="joinDate" onchange="changeHandler(this)">
+	                              <select name="joinDate" class="search-select" id="joinDate" onchange="joinChangeHandler(this)">
 	                                <option value="total">전체조회</option>
-	                                <option value="use">기간선택</option>
+	                                <option value="join-use">기간선택</option>
 	                                <option value="notUse">미사용</option>
 	                              </select>
 	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                               </div>
                               <div id="joinDatePeriod" class="date-picker">
-                              	<button class="period" value="0">오늘</button>
-                              	<button class="period" value="1m">1개월</button>
-                              	<button class="period" value="3m">3개월</button>
-                              	<button class="period" value="6m">6개월</button>
-                              	<button class="period" value="1y">1년</button>
+                              	<button class="period join" value="0d">오늘</button>
+                              	<button class="period join" value="1M">1개월</button>
+                              	<button class="period join" value="3M">3개월</button>
+                              	<button class="period join" value="6M">6개월</button>
+                              	<button class="period join" value="1y">1년</button>
                               	<div class="calendar-wrapper">
 	                              	<div class="col-md-3">
 	                              		<div class="form-group">
 	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="01/01/2021">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
 	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                              				</div>
@@ -104,7 +104,7 @@
 	                              	<div class="col-md-3">
 	                              		<div class="form-group">
 	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="01/01/2021">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
 	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
 	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 	                              				</div>
@@ -121,13 +121,43 @@
                             </td>
                             <td>
                               <div class="select-box">
-	                              <select name="loginDate" class="search-select" id="loginDate">
+	                              <select name="loginDate" class="search-select" id="loginDate" onchange="logChangeHandler(this)">
 	                                <option value="total">전체</option>
-	                                <option value="use">기간선택</option>
+	                                <option value="log-use">기간선택</option>
 	                                <option value="notUse">미사용</option>
 	                                <option value="nologin">로그인일자 없는 회원</option>
 	                              </select>
 	                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                              </div>
+                              <div id="loginDatePeriod" class="date-picker">
+                              	<button class="period login" value="0d">오늘</button>
+                              	<button class="period login" value="1M">1개월</button>
+                              	<button class="period login" value="3M">3개월</button>
+                              	<button class="period login" value="6M">6개월</button>
+                              	<button class="period login" value="1y">1년</button>
+                              	<div class="calendar-wrapper">
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
+	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+	                              	<span>&nbsp;~&nbsp;</span>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
+	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+                              	</div>
                               </div>
                             </td>
                           </tr>          
