@@ -8,6 +8,8 @@
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/memberManagement/memberManagement.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/memberManagement.js" defer></script>
 </head>
 
@@ -87,6 +89,29 @@
                               	<button class="period" value="3m">3개월</button>
                               	<button class="period" value="6m">6개월</button>
                               	<button class="period" value="1y">1년</button>
+                              	<div class="calendar-wrapper">
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="01/01/2021">
+	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+	                              	<span>&nbsp;~&nbsp;</span>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="01/01/2021">
+	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+                              	</div>
                               </div>
                             </td>
                           </tr>
@@ -122,7 +147,7 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">검색 결과: 6건</h4>
                   <div class="list-btn-box">
-                    <button><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button id="excel-down"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <select id="memberList-select">
                       <option value="30">30개씩 보기</option>
                       <option value="50">50개씩 보기</option>
