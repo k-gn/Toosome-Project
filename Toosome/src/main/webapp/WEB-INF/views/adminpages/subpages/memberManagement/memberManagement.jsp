@@ -49,7 +49,6 @@
                            <td>
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="searchType">
-                                <option value="all">전체</option>
                                 <option value="id">ID(E-mail)</option>
                                 <option value="name">이름</option>
                               </select>
@@ -65,7 +64,6 @@
                            <td>
                         	  <div class="select-box">
                               <select name="memberType" class="search-select" id="memberType">
-                                <option value="whole">전체</option>
                                 <option value="normal">일반회원</option>
                                 <option value="simple">간편회원</option>
                               </select>
@@ -80,9 +78,8 @@
                            <td>
                              <div class="select-box">
                               <select name="joinDate" class="search-select" id="joinDate" onchange="joinChangeHandler(this)">
-                                <option value="total">전체조회</option>
-                                <option value="join-use">기간선택</option>
                                 <option value="notUse">미사용</option>
+                                <option value="join-use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -125,10 +122,8 @@
                            <td>
                              <div class="select-box">
                               <select name="loginDate" class="search-select" id="loginDate" onchange="logChangeHandler(this)">
-                                <option value="total">전체조회</option>
-                                <option value="log-use">기간선택</option>
                                 <option value="notUse">미사용</option>
-                                <option value="nologin">로그인일자 없는 회원</option>
+                                <option value="log-use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -194,7 +189,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
-                      <thead class=" text-primary">
+                      <thead class="text-primary" id="list-table-thead">
                         <th>
                           회원번호
                         </th>
@@ -221,98 +216,6 @@
                         <tr>
                           <td>
                             1
-                          </td>
-                          <td>
-                            KAKAO
-                          </td>
-                          <td>
-                            powerlsh0103@naver.com
-                          </td>
-                          <td>
-                            임성현
-                          </td>
-                          <td>
-                            010-2605-9213
-                          </td>
-                          <td>
-                            2020-03-25
-                          </td>
-                          <td>
-                            2020-04-10
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            NAVER
-                          </td>
-                          <td>
-                            powerlsh0103@naver.com
-                          </td>
-                          <td>
-                            임성현
-                          </td>
-                          <td>
-                            010-2605-9213
-                          </td>
-                          <td>
-                            2020-03-25
-                          </td>
-                          <td>
-                            2020-04-10
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            KAKAO
-                          </td>
-                          <td>
-                            powerlsh0103@naver.com
-                          </td>
-                          <td>
-                            임성현
-                          </td>
-                          <td>
-                            010-2605-9213
-                          </td>
-                          <td>
-                            2020-03-25
-                          </td>
-                          <td>
-                            2020-04-10
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            NORMAL
-                          </td>
-                          <td>
-                            powerlsh0103@naver.com
-                          </td>
-                          <td>
-                            임성현
-                          </td>
-                          <td>
-                            010-2605-9213
-                          </td>
-                          <td>
-                            2020-03-25
-                          </td>
-                          <td>
-                            2020-04-10
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
                           </td>
                           <td>
                             KAKAO
