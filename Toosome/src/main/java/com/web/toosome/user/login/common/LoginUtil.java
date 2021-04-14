@@ -22,12 +22,31 @@ public class LoginUtil {
 
 	public void loginWithoutForm(String email) {
 		MemberVO member = service.getUserByEmail(email);
-		System.out.println(member);
 		String roleStr = member.getAuthList().get(0).getMemberAuth();
-		System.out.println(roleStr);
 		List<GrantedAuthority> roles = new ArrayList<>(1);
 		roles.add(new SimpleGrantedAuthority(roleStr));
 		Authentication auth = new UsernamePasswordAuthenticationToken(member, null, roles);
 		SecurityContextHolder.getContext().setAuthentication(auth);
+	}
+	
+	public boolean socialLoginProc(String email, String name, String type, MemberVO member) {
+		boolean flag = false;
+		if (member == null) {
+			member = new MemberVO();
+			member.setMemberEmail(email);
+			member.setMemberName(name);
+			member.setPlatFormType(type);
+			service.registerMember(member);
+			return flag;
+		} else if(email.equals(member.getMemberEmail()) && !type.equals(member.getPlatFormType())) {
+			System.out.println("change platform");
+			service.updatePlatForm(email, type);
+			return flag;
+		} else if(email.equals(member.getMemberEmail()) && member.getPlatFormType() == null){
+			System.out.println("duplicate email");
+			flag = true;
+			return flag;
+		}
+		return flag;
 	}
 }

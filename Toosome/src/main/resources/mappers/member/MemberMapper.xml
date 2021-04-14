@@ -39,6 +39,22 @@
 		WHERE mem.MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+	<!-- 아이디로 회원 조회 -->
+	<select id="getUserById" resultMap="memberMap">
+		SELECT
+		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
+		FROM
+		 MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember">
+		UPDATE MEMBER 
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_ID = #{memberId};		 
+	</update>
+	
 	<!-- 회원 가입 (사용자) -->
 	<insert id="registerMember">
 		INSERT INTO 

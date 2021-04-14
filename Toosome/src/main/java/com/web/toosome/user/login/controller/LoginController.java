@@ -1,6 +1,5 @@
 package com.web.toosome.user.login.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -62,24 +61,21 @@ public class LoginController {
 		String email = (String) jsonObject.get("email");
 		String name = (String) jsonObject.get("name");
 		MemberVO member = service.getUserByEmail(email);
-		if (member == null) {
-			member = new MemberVO();
-			member.setMemberEmail(email);
-			member.setMemberName(name);
-			member.setPlatFormType("naver");
-			service.registerMember(member);
-		} else if(email.equals(member.getMemberEmail()) && "kakao".equals(member.getPlatFormType())) {
-			service.updatePlatForm(email, "naver");
-			member = service.getUserByEmail(email);
-		}
-		
-		loginUtil.loginWithoutForm(email);
-		session.setAttribute("member", member);
-		
-		PrintWriter out = response.getWriter();
+		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
 		response.setContentType("text/html; charset=utf-8");
-		out.println("<script>window.opener.location.href='/';self.close();</script>");
+		PrintWriter out = response.getWriter();
+
+		if(!flag) {
+			loginUtil.loginWithoutForm(email);
+			member = service.getUserByEmail(email);
+			session.setAttribute("id", member.getMemberId());
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		} else {
+			String deleteUrl = naverLoginBO.deleteToken(oauthToken.getAccessToken());
+			out.println("<script>alert('이미 가입하신 이메일 입니다.');location.href='" + deleteUrl + "';window.opener.location.href='/signin';self.close();</script>");
+		}
 		out.flush();
+		
 	}
 	
 	// kakao login
@@ -107,23 +103,19 @@ public class LoginController {
         String name = properties.path("nickname").asText();
         String email = kakao_account.path("email").asText();
         MemberVO member = service.getUserByEmail(email);
-		if (member == null) {
-			member = new MemberVO();
-			member.setMemberEmail(email);
-			member.setMemberName(name);
-			member.setPlatFormType("kakao");
-			service.registerMember(member);
-		}else if(email.equals(member.getMemberEmail()) && "naver".equals(member.getPlatFormType())) {
-			service.updatePlatForm(email, "kakao");
-			member = service.getUserByEmail(email);
-		}
-		
-		loginUtil.loginWithoutForm(email);
-		session.setAttribute("member", member);
-
-        PrintWriter out = response.getWriter();
+        boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
 		response.setContentType("text/html; charset=utf-8");
-		out.println("<script>window.opener.location.href='/';self.close();</script>");
+		PrintWriter out = response.getWriter();
+
+		if(!flag) {
+			loginUtil.loginWithoutForm(email);
+			member = service.getUserByEmail(email);
+			session.setAttribute("id", member.getMemberId());
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		} else {
+			KakaoLoginApi.deleteToken(code, accessToken);
+			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");
+		}
 		out.flush();
 	}
 	

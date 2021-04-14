@@ -56,8 +56,21 @@ public class KakaoLoginApi {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-
+		
 		return returnNode;
 	}
 
+	public static void deleteToken(String code, JsonNode accessToken) {
+		final HttpClient client = HttpClientBuilder.create().build();
+		final String RequestUrl = "https://kapi.kakao.com/v1/user/unlink"; // Host
+		final HttpPost post = new HttpPost(RequestUrl);
+		post.addHeader("Authorization", "Bearer " + accessToken);
+		try {
+			final HttpResponse response = client.execute(post);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 }

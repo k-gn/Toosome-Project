@@ -86,4 +86,9 @@ public class NaverLoginBO {
 		Response response = request.send();
 		return response.getBody();
 	}
+	
+	public String deleteToken(String ACCESS_TOKEN) {
+    	String deleteUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+ACCESS_TOKEN+"&&service_provider=NAVER";
+    	return deleteUrl;
+    }
 }
