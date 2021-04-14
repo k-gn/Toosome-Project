@@ -1,5 +1,7 @@
 package com.web.toosome.user.member.service;
 
+import java.util.Map;
+
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberService {
@@ -22,6 +24,9 @@ public interface IMemberService {
 	// 회원정보 수정
 	public int updateMember(MemberVO vo);
 
+	// 회원 탈퇴
+	public int deleteMember(String email, int id);
+
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	public void certifiedPhoneNumber(String phoneNumber, String num);
 
@@ -39,4 +44,10 @@ public interface IMemberService {
 
 	// 사용자 플랫폼 타입 변경
 	public void updatePlatForm(String email, String type);
+
+	// 비밀번호 검증 (비밀번호 체크용)
+	public boolean passwordCheck(int id, String password);
+
+	// 비밀번호 변경
+	public int changePassword(int id, String newpassword);
 }

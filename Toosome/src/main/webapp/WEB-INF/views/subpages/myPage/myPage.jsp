@@ -38,7 +38,7 @@
                   안전한 개인정보보호를 위해<br/>
                   <strong>비밀번호는 주기적으로 변경</strong>해 주세요.
                 </p>
-                <input type="button" value="비밀번호 변경" onclick="location.href='/passwordmodify'">
+                <input type="button" value="비밀번호 변경" onclick="location.href='/mypage/passwordmodify/${id}'">
               </li>
 
               <li>
@@ -50,7 +50,7 @@
                   간단한 절차를 통해<br/>
                   <strong>회원 탈퇴</strong>를 할 수 있습니다.
                 </p>
-                <input type="button" value="회원 탈퇴" onclick="location.href='/memberwithdraw'">
+                <input type="button" value="회원 탈퇴" onclick="location.href='/mypage/memberwithdraw'">
               </li>
             </ul>
           </div>
@@ -93,7 +93,12 @@
         </div>
       </div>
     </div>
-    
+	<script>
+		const msg = "${msg}"
+		if(msg === "modSuccess") {
+			alert("비밀번호가 변경되었습니다.");
+		}
+	</script>    
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
 </body>

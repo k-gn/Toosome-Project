@@ -109,6 +109,6 @@
 	</select>
 	<!-- 비밀번호 변경 -->
 	<update id="changePassword">
-		UPDATE MEMBER SET MEMBER_PASSWORD=#{memberPassword} WHERE MEMBER_ID = #{memberId}
+		UPDATE MEMBER SET MEMBER_PASSWORD=#{newpassword} WHERE MEMBER_ID = #{id}
 	</update>
 </mapper>

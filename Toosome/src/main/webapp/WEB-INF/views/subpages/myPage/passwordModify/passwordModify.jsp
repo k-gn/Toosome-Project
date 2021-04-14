@@ -19,12 +19,12 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">비밀번호 변경</span>
         </div>
-        <form class="signup-form-container" action="#">
+        <form class="signup-form-container" action="/mypage/passwordmodify/${id}" method="post">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
               <span>이메일</span>
             </div>
-            <input class="signup-form email" type="email" name="email" disabled />
+            <input class="signup-form email" type="email" name="email" value="${email}" disabled />
           </div>
           <div class="signup-wrapper">
             <span>현재 비밀번호</span>
@@ -33,7 +33,7 @@
           </div>
           <div class="signup-wrapper">
             <span>새 비밀번호</span>
-            <input class="signup-form new-pwd1" type="password" name="new-password" placeholder="새 비밀번호를 입력해주세요">
+            <input class="signup-form new-pwd1" type="password" name="newpassword" placeholder="새 비밀번호를 입력해주세요">
             <p class="validation pwd2"></p>
           </div>
           <div class="signup-wrapper">
@@ -42,8 +42,9 @@
             <p class="validation pwd3"></p>
           </div>
           <div class="signform-btn-wrapper">
-            <input class="signform-btn" type="button" disabled="disabled" value="비밀번호 변경">
+            <input class="signform-btn" type="submit" disabled="disabled" value="비밀번호 변경">
           </div>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         </form>
       </div>
     </section>

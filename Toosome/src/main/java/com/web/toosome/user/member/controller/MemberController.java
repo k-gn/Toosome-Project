@@ -65,18 +65,6 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
-	// 비밀번호변경 이동
-	@GetMapping("/passwordmodify")
-	public String passwordmodify() {
-		return "subpages/myPage/passwordModify/passwordModify";
-	}
-
-	// 회원탈퇴 이동
-	@GetMapping("/memberwithdraw")
-	public String memberwithdraw() {
-		return "subpages/myPage/memberWithdraw/memberWithdraw";
-	}
-
 	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
 	public String memberupdate(@PathVariable Integer id, Model model) {
@@ -128,7 +116,53 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "subpages/myPage/memberCheck/memberCheck";
 	}
-
+	
+	// 비밀번호변경 이동
+	@GetMapping("/mypage/passwordmodify/{id}")
+	public String passwordmodify(@PathVariable Integer id, Model model) {
+		model.addAttribute("email", service.getUserById(id).getMemberEmail());
+		return "subpages/myPage/passwordModify/passwordModify";
+	}
+	
+	// 비밀번호 변경 처리
+	@PostMapping("/mypage/passwordmodify/{id}")
+	public String passwordmodify(@PathVariable Integer id, String password, String newpassword, RedirectAttributes ra) {
+		int result = 0;
+		if(service.passwordCheck(id, password)) {
+			result = service.changePassword(id, newpassword);
+		}
+		
+		if(result > 0) {
+			ra.addFlashAttribute("msg", "modSuccess");
+		}else {
+			ra.addFlashAttribute("msg", "modFail");
+		}
+		return "redirect:/mypage";
+	}
+	
+	// 회원탈퇴 이동
+	@GetMapping("/mypage/memberwithdraw")
+	public String memberwithdraw() {
+		return "subpages/myPage/memberWithdraw/memberWithdraw";
+	}
+	
+	// 회원탈퇴 처리
+	@PostMapping("/mypage/memberwithdraw/{id}")
+	public String memberwithdraw(@PathVariable Integer id, String password, RedirectAttributes ra) {
+		int result = 0;
+		if(service.passwordCheck(id, password)) {
+			result = service.deleteMember(service.getUserById(id).getMemberEmail(), id);
+		}
+		
+		if(result > 0) {
+			ra.addFlashAttribute("msg", "delSuccess");
+			return "redirect:/mypage/memberwithdraw";
+		}else {
+			ra.addFlashAttribute("msg", "delFail");
+			return "redirect:/mypage/memberwithdraw";
+		}
+	}
+	
 	// 아이디 찾기 인증번호 전송
 	@ResponseBody
 	@RequestMapping("/sendSms")
