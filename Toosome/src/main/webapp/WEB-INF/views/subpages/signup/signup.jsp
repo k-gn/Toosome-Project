@@ -23,7 +23,7 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">회원가입</span>
         </div>
-        <form class="signup-form-container" action="/signup" method="post">
+        <form class="signup-form-container">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
               <span>이메일</span>

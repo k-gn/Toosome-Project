@@ -40,7 +40,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .title-container img {
@@ -53,10 +53,16 @@
 }
 
 .title-container span {
-  margin-top: 50px;
+  margin-top: 40px;
   font-size: 1.5rem;
   font-family: gsdr;
   color: #222;
+}
+
+.title-container p {
+	margin-top: 10px;
+	color: #a62326;
+	font-weight: 600;
 }
 
 .login-form {

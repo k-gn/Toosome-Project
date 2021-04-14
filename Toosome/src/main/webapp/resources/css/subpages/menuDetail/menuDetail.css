@@ -14,8 +14,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* flex-direction: column; */
-  /* text-align: center; */
   padding: 20px 0;
   margin-bottom: 30px;
   border-bottom: 2px solid #000;
@@ -62,6 +60,16 @@
   text-align: center;
   font-size: 13px;
   color: #555;
+}
+.menuDetail-container .contents .pay-box {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.menuDetail-container .contents .pay-box span {
+  font-size: 20px;
+  color: #A62326;
+  font-family: gsdr;
 }
 .menuDetail-container .contents .table-cover {
   width: 80%;

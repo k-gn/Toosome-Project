@@ -38,7 +38,7 @@
                   안전한 개인정보보호를 위해<br/>
                   <strong>비밀번호는 주기적으로 변경</strong>해 주세요.
                 </p>
-                <input type="button" value="비밀번호 변경">
+                <input type="button" value="비밀번호 변경" onclick="location.href='/passwordmodify'">
               </li>
 
               <li>

@@ -22,6 +22,7 @@
 		<div class="title-container">
           <img src="/resources/img/admin/subpages/login/admin_login.png" alt="#">
           <span>관리자모드 로그인</span>
+          <p>TOOSOME PLACE ADMINISTRATOR</p>
         </div>
         <form class="login-form" action="/admin/signin" method="POST">
         	<input type="text" name="adminId" placeholder="아이디를 입력하세요" required>
