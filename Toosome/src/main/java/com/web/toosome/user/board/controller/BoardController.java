@@ -13,6 +13,7 @@ import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
 import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
@@ -68,8 +69,6 @@ public class BoardController {
 	public String noticeDetailView(String index) throws Exception {
 		
 		System.out.println("notice-detail 화면 출력: " + index);
-		//NoticeBoardVO noticeBoard = noticeBoardService.getNoticeBoard(index);
-		//model.addAttribute("noticeBoard",noticeBoard);
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 	
@@ -77,10 +76,10 @@ public class BoardController {
 	@GetMapping(value = "/noticedetail", produces = "application/json") // 해당 게시물 조회값
 	@ResponseBody
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
-		
-		int count = noticeBoardService.NoticeBoardCount(index);
-		System.out.println(count);
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
+		noticeBoardService.NoticeBoardCount(index);
+	
+		
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
@@ -147,9 +146,10 @@ public class BoardController {
 	
 	@GetMapping(value="/newsdetail", produces = "application/json" )
 	@ResponseBody
-	public List<NewsBoardVO> newsDetail(String index)throws Exception{
-		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoard(index);
+	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
+		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
 		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
+//		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
 
