@@ -94,4 +94,21 @@
 	<update id="updatePlatForm">
 		UPDATE MEMBER SET MEMBER_PLATFORM_TYPE = #{type} WHERE MEMBER_EMAIL = #{email}
 	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{id}
+	</delete>
+	<delete id="deleteMemberAuth">
+		DELETE FROM MEMBER_AUTH WHERE MEMBER_EMAIL = #{email}
+	</delete>
+	
+	<!-- 아이디로 비밀번호 찾기 (비밀번호 체크용) -->
+	<select id="passwordCheck" resultType="String">
+		SELECT MEMBER_PASSWORD FROM MEMBER WHERE MEMBER_ID = #{id}
+	</select>
+	<!-- 비밀번호 변경 -->
+	<update id="changePassword">
+		UPDATE MEMBER SET MEMBER_PASSWORD=#{memberPassword} WHERE MEMBER_ID = #{memberId}
+	</update>
 </mapper>

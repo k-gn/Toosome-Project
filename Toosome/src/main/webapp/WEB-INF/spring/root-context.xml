@@ -68,10 +68,11 @@
 	<!-- 트랜잭션 어노테이션 설정 -->
 	<tx:annotation-driven/>
 	
-	<!-- s3 -->
+	<!-- s3 
 	<bean id="s3Service" class="com.web.toosome.common.s3.S3Service">
 		<constructor-arg value="${s3.bucket}"/>
 		<constructor-arg value="${s3.accessKey}"/>
 		<constructor-arg value="${s3.secretKey}"/>
 	</bean>
+	-->
 </beans>

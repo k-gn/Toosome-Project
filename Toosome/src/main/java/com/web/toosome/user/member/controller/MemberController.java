@@ -26,22 +26,46 @@ public class MemberController {
 	@Autowired
 	private IMemberService service;
 	
-	
+	// 회원가입 페이지 이동
 	@GetMapping("/signup")
 	public String signup() {
 		return "subpages/signup/signup";
 	}
+	
+	// 회원가입 시 인증 절차 포함
+	// 회원가입 관련
+	@PostMapping("/signup")
+	@ResponseBody
+	public String register(@RequestBody MemberVO member) {
+		int result = service.registerMember(member);
+		if(result > 0) return "success";
+		else return "fail";
+	}
 
+	// 이메일 중복 확인
+	@PostMapping("/emailDupCheck")
+	@ResponseBody
+	public String emailDupCheck(@RequestBody String email) {
+		boolean result = service.emailDupCheck(email);
+		if (result)
+			return "OK";
+		else
+			return "NO";
+	}
+	
+	// 회원가입 완료 페이지 이동
 	@GetMapping("/signupcomplete")
 	public String signupComplete() {
 		return "subpages/signupComplete/signupComplete";
 	}
 	
+	// 마이페이지 이동
 	@GetMapping("/mypage")
 	public String mypage() {
 		return "subpages/myPage/myPage";
 	}
 
+	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
 	public String memberupdate(@PathVariable Integer id, Model model) {
 		MemberVO member = service.getUserById(id);
@@ -73,6 +97,7 @@ public class MemberController {
 		else return "modFail";
 	}
 
+	// 회원정보 확인 페이지 이동
 	@GetMapping("/mypage/check/{id}")
 	public String membercheck(@PathVariable Integer id, Model model) {
 		MemberVO member = service.getUserById(id);
@@ -92,27 +117,6 @@ public class MemberController {
 		return "subpages/myPage/memberCheck/memberCheck";
 	}
 
-	// 회원가입 시 인증 절차 포함
-	// 회원가입 관련
-	@PostMapping("/signup")
-	@ResponseBody
-	public String register(@RequestBody MemberVO member) {
-		int result = service.registerMember(member);
-		if(result > 0) return "success";
-		else return "fail";
-	}
-
-	// 이메일 중복 확인
-	@PostMapping("/emailDupCheck")
-	@ResponseBody
-	public String emailDupCheck(@RequestBody String email) {
-		boolean result = service.emailDupCheck(email);
-		if (result)
-			return "OK";
-		else
-			return "NO";
-	}
-	
 	// 아이디 찾기 인증번호 전송
 	@ResponseBody
 	@RequestMapping("/sendSms")

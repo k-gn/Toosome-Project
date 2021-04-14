@@ -118,7 +118,6 @@ public class LoginController {
 		}
 		out.flush();
 	}
-	
 
 	@GetMapping("/admin/signin")
 	public String adminsignin() {

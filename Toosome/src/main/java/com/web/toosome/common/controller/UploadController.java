@@ -8,6 +8,6 @@ import com.web.toosome.common.s3.S3Service;
 @Controller
 public class UploadController {
 	
-	@Autowired
-	private S3Service s3Service;
+//	@Autowired
+//	private S3Service s3Service;
 }
