@@ -24,9 +24,10 @@
 				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." required />
 				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
 				<div class="valid">${loginFailMsg}</div>
-				<label>
-	              <input name="remember" type="checkbox">Remember Me
-	            </label>
+				<div class="auto-login">
+			      <div class="check-box"></div>
+			      <input id="remember" name="remember" type="checkbox">Remember Me
+			    </div>
 				<input type="submit" value="로그인">
 				<div class="login-value">
 					<a class="kaka" onclick="loginWithKakao()"><img src="/resources/img/subpages/signin/kakao_login.png"></a>
