@@ -149,7 +149,11 @@ public class BoardController {
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
 		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
+<<<<<<< HEAD
 		//newsBoardService.newsBoardCount(index);
+=======
+//		newsBoardService.newsBoardCount(index);
+>>>>>>> dev
 		return newsdetail;
 	}
 
