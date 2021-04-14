@@ -41,8 +41,11 @@
 				</ul>
 				<h3>${menubeverageDetail.menuMainTitle}</h3>
 				<p class="title-text">${menubeverageDetail.menuContent}</p>
-				<span class="com">${menubeverageDetail.menuPrice}</span>
-				<input type="button" value="기프티콘 구매" class="gift">
+				<div class="pay-box">
+				  <span class="com" style="float: left;">${menubeverageDetail.menuPrice}</span>
+				  <span style="float: left;">&nbsp;원</span>
+				</div>
+				<a href="#" class="gift">기프티콘 구매</a>
 				<div class="table-cover">
 					<table class="table">
 						<tbody>
