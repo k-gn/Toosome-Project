@@ -50,7 +50,7 @@
                   간단한 절차를 통해<br/>
                   <strong>회원 탈퇴</strong>를 할 수 있습니다.
                 </p>
-                <input type="button" value="회원 탈퇴">
+                <input type="button" value="회원 탈퇴" onclick="location.href='/memberwithdraw'">
               </li>
             </ul>
           </div>
