@@ -181,3 +181,38 @@
 	margin: 10px auto;
 	padding-left: 30px;
 }
+
+
+.auto-login {
+  width: 175px;
+  height: 20px;
+  position: relative;
+  /* bottom: 50px; */
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: bold;
+  /* background-color: red; */
+}
+.auto-login .check-box {
+	width: 20px;
+	height: 20px;
+	background: url("../../../img/subpages/signin/check_off.png") no-repeat center /cover;
+	position: absolute;
+	left: 30px;
+}
+
+.auto-login input[type="checkbox"] {
+	height: 13px;
+	margin-left: 30px;
+	margin-right: 15px;
+	margin-bottom: 30px;
+}
+.auto-login:hover .check-box {
+	background: url("../../../img/subpages/signin/check_over.png") no-repeat center /cover;
+}
+.auto-login .check-box.check {
+	background: url("../../../img/subpages/signin/check_on.png") no-repeat center /cover;
+}
+
+
+
