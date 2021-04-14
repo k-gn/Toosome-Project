@@ -14,65 +14,63 @@
 	<!-- 이메일 인증 관련 -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<!-- nslookup을 사용하여 구글의 메일서버 사용 -->
-		<property name="host" value="smtp.naver.com" />		
+		<!-- nslookup을 사용하여 네이버의 메일서버 사용 -->
+		<property name="host" value="smtp.gmail.com" />
 		<!-- 포트 번호 -->
-		<property name="port" value="465" />					
+		<property name="port" value="587" />
 		<!-- 자신의 이메일 아이디 -->
-		<property name="username" value="qkd2186@naver.com" />	
-		<!-- 자신의 비밀번호 --> 		
-		<property name="password" value="dpwns2186~" /> 	
+		<property name="username" value="qkd2186@gmail.com" />
+		<!-- 자신의 비밀번호 -->
+		<property name="password" value="jzzwtvdktvfcrenj" />
 		<!-- 보안연결 TLS과 관련된 설정 -->
-		<property name="javaMailProperties">					
+		<property name="javaMailProperties">
 			<!-- TLS(TLS > SSL) 인증 코드 -->
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtps.checkserveridentity">true</prop>
-				<prop key="mail.smtps.ssl.trust">*</prop>
-				<prop key="mail.debug">true</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 			</props>
 		</property>
 	</bean>
-	
+
 	<!-- Properties -->
-	<context:property-placeholder location="classpath:config/jdbc/database.properties"/>
-	
+	<context:property-placeholder
+		location="classpath:config/jdbc/database.properties" />
+
 	<!-- DB Setting -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName" value="${jdbc.driver}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
-	
+
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-		<constructor-arg ref="hikariConfig"/>
+		<constructor-arg ref="hikariConfig" />
 	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"/>
-		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:config/mybatis/mybatis-config.xml" />
+		<property name="mapperLocations"
+			value="classpath:mappers/**/*Mapper.xml" />
 	</bean>
-	
+
 	<!-- Mybatis Bean Scan -->
-	<mybatis-spring:scan base-package="com.web.toosome.*.*.dao"/>
-	
+	<mybatis-spring:scan
+		base-package="com.web.toosome.*.*.dao" />
+
 	<!-- 트랜잭션 빈 등록 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<!-- 트랜잭션 어노테이션 설정 -->
-	<tx:annotation-driven/>
-	
-	<!-- s3 
-	<bean id="s3Service" class="com.web.toosome.common.s3.S3Service">
-		<constructor-arg value="${s3.bucket}"/>
-		<constructor-arg value="${s3.accessKey}"/>
-		<constructor-arg value="${s3.secretKey}"/>
-	</bean>
-	-->
+	<tx:annotation-driven />
+
+	<!-- s3 <bean id="s3Service" class="com.web.toosome.common.s3.S3Service"> 
+		<constructor-arg value="${s3.bucket}"/> <constructor-arg value="${s3.accessKey}"/> 
+		<constructor-arg value="${s3.secretKey}"/> </bean> -->
 </beans>
