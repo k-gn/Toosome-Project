@@ -13,5 +13,6 @@ public class NewsBoardVO {
 	private String newsBoardViewCount;
 	private String newsBoardTitle;
 	private Date newsBoardRegdate;
+	private NewsBoardDetailVO newsBoardDetailVO;
 
 }
