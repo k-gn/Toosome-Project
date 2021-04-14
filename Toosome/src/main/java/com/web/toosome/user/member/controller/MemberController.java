@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -40,21 +42,19 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
-	@GetMapping("/mypage/memberupdate")
-	public String memberupdate(Model model, HttpSession session) {
-		Integer id = (Integer) session.getAttribute("id");
+	@GetMapping("/mypage/update/{id}")
+	public String memberupdate(@PathVariable Integer id, Model model) {
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
 			String[] phoneArr = member.getMemberPhone().split("-");
-			map.put("tel1", phoneArr[0]);
-			map.put("tel2", phoneArr[1]);
-			map.put("tel3", phoneArr[2]);
-			
 			String[] addressArr = member.getMemberAddress().split("-");
-			map.put("address1", addressArr[0]);
-			map.put("address2", addressArr[1]);
-			map.put("address3", addressArr[2]);
+			for(int i=0; i<phoneArr.length; i++) {
+				map.put("tel"+(i+1), phoneArr[i]);
+			}
+			for(int i=0; i<addressArr.length; i++) {
+				map.put("address"+(i+1), addressArr[i]);
+			}
 		}else {
 			map.put("tel1", "010");
 		}
@@ -65,17 +65,30 @@ public class MemberController {
 	}
 	
 	// 회원 정보 수정 처리
-	@PostMapping("/mypage/memberupdate")
+	@PostMapping("/mypage/update")
 	@ResponseBody
 	public String memberupdate(@RequestBody MemberVO member) {
 		int result = service.updateMember(member);
-		if(result > 0) return "success";
-		else return "fail";
+		if(result > 0) return "modSuccess";
+		else return "modFail";
 	}
 
-	@GetMapping("/membercheck")
-	public String membercheck(Model model, HttpSession session) {
-		
+	@GetMapping("/mypage/check/{id}")
+	public String membercheck(@PathVariable Integer id, Model model) {
+		MemberVO member = service.getUserById(id);
+		Map<String, String> map = new HashMap<>();
+		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
+			String[] phoneArr = member.getMemberPhone().split("-");
+			String[] addressArr = member.getMemberAddress().split("-");
+			for(int i=0; i<phoneArr.length; i++) {
+				map.put("tel"+(i+1), phoneArr[i]);
+			}
+			for(int i=0; i<addressArr.length; i++) {
+				map.put("address"+(i+1), addressArr[i]);
+			}
+		}
+		model.addAttribute("map", map);
+		model.addAttribute("member", member);
 		return "subpages/myPage/memberCheck/memberCheck";
 	}
 

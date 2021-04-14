@@ -26,7 +26,7 @@
                   주소, 전화번호, e-mail등<br/>
                   <strong>개인정보를 수정</strong>할 수 있습니다.
                 </p>
-                <input type="button" value="개인정보 수정" onclick="location.href='/mypage/memberupdate'">
+                <input type="button" value="개인정보 수정" onclick="location.href='/mypage/update/${id}'">
               </li>
 
               <li>
@@ -63,7 +63,7 @@
               <a href="#">마이투썸</a>
               <ul>
                 <li><a href="/mypage">개인정보관리</a></li>
-                <li><a href="/membercheck">개인정보</a></li>
+                <li><a href="/mypage/check/${id}">개인정보</a></li>
                 <li><a href="#">마이멤버십</a></li>
               </ul>
             </li>

@@ -5,6 +5,8 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <link rel="stylesheet" href="/resources/css/subpages/myPage/memberUpdate/memberUpdate.css">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/resources/js/subpages/myPage/memberUpdate/memberUpdate.js" defer></script>
@@ -19,8 +21,7 @@
           <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
           <span class="signup-title">회원정보수정</span>
         </div>
-        <form class="signup-form-container" action="/mypage/memberupdate" method="post">
-          
+        <form class="signup-form-container" action="/mypage/update" method="post">
           <div class="signup-wrapper">
             <span>이름</span>
             <input class="signup-form name" type="text" name="name" placeholder="이름을 입력해주세요" value="${member.memberName}" required/>
@@ -58,9 +59,9 @@
             <p class="validation addr2"></p>
           </div>
           <div class="signform-btn-wrapper">
-            <input class="signform-btn" type="submit" value="정보수정">
+            <input class="signform-btn" type="button" value="정보수정" onclick="updateMember()">
           </div>
-          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+          <input class="signup-form mid" type="hidden" name="id" value="${member.memberId}">
         </form>
       </div>
     </section>
