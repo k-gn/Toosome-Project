@@ -10,19 +10,25 @@ public interface IMemberMapper {
 	public Integer emailDupCheck(String email);
 
 	// 회원 등록 (사용자)
-	public void registerMember(MemberVO member);
+	public int registerMember(MemberVO member);
 	
 	// 회원 권한 등록 (사용자)
 	public void registerMemberAuth(String email);
 	
 	// 회원 등록 (관리자)
-	public void registerAdmin(MemberVO member);
+	public int registerAdmin(MemberVO member);
 	
 	// 회원 권한 등록 (관리자)
 	public void registerAdminAuth(String email);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);
+	
+	// 아이디로 회원 조회
+	public MemberVO getUserById(int id);
+	
+	// 회원정보 수정
+	public int updateMember(MemberVO vo);
 	
 	// 아이디 찾기
 	public MemberVO getSMS(MemberVO vo);

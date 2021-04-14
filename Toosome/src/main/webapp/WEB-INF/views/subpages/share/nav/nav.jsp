@@ -59,13 +59,13 @@
   </nav>
   <div class="full-cover"></div>
   <ul class="log">
-  	<c:if test="${member == null}">
+  	<c:if test="${id == null}">
 	    <li><a href="/signin" id="login">LOGIN</a></li>
 	    <li><a href="/agreement">SIGN UP</a></li>
 	    <li><a href="/basket">BASKET</a></li>
 	    <li><a href="/faq">FAQ</a></li>
   	</c:if>
-  	<c:if test="${member != null}">
+  	<c:if test="${id != null}">
 	    <li><a href="#" id="logout" onclick="document.getElementById('dologout').submit();">LOGOUT</a></li>
 	    <li><a href="/mypage">MYPAGE</a></li>
 	    <li><a href="/basket">BASKET</a></li>
@@ -131,13 +131,13 @@
     </ul>
     
     <ul class="m-log">
-    <c:if test="${member == null}">
+    <c:if test="${id == null}">
       <li><a href="/signin">LOGIN</a></li>
       <li><a href="/agreement">SIGN UP</a></li>
       <li><a href="#">BASKET</a></li>
       <li><a href="/faq">FAQ</a></li>
     </c:if>
-    <c:if test="${member != null}">
+    <c:if test="${id != null}">
       <li><a href="#" id="logout" onclick="document.getElementById('dologout').submit();">LOGOUT</a></li>
       <li><a href="/mypage">MYPAGE</a></li>
       <li><a href="/basket">BASKET</a></li>

@@ -8,13 +8,19 @@ public interface IMemberService {
 	public boolean emailDupCheck(String email);
 
 	// 회원 등록 (사용자)
-	public void registerMember(MemberVO member);
+	public int registerMember(MemberVO member);
 
 	// 회원 등록 (관리자)
-	public void registerAdmin(MemberVO member);
+	public int registerAdmin(MemberVO member);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);
+
+	// 아이디로 회원 조회
+	public MemberVO getUserById(int id);
+
+	// 회원정보 수정
+	public int updateMember(MemberVO vo);
 
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	public void certifiedPhoneNumber(String phoneNumber, String num);

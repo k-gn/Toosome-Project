@@ -47,11 +47,13 @@
       emailForm.style.border = '2px solid red';
       emailErr.innerHTML = '이메일 주소 입력란이 비어있습니다';
       emailErr.style.display = 'block';
+      emailAuthBtn.disabled = true;
     } else if (!emailPattern.test(value)) {
       emailForm.style.border = '2px solid red';
       emailErr.innerHTML = '';
       emailErr.innerHTML = '이메일 주소가 올바르지 않습니다';
       emailErr.style.display = 'block';
+	  emailAuthBtn.disabled = true;
     } else {
       emailForm.style.border = '1px solid #ccc';
       const email = $(".signup-form.email").val();
@@ -70,10 +72,11 @@
 		dataType: "text",
 		success: function(result) {
 			if(result === "OK") {
+				emailAuthBtn.disabled = false;					
 				emailForm.style.border = '2px solid green';
 				$(".validation.email").html("<p style='color:green;'>사용 가능한 이메일 입니다.</p>");	
-				emailAuthBtn.disabled = false;					
 			} else {
+				emailAuthBtn.disabled = true;					
 				emailForm.style.border = '2px solid red';
 				$(".validation.email").html("<p style='color:red;'>이메일이 중복됩니다.</p>");						
 			}
@@ -482,7 +485,7 @@
 	const birth = $(".signup-form.year").val() + "-" + $(".signup-form.month").val() + "-" + $(".signup-form.date").val();
 	const birthDate = new Date(birth);
 	// 핸드폰 번호
-	const phone = $(".signup-form.agency").val() + $(".signup-form.tel1").val() + $(".signup-form.tel2").val();
+	const phone = $(".signup-form.agency").val() + "-" + $(".signup-form.tel1").val() + "-" + $(".signup-form.tel2").val();
 	// 주소
 	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
 	const member = {
@@ -510,6 +513,7 @@
 				location.href="/signupcomplete";
 			} else {
 				alert("회원가입에 실패했습니다!");
+				location.href="/signup";
 			}
 		}, 
 		error: function() {
