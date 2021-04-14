@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.user.board.dao.INewsBoardMapper;
+import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 
 @Service
@@ -22,15 +23,22 @@ public class NewsBoardService implements INewsBoardService {
 	}
 
 	@Override
-	public List<NewsBoardVO> getNewsBoard(String index) throws Exception {
-		System.out.println("(서비스)뉴스 상세 : " + mapper.getNewsBoard(index));
-		return mapper.getNewsBoard(index);
+	public List<NewsBoardVO> getNewsBoardDetail(String index) throws Exception {
+		System.out.println("(서비스)뉴스 상세 : " + mapper.getNewsBoardDetail(index));
+		return mapper.getNewsBoardDetail(index);
 	}
 
 	@Override
 	public List<NewsBoardVO> getSearchNews(String keyword) throws Exception {
 		System.out.println("뉴스 검색기능 : " + mapper.getSearchNews(keyword));
-		return mapper.getNewsBoard(keyword);
+		return mapper.getSearchNews(keyword);
+	}
+
+	@Override
+	public void newsBoardCount(String index) throws Exception {
+		System.out.println("뉴스 게시판 조회수 기능 ");
+		mapper.getSearchNews(index);
+		
 	}
 
 }
