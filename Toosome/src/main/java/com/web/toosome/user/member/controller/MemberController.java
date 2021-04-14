@@ -65,6 +65,12 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
+	// 비밀번호변경 이동
+	@GetMapping("/passwordmodify")
+	public String passwordmodify() {
+		return "subpages/myPage/passwordModify/passwordModify";
+	}
+
 	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
 	public String memberupdate(@PathVariable Integer id, Model model) {
