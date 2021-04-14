@@ -35,15 +35,18 @@ public class LoginUtil {
 			member = new MemberVO();
 			member.setMemberEmail(email);
 			member.setMemberName(name);
-			member.setPlatFormType("naver");
+			member.setPlatFormType(type);
 			service.registerMember(member);
 			return flag;
-		} else if(email.equals(member.getMemberEmail()) && type.equals(member.getPlatFormType())) {
-			service.updatePlatForm(email, "naver");
+		} else if(email.equals(member.getMemberEmail()) && !type.equals(member.getPlatFormType())) {
+			System.out.println("change platform");
+			service.updatePlatForm(email, type);
 			return flag;
-		} else {
+		} else if(email.equals(member.getMemberEmail()) && member.getPlatFormType() == null){
+			System.out.println("duplicate email");
 			flag = true;
 			return flag;
 		}
+		return flag;
 	}
 }

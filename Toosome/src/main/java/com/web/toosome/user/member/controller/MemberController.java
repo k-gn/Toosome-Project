@@ -74,7 +74,8 @@ public class MemberController {
 	}
 
 	@GetMapping("/membercheck")
-	public String membercheck() {
+	public String membercheck(Model model, HttpSession session) {
+		
 		return "subpages/myPage/memberCheck/memberCheck";
 	}
 

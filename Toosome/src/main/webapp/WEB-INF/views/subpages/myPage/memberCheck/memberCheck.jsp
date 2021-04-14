@@ -53,7 +53,7 @@
           </div>
           <div class="signform-btn-wrapper">
             <a class="signform-btn" style="margin-bottom: 30px;">정보수정</a>
-            <a class="signform-btn">개인정보확인</a>
+            <a class="signform-btn">마이페이지로</a>
           </div>
         </div>
       </div>

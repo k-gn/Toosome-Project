@@ -61,7 +61,7 @@ public class LoginController {
 		String email = (String) jsonObject.get("email");
 		String name = (String) jsonObject.get("name");
 		MemberVO member = service.getUserByEmail(email);
-		boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
+		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 
