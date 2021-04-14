@@ -30,18 +30,30 @@ public interface IMemberMapper {
 	// 회원정보 수정
 	public int updateMember(MemberVO vo);
 	
-	// 아이디 찾기
+	// 회원 탈퇴
+	public int deleteMember(int id);
+	
+	// 회원 권한 제거
+	public int deleteMemberAuth(String email);
+	
+	// 아이디 찾기 (번호로)
 	public MemberVO getSMS(MemberVO vo);
 	
-	// 아이디 찾기 ID 전송.
+	// 아이디 찾기 ID 전송. (번호로)
 	public MemberVO getMail(MemberVO vo);
 	
-	// 비밀번호 찾기
+	// 비밀번호 찾기 (번호로)
 	public MemberVO getPassword(MemberVO vo);
 	
-	// 비밀번호 찾기 랜덤비밀번호 전송
+	// 비밀번호 찾기 랜덤비밀번호 전송 (번호로)
 	public int getRepassword(MemberVO vo);
 	
 	// 사용자 플랫폼 타입 변경
 	public void updatePlatForm(Map<String, String> map);
+	
+	// 아이디로 비밀번호 찾기 (비밀번호 체크용)
+	public int passwordCheck(String id);
+	
+	// 비밀번호 변경
+	public int changePassword(MemberVO vo);
 }
