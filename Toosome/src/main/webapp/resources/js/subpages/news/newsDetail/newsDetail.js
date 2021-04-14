@@ -91,17 +91,21 @@ $(document).ready(() => {
 	$.ajax({
 		url: '/newsdetail?index='+index,
 		success: (res) => {
+			console.log(res);
+			
 			// 데이터 역순		
 			const newRes = res.reverse();
 			// 처음 혹은 마지막 게시물
 			if(newRes.length === 2) {
 				// null data 생성
 				const nullData = {
-					noticeBoardId: null,
-					noticeBoardTitle: null,
-					noticeBoardContent: null,
-					noticeBoardViewCount: null,
-					noticeBoardRegdate: null
+					newsBoardId: null,
+					newsBoardTitle: null,
+					newsBoardViewCount: null,
+					newsBoardRegdate: null,
+					newsBoardDetailImageRoute: null,
+					newsBoardDetailImageName: null,
+					newsBoardDetailImageExtention: null
 				};
 				// 첫 게시물 
 				if(+newRes[1].newsBoardId === 1) {
@@ -111,6 +115,9 @@ $(document).ready(() => {
 				}
 			}
 			displayDetail(detailTitle, detailContent, newRes, index);
+		},
+		error: () => {
+			alert('통신장애');
 		}
 	});	
 });
