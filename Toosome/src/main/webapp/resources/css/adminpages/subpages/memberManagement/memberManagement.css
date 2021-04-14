@@ -103,3 +103,7 @@
 	padding-left: 10px;
 	font-size: 1rem;
 }
+
+.form-control.datetimepicker-input {
+	letter-spacing: 3px;
+}
