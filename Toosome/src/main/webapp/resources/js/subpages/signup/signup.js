@@ -28,7 +28,6 @@
   const addr1Err = document.querySelector('.validation.addr1');
   const addr2Form = document.querySelector('.signup-form.addr2');
   const submitBtn = document.querySelector('.signform-btn');
-  const signupForm = document.querySelector('.signup-form-container');
 
   let isAuthenticated = false; // 인증 여부
   let countdown; // 카운트다운
