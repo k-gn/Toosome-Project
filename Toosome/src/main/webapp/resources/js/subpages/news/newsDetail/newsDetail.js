@@ -25,7 +25,7 @@ const displayDetail = (title, content, items, index) => {
 	let date = new Date(items[1].newsBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
 	
-	if(items[1].id === +index) {
+	if(items[1].newsBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
@@ -38,7 +38,7 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		let contentElement = `
-			<td colspan="4"><img src="${items[1].newsBoardContent}"></td>
+			<td colspan="4"><img src="${items[1].newsBoardDetailImageRoute+items[1].newsBoardDetailImageName}.${items[1].newsBoardDetailImageExtention}"></td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
@@ -62,7 +62,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newPrev = `
 			<td colspan="1">윗글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].title}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].newsBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
@@ -77,7 +77,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].title}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].newsBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -91,17 +91,21 @@ $(document).ready(() => {
 	$.ajax({
 		url: '/newsdetail?index='+index,
 		success: (res) => {
+			console.log(res);
+			
 			// 데이터 역순		
 			const newRes = res.reverse();
 			// 처음 혹은 마지막 게시물
 			if(newRes.length === 2) {
 				// null data 생성
 				const nullData = {
-					noticeBoardId: null,
-					noticeBoardTitle: null,
-					noticeBoardContent: null,
-					noticeBoardViewCount: null,
-					noticeBoardRegdate: null
+					newsBoardId: null,
+					newsBoardTitle: null,
+					newsBoardViewCount: null,
+					newsBoardRegdate: null,
+					newsBoardDetailImageRoute: null,
+					newsBoardDetailImageName: null,
+					newsBoardDetailImageExtention: null
 				};
 				// 첫 게시물 
 				if(+newRes[1].newsBoardId === 1) {
@@ -111,6 +115,9 @@ $(document).ready(() => {
 				}
 			}
 			displayDetail(detailTitle, detailContent, newRes, index);
+		},
+		error: () => {
+			alert('통신장애');
 		}
 	});	
 });

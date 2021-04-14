@@ -114,7 +114,7 @@ const searchHandler = () => {
 		return;
 	} else { // 검색어값 있을시
 		let keyword = searchInput.value;
-		url = '/search?keyword='+keyword;
+		url = '/newssearch?keyword='+keyword;
 		getPage(url);		
 	}
 };
