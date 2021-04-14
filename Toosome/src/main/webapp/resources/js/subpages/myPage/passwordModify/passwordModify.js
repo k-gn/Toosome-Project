@@ -97,6 +97,8 @@ const activateSubmitBtn = () => {
     pwd3Err.style.display === "none"
   ) {
     submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
   }
 };
 

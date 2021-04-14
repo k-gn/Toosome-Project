@@ -25,10 +25,10 @@ public class BoardMapperTests {
 	private IBoardNoticeMapper mapper;
 	
 	@Test
-	public void testNoticeBoardList(NoticeBoardVO vo) {
-		System.out.println(vo);
-		mapper.getNoticeBoardList(vo);
-		System.out.println(mapper.getNoticeBoardList(vo));
+	public void testNoticeBoardList(String index)throws Exception {
+		System.out.println(index);
+		mapper.getNoticeBoard(index);
+		System.out.println(mapper.getNoticeBoard(index));
 
 	}
 }

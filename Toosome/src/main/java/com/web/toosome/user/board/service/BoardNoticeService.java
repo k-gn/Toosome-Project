@@ -14,6 +14,7 @@ public class BoardNoticeService implements IBoardNoticeService {
 	@Autowired
 	private IBoardNoticeMapper mapper;
 	
+	
 
 	@Override
 	public List<NoticeBoardVO> getNoticeBoardList(NoticeBoardVO vo) throws Exception {
@@ -52,8 +53,9 @@ public class BoardNoticeService implements IBoardNoticeService {
 	}
 
 	@Override
-	public int NoticeBoardCount(String index) throws Exception {
-		return mapper.NoticeBoardCount(index);
+	public void NoticeBoardCount(String index) throws Exception {
+		mapper.NoticeBoardCount(index);
+
 		
 	}
 	

@@ -71,6 +71,12 @@ public class MemberController {
 		return "subpages/myPage/passwordModify/passwordModify";
 	}
 
+	// 회원탈퇴 이동
+	@GetMapping("/memberwithdraw")
+	public String memberwithdraw() {
+		return "subpages/myPage/memberWithdraw/memberWithdraw";
+	}
+
 	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
 	public String memberupdate(@PathVariable Integer id, Model model) {

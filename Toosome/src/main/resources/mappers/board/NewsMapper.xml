@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.toosome.user.board.dao.INewsBoardMapper">
 
+	<!-- news board -->
 	<resultMap type="newsBoardVO" id="NewsBoardMap">
 		<id property="newsBoardId" column="NEWS_BOARD_ID"/>
 		<result property="newsBoardImageRoute" column="NEWS_BOARD_IMAGE_ROUTE"/>
@@ -11,7 +12,20 @@
 		<result property="newsBoardViewCount" column="NEWS_BOARD_VIEW_COUNT"/>
 		<result property="newsBoardTitle" column="NEWS_BOARD_TITLE" />
 		<result property="newsBoardRegdate" column="NEWS_BOARD_REG_DATE"/>	
+		<collection property="newsBoardDetailVO" resultMap="NewsBoardDetailMap"/>
 	</resultMap>
+	
+	<!-- news detail  -->
+	<resultMap type="newsBoardDetailVO" id="NewsBoardDetailMap">
+		<id property="newsBoardDetailId" column="NEWS_BOARD_DETAIL_ID"/>
+		<result property="newsBoardDetailImageRoute" column="NEWS_BOARD_DETAIL_IMAGE_ROUTE"/>
+		<result property="newsBoardDetailImageName" column="NEWS_BOARD_DETAIL_IMAGE_NAME"/>
+	 	<result property="newsBoardDetailImageExtention" column="NEWS_BOARD_DETAIL_IMAGE_EXTENTION"/> 
+		<result property="newsBoardDetailViewCount" column="NEWS_BOARD_DETAIL_VIEW_COUNT"/>
+		<result property="newsBoardDetailTitle" column="NEWS_BOARD_DETAIL_TITLE" />
+		<result property="newsBoardDetailRegdate" column="NEWS_BOARD_DETAIL_REG_DATE" />	
+	</resultMap>
+	
 	
 	<select id="getSearchNews" resultMap="NewsBoardMap">
 		SELECT NEWS_BOARD_ID, NEWS_BOARD_IMAGE_ROUTE, NEWS_BOARD_IMAGE_NAME, NEWS_BOARD_IMAGE_EXTENTION, NEWS_BOARD_VIEW_COUNT, NEWS_BOARD_TITLE, NEWS_BOARD_REG_DATE FROM NEWS_BOARD WHERE NEWS_BOARD TITLE LIKE CONCAT('%',#{keyword},'%')
@@ -21,9 +35,22 @@
 	<select id="getNewsBoardList" resultMap="NewsBoardMap">
 		SELECT NEWS_BOARD_ID, NEWS_BOARD_IMAGE_ROUTE, NEWS_BOARD_IMAGE_NAME, NEWS_BOARD_IMAGE_EXTENTION, NEWS_BOARD_VIEW_COUNT, NEWS_BOARD_TITLE, NEWS_BOARD_REG_DATE FROM NEWS_BOARD;
 	</select>
-	
+	<!--  
 	<select id="getNewsBoard" resultMap="NewsBoardMap">
-		<![CDATA[ SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID >= #{index}-1 AND NEWS_BOARD_ID <= #{index}+1 ]]>
+		<![CDATA[SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID >= #{index}-1 AND NEWS_BOARD_ID <= #{index}+1]]>
 	</select>
+	-->
+	<select id="getNewsBoardDetail" resultMap="NewsBoardMap">
+	<![CDATA[SELECT A.NEWS_BOARD_ID, A.NEWS_BOARD_VIEW_COUNT, A.NEWS_BOARD_TITLE, A.NEWS_BOARD_REG_DATE,
+		   		B.NEWS_BOARD_DETAIL_ID, B.NEWS_BOARD_DETAIL_IMAGE_ROUTE, B.NEWS_BOARD_DETAIL_IMAGE_NAME, B.NEWS_BOARD_DETAIL_IMAGE_EXTENTION
+      				FROM NEWS_BOARD A
+	  					JOIN NEWS_BOARD_DETAIL B
+	    					ON (A.NEWS_BOARD_ID = B.NEWS_BOARD_DETAIL_ID)
+	    						WHERE A.NEWS_BOARD_ID >= #{index}-1 AND A.NEWS_BOARD_ID <= #{index}+1]]>
+	</select>
+	
+	<update id="NewsBoardCount">
+	<![CDATA[ UPDATE NEWS_BOARD SET NEWS_BOARD_VIEW_COUNT = IFNULL(NEWS_BOARD_VIEW_COUNT,0)+1 WHERE NEWS_BOARD_ID = #{index} ]]>
+	</update>
 	
 </mapper>
