@@ -25,6 +25,13 @@
 .signup-form-container {
   margin-top: 50px;
 }
+
+.validation {
+  display: none;
+  padding-top: 5px;
+  color: red;
+}
+
 .signup-wrapper {
   display: flex;
   flex-direction: column;
@@ -82,6 +89,18 @@
 .signform-btn:focus {
   outline: none;
 }
+
+
+.signform-btn:disabled {
+  display: block;
+  background: #ccc;
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2rem;
+  font-family: gsdr;
+}
 .signform-btn:enabled {
   display: block;
   width: 400px;
@@ -97,6 +116,8 @@
 .signform-btn:enabled:hover {
   text-decoration: underline;
 }
+
+
 
 
 @media screen and (max-width: 640px) {
