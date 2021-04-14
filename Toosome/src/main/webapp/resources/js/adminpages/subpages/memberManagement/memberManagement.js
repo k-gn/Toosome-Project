@@ -1,13 +1,18 @@
+const searchType = document.querySelector('#searchType'); // 검색어 선택
+const searchInput = document.querySelector('#search-text'); // 검색어 인풋
+const memberType = document.querySelector('#memberType'); // 멤버 선택
 const joinDate = document.querySelector('#joinDate'); // 회원가입일 기간선택
 const joinDatePeriod = document.querySelector('#joinDatePeriod'); // 회원가입일 기간선택 버튼박스
 const joinPeriods = document.querySelectorAll('.period.join'); // 회원가입일 기간 버튼들
 const joinCalendar = document.querySelector('#calendar1'); //회원가입일 달력
 const joinCalendar2 = document.querySelector('#calendar2'); //회원가입일 달력
-const loginDate = document.querySelector('#joinDate'); // 로그인일자 기간선택
+const loginDate = document.querySelector('#loginDate'); // 로그인일자 기간선택
 const loginDatePeriod = document.querySelector('#loginDatePeriod'); // 로그인일자 기간선택 버튼박스
 const loginPeriods = document.querySelectorAll('.period.login'); // 로그인일자 기간 버튼들
 const loginCalendar = document.querySelector('#calendar3'); // 로그인일자 달력
 const loginCalendar2 = document.querySelector('#calendar4'); // 로그인일자 달력
+const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
+const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 
 // 기간선택 handler
 const joinChangeHandler = (e) => {
@@ -49,7 +54,9 @@ const calcDate = (value, calendar) => {
 };
 
 // init
-const init = () => {
+const calendarInit = () => {
+	removeOn(joinPeriods);
+	removeOn(loginPeriods);
 	const today = moment().format('MM/DD/YYYY');
 	joinCalendar.value = today;
 	joinCalendar2.value = today;
@@ -79,9 +86,23 @@ loginPeriods.forEach((period) => {
 	});
 });
 
+// 리셋 버튼 핸들러
+const resetHandler = () => {
+	searchType.options[0].selected = 'true';
+	searchInput.value = '';
+	memberType.options[0].selected = 'true';
+	joinDate.options[0].selected = 'true';
+	joinDatePeriod.style.display = 'none';
+	loginDate.options[0].selected = 'true';
+	loginDatePeriod.style.display = 'none';
+	calendarInit();
+};
+
+resetBtn.addEventListener('click', resetHandler);
+
 // 기간선택 달력 Jquery
 $(document).ready(() => {
-	init();
+	calendarInit();
 	$('#datetimepicker1').datetimepicker({ format: 'L'});
 	$('#datetimepicker2').datetimepicker({ 
 		format: 'L',
