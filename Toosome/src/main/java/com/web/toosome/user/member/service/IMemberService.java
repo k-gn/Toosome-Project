@@ -1,7 +1,5 @@
 package com.web.toosome.user.member.service;
 
-import java.util.Map;
-
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberService {

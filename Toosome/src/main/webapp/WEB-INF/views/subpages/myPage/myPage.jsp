@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="/resources/css/subpages/myPage/myPage.css">
 <script src="/resources/js/subpages/myPage/myPageTap.js"></script>
 <title>A TOOSOME PLACE</title>
+<script>
+	const msg = "${msg}"
+	if(msg === "modSuccess") {
+		alert("비밀번호가 변경되었습니다.");
+	}else if(msg === "Denied") {
+		alert("잘못된 접근입니다.");
+	}else if(msg === "notSocial") {
+		alert("소셜회원은 이용할 수 없는 서비스 입니다.");
+	}
+</script> 
 </head>
 <body>
   <div id="container">
@@ -93,14 +103,6 @@
         </div>
       </div>
     </div>
-	<script>
-		const msg = "${msg}"
-		if(msg === "modSuccess") {
-			alert("비밀번호가 변경되었습니다.");
-		}else if(msg === "Denied") {
-			alert("잘못된 접근입니다.");
-		}
-	</script>    
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
 </body>

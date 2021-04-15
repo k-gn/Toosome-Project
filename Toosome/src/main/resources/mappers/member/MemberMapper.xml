@@ -10,6 +10,7 @@
 		<result property="memberPassword" column="MEMBER_PASSWORD"/>
 		<result property="memberBirth" column="MEMBER_BIRTH"/>
 		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
 		<result property="memberAddress" column="MEMBER_ADDRESS"/>
 		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
 		<result property="regDate" column="MEMBER_REG_DATE"/>
@@ -33,7 +34,7 @@
 	<!-- 이메일로 회원 조회 -->
 	<select id="getUserByEmail" resultMap="memberMap">
 		SELECT
-		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
+		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_POSTCODE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
 		FROM
 		 MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		WHERE mem.MEMBER_EMAIL = #{memberEmail}
@@ -42,7 +43,7 @@
 	<!-- 아이디로 회원 조회 -->
 	<select id="getUserById" resultMap="memberMap">
 		SELECT
-		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
+		 MEMBER_ID, mem.MEMBER_EMAIL, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_POSTCODE, MEMBER_ADDRESS, MEMBER_PLATFORM_TYPE, MEMBER_REG_DATE, MEMBER_STATUS, MEMBER_LAST_LOGIN_DATE, MEMBER_REPASSWORD, MEMBER_AUTH
 		FROM
 		 MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		WHERE MEMBER_ID = #{id}
@@ -51,15 +52,15 @@
 	<!-- 회원정보 수정 -->
 	<update id="updateMember">
 		UPDATE MEMBER 
-		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_ADDRESS = #{memberAddress}
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}
 		WHERE MEMBER_ID = #{memberId};		 
 	</update>
 	
 	<!-- 회원 가입 (사용자) -->
 	<insert id="registerMember">
 		INSERT INTO 
-		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_PLATFORM_TYPE)
-		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberAddress}, 1, #{platFormType})
+		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_POSTCODE, MEMBER_ADDRESS, MEMBER_STATUS, MEMBER_PLATFORM_TYPE)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberPostcode}, #{memberAddress}, 1, #{platFormType})
 	</insert>
 	<insert id="registerMemberAuth">
 		INSERT INTO MEMBER_AUTH
@@ -68,8 +69,8 @@
 	<!-- 회원 가입 (관리자) -->
 	<insert id="registerAdmin">
 		INSERT INTO 
-		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_BIRTH, MEMBER_PHONE, MEMBER_ADDRESS, MEMBER_STATUS)
-		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, 'admin', 'admin', 'admin', 0)
+		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword})
 	</insert>
 	<insert id="registerAdminAuth">
 		INSERT INTO MEMBER_AUTH
@@ -110,5 +111,9 @@
 	<!-- 비밀번호 변경 -->
 	<update id="changePassword">
 		UPDATE MEMBER SET MEMBER_PASSWORD=#{newpassword} WHERE MEMBER_ID = #{id}
+	</update>
+	<!-- 최종 로그인 수정 -->
+	<update id="updateLastLogin">
+		UPDATE MEMBER SET MEMBER_LAST_LOGIN_DATE=NOW() WHERE MEMBER_EMAIL = #{email}
 	</update>
 </mapper>

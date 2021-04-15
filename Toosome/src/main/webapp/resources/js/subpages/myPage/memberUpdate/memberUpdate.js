@@ -46,6 +46,8 @@ function updateMember() {
 	const name = $(".signup-form.name").val();
 	// 핸드폰 번호
 	const phone = $(".signup-form.agency").val() + "-" + $(".signup-form.tel1").val() + "-" + $(".signup-form.tel2").val();
+	// 우편번호
+	const postcode = $(".signup-form.postcode").val();
 	// 주소
 	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
 	const member = {
@@ -53,6 +55,7 @@ function updateMember() {
 		memberEmail: email,
 		memberName: name,
 		memberPhone: phone,
+		memberPostcode: postcode,
 		memberAddress: address
 	};
 	

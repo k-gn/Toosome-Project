@@ -79,11 +79,15 @@ public class MemberController {
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
-			String[] phoneArr = member.getMemberPhone().split("-");
+			// 01040178803
+			String tel1 = member.getMemberPhone().substring(0, 3);
+			String tel2 = member.getMemberPhone().substring(3, 7);
+			String tel3 = member.getMemberPhone().substring(7);
+			map.put("tel1", tel1);
+			map.put("tel2", tel2);
+			map.put("tel3", tel3);
 			String[] addressArr = member.getMemberAddress().split("-");
-			for(int i=0; i<phoneArr.length; i++) {
-				map.put("tel"+(i+1), phoneArr[i]);
-			}
+			map.put("postcode", member.getMemberPostcode());
 			for(int i=0; i<addressArr.length; i++) {
 				map.put("address"+(i+1), addressArr[i]);
 			}
@@ -118,11 +122,14 @@ public class MemberController {
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
-			String[] phoneArr = member.getMemberPhone().split("-");
+			String tel1 = member.getMemberPhone().substring(0, 3);
+			String tel2 = member.getMemberPhone().substring(3, 7);
+			String tel3 = member.getMemberPhone().substring(7);
+			map.put("tel1", tel1);
+			map.put("tel2", tel2);
+			map.put("tel3", tel3);
 			String[] addressArr = member.getMemberAddress().split("-");
-			for(int i=0; i<phoneArr.length; i++) {
-				map.put("tel"+(i+1), phoneArr[i]);
-			}
+			map.put("postcode", member.getMemberPostcode());
 			for(int i=0; i<addressArr.length; i++) {
 				map.put("address"+(i+1), addressArr[i]);
 			}
@@ -135,7 +142,12 @@ public class MemberController {
 	
 	// 비밀번호변경 이동
 	@GetMapping("/mypage/passwordmodify")
-	public String passwordmodify() {
+	public String passwordmodify(HttpSession session, RedirectAttributes ra) {
+		String platform = (String) session.getAttribute("platform");
+		if(platform.equals("naver") || platform.equals("kakao") ) {
+			ra.addFlashAttribute("msg", "notSocial");
+			return "redirect:/mypage";
+		}
 		return "subpages/myPage/passwordModify/passwordModify";
 	}
 	
@@ -158,7 +170,12 @@ public class MemberController {
 	
 	// 회원탈퇴 이동
 	@GetMapping("/mypage/memberwithdraw")
-	public String memberwithdraw() {
+	public String memberwithdraw(HttpSession session, RedirectAttributes ra) {
+		String platform = (String) session.getAttribute("platform");
+		if(platform.equals("naver") || platform.equals("kakao") ) {
+			ra.addFlashAttribute("msg", "notSocial");
+			return "redirect:/mypage";
+		}
 		return "subpages/myPage/memberWithdraw/memberWithdraw";
 	}
 	

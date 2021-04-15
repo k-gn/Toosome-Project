@@ -15,6 +15,7 @@ public class MemberVO{
 	private Date memberBirth;
 	private String memberPhone;
 	private String memberAddress;
+	private String memberPostcode;
 	private String platFormType;
 	private Date regDate;
 	private Integer status;

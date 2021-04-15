@@ -37,6 +37,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			}
 		}
 		MemberVO member = mapper.getUserByEmail(authentication.getName());
+		mapper.updateLastLogin(authentication.getName());
 		session.setAttribute("id", member.getMemberId());
 		session.setAttribute("email", member.getMemberEmail());
 		response.sendRedirect(url);

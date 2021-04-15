@@ -56,4 +56,7 @@ public interface IMemberMapper {
 	
 	// 비밀번호 변경
 	public int changePassword(Map<String, Object> map);
+	
+	// 최종 로그인 등록
+	public void updateLastLogin(String email);
 }
