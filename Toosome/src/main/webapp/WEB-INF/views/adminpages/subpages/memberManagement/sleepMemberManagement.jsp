@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/sleepMemberManagement/sleepMemberManagement.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/memberManagement/sleepMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/sleepMemberManagement/sleepMemberManagement.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/memberManagement/sleepMemberManagement.js" defer></script>
 </head>
 
 <body>
