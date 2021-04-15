@@ -144,7 +144,7 @@ public class MemberController {
 	@GetMapping("/mypage/passwordmodify")
 	public String passwordmodify(HttpSession session, RedirectAttributes ra) {
 		String platform = (String) session.getAttribute("platform");
-		if(platform.equals("naver") || platform.equals("kakao") ) {
+		if(platform != null && (platform.equals("naver") || platform.equals("kakao"))) {
 			ra.addFlashAttribute("msg", "notSocial");
 			return "redirect:/mypage";
 		}
@@ -172,7 +172,7 @@ public class MemberController {
 	@GetMapping("/mypage/memberwithdraw")
 	public String memberwithdraw(HttpSession session, RedirectAttributes ra) {
 		String platform = (String) session.getAttribute("platform");
-		if(platform.equals("naver") || platform.equals("kakao") ) {
+		if(platform != null && (platform.equals("naver") || platform.equals("kakao"))) {
 			ra.addFlashAttribute("msg", "notSocial");
 			return "redirect:/mypage";
 		}
@@ -195,6 +195,18 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "delFail");
 			return "redirect:/mypage/memberwithdraw";
 		}
+	}
+	
+	@GetMapping("/duplogin")
+	public String dupProc(RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "duplogin");
+		return "redirect:/";
+	}
+	
+	@GetMapping("/expiredlogin")
+	public String expiredProc(RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "expiredlogin");
+		return "redirect:/";
 	}
 	
 	// 아이디 찾기 인증번호 전송

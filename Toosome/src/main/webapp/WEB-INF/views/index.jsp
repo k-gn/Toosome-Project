@@ -26,6 +26,10 @@
 		const msg = "${msg}"
 		if(msg === "Denied") {
 			alert("잘못된 접근입니다.");
+		}else if(msg == "duplogin") {
+			alert("새로운 로그인이 감지되었습니다. 로그아웃 처리됩니다.")
+		}else if(msg == "expiredlogin") {
+			alert("세션이 만료되었습니다. 로그아웃 처리됩니다.")
 		}
 	</script>   
   </head>
