@@ -36,7 +36,7 @@ public class NewsBoardService implements INewsBoardService {
 	@Override
 	public void newsBoardCount(String index) throws Exception {
 		System.out.println("뉴스 게시판 조회수 기능 ");
-		mapper.getSearchNews(index);
+		mapper.NewsBoardCount(index);
 		
 	}
 

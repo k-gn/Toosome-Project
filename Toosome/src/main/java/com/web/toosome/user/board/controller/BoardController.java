@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.board.service.IBoardNoticeService;
+import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
+import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
-import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
@@ -28,18 +29,51 @@ public class BoardController {
 	@Autowired
 	private INewsBoardService newsBoardService;
 	
+	@Autowired
+	private IEventBoardService eventBoardService;
 	
 	
-	@GetMapping("/event") // 이벤트 공지 게시판
-	public String event() {
+	
+	@RequestMapping(value = "/event") // 이벤트 공지 게시판 화면 주소넘기기
+	public String eventView() {
 		return "subpages/event/event";
 	}
 	
-	@GetMapping("/event-detail") // 이벤트 상세 페이지
-	public String eventDetail() {
+	@GetMapping(value = "/eventlist" , produces = "application/json")// 이벤트 공지 게시판 화면 값 넘기기
+	@ResponseBody
+	public List<EventBoardVO> event(EventBoardVO vo)throws Exception{
+		List<EventBoardVO> eventboardlist = eventBoardService.getEventBoard(vo);
+		System.out.println("컨트롤러 이벤트 게시판 리스트 값 : " + eventboardlist );
+		return eventboardlist;
+	}
+	
+	@RequestMapping("/event-detail") // 이벤트 상세 페이지 주소
+	public String eventDetailView() {
 		return "subpages/event/eventDetail/eventDetail";
 	}
 	
+	@GetMapping(value = "/eventdetail", produces = "application/json")
+	@ResponseBody
+	public List<EventBoardVO> eventDetail(String index)throws Exception{
+		List<EventBoardVO> eventboarddetail = eventBoardService.getEventBoardDetail(index);
+		System.out.println("컨트롤러 이벤트 게시물 상세 값 " + eventboarddetail);
+		eventBoardService.eventBoardCount(index); // 게시물 조회 수 증가
+		return eventboarddetail;
+	}
+	
+	@GetMapping(value = "/eventsearch", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<EventBoardVO> searchEvent(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<EventBoardVO> searchevent = eventBoardService.getSearchList(keyword);
+		System.out.println("검색 값넘기기: " +searchevent);
+		return searchevent;
+		}else {
+			return null;
+		}
+		
+	}
 	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
@@ -138,7 +172,7 @@ public class BoardController {
 		return "subpages/iat/iat";
 	}
 
-	@RequestMapping("/news-detail")	// news 상세 페이지
+	@RequestMapping("/news-detail")	// news 상세 페이지 화면
 	public String newsDetailView() {
 		return "subpages/news/newsDetail/newsDetail";
 	}
@@ -150,7 +184,7 @@ public class BoardController {
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
 		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
 
-		//newsBoardService.newsBoardCount(index);
+		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
 
