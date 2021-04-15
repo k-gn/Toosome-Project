@@ -284,6 +284,61 @@ modalCancelBtn.addEventListener('click', (e) => {
 	profileContainer.style.display = 'none';
 })
 
+// 엑셀 다운로드
+const excelDownload = (id, title) => {
+	let content = `
+		<html xmlns:x="urns:schemas-microsoft-com:office:excel">
+			<head>
+				<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+				<xml>
+					<x:ExcelWorkbook>
+						<x:ExcelWorksheets>
+							<x:ExcelWorksheet>
+								<x:Name>Sheet</x:Name>
+									<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>
+							</x:ExcelWorksheet>
+						</x:ExcelWorksheets>
+					</x:ExcelWorkbook>
+				</xml>
+			</head>
+			<body>
+				<table border="1px">
+	`;
+	const exportTable = $('#' + id).clone();
+	exportTable.find('input').each((index, elem) => {
+		$(elem).remove();
+	});
+	content += exportTable.html();
+	content += `
+		</table></body></html>
+	`;
+	const data_type = 'data:application/vnd.ms-excel';
+	const ua = window.navigator.userAgent;
+	const msie = ua.indexOf('MSIE');
+	const fileName = title + '.xls';
+	
+	// IE 환경에서 다운로드
+	if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+		if(window.navigator.msSaveBlob) {
+			const blob = new Blob([content], {
+				type: "application/csv;charset=UTF-8"
+			});
+			navigator.msSaveBlob(blob, fileName);
+		}
+	} else {
+		const blob2 = new Blob([content], {
+			type: "application/csv;charset=UTF-8"
+		});
+		const filename = fileName;
+		const elem = window.document.createElement('a');
+		elem.href = window.URL.createObjectURL(blob2);
+		elem.download = filename;
+		document.body.appendChild(elem);
+		elem.click();
+		document.body.removeChild(elem);
+	}
+};
+
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();

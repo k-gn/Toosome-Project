@@ -138,7 +138,7 @@ public class MemberController {
 		vo.setMemberName(smsName);
 		MemberVO result = service.getSMS(vo);
 		System.out.println(result);
-		if (result.getMemberName().equals(smsName)) {
+		if (result != null && result.getMemberName().equals(smsName)) {
 			Random random = new Random();
 			int checkNum = random.nextInt(899999) + 100000;
 			String num = Integer.toString(checkNum);
@@ -161,7 +161,7 @@ public class MemberController {
 		return result.getMemberEmail();
 	}
 	
-	// 비밀번호 차기 인증번호 전송
+	// 비밀번호 찾기 인증번호 전송
 	@ResponseBody
 	@RequestMapping("/sendPassword")
 	public String sendPassword(String phoneNumber, String email) {
@@ -170,7 +170,7 @@ public class MemberController {
 		vo.setMemberName(email);
 		MemberVO result = service.getMail(vo);
 		System.out.println(result);
-		if (result.getMemberEmail().equals(email)) {
+		if (result != null && result.getMemberEmail().equals(email)) {
 			Random random = new Random();
 			int checkNum = random.nextInt(899999) + 100000; // 랜덤한 6자리 인증번호 생성.
 			String num = Integer.toString(checkNum);
