@@ -199,6 +199,7 @@ public class MemberController {
 	
 	@GetMapping("/duplogin")
 	public String dupProc(RedirectAttributes ra) {
+		System.out.println("duplogin");
 		ra.addFlashAttribute("msg", "duplogin");
 		return "redirect:/";
 	}
