@@ -38,7 +38,7 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		let contentElement = `
-			<td colspan="4"><img src="${items[1].newsBoardDetailVO.newsBoardDetailImageRoute+'/'+items[1].newsBoardDetailVO.newsBoardDetailImageName}.${items[1].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
+			<td colspan="4"><img src="${items[1].newsBoardDetailVO.newsBoardDetailImageRoute+items[1].newsBoardDetailVO.newsBoardDetailImageName}.${items[1].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);

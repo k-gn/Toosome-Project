@@ -9,4 +9,12 @@ public class ManagementController {
 	public String memberManagement() {
 		return "adminpages/subpages/memberManagement/memberManagement";
 	}
+	
+	@GetMapping("/admin/sleepMember-management") // 회원관리 - 휴면회원 리스트
+	public String SleepMemberManagement() {
+		return "adminpages/subpages/memberManagement/sleepMemberManagement";
+	}
 }
+
+
+

@@ -1,16 +1,10 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const memberType = document.querySelector('#memberType'); // 멤버 선택
-const joinDate = document.querySelector('#joinDate'); // 회원가입일 기간선택
-const joinDatePeriod = document.querySelector('#joinDatePeriod'); // 회원가입일 기간선택 버튼박스
-const joinPeriods = document.querySelectorAll('.period.join'); // 회원가입일 기간 버튼들
-const joinCalendar = document.querySelector('#calendar1'); //회원가입일 달력
-const joinCalendar2 = document.querySelector('#calendar2'); //회원가입일 달력
-const loginDate = document.querySelector('#loginDate'); // 로그인일자 기간선택
-const loginDatePeriod = document.querySelector('#loginDatePeriod'); // 로그인일자 기간선택 버튼박스
-const loginPeriods = document.querySelectorAll('.period.login'); // 로그인일자 기간 버튼들
-const loginCalendar = document.querySelector('#calendar3'); // 로그인일자 달력
-const loginCalendar2 = document.querySelector('#calendar4'); // 로그인일자 달력
+const sleepDate = document.querySelector('#sleepDate'); // 휴면전환일 기간선택
+const sleepDatePeriod = document.querySelector('#sleepDatePeriod'); // 휴면전환일 기간선택 버튼박스
+const sleepPeriods = document.querySelectorAll('.period.sleep'); // 휴면전환일 기간 버튼들
+const sleepCalendar = document.querySelector('#calendar1'); // 휴면전환일 달력1
+const sleepCalendar2 = document.querySelector('#calendar2'); // 휴면전환일 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
@@ -19,24 +13,13 @@ const profileContainer = document.querySelector('#profile-modal'); // 프로필 
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 
 // 기간선택 handler
-const joinChangeHandler = (e) => {
+const sleepChangeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
 	// 옵션 선택이 use(기간선택)일 경우
-	if(option === 'join-use') {
-		joinDatePeriod.style.display = 'inline';
+	if(option === 'sleep-use') {
+		sleepDatePeriod.style.display = 'inline';
 	} else {
-		joinDatePeriod.style.display = 'none';
-	};
-};
-
-// 기간선택 handler
-const logChangeHandler = (e) => {
-	const option = e.options[e.selectedIndex].value;	
-	// 옵션 선택이 use(기간선택)일 경우
-	if(option === 'log-use') {
-		loginDatePeriod.style.display = 'inline';
-	} else {
-		loginDatePeriod.style.display = 'none';
+		sleepDatePeriod.style.display = 'none';
 	};
 };
 
@@ -59,34 +42,20 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
-	removeOn(joinPeriods);
-	removeOn(loginPeriods);
+	removeOn(sleepPeriods);
 	const today = moment().format('MM/DD/YYYY');
-	joinCalendar.value = today;
-	joinCalendar2.value = today;
-	loginCalendar.value = today;
-	loginCalendar2.value = today;
+	sleepCalendar.value = today;
+	sleepCalendar2.value = today;
 };
 
 // 기간 버튼 event hook
-joinPeriods.forEach((period) => {
+sleepPeriods.forEach((period) => {
 	period.addEventListener('click', (e) => {
 		e.preventDefault();
-		removeOn(joinPeriods);
+		removeOn(sleepPeriods);
 		period.classList.toggle('on');
 		let val = period.value;
-		calcDate(val, joinCalendar);
-	});
-});
-
-// 기간 버튼 event hook
-loginPeriods.forEach((period) => {
-	period.addEventListener('click', (e) => {
-		e.preventDefault();
-		removeOn(loginPeriods);
-		period.classList.toggle('on');
-		let val = period.value;
-		calcDate(val, loginCalendar);
+		calcDate(val, sleepCalendar);
 	});
 });
 
@@ -94,11 +63,8 @@ loginPeriods.forEach((period) => {
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	memberType.options[0].selected = 'true';
-	joinDate.options[0].selected = 'true';
-	joinDatePeriod.style.display = 'none';
-	loginDate.options[0].selected = 'true';
-	loginDatePeriod.style.display = 'none';
+	sleepDate.options[0].selected = 'true';
+	sleepDatePeriod.style.display = 'none';
 	calendarInit();
 };
 
@@ -229,31 +195,18 @@ const submitHandler = () => {
 		}
 	};
 	
-	// 검색 유형
-	if(memberType.options[memberType.selectedIndex].value === 'simple') {
-		platFormType = 'sns';
-	}
-	
 	// 가입일자
-	if(joinDate.options[joinDate.selectedIndex].value === 'join-use') {
-		startRegDate = joinCalendar.value.moment('YYYY-MM-DD');
-		endRegDate = joinCalendar2.value.moment('YYYY-MM-DD');
+	if(sleepDate.options[sleepDate.selectedIndex].value === 'sleep-use') {
+		startSleepDate = sleepCalendar.value.moment('YYYY-MM-DD');
+		endSleepDate = sleepCalendar2.value.moment('YYYY-MM-DD');
 	}
 	
-	// 로그인일자
-	if(loginDate.options[joinDate.selectedIndex].value === 'login-use') {
-		startLoginDate = loginCalendar.value.moment('YYYY-MM-DD');
-		endLoginDate = loginCalendar2.value.moment('YYYY-MM-DD');
-	}
 	// JSON Data
 	const data = {
 		memberName,
 		memberEmail,
-		platFormType,
-		startRegDate,
-		endRegDate,
-		startLoginDate,
-		endLoginDate,
+		startSleepDate,
+		endSleppDate,
 	};
 	
 	getList(data);
@@ -354,17 +307,5 @@ $(document).ready(() => {
 	});
 	$("#datetimepicker2").on("change.datetimepicker", function (e) {
 		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	}); 
-	
-	$('#datetimepicker3').datetimepicker({ format: 'L'});
-	$('#datetimepicker4').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker3").on("change.datetimepicker", function (e) {
-		$('#datetimepicker4').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker4").on("change.datetimepicker", function (e) {
-		$('#datetimepicker3').datetimepicker('maxDate', e.date);
 	}); 
 }); 
