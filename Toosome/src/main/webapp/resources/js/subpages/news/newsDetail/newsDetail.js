@@ -62,7 +62,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newPrev = `
 			<td colspan="1">윗글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].newsBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index + 1}'">${items[0].newsBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
@@ -77,7 +77,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].newsBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index - 1}'">${items[2].newsBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
