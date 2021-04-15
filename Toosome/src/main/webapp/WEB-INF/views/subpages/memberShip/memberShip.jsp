@@ -5,6 +5,7 @@
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
     <link rel="stylesheet" href="/resources/css/subpages/memberShip/memberShip.css">
+    <script src="/resources/js/subpages/memberShip/memberShip.js"></script>
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -125,12 +126,16 @@
 	          </ul>
 	      </div>
 	      <form class="sign-form">
-	      	<span>멤버십 혜택과 이벤트에 읽으셨으면</span>
-	      	<div class="check-box"></div>
-	      	<input id="ck-box" type="checkbox"/>
+	      	
+	      	<div class="check-box-cover">
+		    	<span>멤버십 혜택과 이벤트에 읽으셨으면</span>
+		      	<input id="ck-box" type="checkbox"/>
+		      	<div class="check-box"></div>
+	      	</div>
+	      	
 	      	
 	      	<div class="sign-box">
-	      		<input id="sign" type="submit" value="멤버십 가입하기"/>
+	      		<input id="sign" type="submit" value="멤버십 가입하기" disabled/>
 	      	</div>
 	      </form>
 	      
