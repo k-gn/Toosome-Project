@@ -34,10 +34,11 @@
 
 .member-container .contents .membership-text {
   width: 90%;
-  height: 300px;
+  height: 220px;
   padding: 20px;
   margin: 0 auto;
   background-color: #eee;
+  border-radius: 20px;
   position: relative;
 }
 .member-container .contents .membership-text .mb-logo {
@@ -62,8 +63,11 @@
   float: none;
   position: absolute;
   font-size: 0.9375rem;
-  bottom: 70px;
+  bottom: 20px;
   color: #333;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
 }
 .member-container .contents .membership-text .card {
   display: block;
@@ -71,17 +75,6 @@
   height: auto;
   float: right;
   margin-top: 50px;
-}
-.member-container .contents .membership-text a {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  background-color: #a62326;
-  padding: 7px;
-  border-radius: 7px;
-  color: #fff;
-  box-shadow: 2px 2px 2px #000;
 }
 .member-container .contents .membership-text a:active {
   box-shadow: none;
@@ -133,4 +126,18 @@
   margin-left: 20px;
   font-size: 12px;
   color: #333;
+}
+
+.sign {
+  display: flex;
+  width: 400px;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: #a62326;
+  padding: 27px 7px;
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 2px 2px 2px #000;
+  font-size: 20px;
+  font-family: gsdr;
 }

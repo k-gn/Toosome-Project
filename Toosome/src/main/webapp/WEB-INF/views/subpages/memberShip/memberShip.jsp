@@ -30,7 +30,6 @@
 	              TOOSOME에서 제공하는 다양한 혜택을 함께 즐길 수 있는<br/>
 	              TOOSOME의 새로운 <strong>통합멤버십 서비스</strong>입니다.
 	            </p>
-	            <a href="#">TOOSOME MEMBERSHIP가입하기</a>
 	          </div>
 	          <p class="member-text">
 	            TOOSOME MEMBERSHIP 혜택
@@ -125,6 +124,16 @@
 	            </li>
 	          </ul>
 	      </div>
+	      <form class="sign-form">
+	      	<span>멤버십 혜택과 이벤트에 읽으셨으면</span>
+	      	<div class="check-box"></div>
+	      	<input id="ck-box" type="checkbox"/>
+	      	
+	      	<div class="sign-box">
+	      		<input id="sign" type="submit" value="멤버십 가입하기"/>
+	      	</div>
+	      </form>
+	      
 	    </div>
     	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
