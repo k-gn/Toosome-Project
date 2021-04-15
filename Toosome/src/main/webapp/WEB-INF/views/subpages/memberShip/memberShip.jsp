@@ -128,7 +128,7 @@
 	      <form class="sign-form">
 	      	
 	      	<div class="check-box-cover">
-		    	<span>멤버십 혜택과 이벤트에 읽으셨으면</span>
+		    	<span>멤버십 혜택과 이벤트를 읽으셨으면</span>
 		      	<input id="ck-box" type="checkbox"/>
 		      	<div class="check-box"></div>
 	      	</div>
