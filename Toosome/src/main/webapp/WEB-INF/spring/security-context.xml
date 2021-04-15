@@ -36,9 +36,9 @@
 	<!-- member -->
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/signin" access="permitAll" />
-		<security:intercept-url pattern="/agreement" access="permitAll" />
-		<security:intercept-url pattern="/signup" access="permitAll" />
+		<security:intercept-url pattern="/signin" access="isAnonymous()" />
+		<security:intercept-url pattern="/agreement" access="isAnonymous()" />
+		<security:intercept-url pattern="/signup" access="isAnonymous()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		
 		<security:form-login
