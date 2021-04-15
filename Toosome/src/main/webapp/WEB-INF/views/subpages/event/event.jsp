@@ -20,24 +20,14 @@
 	        </div>
 	        <div class="tab-container">
 	        	<ul class="tabs">
-	        		<li data-tab-target="#ing" class="active">진행중인 이벤트</li>
-	        		<li data-tab-target="#store">매장별 이벤트</li>
-	        		<li data-tab-target="#end">종료된 이벤트</li>
+	        		<li data-tab-target="ing" class="active">진행중인 이벤트</li>
+	        		<li data-tab-target="store">매장별 이벤트</li>
+	        		<li data-tab-target="end">종료된 이벤트</li>
 	        	</ul>
 	        </div>
 	        <div class="tab-content">
-		        <div id="ing" data-tab-content class="active">
-					<ul class="ing-content"></ul>
-					<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
-		        </div>
-		        <div id="store" data-tab-content>
-		        	<ul class="ing-content"></ul>
-		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>		        
-		        </div>
-		        <div id="end" data-tab-content>
-		        	<ul class="ing-content"></ul>
-		        	<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
-		        </div>
+				<ul class="content" id="content"></ul>
+				<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
 	        </div>
 	      </div>
 	    </section>
