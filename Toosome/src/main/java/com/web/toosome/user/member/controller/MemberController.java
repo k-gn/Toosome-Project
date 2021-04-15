@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.MemberUtilVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
 @Controller
@@ -67,7 +69,13 @@ public class MemberController {
 
 	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
-	public String memberupdate(@PathVariable Integer id, Model model) {
+	public String memberupdate(@PathVariable int id, Model model, HttpSession session, RedirectAttributes ra) {
+		int sid = (Integer) session.getAttribute("id");
+		if(sid != id){
+			ra.addFlashAttribute("msg", "Denied");
+			return "redirect:/mypage";
+		}
+		
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
@@ -89,6 +97,7 @@ public class MemberController {
 	}
 	
 	// 회원 정보 수정 처리
+	@PreAuthorize("principal.username == #member.memberEmail")
 	@PostMapping("/mypage/update")
 	@ResponseBody
 	public String memberupdate(@RequestBody MemberVO member) {
@@ -99,7 +108,13 @@ public class MemberController {
 
 	// 회원정보 확인 페이지 이동
 	@GetMapping("/mypage/check/{id}")
-	public String membercheck(@PathVariable Integer id, Model model) {
+	public String membercheck(@PathVariable int id, Model model, HttpSession session, RedirectAttributes ra) {
+		int sid = (Integer) session.getAttribute("id");
+		if(sid != id){
+			ra.addFlashAttribute("msg", "Denied");
+			return "redirect:/mypage";
+		}
+		
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
@@ -112,24 +127,25 @@ public class MemberController {
 				map.put("address"+(i+1), addressArr[i]);
 			}
 		}
+		
 		model.addAttribute("map", map);
 		model.addAttribute("member", member);
 		return "subpages/myPage/memberCheck/memberCheck";
 	}
 	
 	// 비밀번호변경 이동
-	@GetMapping("/mypage/passwordmodify/{id}")
-	public String passwordmodify(@PathVariable Integer id, Model model) {
-		model.addAttribute("email", service.getUserById(id).getMemberEmail());
+	@GetMapping("/mypage/passwordmodify")
+	public String passwordmodify() {
 		return "subpages/myPage/passwordModify/passwordModify";
 	}
 	
 	// 비밀번호 변경 처리
+	@PreAuthorize("principal.username == #vo.email")
 	@PostMapping("/mypage/passwordmodify/{id}")
-	public String passwordmodify(@PathVariable Integer id, String password, String newpassword, RedirectAttributes ra) {
+	public String passwordmodify(@PathVariable int id, MemberUtilVO vo, RedirectAttributes ra) {
 		int result = 0;
-		if(service.passwordCheck(id, password)) {
-			result = service.changePassword(id, newpassword);
+		if(service.passwordCheck(id, vo.getPassword())) {
+			result = service.changePassword(id, vo.getNewpassword());
 		}
 		
 		if(result > 0) {
@@ -147,10 +163,11 @@ public class MemberController {
 	}
 	
 	// 회원탈퇴 처리
+	@PreAuthorize("principal.username == #vo.email")
 	@PostMapping("/mypage/memberwithdraw/{id}")
-	public String memberwithdraw(@PathVariable Integer id, String password, RedirectAttributes ra) {
+	public String memberwithdraw(@PathVariable int id, MemberUtilVO vo, RedirectAttributes ra) {
 		int result = 0;
-		if(service.passwordCheck(id, password)) {
+		if(service.passwordCheck(id, vo.getPassword())) {
 			result = service.deleteMember(service.getUserById(id).getMemberEmail(), id);
 		}
 		

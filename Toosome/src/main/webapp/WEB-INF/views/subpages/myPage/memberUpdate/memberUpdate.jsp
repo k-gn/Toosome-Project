@@ -22,12 +22,12 @@
           <span class="signup-title">회원정보수정</span>
         </div>
         <form class="signup-form-container" action="/mypage/update" method="post">
+           <input class="signup-form email" type="hidden" name="email" value="${member.memberEmail}"/>
           <div class="signup-wrapper">
             <span>이름</span>
             <input class="signup-form name" type="text" name="name" placeholder="이름을 입력해주세요" value="${member.memberName}" required/>
           	<p class="validation name"></p>
           </div>
-          
           <div class="signup-wrapper">
             <span>전화번호</span>
             <div class="signup-form-tb">

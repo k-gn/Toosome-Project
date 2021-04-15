@@ -136,12 +136,14 @@ public class LoginController {
 
 	// access denied control
 	@GetMapping("/accessErrorAdmin")
-	public String accessDeniedAdmin(Authentication auth, Model model) {
+	public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "Denied");
 		return "redirect:/";
 	}
 
 	@GetMapping("/accessErrorMember")
-	public String accessDeniedMember(Authentication auth, Model model) {
+	public String accessDeniedMember(Authentication auth, RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "Denied");
 		return "redirect:/";
 	}
 

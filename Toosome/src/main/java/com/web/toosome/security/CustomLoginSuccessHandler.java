@@ -30,14 +30,12 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		CustomUser user = (CustomUser)authentication.getPrincipal();
 		Collection<GrantedAuthority> authCollection = user.getAuthorities();
 		Iterator<GrantedAuthority> authList = authCollection.iterator();
-		
 		while(authList.hasNext()) {
 			GrantedAuthority authority= authList.next();
 			if(authority.getAuthority().equals("ROLE_HEAD") | authority.getAuthority().equals("ROLE_ADMIN")) {
 				url="/admin";
 			}
 		}
-		
 		MemberVO member = mapper.getUserByEmail(authentication.getName());
 		session.setAttribute("id", member.getMemberId());
 		session.setAttribute("email", member.getMemberEmail());

@@ -25,6 +25,7 @@
               <span>이메일</span>
             </div>
             <input class="signup-form email" type="email" name="email" value="${email}" disabled />
+            <input type="hidden" name="email" value="${email}"/>
           </div>
           <div class="signup-wrapper">
             <span>현재 비밀번호</span>

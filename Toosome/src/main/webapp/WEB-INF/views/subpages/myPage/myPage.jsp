@@ -38,7 +38,7 @@
                   안전한 개인정보보호를 위해<br/>
                   <strong>비밀번호는 주기적으로 변경</strong>해 주세요.
                 </p>
-                <input type="button" value="비밀번호 변경" onclick="location.href='/mypage/passwordmodify/${id}'">
+                <input type="button" value="비밀번호 변경" onclick="location.href='/mypage/passwordmodify'">
               </li>
 
               <li>
@@ -97,6 +97,8 @@
 		const msg = "${msg}"
 		if(msg === "modSuccess") {
 			alert("비밀번호가 변경되었습니다.");
+		}else if(msg === "Denied") {
+			alert("잘못된 접근입니다.");
 		}
 	</script>    
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>

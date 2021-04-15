@@ -32,6 +32,7 @@
           <span class="signup-title">회원탈퇴</span>
         </div>
         <form class="signup-form-container" action="/mypage/memberwithdraw/${id}" method="post">
+          <input type="hidden" name="email" value="${email}">
           <div class="signup-wrapper">
             <span>비밀번호</span>
             <input class="signup-form pwd" type="password" name="password" placeholder="비밀번호를 입력해주세요">
