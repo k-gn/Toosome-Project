@@ -265,7 +265,7 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title" id="search-result">검색 결과: 6건</h4>
                   <div class="list-btn-box">
-                    <button id="excel-down"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
 	                      <option value="30">30개씩 보기</option>
