@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/memberManagement/memberManagement.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/sleepMemberManagement/sleepMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/memberManagement/memberManagement.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/sleepMemberManagement/sleepMemberManagement.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class=card-title>회원 리스트</h4>
+                  <h4 class=card-title>휴면회원 리스트</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
@@ -60,36 +60,22 @@
                          </tr>
                          <tr>
                            <td>
-                             <span><strong>가입유형</strong></span>
-                           </td>
-                           <td>
-                        	  <div class="select-box">
-                              <select name="memberType" class="search-select" id="memberType">
-                                <option value="normal">일반회원</option>
-                                <option value="simple">간편회원</option>
-                              </select>
-                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                             </div>
-                           </td>
-                         </tr>
-                         <tr>
-                           <td>
-                             <span><strong>회원가입일</strong></span>
+                             <span><strong>휴면전환일자</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="joinDate" class="search-select" id="joinDate" onchange="joinChangeHandler(this)">
+                              <select name="sleepDate" class="search-select" id="sleepDate" onchange="sleepChangeHandler(this)">
                                 <option value="notUse">미사용</option>
-                                <option value="join-use">기간선택</option>
+                                <option value="sleep-use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
-                             <div id="joinDatePeriod" class="date-picker">
-                             	<button class="period join" value="0d">오늘</button>
-                             	<button class="period join" value="1M">1개월</button>
-                             	<button class="period join" value="3M">3개월</button>
-                             	<button class="period join" value="6M">6개월</button>
-                             	<button class="period join" value="1y">1년</button>
+                             <div id="sleepDatePeriod" class="date-picker">
+                             	<button class="period sleep" value="0d">오늘</button>
+                             	<button class="period sleep" value="1M">1개월</button>
+                             	<button class="period sleep" value="3M">3개월</button>
+                             	<button class="period sleep" value="6M">6개월</button>
+                             	<button class="period sleep" value="1y">1년</button>
                              	<div class="calendar-wrapper">
                               	<div class="col-md-3">
                               		<div class="form-group">
@@ -116,50 +102,6 @@
                              </div>
                            </td>
                          </tr>
-                         <tr>
-                           <td>
-                             <span><strong>최종로그인일</strong></span>
-                           </td>
-                           <td>
-                             <div class="select-box">
-                              <select name="loginDate" class="search-select" id="loginDate" onchange="logChangeHandler(this)">
-                                <option value="notUse">미사용</option>
-                                <option value="log-use">기간선택</option>
-                              </select>
-                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                             </div>
-                             <div id="loginDatePeriod" class="date-picker">
-                             	<button class="period login" value="0d">오늘</button>
-                             	<button class="period login" value="1M">1개월</button>
-                             	<button class="period login" value="3M">3개월</button>
-                             	<button class="period login" value="6M">6개월</button>
-                             	<button class="period login" value="1y">1년</button>
-                             	<div class="calendar-wrapper">
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
-                              	<span>&nbsp;~&nbsp;</span>
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
-                             	</div>
-                             </div>
-                           </td>
-                         </tr>          
                        </tbody>
                      </table>
                   </div>
@@ -171,7 +113,7 @@
 		            <div class="col-md-8">
 		              <div class="card">
 		                <div class="card-header card-header-primary">
-		                  <h4 class="card-title">프로필 수정</h4>
+		                  <h4 class="card-title">휴면회원 정보수정</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
@@ -266,7 +208,7 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title" id="search-result">검색 결과: 6건</h4>
                   <div class="list-btn-box">
-                    <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button id="excel-down" onclick="excelDownload('member-table', '휴면회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
 	                      <option value="30">30개씩 보기</option>
@@ -301,32 +243,32 @@
                           회원가입일
                         </th>
                         <th>
-                          최종로그인
+                          휴면전환일
                         </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="memberList" items="${memberList}">
+                     	 <c:forEach var="sleepMemberList" items="${sleepMemberList}">
 	                        <tr>
 	                          <td>
-	                            ${memberList.memberId}
+	                            ${sleepMemberList.memberId}
 	                          </td>
 	                          <td>
-	                            ${memberList.platFormType}
+	                            ${sleepMemberList.platFormType}
 	                          </td>
 	                          <td>
-	                            ${memberList.memberEmail}
+	                            ${sleepMemberList.memberEmail}
 	                          </td>
 	                          <td>
-	                            ${memberList.memberName}
+	                            ${sleepMemberList.memberName}
 	                          </td>
 	                          <td>
-	                            ${memberList.memberPhone}
+	                            ${sleepMemberList.memberPhone}
 	                          </td>
 	                          <td>
-	                            ${memberList.regDate}
+	                            ${sleepMemberList.regDate}
 	                          </td>
 	                          <td>
-	                            ${memberList.lastLoginDate}
+	                            ${sleepMemberList.changeSleepDate}
 	                          </td>
 	                        </tr>
                         </c:forEach>
