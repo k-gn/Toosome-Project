@@ -197,6 +197,18 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("/duplogin")
+	public String dupProc(RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "duplogin");
+		return "redirect:/";
+	}
+	
+	@GetMapping("/expiredlogin")
+	public String expiredProc(RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "expiredlogin");
+		return "redirect:/";
+	}
+	
 	// 아이디 찾기 인증번호 전송
 	@ResponseBody
 	@RequestMapping("/sendSms")
