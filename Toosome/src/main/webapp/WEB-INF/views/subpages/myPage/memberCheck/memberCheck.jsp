@@ -39,16 +39,16 @@
           <div class="signup-wrapper">
             <span>우편번호</span>
             <div class="signup-form-tb" style="display: block; padding-left: 0px;">
-              <input class="signup-form postcode" type="text" name="post1" value="${map.address1}" disabled/>
+              <input class="signup-form postcode" type="text" name="post1" value="${map.postcode}" disabled/>
             </div>
           </div>
           <div class="signup-wrapper">
             <span>주소</span>
-            <input class="signup-form addr1" type="text" name="address1" value="${map.address2}" disabled/>
+            <input class="signup-form addr1" type="text" name="address1" value="${map.address1}" disabled/>
           </div>
           <div class="signup-wrapper">
             <span>상세주소</span>
-            <input class="signup-form addr2" type="text" name="address2" value="${map.address3}" disabled/>
+            <input class="signup-form addr2" type="text" name="address2" value="${map.address2}" disabled/>
             <p class="validation addr2"></p>
           </div>
           <div class="signform-btn-wrapper">

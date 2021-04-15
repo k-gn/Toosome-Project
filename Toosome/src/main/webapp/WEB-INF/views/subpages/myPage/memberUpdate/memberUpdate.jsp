@@ -22,12 +22,12 @@
           <span class="signup-title">회원정보수정</span>
         </div>
         <form class="signup-form-container" action="/mypage/update" method="post">
+           <input class="signup-form email" type="hidden" name="email" value="${member.memberEmail}"/>
           <div class="signup-wrapper">
             <span>이름</span>
             <input class="signup-form name" type="text" name="name" placeholder="이름을 입력해주세요" value="${member.memberName}" required/>
           	<p class="validation name"></p>
           </div>
-          
           <div class="signup-wrapper">
             <span>전화번호</span>
             <div class="signup-form-tb">
@@ -47,19 +47,19 @@
           <div class="signup-wrapper">
             <span>우편번호</span>
             <div class="signup-form-tb">
-              <input class="signup-form postcode" type="text" name="post1" placeholder="(5자리)" value="${map.address1}" required/>
+              <input class="signup-form postcode" type="text" name="post1" placeholder="(5자리)" value="${map.postcode}" required/>
               <input class="post-search" type="button" value="검색">
             </div>
           	<p class="validation postcode"></p>
           </div>
           <div class="signup-wrapper">
             <span>주소</span>
-            <input class="signup-form addr1" type="text" name="address1" placeholder="주소를 입력해주세요" value="${map.address2}" required/>
+            <input class="signup-form addr1" type="text" name="address1" placeholder="주소를 입력해주세요" value="${map.address1}" required/>
           	<p class="validation addr1"></p>
           </div>
           <div class="signup-wrapper">
             <span>상세주소</span>
-            <input class="signup-form addr2" type="text" name="address2" placeholder="상세 주소를 입력해주세요" value="${map.address3 == null ? '' : map.address3}" required/>
+            <input class="signup-form addr2" type="text" name="address2" placeholder="상세 주소를 입력해주세요" value="${map.address2 == null ? '' : map.address2}" required/>
           	<p class="validation addr2"></p>
           </div>
           <div class="signform-btn-wrapper">
