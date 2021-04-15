@@ -52,8 +52,11 @@ public interface IMemberMapper {
 	public void updatePlatForm(Map<String, String> map);
 	
 	// 아이디로 비밀번호 찾기 (비밀번호 체크용)
-	public int passwordCheck(String id);
+	public String passwordCheck(int id);
 	
 	// 비밀번호 변경
-	public int changePassword(MemberVO vo);
+	public int changePassword(Map<String, Object> map);
+	
+	// 최종 로그인 등록
+	public void updateLastLogin(String email);
 }

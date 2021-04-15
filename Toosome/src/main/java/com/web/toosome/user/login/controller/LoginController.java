@@ -69,10 +69,12 @@ public class LoginController {
 			loginUtil.loginWithoutForm(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
+			session.setAttribute("email", email);
+			session.setAttribute("platform", member.getPlatFormType());
 			out.println("<script>window.opener.location.href='/';self.close();</script>");
 		} else {
-			String deleteUrl = naverLoginBO.deleteToken(oauthToken.getAccessToken());
-			out.println("<script>alert('이미 가입하신 이메일 입니다.');location.href='" + deleteUrl + "';window.opener.location.href='/signin';self.close();</script>");
+			naverLoginBO.deleteToken(oauthToken.getAccessToken());
+			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");
 		}
 		out.flush();
 		
@@ -111,6 +113,8 @@ public class LoginController {
 			loginUtil.loginWithoutForm(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
+			session.setAttribute("email", email);
+			session.setAttribute("platform", member.getPlatFormType());
 			out.println("<script>window.opener.location.href='/';self.close();</script>");
 		} else {
 			KakaoLoginApi.deleteToken(code, accessToken);
@@ -136,12 +140,14 @@ public class LoginController {
 
 	// access denied control
 	@GetMapping("/accessErrorAdmin")
-	public String accessDeniedAdmin(Authentication auth, Model model) {
+	public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "Denied");
 		return "redirect:/";
 	}
 
 	@GetMapping("/accessErrorMember")
-	public String accessDeniedMember(Authentication auth, Model model) {
+	public String accessDeniedMember(Authentication auth, RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "Denied");
 		return "redirect:/";
 	}
 

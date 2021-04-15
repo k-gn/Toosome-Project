@@ -40,6 +40,7 @@
 		<security:intercept-url pattern="/agreement" access="permitAll" />
 		<security:intercept-url pattern="/signup" access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" />
+		
 		<security:form-login
 			username-parameter="memberEmail"
 			password-parameter="memberPassword"
@@ -48,6 +49,11 @@
 			authentication-success-handler-ref="customLoginSuccess"
 			authentication-failure-handler-ref="customLoginFail"
 		/>
+		
+		<!-- <security:session-management invalid-session-url="/signin">
+			<security:concurrency-control max-sessions="1" expired-url="/signin" error-if-maximum-exceeded="false"/>
+		</security:session-management> -->
+		
 		<security:csrf disabled="false"/> 
 		
 		<security:logout

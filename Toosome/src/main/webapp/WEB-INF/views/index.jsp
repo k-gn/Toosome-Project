@@ -22,6 +22,12 @@
     <script src="/resources/js/main/slick.js"></script>
     <script src="/resources/js/main/script.js"></script>
     <title>A TOOSOME PLACE</title>
+    <script>
+		const msg = "${msg}"
+		if(msg === "Denied") {
+			alert("잘못된 접근입니다.");
+		}
+	</script>   
   </head>
   <body>
     <div id="container">
