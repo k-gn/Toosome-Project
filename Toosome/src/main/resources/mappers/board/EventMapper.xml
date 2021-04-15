@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.board.dao.IEventBoardMapper">
+
+	<!-- news board -->
+	<resultMap type="eventBoardVO" id="EventBoardMap">
+		<id property="eventBoardId" column="EVENT_BOARD_IMAGE_ID"/>
+		<result property="eventBoardImageRoute" column="EVENT_BOARD_IMAGE_ROUTE" />
+		<result property="eventBoardImageName" column="EVENT_BOARD_IMAGE_NAME" />
+	 	<result property="eventBoardImageExtention" column="EVENT_BOARD_IMAGE_EXTENTION" /> 
+		<result property="eventBoardViewCount" column="EVENT_BOARD_VIEW_COUNT" />
+		<result property="eventBoardTitle" column="EVENT_BOARD_TITLE" />
+		<result property="eventBoardStartday" column="EVENT_BOARD_START_DAY" />	
+		<result property="eventBoardEndday" column="EVENT_BOARD_END_DAY" />
+		<collection property="eventBoardDetailVO" resultMap="EventBoardDetailMap"/>
+	</resultMap>
+	
+	<resultMap type="eventBoardDetailVO" id="EventBoardDetailMap">
+		<id property="eventBoardDetailId" column="EVENT_BOARD_DETAIL_ID" />
+		<result property="eventBoardDetailImageRoute" column="EVENT_BOARD_DETAIL_IMAGE_ROUTE" />
+		<result property="eventBoardDetailImageName" column="EVENT_BOARD_DETAIL_IMAGE_NAME" />
+		<result property="eventBoardDetailImageExtention" column="EVENT_BOARD_DETAIL_IMAGE_EXTENTION" />	
+		<result property="eventBoardDetailDay" column="EVENT_BOARD_DETAIL_DAY" />
+	</resultMap>
+	
+	<select id="getEventBoardList" resultMap="EventBoardMap">
+		SELECT * FROM EVENT_BOARD;
+	</select>
+	
+	<select id="getEventBoardDetail" resultMap="EventBoardMap">
+		<![CDATA[SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)
+	    						WHERE A.EVENT_BOARD_ID >= #{index}-1 AND A.EVENT_BOARD_ID <= #{index}+1]]>
+	</select>
+	
+	<select id="getSearchList" resultMap="EventBoardMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');
+	</select>
+	
+	
+	<update id="eventBoardCount">
+		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
+	</update>
+</mapper>
