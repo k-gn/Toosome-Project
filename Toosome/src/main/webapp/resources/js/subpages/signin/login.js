@@ -57,3 +57,16 @@ function loginWithNaver() {
     });
 }
 
+
+
+
+$(function () {
+  $(".auto-login").click(function () {
+    $(".auto-login .check-box").toggleClass("check");
+    if ($("#remember").is(":checked") == false) {
+      $("#remember").attr("checked", true);
+    } else {
+      $("#remember").attr("checked", false);
+    }
+  });
+});

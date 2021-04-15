@@ -2,7 +2,6 @@ package com.web.toosome.user.board.service;
 
 import java.util.List;
 
-import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 
 public interface INewsBoardService {
