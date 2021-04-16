@@ -10,7 +10,7 @@ public class MenuVO {
 	private String menuMainTitle;
 	private String menuSubTitle;
 	private String menuContent;
-	private Integer menuPrice;
+	private int menuPrice;
 	private String menuType;
 	private Date menuRegDate;
 	private Date menuStartDay;

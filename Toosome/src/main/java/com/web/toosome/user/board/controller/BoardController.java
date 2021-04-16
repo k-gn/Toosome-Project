@@ -13,13 +13,16 @@ import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
+import com.web.toosome.user.board.service.IQnaBoardService;
 import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardVO;
 
 @Controller
 public class BoardController {
+	
 	@Autowired
 	private IFaqBoardService faqBoardService;
 	
@@ -32,6 +35,8 @@ public class BoardController {
 	@Autowired
 	private IEventBoardService eventBoardService;
 	
+	@Autowired
+	private IQnaBoardService qnaBoardService;
 	
 	
 	@RequestMapping(value = "/event") // 이벤트 공지 게시판 화면 주소넘기기
@@ -170,11 +175,6 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping("/qna")
-	public String qna() {
-		return "subpages/qna/qna";
-	}
-
 	@GetMapping("/iat") // 성분분석표
 	public String iat() {
 		return "subpages/iat/iat";
@@ -196,13 +196,42 @@ public class BoardController {
 		return newsdetail;
 	}
 
-	@GetMapping("/qna-detail") // qna 상세 페이지
-	public String qnaDetail() {
+	
+	@RequestMapping("/qna") //qna 게시판 url값 리턴
+	public String qnaView() {
+		return "subpages/qna/qna";
+	}
+	
+	@GetMapping(value="/qnalist", produces = "application/json" )
+	@ResponseBody
+	public List<QnaBoardVO> qnaList(QnaBoardVO vo){
+		List<QnaBoardVO> qnalist = qnaBoardService.getQnaBoardList(vo);
+		System.out.println("qna리스트 값 (컨트롤러)" +qnalist);
+		return qnalist;	
+	}
+	
+	@RequestMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+ 	public String qnaDetailView() {
 		return "subpages/qna/qnaDetail/qnaDetail";
 	}
 	
-	@GetMapping("/qna-enrollment") // qna 등록 페이지
-	public String qnaEnrollment() {
+	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
+	@ResponseBody
+	public List<QnaBoardVO> qnaDetail(String index){
+		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
+		System.out.println("qna게시물 세부정보(컨트롤러): " + qnadetail);
+		return qnadetail;
+	}
+	
+	
+	@RequestMapping("/qna-enrollment") // qna 등록 페이지
+	public String qnaEnrollmentView() {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
+	}
+	
+	@GetMapping(value = "/qnaenrollment", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public void qnaEnrollment(QnaBoardVO vo) {
+		qnaBoardService.insertQnaBoard(vo);
 	}
 }

@@ -14,5 +14,4 @@ public class NewsBoardDetailVO {
 	private String newsBoardDetailTitle;
 	private Date newsBoardDetailRegdate;
 	
-
 }

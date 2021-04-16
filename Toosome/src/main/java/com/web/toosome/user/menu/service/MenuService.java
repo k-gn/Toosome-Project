@@ -107,6 +107,11 @@ public class MenuService implements IMenuService {
 		return mapper.getwholecakeDetail(menuVO);
 	}
 
+	@Override
+	public MenuVO getimportList(MenuVO menuVO) {
+		return mapper.getimportList(menuVO);
+	}
+
 	
 	
 }
