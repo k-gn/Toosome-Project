@@ -5,7 +5,7 @@
 
 	<!-- news board -->
 	<resultMap type="eventBoardVO" id="EventBoardMap">
-		<id property="eventBoardId" column="EVENT_BOARD_IMAGE_ID"/>
+		<id property="eventBoardId" column="EVENT_BOARD_ID"/>
 		<result property="eventBoardImageRoute" column="EVENT_BOARD_IMAGE_ROUTE" />
 		<result property="eventBoardImageName" column="EVENT_BOARD_IMAGE_NAME" />
 	 	<result property="eventBoardImageExtention" column="EVENT_BOARD_IMAGE_EXTENTION" /> 
@@ -25,7 +25,7 @@
 	</resultMap>
 	
 	<select id="getEventBoardList" resultMap="EventBoardMap">
-		SELECT * FROM EVENT_BOARD;
+		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
 	</select>
 	
 	<select id="getEventBoardDetail" resultMap="EventBoardMap">
