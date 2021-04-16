@@ -87,6 +87,10 @@ public class MenuController {
 		return "subpages/menu/menuDetail/menuDetail";
 	}
 
+	@GetMapping("/menuorder") // 영양성분표 페이지4
+	public String menuorder() {
+		return "subpages/menu/menuOrder/menuOrder";
+	}
 
 	// Menu Order & Menu Refund
 
