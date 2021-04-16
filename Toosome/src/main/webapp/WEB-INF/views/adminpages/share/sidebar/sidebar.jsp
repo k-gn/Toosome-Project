@@ -22,7 +22,9 @@
        		<li>
        			<a href="/admin/member-management">회원 리스트</a>
        		</li>
-       		<li>휴면회원 관리</li>
+       		<li>
+       			<a href="/admin/sleepMember-management">휴면회원 리스트</a>
+       		</li>
        		<li>탈퇴회원 관리</li>
        		<li>블랙회원 관리</li>
        		<li>회원 접속기록 조회</li>

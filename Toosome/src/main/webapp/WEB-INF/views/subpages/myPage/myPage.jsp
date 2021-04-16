@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="/resources/css/subpages/myPage/myPage.css">
 <script src="/resources/js/subpages/myPage/myPageTap.js"></script>
 <title>A TOOSOME PLACE</title>
+<script>
+	const msg = "${msg}"
+	if(msg === "modSuccess") {
+		alert("비밀번호가 변경되었습니다.");
+	}else if(msg === "Denied") {
+		alert("잘못된 접근입니다.");
+	}else if(msg === "notSocial") {
+		alert("소셜회원은 이용할 수 없는 서비스 입니다.");
+	}
+</script> 
 </head>
 <body>
   <div id="container">
@@ -23,8 +33,8 @@
                 </p>
                 <img src="/resources/img/subpages/myPage/edit.png" alt="">
                 <p class="list-comment">
-                  주소, 전화번호, e-mail등<br/>
-                  <strong>개인정보를 수정</strong>할 수 있습니다.
+                  주소, 전화번호 등<br/>
+                  <strong>개인정보를 수정 / 추가</strong>할 수 있습니다.
                 </p>
                 <input type="button" value="개인정보 수정" onclick="location.href='/mypage/update/${id}'">
               </li>
@@ -38,7 +48,7 @@
                   안전한 개인정보보호를 위해<br/>
                   <strong>비밀번호는 주기적으로 변경</strong>해 주세요.
                 </p>
-                <input type="button" value="비밀번호 변경" onclick="location.href='/passwordmodify'">
+                <input type="button" value="비밀번호 변경" onclick="location.href='/mypage/passwordmodify'">
               </li>
 
               <li>
@@ -50,7 +60,7 @@
                   간단한 절차를 통해<br/>
                   <strong>회원 탈퇴</strong>를 할 수 있습니다.
                 </p>
-                <input type="button" value="회원 탈퇴" onclick="location.href='/memberwithdraw'">
+                <input type="button" value="회원 탈퇴" onclick="location.href='/mypage/memberwithdraw'">
               </li>
             </ul>
           </div>
@@ -93,7 +103,6 @@
         </div>
       </div>
     </div>
-    
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
 </body>

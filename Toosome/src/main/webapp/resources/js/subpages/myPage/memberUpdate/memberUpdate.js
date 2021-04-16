@@ -40,16 +40,22 @@ function updateMember() {
 
 	// 아이디
 	const id = $(".signup-form.mid").val();
+	// 아이디
+	const email = $(".signup-form.email").val();
 	// 이름
 	const name = $(".signup-form.name").val();
 	// 핸드폰 번호
 	const phone = $(".signup-form.agency").val() + "-" + $(".signup-form.tel1").val() + "-" + $(".signup-form.tel2").val();
+	// 우편번호
+	const postcode = $(".signup-form.postcode").val();
 	// 주소
 	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
 	const member = {
 		memberId: id,
+		memberEmail: email,
 		memberName: name,
 		memberPhone: phone,
+		memberPostcode: postcode,
 		memberAddress: address
 	};
 	
@@ -69,7 +75,7 @@ function updateMember() {
 				location.href="/mypage/check/"+id;
 			} else {
 				alert("회원정보 수정을 실패하였습니다.");
-				location.href="/mypage/check/"+id;
+				location.href="/mypage";
 			}
 		}, 
 		error: function() {

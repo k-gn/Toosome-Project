@@ -32,7 +32,7 @@
     border: 1px solid #eee;
     border-radius: 7px;
     box-shadow: 0 4px 5px #ccc;
-    background: rgba(255,255,255,0.8);
+    background: #fff;
 }
 .login-container .title-container {
     display: flex;
@@ -159,6 +159,10 @@
 	color: #666;
 	font-size: 18px;
 	margin-left: 15px;
+}
+
+.btn-box a:first-child {
+	margin-left: 0;
 }
 
 .btn-box a:before {

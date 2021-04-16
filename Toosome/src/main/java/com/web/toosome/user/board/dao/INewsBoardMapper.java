@@ -12,6 +12,6 @@ public interface INewsBoardMapper {
 	
 	public List<NewsBoardVO> getSearchNews(String keyword);
 	
-	public void NoticeBoardCount(String index);	
+	public void NewsBoardCount(String index);	
 
 }

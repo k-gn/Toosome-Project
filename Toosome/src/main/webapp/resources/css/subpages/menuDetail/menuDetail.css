@@ -130,11 +130,15 @@
 
 .menuDetail-container .contents .gift {
   display: block;
-  margin: 10px auto;
+  width: 300px;
+  margin: 10px auto 30px;
   padding: 10px;
   background-color: #A62326;
   color: #fff;
-  font-weight: bold;
+  text-align: center;
+  font-family: gsdr;
+  font-size: 1.25rem;
+  border-radius: 10px;
 }
 
 

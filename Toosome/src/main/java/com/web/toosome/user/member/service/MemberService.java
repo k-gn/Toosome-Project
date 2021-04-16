@@ -159,5 +159,36 @@ public class MemberService implements IMemberService {
 	public int updateMember(MemberVO vo) {
 		return mapper.updateMember(vo);
 	}
-	
+
+	// 회원 탈퇴
+	@Transactional
+	@Override
+	public int deleteMember(String email, int id) {
+		mapper.deleteMemberAuth(email);
+		int result = mapper.deleteMember(id);
+		return result;
+	}
+
+	// 비밀번호 검증
+	@Override
+	public boolean passwordCheck(int id, String password) {
+		boolean flag = false;
+		String dbpassword = mapper.passwordCheck(id);
+		if(bCryptPasswordEncoder.matches(password, dbpassword)) {
+			flag = true;
+			return flag;
+		}else {
+			return flag;
+		}
+	}
+
+	@Override
+	public int changePassword(int id, String newpassword) {
+		Map<String, Object> map = new HashMap<>();
+		String password = bCryptPasswordEncoder.encode(newpassword);
+		map.put("id", id);
+		map.put("newpassword", password);
+		return mapper.changePassword(map);
+	}
+
 }

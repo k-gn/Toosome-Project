@@ -101,9 +101,22 @@ public class MenuController {
 		MenuVO importList = menuService.getimportList(menuVO);
 		model.addAttribute("importList", importList);
 		System.out.println(id);
-		MemberVO memberImportList = memberService.getUserById(id); // 이거를 기존꺼 사용을 못하네..... 로그인하면 되나?
+		MemberVO memberImportList = memberService.getUserById(id);
 		model.addAttribute("memberImportList", memberImportList);
 		return "import";
+	}
+	
+	@GetMapping("/menuorder")
+	public String menuorder(MenuVO menuVO, Model model, HttpSession session) {
+		/*
+		 * System.out.println("메뉴 결제정보 페이지 호출"); Integer id = (Integer)
+		 * session.getAttribute("id"); MenuVO importList =
+		 * menuService.getimportList(menuVO); model.addAttribute("importList",
+		 * importList); System.out.println(id); MemberVO memberImportList =
+		 * memberService.getUserById(id); model.addAttribute("memberImportList",
+		 * memberImportList);
+		 */
+		return "subpages/menu/menuOrder/menuOrder";
 	}
 
 	// Menu Order & Menu Refund

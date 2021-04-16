@@ -7,6 +7,11 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -87,8 +92,16 @@ public class NaverLoginBO {
 		return response.getBody();
 	}
 	
-	public String deleteToken(String ACCESS_TOKEN) {
-    	String deleteUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+ACCESS_TOKEN+"&&service_provider=NAVER";
-    	return deleteUrl;
+	public void deleteToken(String ACCESS_TOKEN) {
+    	String deleteUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+ACCESS_TOKEN+"&service_provider=NAVER";
+    	final HttpClient client = HttpClientBuilder.create().build();
+		final HttpGet get = new HttpGet(deleteUrl);
+		try {
+			final HttpResponse response = client.execute(get);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }

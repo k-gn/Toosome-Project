@@ -38,11 +38,11 @@ public class LoginUtil {
 			member.setPlatFormType(type);
 			service.registerMember(member);
 			return flag;
-		} else if(email.equals(member.getMemberEmail()) && !type.equals(member.getPlatFormType())) {
+		} else if(email.equals(member.getMemberEmail()) && !type.equals(member.getPlatFormType()) && !member.getPlatFormType().equals("")) {
 			System.out.println("change platform");
 			service.updatePlatForm(email, type);
 			return flag;
-		} else if(email.equals(member.getMemberEmail()) && member.getPlatFormType() == null){
+		} else if(email.equals(member.getMemberEmail()) && member.getPlatFormType().equals("")){
 			System.out.println("duplicate email");
 			flag = true;
 			return flag;

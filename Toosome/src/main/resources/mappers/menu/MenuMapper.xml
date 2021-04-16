@@ -4,149 +4,152 @@
 <mapper namespace="com.web.toosome.user.menu.dao.IMenuMapper">
 
 	<resultMap type="menuVO" id="menuVO">
-		<id property="menuId" column="MENU_ID"/>
-		<result property="menuMainTitle" column="MENU_MAIN_TITLE"/>
-		<result property="menuSubTitle" column="MENU_SUB_TITLE"/>
-		<result property="menuContent" column="MENU_CONTENT"/>
-		<result property="menuPrice" column="MENU_PRICE"/>
-		<result property="menuType" column="MENU_TYPE"/>
-		<result property="menuRegDate" column="MENU_REG_DATE"/>
-		<result property="menuStartDay" column="MENU_START_DAY"/>
-		<result property="menuCheckCount" column="MENU_CHECK_COUNT"/>
-		<result property="menuState" column="MENU_STATE"/>
-		<result property="menuNew" column="MENU_NEW"/>
-		<collection property="menuImageVO" resultMap="menuImageVO"/>
+		<id property="menuId" column="MENU_ID" />
+		<result property="menuMainTitle" column="MENU_MAIN_TITLE" />
+		<result property="menuSubTitle" column="MENU_SUB_TITLE" />
+		<result property="menuContent" column="MENU_CONTENT" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuType" column="MENU_TYPE" />
+		<result property="menuRegDate" column="MENU_REG_DATE" />
+		<result property="menuStartDay" column="MENU_START_DAY" />
+		<result property="menuCheckCount" column="MENU_CHECK_COUNT" />
+		<result property="menuState" column="MENU_STATE" />
+		<result property="menuNew" column="MENU_NEW" />
+		<collection property="menuImageVO" resultMap="menuImageVO" />
 		<collection property="iatVO" resultMap="iatVO" />
 	</resultMap>
 
 	<resultMap type="menuImageVO" id="menuImageVO">
-		<result property="menuImageId" column="MENU_IMAGE_ID"/>
-		<result property="menuMenuId" column="MENU_MENU_ID"/>
-		<result property="menuImageName" column="MENU_IMAGE_NAME"/>
-		<result property="menuImageExtention" column="MENU_IMAGE_EXTENTION"/>
-		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE"/>
+		<result property="menuImageId" column="MENU_IMAGE_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="menuImageName" column="MENU_IMAGE_NAME" />
+		<result property="menuImageExtention"
+			column="MENU_IMAGE_EXTENTION" />
+		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE" />
 	</resultMap>
-	
+
 	<resultMap type="iatVO" id="iatVO">
-		<result property="iatId" column="IAT_ID"/>
-		<result property="menuMenuId" column="MENU_MENU_ID"/>
-		<result property="iatFullSupply" column="IAT_FULL_SUPPLY"/>
-		<result property="iatOneSupply" column="IAT_ONE_SUPPLY"/>
-		<result property="iatWeight" column="IAT_WEIGHT"/>
-		<result property="iatKcal" column="IAT_KCAL"/>
-		<result property="iatSugars" column="IAT_SUGARS"/>
-		<result property="iatProtein" column="IAT_PROTEIN"/>
-		<result property="iatSaturatedFat" column="IAT_SATURATED_FAT"/>
-		<result property="iatNatrium" column="IAT_NATRIUM"/>
+		<result property="iatId" column="IAT_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="iatFullSupply" column="IAT_FULL_SUPPLY" />
+		<result property="iatOneSupply" column="IAT_ONE_SUPPLY" />
+		<result property="iatWeight" column="IAT_WEIGHT" />
+		<result property="iatKcal" column="IAT_KCAL" />
+		<result property="iatSugars" column="IAT_SUGARS" />
+		<result property="iatProtein" column="IAT_PROTEIN" />
+		<result property="iatSaturatedFat" column="IAT_SATURATED_FAT" />
+		<result property="iatNatrium" column="IAT_NATRIUM" />
 	</resultMap>
-	
+
 	<select id="getnewList" resultMap="menuVO">
 		SELECT A.MENU_ID,
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE
-		 FROM MENU A INNER
-		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_NEW=1;
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_NEW=1;
 	</select>
 	<select id="getbeverageList" resultMap="menuVO">
 		SELECT A.MENU_ID,
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE
-		 FROM MENU A INNER
-		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=1;
-	</select>
-	<select id="getdelhiList" resultMap="menuVO">
-		SELECT A.MENU_ID,
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE
-		 FROM MENU A INNER
-		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=2;
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=1;
 	</select>
 	<select id="getdessertList" resultMap="menuVO">
 		SELECT A.MENU_ID,
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE
-		 FROM MENU A INNER
-		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=3;
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=2;
+	</select>
+	<select id="getdelhiList" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=3;
 	</select>
 	<select id="getwholecaketList" resultMap="menuVO">
 		SELECT A.MENU_ID,
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE
-		 FROM MENU A INNER
-		 JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=4;
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) WHERE A.MENU_TYPE=4;
 	</select>
-	<select id="getbeverageDetail" resultMap="menuVO" parameterType="menuVO">
-		 SELECT A.MENU_ID, 
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE,
-		 C.IAT_ID,
-		 C.MENU_MENU_ID,
-		 C.IAT_FULL_SUPPLY,
-		 C.IAT_ONE_SUPPLY,
-		 C.IAT_WEIGHT,
-		 C.IAT_KCAL,
-		 C.IAT_SUGARS,
-		 C.IAT_PROTEIN,
-		 C.IAT_SATURATED_FAT,
-		 C.IAT_NATRIUM
-		 FROM MENU A INNER JOIN
-		 MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) 
-         INNER JOIN 
-         IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
+	<select id="getbeverageDetail" resultMap="menuVO"
+		parameterType="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A INNER JOIN
+		MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID)
+		INNER JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
-	<select id="getimportList" resultMap="menuVO" parameterType="menuVO">
-		SELECT A.MENU_ID, 
-		 A.MENU_MAIN_TITLE,
-		 A.MENU_SUB_TITLE,
-		 A.MENU_CONTENT,
-		 A.MENU_PRICE,
-		 B.MENU_IMAGE_NAME,
-		 B.MENU_IMAGE_EXTENTION,
-		 B.MENU_IMAGE_ROUTE,
-		 C.IAT_ID,
-		 C.MENU_MENU_ID,
-		 C.IAT_FULL_SUPPLY,
-		 C.IAT_ONE_SUPPLY,
-		 C.IAT_WEIGHT,
-		 C.IAT_KCAL,
-		 C.IAT_SUGARS,
-		 C.IAT_PROTEIN,
-		 C.IAT_SATURATED_FAT,
-		 C.IAT_NATRIUM
-		 FROM MENU A INNER JOIN
-		 MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) 
-         INNER JOIN 
-         IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
+	<select id="getimportList" resultMap="menuVO"
+		parameterType="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A INNER JOIN
+		MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID)
+		INNER JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
-	
+
 </mapper>
