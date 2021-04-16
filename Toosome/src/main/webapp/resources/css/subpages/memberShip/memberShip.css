@@ -179,6 +179,7 @@
 	height: 50px;
 	border-radius: 5px;
 	border: none;
+	text-align: center;
 	font-size: 1.2rem;
 	font-family: gsdr;
 }
@@ -189,6 +190,7 @@
 	cursor: pointer;
 	border-radius: 5px;
 	border: none;
+	text-align: center;
 	font-size: 1.2rem;
 	font-family: gsdr;
 	background: #a62326;
