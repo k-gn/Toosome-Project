@@ -13,6 +13,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 
 public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 
@@ -20,19 +21,20 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
+		System.out.println("loginFail");
 		String error = "";
 		if (exception instanceof AuthenticationServiceException) {
 			error = "존재하지 않는 사용자입니다.";
-		
 		} else if(exception instanceof BadCredentialsException) {
 			error = "아이디 또는 비밀번호가 틀립니다.";
-			
 		} else if(exception instanceof LockedException) {
 			error = "잠긴 계정입니다.";
-			
 		} else if(exception instanceof DisabledException) {
 			error = "비활성화된 계정입니다.";
-		} 
+		}  else if(exception instanceof SessionAuthenticationException) {
+			error = "duplogin";
+		} 	
+		
 		String errorMsg = URLEncoder.encode(error, "UTF-8");
 		String uri = request.getRequestURI();
 		if(uri.contains("admin")) {

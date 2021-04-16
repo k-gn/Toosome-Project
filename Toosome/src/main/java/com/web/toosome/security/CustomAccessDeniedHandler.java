@@ -14,6 +14,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
+		System.out.println("access denied");
 		String uri = request.getRequestURI();
 		if(uri.contains("admin")) {
 			System.out.println("accessErrorAdmin");
