@@ -135,7 +135,7 @@
 	      	
 	      	
 	      	<div class="sign-box">
-	      		<input id="sign" type="submit" value="멤버십 가입하기" disabled/>
+	      		<input id="sign" value="멤버십 가입하기" onclick="location.href='/successmembership'" disabled/>
 	      	</div>
 	      </form>
 	      
