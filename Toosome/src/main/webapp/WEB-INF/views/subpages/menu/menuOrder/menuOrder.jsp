@@ -134,7 +134,8 @@
         </table>
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red com" id="result_pnt">3000</span> 원</p>
-          <input type="submit" value="결제하기">
+          <!-- <input type="submit" value="결제하기"> -->
+          <a href="/import1?menuId=${menubeverageDetail.menuId}">결제하기</a>
         </div>
         
       </div>
