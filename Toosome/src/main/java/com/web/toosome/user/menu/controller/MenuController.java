@@ -2,11 +2,15 @@ package com.web.toosome.user.menu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.menu.service.IMenuService;
 import com.web.toosome.user.menu.vo.MenuVO;
 
@@ -15,6 +19,9 @@ public class MenuController {
 	
 	@Autowired
 	private IMenuService menuService;
+	
+	@Autowired
+	private IMemberService memberService;
   
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망 
 	public String menuNew(MenuVO menuVO, Model model) {
@@ -86,7 +93,18 @@ public class MenuController {
 		System.out.println(model);
 		return "subpages/menu/menuDetail/menuDetail";
 	}
-
+	
+	@GetMapping("/import1")  // 결제 화면...
+	public String import1(MenuVO menuVO, Model model, HttpSession session) {
+		System.out.println("결제화면 호출");
+		Integer id = (Integer) session.getAttribute("id");
+		MenuVO importList = menuService.getimportList(menuVO);
+		model.addAttribute("importList", importList);
+		System.out.println(id);
+		MemberVO memberImportList = memberService.getUserById(id); // 이거를 기존꺼 사용을 못하네..... 로그인하면 되나?
+		model.addAttribute("memberImportList", memberImportList);
+		return "import";
+	}
 
 	// Menu Order & Menu Refund
 

@@ -17,10 +17,10 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 public class MemberService implements IMemberService {
-	
+
 	@Autowired
 	private IMemberMapper mapper;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -29,7 +29,8 @@ public class MemberService implements IMemberService {
 	public boolean emailDupCheck(String email) {
 		boolean flag = true;
 		int result = mapper.emailDupCheck(email);
-		if(result > 0) flag = false;
+		if (result > 0)
+			flag = false;
 		return flag;
 	}
 
@@ -37,7 +38,7 @@ public class MemberService implements IMemberService {
 	@Transactional
 	@Override
 	public int registerMember(MemberVO member) {
-		if(member.getMemberPassword() != null) {
+		if (member.getMemberPassword() != null) {
 			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 			member.setMemberPassword(encodePassword);
 		}
@@ -45,7 +46,7 @@ public class MemberService implements IMemberService {
 		mapper.registerMemberAuth(member.getMemberEmail());
 		return result;
 	}
-	
+
 	// 관리자
 	@Transactional
 	@Override
@@ -56,13 +57,13 @@ public class MemberService implements IMemberService {
 		mapper.registerAdminAuth(member.getMemberEmail());
 		return result;
 	}
-	
+
 	// 이메일로 회원 조회
 	@Override
 	public MemberVO getUserByEmail(String email) {
 		return mapper.getUserByEmail(email);
 	}
-	
+
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	@Override
 	public void certifiedPhoneNumber(String phoneNumber, String num) {
@@ -86,28 +87,56 @@ public class MemberService implements IMemberService {
 			System.out.println(e.getCode());
 		}
 	}
-	
+
+	// 이미지 전송
+	@Override
+	public void sendImage(String phoneNumber) {
+		String api_key = "NCSYDBSNPVO2LUFF";
+		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
+		Message coolsms = new Message(api_key, api_secret);
+		System.out.println("3");
+		// 4 params(to, from, type, text) are mandatory. must be filled
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("to", phoneNumber); // 발신번호
+		params.put("from", "01056592176"); // 수신번호
+		params.put("type", "MMS");
+		params.put("text", "CoolSMS");
+		params.put("app_version", "test app 1.2"); // application name and version
+		params.put("image", "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/Untitled-1.jpg");
+		System.out.println("4");
+		try {
+			JSONObject obj = (JSONObject) coolsms.send(params);
+			System.out.println(obj.toString());
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+	}
+
 	// 아이디 찾기
 	@Override
 	public MemberVO getSMS(MemberVO vo) {
 		return mapper.getSMS(vo);
 	}
+
 	// 이메일 찾기
 	@Override
 	public MemberVO getMail(MemberVO vo) {
 		return mapper.getMail(vo);
 	}
+
 	// 비밀번호 찾기
 	@Override
 	public MemberVO getPassword(MemberVO vo) {
 		return mapper.getPassword(vo);
 	}
+
 	// 비밀번호 찾기 랜덤비밀번호 전송
 	@Override
 	public int getRepassword(MemberVO vo) {
 		String repass = bCryptPasswordEncoder.encode(vo.getMemberPassword());
 		vo.setMemberPassword(repass);
-		return  mapper.getRepassword(vo);
+		return mapper.getRepassword(vo);
 	}
 
 	// 플랫폼 타입 변경
@@ -130,5 +159,5 @@ public class MemberService implements IMemberService {
 	public int updateMember(MemberVO vo) {
 		return mapper.updateMember(vo);
 	}
-
+	
 }
