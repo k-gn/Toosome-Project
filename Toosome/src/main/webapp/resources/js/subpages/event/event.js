@@ -13,9 +13,9 @@ const getElements = (data, number) => {
 		results = data.slice(number-6,number).map((result) => {
 			// 날짜 변환
 			let startDate = new Date(result.eventBoardStartday);
-			let newStartDate = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDay()}`;
+			let newStartDate = `${startDate.getFullYear()}-${startDate.getMonth()+1}-${startDate.getDate()}`;
 			let endDate = new Date(result.eventBoardEndday);
-			let newEndDate = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDay()}`;
+			let newEndDate = `${endDate.getFullYear()}-${endDate.getMonth()+1}-${endDate.getDate()}`;
 			
 			const li = document.createElement('li');
 			li.innerHTML = `
@@ -34,9 +34,9 @@ const getElements = (data, number) => {
 		results = data.slice(number-6).map((result) => {
 			// 날짜 변환
 			let startDate = new Date(result.eventBoardStartday);
-			let newStartDate = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDay()}`;
+			let newStartDate = `${startDate.getFullYear()}-${startDate.getMonth()+1}-${startDate.getDate()}`;
 			let endDate = new Date(result.eventBoardEndday);
-			let newEndDate = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDay()}`;
+			let newEndDate = `${endDate.getFullYear()}-${endDate.getMonth()+1}-${endDate.getDate()}`;
 			
 			const li = document.createElement('li');
 			li.innerHTML = `
@@ -72,7 +72,7 @@ const tabHandler = (tab) => {
 			getData(url, currentItems);
 			break;
 		case 'end':
-			url = '/end-eventlist';
+			url = '/eventendlist';
 			getData(url, currentItems);
 			break;
 	};
@@ -95,7 +95,7 @@ const loadMore = (tab) => {
 			break;
 		case 'end':
 			currentItems += 6;
-			url = '/end-eventlist';
+			url = '/eventendlist';
 			getData(url, currentItems);
 			break;
 	};
