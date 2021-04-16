@@ -15,5 +15,6 @@ public interface IMenuMapper {
 	public MenuVO getdelhiDetail(MenuVO menuVO);
 	public MenuVO getdessertDetail(MenuVO menuVO);
 	public MenuVO getwholecakeDetail(MenuVO menuVO);
+	public MenuVO getimportList(MenuVO menuVO);
 	
 }

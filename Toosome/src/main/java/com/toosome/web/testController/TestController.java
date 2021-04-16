@@ -20,10 +20,5 @@ public class TestController {
 	public String testsms2() {
 		return "testsms2";
 	}
-	
-	@GetMapping("/import1")  // 결제 화면...
-	public String import1() {
-		return "import";
-	}
 
 }

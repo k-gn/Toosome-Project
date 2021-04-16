@@ -27,21 +27,23 @@ public class MemberController {
 
 	@Autowired
 	private IMemberService service;
-	
+
 	// 회원가입 페이지 이동
 	@GetMapping("/signup")
 	public String signup() {
 		return "subpages/signup/signup";
 	}
-	
+
 	// 회원가입 시 인증 절차 포함
 	// 회원가입 관련
 	@PostMapping("/signup")
 	@ResponseBody
 	public String register(@RequestBody MemberVO member) {
 		int result = service.registerMember(member);
-		if(result > 0) return "success";
-		else return "fail";
+		if (result > 0)
+			return "success";
+		else
+			return "fail";
 	}
 
 	// 이메일 중복 확인
@@ -54,13 +56,13 @@ public class MemberController {
 		else
 			return "NO";
 	}
-	
+
 	// 회원가입 완료 페이지 이동
 	@GetMapping("/signupcomplete")
 	public String signupComplete() {
 		return "subpages/signupComplete/signupComplete";
 	}
-	
+
 	// 마이페이지 이동
 	@GetMapping("/mypage")
 	public String mypage() {
@@ -78,6 +80,16 @@ public class MemberController {
 		
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
+		if (member.getMemberPhone() != null && member.getMemberAddress() != null) {
+			String[] phoneArr = member.getMemberPhone().split("-");
+			String[] addressArr = member.getMemberAddress().split("-");
+			for (int i = 0; i < phoneArr.length; i++) {
+				map.put("tel" + (i + 1), phoneArr[i]);
+			}
+			for (int i = 0; i < addressArr.length; i++) {
+				map.put("address" + (i + 1), addressArr[i]);
+			}
+		}
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
 			// 01040178803
 			String tel1 = member.getMemberPhone().substring(0, 3);
@@ -91,23 +103,25 @@ public class MemberController {
 			for(int i=0; i<addressArr.length; i++) {
 				map.put("address"+(i+1), addressArr[i]);
 			}
-		}else {
+		} else {
 			map.put("tel1", "010");
 		}
 		model.addAttribute("map", map);
 		model.addAttribute("member", member);
-		
+
 		return "subpages/myPage/memberUpdate/memberUpdate";
 	}
-	
+
 	// 회원 정보 수정 처리
 	@PreAuthorize("principal.username == #member.memberEmail")
 	@PostMapping("/mypage/update")
 	@ResponseBody
 	public String memberupdate(@RequestBody MemberVO member) {
 		int result = service.updateMember(member);
-		if(result > 0) return "modSuccess";
-		else return "modFail";
+		if (result > 0)
+			return "modSuccess";
+		else
+			return "modFail";
 	}
 
 	// 회원정보 확인 페이지 이동
@@ -121,6 +135,16 @@ public class MemberController {
 		
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
+		if (member.getMemberPhone() != null && member.getMemberAddress() != null) {
+			String[] phoneArr = member.getMemberPhone().split("-");
+			String[] addressArr = member.getMemberAddress().split("-");
+			for (int i = 0; i < phoneArr.length; i++) {
+				map.put("tel" + (i + 1), phoneArr[i]);
+			}
+			for (int i = 0; i < addressArr.length; i++) {
+				map.put("address" + (i + 1), addressArr[i]);
+			}
+		}
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
 			String tel1 = member.getMemberPhone().substring(0, 3);
 			String tel2 = member.getMemberPhone().substring(3, 7);
@@ -231,7 +255,7 @@ public class MemberController {
 		}
 
 	}
-	
+
 	// 찾은 아이디 보여주기
 	@ResponseBody
 	@RequestMapping("/sendEmail")
@@ -262,13 +286,13 @@ public class MemberController {
 			return "18";
 		}
 	}
-	
+
 	// 찾은 아이디 보여주기
 	@ResponseBody
 	@RequestMapping("/sendRepassword")
 	public String sendRepassword(String phoneNumber) {
 		Random random = new Random();
-		int checkNum = random.nextInt(899999) + 100000;  // 랜덤한 6자리 비밀번호 생성.
+		int checkNum = random.nextInt(899999) + 100000; // 랜덤한 6자리 비밀번호 생성.
 		String num = Integer.toString(checkNum);
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
@@ -278,5 +302,15 @@ public class MemberController {
 		System.out.println(result.getMemberPassword());
 		return num;
 	}
-	
+
+	@ResponseBody
+	@RequestMapping("/sendGift")
+	public String sendGift(String phoneNumber) {
+		MemberVO vo = new MemberVO();
+		vo.setMemberPhone(phoneNumber);
+		System.out.println("2");
+		service.sendImage(phoneNumber);
+		return "/";
+	}
+
 }

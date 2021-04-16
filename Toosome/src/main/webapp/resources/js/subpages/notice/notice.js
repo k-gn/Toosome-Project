@@ -37,7 +37,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let item = paginatedItems[i];
 		// 날짜 변환
 		let date = new Date(item.noticeBoardRegdate);
-		let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 		
 		let newItem = document.createElement('tr');
 		let itemElement = `

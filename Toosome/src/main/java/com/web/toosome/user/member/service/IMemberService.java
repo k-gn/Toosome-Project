@@ -28,6 +28,9 @@ public interface IMemberService {
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	public void certifiedPhoneNumber(String phoneNumber, String num);
 
+	// 이미지 전송
+	public void sendImage(String phoneNumber);
+
 	// 아이디 찾기
 	public MemberVO getSMS(MemberVO vo);
 
