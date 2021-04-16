@@ -21,7 +21,7 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
-		System.out.println("loginFail");
+		System.out.println("loginFail : " + exception);
 		String error = "";
 		if (exception instanceof AuthenticationServiceException) {
 			error = "존재하지 않는 사용자입니다.";
