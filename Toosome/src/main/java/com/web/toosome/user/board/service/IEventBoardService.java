@@ -6,8 +6,11 @@ import com.web.toosome.user.board.vo.EventBoardVO;
 
 public interface IEventBoardService {
 	
-	//이벤트 게시판 목록 구현
+	//이벤트 게시판 진행중 이벤트 목록 구현
 	public List<EventBoardVO> getEventBoard(EventBoardVO vo)throws Exception;
+	
+	//이벤트 게시판 마감된 이벤트 목록 구현
+	public List<EventBoardVO> getEndEventBoard(EventBoardVO vo)throws Exception;
 	
 	//게시물 세부 조회
 	public List<EventBoardVO> getEventBoardDetail(String index)throws Exception;

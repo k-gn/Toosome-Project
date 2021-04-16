@@ -12,6 +12,8 @@ public interface IEventBoardMapper {
 	
 	public List<EventBoardVO> getSearchList(String keyword);
 	
+	public List<EventBoardVO> getEndEventBoardList(EventBoardVO vo);
+	
 	public void eventBoardCount(String index);
 		
 

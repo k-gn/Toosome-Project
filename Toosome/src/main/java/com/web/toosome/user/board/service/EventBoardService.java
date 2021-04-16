@@ -37,4 +37,10 @@ public class EventBoardService implements IEventBoardService {
 		return mapper.getSearchList(keyword);
 	}
 
+	@Override
+	public List<EventBoardVO> getEndEventBoard(EventBoardVO vo) throws Exception {
+		System.out.println("이벤트 게시판 리스트 마감된이벤트(서비스)값 : " +  mapper.getEndEventBoardList(vo));
+		return mapper.getEndEventBoardList(vo);
+	}
+
 }
