@@ -39,12 +39,20 @@ public class BoardController {
 		return "subpages/event/event";
 	}
 	
-	@GetMapping(value = "/eventlist" , produces = "application/json")// 이벤트 공지 게시판 화면 값 넘기기
+	@GetMapping(value = "/eventlist" , produces = "application/json")// 이벤트 공지 게시판 진행중 이벤트 화면 값 넘기기
 	@ResponseBody
 	public List<EventBoardVO> event(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventboardlist = eventBoardService.getEventBoard(vo);
-		System.out.println("컨트롤러 이벤트 게시판 리스트 값 : " + eventboardlist );
+		System.out.println("컨트롤러 이벤트 게시판 진행중 이벤트 리스트 값 : " + eventboardlist );
 		return eventboardlist;
+	}
+	
+	@GetMapping(value="/eventendlist", produces= "application/json")//중료된 이벤트 게시판 리스트 화면 값 넘기기
+	@ResponseBody
+	public List<EventBoardVO> eventEnd(EventBoardVO vo)throws Exception{
+		List<EventBoardVO> eventendlist = eventBoardService.getEndEventBoard(vo);
+		System.out.println("컨트롤러 종료된 이벤트 게시판 리스트 값 : "  + eventendlist); 
+		return eventendlist;
 	}
 	
 	@RequestMapping("/event-detail") // 이벤트 상세 페이지 주소
