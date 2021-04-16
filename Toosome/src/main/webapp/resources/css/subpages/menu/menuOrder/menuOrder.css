@@ -298,7 +298,7 @@ section table {
 	font-size: 20px;
 	float: left;
 }
-.total-test .pay-do input[type="submit"] {
+.total-test .pay-do a {
 	display: block;
 	width: 24%;
 	height: 60px;
@@ -307,7 +307,8 @@ section table {
 	font-size: 20px;
 	font-family: gsdr;
 	background-color: #a62326;
-	border: none;
+	text-align: center;
+	line-height: 60px;
 }
 
 
