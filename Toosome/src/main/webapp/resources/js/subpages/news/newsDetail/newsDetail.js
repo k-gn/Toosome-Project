@@ -91,7 +91,6 @@ $(document).ready(() => {
 	$.ajax({
 		url: '/newsdetail?index='+index,
 		success: (res) => {
-			console.log(res);
 			
 			// 데이터 역순		
 			const newRes = res.reverse();
