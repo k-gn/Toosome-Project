@@ -45,7 +45,7 @@
 				  <span class="com" style="float: left;">${menubeverageDetail.menuPrice}</span>
 				  <span style="float: left;">&nbsp;원</span>
 				</div>
-				<a href="/menuorder" class="gift">기프티콘 구매</a>
+				<a href="/menuorder?menuId=${menubeverageDetail.menuId}" class="gift">기프티콘 구매</a>
 				<div class="table-cover">
 					<table class="table">
 						<tbody>

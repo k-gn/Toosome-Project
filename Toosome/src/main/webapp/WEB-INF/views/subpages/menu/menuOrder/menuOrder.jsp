@@ -31,9 +31,9 @@
       
       <div class="menu-content">
         <img src="/resources/img/subpages/product/b05.png" alt="">
-        <p class="menu-text">딸기 음료</p>
+        <p class="menu-text">${menuOrderList.menuMainTitle}</p>
         <div class="pay-box">
-          <span class="com">4000</span>
+          <span class="com">${menuOrderList.menuPrice}</span>
           <span>&nbsp;원</span>
         </div>
       </div>
@@ -49,7 +49,7 @@
                     주문자
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName" placeholder="ex)홍길동" required>
+                    <input type="text" name="orderName" id="orderName" placeholder="ex)홍길동" value="${memberOrderList.memberName} " required>
                   </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
               </td>
               <td>
                 <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
+                  <span class="com" style="float: left;">${menuOrderList.menuPrice}</span>
                   <span style="float: left;">&nbsp;원</span>
                 </div>
               </td>
@@ -99,7 +99,7 @@
                 적립 포인트
               </td>
               <td>
-                <span class="re-point">40</span> P
+                <span class="re-point">0</span> P
               </td>
             </tr>
             <tr>
@@ -107,12 +107,12 @@
                 할인 금액
               </td>
               <td>
-                <span class="discount-pay com">1000</span> 원
+                <span class="discount-pay com">0</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue com">3000</span>원</td>
+              <td><span class="bold txt_blue com">${menuOrderList.menuPrice}</span>원</td>
             </tr>
             <tr>
               <td> 포 인 트 </td>
@@ -135,7 +135,7 @@
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red com" id="result_pnt">3000</span> 원</p>
           <!-- <input type="submit" value="결제하기"> -->
-          <a href="/import1?menuId=${menubeverageDetail.menuId}">결제하기</a>
+          <a href="/import1?menuId=${menuOrderList.menuId}">결제하기</a>
         </div>
         
       </div>
