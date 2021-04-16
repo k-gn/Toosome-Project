@@ -89,7 +89,7 @@
               </td>
               <td>
                 <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
+                  <span class="com" style="float: left;">${menuOrderList.menuPrice}</span>
                   <span style="float: left;">&nbsp;원</span>
                 </div>
               </td>
@@ -99,7 +99,7 @@
                 적립 포인트
               </td>
               <td>
-                <span class="re-point">40</span> P
+                <span class="re-point">0</span> P
               </td>
             </tr>
             <tr>
@@ -107,12 +107,12 @@
                 할인 금액
               </td>
               <td>
-                <span class="discount-pay com">1000</span> 원
+                <span class="discount-pay com">0</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue com">3000</span>원</td>
+              <td><span class="bold txt_blue com">${menuOrderList.menuPrice}</span>원</td>
             </tr>
             <tr>
               <td> 포 인 트 </td>

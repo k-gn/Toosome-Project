@@ -114,6 +114,8 @@ public class MenuController {
 		System.out.println("메뉴 결제정보 페이지 호출");
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO menuOrderList = menuService.getimportList(menuVO);
+//		int menuPrice = menuService.getimportList(menuVO).getMenuPrice();
+//		menuPrice =-
 		model.addAttribute("menuOrderList", menuOrderList);
 		System.out.println(id);
 		MemberVO memberOrderList = memberService.getUserById(id);
