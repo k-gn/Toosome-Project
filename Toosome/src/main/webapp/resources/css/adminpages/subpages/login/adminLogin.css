@@ -32,7 +32,7 @@
 	border: 1px solid #eee;
 	border-radius: 10px;
 	box-shadow: 0 2px 3px #666;
-	background: rgba(255,255,255,0.8);
+	background: #fff;
 }
 
 .title-container {
@@ -49,7 +49,7 @@
 	padding: 30px;
 	border-radius: 30%;
 	background-color: white;
-	border: 1px solid #eee;
+	border: 1px solid #ccc;
 }
 
 .title-container span {

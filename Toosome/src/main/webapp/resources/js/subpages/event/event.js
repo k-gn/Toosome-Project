@@ -72,7 +72,7 @@ const tabHandler = (tab) => {
 			getData(url, currentItems);
 			break;
 		case 'end':
-			url = '/eventendlist';
+			url = '/end-eventlist';
 			getData(url, currentItems);
 			break;
 	};
@@ -95,7 +95,7 @@ const loadMore = (tab) => {
 			break;
 		case 'end':
 			currentItems += 6;
-			url = '/eventendlist';
+			url = '/end-eventlist';
 			getData(url, currentItems);
 			break;
 	};
