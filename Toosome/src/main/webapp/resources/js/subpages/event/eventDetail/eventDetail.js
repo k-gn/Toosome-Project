@@ -29,8 +29,8 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">${items[1].eventBoardTitle}</th>
-			<th colspan="1">${newDate}</th>
+			<th colspan="3">제목: ${items[1].eventBoardTitle}</th>
+			<th colspan="1">작성일: ${newDate} | 조회수: ${items[1].eventBoardViewCount}</th>
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);
@@ -39,7 +39,7 @@ const displayDetail = (title, content, items, index) => {
 		let newContent = document.createElement('tr');
 		let contentElement = `
 			<td colspan="4">
-				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com${items[1].eventBoardDetailImageRoute}${items[1].eventBoardDetailImageName}.${items[1].eventBoardDetailImageExtention}" alt="#">
+				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[1].eventBoardDetailVO.eventBoardDetailImageRoute}/${items[1].eventBoardDetailVO.eventBoardDetailImageName}.${items[1].eventBoardDetailVO.eventBoardDetailImageExtention}" alt="#">
 			</td>
 		`;
 		newContent.innerHTML = contentElement;
