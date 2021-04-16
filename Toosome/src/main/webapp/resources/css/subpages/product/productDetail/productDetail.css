@@ -18,6 +18,8 @@
 }
 .productDetail-container .contents img{
   display: flex;
+  width: 340px;
+  height: 340px;
   /* width: 50%; */
   /* justify-content: center; */
 }
