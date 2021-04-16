@@ -47,7 +47,7 @@ public class BoardController {
 		return eventboardlist;
 	}
 	
-	@GetMapping(value="/eventendlist", produces= "application/json")//중료된 이벤트 게시판 리스트 화면 값 넘기기
+	@GetMapping(value="/end-eventlist", produces= "application/json")//중료된 이벤트 게시판 리스트 화면 값 넘기기
 	@ResponseBody
 	public List<EventBoardVO> eventEnd(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventendlist = eventBoardService.getEndEventBoard(vo);
