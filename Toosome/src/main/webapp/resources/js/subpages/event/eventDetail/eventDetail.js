@@ -22,8 +22,8 @@ const displayDetail = (title, content, items, index) => {
 	content.innerHTML = ""; // 본문 초기화
 	
 	// 날짜 변환
-	let date = new Date(items[1].eventBoardDetailDay);
-	let newDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+	let date = new Date(items[1].eventBoardDetailVO.eventBoardDetailDay);
+	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 	
 	if(items[1].eventBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
