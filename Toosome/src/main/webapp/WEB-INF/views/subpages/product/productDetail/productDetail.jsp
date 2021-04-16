@@ -14,7 +14,7 @@
     
     <div class="productDetail-container">      
       <div class="contents">
-        <img src="/resources/img/subpages/product/productDetail/p02.png" alt="">
+        <img class="product-img" src="/resources/img/subpages/product/productDetail/p02.png" alt="">
         <ul class="star">
           <li><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></li>
           <li>TOOSOME a-LIST CAPSULE COFFEE VARIETY GIFT PACK</li>
