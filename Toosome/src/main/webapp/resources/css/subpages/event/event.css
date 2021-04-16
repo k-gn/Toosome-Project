@@ -64,12 +64,14 @@
   background: #a62326;
 }
 
-.ing-content {
+.content {
   display: flex;
   flex-wrap: wrap;
 }
 
 .content li {
+  width: 320px;
+  height: auto;
   box-sizing: border-box;
   padding: 10px 20px 30px;
 }
