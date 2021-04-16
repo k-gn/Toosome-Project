@@ -33,30 +33,30 @@
 					<span>고객의 소리 운영시간 : 09:00~18:00 (연중무휴)</span>
         		</div>
         	</div>
-        	<form id="qna-form" action="#">
+        	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment" method="POST" onsubmit="return enrollCheck()">
 	        	<div class="qna-type-container">
 	        		<span class="title">카테고리</span>
-	        		<select name="type">
-	        			<option>메뉴문의</option>
-	        			<option>상품문의</option>
-	        			<option>배송문의</option>
-	        			<option>창업문의</option>
-	        			<option>기타</option>
+	        		<select name="qnaBoardType">
+	        			<option value="1">메뉴문의</option>
+	        			<option value="2">상품문의</option>
+	        			<option value="3">배송문의</option>
+	        			<option value="4">창업문의</option>
+	        			<option value="5">기타</option>
 	        		</select>
 	        	</div>
 	        	<div class="qna-title-container">
 	        		<span class="title">제목</span>
-	        		<input type="text" name="title" placeholder="제목을 입력하세요">
+	        		<input type="text" name="qnaBoardTitle" placeholder="제목을 입력하세요">
 	        	</div>
         		<div class="qna-content-container">
         			<p class="title">내용</p>
-        			<textarea name="content" placeholder="내용을 입력하세요"></textarea>
+        			<textarea name="qnaBoardContent" placeholder="내용을 입력하세요"></textarea>
         		</div>
         		<div class="qna-img-container">
         			<span class="title">이미지 첨부</span>
         			<input type="text" id="file-path" readonly>
         			<label for="input-file">업로드</label>
-        			<input type="file" name="file" id="input-file" accept="image/*">	
+        			<input type="file" name="qnaBoardImageRoute" id="input-file" accept="image/*">	
         		</div>
         		<div class="qna-radio-container">
         			<span class="title">공개 범위</span>
@@ -65,10 +65,11 @@
         		</div>
         		<div class="qna-pwd-container">
         			<span class="title">비밀번호</span>
-        			<input type="password" name="pwd" disabled>
+        			<input type="password" name="qnaBoardPassword" disabled>
         		</div>
         		<div class="btn-container">
         			<input type="reset" value="초기화">
+        			<input type="button" value="목록" onclick="location.href='/qna'">
         			<input type="submit" value="등록" id="submit">
         		</div>
         	</form>
