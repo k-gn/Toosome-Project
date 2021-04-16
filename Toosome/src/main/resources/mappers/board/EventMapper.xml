@@ -25,11 +25,11 @@
 	</resultMap>
 	
 	<select id="getEventBoardList" resultMap="EventBoardMap">
-		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
+		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() < EVENT_BOARD_END_DAY; ]]>
 	</select>
 	
 	<select id="getEndEventBoardList" resultMap="EventBoardMap">
-		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() < EVENT_BOARD_END_DAY; ]]>
+		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
 	</select>
 	
 	<select id="getEventBoardDetail" resultMap="EventBoardMap">
