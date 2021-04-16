@@ -3,24 +3,6 @@ const detailContent = document.querySelector('#qnaDetail'); // QnA 세부 본문
 const commentTitle = document.querySelector('.comment-table thead') // QnA 댓글 타이틀
 const commentContent = document.querySelector('#comment'); // QnA 댓글 본문
 
-// 테스트 데이터
-const testData = {
-		id: 18,
-		type: "배송문의", 
-		title: "문의드립니다!", 
-		content: "문의드르르르리리리립니다.",
-		date: "2020-03-25", 
-		img: "/resources/img/subpages/news/n001.jpg",
-		comment: {
-			comment_id: 1,
-			comment_writer: "관리자",
-			comment_title: "꺼지셍",
-			comment_content: "꺼지세염",
-			comment_date: "2020-03-26"
-		}
-};
-
-
 // parameter 받아오는 함수
 const getParam = (param) => {
 	let url = location.href;
@@ -41,13 +23,17 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 	c_title.innerHTML = ""; // 댓글 타이틀 초기화
 	c_content.innerHTML = ""; // 댓글 본문 초기화
 	
-	if(item.id === +index) {
+	// 날짜 변환
+	let date = new Date(item.qnaBoardRegdate);
+	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+	
+	if(item.qnaBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">${item.title}</th>
-			<th>${item.type}</th>
-			<th>${item.date}</th>
+			<th colspan="3">${item.qnaBoardTitle}</th>
+			<th>${item.qnaBoardType}</th>
+			<th>${newDate}</th>
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);
@@ -55,9 +41,9 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		// 문의사항 이미지 존재 여부
-		let existImg = item.img ? `<img src='${item.img}'>` : "";
+		let existImg = item.qnaBoardImageRoute ? `<img src='${item.qnaBoardImageRoute}' alt="#">` : "";
 		let contentElement = `
-			<td colspan="5">${item.content}<br>${existImg}</td>
+			<td colspan="5">${item.qnaBoardContent}<br>${existImg}</td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
@@ -82,16 +68,23 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		
 	} else {
 		alert('잘못된 요청입니다');
-		window.history.go(-1);
+/*		window.history.go(-1);*/
 	}
 };
 
-window.onload = () => {
+// document ready시 실행 
+$(document).ready(() => {
+	// param의 index 빼오기
 	let index = getParam('index');
-	
-	/*
-		index로 서버에 해당 게시글 요청
-	*/
-	
-	displayDetail(detailTitle, detailContent, commentTitle, commentContent, testData, index);
-}
+	// 게시글 데이터 요청 AJAX
+	$.ajax({
+		url: '/qnadetail?index='+index,
+		success: (res) => {
+			console.log(res);
+			displayDetail(detailTitle, detailContent, commentTitle, commentContent, res, index);
+		},
+		error: () => {
+			alert('통신장애');
+		}
+	});	
+});
