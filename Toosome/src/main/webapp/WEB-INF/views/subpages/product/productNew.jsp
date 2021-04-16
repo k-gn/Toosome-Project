@@ -20,22 +20,22 @@
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
-            <li><a href="/product">NEW</a></li>
-            <li class="click"><a href="/product2">커피상품</a></li>
+            <li class="click"><a href="/product">NEW</a></li>
+            <li><a href="/product2">커피상품</a></li>
             <li><a href="/product3">커피웨어/기타</a></li>
             <li><a href="/product4">기프트세트</a></li>
           </ul>
         </div>
     	
-       <div class="product-box">
+        <div class="product-box">
 					<ul class="all">
-						<c:forEach var="productCoffeeList" items="${productCoffeeList}">
+						<c:forEach var="productAllList" items="${productAllList}">
 							<li>
-								<a href="/productDetail?productId=${productCoffeeList.productId}">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productCoffeeList.productImageVO.productImageRoute}/${productCoffeeList.productImageVO.productImageName}.${productCoffeeList.productImageVO.productImageExtention}" alt="">
-									<span>${productCoffeeList.productTitleName}</span>
+								<a href="/productDetail?productId=${productAllList.productId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
+									<span>${productAllList.productTitleName}</span>
 									<div class="pay-box">
-										<span class="com" style="float: left;">${productCoffeeList.productPrice}</span>
+										<span class="com" style="float: left;">${productAllList.productPrice}</span>
 										<span style="float: left;">&nbsp;원</span>
 									</div>
 								</a>

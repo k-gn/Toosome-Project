@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,10 +20,10 @@
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
-            <li><a href="/product-all">전체</a></li>
-            <li><a href="/product-coffee">커피상품</a></li>
-            <li class="click"><a href="/product-coffeewear">커피웨어/기타</a></li>
-            <li><a href="/product-gift">기프트세트</a></li>
+            <li><a href="/product">NEW</a></li>
+            <li><a href="/product2">커피상품</a></li>
+            <li class="click"><a href="/product3">커피웨어/기타</a></li>
+            <li><a href="/product4">기프트세트</a></li>
           </ul>
         </div>
     	
