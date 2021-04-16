@@ -21,5 +21,9 @@
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.IatVO" alias="iatVO"/>
 
+		<!-- user.Product -->
+		<typeAlias type="com.web.toosome.user.product.vo.ProductVO" alias="productVO"/>
+		<typeAlias type="com.web.toosome.user.product.vo.ProductImageVO" alias="productImageVO"/>
+		
 	</typeAliases>
 </configuration>

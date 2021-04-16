@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.product.dao.ProductMapper">
+
+	<resultMap type="productVO" id="productVO">
+		<id property="productId" column="PRODUCT_ID"/>
+	<!--<result property="ordersOrdersId" column="ORDERS_ORDERS_ID"/>-->
+		<result property="productTitleName" column="PRODUCT_TITLE_NAME"/>
+		<result property="productSubName" column="PRODUCT_SUB_NAME"/>
+		<result property="productContent" column="PRODUCT_CONTENT"/>
+	<!--<result property="productScope" column="PRODUCT_SCOPE"/>-->
+		<result property="productPrice" column="PRODUCT_PRICE"/>
+		<result property="productType" column="PRODUCT_TYPE"/>
+		<result property="productregDate" column="PRODUCT_REG_DATE"/>
+		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT"/>
+		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT"/>
+		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE"/>
+		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT"/>
+		<result property="productStartDay" column="PRODUCT_START_DAY"/>
+		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT"/>
+		<result property="productState" column="PRODUCT_STATE"/>
+		<result property="productNew" column="PRODUCT_NEW"/>
+		<result property="productAll" column="PRODUCT_ALL"/>
+		<collection property="productImageVO" resultMap="productImageVO"/>
+	</resultMap>
+
+	<resultMap type="ProductImageVO" id="productImageVO">
+		<result property="productImageId" column="PRODUCT_IMAGE_ID"/>
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID"/>
+		<result property="productImageName" column="PRODUCT_IMAGE_NAME"/>
+		<result property="productImageExtention" column="PRODUCT_IMAGE_EXTENTION"/>
+		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE"/>
+	</resultMap>
+	
+	<select id="getallList" resultMap="productVO">
+		SELECT A.PRODUCT_ID,
+		 A.PRODUCT_TITLE_NAME,
+		 A.PRODUCT_SUB_NAME,
+		 A.PRODUCT_CONTENT,
+		 A.PRODUCT_PRICE,
+		 B.PRODUCT_IMAGE_NAME,
+		 B.PRODUCT_IMAGE_EXTENTION,
+		 B.PRODUCT_IMAGE_ROUTE
+		 FROM PRODUCT A INNER
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ALL=0;
+	</select>
+	<select id="getcoffeeList" resultMap="productVO">
+		SELECT A.PRODUCT_ID,
+		 A.PRODUCT_TITLE_NAME,
+		 A.PRODUCT_SUB_NAME,
+		 A.PRODUCT_CONTENT,
+		 A.PRODUCT_PRICE,
+		 B.PRODUCT_IMAGE_NAME,
+		 B.PRODUCT_IMAGE_EXTENTION,
+		 B.PRODUCT_IMAGE_ROUTE
+		 FROM PRODUCT A INNER
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=1;
+	</select>
+	<select id="getcoffeewearList" resultMap="productVO">
+		SELECT A.PRODUCT_ID,
+		 A.PRODUCT_TITLE_NAME,
+		 A.PRODUCT_SUB_NAME,
+		 A.PRODUCT_CONTENT,
+		 A.PRODUCT_PRICE,
+		 B.PRODUCT_IMAGE_NAME,
+		 B.PRODUCT_IMAGE_EXTENTION,
+		 B.PRODUCT_IMAGE_ROUTE
+		 FROM PRODUCT A INNER
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=2;
+	</select>
+	<select id="getgiftList" resultMap="productVO">
+		SELECT A.PRODUCT_ID,
+		 A.PRODUCT_TITLE_NAME,
+		 A.PRODUCT_SUB_NAME,
+		 A.PRODUCT_CONTENT,
+		 A.PRODUCT_PRICE,
+		 B.PRODUCT_IMAGE_NAME,
+		 B.PRODUCT_IMAGE_EXTENTION,
+		 B.PRODUCT_IMAGE_ROUTE
+		 FROM PRODUCT A INNER
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=3;
+	</select>
+	<select id="getallDetail" resultMap="productVO">
+		SELECT A.PRODUCT_ID,
+		 A.PRODUCT_TITLE_NAME,
+		 A.PRODUCT_SUB_NAME,
+		 A.PRODUCT_CONTENT,
+		 A.PRODUCT_PRICE,
+		 B.PRODUCT_IMAGE_NAME,
+		 B.PRODUCT_IMAGE_EXTENTION,
+		 B.PRODUCT_IMAGE_ROUTE
+		 FROM PRODUCT A INNER
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ID=${productId};
+	</select>
+	
+</mapper>

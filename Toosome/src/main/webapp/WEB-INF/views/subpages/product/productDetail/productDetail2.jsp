@@ -14,19 +14,20 @@
     
     <div class="productDetail-container">      
       <div class="contents">
-        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
+       <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}">
         <ul class="star">
           <li><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></li>
           <li>${productDetail.productSubName}</li>
-          <li class="strong">${productDetail.productTitleName}</li>
-          <li class="title-text">${productDetail.productContent}</li>
-          <li class="product-pay"><span>${productDetail.productPrice} 원</span></li>
+         </ul>
+          <h3>${productDetail.productTitleName}</h3>
+          <p class="title-text">${productDetail.productContent}</p>
+         <div class="pay-box">
+         	<span class="com" style="float: left;">${productDetail.productPrice}</span>
+			 <span style="float: left;">&nbsp;원</span>
           <li class="order-btn">
             <input type="button" class="online" value="온라인주문">
             <input type="button" class="basket" value="장바구니 담기">
           </li>
-        </ul>
-        
       
         <ul class="notice-box">
           <li>※ 상기 이미지는 실제 제품과 다소 차이가 있을 수 있습니다. (토핑 과일은 계절에 따라 달라질 수 있습니다.)</li>
