@@ -119,8 +119,8 @@
           <p class="txt-red"> 최종 결제된 금액 : <span class="com">0</span> 원</p>
         </div>
         <div class="out-btn">
-          <a href="#">MAIN</a>
-          <a href="#">구매계속하기</a>
+          <a href="/">MAIN</a>
+          <a href="/menu-new">구매계속하기</a>
         </div>
       </div>
 
