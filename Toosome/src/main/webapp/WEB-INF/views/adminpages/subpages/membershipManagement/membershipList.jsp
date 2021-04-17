@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-info">
                   <h4 class=card-title>멤버십 리스트</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
@@ -130,7 +130,7 @@
 	            <div class="profile-container">
 		            <div class="col-md-8">
 		              <div class="card">
-		                <div class="card-header card-header-primary">
+		                <div class="card-header card-header-info">
 		                  <h4 class="card-title">멤버십 정보수정</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
@@ -157,6 +157,40 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
+		                      <div class="col-md-12">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">주소</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">우편번호</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">생년월일</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">가입유형</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">멤버십등급</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                    </div>
+		                     <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원번호</label>
@@ -178,34 +212,6 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십전환일</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">가입유형</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -235,7 +241,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-info">
                   <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '멤버십회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
@@ -253,7 +259,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-primary" id="list-table-thead">
+                      <thead class="text-info" id="list-table-thead">
                         <th>
                           멤버십번호
                         </th>
