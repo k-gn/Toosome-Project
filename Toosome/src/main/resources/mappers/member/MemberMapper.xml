@@ -21,7 +21,7 @@
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 
-	<resultMap type="com.web.toosome.user.member.vo.AuthVO" id="authMap">
+	<resultMap type="authVO" id="authMap">
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberAuth" column="MEMBER_AUTH" />
 	</resultMap>

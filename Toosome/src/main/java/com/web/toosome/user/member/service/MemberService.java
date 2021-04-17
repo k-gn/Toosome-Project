@@ -150,7 +150,7 @@ public class MemberService implements IMemberService {
 
 	// 아이디로 회원 정보 조회
 	@Override
-	public MemberVO getUserById(int id) {
+	public MemberVO getUserById(Integer id) {
 		return mapper.getUserById(id);
 	}
 
@@ -163,7 +163,7 @@ public class MemberService implements IMemberService {
 	// 회원 탈퇴
 	@Transactional
 	@Override
-	public int deleteMember(String email, int id) {
+	public int deleteMember(String email, Integer id) {
 		mapper.deleteMemberAuth(email);
 		int result = mapper.deleteMember(id);
 		return result;
@@ -171,7 +171,7 @@ public class MemberService implements IMemberService {
 
 	// 비밀번호 검증
 	@Override
-	public boolean passwordCheck(int id, String password) {
+	public boolean passwordCheck(Integer id, String password) {
 		boolean flag = false;
 		String dbpassword = mapper.passwordCheck(id);
 		if(bCryptPasswordEncoder.matches(password, dbpassword)) {
@@ -183,7 +183,7 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public int changePassword(int id, String newpassword) {
+	public int changePassword(Integer id, String newpassword) {
 		Map<String, Object> map = new HashMap<>();
 		String password = bCryptPasswordEncoder.encode(newpassword);
 		map.put("id", id);
