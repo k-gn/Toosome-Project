@@ -8,9 +8,6 @@ const recordCalendar2 = document.querySelector('#calendar2'); // 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
-const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
-const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -210,29 +207,6 @@ const submitHandler = () => {
 };
 
 submitBtn.addEventListener('click', submitHandler);
-
-// 리스트 항목 클릭 핸들러
-const listHandler = (e) => {
-	const tr = e.target.parentNode;
-	const tds = tr.children;
-	const index = tds[0].innerText;
-	
-	/* index로 AJAX 요청 */
-	
-	profileContainer.style.display = 'block';
-	
-};
-
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
-
-// 모달 취소 버튼 핸들러
-modalCancelBtn.addEventListener('click', (e) => {
-	e.preventDefault();
-	profileContainer.style.display = 'none';
-})
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {
