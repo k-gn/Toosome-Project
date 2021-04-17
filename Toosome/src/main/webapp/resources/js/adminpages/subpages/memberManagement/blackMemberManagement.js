@@ -1,10 +1,10 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const sleepDate = document.querySelector('#sleepDate'); // 휴면전환일 기간선택
-const sleepDatePeriod = document.querySelector('#sleepDatePeriod'); // 휴면전환일 기간선택 버튼박스
-const sleepPeriods = document.querySelectorAll('.period.sleep'); // 휴면전환일 기간 버튼들
-const sleepCalendar = document.querySelector('#calendar1'); // 휴면전환일 달력1
-const sleepCalendar2 = document.querySelector('#calendar2'); // 휴면전환일 달력2
+const blackDate = document.querySelector('#blackDate'); // 블랙전환일 기간선택
+const blackDatePeriod = document.querySelector('#blackDatePeriod'); // 블랙전환일 기간선택 버튼박스
+const blackPeriods = document.querySelectorAll('.period.black'); // 블랙전환일 기간 버튼들
+const blackCalendar = document.querySelector('#calendar1'); // 블랙전환일 달력1
+const blackCalendar2 = document.querySelector('#calendar2'); // 블랙전환일 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
@@ -13,13 +13,13 @@ const profileContainer = document.querySelector('#profile-modal'); // 프로필 
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 
 // 기간선택 handler
-const sleepChangeHandler = (e) => {
+const changeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
 	// 옵션 선택이 use(기간선택)일 경우
-	if(option === 'sleep-use') {
-		sleepDatePeriod.style.display = 'inline';
+	if(option === 'black-use') {
+		blackDatePeriod.style.display = 'inline';
 	} else {
-		sleepDatePeriod.style.display = 'none';
+		blackDatePeriod.style.display = 'none';
 	};
 };
 
@@ -42,20 +42,20 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
-	removeOn(sleepPeriods);
+	removeOn(blackPeriods);
 	const today = moment().format('MM/DD/YYYY');
-	sleepCalendar.value = today;
-	sleepCalendar2.value = today;
+	blackCalendar.value = today;
+	blackCalendar2.value = today;
 };
 
 // 기간 버튼 event hook
-sleepPeriods.forEach((period) => {
+blackPeriods.forEach((period) => {
 	period.addEventListener('click', (e) => {
 		e.preventDefault();
-		removeOn(sleepPeriods);
+		removeOn(blackPeriods);
 		period.classList.toggle('on');
 		let val = period.value;
-		calcDate(val, sleepCalendar);
+		calcDate(val, blackCalendar);
 	});
 });
 
@@ -63,8 +63,8 @@ sleepPeriods.forEach((period) => {
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	sleepDate.options[0].selected = 'true';
-	sleepDatePeriod.style.display = 'none';
+	blackDate.options[0].selected = 'true';
+	blackDatePeriod.style.display = 'none';
 	calendarInit();
 };
 
@@ -159,7 +159,7 @@ const getList = (data) => {
                         ${res.regDate}
                       </td>
                       <td>
-                        ${res.changeSleepDate}
+                        ${res.changeBlackDate}
                       </td>
                     </tr>			
 				`;
@@ -178,8 +178,8 @@ const getList = (data) => {
 const submitHandler = () => {
 	const memberName = ''; // 검색 이름
 	const memberEmail = ''; // 검색 이메일
-	const startSleepDate = ''; // 회원가입 검색 시작일
-	const endSleepDate = ''; // 회원가입 검색 종료일
+	const startBlackDate = ''; // 회원가입 검색 시작일
+	const endBlackDate = ''; // 회원가입 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
@@ -193,17 +193,17 @@ const submitHandler = () => {
 	};
 	
 	// 가입일자
-	if(sleepDate.options[sleepDate.selectedIndex].value === 'sleep-use') {
-		startSleepDate = sleepCalendar.value.moment('YYYY-MM-DD');
-		endSleepDate = sleepCalendar2.value.moment('YYYY-MM-DD');
+	if(blackDate.options[blackDate.selectedIndex].value === 'black-use') {
+		startBlackDate = blackCalendar.value.moment('YYYY-MM-DD');
+		endBlackDate = blackCalendar2.value.moment('YYYY-MM-DD');
 	}
 	
 	// JSON Data
 	const data = {
 		memberName,
 		memberEmail,
-		startSleepDate,
-		endSleepDate,
+		startBlackDate,
+		endBlackDate,
 	};
 	
 	getList(data);
