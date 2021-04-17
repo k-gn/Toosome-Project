@@ -22,6 +22,7 @@
   height: 200px;
   /* background-color: #f7fbfb; */
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 .myMember-container .top-box .member-tier {
   width: 30%;
@@ -75,3 +76,34 @@
   color: red;
   font-weight: bold;
 }
+
+.bottom-box {
+  width: 90%;
+  margin-top: 50px;
+}
+.bottom-box .tier-contents {
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin:0 auto;
+  text-align: center;
+}
+.bottom-box table {
+  margin-top: 50px;
+}
+.bottom-box table thead tr th {
+  font-size: 1.25rem;
+}
+.bottom-box table tbody tr td {
+  line-height: 150px;
+  font-weight: bold;
+  color: #333;
+}
+.bottom-box table tbody tr td:last-child {
+  color: red;
+}
+.bottom-box table tbody tr th img {
+  display: block;
+  width: auto;
+  height: 150px;
+}
+

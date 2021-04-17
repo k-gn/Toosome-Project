@@ -22,24 +22,24 @@ var memberInfo = {
 
 var tier = {
   bronze: {
-    img: "/resources/img/subpage/member/myMembership/tier/bronze_1.png",
+    img: "/resources/img/subpages/member/myMembership/tier/bronze_1.png",
   },
   silver: {
-    img: "/resources/img/subpage/member/myMembership/tier/silver_1[1].png",
+    img: "/resources/img/subpages/member/myMembership/tier/silver_1.png",
   },
   gold: {
-    img: "/resources/img/subpage/member/myMembership/tier/gold_1[1].png",
+    img: "/resources/img/subpages/member/myMembership/tier/gold_1.png",
   },
   platinum: {
-    img: "/resources/img/subpage/member/myMembership/tier/platinum_1[1].png",
+    img: "/resources/img/subpages/member/myMembership/tier/platinum_1.png",
   },
   diamond: {
-    img: "/resources/img/subpage/member/myMembership/tier/diamond_1[1].png",
+    img: "/resources/img/subpages/member/myMembership/tier/diamond_1.png",
   },
 };
 
 $(function () {
-  var point = memberInfo["person4"]["point"];
+  var point = memberInfo["person1"]["point"];
 
   if (point <= 5000) {
     $(".member-tier img").attr("src", tier["bronze"]["img"]);
@@ -95,4 +95,5 @@ $(function () {
     $(".minus").html("최고 등급입니다.");
     $(".minus span").css("display", "none");
   }
+
 });
