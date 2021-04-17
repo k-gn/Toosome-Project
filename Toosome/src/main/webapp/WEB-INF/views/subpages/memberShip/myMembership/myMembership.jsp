@@ -36,6 +36,7 @@
             </div>
           </div>
           <p class="info-foot">현재 포인트 <span></span> P</p>
+          <p class="minus">다음 등급까지 남은 포인트는 <span></span> p 남았습니다.</p>
         </div>
       </div>
     </div>

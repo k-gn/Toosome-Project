@@ -67,3 +67,11 @@
 .myMember-container .top-box .member-info .info-foot span {
   color: red;
 }
+.myMember-container .top-box .member-info .minus {
+  text-align: right;
+  font-size: 1.25rem;
+}
+.myMember-container .top-box .member-info .minus span {
+  color: red;
+  font-weight: bold;
+}
