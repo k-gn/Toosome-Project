@@ -57,8 +57,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>운영자 리스트</li>
-       		<li>운영자 접속기록 조회</li>
+       		<li>
+       			<a href="/admin/admin-list">운영자 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/admin-connectionrecord">운영자 접속기록 조회</a>
+       		</li>
           </ul>
         </div>
       </li>

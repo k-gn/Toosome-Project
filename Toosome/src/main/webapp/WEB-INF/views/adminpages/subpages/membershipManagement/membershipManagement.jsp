@@ -52,21 +52,15 @@
 		                <div class="card-body">
 		                  <form>
 		                    <div class="row">
-		                      <div class="col-md-4">
+		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 번호</label>
 		                          <input type="text" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-4">
+		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 이름</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">포인트 적립률 (%)</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -81,6 +75,26 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">등급 조건 (DOWN)</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">할인율 (%)</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">적립률 (%)</label>
+		                          <input type="text" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">초기포인트</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
