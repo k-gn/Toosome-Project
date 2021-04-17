@@ -8,7 +8,6 @@
 		<result property="memberId" column="MEMBER_ID"/>
 		<result property="leverId" column="LEVEL_ID"/>
 		<result property="membershipPointRate" column="MEMBERSHIP_POINT_RATE"/>
-		<result property="memberTotalPayment" column="MEMBER_TOTAL_PAYMENT"/>
 		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
 		<collection property="level" resultMap="levelMap"/>
 	</resultMap>
@@ -27,7 +26,7 @@
 	<!-- 멤버쉽 조회 -->
 	<select id="getMembershipInfo" resultMap="membershipMap">
 		SELECT
-		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT_RATE, MEMBER_TOTAL_PAYMENT, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE
+		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT_RATE, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE
 		FROM
 		 MEMBERSHIP mem LEFT OUTER JOIN LEVEL lvl on mem.LEVEL_ID = lvl.LEVEL_ID
 		WHERE MEMBER_ID = #{id}
