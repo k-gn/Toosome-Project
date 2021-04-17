@@ -16,3 +16,54 @@
   font-size: 1.5rem;
   margin: 50px auto;
 }
+.myMember-container .top-box {
+  display: flex;
+  width: 90%;
+  height: 200px;
+  /* background-color: #f7fbfb; */
+  border-radius: 20px;
+}
+.myMember-container .top-box .member-tier {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.myMember-container .top-box .member-info {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.myMember-container .top-box .member-info .pro {
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+}
+.myMember-container .top-box .member-info .pro .progress {
+  height: 30%;
+  /* background-color: #38383b; */
+}
+.myMember-container .top-box .member-info .pro .progress .progress-bar {
+  background-color: #a62326;
+  font-size: 16px;
+}
+.myMember-container .top-box .member-info .pro .pro-text {
+  width: 100%;
+}
+.myMember-container .top-box .member-info .pro .pro-text ul {
+  display: flex;
+  justify-content: space-between;
+}
+.myMember-container .top-box .member-info .pro .pro-text ul li {
+  font-size: 1.25rem;
+  color: #333;
+}
+.myMember-container .top-box .member-info .info-foot {
+  text-align: right;
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+.myMember-container .top-box .member-info .info-foot span {
+  color: red;
+}
