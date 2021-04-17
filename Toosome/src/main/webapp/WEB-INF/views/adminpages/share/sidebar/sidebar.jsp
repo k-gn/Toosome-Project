@@ -23,11 +23,14 @@
        			<a href="/admin/member-management">회원 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/sleepMember-management">휴면회원 리스트</a>
+       			<a href="/admin/sleepmember-management">휴면회원 리스트</a>
        		</li>
-       		<li>탈퇴회원 관리</li>
-       		<li>블랙회원 관리</li>
-       		<li>회원 접속기록 조회</li>
+       		<li>
+       			<a href="/admin/outmember-management">탈퇴회원 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/blackmember-management">블랙회원 리스트</a>
+       		</li>
           </ul>
         </div>
       </li>

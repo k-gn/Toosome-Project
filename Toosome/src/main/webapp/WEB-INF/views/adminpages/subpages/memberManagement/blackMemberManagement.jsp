@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/memberManagement/sleepMemberManagement.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/memberManagement/blackMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/memberManagement/sleepMemberManagement.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/memberManagement/blackMemberManagement.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class=card-title>휴면회원 리스트</h4>
+                  <h4 class=card-title>블랙회원 리스트</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
@@ -60,22 +60,22 @@
                          </tr>
                          <tr>
                            <td>
-                             <span><strong>휴면전환일자</strong></span>
+                             <span><strong>블랙전환일자</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="sleepDate" class="search-select" id="sleepDate" onchange="sleepChangeHandler(this)">
+                              <select name="blackDate" class="search-select" id="blackDate" onchange="changeHandler(this)">
                                 <option value="notUse">미사용</option>
-                                <option value="sleep-use">기간선택</option>
+                                <option value="black-use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
-                             <div id="sleepDatePeriod" class="date-picker">
-                             	<button class="period sleep" value="0d">오늘</button>
-                             	<button class="period sleep" value="1M">1개월</button>
-                             	<button class="period sleep" value="3M">3개월</button>
-                             	<button class="period sleep" value="6M">6개월</button>
-                             	<button class="period sleep" value="1y">1년</button>
+                             <div id="blackDatePeriod" class="date-picker">
+                             	<button class="period black" value="0d">오늘</button>
+                             	<button class="period black" value="1M">1개월</button>
+                             	<button class="period black" value="3M">3개월</button>
+                             	<button class="period black" value="6M">6개월</button>
+                             	<button class="period black" value="1y">1년</button>
                              	<div class="calendar-wrapper">
                               	<div class="col-md-3">
                               		<div class="form-group">
@@ -113,7 +113,7 @@
 		            <div class="col-md-8">
 		              <div class="card">
 		                <div class="card-header card-header-primary">
-		                  <h4 class="card-title">휴면회원 정보수정</h4>
+		                  <h4 class="card-title">블랙회원 정보수정</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
@@ -208,7 +208,7 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
-                    <button id="excel-down" onclick="excelDownload('member-table', '휴면회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button id="excel-down" onclick="excelDownload('member-table', '블랙회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
 	                      <option value="30">30개씩 보기</option>
@@ -243,32 +243,32 @@
                           회원가입일
                         </th>
                         <th>
-                          휴면전환일
+                          블랙전환일
                         </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="sleepMemberList" items="${sleepMemberList}">
+                     	 <c:forEach var="blackMemberList" items="${blackMemberList}">
 	                        <tr>
 	                          <td>
-	                            ${sleepMemberList.memberId}
+	                            ${blackMemberList.memberId}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.platFormType}
+	                            ${blackMemberList.platFormType}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.memberEmail}
+	                            ${blackMemberList.memberEmail}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.memberName}
+	                            ${blackMemberList.memberName}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.memberPhone}
+	                            ${blackMemberList.memberPhone}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.regDate}
+	                            ${blackMemberList.regDate}
 	                          </td>
 	                          <td>
-	                            ${sleepMemberList.changeSleepDate}
+	                            ${blackMemberList.changeBlackDate}
 	                          </td>
 	                        </tr>
                         </c:forEach>
