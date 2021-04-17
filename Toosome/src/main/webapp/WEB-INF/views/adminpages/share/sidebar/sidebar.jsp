@@ -37,12 +37,16 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="material-icons">card_membership</i>
-          <p>멤버쉽 관리</p>
+          <p>멤버십 관리</p>
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>멤버쉽 리스트</li>
-       		<li>멤버쉽 관리</li>
+       		<li>
+       			<a href="/admin/membership-list">멤버십 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/membership-management">멤버십 관리</a>
+       		</li>
           </ul>
         </div>
       </li>
