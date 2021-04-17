@@ -21,7 +21,6 @@
 		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT"/>
 		<result property="productState" column="PRODUCT_STATE"/>
 		<result property="productNew" column="PRODUCT_NEW"/>
-		<result property="productAll" column="PRODUCT_ALL"/>
 		<collection property="productImageVO" resultMap="productImageVO"/>
 	</resultMap>
 
@@ -33,7 +32,7 @@
 		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE"/>
 	</resultMap>
 	
-	<select id="getallList" resultMap="productVO">
+	<select id="getproductnewList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		 A.PRODUCT_TITLE_NAME,
 		 A.PRODUCT_SUB_NAME,
@@ -43,7 +42,7 @@
 		 B.PRODUCT_IMAGE_EXTENTION,
 		 B.PRODUCT_IMAGE_ROUTE
 		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ALL=0;
+		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_NEW=1;
 	</select>
 	<select id="getcoffeeList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
@@ -81,7 +80,7 @@
 		 FROM PRODUCT A INNER
 		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=3;
 	</select>
-	<select id="getallDetail" resultMap="productVO">
+	<select id="getproductnewDetail" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		 A.PRODUCT_TITLE_NAME,
 		 A.PRODUCT_SUB_NAME,

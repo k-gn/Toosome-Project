@@ -59,8 +59,8 @@ public class ProductService implements IProductService{
 	}
 	
 	@Override
-	public List<ProductVO> getallList(ProductVO productVO) {
-		return productmapper.getallList(productVO);
+	public List<ProductVO> getproductnewList(ProductVO productVO) {
+		return productmapper.getproductnewList(productVO);
 	}
 
 	@Override
@@ -79,20 +79,9 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public List<ProductVO> getproductnewList(ProductVO productVO) {
-		return productmapper.getproductnewList(productVO);
-	}
-
-	@Override
 	public ProductVO getproductnewDetail(ProductVO productVO) {
 		
 		return productmapper.getproductnewDetail(productVO);
-	}
-
-	@Override
-	public ProductVO getallDetail(ProductVO productVO) {
-	
-		return productmapper.getallDetail(productVO);
 	}
 
 	@Override
@@ -109,4 +98,5 @@ public class ProductService implements IProductService{
 	public ProductVO getgiftDetail(ProductVO productVO) {
 		return productmapper.getgiftDetail(productVO);
 	}
+
 }

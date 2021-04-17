@@ -17,13 +17,13 @@ public class ProductController {
 	private IProductService productService;
 	
 	
-	@GetMapping("/product-all")
-	public String productAll(ProductVO productVO, Model model) {
-		System.out.println("전체 상품 출력");
-		List<ProductVO> productAllList = productService.getallList(productVO);
+	@GetMapping("/product-new")
+	public String productNew(ProductVO productVO, Model model) {
+		System.out.println("신상품 출력");
+		List<ProductVO> productAllList = productService.getproductnewList(productVO);
 		model.addAttribute("productAllList", productAllList);
 		System.out.println(model);
-		return "subpages/product/productAll";
+		return "subpages/product/productNew";
 	}
 	@GetMapping("/product-coffee")
 	public String productCoffee(ProductVO productVO, Model model) {
@@ -52,7 +52,7 @@ public class ProductController {
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
 	public String productallDetail(ProductVO productVO, Model model) {
 		System.out.println("상품 메뉴 디테일 출력");
-		ProductVO productDetail = productService.getallDetail(productVO);
+		ProductVO productDetail = productService.getproductnewDetail(productVO);
 		model.addAttribute("productDetail",productDetail);
 		System.out.println(model);
 		return "subpages/product/productDetail/productDetail";
