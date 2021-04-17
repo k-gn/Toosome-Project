@@ -15,6 +15,8 @@
 		alert("잘못된 접근입니다.");
 	}else if(msg === "notSocial") {
 		alert("소셜회원은 이용할 수 없는 서비스 입니다.");
+	}else if(msg === "already") {
+		alert("이미 멤버쉽이 가입된 계정입니다.");
 	}
 </script> 
 </head>

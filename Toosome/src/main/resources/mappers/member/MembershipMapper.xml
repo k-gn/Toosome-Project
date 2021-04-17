@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.membership.dao.IMembershipMapper">
+
+	<resultMap type="membershipVO" id="membershipMap">
+		<id property="membershipId" column="MEMBERSHIP_ID"/>
+		<result property="memberId" column="MEMBER_ID"/>
+		<result property="leverId" column="LEVEL_ID"/>
+		<result property="membershipPointRate" column="MEMBERSHIP_POINT_RATE"/>
+		<result property="memberTotalPayment" column="MEMBER_TOTAL_PAYMENT"/>
+		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
+		<collection property="level" resultMap="levelMap"/>
+	</resultMap>
+	
+	<resultMap type="levelVO" id="levelMap">
+		<id property="levelId" column="LEVEL_ID"/>
+		<result property="levelDiscountRate" column="LEVEL_DISCOUNT_RATE"/>
+		<result property="levelCount" column="LEVEL_COUNT"/>
+	</resultMap>
+
+	<!-- 멤버쉽 등록 -->
+	<insert id="registerMembership">
+		INSERT INTO MEMBERSHIP(MEMBER_ID) VALUES(#{id})
+	</insert>
+	
+	<!-- 멤버쉽 조회 -->
+	<select id="getMembershipInfo" resultMap="membershipMap">
+		SELECT
+		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT_RATE, MEMBER_TOTAL_PAYMENT, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE
+		FROM
+		 MEMBERSHIP mem LEFT OUTER JOIN LEVEL lvl on mem.LEVEL_ID = lvl.LEVEL_ID
+		WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<!-- 등급업 -->
+	<update id="upLevel">
+		UPDATE MEMBERSHIP SET LEVEL_ID = #{levelId} WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+</mapper>
