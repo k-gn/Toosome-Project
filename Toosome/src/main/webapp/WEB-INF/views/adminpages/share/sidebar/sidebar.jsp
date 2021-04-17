@@ -73,8 +73,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>메뉴 리스트</li>
-       		<li>메뉴 등록</li>
+       		<li>
+       			<a href="/admin/menu-list">메뉴 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/enroll-menu">메뉴 등록</a>
+       		</li>
           </ul>
         </div>
       </li>

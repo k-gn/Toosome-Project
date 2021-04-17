@@ -1,68 +1,15 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const recordDate = document.querySelector('#recordDate'); // 기간선택
-const recordDatePeriod = document.querySelector('#recordDatePeriod'); // 간선택 버튼박스
-const recordPeriods = document.querySelectorAll('.period.record'); // 기간 버튼들
-const recordCalendar = document.querySelector('#calendar1'); // 달력1
-const recordCalendar2 = document.querySelector('#calendar2'); // 달력2
+const categories = document.querySelector('#categories'); // 카테고리 선택
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-
-// 기간선택 handler
-const changeHandler = (e) => {
-	const option = e.options[e.selectedIndex].value;
-	// 옵션 선택이 use(기간선택)일 경우
-	if(option === 'record-use') {
-		recordDatePeriod.style.display = 'inline';
-	} else {
-		recordDatePeriod.style.display = 'none';
-	};
-};
-
-// on 클래스 제거
-const removeOn = (periods) => {
-	periods.forEach((period) => {
-		if(period.classList.contains('on')) {
-			period.classList.remove('on');			
-		}
-	});
-};
-
-// 날짜 계산 (moment.js)
-const calcDate = (value, calendar) => {
-	const [num, unit] = value.split('');
-	const today = moment();
-	const newDate = moment(today).subtract(num, unit).format('MM/DD/YYYY');
-	calendar.value = newDate;
-};
-
-// init
-const calendarInit = () => {
-	removeOn(recordPeriods);
-	const today = moment().format('MM/DD/YYYY');
-	recordCalendar.value = today;
-	recordCalendar2.value = today;
-};
-
-// 기간 버튼 event hook
-recordPeriods.forEach((period) => {
-	period.addEventListener('click', (e) => {
-		e.preventDefault();
-		removeOn(recordPeriods);
-		period.classList.toggle('on');
-		let val = period.value;
-		calcDate(val, recordCalendar);
-	});
-});
 
 // 리셋 버튼 핸들러
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	recordDate.options[0].selected = 'true';
-	recordDatePeriod.style.display = 'none';
-	calendarInit();
+	categories.options[0].selected = 'true';
 };
 
 resetBtn.addEventListener('click', resetHandler);
@@ -138,25 +85,25 @@ const getList = (data) => {
 				let content = `
 					<tr>
                       <td>
-                        ${res.memberName}
+                        ${res.menuId}
                       </td>
                       <td>
-                        ${res.memberEmail}
+                        ${res.menuType}
                       </td>
                       <td>
-                        ${res.connectDate}
+                        ${res.menuMainTitle}
                       </td>
                       <td>
-                        ${res.connectMenu}
+                        ${res.menuState}
                       </td>
                       <td>
-                        ${res.connectPage}
+                        ${res.menuCheckCount}
                       </td>
                       <td>
-                        ${res.connectIP}
+                        ${res.menuPrice}
                       </td>
                       <td>
-                        ${res.connectWork}
+                        ${res.menuRegDate}
                       </td>
                     </tr>			
 				`;
@@ -173,10 +120,9 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const memberName = ''; // 검색 이름
-	const memberEmail = ''; // 검색 이메일
-	const startRecordDate = ''; // 회원가입 검색 시작일
-	const endRecordDate = ''; // 회원가입 검색 종료일
+	const menuId = ''; // 검색 이름
+	const menuMainTitle = ''; // 검색 이메일
+	const menuType = ''; // 회원가입 검색 시작일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
@@ -189,18 +135,13 @@ const submitHandler = () => {
 		}
 	};
 	
-	// 가입일자
-	if(recordDate.options[recordDate.selectedIndex].value === 'record-use') {
-		startRecordDate = recordCalendar.value.moment('YYYY-MM-DD');
-		endRecordDate = recordCalendar2.value.moment('YYYY-MM-DD');
-	}
+	menuType = categories.options[categories.selectedIndex].value; // 카테고리
 	
 	// JSON Data
 	const data = {
-		memberName,
-		memberEmail,
-		startRecordDate,
-		endRecordDate,
+		menuId,
+		menuMainTitle,
+		menuType,
 	};
 	
 	getList(data);
@@ -262,21 +203,3 @@ const excelDownload = (id, title) => {
 		document.body.removeChild(elem);
 	}
 };
-
-// 기간선택 달력 Jquery
-$(document).ready(() => {
-	calendarInit();
-/*	getAllList();*/
-	
-	$('#datetimepicker1').datetimepicker({ format: 'L'});
-	$('#datetimepicker2').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker1").on("change.datetimepicker", function (e) {
-		$('#datetimepicker2').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker2").on("change.datetimepicker", function (e) {
-		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	}); 
-}); 
