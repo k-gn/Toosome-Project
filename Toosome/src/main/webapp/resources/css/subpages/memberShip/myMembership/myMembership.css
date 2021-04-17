@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.myMember-container {
+  max-width: 1000px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  margin: 150px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+}
+.myMember-container .title {
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin: 50px auto;
+}
