@@ -15,5 +15,9 @@ public class BasketController {
 	public String order() {
 		return "subpages/basket/order/order";
 	}
-	
+
+	@GetMapping("/ordercomplete") // 주문
+	public String ordercomplete() {
+		return "subpages/basket/order/orderComplete/orderComplete";
+	}
 }

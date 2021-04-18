@@ -49,7 +49,7 @@
           <tbody>
             <tr>
               <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td><img src="" alt=""></td>
+              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
               <td><span class="name"></span></td>
               <td>
                 <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
@@ -70,7 +70,7 @@
 
             <tr>
               <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td><img src="" alt=""></td>
+              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
               <td><span class="name"></span></td>
               <td>
                 <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
