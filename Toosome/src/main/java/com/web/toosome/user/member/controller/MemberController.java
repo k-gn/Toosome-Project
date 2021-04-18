@@ -65,6 +65,11 @@ public class MemberController {
 		return "subpages/myPage/myPage";
 	}
 
+	// 마이멤버십페이지 이동
+	@GetMapping("/mymembership")
+	public String mymembership() {
+		return "subpages/memberShip/myMembership/myMembership";
+	}
 	// 회원정보 수정 페이지 이동
 	@GetMapping("/mypage/update/{id}")
 	public String memberupdate(@PathVariable Integer id, Model model, HttpSession session, RedirectAttributes ra) {
