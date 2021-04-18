@@ -85,25 +85,25 @@ const getList = (data) => {
 				let content = `
 					<tr>
                       <td>
-                        ${res.menuId}
+                        ${res.productId}
                       </td>
                       <td>
-                        ${res.menuType}
+                        ${res.productType}
                       </td>
                       <td>
-                        ${res.menuMainTitle}
+                        ${res.productMainTitle}
                       </td>
                       <td>
-                        ${res.menuState}
+                        ${res.productState}
                       </td>
                       <td>
-                        ${res.menuCheckCount}
+                        ${res.productCheckCount}
                       </td>
                       <td>
-                        ${res.menuPrice}
+                        ${res.productPrice}
                       </td>
                       <td>
-                        ${res.menuRegDate}
+                        ${res.productRegDate}
                       </td>
                     </tr>			
 				`;
@@ -120,28 +120,28 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const menuId = ''; // 메뉴 번호
-	const menuMainTitle = ''; // 메뉴 이름
-	const menuType = ''; // 메뉴 카테고리
+	const productId = ''; // 상품 번호
+	const productMainTitle = ''; // 상품 이름
+	const productType = ''; // 상품 카테고리
 	
-	// 메뉴 번호 & 메뉴 이름
-	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
+	// 상품 번호 & 상품 이름
+	if(searchType.options[searchType.selectedIndex].value === 'id') { // 번호로 검색시
 		if(searchInput.value !== '') {
-			menuId = searchInput.value;	
+			productId = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			menuMainTitle = searchInput.value;			
+			productMainTitle = searchInput.value;			
 		}
 	};
 	
-	menuType = categories.options[categories.selectedIndex].value; // 카테고리
+	productType = categories.options[categories.selectedIndex].value; // 카테고리
 	
 	// JSON Data
 	const data = {
-		menuId,
-		menuMainTitle,
-		menuType,
+		productId,
+		productMainTitle,
+		productType,
 	};
 	
 	getList(data);

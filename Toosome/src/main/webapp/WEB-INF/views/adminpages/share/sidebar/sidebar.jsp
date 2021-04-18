@@ -89,8 +89,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>상품 리스트</li>
-       		<li>상품 등록</li>
+       		<li>
+       			<a href="/admin/product-list">상품 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/enroll-product">상품 등록</a>
+       		</li>
           </ul>
         </div>
       </li>

@@ -8,8 +8,8 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/menuManagement/menuList.css" rel="stylesheet" />
-  <script src="/resources/js/adminpages/subpages/menuManagement/menuList.js" defer></script>
+  <link href="/resources/css/adminpages/subpages/productManagement/productList.css" rel="stylesheet" />
+  <script src="/resources/js/adminpages/subpages/productManagement/productList.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-success">
-                  <h4 class=card-title>메뉴 리스트</h4>
+                  <h4 class=card-title>상품 리스트</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
@@ -48,8 +48,8 @@
                            <td>
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="searchType">
-                                <option value="id">메뉴번호</option>
-                                <option value="name">메뉴이름</option>
+                                <option value="id">상품번호</option>
+                                <option value="name">상품이름</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -63,11 +63,10 @@
                            <td>
                         	  <div class="select-box">
                               <select name="categories" class="search-select" id="categories">
-                                <option value="new">NEW</option>
-                                <option value="wholecake">홀케이크</option>
-                                <option value="delhi">델리</option>
-                                <option value="dessert">디저트</option>
-                                <option value="beverage">음료</option>
+			                  	<option value="new">NEW</option>
+			                  	<option value="coffee">커피상품</option>
+			                  	<option value="etc">커피웨어/기타</option>
+			                  	<option value="gift">기프트세트</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -84,7 +83,7 @@
 		            <div class="col-md-8">
 		              <div class="card">
 		                <div class="card-header card-header-success">
-		                  <h4 class="card-title">메뉴상세</h4>
+		                  <h4 class="card-title">상품 상세</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
@@ -92,25 +91,25 @@
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴번호</label>
+		                          <label class="bmd-label-floating">상품번호</label>
 		                          <input type="text" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴이름</label>
+		                          <label class="bmd-label-floating">상품이름</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴이름(상세)</label>
+		                          <label class="bmd-label-floating">상품이름(상세)</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴가격</label>
+		                          <label class="bmd-label-floating">상품가격</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -136,7 +135,7 @@
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">신메뉴여부</label>
+		                          <label class="bmd-label-floating">신상품여부</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -144,7 +143,7 @@
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴등록일</label>
+		                          <label class="bmd-label-floating">상품등록일</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -159,7 +158,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <div class="form-group">
-		                            <label class="bmd-label-floating">메뉴내용</label>
+		                            <label class="bmd-label-floating">상품 내용</label>
 		                            <textarea class="form-control" rows="5"></textarea>
 		                          </div>
 		                        </div>
@@ -169,7 +168,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <div class="form-group">
-		                            <label class="bmd-label-floating">메뉴이미지</label>
+		                            <label class="bmd-label-floating">상품 이미지</label>
 		                            <textarea class="form-control" rows="5"></textarea>
 		                          </div>
 		                        </div>
@@ -193,7 +192,7 @@
                 <div class="card-header card-header-success">
                   <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
-                    <button id="excel-down" onclick="excelDownload('member-table', '메뉴리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button id="excel-down" onclick="excelDownload('member-table', '상품리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                   	<div class="select-box">
 	                    <select id="memberList-select">
 	                      <option value="30">30개씩 보기</option>
@@ -210,13 +209,13 @@
                     <table id="member-table" class="table">
                       <thead class="text-success" id="list-table-thead">
                         <th>
-                          메뉴번호
+                          상품번호
                         </th>
                         <th>
                           카테고리
                         </th>
                         <th>
-                          메뉴이름
+                          상품이름
                         </th>
                         <th>
                           판매상태
@@ -225,35 +224,35 @@
                           재고수량
                         </th>
                         <th>
-                          메뉴가격
+                          상품가격
                         </th>
                         <th>
-                          메뉴등록일
+                          상품등록일
                         </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="menuList" items="${menuList}">
+                     	 <c:forEach var="productList" items="${productList}">
 	                        <tr>
 	                          <td>
-	                            ${menuList.menuId}
+	                            ${productList.productId}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuType}
+	                            ${productList.productType}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuMainTitle}
+	                            ${productList.productMainTitle}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuState}
+	                            ${productList.productState}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuCheckCount}
+	                            ${productList.productCheckCount}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuPrice}
+	                            ${productList.productPrice}
 	                          </td>
 	                          <td>
-	                            ${menuList.menuRegDate}
+	                            ${productList.productRegDate}
 	                          </td>
 	                        </tr>
                         </c:forEach>
