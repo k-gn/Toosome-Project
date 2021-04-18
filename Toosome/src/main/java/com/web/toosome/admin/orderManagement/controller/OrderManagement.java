@@ -31,6 +31,11 @@ public class OrderManagement {
 		return "adminpages/subpages/orderManagement/orderDeliveryReadyList";
 	}
 	
+	@GetMapping("/admin/order-delivery-inglist") // 주문 배송중 리스트
+	public String OrderDeliveryIngList() {
+		return "adminpages/subpages/orderManagement/orderDeliveryIngList";
+	}
+	
 	@GetMapping("/admin/order-delivery-finishlist") // 주문 배송완료 리스트
 	public String OrderDeliveryFinishList() {
 		return "adminpages/subpages/orderManagement/orderDeliveryFinishList";
