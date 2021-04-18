@@ -1,25 +1,6 @@
 /**
  * 
  */
-
-var memberInfo = {
-  person1: {
-    point: 4200,
-  },
-  person2: {
-    point: 7002,
-  },
-  person3: {
-    point: 10200,
-  },
-  person4: {
-    point: 17500,
-  },
-  person5: {
-    point: 28000,
-  },
-};
-
 var tier = {
   bronze: {
     img: "/resources/img/subpages/member/myMembership/tier/bronze_1.png",
@@ -39,7 +20,6 @@ var tier = {
 };
 
 $(function () {
-  var point = memberInfo["person1"]["point"];
 
   if (point <= 5000) {
     $(".member-tier img").attr("src", tier["bronze"]["img"]);

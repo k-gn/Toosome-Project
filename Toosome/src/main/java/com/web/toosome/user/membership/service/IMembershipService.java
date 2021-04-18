@@ -1,5 +1,8 @@
 package com.web.toosome.user.membership.service;
 
+import java.util.List;
+
+import com.web.toosome.user.membership.vo.LevelVO;
 import com.web.toosome.user.membership.vo.MembershipVO;
 
 public interface IMembershipService {
@@ -12,4 +15,8 @@ public interface IMembershipService {
 
 	// 멤버쉽 등급업
 	public int upLevel(MembershipVO vo);
+
+	// 등급 정보 조회
+	public List<LevelVO> getLevelInfo();
+
 }
