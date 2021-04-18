@@ -15,6 +15,8 @@
 		alert("잘못된 접근입니다.");
 	}else if(msg === "notSocial") {
 		alert("소셜회원은 이용할 수 없는 서비스 입니다.");
+	}else if(msg === "already") {
+		alert("이미 멤버쉽이 가입된 계정입니다.");
 	}
 </script> 
 </head>
@@ -74,7 +76,7 @@
               <ul>
                 <li><a href="/mypage">개인정보관리</a></li>
                 <li><a href="/mypage/check/${id}">개인정보</a></li>
-                <li><a href="#">마이멤버십</a></li>
+                <li><a href="/mymembership">마이멤버십</a></li>
               </ul>
             </li>
             <li>

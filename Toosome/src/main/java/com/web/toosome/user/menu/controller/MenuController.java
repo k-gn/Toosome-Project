@@ -123,6 +123,11 @@ public class MenuController {
 		return "subpages/menu/menuOrder/menuOrder";
 	}
 
+	@GetMapping("/menuordercomplete") // 영양성분표 페이지4
+	public String menuordercomplete() {
+		return "subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete";
+	}
+
 	// Menu Order & Menu Refund
 
 }

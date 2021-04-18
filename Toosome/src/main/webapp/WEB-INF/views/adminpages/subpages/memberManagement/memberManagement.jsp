@@ -91,27 +91,27 @@
                              	<button class="period join" value="6M">6개월</button>
                              	<button class="period join" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
-                              	<span>&nbsp;~&nbsp;</span>
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
+	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+	                              	<span>&nbsp;~&nbsp;</span>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
+	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
                              	</div>
                              </div>
                            </td>
@@ -135,27 +135,27 @@
                              	<button class="period login" value="6M">6개월</button>
                              	<button class="period login" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
-                              	<span>&nbsp;~&nbsp;</span>
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
+	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
+	                              	<span>&nbsp;~&nbsp;</span>
+	                              	<div class="col-md-3">
+	                              		<div class="form-group">
+	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
+	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+	                              				</div>
+	                              			</div>
+	                              		</div>
+	                              	</div>
                              	</div>
                              </div>
                            </td>
@@ -264,7 +264,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title" id="search-result">검색 결과: 6건</h4>
+                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">

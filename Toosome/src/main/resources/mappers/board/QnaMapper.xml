@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.board.dao.IQnaBoardMapper">
+
+	<!-- QNA board -->
+	<resultMap type="qnaBoardVO" id="QnaBoardMap">
+		<id property="qnaBoardId" column="QNA_BOARD_ID"/>
+		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
+		<result property="qnaBoardType" column="QNA_BOARD_TYPE" />
+	 	<result property="qnaBoardTitle" column="QNA_BOARD_TITLE" /> 
+		<result property="qnaBoardContent" column="QNA_BOARD_CONTENT" />
+		<result property="qnaBoardRegdate" column="QNA_BOARD_REG_DATE" />
+		<result property="qnaBoardViewCount" column="QNA_BOARD_VIEW_COUNT" />	
+		<result property="qnaBoardPassword" column="QNA_BOARD_PASSWORD" />
+		<result property="qnaBoardSortRef" column="QNA_BOARD_SORT_REF" />
+		<result property="qnaBoardSortStep" column="QNA_BOARD_SORT_STEP" />
+		<result property="qnaBoardSortDepth" column="QNA_BOARD_SORT_DEPTH" />
+		<result property="qnaBoardImageRoute" column="QNA_BOARD_IMAGE_ROUTE" />
+	</resultMap>
+	
+	
+	<select id="getQnaBoardList" resultMap="QnaBoardMap">
+		SELECT * FROM QNA_BOARD;
+	</select>
+	
+	<select id="getQnaBoardDetail" resultMap="QnaBoardMap">
+		<![CDATA[ SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID >= #{index}-1 AND QNA_BOARD_ID <= #{index}+1 ]]>
+	</select>
+	
+	<insert id="insertQnaBoard">
+	INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, QNA_BOARD_TITLE, QNA_BOARD_CONTENT,
+	 	QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, QNA_BOARD_PASSWORD, 		 
+	 	QNA_BOARD_SORT_REF, QNA_BOARD_SORT_STEP, QNA_BOARD_SORT_DEPTH, 
+	 	QNA_BOARD_IMAGE_ROUTE) VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, '0', #{qnaBoardPassword}, '0', '0', '0', #{qnaBoardImageRoute});
+	</insert>
+	
+	<!--  
+	<select id="getEventBoardList" resultMap="EventBoardMap">
+		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
+	</select>
+	
+	<select id="getEndEventBoardList" resultMap="EventBoardMap">
+		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() < EVENT_BOARD_END_DAY; ]]>
+	</select>
+	
+	<select id="getEventBoardDetail" resultMap="EventBoardMap">
+		<![CDATA[SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)
+	    						WHERE A.EVENT_BOARD_ID >= #{index}-1 AND A.EVENT_BOARD_ID <= #{index}+1]]>
+	</select>
+	
+	<select id="getSearchList" resultMap="EventBoardMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');
+	</select>
+	
+	
+	<update id="eventBoardCount">
+		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
+	</update>
+	-->
+</mapper>

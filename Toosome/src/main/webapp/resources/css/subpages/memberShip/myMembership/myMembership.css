@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+.myMember-container {
+  max-width: 1000px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  margin: 150px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+}
+.myMember-container .title {
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin: 50px auto;
+}
+.myMember-container .top-box {
+  display: flex;
+  width: 90%;
+  height: 200px;
+  /* background-color: #f7fbfb; */
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.myMember-container .top-box .member-tier {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.myMember-container .top-box .member-info {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.myMember-container .top-box .member-info .pro {
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+}
+.myMember-container .top-box .member-info .pro .progress {
+  height: 30%;
+  /* background-color: #38383b; */
+}
+.myMember-container .top-box .member-info .pro .progress .progress-bar {
+  background-color: #a62326;
+  font-size: 16px;
+}
+.myMember-container .top-box .member-info .pro .pro-text {
+  width: 100%;
+}
+.myMember-container .top-box .member-info .pro .pro-text ul {
+  display: flex;
+  justify-content: space-between;
+}
+.myMember-container .top-box .member-info .pro .pro-text ul li {
+  font-size: 1.25rem;
+  color: #333;
+}
+.myMember-container .top-box .member-info .info-foot {
+  text-align: right;
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+.myMember-container .top-box .member-info .info-foot span {
+  color: red;
+}
+.myMember-container .top-box .member-info .minus {
+  text-align: right;
+  font-size: 1.25rem;
+}
+.myMember-container .top-box .member-info .minus span {
+  color: red;
+  font-weight: bold;
+}
+
+.bottom-box {
+  width: 90%;
+  margin-top: 50px;
+}
+.bottom-box .tier-contents {
+  font-family: gsdr;
+  font-size: 1.5rem;
+  margin:0 auto;
+  text-align: center;
+}
+.bottom-box table {
+  margin-top: 50px;
+}
+.bottom-box table thead tr th {
+  font-size: 1.25rem;
+}
+.bottom-box table tbody tr td {
+  line-height: 150px;
+  font-weight: bold;
+  color: #333;
+}
+.bottom-box table tbody tr td:last-child {
+  color: red;
+}
+.bottom-box table tbody tr th img {
+  display: block;
+  width: auto;
+  height: 150px;
+}
+

@@ -206,7 +206,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title" id="search-result">검색 결과: 6건</h4>
+                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '휴면회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">

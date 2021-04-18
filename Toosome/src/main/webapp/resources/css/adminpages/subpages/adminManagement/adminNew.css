@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.main-panel>.content {
+	margin: 0;
+	padding: 0;
+}
+
+.card-category.text-gray {
+	margin-bottom: 30px;
+}
+
+.flex-temp {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.flex-temp .card-description {
+	width: 100px;
+}
+
+.form-control {
+	width: 80%;
+}

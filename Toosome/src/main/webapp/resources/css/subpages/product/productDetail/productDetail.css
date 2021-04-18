@@ -16,8 +16,10 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.productDetail-container .contents img{
+.productDetail-container .contents .product-img{
   display: flex;
+  width: 340px;
+  height: 340px;
   /* width: 50%; */
   /* justify-content: center; */
 }
@@ -222,7 +224,10 @@
 }
 .productDetail-container .contents .form1 .star-catch-cover .star-drop li {
   width: 65px;
-  margin-bottom: 5px;
+}
+.productDetail-container .contents .form1 .star-catch-cover .star-drop li a {
+	display: block;
+	height: 15px;
 }
 .productDetail-container .contents .form1 .star-catch-cover .triangle-cover {
   width: 20px;

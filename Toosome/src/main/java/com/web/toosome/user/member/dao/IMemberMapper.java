@@ -25,13 +25,13 @@ public interface IMemberMapper {
 	public MemberVO getUserByEmail(String email);
 	
 	// 아이디로 회원 조회
-	public MemberVO getUserById(int id);
+	public MemberVO getUserById(Integer id);
 	
 	// 회원정보 수정
 	public int updateMember(MemberVO vo);
 	
 	// 회원 탈퇴
-	public int deleteMember(int id);
+	public int deleteMember(Integer id);
 	
 	// 회원 권한 제거
 	public int deleteMemberAuth(String email);
@@ -52,7 +52,7 @@ public interface IMemberMapper {
 	public void updatePlatForm(Map<String, String> map);
 	
 	// 아이디로 비밀번호 찾기 (비밀번호 체크용)
-	public String passwordCheck(int id);
+	public String passwordCheck(Integer id);
 	
 	// 비밀번호 변경
 	public int changePassword(Map<String, Object> map);

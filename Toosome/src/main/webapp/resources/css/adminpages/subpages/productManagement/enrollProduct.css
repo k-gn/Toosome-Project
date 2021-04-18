@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.custom-select {
+	width: 100%;
+}
+
+.calendar-wrapper {
+	display: flex;
+}
+
+.btn.btn-success.pull-right.btn-r {
+	margin-right: 15px;
+}
+
+.btn-s {
+	width: 100px;
+	margin-left: 30px;
+}
+
+.btn.btn-success.pull-right {
+	font-size: 1rem;
+}

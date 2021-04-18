@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link rel="stylesheet" href="/resources/css/subpages/menu/menuOrder/menuOrder.css">
-  <script src="/resources/js/subpages/basket/menu/menuOrder/menuOrder.js" defer></script>
+  <script src="/resources/js/subpages/menu/menuOrder/menuOrder.js" defer></script>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
         </div>
         <div>
           <img src="/resources/img/subpages/basket/complete.png" alt="#">
-          <span>주문완료</span>
+          <span>결제완료</span>
         </div>
       </div>
       

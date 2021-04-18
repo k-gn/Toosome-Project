@@ -23,23 +23,30 @@
        			<a href="/admin/member-management">회원 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/sleepMember-management">휴면회원 리스트</a>
+       			<a href="/admin/sleepmember-management">휴면회원 리스트</a>
        		</li>
-       		<li>탈퇴회원 관리</li>
-       		<li>블랙회원 관리</li>
-       		<li>회원 접속기록 조회</li>
+       		<li>
+       			<a href="/admin/outmember-management">탈퇴회원 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/blackmember-management">블랙회원 리스트</a>
+       		</li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="material-icons">card_membership</i>
-          <p>멤버쉽 관리</p>
+          <p>멤버십 관리</p>
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>멤버쉽 리스트</li>
-       		<li>멤버쉽 관리</li>
+       		<li>
+       			<a href="/admin/membership-list">멤버십 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/membership-management">멤버십 관리</a>
+       		</li>
           </ul>
         </div>
       </li>
@@ -50,8 +57,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>운영자 리스트</li>
-       		<li>운영자 접속기록 조회</li>
+       		<li>
+       			<a href="/admin/admin-list">운영자 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/admin-connectionrecord">운영자 접속기록 조회</a>
+       		</li>
           </ul>
         </div>
       </li>
@@ -62,8 +73,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>메뉴 리스트</li>
-       		<li>메뉴 등록</li>
+       		<li>
+       			<a href="/admin/menu-list">메뉴 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/enroll-menu">메뉴 등록</a>
+       		</li>
           </ul>
         </div>
       </li>
@@ -74,8 +89,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>상품 리스트</li>
-       		<li>상품 등록</li>
+       		<li>
+       			<a href="/admin/product-list">상품 리스트</a>
+       		</li>
+       		<li>
+       			<a href="/admin/enroll-product">상품 등록</a>
+       		</li>
           </ul>
         </div>
       </li>

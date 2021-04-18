@@ -20,7 +20,7 @@
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
-            <li><a href="/product">전체</a></li>
+            <li><a href="/product">NEW</a></li>
             <li class="click"><a href="/product2">커피상품</a></li>
             <li><a href="/product3">커피웨어/기타</a></li>
             <li><a href="/product4">기프트세트</a></li>

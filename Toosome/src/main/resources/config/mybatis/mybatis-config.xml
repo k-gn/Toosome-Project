@@ -5,18 +5,25 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.web.toosome.user.member.vo.MemberVO" alias="memberVO"/>
+		<typeAlias type="com.web.toosome.user.member.vo.AuthVO" alias="authVO"/>
+		
 		<typeAlias type="com.web.toosome.user.board.vo.NoticeBoardVO" alias="noticeBoardVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.FaqBoardVO" alias="faqBoardVO"/>
 		<typeAlias type="com.web.toosome.user.terms.vo.TermsVO" alias="termsVO"/>
 
+		<typeAlias type="com.web.toosome.user.board.vo.QnaBoardVO" alias="qnaBoardVO"/>
+		
 		<typeAlias type="com.web.toosome.user.board.vo.NewsBoardVO" alias="newsBoardVO"/>
         <typeAlias type="com.web.toosome.user.board.vo.NewsBoardDetailVO" alias="newsBoardDetailVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.EventBoardVO" alias="eventBoardVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.EventBoardDetailVO" alias="eventBoardDetailVO"/>
-
+		
+		
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuVO" alias="menuVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.IatVO" alias="iatVO"/>
-
+		
+		<typeAlias type="com.web.toosome.user.membership.vo.MembershipVO" alias="membershipVO"/>
+		<typeAlias type="com.web.toosome.user.membership.vo.LevelVO" alias="levelVO"/>
 	</typeAliases>
 </configuration>
