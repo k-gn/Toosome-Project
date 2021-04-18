@@ -12,7 +12,7 @@
       <li class="menu-title">
         <a href="/brandstory">ABOUT US</a>
         <ul class="sub-con">
-          <li><a href="/brandstory">브랜드이야기</a></li>
+          <li><a href="/ordercomplete">브랜드이야기</a></li>
           <li><a href="/coffeestory">커피이야기</a></li>
           <li><a href="/dessertstory">디저트이야기</a></li>
           <li><a href="/brandfilm1">브랜드필름</a></li>
