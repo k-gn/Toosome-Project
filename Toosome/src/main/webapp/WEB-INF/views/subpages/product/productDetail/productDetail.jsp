@@ -15,7 +15,9 @@
     
     <div class="productDetail-container">      
       <div class="contents">
-        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
+
+        <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
+
         <ul class="star">
           <li><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></li>
           <li>${productDetail.productSubName}</li>

@@ -312,5 +312,13 @@ public class MemberController {
 		service.sendImage(phoneNumber);
 		return "/";
 	}
+	
+
+	// 멤버십가입완료 이동
+	@GetMapping("/successmembership")
+	public String successmembership() {
+		System.out.println("1");
+		return "subpages/memberShip/successMembership/successMembership";
+	}
 
 }

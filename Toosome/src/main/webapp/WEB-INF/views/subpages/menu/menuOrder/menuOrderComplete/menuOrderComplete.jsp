@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link rel="stylesheet" href="/resources/css/subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete.css">
   <title>A TOOSOME PLACE</title>
-<title>Insert title here</title>
 </head>
 <body>
   <div id="container">

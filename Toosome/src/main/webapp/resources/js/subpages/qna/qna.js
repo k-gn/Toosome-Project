@@ -1,29 +1,7 @@
 const pagination = document.getElementById('pagination');
 const qnaBoard = document.getElementById('qna');
-
-// 테스트 데이터
-const originData = [
-	{id: "1", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "2", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "3", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "4", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "5", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "6", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "7", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "8", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "9", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "10", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "11", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "12", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "13", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "14", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "15", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "16", isLocked:true, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "17", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-	{id: "18", isLocked:false, title: "문의사항 드립니다", date: "2020-03-25", count: "0"},
-];
-
-const testData = [...originData].reverse();
+const searchBtn = document.getElementById('search-btn'); // 검색 버튼
+const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
@@ -34,7 +12,9 @@ const locateQnaDetail = (index, isLocked) => {
 		// index를 갖고 상세 페이지로 이동
 		window.location.href = '/qna-detail?index='+index;
 	} else {
-		confirm('비밀번호를 입력해주세요');
+		let pwd = prompt('비밀번호를 입력해주세요');
+		console.log(pwd);
+		/* pwd로 서버에 AJAX 요청 비밀번호 대조 */
 	};
 };
 
@@ -43,6 +23,16 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	wrapper.innerHTML = ""; // 테이블 초기화
 	page--;
 	
+	// 검색 결과가 없을 경우
+	if(items.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="4">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+	}
+	
 	let start = rowsPerPage * page; // 시작 번호
 	let end = start + rowsPerPage; // 끝 번호
 	// 데이터를 rows만큼 끊어온다
@@ -50,14 +40,18 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < paginatedItems.length; i++) {
 		let item = paginatedItems[i];
+		// 날짜 변환
+		let date = new Date(item.qnaBoardRegdate);
+		let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+		
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<td>${item.id}</td>
-			<td><img class="lock" src=${item.isLocked ? "/resources/img/subpages/qna/lock.png" 
+			<td>${item.qnaBoardId}</td>
+			<td><img class="lock" src=${item.qnaBoardLocked ? "/resources/img/subpages/qna/lock.png" 
 			: "/resources/img/subpages/qna/unlock.png"}></td>
-			<td class="left"><a href="#" onclick="locateQnaDetail(${item.id},${item.isLocked})">${item.title}</a></td>
-			<td>${item.date}</td>
-			<td>${item.count}</td>
+			<td class="left"><a href="#" onclick="locateQnaDetail(${item.qnaBoardId},${item.qnaBoardLocked})">${item.qnaBoardTitle}</a></td>
+			<td>${newDate}</td>
+			<td>${item.qnaBoardViewCount}</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
@@ -102,6 +96,45 @@ const btnHandler = (e,items,page) => {
 	e.target.classList.add('active');
 };
 
-// event hook
-displayList(testData, qnaBoard, rows, currentPage);
-setPagination(testData, pagination, rows);
+// AJAX 요청 함수
+const getPage = (url) => {
+	$.ajax({
+		url,
+		success: (res) => {
+			const newRes = res.reverse();
+			
+			displayList(newRes, qnaBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);			
+		},
+		error: () => {
+			alert('통신장애');
+		}
+	});
+};
+
+// 검색 버튼 핸들러
+const searchHandler = () => {
+	// 유효성 검사
+	if(searchInput.value === '') {
+		alert('검색어를 입력하세요.');
+		return;
+	} else { // 검색어값 있을시
+		let keyword = searchInput.value;
+		url = '/qnasearch?keyword='+keyword;
+		getPage(url);		
+	}
+};
+
+// 검색 event hook
+searchBtn.addEventListener('click', searchHandler);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+});
+
+// onload시 AJAX 요청
+$(document).ready(() => {
+	url = '/qnalist';
+	getPage(url);
+});
