@@ -7,8 +7,6 @@
 		<id property="membershipId" column="MEMBERSHIP_ID"/>
 		<result property="memberId" column="MEMBER_ID"/>
 		<result property="leverId" column="LEVEL_ID"/>
-		<result property="membershipPointRate" column="MEMBERSHIP_POINT_RATE"/>
-		<result property="memberTotalPayment" column="MEMBER_TOTAL_PAYMENT"/>
 		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
 		<collection property="level" resultMap="levelMap"/>
 	</resultMap>
@@ -17,6 +15,11 @@
 		<id property="levelId" column="LEVEL_ID"/>
 		<result property="levelDiscountRate" column="LEVEL_DISCOUNT_RATE"/>
 		<result property="levelCount" column="LEVEL_COUNT"/>
+		<result property="levelMinRange" column="LEVEL_MINRANGE"/>
+		<result property="levelMaxRange" column="LEVEL_MAXRANGE"/>
+		<result property="levelPointRate" column="LEVEL_POINT_RATE"/>
+		<result property="levelImg" column="LEVEL_IMG"/>
+		<result property="levelName" column="LEVEL_NAME"/>
 	</resultMap>
 
 	<!-- 멤버쉽 등록 -->
@@ -27,7 +30,7 @@
 	<!-- 멤버쉽 조회 -->
 	<select id="getMembershipInfo" resultMap="membershipMap">
 		SELECT
-		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT_RATE, MEMBER_TOTAL_PAYMENT, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE
+		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE, LEVEL_MINRANGE, LEVEL_MAXRANGE, LEVEL_POINT_RATE
 		FROM
 		 MEMBERSHIP mem LEFT OUTER JOIN LEVEL lvl on mem.LEVEL_ID = lvl.LEVEL_ID
 		WHERE MEMBER_ID = #{id}
@@ -37,5 +40,20 @@
 	<update id="upLevel">
 		UPDATE MEMBERSHIP SET LEVEL_ID = #{levelId} WHERE MEMBER_ID = #{memberId}
 	</update>
+	
+	<!-- 등급 정보 조회 -->
+	<select id="getLevelInfo" resultMap="levelMap">
+		SELECT * FROM LEVEL
+	</select>
+	
+	<!-- 포인트 누적 
+	<update id="updatePoint">
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
+	</update>-->
+	
+	<!-- 포인트 차감 
+	<update id="deductionPoint">
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
+	</update>-->
 	
 </mapper>

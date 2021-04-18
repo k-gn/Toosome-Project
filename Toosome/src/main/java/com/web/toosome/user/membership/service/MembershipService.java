@@ -1,9 +1,12 @@
 package com.web.toosome.user.membership.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.user.membership.dao.IMembershipMapper;
+import com.web.toosome.user.membership.vo.LevelVO;
 import com.web.toosome.user.membership.vo.MembershipVO;
 
 @Service
@@ -25,6 +28,11 @@ public class MembershipService implements IMembershipService {
 	@Override
 	public int upLevel(MembershipVO vo) {
 		return mapper.upLevel(vo);
+	}
+
+	@Override
+	public List<LevelVO> getLevelInfo() {
+		return mapper.getLevelInfo();
 	}
 
 }

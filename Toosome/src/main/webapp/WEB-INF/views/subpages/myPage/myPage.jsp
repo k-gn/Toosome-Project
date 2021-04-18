@@ -76,7 +76,7 @@
               <ul>
                 <li><a href="/mypage">개인정보관리</a></li>
                 <li><a href="/mypage/check/${id}">개인정보</a></li>
-                <li><a href="/mymembership">마이멤버십</a></li>
+                <li><a href="/membership/mm">마이멤버십</a></li>
               </ul>
             </li>
             <li>
