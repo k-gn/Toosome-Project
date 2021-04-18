@@ -9,14 +9,14 @@
 <!-- meta & link -->
 <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
 <link
-	href="/resources/css/adminpages/subpages/menuManagement/enrollMenu.css"
+	href="/resources/css/adminpages/subpages/productManagement/enrollProduct.css"
 	rel="stylesheet" />
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 <script
-	src="/resources/js/adminpages/subpages/menuManagement/enrollMenu.js"
+	src="/resources/js/adminpages/subpages/productManagement/enrollProduct.js"
 	defer></script>
 </head>
 
@@ -36,7 +36,7 @@
 		            <div class="col-md-12">
 		              <div class="card">
 		                <div class="card-header card-header-success">
-		                  <h4 class="card-title">메뉴 등록</h4>
+		                  <h4 class="card-title">상품 등록</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
@@ -44,25 +44,25 @@
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 번호</label>
+		                          <label class="bmd-label-floating">상품번호</label>
 		                          <input type="text" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 이름</label>
+		                          <label class="bmd-label-floating">상품이름</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 이름(상세)</label>
+		                          <label class="bmd-label-floating">상품이름(상세)</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 가격</label>
+		                          <label class="bmd-label-floating">상품가격</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
@@ -73,10 +73,9 @@
 		                          <select class="custom-select">
 				                  	<option value="">카테고리</option>
 				                  	<option value="new">NEW</option>
-				                  	<option value="delhi">델리</option>
-				                  	<option value="dessert">디저트</option>
-				                  	<option value="wholecake">홀케이크</option>
-				                  	<option value="beverage">음료</option>
+				                  	<option value="coffee">커피상품</option>
+				                  	<option value="etc">커피웨어/기타</option>
+				                  	<option value="gift">기프트세트</option>
 				                  </select>
 		                        </div>
 		                      </div>
@@ -110,7 +109,7 @@
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 등록일</label>
+		                          <label class="bmd-label-floating">상품등록일</label>
 		                          <div class="calendar-wrapper">
 	                              	<div class="col-md-6">
 	                              		<div class="form-group">
@@ -138,7 +137,7 @@
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">판매 시작일</label>
+		                          <label class="bmd-label-floating">판매시작일</label>
 		                          <div class="calendar-wrapper">
 	                              	<div class="col-md-6">
 	                              		<div class="form-group">
@@ -169,7 +168,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <div class="form-group">
-		                            <label class="bmd-label-floating">메뉴 내용</label>
+		                            <label class="bmd-label-floating">상품내용</label>
 		                            <textarea class="form-control" rows="3"></textarea>
 		                          </div>
 		                        </div>
@@ -197,7 +196,7 @@
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <div class="form-group">
-		                            <label class="bmd-label-floating">중량(g) / 용량(ml)</label>
+		                            <label class="bmd-label-floating">중량(g)/용량(ml)</label>
 		                            <input type="text" class="form-control">
 		                          </div>
 		                        </div>
@@ -247,7 +246,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <div class="form-group">
-		                            <label class="bmd-label-floating">메뉴 이미지</label>
+		                            <label class="bmd-label-floating">상품 이미지</label>
 		                            <input type="file" class="custom-file-input" id="file" accept="image/*">
 		                            <label class="btn btn-success custom-file-label btn-s" for="file"></label>
 		                          </div>
