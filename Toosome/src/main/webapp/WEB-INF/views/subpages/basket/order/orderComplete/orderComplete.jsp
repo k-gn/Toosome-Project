@@ -9,17 +9,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
-  <link rel="stylesheet" href="/resources/css/subpages/basket/order/order.css">
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/resources/js/subpages/basket/basket.js" defer></script>
-  <script src="/resources/js/subpages/basket/order/order.js"></script>
-<title>A TOOSOME PLACE</title>
+  <link rel="stylesheet" href="/resources/css/subpages/basket/order/orderComplete/orderComplete.css">
+  <title>A TOOSOME PLACE</title>
 </head>
 <body>
-<div id="container">
-  <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-  <section>
-      <p>주문 / 결제</p>
+  <div id="container">
+    <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
+    
+    
+    <section>
+      <p>주문이 완료되었습니다.</p>
       <div class="process-container">
         <div>
           <img src="/resources/img/subpages/basket/basket.png" alt="#">
@@ -38,55 +37,47 @@
         <table class="table text-center">
           <thead>
             <tr class="table-secondary">
-              <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
               <th colspan="2">주문 품목</th>
               <th>수량</th>
               <th>적립 포인트</th>
               <th>할인 금액</th>
               <th>결제금액</th>
-              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
+              
               <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name"></span></td>
+              <td><span class="name">부서진 텀블러 조각</span></td>
               <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
+                <span class="number">2</span>
               </td>
               <td>
-                <span class="point"></span>
+                <span class="point">8</span>&nbsp;p
               </td>
               <td>
-                <span class="discount"></span>
+                <span class="discount">1600</span>&nbsp;원
               </td>
               <td>
-                <span class="total"></span>
-              </td>
-              <td>
-                <input type="button" value="X" onclick="deleteRow(this);">
+                <span class="total">6400</span>&nbsp;원
               </td>
             </tr>
 
             <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
+              
               <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
-              <td><span class="name"></span></td>
+              <td><span class="name">오래된 원두</span></td>
               <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
+                <span class="number">1</span>
               </td>
               <td>
-                <span class="point"></span>
+                <span class="point">10</span>&nbsp;p
               </td>
               <td>
-                <span class="discount"></span>
+                <span class="discount">1000</span>&nbsp;원
               </td>
               <td>
-                <span class="total"></span>
-              </td>
-              <td>
-                <input type="button" value="X" onclick="deleteRow(this);">
+                <span class="total">9000</span>&nbsp;원
               </td>
             </tr>
 
@@ -106,7 +97,7 @@
                     주문자
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName" placeholder="ex)홍길동" required>
+                    <input type="text" name="orderName" id="orderName" value="홍길동" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -114,8 +105,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode" placeholder="(5자리)" required>
-                    <input id="post-search" type="button" onclick="pCode();" value="검색">
+                    <input type="text" name="post" id="postcode" value="11111" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -123,7 +113,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr1" placeholder="주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr1" value="종로3가역" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -131,7 +121,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr2" placeholder="상세 주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr2" value="9번출구" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -139,18 +129,11 @@
                     전화번호
                   </td>
                   <td>
-                    <select name="phone1" id="tel">
-                      <option value="010" selected>010</option>
-                      <option value="011">011</option>
-                      <option value="016">016</option>
-                      <option value="017">017</option>
-                      <option value="018">018</option>
-                      <option value="019">019</option>
-                    </select>
+                    <input type="tel" name="phone1" id="tel2" value="010" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" placeholder="1234" required>
+                    <input type="tel" name="phone2" id="tel3" value="1234" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" required>
+                    <input type="tel" name="phone3" id="tel4" value="5678" disabled>
                   </td>
                 </tr>
               </tbody>
@@ -171,8 +154,8 @@
                     받으실 분
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName2" placeholder="ex)홍길동" required>
-                    &nbsp;<input type="checkbox" name="same" id="same">&nbsp;주문하시는 분과 동일
+                    <input type="text" name="orderName" id="orderName2" value="리송죄" disabled>
+                    
                   </td>
                 </tr>
                 <tr>
@@ -180,8 +163,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode2" placeholder="(5자리)" required>
-                    <input id="post-search" type="button" onclick="pCode2();" value="검색">
+                    <input type="text" name="post" id="postcode2" value="22222" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -189,7 +171,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr3" placeholder="주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr3" value="종각역" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -197,7 +179,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr4" placeholder="상세 주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr4" value="4번출구" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -205,25 +187,18 @@
                     전화번호
                   </td>
                   <td>
-                    <select name="phone1" id="tel2">
-                      <option value="010" selected>010</option>
-                      <option value="011">011</option>
-                      <option value="016">016</option>
-                      <option value="017">017</option>
-                      <option value="018">018</option>
-                      <option value="019">019</option>
-                    </select>
+                    <input type="tel" name="phone1" id="tel7" value="010" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel5" placeholder="1234" required>
+                    <input type="tel" name="phone2" id="tel5" value="9123" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel6" placeholder="1234" required>
+                    <input type="tel" name="phone3" id="tel6" value="4567" disabled>
                   </td>
                 </tr>
                 <td>
                   배송 유의사항
                 </td>
                 <td>
-                  <input type="text" name="postText" id="postText" placeholder="예) 부재시 경비실에 맡겨주세요.">
+                  <input type="text" name="postText" value="자고있으면 깨워주세요." disabled>
                 </td>
               </tbody>
             </table>
@@ -233,7 +208,7 @@
       </div>
       
       <div class="total-test">
-        <p class="order-title"><span class="big">03.</span><strong>결제금액 확인</strong></p>
+        <p class="order-title"><span class="big">03.</span><strong>주문내용</strong></p>
 
         <table class="table table-borderless">
           <tbody>
@@ -242,49 +217,57 @@
                 총 상품금액
               </td>
               <td>
-                <span class="product-pay">7980</span> 원
+                <span class="product-pay">18000</span> 원
               </td>
+            </tr>
+            <tr>
+              <td>
+                적립 포인트
+              </td>
+              <td>
+                <span class="total-point">18</span> p
+              </td>
+            </tr>
+            <tr>
+              <td>
+                할인 금액
+              </td>
+              <td>
+                <span class="total-discount">2600</span> 원
+              </td>
+            </tr>
+            <tr>
+              <td>사용한 포인트</td>
+              <td><span class="txt_blue">5400</span> p</td>
             </tr>
             <tr>
               <td>
                 배송비
               </td>
               <td>
-                <span class="product-delivery">0</span> 원
+                <span class="product-delivery">20000</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue">7980</span>원</td>
-            </tr>
-            <tr>
-              <td> 포 인 트 </td>
-              <td>
-                사용가능 포인트 : <span name="left_pnt">12345678</span>p <span><br/>
-                <input type="checkbox" id="chk_use" onclick="chkPoint(7980,12345678,3000,100)">&nbsp;포인트 전체 사용</span>
-                <span style="color: #ff0000; font-size: 16px;">(포인트는 최소 3000p부터 100p단위로 사용 가능합니다.)</span>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(7980,12345678,3000,100)"></span> p 
-                <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">12345678</span>p )
-              </td>
+              <td><span class="bold txt_blue">30000</span>원</td>
             </tr>
                 
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">7980</span> 원</p>
-          <input type="submit" value="결제하기">
+          <p class="txt-red"> 최종 결제된 금액 : <span class="bold txt_red" id="result_pnt">30000</span> 원</p>
         </div>
         
+        <div class="out-btn">
+          <a href="/">MAIN</a>
+          <a href="/menu-new">구매계속하기</a>
+        </div>
       </div>
-
+      
     </section>
+    
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
  </div>
-   
 </body>
 </html>

@@ -1,15 +1,71 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const categories = document.querySelector('#categories'); // 카테고리 선택
+const orderDate = document.querySelector('#orderDate'); // 주문일자 선택
+const orderDatePeriod = document.querySelector('#orderDatePeriod'); // 주문일자 기간선택 버튼박스
+const orderPeriods = document.querySelectorAll('.period.order'); // 주문일자 기간 버튼들
+const orderCalendar = document.querySelector('#calendar1'); // 주문일자 달력1
+const orderCalendar2 = document.querySelector('#calendar2'); // 주문일자 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
+const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
+const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
+const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+
+// 기간선택 handler
+const changeHandler = (e) => {
+	const option = e.options[e.selectedIndex].value;
+	// 옵션 선택이 use(기간선택)일 경우
+	if(option === 'order-use') {
+		orderDatePeriod.style.display = 'inline';
+	} else {
+		orderDatePeriod.style.display = 'none';
+	};
+};
+
+// on 클래스 제거
+const removeOn = (periods) => {
+	periods.forEach((period) => {
+		if(period.classList.contains('on')) {
+			period.classList.remove('on');			
+		}
+	});
+};
+
+// 날짜 계산 (moment.js)
+const calcDate = (value, calendar) => {
+	const [num, unit] = value.split('');
+	const today = moment();
+	const newDate = moment(today).subtract(num, unit).format('MM/DD/YYYY');
+	calendar.value = newDate;
+};
+
+// init
+const calendarInit = () => {
+	removeOn(orderPeriods);
+	const today = moment().format('MM/DD/YYYY');
+	orderCalendar.value = today;
+	orderCalendar2.value = today;
+};
+
+// 기간 버튼 event hook
+orderPeriods.forEach((period) => {
+	period.addEventListener('click', (e) => {
+		e.preventDefault();
+		removeOn(orderPeriods);
+		period.classList.toggle('on');
+		let val = period.value;
+		calcDate(val, orderCalendar);
+	});
+});
 
 // 리셋 버튼 핸들러
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	categories.options[0].selected = 'true';
+	orderDate.options[0].selected = 'true';
+	orderDatePeriod.style.display = 'none';
+	calendarInit();
 };
 
 resetBtn.addEventListener('click', resetHandler);
@@ -85,25 +141,25 @@ const getList = (data) => {
 				let content = `
 					<tr>
                       <td>
-                        ${res.menuId}
+                        ${res.orderId}
                       </td>
                       <td>
-                        ${res.menuType}
+                        ${res.orderState}
                       </td>
                       <td>
-                        ${res.menuMainTitle}
+                        ${res.ordererId}
                       </td>
                       <td>
-                        ${res.menuState}
+                        ${res.ordererName}
                       </td>
                       <td>
-                        ${res.menuCheckCount}
+                        ${res.productVO.productName}
                       </td>
                       <td>
-                        ${res.menuPrice}
+                        ${res.productVO.productCheckCount}
                       </td>
                       <td>
-                        ${res.menuRegDate}
+                        ${res.productVO.productPrice}
                       </td>
                     </tr>			
 				`;
@@ -120,34 +176,66 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const menuId = ''; // 메뉴 번호
-	const menuMainTitle = ''; // 메뉴 이름
-	const menuType = ''; // 메뉴 카테고리
+	const orderId = ''; // 검색 이름
+	const orderEmail = ''; // 검색 이메일
+	const startOrderDate = ''; // 회원가입 검색 시작일
+	const endOrderDate = ''; // 회원가입 검색 종료일
 	
-	// 메뉴 번호 & 메뉴 이름
+	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			menuId = searchInput.value;	
+			memberName = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			menuMainTitle = searchInput.value;			
+			memberEmail = searchInput.value;			
 		}
 	};
 	
-	menuType = categories.options[categories.selectedIndex].value; // 카테고리
-	
+	// 가입일자
+	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
+		startOrderDate = orderCalendar.value.moment('YYYY-MM-DD');
+		endOrderDate = orderCalendar2.value.moment('YYYY-MM-DD');
+	}
+
 	// JSON Data
 	const data = {
-		menuId,
-		menuMainTitle,
-		menuType,
+		memberName,
+		memberEmail,
+		platFormType,
+		startRegDate,
+		endRegDate,
+		startLoginDate,
+		endLoginDate,
 	};
 	
 	getList(data);
 };
 
 submitBtn.addEventListener('click', submitHandler);
+
+// 리스트 항목 클릭 핸들러
+const listHandler = (e) => {
+	const tr = e.target.parentNode;
+	const tds = tr.children;
+	const index = tds[0].innerText;
+	
+	/* index로 AJAX 요청 */
+	
+	profileContainer.style.display = 'block';
+	
+};
+
+// loop 돌며 list에 event hook
+memberList.forEach(list => {
+	list.addEventListener('click', listHandler);
+});
+
+// 모달 취소 버튼 핸들러
+modalCancelBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	profileContainer.style.display = 'none';
+})
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {
@@ -203,3 +291,22 @@ const excelDownload = (id, title) => {
 		document.body.removeChild(elem);
 	}
 };
+
+// 기간선택 달력 Jquery
+$(document).ready(() => {
+	calendarInit();
+/*	getAllList();*/
+	
+	$('#datetimepicker1').datetimepicker({ format: 'L'});
+	$('#datetimepicker2').datetimepicker({ 
+		format: 'L',
+		useCurrent: false
+	});
+	$("#datetimepicker1").on("change.datetimepicker", function (e) {
+		$('#datetimepicker2').datetimepicker('minDate', e.date);
+	});
+	$("#datetimepicker2").on("change.datetimepicker", function (e) {
+		$('#datetimepicker1').datetimepicker('maxDate', e.date);
+	}); 
+
+}); 
