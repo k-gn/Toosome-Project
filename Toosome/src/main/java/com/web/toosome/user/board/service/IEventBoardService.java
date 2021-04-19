@@ -13,7 +13,7 @@ public interface IEventBoardService {
 	public List<EventBoardVO> getEndEventBoard(EventBoardVO vo)throws Exception;
 	
 	//게시물 세부 조회
-	public List<EventBoardVO> getEventBoardDetail(EventBoardVO vo)throws Exception;
+	public List<EventBoardVO> getEventBoardDetail(String index)throws Exception;
 
 	//게시물 조회 수
 	public void eventBoardCount(String index) throws Exception;
