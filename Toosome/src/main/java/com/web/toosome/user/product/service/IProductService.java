@@ -9,9 +9,7 @@ public interface IProductService {
 	public List<ProductVO> getcoffeeList(ProductVO productVO);
 	public List<ProductVO> getcoffeewearList(ProductVO productVO);
 	public List<ProductVO> getgiftList(ProductVO productVO);
-	public ProductVO getproductnewDetail(ProductVO productVO);
-	public ProductVO getcoffeeDetail(ProductVO productVO);
-	public ProductVO getcoffeewearDetail(ProductVO productVO);
-	public ProductVO getgiftDetail(ProductVO productVO);
+	public ProductVO getproductDetail(ProductVO productVO);
+	public ProductVO getproductprecautionsDetail(ProductVO productVO);
 }
 

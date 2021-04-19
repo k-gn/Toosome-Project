@@ -77,26 +77,17 @@ public class ProductService implements IProductService{
 	public List<ProductVO> getgiftList(ProductVO productVO) {
 		return productmapper.getgiftList(productVO);
 	}
-
+	
 	@Override
-	public ProductVO getproductnewDetail(ProductVO productVO) {
-		
-		return productmapper.getproductnewDetail(productVO);
+	public ProductVO getproductDetail(ProductVO productVO) {
+		return productmapper.getproductDetail(productVO);
+	}
+	
+	@Override
+	public ProductVO getproductprecautionsDetail(ProductVO productVO) {
+		return productmapper.getproductprecautionsDetail(productVO);
 	}
 
-	@Override
-	public ProductVO getcoffeeDetail(ProductVO productVO) {
-		return productmapper.getcoffeeDetail(productVO);
-	}
 
-	@Override
-	public ProductVO getcoffeewearDetail(ProductVO productVO) {
-		return productmapper.getcoffeewearDetail(productVO);
-	}
-
-	@Override
-	public ProductVO getgiftDetail(ProductVO productVO) {
-		return productmapper.getgiftDetail(productVO);
-	}
 
 }

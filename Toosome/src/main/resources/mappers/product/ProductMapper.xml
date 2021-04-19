@@ -4,93 +4,135 @@
 <mapper namespace="com.web.toosome.user.product.dao.ProductMapper">
 
 	<resultMap type="productVO" id="productVO">
-		<id property="productId" column="PRODUCT_ID"/>
-	<!--<result property="ordersOrdersId" column="ORDERS_ORDERS_ID"/>-->
-		<result property="productTitleName" column="PRODUCT_TITLE_NAME"/>
-		<result property="productSubName" column="PRODUCT_SUB_NAME"/>
-		<result property="productContent" column="PRODUCT_CONTENT"/>
-	<!--<result property="productScope" column="PRODUCT_SCOPE"/>-->
-		<result property="productPrice" column="PRODUCT_PRICE"/>
-		<result property="productType" column="PRODUCT_TYPE"/>
-		<result property="productregDate" column="PRODUCT_REG_DATE"/>
-		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT"/>
-		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT"/>
-		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE"/>
-		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT"/>
-		<result property="productStartDay" column="PRODUCT_START_DAY"/>
-		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT"/>
-		<result property="productState" column="PRODUCT_STATE"/>
-		<result property="productNew" column="PRODUCT_NEW"/>
-		<collection property="productImageVO" resultMap="productImageVO"/>
+		<id property="productId" column="PRODUCT_ID" />
+		<!--<result property="ordersOrdersId" column="ORDERS_ORDERS_ID"/> -->
+		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
+		<result property="productSubName" column="PRODUCT_SUB_NAME" />
+		<result property="productContent" column="PRODUCT_CONTENT" />
+		<!--<result property="productScope" column="PRODUCT_SCOPE"/> -->
+		<result property="productPrice" column="PRODUCT_PRICE" />
+		<result property="productType" column="PRODUCT_TYPE" />
+		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
+		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
+		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
+		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStartDay" column="PRODUCT_START_DAY" />
+		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
+		<result property="productState" column="PRODUCT_STATE" />
+		<result property="productNew" column="PRODUCT_NEW" />
+		<result property="productOnoff" column="PRODUCT_ONOFF" />
+		<collection property="productImageVO" resultMap="productImageVO" />
+		<collection property="productPrecautionsVO" resultMap="productPrecautionsVO" />
 	</resultMap>
 
-	<resultMap type="ProductImageVO" id="productImageVO">
-		<result property="productImageId" column="PRODUCT_IMAGE_ID"/>
-		<result property="productProductId" column="PRODUCT_PRODUCT_ID"/>
-		<result property="productImageName" column="PRODUCT_IMAGE_NAME"/>
-		<result property="productImageExtention" column="PRODUCT_IMAGE_EXTENTION"/>
-		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE"/>
+	<resultMap type="productImageVO" id="productImageVO">
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
+		<result property="productImageName" column="PRODUCT_IMAGE_NAME" />
+		<result property="productImageExtention" column="PRODUCT_IMAGE_EXTENTION" />
+		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE" />
 	</resultMap>
 	
+	<resultMap type="productPrecautionsVO" id="productPrecautionsVO">
+		<result property="productPrecautionsId" column="PRODUCT_PRECAUTIONS_ID" />
+		<result property="productPrecautionsTitle" column="PRODUCT_PRECAUTIONS_TITLE" />
+		<result property="productPrecautionsContent" column="PRODUCT_PRECAUTIONS_CONTENT" />
+		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME1" />
+		<result property="productPrecautionsContent1" column="PRODUCT_PRECAUTIONS_CONTENT1" />
+		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME2" />
+		<result property="productPrecautionsContent2" column="PRODUCT_PRECAUTIONS_CONTENT2" />
+		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME3" />
+		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
+		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
+	</resultMap>
+
 	<select id="getproductnewList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
-		 A.PRODUCT_TITLE_NAME,
-		 A.PRODUCT_SUB_NAME,
-		 A.PRODUCT_CONTENT,
-		 A.PRODUCT_PRICE,
-		 B.PRODUCT_IMAGE_NAME,
-		 B.PRODUCT_IMAGE_EXTENTION,
-		 B.PRODUCT_IMAGE_ROUTE
-		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_NEW=1;
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		B.PRODUCT_IMAGE_ID,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER
+		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
+		WHERE A.PRODUCT_NEW=1;
 	</select>
 	<select id="getcoffeeList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
-		 A.PRODUCT_TITLE_NAME,
-		 A.PRODUCT_SUB_NAME,
-		 A.PRODUCT_CONTENT,
-		 A.PRODUCT_PRICE,
-		 B.PRODUCT_IMAGE_NAME,
-		 B.PRODUCT_IMAGE_EXTENTION,
-		 B.PRODUCT_IMAGE_ROUTE
-		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=1;
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		B.PRODUCT_IMAGE_ID,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER
+		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE
+		A.PRODUCT_TYPE=1;
 	</select>
 	<select id="getcoffeewearList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
-		 A.PRODUCT_TITLE_NAME,
-		 A.PRODUCT_SUB_NAME,
-		 A.PRODUCT_CONTENT,
-		 A.PRODUCT_PRICE,
-		 B.PRODUCT_IMAGE_NAME,
-		 B.PRODUCT_IMAGE_EXTENTION,
-		 B.PRODUCT_IMAGE_ROUTE
-		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=2;
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		B.PRODUCT_IMAGE_ID,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER
+		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE
+		A.PRODUCT_TYPE=2;
 	</select>
 	<select id="getgiftList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
-		 A.PRODUCT_TITLE_NAME,
-		 A.PRODUCT_SUB_NAME,
-		 A.PRODUCT_CONTENT,
-		 A.PRODUCT_PRICE,
-		 B.PRODUCT_IMAGE_NAME,
-		 B.PRODUCT_IMAGE_EXTENTION,
-		 B.PRODUCT_IMAGE_ROUTE
-		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_TYPE=3;
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		B.PRODUCT_IMAGE_ID,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER
+		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE
+		A.PRODUCT_TYPE=3;
 	</select>
-	<select id="getproductnewDetail" resultMap="productVO">
+	<select id="getproductDetail" resultMap="productVO" >
 		SELECT A.PRODUCT_ID,
-		 A.PRODUCT_TITLE_NAME,
-		 A.PRODUCT_SUB_NAME,
-		 A.PRODUCT_CONTENT,
-		 A.PRODUCT_PRICE,
-		 B.PRODUCT_IMAGE_NAME,
-		 B.PRODUCT_IMAGE_EXTENTION,
-		 B.PRODUCT_IMAGE_ROUTE
-		 FROM PRODUCT A INNER
-		 JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ID=${productId};
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER JOIN
+		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ID=${productId};
+	</select>
+	<select id="getproductprecautionsDetail" resultMap="productVO" >
+		SELECT A.PRODUCT_ID,
+		A.PRODUCT_ONOFF,
+		C.PRODUCT_PRECAUTIONS_ID,
+		C.PRODUCT_PRECAUTIONS_TITLE,
+		C.PRODUCT_PRECAUTIONS_CONTENT,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME1,
+		C.PRODUCT_PRECAUTIONS_CONTENT1,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME2,
+		C.PRODUCT_PRECAUTIONS_CONTENT2,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
+		C.PRODUCT_PRECAUTIONS_CONTENT3,
+		C.PRODUCT_PRECAUTIONS_ONOFF
+		FROM PRODUCT A INNER JOIN
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) WHERE A.PRODUCT_ID=${productId};
 	</select>
 	
+	
+	
+
 </mapper>

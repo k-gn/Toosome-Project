@@ -12,11 +12,10 @@ import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
 public class ProductController {
-	
+
 	@Autowired
 	private IProductService productService;
-	
-	
+
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
@@ -25,6 +24,7 @@ public class ProductController {
 		System.out.println(model);
 		return "subpages/product/productNew";
 	}
+
 	@GetMapping("/product-coffee")
 	public String productCoffee(ProductVO productVO, Model model) {
 		System.out.println("커피 상품 출력");
@@ -33,6 +33,7 @@ public class ProductController {
 		System.out.println(model);
 		return "subpages/product/productCoffee";
 	}
+
 	@GetMapping("/product-coffeewear")
 	public String productCoffeewear(ProductVO productVO, Model model) {
 		System.out.println("커피웨어 상품 출력");
@@ -41,6 +42,7 @@ public class ProductController {
 		System.out.println(model);
 		return "subpages/product/productCoffeewear";
 	}
+
 	@GetMapping("/product-gift")
 	public String productGift(ProductVO productVO, Model model) {
 		System.out.println("기프트세트 상품 출력");
@@ -49,18 +51,20 @@ public class ProductController {
 		System.out.println(model);
 		return "subpages/product/productGift";
 	}
+
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
 	public String productallDetail(ProductVO productVO, Model model) {
 		System.out.println("상품 메뉴 디테일 출력");
-		ProductVO productDetail = productService.getproductnewDetail(productVO);
-		model.addAttribute("productDetail",productDetail);
+		ProductVO productDetail = productService.getproductDetail(productVO);
+		model.addAttribute("productDetail", productDetail);
+		System.out.println(model);
+		System.out.println("상품 주의사항 디테일 출력");
+		ProductVO productprecautionsDetail = productService.getproductprecautionsDetail(productVO);
+		model.addAttribute("productprecautionsDetail", productprecautionsDetail);
 		System.out.println(model);
 		return "subpages/product/productDetail/productDetail";
 	}
-	
 	// Product image & Product event 관련 추가...
-	
+
 	// Orders과 Order_Refund 관련 추가
 }
-
-

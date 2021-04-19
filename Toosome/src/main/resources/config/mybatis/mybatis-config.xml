@@ -24,6 +24,6 @@
 		<!-- user.Product -->
 		<typeAlias type="com.web.toosome.user.product.vo.ProductVO" alias="productVO"/>
 		<typeAlias type="com.web.toosome.user.product.vo.ProductImageVO" alias="productImageVO"/>
-		
+		<typeAlias type="com.web.toosome.user.product.vo.ProductPrecautionsVO" alias="productPrecautionsVO"/>
 	</typeAliases>
 </configuration>

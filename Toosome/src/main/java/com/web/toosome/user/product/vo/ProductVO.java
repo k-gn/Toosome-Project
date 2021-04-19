@@ -2,6 +2,8 @@ package com.web.toosome.user.product.vo;
 
 import java.util.Date;
 
+import com.web.toosome.user.menu.vo.IatVO;
+
 import lombok.Data;
 
 @Data
@@ -24,7 +26,9 @@ public class ProductVO {
 	private Integer productCheckCount; //상품 조회수
 	private Integer productState; //상품 현재 상태\n1. 정상판매중\n2. 단종\n3. Sold out
 	private Integer productNew; //신메뉴 확인\n1 이상 TRUE\n0은 FALSE
+	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
+	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
 //	private String searchCondition; //검색 조건
 //	private String searchKeyword; //검색 키워드
 }
