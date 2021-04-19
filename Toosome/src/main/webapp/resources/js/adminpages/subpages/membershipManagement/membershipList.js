@@ -199,8 +199,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(membershipDate.options[membershipDate.selectedIndex].value === 'membership-use') {
-		startMembershipDate = membershipCalendar.value.moment('YYYY-MM-DD');
-		endMembershipDate = membershipCalendar2.value.moment('YYYY-MM-DD');
+		startMembershipDate = moment(membershipCalendar.value).format('YYYY-MM-DD');
+		endMembershipDate = moment(membershipCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data

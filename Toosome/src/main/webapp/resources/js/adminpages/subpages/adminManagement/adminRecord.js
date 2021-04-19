@@ -191,8 +191,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(recordDate.options[recordDate.selectedIndex].value === 'record-use') {
-		startRecordDate = recordCalendar.value.moment('YYYY-MM-DD');
-		endRecordDate = recordCalendar2.value.moment('YYYY-MM-DD');
+		startRecordDate = moment(recordCalendar.value).format('YYYY-MM-DD');
+		endRecordDate = moment(recordCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data

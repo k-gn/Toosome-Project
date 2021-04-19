@@ -5,6 +5,8 @@ const orderDatePeriod = document.querySelector('#orderDatePeriod'); // 주문일
 const orderPeriods = document.querySelectorAll('.period.order'); // 주문일자 기간 버튼들
 const orderCalendar = document.querySelector('#calendar1'); // 주문일자 달력1
 const orderCalendar2 = document.querySelector('#calendar2'); // 주문일자 달력2
+const stateChecks = document.getElementsByName('state'); // 주문상태 체크박스들
+const stateCheckAll = document.querySelector('#check-all') // 주문상태 전체선택
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
@@ -69,6 +71,23 @@ const resetHandler = () => {
 };
 
 resetBtn.addEventListener('click', resetHandler);
+
+// 주문상태 전체선택 & 해제
+const checkAll = (all) => {
+	stateChecks.forEach(stateCheck => {
+		stateCheck.checked = all.checked;
+	});
+};
+
+// 전체선택 선택해제
+const confirmCheckAll = () => {
+	const checked = document.querySelectorAll('input[name="state"]:checked');
+	if(stateChecks.length === checked.length) {
+		stateCheckAll.checked = true;
+	} else {
+		stateCheckAll.checked = false;
+	};
+};
 
 /*// AJAX 전체 리스트 불러오기
 const getAllList = () => {
@@ -176,40 +195,59 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const orderId = ''; // 검색 이름
-	const orderEmail = ''; // 검색 이메일
-	const startOrderDate = ''; // 회원가입 검색 시작일
-	const endOrderDate = ''; // 회원가입 검색 종료일
+	let orderId = ''; // 주문 번호
+	let productId = ''; // 상품 번호
+	let productName = ''; // 상품명
+	let ordererName = ''; // 주문자명
+	let ordererPhone = ''; // 주문자 연락처
+	let recipientName = ''; // 수령자명
+	let recipientPhone = ''; // 수령자 연락처
+	let orderState = []; // 주문상태
+	let startOrderDate = ''; // 회원가입 검색 시작일
+	let endOrderDate = ''; // 회원가입 검색 종료일
 	
-	// 검색 이름 & 검색 이메일
-	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
-		if(searchInput.value !== '') {
-			memberName = searchInput.value;	
+	// 검색어 셀렉트 박스 타입
+	if(searchInput.value !== '') {
+		switch (searchType.options[searchType.selectedIndex].value) {
+			case 'o-id' : orderId = searchInput.value; break;
+			case 'p-id' : productId = searchInput.value; break;
+			case 'p-name' : productName = searchInput.value; break;
+			case 'o-name' : ordererName = searchInput.value; break;
+			case 'o-phone' : ordererPhone = searchInput.value; break;
+			case 'r-name' : recipientName = searchInput.value; break;
+			case 'r-phone' : recipientPhone = searchInput.value; break;
 		}
-	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
-		if(searchInput.value !== '') {
-			memberEmail = searchInput.value;			
-		}
-	};
+	}
 	
 	// 가입일자
 	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
-		startOrderDate = orderCalendar.value.moment('YYYY-MM-DD');
-		endOrderDate = orderCalendar2.value.moment('YYYY-MM-DD');
+		startOrderDate = moment(orderCalendar.value).format('YYYY-MM-DD');
+		endOrderDate = moment(orderCalendar2.value).format('YYYY-MM-DD');
 	}
+	
+	// 주문상태 체크박스
+	stateChecks.forEach(stateCheck => {
+		if(stateCheck.checked === true) {
+			orderState.push(stateCheck.value);
+		};
+	});
 
 	// JSON Data
 	const data = {
-		memberName,
-		memberEmail,
-		platFormType,
-		startRegDate,
-		endRegDate,
-		startLoginDate,
-		endLoginDate,
+		orderId,
+		productId,
+		productName,
+		ordererName,
+		ordererPhone,
+		recipientName,
+		recipientPhone,
+		orderState,
+		startOrderDate,
+		endOrderDate
 	};
 	
-	getList(data);
+	console.log(data);
+	/*getList(data);*/
 };
 
 submitBtn.addEventListener('click', submitHandler);
