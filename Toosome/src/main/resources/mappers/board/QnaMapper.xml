@@ -12,11 +12,9 @@
 		<result property="qnaBoardContent" column="QNA_BOARD_CONTENT" />
 		<result property="qnaBoardRegdate" column="QNA_BOARD_REG_DATE" />
 		<result property="qnaBoardViewCount" column="QNA_BOARD_VIEW_COUNT" />	
-		<result property="qnaBoardPassword" column="QNA_BOARD_PASSWORD" />
-		<result property="qnaBoardSortRef" column="QNA_BOARD_SORT_REF" />
-		<result property="qnaBoardSortStep" column="QNA_BOARD_SORT_STEP" />
-		<result property="qnaBoardSortDepth" column="QNA_BOARD_SORT_DEPTH" />
+		<result property="qnaBoardPassword" column="QNA_BOARD_PASSWORD" />		
 		<result property="qnaBoardImageRoute" column="QNA_BOARD_IMAGE_ROUTE" />
+		<result property="qnaBoardSecret" column="QNA_BOARD_SECRET" />
 	</resultMap>
 	
 	
@@ -25,14 +23,14 @@
 	</select>
 	
 	<select id="getQnaBoardDetail" resultMap="QnaBoardMap">
-		<![CDATA[ SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID >= #{index}-1 AND QNA_BOARD_ID <= #{index}+1 ]]>
+		<![CDATA[ SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index}  ]]>
 	</select>
 	
 	<insert id="insertQnaBoard">
 	INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, QNA_BOARD_TITLE, QNA_BOARD_CONTENT,
-	 	QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, QNA_BOARD_PASSWORD, 		 
-	 	QNA_BOARD_SORT_REF, QNA_BOARD_SORT_STEP, QNA_BOARD_SORT_DEPTH, 
-	 	QNA_BOARD_IMAGE_ROUTE) VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, '0', #{qnaBoardPassword}, '0', '0', '0', #{qnaBoardImageRoute});
+	 	QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, QNA_BOARD_PASSWORD, 		  
+	 	QNA_BOARD_IMAGE_ROUTE, QNA_BOARD_SECRET) 
+	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, #{qnaBoardImageRoute}, #{qnaBoardSecret});
 	</insert>
 	
 	<!--  

@@ -15,9 +15,8 @@ public class QnaBoardVO {
 	private Date qnaBoardRegdate;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardPassword;
-	private Integer qnaBoardSortRef;
-	private Integer qnaBoardSortStep;
-	private Integer qnaBoardSortDepth;
 	private String qnaBoardImageRoute;
+	private Integer qnaBoardSecret; 
+	// 비밀글 일시 참(1) 아닐시 거짓(0) 디폴트 값 (0)
 	
 }
