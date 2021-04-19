@@ -11,6 +11,8 @@
 
 		<typeAlias type="com.web.toosome.user.board.vo.QnaBoardVO" alias="qnaBoardVO"/>
 		
+		
+		
 		<typeAlias type="com.web.toosome.user.board.vo.NewsBoardVO" alias="newsBoardVO"/>
         <typeAlias type="com.web.toosome.user.board.vo.NewsBoardDetailVO" alias="newsBoardDetailVO"/>
 		<typeAlias type="com.web.toosome.user.board.vo.EventBoardVO" alias="eventBoardVO"/>
