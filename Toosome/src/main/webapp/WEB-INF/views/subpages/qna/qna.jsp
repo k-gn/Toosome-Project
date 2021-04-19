@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
   	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
+    <script type="text/javascript">
+    	const msg = "${msg}"
+    	if(msg === "successBoard") {
+    		alert("게시글이 등록되었습니다.");
+    	}
+    </script>
 </head>
 <body>
     <div id="container">

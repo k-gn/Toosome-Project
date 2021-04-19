@@ -4,8 +4,6 @@
 <html lang="ko">
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
-    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
-  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/subpages/qna/qnaEnrollment/qnaEnrollment.css">
   	<script src="/resources/js/subpages/qna/qnaEnrollment/qnaEnrollment.js" defer></script>
@@ -35,8 +33,7 @@
 					<span>고객의 소리 운영시간 : 09:00~18:00 (연중무휴)</span>
         		</div>
         	</div>
-        	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment" method="POST">
-        		<input type="hidden" name="memberMemberId" value="${id}">
+        	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment?${_csrf.parameterName}=${_csrf.token}" method="POST">
 	        	<div class="qna-type-container">
 	        		<span class="title">카테고리</span>
 	        		<select name="qnaBoardType">
@@ -59,7 +56,7 @@
         			<span class="title">이미지 첨부</span>
         			<input type="text" id="file-path" readonly>
         			<label for="input-file">업로드</label>
-        			<input type="file" name="qnaBoardImageRoute" id="input-file" accept="image/*">	
+        			<input type="file" name="uploadFile" id="input-file" accept="image/*">	
         		</div>
         		<div class="qna-radio-container">
         			<span class="title">공개 범위</span>
@@ -73,9 +70,9 @@
         		<div class="btn-container">
         			<input type="reset" value="초기화">
         			<input type="button" value="목록" onclick="location.href='/qna'">
-        			<input type="submit" value="등록">
+        			<input type="submit" value="등록" onclick="return enrollCheck()">
         		</div>
-        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        		<input type="hidden" name="memberMemberId" value="${id}">
         	</form>
         </section>
 		<!-- section end -->
