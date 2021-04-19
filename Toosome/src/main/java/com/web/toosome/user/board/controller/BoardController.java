@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
@@ -223,15 +225,19 @@ public class BoardController {
 		return qnadetail;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping("/qna-enrollment") // qna 등록 페이지
 	public String qnaEnrollmentView() {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/qnaenrollment") // qna 등록 처리
-	public String qnaEnrollment(QnaBoardVO vo) {
+	public String qnaEnrollment(QnaBoardVO vo, RedirectAttributes ra) {
+		MultipartFile uploadFile =  vo.getUploadFile();
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
-		return "subpages/qna/qna";
+		ra.addFlashAttribute("msg", "successBoard");
+		return "redirect:/qna";
 	}
 }
