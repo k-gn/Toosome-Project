@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -102,6 +103,7 @@ public class MenuController {
 		return "subpages/menu/menuDetail/menuDetail";
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/import1") // 결제 화면...
 	public String import1(MenuVO menuVO, Model model, HttpSession session) {
 		System.out.println("결제화면 호출");
@@ -114,6 +116,7 @@ public class MenuController {
 		return "import";
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/menuorder")
 	public String menuorder(MenuVO menuVO, Model model, HttpSession session) {
 		System.out.println("메뉴 결제정보 페이지 호출");
@@ -128,6 +131,7 @@ public class MenuController {
 		return "subpages/menu/menuOrder/menuOrder";
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/menuordercomplete") // 영양성분표 페이지4
 	public String menuordercomplete() {
 		return "subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete";
