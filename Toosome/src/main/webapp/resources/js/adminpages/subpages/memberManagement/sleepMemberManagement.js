@@ -194,8 +194,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(sleepDate.options[sleepDate.selectedIndex].value === 'sleep-use') {
-		startSleepDate = sleepCalendar.value.moment('YYYY-MM-DD');
-		endSleepDate = sleepCalendar2.value.moment('YYYY-MM-DD');
+		startSleepDate = moment(sleepCalendar.value).format('YYYY-MM-DD');
+		endSleepDate = moment(sleepCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data

@@ -17,10 +17,10 @@ public interface IMembershipMapper {
 	// 멤버쉽 등급업
 	public int upLevel(MembershipVO vo);
 	
-	// 등급 정보 조회
+	// 전체 등급 정보 조회
 	public List<LevelVO> getLevelInfo();
 	
-	// 적립금액 포인트 누적
+	// 포인트 누적
 	public int updatePoint(Map<String, Integer> map);
 	
 	// 포인트 차감

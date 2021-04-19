@@ -125,8 +125,6 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
-	
-		
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
