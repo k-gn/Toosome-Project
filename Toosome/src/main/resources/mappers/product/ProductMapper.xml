@@ -5,11 +5,9 @@
 
 	<resultMap type="productVO" id="productVO">
 		<id property="productId" column="PRODUCT_ID" />
-		<!--<result property="ordersOrdersId" column="ORDERS_ORDERS_ID"/> -->
 		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
 		<result property="productSubName" column="PRODUCT_SUB_NAME" />
 		<result property="productContent" column="PRODUCT_CONTENT" />
-		<!--<result property="productScope" column="PRODUCT_SCOPE"/> -->
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
 		<result property="productregDate" column="PRODUCT_REG_DATE" />
@@ -72,6 +70,7 @@
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_PRICE,
+		A.PRODUCT_NEW,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
 		B.PRODUCT_IMAGE_EXTENTION,
@@ -84,6 +83,7 @@
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_PRICE,
+		A.PRODUCT_NEW,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
 		B.PRODUCT_IMAGE_EXTENTION,
@@ -96,6 +96,7 @@
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_PRICE,
+		A.PRODUCT_NEW,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
 		B.PRODUCT_IMAGE_EXTENTION,
@@ -109,6 +110,7 @@
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_SUB_NAME,
 		A.PRODUCT_PRICE,
+		A.PRODUCT_NEW,
 		A.PRODUCT_CONTENT,
 		A.PRODUCT_ONOFF,
 		B.PRODUCT_IMAGE_NAME,
