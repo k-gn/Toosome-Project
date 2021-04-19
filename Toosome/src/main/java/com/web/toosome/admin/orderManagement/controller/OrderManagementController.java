@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class OrderManagement {
+public class OrderManagementController {
 	
 	@GetMapping("/admin/order-totallist") // 주문 통합 리스트
 	public String OrderTotalList() {
