@@ -40,6 +40,15 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < paginatedItems.length; i++) {
 		let item = paginatedItems[i];
+		// 문의 유형
+		let type = '';
+		switch(item.qnaBoardType) {
+			case 1: type = '메뉴문의'; break;
+			case 2: type = '상품문의'; break;
+			case 3: type = '배송문의'; break;
+			case 4: type = '창업문의'; break;
+			case 5: type = '기타'; break;
+		};
 		// 날짜 변환
 		let date = new Date(item.qnaBoardRegdate);
 		let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
@@ -47,9 +56,10 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<td>${item.qnaBoardId}</td>
-			<td><img class="lock" src=${item.qnaBoardLocked ? "/resources/img/subpages/qna/lock.png" 
+			<td><img class="lock" src=${item.qnaBoardSecret ? "/resources/img/subpages/qna/lock.png" 
 			: "/resources/img/subpages/qna/unlock.png"}></td>
-			<td class="left"><a href="#" onclick="locateQnaDetail(${item.qnaBoardId},${item.qnaBoardLocked})">${item.qnaBoardTitle}</a></td>
+			<td class="left"><a href="#" onclick="locateQnaDetail(${item.qnaBoardId},${item.qnaBoardSecret})">${item.qnaBoardTitle}</a></td>
+			<td>${type}</td>
 			<td>${newDate}</td>
 			<td>${item.qnaBoardViewCount}</td>
 		`;

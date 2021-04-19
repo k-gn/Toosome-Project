@@ -148,8 +148,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>매출 현황</li>
-       		<li>베스트 현황</li>
+       		<li>
+       			<a href="/admin/sales-status">매출 현황</a>
+       		</li>
+       		<li>
+       			<a href="/admin/best-status">베스트 현황</a>
+       		</li>
           </ul>
         </div>
       </li>

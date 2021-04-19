@@ -9,13 +9,9 @@
 	cursor: pointer;
 }
 
-#search-text {
-	margin-left: 30px;
-	width: 250px;
-	height: 30px;
-	border: 1px solid #222;
-	border-radius: 5px;
-	padding-left: 5px;
+.card-header.card-header-warning.flex {
+	display: flex;
+	justify-content: space-between;
 }
 
 .select-box {
@@ -67,7 +63,7 @@
 	border: none;
 }
 
-.card-header.card-header-warning {
+.card-header.card-header-danger {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -135,4 +131,32 @@
 .table tbody tr:hover {
 	background: #eee;
 	cursor: pointer;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10000;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.4);
+}
+
+.profile-container {
+	width: 1000px;
+	height: 560px;
+	position: absolute;
+	top: calc(50% - 280px);
+	left: calc(50% - 500px);
+	background: #fff;
+	margin: 0 auto;
+	padding: 20px;
+	z-index: 10002;
+	border-radius: 10px;
+}
+
+.btn.btn-danger.pull-right.btn-r {
+	margin-right: 15px;
 }

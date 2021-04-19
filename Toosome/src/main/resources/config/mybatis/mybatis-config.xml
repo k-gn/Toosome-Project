@@ -24,8 +24,16 @@
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuVO" alias="menuVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.IatVO" alias="iatVO"/>
+
+		<!-- user.Product -->
+		<typeAlias type="com.web.toosome.user.product.vo.ProductVO" alias="productVO"/>
+		<typeAlias type="com.web.toosome.user.product.vo.ProductImageVO" alias="productImageVO"/>
+		<typeAlias type="com.web.toosome.user.product.vo.ProductPrecautionsVO" alias="productPrecautionsVO"/>
+		<typeAlias type="com.web.toosome.user.product.vo.ProductScoreVO" alias="productScoreVO"/>
+
 		
 		<typeAlias type="com.web.toosome.user.membership.vo.MembershipVO" alias="membershipVO"/>
 		<typeAlias type="com.web.toosome.user.membership.vo.LevelVO" alias="levelVO"/>
+
 	</typeAliases>
 </configuration>

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProductManagement {
+public class ProductManagementController {
 
 	@GetMapping("/admin/product-list") // 상품 리스트
 	public String productList() {
