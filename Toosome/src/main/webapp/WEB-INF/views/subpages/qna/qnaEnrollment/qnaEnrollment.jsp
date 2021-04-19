@@ -60,8 +60,8 @@
         		</div>
         		<div class="qna-radio-container">
         			<span class="title">공개 범위</span>
-        			<input type="radio" name="openScope" value="public" checked>공개
-        			<input type="radio" name="openScope" value="private">비공개
+        			<input type="radio" name="qnaBoardSecret" value="0" checked>공개
+        			<input type="radio" name="qnaBoardSecret" value="1">비공개
         		</div>
         		<div class="qna-pwd-container">
         			<span class="title">비밀번호</span>
@@ -70,7 +70,7 @@
         		<div class="btn-container">
         			<input type="reset" value="초기화">
         			<input type="button" value="목록" onclick="location.href='/qna'">
-        			<input type="submit" value="등록" id="submit">
+        			<input type="submit" value="등록" id="submit" onclick="return enrollCheck()">
         		</div>
         	</form>
         </section>
