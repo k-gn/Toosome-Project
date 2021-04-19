@@ -65,7 +65,7 @@
                          </tr>
                          <tr>
                            <td>
-                             <span><strong>주문일자</strong></span>
+                             <span><strong>기간</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
@@ -138,7 +138,6 @@
 						     </label>
                            </td>
                          </tr>
-                         <tr>
                        </tbody>
                      </table>
                   </div>
