@@ -5,20 +5,21 @@ const inputContent = document.querySelector('.qna-content-container textarea'); 
 let csrfTokenValue = $("meta[name='_csrf']").attr("content");
 let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
 
-// 라디오 버튼 클릭 이벤트 hook
+// 로그인정보 token 전송
 $(() => {
 	$(document).ajaxSend(function(e, xhr, options) { 
 			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
 	}); 	
 })
 
+// 라디오 버튼 클릭 이벤트 hook
 radioBtns.forEach(btn => {
 	btn.addEventListener('click', (e) => {
 		e.target.checked = true;
 		if(e.target.value === '1') {
-			inputPwd.disabled = true;
-		} else {
 			inputPwd.disabled = false;
+		} else {
+			inputPwd.disabled = true;
 		};
 	});
 });
