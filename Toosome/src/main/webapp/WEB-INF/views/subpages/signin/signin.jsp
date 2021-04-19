@@ -8,6 +8,12 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="/resources/js/subpages/signin/login.js"></script>
 	<title>A TOOSOME PLACE</title>
+	<script type="text/javascript">
+		const msg = "${msg}";
+		if(msg === "notLogin") {
+			alert("로그인이 필요한 서비스 입니다.");
+		}
+	</script>
 </head>
 <body>
 <div class="bg"></div>

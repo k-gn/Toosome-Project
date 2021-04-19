@@ -3,17 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link
-      rel="shortcut icon"
-      href="/resources/img/AnyConv.com__favicon.ico"
-      type="image/x-icon"
-/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/resources/css/share/reset.css" />
-<link rel="stylesheet" href="/resources/css/adminpages/subpages/login/adminLogin.css" />
-<script src="/resources/js/adminpages/subpages/login/adminLogin.js"></script>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link
+	      rel="shortcut icon"
+	      href="/resources/img/AnyConv.com__favicon.ico"
+	      type="image/x-icon"
+	/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/resources/css/share/reset.css" />
+	<link rel="stylesheet" href="/resources/css/adminpages/subpages/login/adminLogin.css" />
+	<script src="/resources/js/adminpages/subpages/login/adminLogin.js"></script>
+	<script type="text/javascript">
+		const msg = "${msg}";
+		if(msg === "notLogin") {
+			alert("로그인이 필요한 서비스 입니다.");
+		}
+	</script>
 <title>A TOOSOME PLACE - Admin</title>
 </head>
 <body>
