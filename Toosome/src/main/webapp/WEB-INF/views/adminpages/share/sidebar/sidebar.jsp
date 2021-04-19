@@ -158,7 +158,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/admin/statistics">
           <i class="material-icons">language</i>
           <p>통계</p>
         </a>
