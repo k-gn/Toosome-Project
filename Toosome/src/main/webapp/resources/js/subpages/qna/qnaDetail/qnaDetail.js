@@ -24,16 +24,26 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 	c_content.innerHTML = ""; // 댓글 본문 초기화
 	
 	// 날짜 변환
-	let date = new Date(item.qnaBoardRegdate);
+	let date = new Date(item[0].qnaBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 	
-	if(item.qnaBoardId === +index) {
+	// 문의 유형
+	let type = '';
+	switch(item[0].qnaBoardType) {
+		case 1: type = '메뉴문의'; break;
+		case 2: type = '상품문의'; break;
+		case 3: type = '배송문의'; break;
+		case 4: type = '창업문의'; break;
+		case 5: type = '기타'; break;
+	};
+	
+	if(item[0].qnaBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">${item.qnaBoardTitle}</th>
-			<th>${item.qnaBoardType}</th>
-			<th>${newDate}</th>
+			<th colspan="3">제목: ${item[0].qnaBoardTitle}</th>
+			<th>문의유형: ${type}</th>
+			<th>작성일: ${newDate}</th>
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);
@@ -41,9 +51,9 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		// 문의사항 이미지 존재 여부
-		let existImg = item.qnaBoardImageRoute ? `<img src='${item.qnaBoardImageRoute}' alt="#">` : "";
+		let existImg = item[0].qnaBoardImageRoute ? `<img src='${item[0].qnaBoardImageRoute}' alt="#">` : "";
 		let contentElement = `
-			<td colspan="5">${item.qnaBoardContent}<br>${existImg}</td>
+			<td colspan="5">${item[0].qnaBoardContent}<br>${existImg}</td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
@@ -51,9 +61,9 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
 		let newCommentTitle = document.createElement('tr');
 		let c_titleElement = `
-			<th colspan="3">${item.comment.comment_title}</td>
-			<th>${item.comment.comment_writer}</td>
-			<th>${item.comment.comment_date}</td>
+			<th colspan="3">${item[0].commentVO.comment_title}</td>
+			<th>${item[0].commentVO.comment_writer}</td>
+			<th>${item[0].commentVO.comment_date}</td>
 		`;
 		newCommentTitle.innerHTML = c_titleElement;
 		c_title.appendChild(newCommentTitle);
@@ -61,7 +71,7 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		// 받은 데이터로 새 댓글 본문 생성 후 삽입
 		let newCommentContent = document.createElement('tr');
 		let c_contentElement = `
-			<td colspan="5">${item.comment.comment_content}</td>
+			<td colspan="5">${item[0].commentVO.comment_content}</td>
 		`;
 		newCommentContent.innerHTML = c_contentElement;
 		c_content.appendChild(newCommentContent);

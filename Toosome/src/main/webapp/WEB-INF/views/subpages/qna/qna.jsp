@@ -37,7 +37,8 @@
         		<colgroup>
         			<col width="5%">
         			<col width="10%">
-        			<col width="65%">
+        			<col width="55%">
+        			<col width="10%">
         			<col width="10%">
         			<col width="10%">
         		</colgroup>
@@ -46,6 +47,7 @@
         				<th scope="col">NO</th>
         				<th scope="col">잠금여부</th>
         				<th scope="col">제목</th>
+        				<th scope="col">문의유형</th>
         				<th scope="col">날짜</th>
         				<th scope="col">조회수</th>
         			</tr>
