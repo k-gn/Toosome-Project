@@ -13,5 +13,6 @@ public interface IProductService {
 	public ProductVO getproductDetail(ProductVO productVO);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
 	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO);
+	
 }
 

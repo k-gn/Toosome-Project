@@ -159,7 +159,7 @@ const getList = (data) => {
                         ${res.regDate}
                       </td>
                       <td>
-                        ${res.lastLoginDate}
+                        ${res.changeSleepDate}
                       </td>
                     </tr>			
 				`;
@@ -178,11 +178,8 @@ const getList = (data) => {
 const submitHandler = () => {
 	const memberName = ''; // 검색 이름
 	const memberEmail = ''; // 검색 이메일
-	const platFormType = ''; // 가입유형
-	const startRegDate = ''; // 회원가입 검색 시작일
-	const endRegDate = ''; // 회원가입 검색 종료일
-	const startLoginDate = ''; // 로그인 검색 시작일
-	const endLoginDate = ''; // 로그인 검색 종료일
+	const startSleepDate = ''; // 회원가입 검색 시작일
+	const endSleepDate = ''; // 회원가입 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
@@ -206,7 +203,7 @@ const submitHandler = () => {
 		memberName,
 		memberEmail,
 		startSleepDate,
-		endSleppDate,
+		endSleepDate,
 	};
 	
 	getList(data);

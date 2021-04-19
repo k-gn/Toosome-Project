@@ -13,7 +13,7 @@
     
     <div class="login-container">
       <div class="title-container">
-      	<img class="title-logo" src="./img/banner.png" alt="">
+      	<img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
       	<span class="login-title">멤버십 가입완료</span>
       </div>
       <div class="signup-text">

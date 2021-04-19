@@ -10,7 +10,6 @@
 	<bean id="customLoginSuccess" class="com.web.toosome.security.CustomLoginSuccessHandler" />
 	<bean id="customLoginFail" class="com.web.toosome.security.CustomLoginFailHandler" />
 	<bean id="customAccessDenied" class="com.web.toosome.security.CustomAccessDeniedHandler" />
-	<bean id="customLogoutSuccessHandler" class="com.web.toosome.security.CustomLogoutSuccessHandler" />
 	
 	<!-- admin -->
 	<security:http auto-config="true" pattern="/admin/**" use-expressions="true">
@@ -37,6 +36,7 @@
 	<!-- member -->
 	<security:http auto-config="true" pattern="/**" use-expressions="true">
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/membership/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/signin" access="isAnonymous()" />
 		<security:intercept-url pattern="/agreement" access="isAnonymous()" />
 		<security:intercept-url pattern="/signup" access="isAnonymous()" />
@@ -51,17 +51,17 @@
 			authentication-failure-handler-ref="customLoginFail"
 		/>
 		
-		<security:session-management invalid-session-url="/">
-			<security:concurrency-control max-sessions="1" expired-url="/duplogin" error-if-maximum-exceeded="false"/>
+		<security:session-management>
+			<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
 		</security:session-management>
 		
 		<security:csrf disabled="false"/> 
 		
 		<security:logout
 			logout-url="/dologout"
+			logout-success-url="/signin"
+			invalidate-session="true"
 			delete-cookies="remember-me, JSESSION_ID"
-			success-handler-ref="customLogoutSuccessHandler"
-			invalidate-session="false"
 		/>
 		<security:access-denied-handler ref="customAccessDenied"/>
 		

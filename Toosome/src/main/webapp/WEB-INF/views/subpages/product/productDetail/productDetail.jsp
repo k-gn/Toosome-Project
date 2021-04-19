@@ -33,7 +33,7 @@
         
       
         <ul class="notice-box">
-          <li>${productprecautionsDetail.productPrecautionsVO.productPrecautionsContent}</li>
+          <li>${productDetail.productPrecautionsVO.productPrecautionsContent}</li>
        
          
         </ul>
@@ -41,22 +41,22 @@
         <div class="comment-box">
           
           <div class="precaution">
-            <h3 class="pretitle">${productprecautionsDetail.productPrecautionsVO.productPrecautionsTitle}</h3>
+            <h3 class="pretitle">${productDetail.productPrecautionsVO.productPrecautionsTitle}</h3>
             <ul class="precau">
-              <li class="prelist"><span class="redbold">${productprecautionsDetail.productPrecautionsVO.productPrecautionsContentName1}</span>
+              <li class="prelist"><span class="redbold">${productDetail.productPrecautionsVO.productPrecautionsContentName1}</span>
                 <ul class="one">
-                  <li>${productprecautionsDetail.productPrecautionsVO.productPrecautionsContent1}</li>
+                  <li>${productDetail.productPrecautionsVO.productPrecautionsContent1}</li>
                 </ul>
               </li>
-              <li class="prelist"><span class="redbold">${productprecautionsDetail.productPrecautionsVO.productPrecautionsContentName2}</span>
+              <li class="prelist"><span class="redbold">${productDetail.productPrecautionsVO.productPrecautionsContentName2}</span>
                 <ul class="one">
-                  <li>${productprecautionsDetail.productPrecautionsVO.productPrecautionsContent2}
+                  <li>${productDetail.productPrecautionsVO.productPrecautionsContent2}
                   </li>
                 </ul>
               </li>
-              <li class="prelist"><span class="redbold">${productprecautionsDetail.productPrecautionsVO.productPrecautionsContentName3}</span>
+              <li class="prelist"><span class="redbold">${productDetail.productPrecautionsVO.productPrecautionsContentName3}</span>
                 <ul class="one">
-                  <li>${productprecautionsDetail.productPrecautionsVO.productPrecautionsContent3}
+                  <li>${productDetail.productPrecautionsVO.productPrecautionsContent3}
                   </li>
                 </ul>
               </li>

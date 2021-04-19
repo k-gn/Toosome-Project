@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.card-header.card-header-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.btn.btn-info.pull-right.btn-r {
+	margin-right: 15px;
+}

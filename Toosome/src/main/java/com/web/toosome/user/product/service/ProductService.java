@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.product.dao.ProductMapper;
+import com.web.toosome.user.product.vo.ProductPrecautionsVO;
 import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
@@ -84,15 +85,17 @@ public class ProductService implements IProductService{
 		return productmapper.getproductDetail(productVO);
 	}
 	
-	@Override
-	public ProductVO getproductprecautionsDetail(ProductVO productVO) {
-		return productmapper.getproductprecautionsDetail(productVO);
-	}
+
 
 	@Override
 	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO) {
 		
 		return productmapper.getscoreDetail(productScoreVO);
+	}
+
+	@Override
+	public ProductVO getproductprecautionsDetail(ProductVO productVO) {
+		return productmapper.getproductprecautionsDetail(productVO);
 	}
 
 	

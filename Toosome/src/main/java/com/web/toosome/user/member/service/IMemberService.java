@@ -17,13 +17,13 @@ public interface IMemberService {
 	public MemberVO getUserByEmail(String email);
 
 	// 아이디로 회원 조회
-	public MemberVO getUserById(int id);
+	public MemberVO getUserById(Integer id);
 
 	// 회원정보 수정
 	public int updateMember(MemberVO vo);
 
 	// 회원 탈퇴
-	public int deleteMember(String email, int id);
+	public int deleteMember(String email, Integer id);
 
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	public void certifiedPhoneNumber(String phoneNumber, String num);
@@ -47,8 +47,8 @@ public interface IMemberService {
 	public void updatePlatForm(String email, String type);
 
 	// 비밀번호 검증 (비밀번호 체크용)
-	public boolean passwordCheck(int id, String password);
+	public boolean passwordCheck(Integer id, String password);
 
 	// 비밀번호 변경
-	public int changePassword(int id, String newpassword);
+	public int changePassword(Integer id, String newpassword);
 }

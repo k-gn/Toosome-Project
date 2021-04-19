@@ -125,17 +125,16 @@
 	            </li>
 	          </ul>
 	      </div>
-	      <form class="sign-form">
-	      	
+	      <form class="sign-form" action="/membership/ms" method="post">
 	      	<div class="check-box-cover">
 		    	<span>멤버십 혜택과 이벤트를 읽으셨으면</span>
 		      	<input id="ck-box" type="checkbox"/>
 		      	<div class="check-box"></div>
 	      	</div>
-	      	
-	      	
+	      	<input type="hidden" name="id" value="${id}">
+	      	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	      	<div class="sign-box">
-	      		<input id="sign" value="멤버십 가입하기" onclick="location.href='/successmembership'" disabled/>
+	      		<input id="sign" type="submit" value="멤버십 가입하기" disabled/>
 	      	</div>
 	      </form>
 	      

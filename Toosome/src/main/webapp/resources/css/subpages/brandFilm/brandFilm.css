@@ -50,10 +50,12 @@
     height: 100%;
 }
 .brandfilm-container .contents-box .menu-btn .btn-tab li {
+    width: 155px;
     /* width: 33.33%; */
     height: 100%;
     /* float: left; */
     display: flex;
+    justify-content: center;
     border: 1px solid #eee;
     box-sizing: border-box;
     border-right: none;
