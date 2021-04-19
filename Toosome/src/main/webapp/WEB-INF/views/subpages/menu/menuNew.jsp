@@ -36,6 +36,9 @@
 							<li>
 								<a href="/menuDetail?menuId=${menuNewList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuNewList.menuImageVO.menuImageRoute}/${menuNewList.menuImageVO.menuImageName}.${menuNewList.menuImageVO.menuImageExtention}" alt="">
+									<c:if test="${menuBeverageList.menuNew == 1}">
+										<img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+									</c:if>
 									<span>${menuNewList.menuMainTitle}</span> 
 									<div class="pay-box">
 										<span class="com" style="float: left;">${menuNewList.menuPrice}</span>
