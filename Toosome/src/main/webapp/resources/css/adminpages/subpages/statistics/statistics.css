@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.date-picker {
+	display: flex;
+	align-items: center;
+}
+
+.period-btn-box {
+	margin-right: 50px;
+}
+
+.calendar-wrapper {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.period {
+	outline: none;
+	appearance: none;
+	width: 70px;
+	height: 30px;
+	border: 1px solid #222;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.period:focus {
+	outline: none;
+}
+
+.period:hover {
+	border: 1px solid #a62326;
+}
+
+.period.on {
+	background: #a62326;
+	color: #fff;
+	border: none;
+}
+
+.form-control.datetimepicker-input {
+	letter-spacing: 3px;
+}
