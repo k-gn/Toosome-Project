@@ -113,28 +113,28 @@
                            </td>
                            <td>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="total">전체선택
+						     	<input type="checkbox" id="check-all" value="total" onclick="checkAll(this);" >전체선택
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="deposit">입금대기
+						     	<input type="checkbox" name="state" value="deposit" onclick="confirmCheckAll();">입금대기
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="o-finish">결제완료
+						     	<input type="checkbox" name="state" value="o-finish" onclick="confirmCheckAll();">결제완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="p-ready">상품준비중
+						     	<input type="checkbox" name="state" value="p-ready" onclick="confirmCheckAll();">상품준비중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="d-ready">배송준비중
+						     	<input type="checkbox" name="state" value="d-ready" onclick="confirmCheckAll();">배송준비중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="d-ing">배송중
+						     	<input type="checkbox" name="state" value="d-ing" onclick="confirmCheckAll();">배송중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="d-finish">배송완료
+						     	<input type="checkbox" name="state" value="d-finish" onclick="confirmCheckAll();">배송완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" value="ok">구매확정
+						     	<input type="checkbox" name="state" value="ok" onclick="confirmCheckAll();">구매확정
 						     </label>
                            </td>
                          </tr>

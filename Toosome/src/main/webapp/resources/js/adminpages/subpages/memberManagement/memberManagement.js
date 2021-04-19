@@ -236,14 +236,14 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(joinDate.options[joinDate.selectedIndex].value === 'join-use') {
-		startRegDate = joinCalendar.value.moment('YYYY-MM-DD');
-		endRegDate = joinCalendar2.value.moment('YYYY-MM-DD');
+		startRegDate = moment(joinCalendar.value).format('YYYY-MM-DD');
+		endRegDate = moment(joinCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// 로그인일자
 	if(loginDate.options[joinDate.selectedIndex].value === 'login-use') {
-		startLoginDate = loginCalendar.value.moment('YYYY-MM-DD');
-		endLoginDate = loginCalendar2.value.moment('YYYY-MM-DD');
+		startLoginDate = moment(loginCalendar.value).format('YYYY-MM-DD');
+		endLoginDate = moment(loginCalendar2.value).format('YYYY-MM-DD');
 	}
 	// JSON Data
 	const data = {
