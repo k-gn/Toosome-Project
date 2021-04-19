@@ -21,7 +21,7 @@
 		</div>
 		<div class="login-form">
 			<form action="/signin" method="POST">
-				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." required />
+				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." value="${mid}" required />
 				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
 				<div class="valid">${loginFailMsg}</div>
 				<div class="auto-login">

@@ -153,18 +153,20 @@ public class LoginController {
 
 	// login fail control
 	@GetMapping("/loginFailMember")
-	public String loginFailMember(RedirectAttributes ra, String error) {
+	public String loginFailMember(RedirectAttributes ra, String error, String id) {
 		if(error.equals("duplogin")) {
 			ra.addFlashAttribute("msg", error);
 			return "redirect:/";
 		}
+		ra.addFlashAttribute("mid", id);
 		ra.addFlashAttribute("loginFailMsg", error);
 		return "redirect:/signin";
 	}
 
 	@GetMapping("/loginFailAdmin")
-	public String loginFailAdmin(RedirectAttributes ra, String error) {
+	public String loginFailAdmin(RedirectAttributes ra, String error, String id) {
 		ra.addFlashAttribute("loginFailMsg", error);
+		ra.addFlashAttribute("aid", id);
 		return "redirect:/admin/signin";
 	}
 }

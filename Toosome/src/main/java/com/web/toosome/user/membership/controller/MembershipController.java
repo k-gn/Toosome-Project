@@ -47,7 +47,7 @@ public class MembershipController {
 
 	// 마이 멤버쉽 페이지 이동
 	@GetMapping("/membership/mm")
-	public String mymembership(HttpSession session, RedirectAttributes ra, Model model) {
+	public String mymembership(HttpSession session, Model model) {
 		int id = (Integer) session.getAttribute("id");
 		MembershipVO membership = service.getMembershipInfo(id);
 		List<LevelVO> level = service.getLevelInfo();

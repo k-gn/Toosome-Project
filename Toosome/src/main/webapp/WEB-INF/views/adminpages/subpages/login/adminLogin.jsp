@@ -25,7 +25,7 @@
           <p>TOOSOME PLACE ADMINISTRATOR</p>
         </div>
         <form class="login-form" action="/admin/signin" method="POST">
-        	<input type="text" name="adminId" placeholder="아이디를 입력하세요" required>
+        	<input type="text" name="adminId" placeholder="아이디를 입력하세요" value="${aid}" required>
         	<input type="password" name="adminPwd" placeholder="비밀번호를 입력하세요" required>
         	<div class="valid">${loginFailMsg}</div>
         	<button type="submit">로그인</button>
