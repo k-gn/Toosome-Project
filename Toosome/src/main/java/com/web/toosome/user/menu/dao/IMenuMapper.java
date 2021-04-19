@@ -20,6 +20,7 @@ public interface IMenuMapper {
 	public MenuVO getwholecakeDetail(MenuVO menuVO);
 	public MenuVO getimportList(MenuVO menuVO);
 	
-	public List<IatVO> getIatListOne(IatVO vo);
+	public List<MenuVO> getIatListOne(MenuVO vo);
+	public List<MenuVO> getSearchIatListOne(MenuVO vo);
 	
 }

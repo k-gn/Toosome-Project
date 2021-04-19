@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -71,11 +72,19 @@ public class MenuController {
 	}
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
-	public String nutrient1(IatVO vo , Model model) {
+	public String nutrient1(MenuVO vo , Model model) {
 		System.out.println("영양 성분표 1");
-		List<IatVO> nutrient1 = menuService.getIatListOne(vo);
+		List<MenuVO> nutrient1 = menuService.getIatListOne(vo);
 		model.addAttribute("nutrient1",nutrient1);
 		System.out.println(model);
+		return "subpages/nutrient/nutrient1";
+	}
+	
+	@RequestMapping("/nutrient1/search")
+	public String searchNutrient1(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 1");
+		List<MenuVO> nutrient1 = menuService.getSearchIatListOne(vo);
+		model.addAttribute("nutrient1", nutrient1);
 		return "subpages/nutrient/nutrient1";
 	}
 
