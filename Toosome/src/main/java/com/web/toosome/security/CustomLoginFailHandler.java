@@ -38,9 +38,9 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 		String errorMsg = URLEncoder.encode(error, "UTF-8");
 		String uri = request.getRequestURI();
 		if(uri.contains("admin")) {
-			response.sendRedirect("/loginFailAdmin?error=" + errorMsg);
+			response.sendRedirect("/loginFailAdmin?error=" + errorMsg + "&id=" + request.getParameter("adminId"));
 		} else {
-			response.sendRedirect("/loginFailMember?error=" + errorMsg);
+			response.sendRedirect("/loginFailMember?error=" + errorMsg + "&id=" + request.getParameter("memberEmail"));
 		}
 	}
 

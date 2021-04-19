@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.membership.service.IMembershipService;
@@ -47,12 +49,16 @@ public class MembershipController {
 
 	// 마이 멤버쉽 페이지 이동
 	@GetMapping("/membership/mm")
-	public String mymembership(HttpSession session, RedirectAttributes ra, Model model) {
-		int id = (Integer) session.getAttribute("id");
-		MembershipVO membership = service.getMembershipInfo(id);
+	public String mymembership(Model model) {
 		List<LevelVO> level = service.getLevelInfo();
-		model.addAttribute("membership", membership);
 		model.addAttribute("lvl", level);
 		return "subpages/memberShip/myMembership/myMembership";
+	}
+	
+	@PostMapping("/membership/minfo") 
+	@ResponseBody
+	public MembershipVO getLevel(@RequestBody Integer id) {
+		MembershipVO membership = service.getMembershipInfo(id);
+		return membership;
 	}
 }

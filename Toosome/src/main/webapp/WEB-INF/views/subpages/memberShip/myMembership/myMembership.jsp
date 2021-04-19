@@ -5,6 +5,8 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
   <link rel="stylesheet" href="/resources/css/subpages/memberShip/myMembership/myMembership.css">
@@ -14,7 +16,8 @@
   <script src="/resources/js/subpages/memberShip/myMembership/myMembership.js" defer></script>
   <title>A TOOSOME PLACE</title>
   <script type="text/javascript">
-  	const point = "${membership.membershipPoint}";
+  	const id = "${id}";
+  	const lvlSize = "${lvl.size()}";
   </script>
 </head>
 <body>
