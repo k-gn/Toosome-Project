@@ -8,7 +8,7 @@ public interface IEventBoardMapper {
 	
 	public List<EventBoardVO> getEventBoardList(EventBoardVO vo);
 	
-	public List<EventBoardVO> getEventBoardDetail(String index);
+	public List<EventBoardVO> getEventBoardDetail(EventBoardVO vo);
 	
 	public List<EventBoardVO> getSearchList(String keyword);
 	

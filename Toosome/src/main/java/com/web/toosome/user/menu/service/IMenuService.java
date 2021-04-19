@@ -20,6 +20,9 @@ public interface IMenuService {
 	public MenuVO getwholecakeDetail(MenuVO menuVO);
 	public MenuVO getimportList(MenuVO menuVO);
 	
-	//영양성분표 리스트
-	public List<IatVO> getIatListOne(IatVO vo); 
+	//영양성분표 리스트1
+	public List<MenuVO> getIatListOne(MenuVO vo);
+	
+	//영양성분표 리스트 1 검색
+	public List<MenuVO> getSearchIatListOne(MenuVO vo);
 }

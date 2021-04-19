@@ -67,8 +67,8 @@ public class BoardController {
 	
 	@GetMapping(value = "/eventdetail", produces = "application/json")
 	@ResponseBody
-	public List<EventBoardVO> eventDetail(String index)throws Exception{
-		List<EventBoardVO> eventboarddetail = eventBoardService.getEventBoardDetail(index);
+	public List<EventBoardVO> eventDetail(EventBoardVO vo, String index)throws Exception{
+		List<EventBoardVO> eventboarddetail = eventBoardService.getEventBoardDetail(vo);
 		System.out.println("컨트롤러 이벤트 게시물 상세 값 " + eventboarddetail);
 		eventBoardService.eventBoardCount(index); // 게시물 조회 수 증가
 		return eventboarddetail;

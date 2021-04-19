@@ -41,24 +41,44 @@
 		<result property="iatNatrium" column="IAT_NATRIUM" />
 	</resultMap>
 	
-	<!-- IAT -->
-	<resultMap type="iatVO" id="IatMap">
-		<id property="iatId" column="IAT_ID"/>
-		<result property="menuMenuId" column="MENU_MENU_ID" />
-		<result property="iatFullSupply" column="IAT_FULL_SUPPLY" />
-		<result property="iatOneSupply" column="IAT_ONE_SUPPLY" />
-		<result property="iatWeight" column="IAT_WEIGHT" />
-		<result property="iatKcal" column="IAT_KCAL" />
-		<result property="iatSugars" column="IAT_SUGARS" />
-		<result property="iatProtein" column="IAT_PROTEIN" />
-		<result property="iatSaturatedFat" column="IAT_SATURATED_FAT" />
-		<result property="iatNatrium" column="IAT_NATRIUM" />
-	</resultMap>
 	
-	<select id="getIatListOne" resultMap="IatMap">
-		SELECT * FROM IAT;
+	<!-- 영양성분표 1 -->
+	<select id="getIatListOne" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 	</select>
 	
+	<!-- 영양성분표1 검색기능 구현  select 쿼리문 -->
+	<select id="getSearchIatListOne" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%')
+	</select>
 	
 	<select id="getnewList" resultMap="menuVO">
 		SELECT A.MENU_ID,

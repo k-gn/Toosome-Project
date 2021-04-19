@@ -21,9 +21,9 @@ public class EventBoardService implements IEventBoardService {
 	}
 
 	@Override
-	public List<EventBoardVO> getEventBoardDetail(String index) throws Exception {
-		System.out.println("이벤트 게시판 세부 정보(서비스)넘어가는 값 :" + mapper.getEventBoardDetail(index));
-		return mapper.getEventBoardDetail(index);
+	public List<EventBoardVO> getEventBoardDetail(EventBoardVO vo) throws Exception {
+		System.out.println("이벤트 게시판 세부 정보(서비스)넘어가는 값 :" + mapper.getEventBoardDetail(vo));
+		return mapper.getEventBoardDetail(vo);
 	}
 
 	@Override
