@@ -35,6 +35,9 @@
 							<li>
 								<a href="/menuDetail?menuId=${menuDelhiList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDelhiList.menuImageVO.menuImageRoute}/${menuDelhiList.menuImageVO.menuImageName}.${menuDelhiList.menuImageVO.menuImageExtention}" alt="">
+									<c:if test="${menuBeverageList.menuNew == 1}">
+										<img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+									</c:if>
 									<span>${menuDelhiList.menuMainTitle}</span> 
 									<div class="pay-box">
 										<span class="com" style="float: left;">${menuDelhiList.menuPrice}</span>

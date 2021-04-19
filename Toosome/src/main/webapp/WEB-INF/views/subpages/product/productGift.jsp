@@ -34,6 +34,9 @@
 							<li>
 								<a href="/productDetail?productId=${productGiftList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productGiftList.productImageVO.productImageRoute}/${productGiftList.productImageVO.productImageName}.${productGiftList.productImageVO.productImageExtention}" alt="">
+									<c:if test="${productCoffeeList.productNew == 1}">
+									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+									</c:if>
 									<span>${productGiftList.productTitleName}</span>
 									<div class="pay-box">
 										<span class="com" style="float: left;">${productGiftList.productPrice}</span>
