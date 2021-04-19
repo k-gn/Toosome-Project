@@ -17,7 +17,7 @@ public interface IMembershipMapper {
 	// 멤버쉽 등급업
 	public int upLevel(MembershipVO vo);
 	
-	// 등급 정보 조회
+	// 전체 등급 정보 조회
 	public List<LevelVO> getLevelInfo();
 	
 	// 포인트 누적

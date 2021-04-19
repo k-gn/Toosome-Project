@@ -41,7 +41,7 @@
 		UPDATE MEMBERSHIP SET LEVEL_ID = #{levelId} WHERE MEMBER_ID = #{memberId}
 	</update>
 	
-	<!-- 등급 정보 조회 -->
+	<!-- 전체 등급 정보 조회 -->
 	<select id="getLevelInfo" resultMap="levelMap">
 		SELECT * FROM LEVEL
 	</select>
