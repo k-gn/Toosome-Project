@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/orderManagement/orderCancelList.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/salesStatus/salesStatus.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/orderManagement/orderCancelList.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/salesStatus/salesStatus.js" defer></script>
 </head>
 
 <body>
@@ -28,8 +28,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-danger">
-                  <h4 class=card-title>주문취소 리스트</h4>
+                <div class="card-header card-header-warning flex">
+                  <h4 class=card-title>매출 현황</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
@@ -45,22 +45,16 @@
                        <tbody>
                          <tr>
                            <td>
-                             <span><strong>검색어</strong></span>
+                             <span><strong>결제수단 구분</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="searchType">
-                                <option value="o-id">주문번호</option>
-                                <option value="p-id">상품번호</option>
-                                <option value="p-name">상품명</option>
-                                <option value="o-name">주문자명</option>
-                                <option value="o-phone">주문자연락처</option>
-                                <option value="r-name">수령자명</option>
-                                <option value="r-phone">수령자연락처</option>
+                                <option value="notUse">선택 안함</option>
+                                <option value="p-id">무통장입금</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
-                             <input type="text" id="search-text" name="keyword" placeholder="검색어 입력">
                            </td>
                          </tr>
                          <tr>
@@ -69,18 +63,18 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="orderDate" class="search-select" id="orderDate" onchange="changeHandler(this)">
+                              <select name="salesDate" class="search-select" id="salesDate" onchange="changeHandler(this)">
                                 <option value="notUse">미사용</option>
-                                <option value="order-use">기간선택</option>
+                                <option value="sales-use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
-                             <div id="orderDatePeriod" class="date-picker">
-                             	<button class="period order" value="0d">오늘</button>
-                             	<button class="period order" value="1M">1개월</button>
-                             	<button class="period order" value="3M">3개월</button>
-                             	<button class="period order" value="6M">6개월</button>
-                             	<button class="period order" value="1y">1년</button>
+                             <div id="salesDatePeriod" class="date-picker">
+                             	<button class="period sales" value="0d">오늘</button>
+                             	<button class="period sales" value="1M">1개월</button>
+                             	<button class="period sales" value="3M">3개월</button>
+                             	<button class="period sales" value="6M">6개월</button>
+                             	<button class="period sales" value="1y">1년</button>
                              	<div class="calendar-wrapper">
 	                              	<div class="col-md-3">
 	                              		<div class="form-group">
@@ -113,309 +107,66 @@
                 </div>
               </div>
             </div>
-            <div id="profile-modal" class="modal">
-	            <div class="profile-container">
-		            <div class="col-md-8">
-		              <div class="card">
-		                <div class="card-header card-header-danger">
-		                  <h4 class="card-title">주문정보 상세</h4>
-		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
-		                </div>
-		                <div class="card-body">
-		                  <form>
-		                    <div class="row">
-		                      <div class="col-md-1">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문번호</label>
-		                          <input type="text" class="form-control" disabled>
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">결제수단</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문자명</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문상태</label>
-		                          <input type="tel" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">클레임상태</label>
-		                          <input type="tel" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-1">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-5">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품명</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품가격</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품수량</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">교환신청</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품할인가</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">포인트사용</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">판매가(할인,포인트적용)</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문금액 ①</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">수령자명</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">수령자연락처</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-1">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">택배사</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">송장번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">기본배송비</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송비합계 ②</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">실결제금액(① + ②)</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">결제일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품준비처리일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송준비처리일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송중처리일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송완료처리일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">구매확정일자</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-10">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">비고</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
-		                    <div class="clearfix"></div>
-		                  </form>
-		                </div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
           </div>
         </div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
-                  <div class="list-btn-box">
-                    <button id="excel-down" onclick="excelDownload('member-table', '주문통합리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
-                    <div class="select-box">
-	                    <select id="memberList-select">
-	                      <option value="30">30개씩 보기</option>
-	                      <option value="50">50개씩 보기</option>
-	                      <option value="100">100개씩 보기</option>
-	                      <option value="200">200개씩 보기</option>
-	                    </select>
-	                    <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                    </div>
-                  </div>
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title" id="search-result">기간별 판매현황</h4>
+                  <span id="search-startDate" class="card-title">2021-04-19</span>~
+                  <span id="search-endDate" class="card-title">2021-04-19</span>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table id="member-table" class="table">
-                      <thead class="text-danger" id="list-table-thead">
+                    <table class="table">
+                      <thead class="text-warning" id="list-table-thead">
                         <th>
-                          주문번호
+                          판매금액(A)
                         </th>
                         <th>
-                          주문상태
+                          할인금액(B)
                         </th>
                         <th>
-                          주문자ID
+                          포인트사용(C)
                         </th>
                         <th>
-                          주문자명
+                          배송비(D)
                         </th>
                         <th>
-                          상품명
+                          총 결제금액(E=A-B-C+D)
                         </th>
                         <th>
-                          상품수량
+                          환불금액(F)
                         </th>
                         <th>
-                          상품가격
+                          총 매출금액(G=E-F)
                         </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="salesStatus" items="${salesStatus}">
+                     	 <c:forEach var="salesPeriodStatus" items="${salesPeriodStatus}">
 	                        <tr>
 	                          <td>
-	                            ${salesStatus.orderId}
+	                            ${salesPeriodStatus.productPrice}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.orderState}
+	                            ${salesPeriodStatus.orderDiscount}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.ordererId}
+	                            ${salesPeriodStatus.orderPoint}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.ordererName}
+	                            ${salesPeriodStatus.orderDeliveryPrice}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.productVO.productName}
+	                            ${salesPeriodStatus.orderPrice}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.productVO.productCheckCount}
+	                            ${salesPeriodStatus.refundPrice}
 	                          </td>
 	                          <td>
-	                            ${salesStatus.productVO.productPrice}
+	                            ${salesPeriodStatus.totalPrice}
 	                          </td>
 	                        </tr>
                         </c:forEach>
@@ -424,8 +175,88 @@
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
+          <div class="container-fluid">
+	          <div class="row">
+	            <div class="col-md-12">
+	              <div class="card">
+	                <div class="card-header card-header-warning flex">
+	                  <h4 class="card-title" id="search-result">일자별 판매현황</h4>
+	                  <div class="list-btn-box">
+	                    <button id="excel-down" onclick="excelDownload('member-table', '판매리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+	                    <div class="select-box">
+		                    <select id="memberList-select">
+		                      <option value="30">30개씩 보기</option>
+		                      <option value="50">50개씩 보기</option>
+		                      <option value="100">100개씩 보기</option>
+		                      <option value="200">200개씩 보기</option>
+		                    </select>
+		                    <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="card-body">
+	                  <div class="table-responsive">
+	                    <table id="member-table" class="table">
+	                      <thead class="text-warning" id="list-table-thead">
+	                        <th>
+	                          일자
+	                        </th>
+	                        <th>
+	                          결제수단
+	                        </th>
+	                        <th>
+	                          판매금액
+	                        </th>
+	                        <th>
+	                          할인액
+	                        </th>
+	                        <th>
+	                          포인트사용
+	                        </th>
+	                        <th>
+	                          배송비
+	                        </th>
+	                        <th>
+	                          총 결제금액
+	                        </th>
+	                      </thead>
+	                      <tbody>
+	                     	 <c:forEach var="salesDailyStatus" items="${salesDailyStatus}">
+		                        <tr>
+		                          <td>
+		                            ${salesDailyStatus.orderDate}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.orderMethod}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.orderPrice}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.orderDiscount}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.orderPoint}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.orderDeliveryPrice}
+		                          </td>
+		                          <td>
+		                            ${salesDailyStatus.paymentPrice}
+		                          </td>
+		                        </tr>
+	                        </c:forEach>
+	                      </tbody>
+	                    </table>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+        	</div>
         </div>
       </div>
       <!-- Footer -->
