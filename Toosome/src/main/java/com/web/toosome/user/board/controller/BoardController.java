@@ -235,7 +235,7 @@ public class BoardController {
 	@PostMapping("/qnaenrollment") // qna 등록 처리
 	public String qnaEnrollment(QnaBoardVO vo, RedirectAttributes ra) {
 		MultipartFile uploadFile =  vo.getUploadFile();
-		vo.setQnaBoardImageRoute(uploadFile.getOriginalFilename());
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
 		ra.addFlashAttribute("msg", "successBoard");
 		return "redirect:/qna";
