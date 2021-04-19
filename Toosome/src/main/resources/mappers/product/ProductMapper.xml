@@ -40,18 +40,24 @@
 		<result property="productPrecautionsContent" column="PRODUCT_PRECAUTIONS_CONTENT" />
 		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME1" />
 		<result property="productPrecautionsContent1" column="PRODUCT_PRECAUTIONS_CONTENT1" />
-		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME2" />
+		<result property="productPrecautionsContentName2" column="PRODUCT_PRECAUTIONS_CONTENT_NAME2" />
 		<result property="productPrecautionsContent2" column="PRODUCT_PRECAUTIONS_CONTENT2" />
-		<result property="productPrecautionsContentName1" column="PRODUCT_PRECAUTIONS_CONTENT_NAME3" />
+		<result property="productPrecautionsContentName3" column="PRODUCT_PRECAUTIONS_CONTENT_NAME3" />
 		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
 		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
+	</resultMap>
+	<resultMap type="productScoreVO" id="productScoreVO">
+		<result property="scoreImageId" column="SCORE_IMAGE_ID" />
+		<result property="scoreImageName" column="SCORE_IMAGE_NAME" />
+		<result property="scoreImageExtention" column="SCORE_IMAGE_EXTENTION" />
+		<result property="scoreImageRoute" column="SCORE_IMAGE_ROUTE" />
+		<result property="scoreImageOnoff" column="SCORE_IMAGE_ONOFF" />
+		<collection property="productVO" resultMap="productVO" />
 	</resultMap>
 
 	<select id="getproductnewList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
-		A.PRODUCT_SUB_NAME,
-		A.PRODUCT_CONTENT,
 		A.PRODUCT_PRICE,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
@@ -64,8 +70,6 @@
 	<select id="getcoffeeList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
-		A.PRODUCT_SUB_NAME,
-		A.PRODUCT_CONTENT,
 		A.PRODUCT_PRICE,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
@@ -78,8 +82,6 @@
 	<select id="getcoffeewearList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
-		A.PRODUCT_SUB_NAME,
-		A.PRODUCT_CONTENT,
 		A.PRODUCT_PRICE,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
@@ -92,8 +94,6 @@
 	<select id="getgiftList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
-		A.PRODUCT_SUB_NAME,
-		A.PRODUCT_CONTENT,
 		A.PRODUCT_PRICE,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
@@ -103,7 +103,7 @@
 		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE
 		A.PRODUCT_TYPE=3;
 	</select>
-	<select id="getproductDetail" resultMap="productVO" >
+	<select id="getproductDetail" resultMap="productVO" parameterType="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_SUB_NAME,
@@ -114,8 +114,8 @@
 		B.PRODUCT_IMAGE_ROUTE
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID) WHERE A.PRODUCT_ID=${productId};
-	</select>
-	<select id="getproductprecautionsDetail" resultMap="productVO" >
+	</select> 
+		<select id="getproductprecautionsDetail" resultMap="productVO" >
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_ONOFF,
 		C.PRODUCT_PRECAUTIONS_ID,
@@ -131,7 +131,20 @@
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) WHERE A.PRODUCT_ID=${productId};
 	</select>
+
+
 	
+<!--	
+	<select id="getscoreDetail" resultMap="productScoreVO">
+		SELECT D.SCORE_IMAGE_ID,
+		D.PRODUCT_IMAGE_NAME,
+		D.PRODUCT_IMAGE_EXTENTION,
+		D.PRODUCT_IMAGE_ROUTE,
+		A.PRODUCT_ONOFF
+		FROM SCORE_IMAGE D INNER JOIN
+		PRODUCT A ON (D.SCORE_IMAGE_ONOFF = A.PRODUCT_ONOFF) WHERE D.SCORE_IMAGE_ID=${scoreImageId};
+	</select>
+-->
 	
 	
 

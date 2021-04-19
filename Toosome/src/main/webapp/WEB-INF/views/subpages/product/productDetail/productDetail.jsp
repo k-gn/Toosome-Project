@@ -80,7 +80,7 @@
           <form action="#" method="post" class="form1">
             <div class="star-catch-cover">
               <div class="star-catch">
-                <p class="star_img star"><img src="/resources/img/subpages/product/productDetail/ico_star_5.png" alt=""></p>
+                <p class="star_img star"><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""><!--<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></p>

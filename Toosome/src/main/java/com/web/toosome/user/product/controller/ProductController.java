@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.web.toosome.user.product.service.IProductService;
+import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
@@ -53,7 +54,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
-	public String productallDetail(ProductVO productVO, Model model) {
+	public String productDetail(ProductVO productVO, Model model) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
@@ -62,6 +63,10 @@ public class ProductController {
 		ProductVO productprecautionsDetail = productService.getproductprecautionsDetail(productVO);
 		model.addAttribute("productprecautionsDetail", productprecautionsDetail);
 		System.out.println(model);
+//		System.out.println("별점 출력");
+//		ProductScoreVO scoreDetail = productService.getscoreDetail(productScoreVO);
+//		model.addAttribute("scoreDetail", scoreDetail);
+//		System.out.println(model);
 		return "subpages/product/productDetail/productDetail";
 	}
 	// Product image & Product event 관련 추가...
