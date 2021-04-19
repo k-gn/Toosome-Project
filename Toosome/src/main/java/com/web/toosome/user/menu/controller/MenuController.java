@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.menu.service.IMenuService;
+import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -69,7 +70,11 @@ public class MenuController {
 	}
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
-	public String nutrient1() {
+	public String nutrient1(IatVO vo , Model model) {
+		System.out.println("영양 성분표 1");
+		List<IatVO> nutrient1 = menuService.getIatListOne(vo);
+		model.addAttribute("nutrient1",nutrient1);
+		System.out.println(model);
 		return "subpages/nutrient/nutrient1";
 	}
 
