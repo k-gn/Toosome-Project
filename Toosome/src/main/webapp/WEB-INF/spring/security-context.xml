@@ -10,9 +10,10 @@
 	<bean id="customLoginSuccess" class="com.web.toosome.security.CustomLoginSuccessHandler" />
 	<bean id="customLoginFail" class="com.web.toosome.security.CustomLoginFailHandler" />
 	<bean id="customAccessDenied" class="com.web.toosome.security.CustomAccessDeniedHandler" />
+	<bean id="authenticationEntryPoint" class="com.web.toosome.security.CustomAuthenticationEntryPoint" />
 	
 	<!-- admin -->
-	<security:http auto-config="true" pattern="/admin/**" use-expressions="true">
+	<security:http auto-config="true" pattern="/admin/**" use-expressions="true" entry-point-ref="authenticationEntryPoint">
 		<security:intercept-url pattern="/admin/signin" access="isAnonymous()" />
 		<security:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_HEAD','ROLE_ADMIN')"/>
 		<security:form-login
@@ -34,7 +35,7 @@
 	</security:http>
 	
 	<!-- member -->
-	<security:http auto-config="true" pattern="/**" use-expressions="true">
+	<security:http auto-config="true" pattern="/**" use-expressions="true" entry-point-ref="authenticationEntryPoint">
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/membership/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/signin" access="isAnonymous()" />

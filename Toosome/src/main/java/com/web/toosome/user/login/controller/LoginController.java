@@ -37,7 +37,10 @@ public class LoginController {
 	private LoginUtil loginUtil;
 
 	@GetMapping("/signin")
-	public String signin() {
+	public String signin(String error, Model model) {
+		if(error != null) {
+			model.addAttribute("msg", "notLogin");
+		}
 		return "subpages/signin/signin";
 	}
 
