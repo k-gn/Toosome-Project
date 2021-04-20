@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.menu.service.IMenuService;
-import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -141,8 +140,15 @@ public class MenuController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("/menuordercomplete") // 영양성분표 페이지4
-	public String menuordercomplete() {
+	@GetMapping("/menuordercomplete")
+	public String menuordercomplete(MenuVO menuVO, Model model, HttpSession session) {
+		System.out.println("결제 완료 페이지 호출");
+		Integer id = (Integer) session.getAttribute("id");
+		MenuVO menuOrderCompleteList = menuService.getimportList(menuVO);
+		model.addAttribute("menuOrderCompleteList", menuOrderCompleteList);
+		System.out.println(id);
+		MemberVO memberOrderCompleteList = memberService.getUserById(id);
+		model.addAttribute("memberOrderCompleteList", memberOrderCompleteList);
 		return "subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete";
 	}
 

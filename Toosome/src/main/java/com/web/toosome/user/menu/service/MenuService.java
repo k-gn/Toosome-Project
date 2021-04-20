@@ -19,7 +19,6 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.menu.dao.IMenuMapper;
-import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Service
