@@ -35,4 +35,9 @@ public class MembershipService implements IMembershipService {
 		return mapper.getLevelInfo();
 	}
 
+	@Override
+	public void getStackPoint(Integer point, Integer id) {
+		mapper.getStackPoint(point, id);
+	}
+
 }

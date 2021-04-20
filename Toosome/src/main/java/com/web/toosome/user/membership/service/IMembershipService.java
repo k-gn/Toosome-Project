@@ -19,4 +19,5 @@ public interface IMembershipService {
 	// 전체 등급 정보 조회
 	public List<LevelVO> getLevelInfo();
 
+	public void getStackPoint(Integer point, Integer id);
 }

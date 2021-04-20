@@ -26,4 +26,6 @@ public interface IMembershipMapper {
 	// 포인트 차감
 	public int deductionPoint(Map<String, Integer> map);
 	
+	// 메뉴 포인트 적립.
+	public void getStackPoint(Integer point, Integer id);
 }

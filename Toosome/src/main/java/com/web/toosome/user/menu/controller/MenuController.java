@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
+import com.web.toosome.user.membership.service.MembershipService;
+import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.menu.service.IMenuService;
 import com.web.toosome.user.menu.vo.MenuVO;
 
@@ -24,6 +26,9 @@ public class MenuController {
 
 	@Autowired
 	private IMemberService memberService;
+	
+	@Autowired
+	private MembershipService memberShipService;
 
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망
 	public String menuNew(MenuVO menuVO, Model model) {
@@ -149,11 +154,13 @@ public class MenuController {
 
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/import1") // 결제 화면...
-	public String import1(MenuVO menuVO, Model model, HttpSession session) {
+	public String import1(MenuVO menuVO, Model model, HttpSession session, int menuPrice) {
 		System.out.println("결제화면 호출");
+		System.out.println(menuPrice);
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO importList = menuService.getimportList(menuVO);
 		model.addAttribute("importList", importList);
+		model.addAttribute("menuPrice", menuPrice);
 		System.out.println(id);
 		MemberVO memberImportList = memberService.getUserById(id);
 		model.addAttribute("memberImportList", memberImportList);
@@ -166,15 +173,35 @@ public class MenuController {
 		System.out.println("메뉴 결제정보 페이지 호출");
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO menuOrderList = menuService.getimportList(menuVO);
-//		int menuPrice = menuService.getimportList(menuVO).getMenuPrice();
-//		menuPrice =- 
 		model.addAttribute("menuOrderList", menuOrderList);
+		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
+		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
+		double msi = menuPrice * (ms/100);
+		double menusal = menuPrice - msi;
+		model.addAttribute("msi", (int)msi);
+		model.addAttribute("menusal", (int)menusal);
+		double point = menuPrice * 0.01;
+		
+		model.addAttribute("point", (int)point);
+		MembershipVO memberPoint = memberShipService.getMembershipInfo(id);
+		model.addAttribute("memberPoint", memberPoint);
 		System.out.println(id);
 		MemberVO memberOrderList = memberService.getUserById(id);
 		model.addAttribute("memberOrderList", memberOrderList);
 		return "subpages/menu/menuOrder/menuOrder";
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@GetMapping("/stackpoint")
+	public void stackPoint(MenuVO menuVO,HttpSession session) {
+		Integer id = (Integer) session.getAttribute("id");
+		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
+		double imsipoint = menuPrice * 0.01;
+		double imsiDBPoint = memberShipService.getMembershipInfo(id).getMembershipPoint();
+		double point = imsiDBPoint + imsipoint;
+		memberShipService.getStackPoint((int)point, id);
+	}
+	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/menuordercomplete")
 	public String menuordercomplete(MenuVO menuVO, Model model, HttpSession session) {
