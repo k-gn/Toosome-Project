@@ -36,12 +36,15 @@
 					<li class="click"><a href="/nutrient4">델리</a></li>
 				</ul>
 
+			<form action="/nutrient4/search" method="get">
 				<div class="search">
-					<input type="search" placeholder="검색어를 입력하세요."> <input
+					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요."> <input
 						type="image" src="/resources/img/subpages/nutrient/search.gif"
 						alt="">
 				</div>
 
+			</form>
+			
 				<table class="table table-hover">
 					<thead class="thead-dark">
 						<tr>

@@ -141,6 +141,26 @@
 		WHERE A.MENU_TYPE = 1;
 	</select>
 	
+	<!-- 영양성분표3 검색기능 구현  select 쿼리문 -->
+	<select id="getSearchIatListThree" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 1 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
+	</select>
+	
+	
 	<!-- 영양성분표 4 -->
 	<select id="getIatListFour" resultMap="menuVO">
 		SELECT A.MENU_ID,
@@ -159,6 +179,25 @@
 		FROM MENU A JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 		WHERE A.MENU_TYPE = 3;
+	</select>
+	
+	<!-- 영양성분표4 검색기능 구현  select 쿼리문 -->
+	<select id="getSearchIatListFour" resultMap="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		C.IAT_ID,
+		C.MENU_MENU_ID,
+		C.IAT_FULL_SUPPLY,
+		C.IAT_ONE_SUPPLY,
+		C.IAT_WEIGHT,
+		C.IAT_KCAL,
+		C.IAT_SUGARS,
+		C.IAT_PROTEIN,
+		C.IAT_SATURATED_FAT,
+		C.IAT_NATRIUM
+		FROM MENU A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 3 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
 	</select>
 	
 	<select id="getnewList" resultMap="menuVO">

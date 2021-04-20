@@ -144,10 +144,24 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
+	public List<MenuVO> getSearchIatListThree(MenuVO vo) {
+		System.out.println("영양성분표3 검색 리스트 출력: " + mapper.getSearchIatListThree(vo));
+		return mapper.getSearchIatListThree(vo);
+	}
+	
+	@Override
 	public List<MenuVO> getIatListFour(MenuVO vo) {
 		System.out.println("영양성분표4 리스트 출력: " + mapper.getIatListFour(vo));
 		return mapper.getIatListFour(vo);
 	}
+
+	@Override
+	public List<MenuVO> getSearchIatListFour(MenuVO vo) {
+		System.out.println("영양성분표4 검색 리스트 출력: " + mapper.getSearchIatListFour(vo));
+		return mapper.getSearchIatListFour(vo);
+	}
+
+	
 
 
 

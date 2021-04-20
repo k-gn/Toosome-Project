@@ -35,6 +35,12 @@ public interface IMenuService {
 	//영양성분표 리스트3
 	public List<MenuVO> getIatListThree(MenuVO vo);
 	
+	//영양성분표 리스트3 검색
+	public List<MenuVO> getSearchIatListThree(MenuVO vo);
+	
 	//영양성분표 리스트4
 	public List<MenuVO> getIatListFour(MenuVO vo);
+	
+	//영양성분표 리스트4 검색
+	public List<MenuVO> getSearchIatListFour(MenuVO vo);
 }

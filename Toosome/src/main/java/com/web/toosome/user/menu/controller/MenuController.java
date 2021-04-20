@@ -113,7 +113,15 @@ public class MenuController {
 		System.out.println(model);
 		return "subpages/nutrient/nutrient3";
 	}
-
+	
+	@RequestMapping("/nutrient3/search") //영양성분표3 검색기능
+	public String searchNutrient3(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 3");
+		List<MenuVO> nutrient3 = menuService.getSearchIatListThree(vo);
+		model.addAttribute("nutrient3", nutrient3);
+		return "subpages/nutrient/nutrient3";
+	}	
+	
 	@GetMapping("/nutrient4") // 영양성분표 페이지4
 	public String nutrient4(MenuVO vo, Model model) {
 		System.out.println("영양성분표4");
@@ -122,6 +130,14 @@ public class MenuController {
 		System.out.println(model); 
 		return "subpages/nutrient/nutrient4";
 	}
+	
+	@RequestMapping("/nutrient4/search") //영양성분표4 검색기능
+	public String searchNutrient4(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 4");
+		List<MenuVO> nutrient4 = menuService.getSearchIatListFour(vo);
+		model.addAttribute("nutrient4", nutrient4);
+		return "subpages/nutrient/nutrient4";
+	}	
 
 	@GetMapping("/menuDetail") // menu Detail page
 	public String beverageDetail(MenuVO menuVO, Model model) {

@@ -30,14 +30,14 @@
           <li><a href="/nutrient3">커피 &amp; 음료</a></li>
           <li><a href="/nutrient4">델리</a></li>
         </ul>
-	
+        
+			<form action="/nutrient2/search" method="get"> 
         <div class="search2">
-       <form action="/nutrient2/search" method="get"> 
-          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
-          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="검색버튼">
-       </form>
+          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요."><input type="image"
+           src="/resources/img/subpages/nutrient/search.gif" alt="검색버튼">
         </div>
-
+			</form>
+			
         <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
@@ -69,6 +69,7 @@
 							</tr>
 							</li>
 						</c:forEach>
+						
 					</div>      
         </table>
       </div>
