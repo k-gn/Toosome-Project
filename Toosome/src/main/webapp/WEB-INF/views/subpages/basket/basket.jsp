@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -153,7 +154,7 @@
       <div class="btn-box">
         <button>계속 쇼핑하기</button>
         <button>선택상품구매</button>
-        <button onclick="location.href='/order'">전체상품구매</button>
+        <button onclick="location.href='/basket/order'">전체상품구매</button>
       </div> 		 	
     </section>
 		<!-- section end -->

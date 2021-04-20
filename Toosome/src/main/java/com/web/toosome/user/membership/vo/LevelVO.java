@@ -13,4 +13,5 @@ public class LevelVO {
 	private Integer levelPointRate;
 	private String levelImg;
 	private String levelName;
+	private String levelDeliveryPay;
 }

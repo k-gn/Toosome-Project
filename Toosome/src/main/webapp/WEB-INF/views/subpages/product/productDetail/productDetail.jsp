@@ -5,8 +5,11 @@
 <html lang="ko">
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <link rel="stylesheet" href="/resources/css/subpages/product/productDetail/productDetail.css">
   <script src="/resources/js/subpages/menuDetail/menuDetail.js"></script>
+  <script src="/resources/js/subpages/product/product.js"></script>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -27,15 +30,13 @@
           <li class="product-pay"><span>${productDetail.productPrice} 원</span></li>
           <li class="order-btn">
             <input type="button" class="online" value="온라인주문">
-            <input type="button" class="basket" value="장바구니 담기">
+            <input type="button" class="basket" value="장바구니 담기" onclick="AddToCart('${productDetail.productId}')">
           </li>
         </ul>
         
-      
         <ul class="notice-box">
           <li>${productDetail.productPrecautionsVO.productPrecautionsContent}</li>
        
-         
         </ul>
 
         <div class="comment-box">

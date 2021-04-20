@@ -11,6 +11,7 @@ public interface ProductMapper {
 	public List<ProductVO> getcoffeewearList(ProductVO productVO);
 	public List<ProductVO> getgiftList(ProductVO productVO);
 	public ProductVO getproductDetail(ProductVO productVO);
+	public ProductVO getproductDetailById(Integer pid);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
 	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO);
 
