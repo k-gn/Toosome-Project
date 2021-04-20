@@ -122,7 +122,7 @@
                   <div class="card-icon">
                     <i class="material-icons">people</i>
                   </div>
-                  <p class="card-category">총 구매건수</p>
+                  <p class="card-category">총 판매건수</p>
                   <h3 class="card-title">82
                   	<small>건</small>
                   </h3>
@@ -146,13 +146,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-info">
-                  <div class="ct-chart" id="dailySalesChart"></div>
+                  <div class="ct-chart" id="salesChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">데일리 세일즈</h4>
+                  <h4 class="card-title">결제금액 추이</h4>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
                 </div>
@@ -163,13 +163,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-info">
-                  <div class="ct-chart" id="websiteViewsChart"></div>
+                  <div class="ct-chart" id="caseChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">데일리 접속자수</h4>
+                  <h4 class="card-title">판매건수 추이</h4>
                   <p class="card-category">
                   	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
                 </div>
@@ -179,44 +179,25 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <div class="ct-chart" id="profitChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">판매이익 추이</h4>
+                  <p class="card-category">
+                   <span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                   <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
             </div>     
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="completedTasksChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">데일리 주문건수</h4>
-                  <p class="card-category">
-                   <span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="completedTasksChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">데일리 주문건수</h4>
-                  <p class="card-category">
-                   <span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-	      </div>
       </div>
       <!-- Footer -->
       <jsp:include page="/WEB-INF/views/adminpages/share/footer/footer.jsp"></jsp:include>
