@@ -34,7 +34,7 @@
 							<li>
 								<a href="/productDetail?productId=${productAllList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
-									<c:if test="${productCoffeeList.productNew == 1}">
+									<c:if test="${productNewList.productNew == 1}">
 									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
 									<span>${productAllList.productTitleName}</span>
