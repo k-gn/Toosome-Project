@@ -115,7 +115,7 @@ public class MenuController {
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO menuOrderList = menuService.getimportList(menuVO);
 //		int menuPrice = menuService.getimportList(menuVO).getMenuPrice();
-//		menuPrice =-
+//		menuPrice =- 
 		model.addAttribute("menuOrderList", menuOrderList);
 		System.out.println(id);
 		MemberVO memberOrderList = memberService.getUserById(id);

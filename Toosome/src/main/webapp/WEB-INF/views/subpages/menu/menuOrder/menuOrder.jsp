@@ -57,7 +57,7 @@
                     전화번호
                   </td>
                   <td>
-                    <select name="phone1" id="tel">
+                    <!-- <select name="phone1" id="tel">
                       <option value="010" selected>010</option>
                       <option value="011">011</option>
                       <option value="016">016</option>
@@ -68,7 +68,8 @@
                     &nbsp;-&nbsp;
                     <input type="tel" name="phone2" id="tel3" placeholder="1234" required>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" required>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" required> -->
+                    <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderList.memberPhone}" required>
                   </td>
                 </tr>
               </tbody>
