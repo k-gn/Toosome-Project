@@ -4,15 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProductManagement {
+public class ProductManagementController {
 
 	@GetMapping("/admin/product-list") // 상품 리스트
-	public String MenuList() {
+	public String productList() {
 		return "adminpages/subpages/productManagement/productList";
 	}
 	
 	@GetMapping("/admin/enroll-product") // 상품 등록
-	public String EnrollMenu() {
+	public String EnrollProduct() {
 		return "adminpages/subpages/productManagement/enrollProduct";
 	}
 }

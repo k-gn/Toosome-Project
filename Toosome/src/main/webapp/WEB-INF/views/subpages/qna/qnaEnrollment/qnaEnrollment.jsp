@@ -33,7 +33,7 @@
 					<span>고객의 소리 운영시간 : 09:00~18:00 (연중무휴)</span>
         		</div>
         	</div>
-        	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment" method="POST" onsubmit="return enrollCheck()">
+        	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment?${_csrf.parameterName}=${_csrf.token}" method="POST">
 	        	<div class="qna-type-container">
 	        		<span class="title">카테고리</span>
 	        		<select name="qnaBoardType">
@@ -56,12 +56,12 @@
         			<span class="title">이미지 첨부</span>
         			<input type="text" id="file-path" readonly>
         			<label for="input-file">업로드</label>
-        			<input type="file" name="qnaBoardImageRoute" id="input-file" accept="image/*">	
+        			<input type="file" name="uploadFile" id="input-file" accept="image/*">	
         		</div>
         		<div class="qna-radio-container">
         			<span class="title">공개 범위</span>
-        			<input type="radio" name="openScope" value="public" checked>공개
-        			<input type="radio" name="openScope" value="private">비공개
+        			<input type="radio" name="qnaBoardSecret" value="0" checked>공개
+        			<input type="radio" name="qnaBoardSecret" value="1">비공개
         		</div>
         		<div class="qna-pwd-container">
         			<span class="title">비밀번호</span>
@@ -70,8 +70,9 @@
         		<div class="btn-container">
         			<input type="reset" value="초기화">
         			<input type="button" value="목록" onclick="location.href='/qna'">
-        			<input type="submit" value="등록" id="submit">
+        			<input type="submit" value="등록" onclick="return enrollCheck()">
         		</div>
+        		<input type="hidden" name="memberMemberId" value="${id}">
         	</form>
         </section>
 		<!-- section end -->

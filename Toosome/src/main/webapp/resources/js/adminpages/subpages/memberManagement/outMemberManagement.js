@@ -194,8 +194,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(outDate.options[outDate.selectedIndex].value === 'out-use') {
-		startOutDate = outCalendar.value.moment('YYYY-MM-DD');
-		endOutDate = outCalendar2.value.moment('YYYY-MM-DD');
+		startOutDate = moment(outCalendar.value).format('YYYY-MM-DD');
+		endOutDate = moment(outCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data

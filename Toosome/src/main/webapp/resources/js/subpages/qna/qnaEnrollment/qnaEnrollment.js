@@ -7,12 +7,17 @@ const inputContent = document.querySelector('.qna-content-container textarea'); 
 radioBtns.forEach(btn => {
 	btn.addEventListener('click', (e) => {
 		e.target.checked = true;
-		if(e.target.value === 'public') {
-			inputPwd.disabled = true;
-		} else {
+		if(e.target.value === '1') {
 			inputPwd.disabled = false;
+		} else {
+			inputPwd.disabled = true;
 		};
 	});
+});
+
+// 이미지
+document.getElementById('input-file').addEventListener('change', (e) => {
+	document.getElementById('file-path').value = e.target.value;
 });
 
 // 유효성 검사

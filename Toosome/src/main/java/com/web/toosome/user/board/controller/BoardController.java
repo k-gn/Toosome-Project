@@ -3,11 +3,15 @@ package com.web.toosome.user.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
@@ -125,8 +129,6 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
-	
-		
 		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
@@ -223,15 +225,19 @@ public class BoardController {
 		return qnadetail;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping("/qna-enrollment") // qna 등록 페이지
 	public String qnaEnrollmentView() {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}
 	
-	@GetMapping(value = "/qnaenrollment", produces = "application/json") // 게시판 검색기능
-	@ResponseBody
-	public void qnaEnrollment(QnaBoardVO vo) {
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/qnaenrollment") // qna 등록 처리
+	public String qnaEnrollment(QnaBoardVO vo, RedirectAttributes ra) {
+		MultipartFile uploadFile =  vo.getUploadFile();
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
+		ra.addFlashAttribute("msg", "successBoard");
+		return "redirect:/qna";
 	}
 }

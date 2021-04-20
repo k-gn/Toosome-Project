@@ -29,8 +29,8 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">${items[1].noticeBoardTitle}</th>
-			<th colspan="1">${newDate}</th>
+			<th colspan="3">제목: ${items[1].noticeBoardTitle}</th>
+			<th colspan="1">작성일: ${newDate}</th>
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);

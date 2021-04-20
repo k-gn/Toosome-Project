@@ -8,6 +8,12 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="/resources/js/subpages/signin/login.js"></script>
 	<title>A TOOSOME PLACE</title>
+	<script type="text/javascript">
+		const msg = "${msg}";
+		if(msg === "notLogin") {
+			alert("로그인이 필요한 서비스 입니다.");
+		}
+	</script>
 </head>
 <body>
 <div class="bg"></div>
@@ -21,7 +27,7 @@
 		</div>
 		<div class="login-form">
 			<form action="/signin" method="POST">
-				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." required />
+				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." value="${mid}" required />
 				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
 				<div class="valid">${loginFailMsg}</div>
 				<div class="auto-login">

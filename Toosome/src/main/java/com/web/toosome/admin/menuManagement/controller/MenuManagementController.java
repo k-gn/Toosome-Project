@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MenuManagement {
+public class MenuManagementController {
 	
 	@GetMapping("/admin/menu-list") // 메뉴 리스트
 	public String MenuList() {

@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
   	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
+    <script type="text/javascript">
+    	const msg = "${msg}"
+    	if(msg === "successBoard") {
+    		alert("게시글이 등록되었습니다.");
+    	}
+    </script>
 </head>
 <body>
     <div id="container">
@@ -37,7 +43,8 @@
         		<colgroup>
         			<col width="5%">
         			<col width="10%">
-        			<col width="65%">
+        			<col width="55%">
+        			<col width="10%">
         			<col width="10%">
         			<col width="10%">
         		</colgroup>
@@ -46,6 +53,7 @@
         				<th scope="col">NO</th>
         				<th scope="col">잠금여부</th>
         				<th scope="col">제목</th>
+        				<th scope="col">문의유형</th>
         				<th scope="col">날짜</th>
         				<th scope="col">조회수</th>
         			</tr>

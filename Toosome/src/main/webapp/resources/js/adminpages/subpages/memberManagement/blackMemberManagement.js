@@ -194,8 +194,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(blackDate.options[blackDate.selectedIndex].value === 'black-use') {
-		startBlackDate = blackCalendar.value.moment('YYYY-MM-DD');
-		endBlackDate = blackCalendar2.value.moment('YYYY-MM-DD');
+		startBlackDate = moment(blackCalendar.value).format('YYYY-MM-DD');
+		endBlackDate = moment(blackCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data

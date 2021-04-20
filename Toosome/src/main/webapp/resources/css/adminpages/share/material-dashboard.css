@@ -3587,7 +3587,7 @@ tbody.collapse.show {
 }
 
 .dropdown-menu {
-  z-index: 1000;
+  z-index: 10000;
   float: left;
   font-size: 1rem;
   color: #212529;

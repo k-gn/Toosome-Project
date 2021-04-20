@@ -20,7 +20,7 @@
         <div class="comment">
           <h2>멤버십 가입이 정상적으로 완료되었습니다.</h2>
           <h3>마이멤버십에서 등급을 확인해주시기 바랍니다.</h3>
-          <a href="#">My MemberShip</a>
+          <a href="/membership/mm">My MemberShip</a>
         </div>
       </div>
     </div>

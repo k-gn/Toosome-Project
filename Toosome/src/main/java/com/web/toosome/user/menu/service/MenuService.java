@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.menu.dao.IMenuMapper;
+import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Service
@@ -110,6 +111,18 @@ public class MenuService implements IMenuService {
 	@Override
 	public MenuVO getimportList(MenuVO menuVO) {
 		return mapper.getimportList(menuVO);
+	}
+
+	@Override
+	public List<MenuVO> getIatListOne(MenuVO vo) {
+		System.out.println("영양성분표 리스트 출력 :" + mapper.getIatListOne(vo));
+		return mapper.getIatListOne(vo);
+	}
+
+	@Override
+	public List<MenuVO> getSearchIatListOne(MenuVO vo) {
+		System.out.println("영양성분표1 검색 리스트 출력 : " + mapper.getSearchIatListOne(vo));
+		return mapper.getSearchIatListOne(vo);
 	}
 
 	

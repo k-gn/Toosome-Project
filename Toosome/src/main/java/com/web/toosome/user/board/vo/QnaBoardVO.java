@@ -2,6 +2,8 @@ package com.web.toosome.user.board.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -15,9 +17,9 @@ public class QnaBoardVO {
 	private Date qnaBoardRegdate;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardPassword;
-	private Integer qnaBoardSortRef;
-	private Integer qnaBoardSortStep;
-	private Integer qnaBoardSortDepth;
-	private String qnaBoardImageRoute;
+	private String qnaBoardImageName;
+	private Integer qnaBoardSecret; 
+	private MultipartFile uploadFile;
+	// 비밀글 일시 참(1) 아닐시 거짓(0) 디폴트 값 (0)
 	
 }

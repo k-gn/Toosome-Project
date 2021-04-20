@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AdminManagement {
+public class AdminManagementController {
 	@GetMapping("/admin/admin-list") // 운영자 관리
 	public String AdminList() {
 		return "adminpages/subpages/adminManagement/adminList";
