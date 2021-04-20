@@ -35,7 +35,7 @@
 							<li>
 								<a href="/menuDetail?menuId=${menuDessertList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuDessertList.menuImageVO.menuImageRoute}/${menuDessertList.menuImageVO.menuImageName}.${menuDessertList.menuImageVO.menuImageExtention}" alt="">
-									<c:if test="${menuBeverageList.menuNew == 1}">
+									<c:if test="${menuDessertList.menuNew == 1}">
 										<img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
 									<span>${menuDessertList.menuMainTitle}</span> 
