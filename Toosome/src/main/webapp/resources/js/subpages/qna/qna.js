@@ -18,9 +18,13 @@ const locateQnaDetail = (index, isLocked) => {
 		$.ajax({
 			type: "POST",
 			url: '/qna-detail?index='+index,
-			data: {
-				"qnaBoardPassword": pwd,
+			headers: {
+				"Content-Type": "application/json",
 			},
+			dataType: "text", 
+			data: JSON.stringify({
+				"qnaBoardPassword": pwd,
+			}),
 			success: (res) => {
 				console.log(res);
 			},
