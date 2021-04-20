@@ -214,7 +214,7 @@ public class BoardController {
 		return qnalist;	
 	}
 	
-	@RequestMapping(value ="/qna-detail", method = RequestMethod.POST) // qna 상세 페이지 주소값 리턴
+	@RequestMapping(value ="/qna-detail", method = {RequestMethod.GET, RequestMethod.POST}) // qna 상세 페이지 주소값 리턴
 	@ResponseBody
 	public String qnaDetailView(String index, @RequestBody QnaBoardVO vo) {
 		if (qnaBoardService.passwordQnaBoard(index).getQnaBoardSecret() != 1) {
