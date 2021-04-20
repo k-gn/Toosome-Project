@@ -56,6 +56,8 @@ $(document).ready(() => {
 	}); 
 }); 
 
+// ================================================= chart start
+
 var seq = 0,
   delays = 80,
   durations = 500;
@@ -68,17 +70,17 @@ ct = {
 
   initDashboardPageCharts: function() {
 
-    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
-      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
+    if ($('#salesChart').length != 0 || $('#profitChart').length != 0 || $('#caseChart').length != 0) {
+      /* ----------==========     Sales Chart initialization    ==========---------- */
 
-      dataDailySalesChart = {
+      dataSalesChart = {
         labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
         series: [
           [12, 17, 7, 17, 23, 18, 38]
         ]
       };
 
-      optionsDailySalesChart = {
+      optionsSalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -92,22 +94,22 @@ ct = {
         },
       }
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+      var salesChart = new Chartist.Line('#salesChart', dataSalesChart, optionsSalesChart);
 
-      ct.startAnimationForLineChart(dailySalesChart);
+      ct.startAnimationForLineChart(salesChart);
 
 
 
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+      /* ----------==========     Sales Profit Chart initialization    ==========---------- */
 
-      dataCompletedTasksChart = {
+      dataProfitChart = {
         labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
         series: [
           [230, 750, 450, 300, 280, 240, 200, 190]
         ]
       };
 
-      optionsCompletedTasksChart = {
+      optionsProfitChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -121,22 +123,22 @@ ct = {
         }
       }
 
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+      var profitChart = new Chartist.Line('#profitChart', dataProfitChart, optionsProfitChart);
 
-      // start animation for the Completed Tasks Chart - Line Chart
-      ct.startAnimationForLineChart(completedTasksChart);
+      // start animation for the Profit Chart - Line Chart
+      ct.startAnimationForLineChart(profitChart);
 
 
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+      /* ----------==========    Number of Case Chart initialization    ==========---------- */
 
-      var dataWebsiteViewsChart = {
+      var dataCaseChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
         series: [
           [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
 
         ]
       };
-      var optionsWebsiteViewsChart = {
+      var optionsCaseChart = {
         axisX: {
           showGrid: false
         },
@@ -159,10 +161,10 @@ ct = {
           }
         }]
       ];
-      var websiteViewsChart = Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+      var caseChart = Chartist.Bar('#caseChart', dataCaseChart, optionsCaseChart, responsiveOptions);
 
-      //start animation for the Emails Subscription Chart
-      ct.startAnimationForBarChart(websiteViewsChart);
+      //start animation for the case Chart
+      ct.startAnimationForBarChart(caseChart);
     }
   },
 
