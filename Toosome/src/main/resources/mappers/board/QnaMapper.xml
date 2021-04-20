@@ -33,6 +33,10 @@
 	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, #{qnaBoardImageName}, #{qnaBoardSecret});
 	</insert>
 	
+	<select id="passwordQnaBoard" resultMap="QnaBoardMap">
+		<![CDATA[ SELECT QNA_BOARD_PASSWORD, QNA_BOARD_SECRET FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index}  ]]>
+	</select>
+	
 	<!--  
 	<select id="getEventBoardList" resultMap="EventBoardMap">
 		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
