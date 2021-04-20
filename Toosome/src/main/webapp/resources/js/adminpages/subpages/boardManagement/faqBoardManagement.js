@@ -1,12 +1,10 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const eventDate = document.querySelector('#eventDate'); // 작성일 기간선택
-const eventDatePeriod = document.querySelector('#eventDatePeriod'); // 작성일 기간선택 버튼박스
-const eventPeriods = document.querySelectorAll('.period.event'); // 작성일 기간 버튼들
-const eventCalendar = document.querySelector('#calendar1'); // 작성일 달력1
-const eventCalendar2 = document.querySelector('#calendar2'); // 작성일 달력2
-const eventCalendar3 = document.querySelector('#calendar3'); // 작성일 달력3
-const eventCalendar4 = document.querySelector('#calendar4'); // 작성일 달력4
+const faqDate = document.querySelector('#faqDate'); // 작성일 기간선택
+const faqDatePeriod = document.querySelector('#faqDatePeriod'); // 작성일 기간선택 버튼박스
+const faqPeriods = document.querySelectorAll('.period.faq'); // 작성일 기간 버튼들
+const faqCalendar = document.querySelector('#calendar1'); // 작성일 달력1
+const faqCalendar2 = document.querySelector('#calendar2'); // 작성일 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
@@ -19,9 +17,9 @@ const changeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
 	// 옵션 선택이 use(기간선택)일 경우
 	if(option === 'use') {
-		eventDatePeriod.style.display = 'inline';
+		faqDatePeriod.style.display = 'inline';
 	} else {
-		eventDatePeriod.style.display = 'none';
+		faqDatePeriod.style.display = 'none';
 	};
 };
 
@@ -44,22 +42,20 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
-	removeOn(eventPeriods);
+	removeOn(faqPeriods);
 	const today = moment().format('MM/DD/YYYY');
-	eventCalendar.value = today;
-	eventCalendar2.value = today;
-	eventCalendar3.value = today;
-	eventCalendar4.value = today;
+	faqCalendar.value = today;
+	faqCalendar2.value = today;
 };
 
 // 기간 버튼 event hook
-eventPeriods.forEach((period) => {
+faqPeriods.forEach((period) => {
 	period.addEventListener('click', (e) => {
 		e.preventDefault();
-		removeOn(eventPeriods);
+		removeOn(faqPeriods);
 		period.classList.toggle('on');
 		let val = period.value;
-		calcDate(val, eventCalendar);
+		calcDate(val, faqCalendar);
 	});
 });
 
@@ -67,8 +63,8 @@ eventPeriods.forEach((period) => {
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	eventDate.options[0].selected = 'true';
-	eventDatePeriod.style.display = 'none';
+	faqDate.options[0].selected = 'true';
+	faqDatePeriod.style.display = 'none';
 	calendarInit();
 };
 
@@ -145,25 +141,16 @@ const getList = (data) => {
 				let content = `
 					<tr>
                       <td>
-                        ${res.eventBoardId}
+                        ${res.faqBoardId}
                       </td>
                       <td>
-                        ${res.eventBoardTitle}
+                        ${res.faqBoardTitle}
                       </td>
                       <td>
-                        ${res.eventBoardContent}
+                        ${res.faqBoardContent}
                       </td>
                       <td>
-                        ${res.eventBoardViewCount}
-                      </td>
-                      <td>
-                        ${res.eventBoardStartday}
-                      </td>
-                      <td>
-                        ${res.eventBoardEndday}
-                      </td>
-                      <td>
-                        <a href="${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}">상세보기</a>
+                        ${res.faqBoardRegdate}
                       </td>
                     </tr>			
 				`;
@@ -180,34 +167,34 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const eventBoardTitle = ''; // 검색 제목
-	const eventBoardContent = ''; // 검색 내용
-	const startEventDate = ''; // 검색 시작일
-	const endEventDate = ''; // 검색 종료일
+	const faqBoardTitle = ''; // 검색 제목
+	const faqBoardContent = ''; // 검색 내용
+	const startFaqDate = ''; // 검색 시작일
+	const endFaqDate = ''; // 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'title') { // 제목으로 검색시
 		if(searchInput.value !== '') {
-			eventBoardTitle = searchInput.value;	
+			faqBoardTitle = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'content') { // 내용으로 검색시
 		if(searchInput.value !== '') {
-			eventBoardContent = searchInput.value;			
+			faqBoardContent = searchInput.value;			
 		}
 	};
 	
 	// 가입일자
 	if(eventDate.options[eventDate.selectedIndex].value === 'use') {
-		startEventDate = moment(eventCalendar.value).format('YYYY-MM-DD');
-		endEventDate = moment(eventCalendar2.value).format('YYYY-MM-DD');
+		startFaqDate = moment(newsCalendar.value).format('YYYY-MM-DD');
+		endFaqDate = moment(newsCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data
 	const data = {
-		eventBoardTitle,
-		eventBoardContent,
-		startEventDate,
-		endEventDate,
+		faqBoardTitle,
+		faqBoardContent,
+		startFaqDate,
+		endFaqDate,
 	};
 	
 	getList(data);
@@ -253,17 +240,5 @@ $(document).ready(() => {
 	});
 	$("#datetimepicker2").on("change.datetimepicker", function (e) {
 		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	});
-	
-	$('#datetimepicker3').datetimepicker({ format: 'L'});
-	$('#datetimepicker4').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker3").on("change.datetimepicker", function (e) {
-		$('#datetimepicker4').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker4").on("change.datetimepicker", function (e) {
-		$('#datetimepicker3').datetimepicker('maxDate', e.date);
-	});  
+	}); 
 }); 
