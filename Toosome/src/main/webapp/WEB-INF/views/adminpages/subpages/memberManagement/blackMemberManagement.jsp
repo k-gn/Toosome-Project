@@ -191,7 +191,7 @@
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
+		                    <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>
 		                    <div class="clearfix"></div>
 		                  </form>
 		                </div>
