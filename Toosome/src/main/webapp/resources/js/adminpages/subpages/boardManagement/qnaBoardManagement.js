@@ -202,10 +202,10 @@ const submitHandler = () => {
 submitBtn.addEventListener('click', submitHandler);
 
 // 리스트 항목 클릭 핸들러
-const listHandler = (e) => {
-	const tr = e.target.parentNode;
+const listHandler = () => {
+/*	const tr = e.target.parentNode;
 	const tds = tr.children;
-	const index = tds[0].innerText;
+	const index = tds[0].innerText;*/
 	
 	/* index로 AJAX 요청 */
 	
