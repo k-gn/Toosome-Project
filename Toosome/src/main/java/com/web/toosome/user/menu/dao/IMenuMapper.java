@@ -23,4 +23,11 @@ public interface IMenuMapper {
 	public List<MenuVO> getIatListOne(MenuVO vo);
 	public List<MenuVO> getSearchIatListOne(MenuVO vo);
 	
+	public List<MenuVO> getIatListTwo(MenuVO vo);
+	public List<MenuVO> getSearchIatListTwo(MenuVO vo);
+	
+	public List<MenuVO> getIatListThree(MenuVO vo);
+	
+	public List<MenuVO> getIatListFour(MenuVO vo);
+	
 }

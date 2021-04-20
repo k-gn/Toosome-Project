@@ -36,10 +36,11 @@
 					<li><a href="/nutrient3">커피 &amp; 음료</a></li>
 					<li><a href="/nutrient4">델리</a></li>
 				</ul>
-
-				<div class="search">
+				
+				<div class="search1">
 				<form action="/nutrient1/search" method="get">
-					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력해주세요.">  <input type="image" src="/resources/img/subpages/nutrient/search.gif"
+					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력해주세요.">  
+					<input type="image" src="/resources/img/subpages/nutrient/search.gif"
 						alt="검색버튼">
 				
 				</form>					
@@ -66,7 +67,7 @@
 						</tr>
 					</thead>
 
-					<div class="menu-content">
+					<div class="menu-content1">
 						<c:forEach var="nutrient1" items="${nutrient1}">
 							<li>
 							<tr>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>        
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -49,30 +50,24 @@
               <th>나트륨<br/>(mg/%)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>베리 리치 프라페</td>
-              <td>1잔</td>
-              <td>414ml</td>
-              <td>414</td>
-              <td>210</td>
-              <td>49/49</td>
-              <td>1g미만/1</td>
-              <td>0/0</td>
-              <td>10/1</td>
-            </tr>
-            <tr>
-              <td>베리 리치 프라페</td>
-              <td>1잔</td>
-              <td>414ml</td>
-              <td>414</td>
-              <td>210</td>
-              <td>49/49</td>
-              <td>1g미만/1</td>
-              <td>0/0</td>
-              <td>10/1</td>
-            </tr>
-          </tbody>
+     	<div class="menu-content3">
+						<c:forEach var="nutrient3" items="${nutrient3}">
+							<li>
+							<tr>
+								<td>${nutrient3.menuMainTitle}</td>
+								<td>${nutrient3.iatVO.iatFullSupply}</td>
+								<td>${nutrient3.iatVO.iatOneSupply}</td>
+								<td>${nutrient3.iatVO.iatWeight}</td>
+								<td>${nutrient3.iatVO.iatKcal}</td>
+								<td>${nutrient3.iatVO.iatSugars}</td>
+								<td>${nutrient3.iatVO.iatProtein}</td>
+								<td>${nutrient3.iatVO.iatSaturatedFat}</td>
+								<td>${nutrient3.iatVO.iatNatrium}</td>
+							</tr>
+							</li>
+						</c:forEach>
+
+					</div>
         </table>
       </div>
     </div>
