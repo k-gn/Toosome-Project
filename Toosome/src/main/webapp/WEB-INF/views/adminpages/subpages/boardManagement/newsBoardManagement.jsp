@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/boardManagement/eventBoardManagement.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/boardManagement/newsBoardManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/boardManagement/eventBoardManagement.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/boardManagement/newsBoardManagement.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class=card-title>이벤트 게시판 관리</h4>
+                  <h4 class=card-title>뉴스 게시판 관리</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
@@ -64,18 +64,18 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="eventDate" class="search-select" id="eventDate" onchange="changeHandler(this)">
+                              <select name="newsDate" class="search-select" id="newsDate" onchange="changeHandler(this)">
                                 <option value="notUse">미사용</option>
                                 <option value="use">기간선택</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
-                             <div id="eventDatePeriod" class="date-picker">
-                             	<button class="period event" value="0d">오늘</button>
-                             	<button class="period event" value="1M">1개월</button>
-                             	<button class="period event" value="3M">3개월</button>
-                             	<button class="period event" value="6M">6개월</button>
-                             	<button class="period event" value="1y">1년</button>
+                             <div id="newsDatePeriod" class="date-picker">
+                             	<button class="period news" value="0d">오늘</button>
+                             	<button class="period news" value="1M">1개월</button>
+                             	<button class="period news" value="3M">3개월</button>
+                             	<button class="period news" value="6M">6개월</button>
+                             	<button class="period news" value="1y">1년</button>
                              	<div class="calendar-wrapper">
 	                              	<div class="col-md-3">
 	                              		<div class="form-group">
@@ -113,39 +113,27 @@
 		            <div class="col-md-8">
 		              <div class="card">
 		                <div class="card-header card-header-primary">
-		                  <h4 class="card-title">이벤트 게시글 상세</h4>
+		                  <h4 class="card-title">뉴스 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
 		                  <form>
 		                    <div class="row">
-		                      <div class="col-md-1">
+		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">글번호</label>
 		                          <input type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-2">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">조회수</label>
 		                          <input type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
 		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">이벤트시작일</label>
-		                          <input type="tel" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">이벤트종료일</label>
-		                          <input type="tel" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -209,30 +197,6 @@
 				                </div>
 				                </div>
 				              </div>
-				              <div class="info info-horizontal">
-				                <div class="description">
-				                  <h4 class="info-title">이벤트 기간</h4>
-				                  <div class="calendar-wrapper">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-		                              	<span>&nbsp;~&nbsp;</span>
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                             	</div>
-				                </div>
-				              </div>
 							  <div class="info info-horizontal">
 				                <div class="description">
 				                  <h4 class="info-title">이미지</h4>
@@ -257,8 +221,7 @@
 				            </div>
 				          </div>
 				          <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>
-		                  <button class="btn btn-primary pull-right btn-r">삭제</button>
+		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
 			        </form>
 			      </div>
@@ -315,38 +278,38 @@
                           조회수
                         </th>
                         <th>
-                          이벤트시작일
-                        </th>
-                        <th>
-                          이벤트종료일
+                          글작성일
                         </th>
                         <th>
                           이미지
                         </th>
+                        <th>
+                          비고
+                        </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="eventBoardList" items="${eventBoardList}">
+                     	 <c:forEach var="newsBoardList" items="${newsBoardList}">
 	                        <tr>
 	                          <td>
-	                            ${eventBoardList.eventBoardId}
+	                            ${newsBoardList.newsBoardId}
 	                          </td>
 	                          <td>
-	                            ${eventBoardList.eventBoardTitle}
+	                            ${newsBoardList.newsBoardTitle}
 	                          </td>
 	                          <td>
-	                            ${eventBoardList.eventBoardContent}
+	                            ${newsBoardList.newsBoardContent}
 	                          </td>
 	                          <td>
-	                            ${eventBoardList.eventBoardViewCount}
+	                            ${newsBoardList.newsBoardViewCount}
 	                          </td>
 	                          <td>
-	                            ${eventBoardList.eventBoardStartday}
+	                            ${newsBoardList.newsBoardRegdate}
 	                          </td>
 	                          <td>
-	                            ${eventBoardList.eventBoardEndday}
+	                            <a href="${newsBoardList.newsBoardImageRoute}/${newsBoardList.newsBoardImageName}.${newsBoardList.newsBoardImageExtention}">상세보기</a>
 	                          </td>
 	                          <td>
-	                            <a href="${eventBoardList.eventBoardImageRoute}/${eventBoardList.eventBoardImageName}.${eventBoardList.eventBoardImageExtention}">상세보기</a>
+	                            .
 	                          </td>
 	                        </tr>
                         </c:forEach>
