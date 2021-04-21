@@ -41,55 +41,31 @@
               <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
               <th colspan="2">주문 품목</th>
               <th>수량</th>
-              <th>적립 포인트</th>
-              <th>할인 금액</th>
-              <th>결제금액</th>
+              <th>상품명</th>
+              <th>상품가격</th>
               <th>삭제</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+          <c:forEach var="basket" items="${baskets}">
+          	<tr>
               <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
+              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
               <td><span class="name"></span></td>
               <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
+                <input type="number" min="1" max="10" name="quantity" value="${basket.basketAmount}" id="quantity"/>
               </td>
               <td>
-                <span class="point"></span>
+                <span class="pname">${basket.basketName}</span>
               </td>
               <td>
-                <span class="discount"></span>
-              </td>
-              <td>
-                <span class="total"></span>
+                <span class="price">${basket.basketPrice}</span>
               </td>
               <td>
                 <input type="button" value="X" onclick="deleteRow(this);">
               </td>
             </tr>
-
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
-              <td><span class="name"></span></td>
-              <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
-              </td>
-              <td>
-                <span class="point"></span>
-              </td>
-              <td>
-                <span class="discount"></span>
-              </td>
-              <td>
-                <span class="total"></span>
-              </td>
-              <td>
-                <input type="button" value="X" onclick="deleteRow(this);">
-              </td>
-            </tr>
-
+          </c:forEach>
           </tbody>
         </table>
       </div>

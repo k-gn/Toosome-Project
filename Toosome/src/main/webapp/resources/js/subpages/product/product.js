@@ -13,6 +13,7 @@ function AddToCart(pid) {
    	  xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
  	}); 
 
+	console.log(pid);
 	const basket = {
 		productId : pid
 	};

@@ -16,6 +16,6 @@ public interface IQnaBoardService {
 	public void insertQnaBoard(QnaBoardVO vo);
 	
 	//qna 게시물 비밀번호
-	public QnaBoardVO passwordQnaBoard(String index);
+	public QnaBoardVO passwordQnaBoard(Integer index);
 	
 }

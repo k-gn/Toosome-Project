@@ -58,7 +58,7 @@ public class ProductController {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
-		System.out.println(model);
+		System.out.println(productDetail);
 //		System.out.println("상품 주의사항 디테일 출력");
 //		ProductVO productprecautionsDetail = productService.getproductprecautionsDetail(productVO);
 //		model2.addAttribute("productprecautionsDetail", productprecautionsDetail);

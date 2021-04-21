@@ -32,7 +32,7 @@
         
         <ul class="order-btn cf">
           <li><a href="#" class="online">온라인 주문</a></li>
-          <li><a href="#" class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
+          <li><a class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
         </ul>
         
         <ul class="notice-box">
@@ -133,7 +133,7 @@ const coms = document.querySelectorAll('.com');
 coms.forEach((com => {
     let num = +(com.innerHTML);
     com.innerHTML = num.toLocaleString('en');
-}))
+}));
 </script>
 </body>
 </html>

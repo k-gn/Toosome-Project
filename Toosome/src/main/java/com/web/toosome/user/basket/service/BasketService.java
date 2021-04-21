@@ -29,10 +29,11 @@ public class BasketService implements IBasketService {
 		}
 		
 		ProductVO product = pmapper.getproductDetailById(basket.getProductId());
+		System.out.println("addbasket : " + product);
 		basket.setProductImageId(product.getProductImageVO().getProductImageId());
 		basket.setBasketName(product.getProductTitleName());
 		basket.setBasketPrice(product.getProductPrice());
-		System.out.println(basket);
+		System.out.println("addbasket : " + basket);
 		return bmapper.addBasket(basket);
 	}
 

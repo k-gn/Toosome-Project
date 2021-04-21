@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.basket.service.IBasketService;
-import com.web.toosome.user.basket.vo.BasketUtilVO;
+import com.web.toosome.user.basket.vo.BasketUtil;
 import com.web.toosome.user.basket.vo.BasketVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
@@ -22,6 +22,8 @@ import com.web.toosome.user.product.vo.ProductImageVO;
 @Controller
 public class BasketController {
 	
+	private final String basicImagePath = "https://toosome.s3.ap-northeast-2.amazonaws.com/";
+	
 	@Autowired
 	private IBasketService service;
 	
@@ -29,20 +31,23 @@ public class BasketController {
 	private IMembershipService mservice;
 	
 	@GetMapping("/basket") // 장바구니
-	public String basket(HttpSession session, Model model, BasketUtilVO basketUtil) {
+	public String basket(HttpSession session, Model model, BasketUtil basketUtil) {
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
-		model.addAttribute("basket", baskets);
 		
 		for(BasketVO basket : baskets) {
 			ProductImageVO imageVO = basket.getProductImageVO();
-			String imagePath = imageVO.getProductImageRoute() + "/" + imageVO.getProductImageName() + "." + imageVO.getProductImageExtention();
-			basketUtil.getImagePath().add(imagePath);
+			String imagePath = basicImagePath + imageVO.getProductImageRoute() + "/" + imageVO.getProductImageName() + "." + imageVO.getProductImageExtention();
+			basket.setImagePath(imagePath);
 		}
+		model.addAttribute("baskets", baskets);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
-		basketUtil.setMembershipVO(ms);
-		System.out.println(basketUtil);
-		model.addAttribute("basketUtil", basketUtil);
+		System.out.println(ms);
+		if(ms != null) {
+			
+		}
+		System.out.println(baskets);
+		model.addAttribute("membership", ms);
 		return "subpages/basket/basket";
 	}
 

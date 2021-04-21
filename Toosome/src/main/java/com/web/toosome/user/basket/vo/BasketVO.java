@@ -17,4 +17,6 @@ public class BasketVO {
 	private String basketName;
 	private Integer basketPrice;
 	private ProductImageVO productImageVO;
+	
+	private String imagePath;
 }
