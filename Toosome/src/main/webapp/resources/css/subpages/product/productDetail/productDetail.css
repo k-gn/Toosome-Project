@@ -10,6 +10,24 @@
   box-shadow: 0 4px 5px #ccc;
   background: #fff;
 }
+.productDetail-container .title-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+}
+.productDetail-container .title-container .productDetail-title {
+  display: flex;
+  font-size: 1.25rem;
+  font-family: gsdr;
+  color: #eee;
+}
+.productDetail-container .title-container .productDetail-title.big {
+  color: #000;
+  font-size: 2rem;	
+}
 .productDetail-container .contents {
   
 }
