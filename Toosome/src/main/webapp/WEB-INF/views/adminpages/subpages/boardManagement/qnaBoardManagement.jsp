@@ -180,12 +180,57 @@
 		          </div>
 		       </div>
 		    </div>
-            <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog">
 			  <div class="modal-dialog modal-signup" role="document">
 			    <div class="modal-content">
 			      <div class="card card-signup card-plain">
 			        <div class="modal-header">
 			          <h5 class="modal-title card-title">댓글 작성</h5>
+			          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <i class="material-icons">clear</i>
+			          </button>
+			        </div>
+			        <form>
+				        <div class="modal-body">
+				          <div class="row">
+				            <div class="col-md-5 ml-auto">
+				              <div class="info info-horizontal">
+				                <div class="description">
+				                  <h4 class="info-title">제목</h4>
+				                  <div class="form-group">
+				                    <div class="form-group">
+	                                  <textarea class="form-control" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				
+				            <div class="col-md-5 mr-auto">
+				              <div class="description">
+				                <h4 class="info-title">내용</h4>
+	                            <div class="form-group">
+	                              <div class="form-group">
+	                                <textarea class="form-control" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                              </div>
+	                            </div> 
+	                          </div>         
+				            </div>
+				          </div>
+				          <button type="submit" class="btn btn-primary pull-right">등록</button>
+		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
+				        </div>
+			        </form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<div class="modal fade" id="commentListModal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog modal-signup" role="document">
+			    <div class="modal-content">
+			      <div class="card card-signup card-plain">
+			        <div class="modal-header">
+			          <h5 class="modal-title card-title">댓글 리스트</h5>
 			          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <i class="material-icons">clear</i>
 			          </button>
@@ -285,7 +330,7 @@
 	                            ㅂㅈㅇ
 	                          </td>
 	                          <td onclick="listHandler(this);">
-	                            ㅂㅈㅇ
+	                            <a href="#">ㅂㅂㅂ</a>
 	                          </td>
 	                          <td>
 	                            ㅂㅈㅇㅂㅈㅇ
@@ -294,9 +339,9 @@
 	                            2222
 	                          </td>
 	                          <td class="td-actions">
-				                <button type="button" rel="tooltip" class="btn btn-info">댓글보기</button>
-	                          	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#signupModal">댓글등록</button>
-				                <button type="button" rel="tooltip" class="btn btn-danger">글삭제</button>
+				                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#commentListModal">댓글보기</button>
+	                          	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#commentModal">댓글등록</button>
+				                <button type="button" rel="tooltip" class="btn btn-danger">댓글삭제</button>
 	                          </td>
 	                        </tr>
                      	 <!--<c:forEach var="qnaBoardList" items="${qnaBoardList}">
@@ -317,9 +362,9 @@
 	                            ${qnaBoardList.qnaBoardRegdate}
 	                          </td>
 	                          <td class="td-actions">
-				                <button type="button" rel="tooltip" class="btn btn-info">댓글보기</button>
-	                          	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#signupModal">댓글등록</button>
-				                <button type="button" rel="tooltip" class="btn btn-danger">글삭제</button>
+				                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#commentListModal">댓글보기</button>
+	                          	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#commentModal">댓글등록</button>
+				                <button type="button" rel="tooltip" class="btn btn-danger">댓글삭제</button>
 	                          </td>
 	                        </tr>
                        	</c:forEach>-->

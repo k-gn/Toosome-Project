@@ -58,27 +58,47 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
 		
-		// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
-		let newCommentTitle = document.createElement('tr');
-		let c_titleElement = `
-			<th colspan="3">${item[0].commentVO.comment_title}</td>
-			<th>${item[0].commentVO.comment_writer}</td>
-			<th>${item[0].commentVO.comment_date}</td>
-		`;
-		newCommentTitle.innerHTML = c_titleElement;
-		c_title.appendChild(newCommentTitle);
-		
-		// 받은 데이터로 새 댓글 본문 생성 후 삽입
-		let newCommentContent = document.createElement('tr');
-		let c_contentElement = `
-			<td colspan="5">${item[0].commentVO.comment_content}</td>
-		`;
-		newCommentContent.innerHTML = c_contentElement;
-		c_content.appendChild(newCommentContent);
-		
+		// 댓글
+		if(!item[0].commentVO) {
+			let newCommentTitle = document.createElement('tr');
+			let c_titleElement = `
+				<th colspan="4">등록된 댓글이 없습니다</td>
+				<th></td>
+			`;
+			newCommentTitle.innerHTML = c_titleElement;
+			c_title.appendChild(newCommentTitle);
+			
+			// 받은 데이터로 새 댓글 본문 생성 후 삽입
+			let newCommentContent = document.createElement('tr');
+			let c_contentElement = `
+				<td colspan="5">등록된 댓글이 없습니다</td>
+			`;
+			newCommentContent.innerHTML = c_contentElement;
+			c_content.appendChild(newCommentContent);
+		} else {
+			/*for(let i=0; i<item[0].commentVO.length; i++) {
+				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
+				let newCommentTitle = document.createElement('tr');
+				let c_titleElement = `
+					<th colspan="3">${item[0].commentVO[i].comment_title}</td>
+					<th>${item[0].commentVO[i].comment_writer}</td>
+					<th>${item[0].commentVO[i].comment_date}</td>
+				`;
+				newCommentTitle.innerHTML = c_titleElement;
+				c_title.appendChild(newCommentTitle);
+				
+				// 받은 데이터로 새 댓글 본문 생성 후 삽입
+				let newCommentContent = document.createElement('tr');
+				let c_contentElement = `
+					<td colspan="5">${item[0].commentVO[i].comment_content}</td>
+				`;
+				newCommentContent.innerHTML = c_contentElement;
+				c_content.appendChild(newCommentContent);				
+			};*/
+		};
 	} else {
 		alert('잘못된 요청입니다');
-/*		window.history.go(-1);*/
+		window.history.go(-1);
 	}
 };
 
