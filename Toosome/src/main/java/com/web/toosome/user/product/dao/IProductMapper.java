@@ -5,7 +5,7 @@ import java.util.List;
 import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
-public interface ProductMapper {
+public interface IProductMapper {
 	public List<ProductVO> getproductnewList(ProductVO productVO);
 	public List<ProductVO> getcoffeeList(ProductVO productVO);
 	public List<ProductVO> getcoffeewearList(ProductVO productVO);

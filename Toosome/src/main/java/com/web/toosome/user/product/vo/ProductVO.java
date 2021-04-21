@@ -9,7 +9,6 @@ import lombok.Data;
 public class ProductVO {
 	
 	private Integer productId; //주문가능상품의 고유 번호(중복불가)
-//	private Integer ordersOrdersId; //주문번호
 	private String productTitleName; //상품이름
 	private String productSubName; //상품 서브이름
 	private String productContent; //상품 설명란
@@ -28,6 +27,4 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
-//	private String searchCondition; //검색 조건
-//	private String searchKeyword; //검색 키워드
 }
