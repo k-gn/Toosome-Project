@@ -99,7 +99,7 @@ section {
 }
 
 .list-btn {
-	width: 10%;
+	width: 55px;
 	height: auto;
 	margin: 24px auto 24px;
 }
@@ -110,6 +110,7 @@ section {
 	background-color: #a62326;
 	padding: 10px;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .list-btn a:hover {
@@ -133,6 +134,32 @@ section {
 	font-size: 1rem;
 }
 
+.comment-table thead tr th input {
+	outline: none;
+	appearance: none;
+	width: 80%;
+	height: 30px;
+	padding-left: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.comment-table thead tr th button {
+	outline: none;
+	appearance: none;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	background-color: #a62326;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.comment-table thead tr th button:hover {
+	text-decoration: underline;
+}
+
 .comment-table thead tr th:first-child {
 	background-color: #eee;
 	text-align: left;
@@ -146,6 +173,18 @@ section {
 .comment-table thead tr th:last-child {
 	background-color: #eee;
 	text-align: right;
+}
+
+.comment-table tbody tr td textarea {
+	outline: none;
+	appearance: none;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
+	width: 95%;
+	height: auto;
+	resize: none;
 }
 
 #comment tr td {

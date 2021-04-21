@@ -12,7 +12,7 @@ public interface IQnaBoardMapper {
 	
 	public void insertQnaBoard(QnaBoardVO vo);
 	
-	public QnaBoardVO passwordQnaBoard(String pwd);
+	public QnaBoardVO passwordQnaBoard(Integer index);
 	
 
 }

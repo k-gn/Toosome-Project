@@ -17,6 +17,8 @@
 		alert("소셜회원은 이용할 수 없는 서비스 입니다.");
 	}else if(msg === "already") {
 		alert("이미 멤버쉽이 가입된 계정입니다.");
+	}else if(msg === "notmm") {
+		alert("멤버쉽 가입 후 이용가능합니다.");
 	}
 </script> 
 </head>

@@ -5,8 +5,11 @@
 <html lang="ko">
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <link rel="stylesheet" href="/resources/css/subpages/product/productDetail/productDetail.css">
   <script src="/resources/js/subpages/menuDetail/menuDetail.js"></script>
+  <script src="/resources/js/subpages/product/product.js"></script>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -29,15 +32,12 @@
         
         <ul class="order-btn cf">
           <li><a href="#" class="online">온라인 주문</a></li>
-          <li><a href="#" class="basket">장바구니 담기</a></li>
+          <li><a class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
         </ul>
         
-        
-      
         <ul class="notice-box">
           <li>${productDetail.productPrecautionsVO.productPrecautionsContent}</li>
        
-         
         </ul>
 
         <div class="comment-box">
@@ -133,7 +133,7 @@ const coms = document.querySelectorAll('.com');
 coms.forEach((com => {
     let num = +(com.innerHTML);
     com.innerHTML = num.toLocaleString('en');
-}))
+}));
 </script>
 </body>
 </html>

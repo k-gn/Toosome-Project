@@ -49,7 +49,15 @@ public class MembershipController {
 
 	// 마이 멤버쉽 페이지 이동
 	@GetMapping("/membership/mm")
-	public String mymembership(Model model) {
+	public String mymembership(HttpSession session, Model model, RedirectAttributes ra) {
+		int id = (Integer) session.getAttribute("id");
+		MembershipVO ms = service.getMembershipInfo(id);
+		
+		if(ms == null) {
+			ra.addFlashAttribute("msg", "notmm");
+			return "redirect:/mypage"; 
+		}
+		
 		List<LevelVO> level = service.getLevelInfo();
 		model.addAttribute("lvl", level);
 		return "subpages/memberShip/myMembership/myMembership";

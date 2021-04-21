@@ -76,7 +76,6 @@
 .list-btn-box {
 	display: flex;
 	align-items: center;
-	width: 380px;
 }
 
 .list-btn-box button {
@@ -134,7 +133,6 @@
 
 .table tbody tr:hover {
 	background: #eee;
-	cursor: pointer;
 }
 
 .modal {

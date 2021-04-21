@@ -214,19 +214,28 @@ public class BoardController {
 		return qnalist;	
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value ="/qna-detail", method = {RequestMethod.GET, RequestMethod.POST}) // qna 상세 페이지 주소값 리턴
+=======
+	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+>>>>>>> dev
 	@ResponseBody
-	public String qnaDetailView(String index, @RequestBody QnaBoardVO vo) {
-		if (qnaBoardService.passwordQnaBoard(index).getQnaBoardSecret() != 1) {
-			return "subpages/qna/qnaDetail/qnaDetail";
+	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
+		System.out.println(vo);
+		if (vo.getQnaBoardSecret() != 1) {
+			return "success";
 		} else {
-			if (qnaBoardService.passwordQnaBoard(index).getQnaBoardPassword().equals(vo.getQnaBoardPassword())) {
-				return "subpages/qna/qnaDetail/qnaDetail"; // 비밀글인데 암호맞음
+			if (qnaBoardService.passwordQnaBoard(vo.getQnaBoardId()).getQnaBoardPassword().equals(vo.getQnaBoardPassword())) {
+				return "success"; // 비밀글인데 암호맞음
 			} else { // 비밀글인데 암호 틀린경우일경우
 				return "fail";
 			}
 		}
-
+	}
+	
+	@GetMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+	public String qnaDetailView(String index) {
+		return "subpages/qna/qnaDetail/qnaDetail";
 	}
 
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
