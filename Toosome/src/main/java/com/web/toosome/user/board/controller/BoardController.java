@@ -213,6 +213,7 @@ public class BoardController {
 		return qnalist;	
 	}
 	
+
 	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	@ResponseBody
 	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
@@ -238,8 +239,23 @@ public class BoardController {
 	public List<QnaBoardVO> qnaDetail(String index){
 	
 		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
+		qnaBoardService.qnaBoardCount(index);
 		System.out.println("공개글 qna게시물 세부정보(컨트롤러): " + qnadetail);
 		return qnadetail;  
+		
+	}
+	
+	@GetMapping(value = "/qnasearch", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<QnaBoardVO> searchQna(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<QnaBoardVO> searchqna = qnaBoardService.getSearchQnaBoard(keyword);
+		System.out.println("검색 값넘기기: " +searchqna);
+		return searchqna;
+		}else {
+			return null;
+		}
 		
 	}
 	

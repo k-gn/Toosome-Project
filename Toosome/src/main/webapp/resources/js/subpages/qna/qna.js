@@ -35,6 +35,9 @@ const locateQnaDetail = (index, isLocked) => {
 		success: (res) => {
 			if(res === 'success') {
 				location.href='/qna-detail?index='+index;
+			} else {
+				alert('비밀번호가 일치하지 않습니다.');
+				return;
 			}
 		},
 		error: () => {

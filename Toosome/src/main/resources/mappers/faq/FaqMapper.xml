@@ -13,6 +13,8 @@
 		SELECT * FROM FAQ_BOARD
 	</select>
 
-	
+	<select id="getFaqSearchBoardList" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD WHERE FAQ_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');
+	</select>
 	
 </mapper>
