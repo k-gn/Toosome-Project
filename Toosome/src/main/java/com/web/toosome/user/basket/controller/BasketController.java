@@ -56,9 +56,14 @@ public class BasketController {
 		return "subpages/basket/order/order";
 	}
 
-	@GetMapping("/basket/ordercomplete") // 주문
+	@GetMapping("/basket/ordercomplete") // 주문완료
 	public String ordercomplete() {
 		return "subpages/basket/order/orderComplete/orderComplete";
+	}
+
+	@GetMapping("orderreceipt") // 주문내역
+	public String orderreceipt() {
+		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}
 	
 	@PostMapping("/addBasket") 

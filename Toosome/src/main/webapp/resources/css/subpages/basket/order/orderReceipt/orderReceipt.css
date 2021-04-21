@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+section {
+	max-width: 1000px;
+    padding-bottom: 50px;
+	box-sizing: border-box;
+	margin: 150px auto;
+	display: flex !important;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #eee;
+	box-shadow: 0 2px 3px #ccc;
+}
+
+section .title {
+	font-family: gsdr;
+	font-size: 1.5rem;
+	margin: 50px 0;
+}
+
+section .smart-post {
+  width: 90%;
+  height: 300px;
+  background-color: #eee;
+  margin-bottom: 50px;
+}
+
+section .table-cover {
+  width: 90%;
+
+}
+section .table-cover table tbody td {
+  line-height: 150px;
+}
+section .table-cover table tbody td ul {
+  height: 150px;
+}
+section .table-cover table tbody td ul li {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section .table-cover table tbody td ul li a {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  line-height: 18px;
+  padding: 10px 0;
+  background-color: #a62326;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+}
+section .table-cover table tbody td ul li:first-child a {
+  background-color: #38383b;
+}
+section .table-cover .orderCom {
+  margin: 20px 0;
+  font-family: gsdr;
+  font-size: 25px;
+  color: #a62326;
+}
+section .text {
+  background-color: #eee;
+  width: 90%;
+  line-height: 50px;
+  font-size: 25px;
+  text-align: center;
+  border-bottom: 2px solid #333;
+}
+section .text .red-text {
+  color: #ff0000;
+  font-weight: bold;
+}
+section .text .sub-text {
+  font-size: 14px;
+  text-align: left;
+  padding: 10px;
+  line-height: normal;
+}
+section .text .sub-text .bold-text {
+  font-weight: bold;
+}
+
+section .btn-group {
+  margin-top: 50px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+section .btn-group li {
+  display: flex;
+  width: 300px;
+  height: 50px;
+}
+section .btn-group li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  color: #fff;
+  font-family: gsdr;
+  background-color: #a62326;
+}
