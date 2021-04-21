@@ -1,10 +1,10 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const faqDate = document.querySelector('#faqDate'); // 작성일 기간선택
-const faqDatePeriod = document.querySelector('#faqDatePeriod'); // 작성일 기간선택 버튼박스
-const faqPeriods = document.querySelectorAll('.period.faq'); // 작성일 기간 버튼들
-const faqCalendar = document.querySelector('#calendar1'); // 작성일 달력1
-const faqCalendar2 = document.querySelector('#calendar2'); // 작성일 달력2
+const qnaDate = document.querySelector('#qnaDate'); // 작성일 기간선택
+const qnaDatePeriod = document.querySelector('#qnaDatePeriod'); // 작성일 기간선택 버튼박스
+const qnaPeriods = document.querySelectorAll('.period.qna'); // 작성일 기간 버튼들
+const qnaCalendar = document.querySelector('#calendar1'); // 작성일 달력1
+const qnaCalendar2 = document.querySelector('#calendar2'); // 작성일 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
@@ -16,9 +16,9 @@ const changeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
 	// 옵션 선택이 use(기간선택)일 경우
 	if(option === 'use') {
-		faqDatePeriod.style.display = 'inline';
+		qnaDatePeriod.style.display = 'inline';
 	} else {
-		faqDatePeriod.style.display = 'none';
+		qnaDatePeriod.style.display = 'none';
 	};
 };
 
@@ -41,20 +41,20 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
-	removeOn(faqPeriods);
+	removeOn(qnaPeriods);
 	const today = moment().format('MM/DD/YYYY');
-	faqCalendar.value = today;
-	faqCalendar2.value = today;
+	qnaCalendar.value = today;
+	qnaCalendar2.value = today;
 };
 
 // 기간 버튼 event hook
-faqPeriods.forEach((period) => {
+qnaPeriods.forEach((period) => {
 	period.addEventListener('click', (e) => {
 		e.preventDefault();
-		removeOn(faqPeriods);
+		removeOn(qnaPeriods);
 		period.classList.toggle('on');
 		let val = period.value;
-		calcDate(val, faqCalendar);
+		calcDate(val, qnaCalendar);
 	});
 });
 
@@ -62,8 +62,8 @@ faqPeriods.forEach((period) => {
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
 	searchInput.value = '';
-	faqDate.options[0].selected = 'true';
-	faqDatePeriod.style.display = 'none';
+	qnaDate.options[0].selected = 'true';
+	qnaDatePeriod.style.display = 'none';
 	calendarInit();
 };
 
@@ -140,16 +140,24 @@ const getList = (data) => {
 				let content = `
 					<tr>
                       <td>
-                        ${res.faqBoardId}
+                        ${res.qnaBoardId}
                       </td>
                       <td>
-                        ${res.faqBoardTitle}
+                        ${res.qnaBoardType}
+                      </td>
+                      <td onclick="listHandler(this);">
+                        <a href="#">${res.qnaBoardTitle}</a>
                       </td>
                       <td>
-                        ${res.faqBoardContent}
+                        ${res.qnaBoardContent}
                       </td>
-                      <td>
-                        ${res.faqBoardRegdate}
+					  <td>
+                        ${res.qnaBoardRegdate}
+                      </td>
+					  <td class="td-actions">
+		                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#commentListModal">댓글보기</button>
+                      	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#commentModal">댓글등록</button>
+		                <button type="button" rel="tooltip" class="btn btn-danger">댓글삭제</button>
                       </td>
                     </tr>			
 				`;
@@ -166,34 +174,36 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const faqBoardTitle = ''; // 검색 제목
-	const faqBoardContent = ''; // 검색 내용
-	const startFaqDate = ''; // 검색 시작일
-	const endFaqDate = ''; // 검색 종료일
+	const qnaBoardTitle = ''; // 검색 제목
+	const qnaBoardContent = ''; // 검색 내용
+	const qnaBoardWriter = ''; // 검색 작성자
+	const startQnaDate = ''; // 검색 시작일
+	const endQnaDate = ''; // 검색 종료일
 	
-	// 검색 이름 & 검색 이메일
-	if(searchType.options[searchType.selectedIndex].value === 'title') { // 제목으로 검색시
-		if(searchInput.value !== '') {
-			faqBoardTitle = searchInput.value;	
-		}
-	} else if(searchType.options[searchType.selectedIndex].value === 'content') { // 내용으로 검색시
-		if(searchInput.value !== '') {
-			faqBoardContent = searchInput.value;			
-		}
+	// 검색어
+	if(searchInput.value !== '') {
+		if(searchType.options[searchType.selectedIndex].value === 'title') { // 제목으로 검색시
+			qnaBoardTitle = searchInput.value;	
+		} else if(searchType.options[searchType.selectedIndex].value === 'content') { // 내용으로 검색시
+			qnaBoardContent = searchInput.value;			
+		} else { // 작성자로 검색시
+			qnaBoardWriter = searchInput.value;
+		};
 	};
 	
 	// 가입일자
 	if(eventDate.options[eventDate.selectedIndex].value === 'use') {
-		startFaqDate = moment(newsCalendar.value).format('YYYY-MM-DD');
-		endFaqDate = moment(newsCalendar2.value).format('YYYY-MM-DD');
+		startQnaDate = moment(newsCalendar.value).format('YYYY-MM-DD');
+		endQnaDate = moment(newsCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data
 	const data = {
-		faqBoardTitle,
-		faqBoardContent,
-		startFaqDate,
-		endFaqDate,
+		qnaBoardTitle,
+		qnaBoardContent,
+		qnaBoardWriter,
+		startQnaDate,
+		endQnaDate,
 	};
 	
 	getList(data);
