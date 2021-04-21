@@ -11,6 +11,7 @@ public class LevelVO {
 	private Integer levelMinRange;
 	private Integer levelMaxRange;
 	private Integer levelPointRate;
+	private Integer levelDeliveryPay;
 	private String levelImg;
 	private String levelName;
 }
