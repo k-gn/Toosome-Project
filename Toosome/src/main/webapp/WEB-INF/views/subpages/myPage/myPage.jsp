@@ -84,24 +84,18 @@
             <li>
               <a href="#">고객센터</a>
               <ul>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="/faq">FAQ</a></li>
               </ul>
             </li>
             <li>
               <a href="#">온라인 주문</a>
               <ul>
-                <li><a href="#">이용안내</a></li>
-                <li><a href="#">투썸바구니</a></li>
-                <li><a href="#">결제내역</a></li>
+                <li><a href="/basket">투썸바구니</a></li>
+                <li><a href="/orderreceipt">주문내역</a></li>
               </ul>
             </li>
             <li>
-              <a href="#">리쿠르트</a>
-              <ul>
-                <li><a href="#">리쿠르트안내</a></li>
-                <li><a href="#">매장채용안내</a></li>
-                <li><a href="#">아카데미등록안내</a></li>
-              </ul>
+              <a href="#">사이트맵</a>
             </li>
           </ul>
         </div>
