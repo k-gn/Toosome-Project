@@ -67,7 +67,7 @@
 	display: flex;
 	justify-content: space-between;
 }
-.btn-box button {
+.btn-box .button {
 	outline: none;
 	appearance: none;
 	width: 300px;
@@ -83,17 +83,17 @@
 	margin-right: 15px;
 }
 
-.btn-box button:last-child {
+.btn-box .button:last-child {
 	margin-right: 0;
 }
 
-.btn-box button:last-child {
+.btn-box .button:last-child {
 	border: none;
 	background: #a62326;
 	color: white;
 }
 
-.btn-box button:hover {
+.btn-box .button:hover {
 	text-decoration: underline;
 }
 

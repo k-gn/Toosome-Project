@@ -150,8 +150,8 @@
 		        </table>
 		      </div>
 		      <div class="btn-box">
-		        <button>계속 쇼핑하기</button>
-		        <button onclick="location.href='/order'">상품구매</button>
+		        <input type="button" class="button" value="계속 쇼핑하기">
+		        <input type="button" class="button" value="상품구매" onclick="location.href='/order'">
 		      </div> 		 	
    		</form>
 		<!-- section end -->
