@@ -88,8 +88,6 @@ public class BasketController {
 		if(ms != null) {
 			basketUtil.utilMethod(baskets, ms, basicImagePath);
 		}
-		basketUtil.setBasket(baskets);
-		
 		return basketUtil;
 	}
 	

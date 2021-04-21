@@ -18,8 +18,6 @@ public class BasketUtil {
 	private int deliveryPay; // 배송비
 	private int realPayment; // 실제 결제 금액 
 	
-	private List<BasketVO> basket;
-	
 	public void utilMethod(List<BasketVO> baskets, MembershipVO ms, String basicImagePath) {
 		
 		for(BasketVO basket : baskets) {

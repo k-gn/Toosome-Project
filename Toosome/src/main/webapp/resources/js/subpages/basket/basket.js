@@ -56,6 +56,7 @@ function deleteRow(ths, bid) {
   }
 }
 
+let basketInfo = '';
 function modBasket(bid) {
 
 	$(document).ajaxSend(function(e, xhr, options) { 
@@ -72,9 +73,15 @@ function modBasket(bid) {
 	    }, 
 	    dataType: "json",
         data: amount,
-	    success: function (res) {
-			console.log(res);
-			//$(".product-pay").html("<fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.total}" />");
+	    success: function(basketUtil) {
+			basketInfo = basketUtil;
+			console.log(basketInfo);
+			$(".product-count").html(basketUtil.amount + "개");
+			$(".product-pay").html(basketUtil.total.toLocaleString());
+			$(".product-discount").html(basketUtil.discount.toLocaleString());
+			$(".product-delivery").html(basketUtil.deliveryPay.toLocaleString());
+			$(".product-point").html(basketUtil.point.toLocaleString());
+			$(".product-total").html(basketUtil.realPayment.toLocaleString());
 	    }
 	 });
 }
