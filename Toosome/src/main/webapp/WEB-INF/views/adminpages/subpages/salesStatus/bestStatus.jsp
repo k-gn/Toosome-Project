@@ -8,10 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
-  <link href="/resources/css/adminpages/subpages/bestStatus/bestStatus.css" rel="stylesheet" />
+  <link href="/resources/css/adminpages/subpages/salesStatus/bestStatus.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-  <script src="/resources/js/adminpages/subpages/bestStatus/bestStatus.js" defer></script>
+  <script src="/resources/js/adminpages/subpages/salesStatus/bestStatus.js" defer></script>
 </head>
 
 <body>
@@ -114,11 +114,11 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-warning flex">
-                  <h4 class="card-title" id="search-result"></h4>
+                  <h4 class="card-title">메뉴 베스트 현황</h4>
                   <div class="list-btn-box">
-                    <button id="excel-down" onclick="excelDownload('menu-table', '메뉴_베스트_리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <button onclick="excelDownload('menu-table', '메뉴_베스트_리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="menu-select" class="view-select">
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -131,7 +131,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="menu-table" class="table">
-                      <thead class="text-warning" id="list-table-thead">
+                      <thead class="text-warning" id="menu-table-thead">
                         <th>
                           랭킹
                         </th>
@@ -139,44 +139,44 @@
                           카테고리
                         </th>
                         <th>
-                          이름
+                          메뉴이름
                         </th>
                         <th>
-                          가격
+                          메뉴가격
                         </th>
                         <th>
-                          이벤트여부
+                          판매수량
                         </th>
                         <th>
-                          
+                          판매금액
                         </th>
                         <th>
-                          총 매출금액(G=E-F)
+                          판매시작일
                         </th>
                       </thead>
                       <tbody>
                      	 <c:forEach var="bestMenuStatus" items="${bestMenuStatus}">
 	                        <tr>
 	                          <td>
-	                            ${salesPeriodStatus.productPrice}
+	                            ${bestMenuStatus.menuBestVO.menuRank}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.orderDiscount}
+	                            ${bestMenuStatus.menuBestVO.menuType}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.orderPoint}
+	                            ${bestMenuStatus.menuBestVO.menuMainTitle}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.orderDeliveryPrice}
+	                            ${bestMenuStatus.menuBestVO.menuPrice}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.orderPrice}
+	                            ${bestMenuStatus.menuBestVO.menuSalesQuantity}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.refundPrice}
+	                            ${bestMenuStatus.menuBestVO.menuSalesAmount}
 	                          </td>
 	                          <td>
-	                            ${salesPeriodStatus.totalPrice}
+	                            ${bestMenuStatus.menuBestVO.menuStartDay}
 	                          </td>
 	                        </tr>
                         </c:forEach>
@@ -193,11 +193,11 @@
 	            <div class="col-md-12">
 	              <div class="card">
 	                <div class="card-header card-header-warning flex">
-	                  <h4 class="card-title" id="search-result"></h4>
+	                  <h4 class="card-title">상품 베스트 현황</h4>
 	                  <div class="list-btn-box">
-	                    <button id="excel-down" onclick="excelDownload('product-table', '상품_베스트_리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+	                    <button onclick="excelDownload('product-table', '상품_베스트_리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
 	                    <div class="select-box">
-		                    <select id="memberList-select">
+		                    <select id="product-select" class="view-select">
 		                      <option value="30">30개씩 보기</option>
 		                      <option value="50">50개씩 보기</option>
 		                      <option value="100">100개씩 보기</option>
@@ -210,52 +210,52 @@
 	                <div class="card-body">
 	                  <div class="table-responsive">
 	                    <table id="product-table" class="table">
-	                      <thead class="text-warning" id="list-table-thead">
+	                      <thead class="text-warning" id="product-table-thead">
 	                        <th>
-	                          일자
+	                          랭킹
 	                        </th>
 	                        <th>
-	                          결제수단
+	                          카테고리
+	                        </th>
+	                        <th>
+	                          상품이름
+	                        </th>
+	                        <th>
+	                          상품가격
+	                        </th>
+	                        <th>
+	                          판매수량
 	                        </th>
 	                        <th>
 	                          판매금액
 	                        </th>
 	                        <th>
-	                          할인액
-	                        </th>
-	                        <th>
-	                          포인트사용
-	                        </th>
-	                        <th>
-	                          배송비
-	                        </th>
-	                        <th>
-	                          총 결제금액
+	                          판매시작일
 	                        </th>
 	                      </thead>
 	                      <tbody>
-	                     	 <c:forEach var="bestStatus" items="${bestStatus}">
+	                     	 <c:forEach var="bestProductStatus" items="${bestProductStatus}">
 		                        <tr>
 		                          <td>
-		                            ${salesDailyStatus.orderDate}
+		                            ${bestProductStatus.productBestVO.productRank}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.orderMethod}
+		                            ${bestProductStatus.productBestVO.productType}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.orderPrice}
+		                            ${bestProductStatus.productBestVO.productTitleName}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.orderDiscount}
+		                            ${bestProductStatus.productBestVO.productPrice}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.orderPoint}
+		                            ${bestProductStatus.productBestVO.productSalesQuantity}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.orderDeliveryPrice}
+		                            ${bestProductStatus.productBestVO.productSalesAmount}
 		                          </td>
 		                          <td>
-		                            ${salesDailyStatus.paymentPrice}
+		                            ${bestProductStatus.productBestVO.productStartDay}
 		                          </td>
 		                        </tr>
 	                        </c:forEach>

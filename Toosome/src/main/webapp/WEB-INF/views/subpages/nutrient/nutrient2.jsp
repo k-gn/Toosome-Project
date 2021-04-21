@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,12 +30,14 @@
           <li><a href="/nutrient3">커피 &amp; 음료</a></li>
           <li><a href="/nutrient4">델리</a></li>
         </ul>
-
-        <div class="search">
-          <input type="search" placeholder="검색어를 입력하세요.">
-          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="">
+        
+			<form action="/nutrient2/search" method="get"> 
+        <div class="search2">
+          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요."><input type="image"
+           src="/resources/img/subpages/nutrient/search.gif" alt="검색버튼">
         </div>
-
+			</form>
+			
         <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
@@ -49,30 +52,25 @@
               <th>나트륨<br/>(mg/%)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>베리 리치 프라페</td>
-              <td>1잔</td>
-              <td>414ml</td>
-              <td>414</td>
-              <td>210</td>
-              <td>49/49</td>
-              <td>1g미만/1</td>
-              <td>0/0</td>
-              <td>10/1</td>
-            </tr>
-            <tr>
-              <td>베리 리치 프라페</td>
-              <td>1잔</td>
-              <td>414ml</td>
-              <td>414</td>
-              <td>210</td>
-              <td>49/49</td>
-              <td>1g미만/1</td>
-              <td>0/0</td>
-              <td>10/1</td>
-            </tr>
-          </tbody>
+         
+         <div class="menu-content2">
+						<c:forEach var="nutrient2" items="${nutrient2}">
+							<li>
+							<tr>
+								<td>${nutrient2.menuMainTitle}</td>
+								<td>${nutrient2.iatVO.iatFullSupply}</td>
+								<td>${nutrient2.iatVO.iatOneSupply}</td>
+								<td>${nutrient2.iatVO.iatWeight}</td>
+								<td>${nutrient2.iatVO.iatKcal}</td>
+								<td>${nutrient2.iatVO.iatSugars}</td>
+								<td>${nutrient2.iatVO.iatProtein}</td>
+								<td>${nutrient2.iatVO.iatSaturatedFat}</td>
+								<td>${nutrient2.iatVO.iatNatrium}</td>
+							</tr>
+							</li>
+						</c:forEach>
+						
+					</div>      
         </table>
       </div>
     </div>

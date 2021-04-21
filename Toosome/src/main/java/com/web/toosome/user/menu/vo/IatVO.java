@@ -15,4 +15,5 @@ public class IatVO {
 	private String iatSaturatedFat;
 	private String iatNatrium;
 	
+	
 }

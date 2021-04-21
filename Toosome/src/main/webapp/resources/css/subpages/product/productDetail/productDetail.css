@@ -11,73 +11,88 @@
   background: #fff;
 }
 .productDetail-container .contents {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
+  
 }
 .productDetail-container .contents .product-img{
-  display: flex;
-  width: 340px;
-  height: 340px;
+  display: block;
+  margin: 0 auto;
   /* width: 50%; */
   /* justify-content: center; */
 }
 
 .productDetail-container .contents .star {
-  width: 60%;
-  /* height: 50px; */
-  position: relative;
+  margin: 10px auto;
+  width: 448px;
 }
+
 .productDetail-container .contents .star li {
-  width: 100%;
-  text-align: right;
   height: 24px;
   font-size: 15px;
   font-weight: bold;
   position: relative;
 }
-.productDetail-container .contents .star li.strong {
-  font-size: 24px;
-
+.productDetail-container .contents .star li:first-child {
+  float: right;
+  width: 40%;
 }
-.productDetail-container .contents .star li.title-text {
-  margin-top: 10px;
-  color: #999;
-}
-.productDetail-container .contents .star li.order-btn {
-  height: 30px;
-  text-align: left;
-  position: static;
-}
-.productDetail-container .contents .star li.order-btn .online {
-  position: absolute;
-  width: 100px;
-  height: 30px;
-  bottom: 0;
-  right: 0;
-  background-color: #A62326;
-  color: #fff;
-  cursor: pointer;
-}
-.productDetail-container .contents .star li.order-btn .basket {
-  position: absolute;
-  width: 100px;
-  height: 30px;
-  bottom: 50px;
-  right: 0;
-  background-color: #A62326;
-  color: #fff;
-  cursor: pointer;
+.productDetail-container .contents .star li:last-child {
+  width: 60%;
+  float: left;
+  
 }
 .productDetail-container .contents .star li img {
-  display: block;
-  width: auto;
-  height: 12px;
   position: absolute;
-  top: 6px;
   right: 0;
 }
+.productDetail-container .contents .strong {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.productDetail-container .contents .title-text {
+  margin-top: 10px;
+  text-align: center;
+  color: #999;
+}
+
+.productDetail-container .contents .product-pay {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 20px;
+	color: #a62326;
+	font-family: gsdr;
+}
+
+.productDetail-container .contents .order-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+}
+.productDetail-container .contents .order-btn li {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productDetail-container .contents .order-btn li a {
+  display: flex;
+  width: 350px;
+  line-height: 60px;
+  border-radius: 10px;
+  background-color: #A62326;
+  color: #fff;
+  font-size: 18px;
+  font-family: gsdr;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.productDetail-container .contents .order-btn li:hover a {
+  text-decoration: underline;
+}
+
 
 
 

@@ -114,10 +114,56 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
-	public List<IatVO> getIatListOne(IatVO vo) {
-		System.out.println("영양성분표 리스트 출력 :" + mapper.getIatListOne(vo));
+	public List<MenuVO> getIatListOne(MenuVO vo) {
+		System.out.println("영양성분표1 리스트 출력 :" + mapper.getIatListOne(vo));
 		return mapper.getIatListOne(vo);
 	}
+
+	@Override
+	public List<MenuVO> getSearchIatListOne(MenuVO vo) {
+		System.out.println("영양성분표1 검색 리스트 출력 : " + mapper.getSearchIatListOne(vo));
+		return mapper.getSearchIatListOne(vo);
+	}
+
+	@Override
+	public List<MenuVO> getIatListTwo(MenuVO vo) {
+		System.out.println("영양성분표2 리스트 출력 : " + mapper.getIatListTwo(vo));
+		return mapper.getIatListTwo(vo);
+	}
+
+	@Override
+	public List<MenuVO> getSearchIatListTwo(MenuVO vo) {
+		System.out.println("영양성분표2 검색 리스트 출력: " + mapper.getSearchIatListTwo(vo));
+		return mapper.getSearchIatListTwo(vo);
+	}
+	
+	@Override
+	public List<MenuVO> getIatListThree(MenuVO vo) {
+		System.out.println("영양성분표3 리스트 출력: " + mapper.getIatListThree(vo));
+		return mapper.getIatListThree(vo);
+	}
+
+	@Override
+	public List<MenuVO> getSearchIatListThree(MenuVO vo) {
+		System.out.println("영양성분표3 검색 리스트 출력: " + mapper.getSearchIatListThree(vo));
+		return mapper.getSearchIatListThree(vo);
+	}
+	
+	@Override
+	public List<MenuVO> getIatListFour(MenuVO vo) {
+		System.out.println("영양성분표4 리스트 출력: " + mapper.getIatListFour(vo));
+		return mapper.getIatListFour(vo);
+	}
+
+	@Override
+	public List<MenuVO> getSearchIatListFour(MenuVO vo) {
+		System.out.println("영양성분표4 검색 리스트 출력: " + mapper.getSearchIatListFour(vo));
+		return mapper.getSearchIatListFour(vo);
+	}
+
+	
+
+
 
 	
 	

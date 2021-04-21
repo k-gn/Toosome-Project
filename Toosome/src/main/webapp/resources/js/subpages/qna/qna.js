@@ -13,8 +13,25 @@ const locateQnaDetail = (index, isLocked) => {
 		window.location.href = '/qna-detail?index='+index;
 	} else {
 		let pwd = prompt('비밀번호를 입력해주세요');
-		console.log(pwd);
-		/* pwd로 서버에 AJAX 요청 비밀번호 대조 */
+		
+		// 서버와 비밀번호 대조
+		$.ajax({
+			type: "POST",
+			url: '/qna-detail?index='+index,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			dataType: "text", 
+			data: JSON.stringify({
+				"qnaBoardPassword": pwd,
+			}),
+			success: (res) => {
+				console.log(res);
+			},
+			error: () => {
+				alert('통신장애');
+			}
+		});
 	};
 };
 

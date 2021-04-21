@@ -8,9 +8,9 @@ radioBtns.forEach(btn => {
 	btn.addEventListener('click', (e) => {
 		e.target.checked = true;
 		if(e.target.value === '1') {
-			inputPwd.disabled = true;
-		} else {
 			inputPwd.disabled = false;
+		} else {
+			inputPwd.disabled = true;
 		};
 	});
 });

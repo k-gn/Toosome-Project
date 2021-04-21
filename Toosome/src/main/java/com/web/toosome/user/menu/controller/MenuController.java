@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -71,28 +72,72 @@ public class MenuController {
 	}
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
-	public String nutrient1(IatVO vo , Model model) {
+	public String nutrient1(MenuVO vo , Model model) {
 		System.out.println("영양 성분표 1");
-		List<IatVO> nutrient1 = menuService.getIatListOne(vo);
+		List<MenuVO> nutrient1 = menuService.getIatListOne(vo);
 		model.addAttribute("nutrient1",nutrient1);
 		System.out.println(model);
 		return "subpages/nutrient/nutrient1";
 	}
+	
+	@RequestMapping("/nutrient1/search") //영양성분표1 검색기능
+	public String searchNutrient1(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 1");
+		List<MenuVO> nutrient1 = menuService.getSearchIatListOne(vo);
+		model.addAttribute("nutrient1", nutrient1);
+		return "subpages/nutrient/nutrient1";
+	}
 
 	@GetMapping("/nutrient2") // 영양성분표 페이지2
-	public String nutrient2() {
+	public String nutrient2(MenuVO vo, Model model) {
+		System.out.println("영양성분표2");
+		List<MenuVO> nutrient2 = menuService.getIatListTwo(vo);
+		model.addAttribute("nutrient2", nutrient2);
+		System.out.println(model);
+		return "subpages/nutrient/nutrient2";
+	}
+	
+	@RequestMapping("/nutrient2/search") //영양성분표2 검색기능
+	public String searchNutrient2(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 2");
+		List<MenuVO> nutrient2 = menuService.getSearchIatListTwo(vo);
+		model.addAttribute("nutrient2", nutrient2);
 		return "subpages/nutrient/nutrient2";
 	}
 
 	@GetMapping("/nutrient3") // 영양성분표 페이지3
-	public String nutrient3() {
+	public String nutrient3(MenuVO vo, Model model) {
+		System.out.println("영양성분표3");
+		List<MenuVO> nutrient3 = menuService.getIatListThree(vo);
+		model.addAttribute("nutrient3", nutrient3);
+		System.out.println(model);
 		return "subpages/nutrient/nutrient3";
 	}
-
+	
+	@RequestMapping("/nutrient3/search") //영양성분표3 검색기능
+	public String searchNutrient3(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 3");
+		List<MenuVO> nutrient3 = menuService.getSearchIatListThree(vo);
+		model.addAttribute("nutrient3", nutrient3);
+		return "subpages/nutrient/nutrient3";
+	}	
+	
 	@GetMapping("/nutrient4") // 영양성분표 페이지4
-	public String nutrient4() {
+	public String nutrient4(MenuVO vo, Model model) {
+		System.out.println("영양성분표4");
+		List<MenuVO> nutrient4 = menuService.getIatListFour(vo);
+		model.addAttribute("nutrient4", nutrient4);
+		System.out.println(model); 
 		return "subpages/nutrient/nutrient4";
 	}
+	
+	@RequestMapping("/nutrient4/search") //영양성분표4 검색기능
+	public String searchNutrient4(MenuVO vo, Model model) {
+		System.out.println("영양 성분표 4");
+		List<MenuVO> nutrient4 = menuService.getSearchIatListFour(vo);
+		model.addAttribute("nutrient4", nutrient4);
+		return "subpages/nutrient/nutrient4";
+	}	
 
 	@GetMapping("/menuDetail") // menu Detail page
 	public String beverageDetail(MenuVO menuVO, Model model) {

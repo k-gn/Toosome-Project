@@ -36,11 +36,14 @@
 					<li><a href="/nutrient3">커피 &amp; 음료</a></li>
 					<li><a href="/nutrient4">델리</a></li>
 				</ul>
-
-				<div class="search">
-					<input type="search" placeholder="검색어를 입력하세요."> <input
-						type="image" src="/resources/img/subpages/nutrient/search.gif"
-						alt="">
+				
+				<div class="search1">
+				<form action="/nutrient1/search" method="get">
+					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력해주세요.">  
+					<input type="image" src="/resources/img/subpages/nutrient/search.gif"
+						alt="검색버튼">
+				
+				</form>					
 				</div>
 
 				<table class="table table-hover">
@@ -64,19 +67,19 @@
 						</tr>
 					</thead>
 
-					<div class="menu-content">
+					<div class="menu-content1">
 						<c:forEach var="nutrient1" items="${nutrient1}">
 							<li>
 							<tr>
-								<td>${nutrient1.menuMenuId}</td>
-								<td>${nutrient1.iatFullSupply}</td>
-								<td>${nutrient1.iatOneSupply}</td>
-								<td>${nutrient1.iatWeight}</td>
-								<td>${nutrient1.iatKcal}</td>
-								<td>${nutrient1.iatSugars}</td>
-								<td>${nutrient1.iatProtein}</td>
-								<td>${nutrient1.iatSaturatedFat}</td>
-								<td>${nutrient1.iatNatrium}</td>
+								<td>${nutrient1.menuMainTitle}</td>
+								<td>${nutrient1.iatVO.iatFullSupply}</td>
+								<td>${nutrient1.iatVO.iatOneSupply}</td>
+								<td>${nutrient1.iatVO.iatWeight}</td>
+								<td>${nutrient1.iatVO.iatKcal}</td>
+								<td>${nutrient1.iatVO.iatSugars}</td>
+								<td>${nutrient1.iatVO.iatProtein}</td>
+								<td>${nutrient1.iatVO.iatSaturatedFat}</td>
+								<td>${nutrient1.iatVO.iatNatrium}</td>
 							</tr>
 							</li>
 						</c:forEach>
