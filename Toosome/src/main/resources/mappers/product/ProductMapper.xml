@@ -131,7 +131,7 @@
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
 		INNER JOIN
 		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
-		WHERE A.PRODUCT_ID=${productId};
+		WHERE A.PRODUCT_ID=#{productId};
 	</select> 
 	<select id="getproductDetailById" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
@@ -159,7 +159,7 @@
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
 		INNER JOIN
 		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
-		WHERE A.PRODUCT_ID=${productId};
+		WHERE A.PRODUCT_ID=#{productId};
 	</select> 
 <!--
 	<select id="getproductprecautionsDetail" resultMap="productVO" >

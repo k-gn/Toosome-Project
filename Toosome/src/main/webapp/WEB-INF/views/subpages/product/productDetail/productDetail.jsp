@@ -32,7 +32,6 @@
         
         <ul class="order-btn cf">
           <li><a href="#" class="online">온라인 주문</a></li>
-          <%-- <input type="button" class="basket" value="장바구니 담기" onclick="AddToCart('${productDetail.productId}')"> --%>
           <li><a href="#" class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
         </ul>
         
