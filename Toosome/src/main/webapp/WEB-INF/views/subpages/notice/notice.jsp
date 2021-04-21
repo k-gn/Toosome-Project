@@ -26,6 +26,11 @@
         	</div>
 			<p>TOOSOME PLACE의 공지사항을 확인하세요</p>
         	<div class="search-container">
+        		<select class="search-select" onchange="selectHandler(this);">
+        			<option value="0">번호순</option>
+        			<option value="1">작성일순</option>
+        			<option value="2">조회수순</option>
+        		</select>
         		<div class="search-wrapper">
         			<input id="search-input" type="search" placeholder="검색어를 입력하세요">
         			<button id="search-btn">검색</button>        			

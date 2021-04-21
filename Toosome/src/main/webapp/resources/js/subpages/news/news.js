@@ -3,6 +3,7 @@ const newsBoard = document.getElementById('news');
 const searchBtn = document.getElementById('search-btn'); // 검색 버튼
 const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
+let result = []; // AJAX 결과 복사할 빈 배열
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
 let url = ''; // URL
@@ -93,13 +94,48 @@ const btnHandler = (e,items,page) => {
 	e.target.classList.add('active');
 };
 
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	currentPage = 1;
+	rows = 10;
+	let temp = [...result]; // 배열 복사
+	let newRes = []; // 정렬된 배열을 담을 빈 배열
+	
+	switch(value) {
+		case '0': 
+			displayList(temp, newsBoard, rows, currentPage);
+			setPagination(temp, pagination, rows);
+			break;
+		case '1': // 작성일순 정렬 
+			newRes = temp.sort((a,b) => {
+				a = new Date(a.newsBoardRegdate);
+				b = new Date(b.newsBoardRegdate);
+				return b - a;
+			});
+			displayList(newRes, newsBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);
+			break;
+		case '2': // 조회수순 정렬
+			newRes = temp.sort((a,b) => {
+				return b.newsBoardViewCount - a.newsBoardViewCount;
+			});
+			displayList(newRes, newsBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);
+			break;
+	};
+};
+
 // AJAX 요청 함수
 const getPage = (url) => {
 	$.ajax({
 		url,
 		success: (res) => {
-			const newRes = res.reverse();
-			
+			result = [...res];
+			const newRes = result.reverse();
 			displayList(newRes, newsBoard, rows, currentPage);
 			setPagination(newRes, pagination, rows);			
 		}
