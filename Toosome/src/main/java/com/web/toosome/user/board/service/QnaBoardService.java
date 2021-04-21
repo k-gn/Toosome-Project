@@ -31,4 +31,21 @@ public class QnaBoardService implements IQnaBoardService {
 		mapper.insertQnaBoard(vo);	
 	}
 
+	@Override
+	public QnaBoardVO passwordQnaBoard(Integer index) {
+		System.out.println("qna 비밀번호 :" + mapper.passwordQnaBoard(index));
+		return mapper.passwordQnaBoard(index);
+	}
+
+	@Override
+	public void qnaBoardCount(String index) {
+		mapper.qnaBoardCount(index);
+	}
+
+	@Override
+	public List<QnaBoardVO> getSearchQnaBoard(String keyword) {
+		System.out.println("qna 검색기능 : " + mapper.getSearchQnaBoard(keyword));
+		return mapper.getSearchQnaBoard(keyword);
+	}
+
 }

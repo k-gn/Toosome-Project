@@ -18,8 +18,8 @@ public class QnaBoardVO {
 	private Integer qnaBoardViewCount;
 	private String qnaBoardPassword;
 	private String qnaBoardImageName;
-	private Integer qnaBoardSecret; 
+	private Integer qnaBoardSecret; // 비밀글 일시 참(1) 아닐시 거짓(0) 디폴트 값 (0) 
 	private MultipartFile uploadFile;
-	// 비밀글 일시 참(1) 아닐시 거짓(0) 디폴트 값 (0)
+	private boolean qnaBoardConfirm; //기본값 false
 	
 }

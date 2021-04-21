@@ -15,4 +15,12 @@ public interface IQnaBoardService {
 	//qna 게시물 작성 기능
 	public void insertQnaBoard(QnaBoardVO vo);
 	
+	//qna 게시물 비밀번호
+	public QnaBoardVO passwordQnaBoard(Integer index);
+	
+	//qna 게시물 카운트
+	public void qnaBoardCount(String index);
+	
+	//qna 게시물 검색기능
+	public List<QnaBoardVO> getSearchQnaBoard(String keyword);
 }

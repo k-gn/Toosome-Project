@@ -31,11 +31,11 @@
           <li><a href="/nutrient4">델리</a></li>
         </ul>
         
-			<form action="/nutrient2/search" method="get"> 
-        <div class="search2">
-          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요."><input type="image"
-           src="/resources/img/subpages/nutrient/search.gif" alt="검색버튼">
-        </div>
+			<form action="/nutrient2/search" method="get">
+		        <div class="search">
+		          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
+		          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="">
+		        </div>
 			</form>
 			
         <table class="table table-hover">

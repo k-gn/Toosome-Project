@@ -20,6 +20,7 @@
 		<result property="levelPointRate" column="LEVEL_POINT_RATE"/>
 		<result property="levelImg" column="LEVEL_IMG"/>
 		<result property="levelName" column="LEVEL_NAME"/>
+		<result property="levelDeliveryPay" column="LEVEL_DELIVERYPAY"/>
 	</resultMap>
 
 	<!-- 멤버쉽 등록 -->
@@ -30,7 +31,7 @@
 	<!-- 멤버쉽 조회 -->
 	<select id="getMembershipInfo" resultMap="membershipMap">
 		SELECT
-		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE, LEVEL_MINRANGE, LEVEL_MAXRANGE, LEVEL_POINT_RATE, LEVEL_IMG, LEVEL_NAME
+		 MEMBERSHIP_ID, MEMBER_ID, mem.LEVEL_ID, MEMBERSHIP_POINT, LEVEL_DISCOUNT_RATE, LEVEL_MINRANGE, LEVEL_MAXRANGE, LEVEL_POINT_RATE, LEVEL_IMG, LEVEL_NAME, LEVEL_DELIVERYPAY
 		FROM
 		 MEMBERSHIP mem LEFT OUTER JOIN LEVEL lvl on mem.LEVEL_ID = lvl.LEVEL_ID
 		WHERE MEMBER_ID = #{id}

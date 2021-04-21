@@ -12,5 +12,9 @@ public interface IQnaBoardMapper {
 	
 	public void insertQnaBoard(QnaBoardVO vo);
 	
-
+	public QnaBoardVO passwordQnaBoard(Integer index);
+	
+	public void qnaBoardCount(String index);
+	
+	public List<QnaBoardVO> getSearchQnaBoard(String keyword);
 }

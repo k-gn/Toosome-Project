@@ -32,10 +32,10 @@
         </ul>
         
 			<form action="/nutrient3/search" method="get">
-        <div class="search">
-          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
-          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="">
-        </div>
+		        <div class="search">
+		          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
+		          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="">
+		        </div>
 			</form>
 			
         <table class="table table-hover">

@@ -4,6 +4,8 @@
 <html lang="ko">
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+ 	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
   	<script src="/resources/js/subpages/qna/qna.js" defer></script>

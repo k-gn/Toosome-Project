@@ -36,7 +36,7 @@
         	<div class="list-btn">
         		<a href="#" onclick="location.href='/qna'">목록</a>
         	</div>
-        	<h3>답변</h3>
+        	<h3>댓글</h3>
         	<table summary="QnAComment" class="comment-table">
         		<colgroup>
         			<col width="70%">
@@ -46,6 +46,29 @@
         		<thead></thead>
         		<tbody id="comment"></tbody>
         	</table>
+        	<h3>댓글 등록</h3>
+        	<form action="#" method="POST">
+	        	<table summary="QnAComment" class="comment-table">
+	        		<colgroup>
+	        			<col width="70%">
+	        			<col width="15%">
+	        			<col width="15%">
+	        		</colgroup>
+	        		<thead>
+	        			<tr>
+		        			<th>제목 : <input type="text" name="commentTitle" placeholder="제목을 입력하세요"></th>
+	        				<th><button type="submit">등록</button></th>
+	        			</tr>
+	        		</thead>
+	        		<tbody>
+	        			<tr>
+		        			<td colspan="5">
+								<textarea name="commentContent" rows="5" placeholder="명예훼손, 개인정보 유출, 분쟁 유발, 허위사실 유포 등의 글은 이용약관에 의해 제재는 물론 법률에 의해 처벌받을 수 있습니다. 건전한 인터넷 사용을 위해 자제를 당부드립니다."></textarea>	        				
+		        			</td>
+	        			</tr>
+	        		</tbody>
+	        	</table>
+        	</form>
         </section>
 		<!-- section end -->
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
