@@ -30,16 +30,16 @@
     	
         <div class="product-box">
 					<ul class="all">
-						<c:forEach var="productAllList" items="${productAllList}">
+						<c:forEach var="productNewList" items="${productNewList}">
 							<li>
-								<a href="/productDetail?productId=${productAllList.productId}">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
-									<c:if test="${productCoffeeList.productNew == 1}">
+								<a href="/productDetail?productId=${productNewList.productId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
+									<c:if test="${productNewList.productNew == 1}">
 									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
-									<span>${productAllList.productTitleName}</span>
+									<span>${productNewList.productTitleName}</span>
 									<div class="pay-box">
-										<span class="com" style="float: left;">${productAllList.productPrice}</span>
+										<span class="com" style="float: left;">${productNewList.productPrice}</span>
 										<span style="float: left;">&nbsp;원</span>
 									</div>
 								</a>

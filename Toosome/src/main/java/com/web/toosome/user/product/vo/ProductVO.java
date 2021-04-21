@@ -2,7 +2,6 @@ package com.web.toosome.user.product.vo;
 
 import java.util.Date;
 
-import com.web.toosome.user.menu.vo.IatVO;
 
 import lombok.Data;
 

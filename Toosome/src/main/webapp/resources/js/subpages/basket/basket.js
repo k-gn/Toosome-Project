@@ -31,3 +31,7 @@ function deleteRow(ths) {
 
   ths.parents("tr").remove();
 }
+
+function deleteAll(all){
+	var  all 
+}

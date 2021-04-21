@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductPrecautionsVO;
+import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
@@ -20,8 +21,8 @@ public class ProductController {
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
-		List<ProductVO> productAllList = productService.getproductnewList(productVO);
-		model.addAttribute("productAllList", productAllList);
+		List<ProductVO> productNewList = productService.getproductnewList(productVO);
+		model.addAttribute("productNewList", productNewList);
 		System.out.println(model);
 		return "subpages/product/productNew";
 	}
@@ -54,19 +55,15 @@ public class ProductController {
 	}
 
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
-	public String productDetail(ProductVO productVO, Model model) {
+	public String productDetail(ProductVO productVO, ProductScoreVO productScoreVO, Model model1, Model model2) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
-		model.addAttribute("productDetail", productDetail);
-		System.out.println(model);
-//		System.out.println("상품 주의사항 디테일 출력");
-//		ProductVO productprecautionsDetail = productService.getproductprecautionsDetail(productVO);
-//		model2.addAttribute("productprecautionsDetail", productprecautionsDetail);
-//		System.out.println(model2);
+		model1.addAttribute("productDetail", productDetail);
+		System.out.println(model1);
 //		System.out.println("별점 출력");
 //		ProductScoreVO scoreDetail = productService.getscoreDetail(productScoreVO);
-//		model.addAttribute("scoreDetail", scoreDetail);
-//		System.out.println(model);
+//		model2.addAttribute("scoreDetail", scoreDetail);
+//		System.out.println(model2);
 		return "subpages/product/productDetail/productDetail";
 	}
 	

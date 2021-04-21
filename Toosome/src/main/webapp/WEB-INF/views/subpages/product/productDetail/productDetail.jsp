@@ -19,16 +19,16 @@
         <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
 
         <ul class="star cf">
-          <li><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></li>
+          <li><!-- <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}off.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></li>
           <li>${productDetail.productSubName}</li>
         </ul> 
         <p class="strong">${productDetail.productTitleName}</p>
         <p class="product-pay"><span class="com">${productDetail.productPrice}</span> 원</p>
-        <p class="title-text">${productDetail.productContent}</p>
+        <p class="title-text">${productDetail.productContent}<p>
         
         
         <ul class="order-btn cf">
-          <li><a href="#" class="online">온라인 주문</a></li>
+          <li><a href="/basket?productId=${productDetail.productId}" class="online">온라인 주문</a></li>
           <li><a href="#" class="basket">장바구니 담기</a></li>
         </ul>
         
