@@ -33,14 +33,14 @@
 			<p>TOOSOME PLACE에 대한 문의사항을 쉽고 빠르게 찾아보세요.</p>
 			<div class="search-container">
 				<div class="search-wrapper">
-					<input type="search" placeholder="검색어를 입력하세요">
-					<button>검색</button>
+					<input id="search-input" type="search" placeholder="검색어를 입력하세요">
+					<button id="search-btn">검색</button>
 				</div>
 			</div>
 			<div class="faq-container">
 				<c:forEach var="faqBoardList" items="${faqBoardList}">
 					<div class="faq-wrapper">
-						<div class="faq-question">
+						<div class="faq-question" onclick="accordionHandler(this);">
 							<div>
 								<span>Q</span> <span>${faqBoardList.faqBoardTitle}</span>
 							</div>
