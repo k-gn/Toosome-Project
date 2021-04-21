@@ -214,7 +214,11 @@ public class BoardController {
 		return qnalist;	
 	}
 	
+<<<<<<< HEAD
+	@RequestMapping(value ="/qna-detail", method = {RequestMethod.GET, RequestMethod.POST}) // qna 상세 페이지 주소값 리턴
+=======
 	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+>>>>>>> dev
 	@ResponseBody
 	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
 		System.out.println(vo);
