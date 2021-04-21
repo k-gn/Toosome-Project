@@ -104,15 +104,15 @@
               </td>
             </tr>
             <tr>
-              <td>결제금액</td>
-              <td><span class="bold txt_blue com">${menuOrderCompleteList.menuPrice}</span>원</td>
-            </tr>
-            <tr>
               <td>사용한 포인트 </td>
               <td>
-                <span class="use-point com">0</span> P
+                <span class="use-point com">${v_point}</span> P
               </td>
             </tr> 
+            <tr>
+              <td>결제금액</td>
+              <td><span class="bold txt_blue com">${manuPrice}</span>원</td>
+            </tr>
           </tbody>
         </table>
         <div class="pay-do">

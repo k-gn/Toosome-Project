@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 
@@ -19,7 +21,7 @@ IMP.request_pay({
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : '${importList.menuMainTitle}',
-    amount : ${menuPrice}, //판매 가격
+    amount : ${map.menuPrice}, //판매 가격
     buyer_email : '${memberImportList.memberEmail}',
     buyer_name : '${memberImportList.memberName}',
     buyer_tel : '${memberImportList.memberPhone}',
@@ -33,17 +35,22 @@ IMP.request_pay({
         msg += '결제 금액 : ' + rsp.paid_amount;
         msg += '카드 승인번호 : ' + rsp.apply_num;
         $.ajax({
-        	url : "/stackpoint",
-        	success:(date) => {
-        		location.href="/menuordercomplete?menuId=${importList.menuId}&memberId=${memberImportList.memberId}"; // 임시로 메인으로 이동.
-        	}
-        })
+        	type : "GET",
+            url: "/stackpoint?menuId=${importList.menuId}"
+            success : function() {
+            	$.ajax({
+                	type : "POST",
+                    url: "/menuordercomplete?menuId=${importList.menuId}&memberId=${memberImportList.memberId}&menuPrice=${map.menuPrice}&v_point=${map.v_point}",
+                });
+            }
+        });
+
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
         location.href="/";
     }
-    alert(msg);
+    alert(msg); 
 });
 </script>
 </html>

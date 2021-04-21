@@ -126,7 +126,7 @@
             <tr>
               <td></td>
               <td>
-                <span> <input type="text" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(${menusal},${memberPoint.membershipPoint},100,10)"></span> p 
+                <span> <input type="text" name="use_pnt" id="use_pnt" min="100" onchange="changePoint(${menusal},${memberPoint.membershipPoint},100,10)"></span> p 
                 <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">${memberPoint.membershipPoint}</span>p )
               </td>
             </tr>
@@ -138,7 +138,7 @@
           <!-- <input type="submit" value="결제하기"> -->
           <a id="abcd" href="/import1?menuId=${menuOrderList.menuId}&menuPrice=${menusal}">결제하기</a>
         </div>
-        
+
       </div>
 
     </section>
@@ -205,16 +205,12 @@ function changePoint(amt, pnt, min, unit) {
     v_left[i].innerHTML = pnt - v_point; //= 전체 포인트 중에 사용할 포인트빼고 남은 포인트
   }
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
-
+  
   var dlatl = amt - v_point;
-  document.getElementById("abcd").href = "/import1?menuId=${menuOrderList.menuId}&menuPrice=" + dlatl;
-
+  document.getElementById("abcd").href = "/import1?menuId=${menuOrderList.menuId}&menuPrice=" + dlatl + "&v_point=" + v_point;
+  
 }
 
-
-
-
-  
 </script>
 </body>
 </html>

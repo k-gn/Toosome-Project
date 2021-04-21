@@ -47,7 +47,7 @@
 	</select>
 	<!-- menu에서 포인트 적립 1%로 적용함. -->
 	<select id="getStackPoint">
-		UPDATE MEMBERSHIP SER MEMBERSHIP_POINT = #{point} WHERE MEMBER_ID = #{id}
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{point} WHERE MEMBER_ID = #{id}
 	</select>
 	<!-- 포인트 누적 
 	<update id="updatePoint">

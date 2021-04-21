@@ -1,6 +1,7 @@
 package com.web.toosome.user.membership.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class MembershipService implements IMembershipService {
 	}
 
 	@Override
-	public void getStackPoint(Integer point, Integer id) {
-		mapper.getStackPoint(point, id);
+	public void getStackPoint(Map<String, Integer> map) {
+		mapper.getStackPoint(map);
 	}
 
 }
