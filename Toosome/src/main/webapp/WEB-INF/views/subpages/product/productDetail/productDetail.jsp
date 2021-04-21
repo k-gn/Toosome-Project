@@ -16,8 +16,16 @@
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     
-    <div class="productDetail-container">      
+    <div class="productDetail-container"> 
+    
+	<div class="title-container">
+		<span class="productDetail-title">NEW</span>
+		<span class="productDetail-title big">커피상품</span>
+		<span class="productDetail-title">커피웨어 / 기타</span>
+		<span class="productDetail-title">기프트세트</span>
+	</div>     
       <div class="contents">
+      
 
         <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
 
