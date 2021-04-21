@@ -55,15 +55,11 @@ public class ProductController {
 	}
 
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
-	public String productDetail(ProductVO productVO, ProductScoreVO productScoreVO, Model model1, Model model2) {
+	public String productDetail(ProductVO productVO, Model model) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
-		model1.addAttribute("productDetail", productDetail);
-		System.out.println(model1);
-//		System.out.println("별점 출력");
-//		ProductScoreVO scoreDetail = productService.getscoreDetail(productScoreVO);
-//		model2.addAttribute("scoreDetail", scoreDetail);
-//		System.out.println(model2);
+		model.addAttribute("productDetail", productDetail);
+		System.out.println(productDetail);
 		return "subpages/product/productDetail/productDetail";
 	}
 	

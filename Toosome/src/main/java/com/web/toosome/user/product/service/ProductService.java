@@ -98,8 +98,10 @@ public class ProductService implements IProductService{
 		return productmapper.getproductprecautionsDetail(productVO);
 	}
 
-	
-
+	@Override
+	public ProductVO getproductDetailById(Integer pid) {
+		return productmapper.getproductDetailById(pid);
+	}
 
 
 }

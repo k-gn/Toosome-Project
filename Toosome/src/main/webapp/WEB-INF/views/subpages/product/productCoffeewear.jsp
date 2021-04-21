@@ -37,6 +37,9 @@
 									<c:if test="${productCoffeewearList.productNew == 1}">
 									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
+									<c:if test="${productCoffeewearList.productState == 2}">
+									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
+									</c:if>
 									<span>${productCoffeewearList.productTitleName}</span>
 									<div class="pay-box">
 										<span class="com" style="float: left;">${productCoffeewearList.productPrice}</span>

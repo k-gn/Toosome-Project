@@ -1,40 +1,46 @@
 package com.web.toosome.user.basket.service;
 
-public class BasketService {
-	/*public void getBasket(){
-		if(cart.size() == 0) {
-			out.println("<tr align='center'>");
-				out.println("<td colspan= '5'>");
-					out.println("장바구니에 담긴 상품이 없습니다.");
-					out.println("<a href= 'ShopMallMain.jsp'>주문하기</a>");
-				out.println("</td>");
-			out.println("</tr>");
-		} else {
-			int totalSum = 0, total = 0;
-			DecimalFormat df = new DecimalFormat("￦#,##0");
-			for(int i = 0; i < cart.size(); i++) {
-				CartDTO dto = cart.get(i);
-				out.println("<tr align= 'center'>");
-					out.println("<td>" + (i + 1) + "</td>");
-					out.println("<td>" + dto.getName() + "</td>");
-					out.println("<td>" + df.format(dto.getPrice()) + "</td>");
-					out.println("<td>" + dto.getCnt() + "</td>");
-					total = dto.getPrice() * dto.getCnt();
-					out.println("<td>" + df.format(total) + "</td>");
-				out.println("</tr>");
-				totalSum += total;
-			}
-		out.println("<tr align = 'center'>");
-			out.println("<td colspan= '4'>");
-				out.println("<input type='button' value='결제하기' onclick='fnPay()' />");
-				out.println("<input type='button' value='장바구니 비우기' onclick='fnClear()' />");
-				out.println("<input type='button' value='쇼핑 계속하기' onclick='fnGo()' />");
-			out.println("</td>");
-			out.println("<td>");
-			out.println(df.format(totalSum));
-			out.println("</td>");
-		out.println("</tr>");
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.web.toosome.user.basket.dao.IBasketMapper;
+import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.product.dao.IProductMapper;
+import com.web.toosome.user.product.vo.ProductVO;
+
+@Service
+public class BasketService implements IBasketService {
+	
+	@Autowired
+	private IBasketMapper bmapper;
+	
+	@Autowired
+	private IProductMapper pmapper;
+
+	@Override
+	public int addBasket(BasketVO basket) {
+		
+		int pid = bmapper.getBasketProductId(basket);
+		if(pid > 0) {
+			bmapper.modBasketAmount(basket);
+			return 1;
 		}
+		
+		ProductVO product = pmapper.getproductDetailById(basket.getProductId());
+		System.out.println("addbasket : " + product);
+		basket.setProductImageId(product.getProductImageVO().getProductImageId());
+		basket.setBasketName(product.getProductTitleName());
+		basket.setBasketPrice(product.getProductPrice());
+		System.out.println("addbasket : " + basket);
+		return bmapper.addBasket(basket);
 	}
-*/
+
+	@Override
+	public List<BasketVO> getBasket(Integer id) {
+		return bmapper.getBasket(id);
+	}
 }

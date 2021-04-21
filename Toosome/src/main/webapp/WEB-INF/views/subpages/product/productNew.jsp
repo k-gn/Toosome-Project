@@ -32,12 +32,24 @@
 					<ul class="all">
 						<c:forEach var="productNewList" items="${productNewList}">
 							<li>
+<<<<<<< HEAD
 								<a href="/productDetail?productId=${productNewList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productNewList.productNew == 1}">
 									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
 									<span>${productNewList.productTitleName}</span>
+=======
+								<a href="/productDetail?productId=${productAllList.productId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
+									<c:if test="${productAllList.productNew == 1}">
+									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+									</c:if>
+									<c:if test="${productAllList.productState == 2}">
+									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
+									</c:if>
+									<span>${productAllList.productTitleName}</span>
+>>>>>>> origin/gyul
 									<div class="pay-box">
 										<span class="com" style="float: left;">${productNewList.productPrice}</span>
 										<span style="float: left;">&nbsp;원</span>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -212,17 +214,34 @@ public class BoardController {
 		return qnalist;	
 	}
 	
-	@RequestMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
- 	public String qnaDetailView() {
-		return "subpages/qna/qnaDetail/qnaDetail";
+	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+	@ResponseBody
+	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
+		System.out.println(vo);
+		if (vo.getQnaBoardSecret() != 1) {
+			return "success";
+		} else {
+			if (qnaBoardService.passwordQnaBoard(vo.getQnaBoardId()).getQnaBoardPassword().equals(vo.getQnaBoardPassword())) {
+				return "success"; // 비밀글인데 암호맞음
+			} else { // 비밀글인데 암호 틀린경우일경우
+				return "fail";
+			}
+		}
 	}
 	
+	@GetMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
+	public String qnaDetailView(String index) {
+		return "subpages/qna/qnaDetail/qnaDetail";
+	}
+
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
 	@ResponseBody
 	public List<QnaBoardVO> qnaDetail(String index){
+	
 		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
-		System.out.println("qna게시물 세부정보(컨트롤러): " + qnadetail);
-		return qnadetail;
+		System.out.println("공개글 qna게시물 세부정보(컨트롤러): " + qnadetail);
+		return qnadetail;  
+		
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER')")

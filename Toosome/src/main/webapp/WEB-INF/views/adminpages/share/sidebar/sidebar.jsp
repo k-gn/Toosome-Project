@@ -158,7 +158,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/admin/statistics">
           <i class="material-icons">language</i>
           <p>통계</p>
         </a>
@@ -172,11 +172,21 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>이벤트 관리</li>
-       		<li>공지사항 관리</li>
-       		<li>뉴스 관리</li>
-       		<li>QnA 관리</li>
-       		<li>FAQ 관리</li>
+       		<li>
+       			<a href="/admin/eventboard-management">이벤트 관리</a>
+       		</li>
+       		<li>
+       			<a href="/admin/noticeboard-management">공지사항 관리</a>
+       		</li>
+       		<li>
+       			<a href="/admin/newsboard-management">뉴스 관리</a>
+       		</li>
+       		<li>
+       			<a href="/admin/faqboard-management">FAQ 관리</a>
+       		</li>
+       		<li>
+       			<a href="/admin/qnaboard-management">QNA 관리</a>
+       		</li>
           </ul>
         </div>
       </li>

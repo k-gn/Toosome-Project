@@ -98,6 +98,9 @@
   font-weight: bold;
   color: #333;
 }
+.bottom-box table tbody tr td:nth-child(4) {
+  color: red;
+} 
 .bottom-box table tbody tr td:last-child {
   color: red;
 } 

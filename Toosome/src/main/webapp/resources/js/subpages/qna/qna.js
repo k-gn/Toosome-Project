@@ -5,17 +5,42 @@ const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
-
+let csrfTokenValue = $("meta[name='_csrf']").attr("content");
+let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
 // 게시판 상세 페이지로 이동 함수
 const locateQnaDetail = (index, isLocked) => {
-	if(!isLocked) {
-		// index를 갖고 상세 페이지로 이동
-		window.location.href = '/qna-detail?index='+index;
-	} else {
-		let pwd = prompt('비밀번호를 입력해주세요');
-		console.log(pwd);
-		/* pwd로 서버에 AJAX 요청 비밀번호 대조 */
+	let pwd = '';
+	if(isLocked) {
+		pwd = prompt('비밀번호를 입력해주세요');
+	} 
+	const vo = {
+		qnaBoardPassword : pwd,
+		qnaBoardId : index,
+		qnaBoardSecret: isLocked
 	};
+	
+	$(document).ajaxSend(function(e, xhr, options) { 
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+    }); 
+	
+	// 서버와 비밀번호 대조
+	$.ajax({
+		type: "POST",
+		url: '/qna-detail',
+		headers: {
+			"Content-Type": "application/json",
+		},
+		dataType: "text", 
+		data: JSON.stringify(vo),
+		success: (res) => {
+			if(res === 'success') {
+				location.href='/qna-detail?index='+index;
+			}
+		},
+		error: () => {
+			alert('통신장애');
+		}
+	});
 };
 
 // 리스트 출력

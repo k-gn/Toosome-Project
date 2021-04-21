@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.basket.dao.IBasketMapper">
+
+	<resultMap type="productImageVO" id="productImageMap">
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
+		<result property="productImageName" column="PRODUCT_IMAGE_NAME" />
+		<result property="productImageExtention" column="PRODUCT_IMAGE_EXTENTION" />
+		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE" />
+	</resultMap>
+	
+	<resultMap type="basketVO" id="basketMap">
+		<result property="basketId" column="BASKET_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="basketAmount" column="BASKET_AMOUNT" />
+		<result property="basketName" column="BASKET_NAME" />
+		<result property="basketPrice" column="BASKET_PRICE" />
+		<collection property="productImageVO" resultMap="productImageMap"/>
+	</resultMap>
+
+	<insert id="addBasket">
+		INSERT INTO BASKET(MEMBER_ID, PRODUCT_ID, BASKET_NAME, BASKET_PRICE, PRODUCT_IMAGE_ID)
+		VALUES(#{memberId}, #{productId}, #{basketName}, #{basketPrice}, #{productImageId})
+	</insert>
+	
+	<select id="getBasketProductId" resultType="Integer">
+		SELECT COUNT(PRODUCT_ID) FROM BASKET WHERE MEMBER_ID = #{memberId} AND PRODUCT_ID = #{productId}
+	</select>
+	
+	<update id="modBasketAmount">
+		UPDATE BASKET SET BASKET_AMOUNT = BASKET_AMOUNT + 1 WHERE MEMBER_ID = #{memberId} AND PRODUCT_ID = #{productId}
+	</update>
+
+	<select id="getBasket" resultMap="basketMap">
+		SELECT
+		 BASKET_ID, MEMBER_ID, PRODUCT_ID, B.PRODUCT_IMAGE_ID, BASKET_AMOUNT, BASKET_NAME, BASKET_PRICE,
+		 PRODUCT_IMAGE_NAME, PRODUCT_IMAGE_ROUTE, PRODUCT_IMAGE_EXTENTION
+		FROM
+		 BASKET B LEFT OUTER JOIN PRODUCT_IMAGE PI on B.PRODUCT_IMAGE_ID = PI.PRODUCT_IMAGE_ID
+		WHERE MEMBER_ID = #{id}
+	</select>
+</mapper>

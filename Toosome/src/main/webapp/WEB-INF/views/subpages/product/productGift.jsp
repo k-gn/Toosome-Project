@@ -37,6 +37,9 @@
 									<c:if test="${productGiftList.productNew == 1}">
 									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
 									</c:if>
+									<c:if test="${productGiftList.productState == 2}">
+									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
+									</c:if>
 									<span>${productGiftList.productTitleName}</span>
 									<div class="pay-box">
 										<span class="com" style="float: left;">${productGiftList.productPrice}</span>
