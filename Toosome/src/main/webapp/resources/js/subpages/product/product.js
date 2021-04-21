@@ -39,3 +39,14 @@ function AddToCart(pid) {
     });
 	
 }
+
+$(function(){
+	
+	$(".product-container .contents .all li a").click(function(e){
+		if($(this).children(".sold").length) {
+			e.preventDefault();
+		}
+	});
+	
+	
+});
