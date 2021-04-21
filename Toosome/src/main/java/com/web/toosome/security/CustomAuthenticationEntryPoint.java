@@ -16,7 +16,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 			AuthenticationException authException) throws IOException, ServletException {
 		String uri = request.getRequestURI();
 		if(uri.contains("admin")) {
-			response.sendRedirect("/admin/signin?error");
+			response.sendRedirect("/admin/signin");
 		} else {
 			response.sendRedirect("/signin?error");
 		}
