@@ -1,9 +1,6 @@
 package com.web.toosome.user.basket.vo;
 
-import java.util.List;
-
 import com.web.toosome.user.product.vo.ProductImageVO;
-import com.web.toosome.user.product.vo.ProductVO;
 
 import lombok.Data;
 

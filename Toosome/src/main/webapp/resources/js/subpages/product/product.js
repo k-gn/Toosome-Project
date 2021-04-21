@@ -19,7 +19,7 @@ function AddToCart(pid) {
 	};
 	
 	$.ajax({
-	   url: '/addBasket',
+	   url: '/basket',
 	   type: 'post',
 	   headers: {
 		"Content-Type": "application/json"
