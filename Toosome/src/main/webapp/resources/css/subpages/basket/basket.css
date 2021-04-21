@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-section {
+.section {
 	max-width: 1000px;
   padding-bottom: 50px;
 	box-sizing: border-box;
@@ -12,7 +12,7 @@ section {
 	box-shadow: 0 2px 3px #ccc;
 }
 
-section > p {
+.section > p {
 	font-family: gsdr;
 	font-size: 1.5rem;
 	margin: 50px 0;
@@ -56,20 +56,21 @@ section > p {
 	color: #666;
 }
 
-section table {
+.section table {
 	width: 100%;
 	height: auto;
 }
 
-.order-container {
-	width: 100%;
-	height: auto;
+.btn-box {
+	width: 90%;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
 }
-
 .btn-box button {
 	outline: none;
 	appearance: none;
-	width: 150px;
+	width: 300px;
 	height: 50px;
 	padding: 10px 15px;
 	border: 2px solid #a62326;
