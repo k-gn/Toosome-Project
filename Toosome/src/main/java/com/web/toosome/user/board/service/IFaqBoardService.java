@@ -6,4 +6,6 @@ import com.web.toosome.user.board.vo.FaqBoardVO;
 
 public interface IFaqBoardService {
 	public List<FaqBoardVO> getFaqBoardList(FaqBoardVO vo);
+	
+	public List<FaqBoardVO> getFaqSearchBoardList(String keyword);
 }

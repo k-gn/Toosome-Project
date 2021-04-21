@@ -102,6 +102,20 @@ public class BoardController {
 		System.out.println(model);
 		return "subpages/faq/faq";
 	}
+	
+	@GetMapping(value = "/faqsearch", produces = "application/json") // 게시판 검색기능
+	@ResponseBody
+	public List<FaqBoardVO> searchfnq(String keyword) throws Exception {	
+		
+		if(keyword != null) {		
+		List<FaqBoardVO> searchfaq = faqBoardService.getFaqSearchBoardList(keyword);
+		System.out.println("검색 값넘기기: " +searchfaq);
+		return searchfaq;
+		}else {
+			return null;
+		}
+		
+	}
 
 	@RequestMapping(value = "/notice") //게시판 화면
 	public String noticeView() {
