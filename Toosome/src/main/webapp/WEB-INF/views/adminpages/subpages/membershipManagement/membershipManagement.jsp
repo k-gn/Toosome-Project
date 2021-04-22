@@ -11,6 +11,7 @@
 <link
 	href="/resources/css/adminpages/subpages/membershipManagement/membershipManagement.css"
 	rel="stylesheet" />
+<script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
 <script
 	src="/resources/js/adminpages/subpages/membershipManagement/membershipManagement.js"
 	defer></script>
@@ -90,19 +91,27 @@
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">초기포인트</label>
+		                          <label class="bmd-label-floating">배송비</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">등급 안내 메시지</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
+							  <div class="col-md-12 text-center">
+								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">이미지 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="..." />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+								    </div>
+								</div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-info pull-right">업데이트</button>

@@ -10,7 +10,7 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/boardManagement/newsBoardManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/newsBoardManagement.js" defer></script>
 </head>
 
@@ -77,27 +77,9 @@
                              	<button class="period news" value="6M">6개월</button>
                              	<button class="period news" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	</div>
                              </div>
                            </td>
@@ -133,7 +115,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -200,11 +182,22 @@
 							  <div class="info info-horizontal">
 				                <div class="description">
 				                  <h4 class="info-title">이미지</h4>
-				                  <div class="form-group">
-		                            <label class="bmd-label-floating">업로드</label>
-		                            <input type="file" class="custom-file-input" id="file" accept="image/*">
-		                            <label class="btn btn-success custom-file-label btn-s" for="file"></label>
-		                          </div>
+				                  <div class="text-center">
+					                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+									    <div class="fileinput-new thumbnail img-raised">
+									        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+									    </div>
+									    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+									    <div>
+									        <span class="btn btn-raised btn-round btn-default btn-file">
+									            <span class="fileinput-new">이미지 선택</span>
+									            <span class="fileinput-exists">수정</span>
+									            <input type="file" name="..." />
+									        </span>	
+									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+									    </div>
+									  </div>
+				                  </div>
 				                </div>
 				              </div>
 				            </div>
@@ -214,7 +207,7 @@
 				                <h4 class="info-title">내용</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" rows="10" placeholder="내용을 입력하세요"></textarea>
+	                                <textarea class="form-control" rows="15" placeholder="내용을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         

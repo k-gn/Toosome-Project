@@ -13,8 +13,7 @@
 	rel="stylesheet" />
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
 <script
 	src="/resources/js/adminpages/subpages/productManagement/enrollProduct.js"
 	defer></script>
@@ -111,27 +110,9 @@
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품등록일</label>
 		                          <div class="calendar-wrapper">
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	  </div>
 		                        </div>
 		                      </div>
@@ -139,27 +120,9 @@
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
 		                          <div class="calendar-wrapper">
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar3" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar4" class="calendar" type="date" value="">
                              	  </div>
 		                        </div>
 		                      </div>
@@ -175,14 +138,21 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">상품 이미지</label>
-		                            <input type="file" class="custom-file-input" id="file" accept="image/*">
-		                            <label class="btn btn-success custom-file-label btn-s" for="file"></label>
-		                          </div>
-		                        </div>
+		                      <div class="col-md-12 text-center">
+		                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">이미지 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="..." />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+								    </div>
+								</div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-success pull-right">등록</button>
