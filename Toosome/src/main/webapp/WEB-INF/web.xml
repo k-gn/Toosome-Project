@@ -43,6 +43,10 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- <listener>
+		<listener-class>com.web.toosome.common.listener.VisitCounter</listener-class>
+	</listener> -->
 
 	<!-- 한글 인코딩 -->
 	<filter>
@@ -69,7 +73,4 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- <listener>
-		<listener-class>com.web.toosome.common.listener.VisitCounter</listener-class>
-	</listener> -->
 </web-app>

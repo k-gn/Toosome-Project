@@ -19,7 +19,6 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.menu.dao.IMenuMapper;
-import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Service
@@ -52,7 +51,6 @@ public class MenuService implements IMenuService {
 			upload.waitForCompletion();
 			return 1;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
 		}

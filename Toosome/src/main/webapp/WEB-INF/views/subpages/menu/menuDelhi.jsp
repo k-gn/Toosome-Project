@@ -17,7 +17,6 @@
                 <img class="title-logo" src=https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png alt="">
                 <span class="menu-title">MENU</span>
             </div>
-
             <div class="tab-container">
                 <div class="menu-btn">
                     <ul class="btn-tab">
@@ -50,7 +49,6 @@
                 </div>
             </div>
         </div>
-
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>

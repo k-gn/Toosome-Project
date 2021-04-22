@@ -44,7 +44,13 @@ public class BasketController {
 	}
 
 	@GetMapping("/basket/order") // 주문
-	public String order() {
+	public String order(HttpSession session, BasketUtil basketUtil, Model model) {
+		/*
+		 * Integer memberId = (Integer) session.getAttribute("id"); List<BasketVO>
+		 * baskets = service.getBasket(memberId); model.addAttribute("baskets",
+		 * baskets); MembershipVO ms = mservice.getMembershipInfo(memberId);
+		 * basketUtil.utilMethod(baskets, ms, basicImagePath);
+		 */
 		return "subpages/basket/order/order";
 	}
 
@@ -94,4 +100,11 @@ public class BasketController {
 		else
 			return "fail";
 	}
+	
+	@PostMapping("/basket/order") 
+	@ResponseBody
+	public String orderBasket(@RequestBody BasketUtil basketUtil, HttpSession session) {
+		return null;
+	}
+	
 }
