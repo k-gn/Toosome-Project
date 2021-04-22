@@ -39,9 +39,7 @@ public class BasketController {
 		List<BasketVO> baskets = service.getBasket(memberId);
 		model.addAttribute("baskets", baskets);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
-		if(ms != null) {
-			basketUtil.utilMethod(baskets, ms, basicImagePath);
-		}
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		return "subpages/basket/basket";
 	}
 
@@ -82,9 +80,7 @@ public class BasketController {
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
-		if(ms != null) {
-			basketUtil.utilMethod(baskets, ms, basicImagePath);
-		}
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		return basketUtil;
 	}
 	

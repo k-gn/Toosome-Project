@@ -14,9 +14,15 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		String referer = request.getHeader("Referer");
-		request.getSession().setAttribute("prevURI", referer);
 		String uri = request.getRequestURI();
+		String referer = request.getHeader("Referer");
+		
+		if(referer.contains("productDetail")) {
+			request.getSession().setAttribute("prevURI", referer);
+		}else {
+			request.getSession().setAttribute("prevURI", uri);
+		}
+		
 		if(uri.contains("admin")) {
 			response.sendRedirect("/admin/signin");
 		} else {
