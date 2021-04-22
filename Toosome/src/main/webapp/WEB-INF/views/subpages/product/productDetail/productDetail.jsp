@@ -12,17 +12,18 @@
   <script src="/resources/js/subpages/product/product.js"></script>
   <title>A TOOSOME PLACE</title>
 </head>
+
 <body>
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     
     <div class="productDetail-container">      
       <div class="contents">
-
+	
         <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
-
+	
         <ul class="star cf">
-          <li><!-- <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}off.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></li>
+          <li> <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_off.png" alt=""></li>
           <li>${productDetail.productSubName}</li>
         </ul> 
         <p class="strong">${productDetail.productTitleName}</p>
@@ -31,13 +32,9 @@
         
         
         <ul class="order-btn cf">
-<<<<<<< HEAD
           <li><a href="/basket?productId=${productDetail.productId}" class="online">온라인 주문</a></li>
-          <li><a href="#" class="basket">장바구니 담기</a></li>
-=======
-          <li><a href="#" class="online">온라인 주문</a></li>
           <li><a class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
->>>>>>> origin/gyul
+
         </ul>
         
         <ul class="notice-box">
@@ -87,47 +84,82 @@
           <form action="#" method="post" class="form1">
             <div class="star-catch-cover">
               <div class="star-catch">
-                <p class="star_img star"><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""><!--<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></p>
+	            <p class="star_img star"><img id="starimg5" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"></p>
+		        <p class="star_img"><img id="starimg4" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png"></p>
+		        <p class="star_img"><img id="starimg3" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png"></p>
+		        <p class="star_img"><img id="starimg2" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png"></p>
+		        <p class="star_img"><img id="starimg1" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png"></p>
+              </div>
+           
+<!-- 
+	<p class="star_img star"><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></p>
                 <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></p>
-              </div>
 
+                   <p id="star">
+	        <p class="star_img star"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_off.png" value="0"/> 
+	        <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png" value="1"/>
+	        <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png"  value="2"/>
+	        <p class="star_img"> <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png"  value="3"/> 
+	        <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png"  value="4"/>
+	        <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png" value="5"/>
+	    </p>
+-->
               <div class="triangle-cover">
                 ▼
               </div>
               
               <ul class="star-drop">
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_5.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></a></li>
+                <li><a href="#"><img id="starimg5" onmouseover=show(5) onclick=mark(5) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png" alt=""></a></li>
+                <li><a href="#"><img id="starimg4" onmouseover=show(4) onclick=mark(4) src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></a></li>
+                <li><a href="#"><img id="starimg3" onmouseover=show(3) onclick=mark(3) src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></a></li>
+                <li><a href="#"><img id="starimg2" onmouseover=show(2) onclick=mark(2) src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></a></li>
+                <li><a href="#"><img id="starimg1" onmouseover=show(1) onclick=mark(1) src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></a></li>
               </ul>
             </div>
-
+			
             <input type="text" placeholder="제품 한마디를 등록해 주세요.">
+            <input type="hidden" name="star" />
+            <c:if test="${sessionScope.memberMemberId == null }">
             <input type="submit" value="쓰기">
-
+            </c:if>
+            <c:if test="${sessionScope.memberMemberId != null }">
+			<input type="submit" value="쓰기">
+            </c:if>
           </form>
+          
+          <c:if test="${reviewBoardType != 0}">
           <form action="#" method="get" class="form2">
-            
             <ul class="comment-end">
               <li>
-                <span class="star-fin"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></span>
-                <span class="cocom">불량식품 맛 나요..ㅡㅡ</span>
-                <span class="nik">admin**</span>
-                <span class="dat">2021.04.02</span>
-              </li>
-              <li>
-                <span class="star-fin"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></span>
-                <span class="cocom">달달하니 좋네용용용</span>
-                <span class="nik">Tommy.Lee**</span>
-                <span class="dat">2021.04.01</span>
+               <c:forEach var="reviewBoardVO" items="${cmtList}">
+               <span class="star-fin">${reviewBoardVO.reviewBoardRating }
+               <c:if test="${reviewBoardVO.reviewBoardRating == 5 }">
+               	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"/>
+               	</c:if>
+               	<c:if test="${reviewBoardVO.reviewBoardRating == 4 }">
+               	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png"/>
+               	</c:if>
+               	<c:if test="${reviewBoardVO.reviewBoardRating == 3 }">
+               	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png"/>
+               	</c:if>
+               	<c:if test="${reviewBoardVO.reviewBoardRating == 2 }">
+               	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png"/>
+               	</c:if>
+               	<c:if test="${reviewBoardVO.reviewBoardRating == 1 }">
+               	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png"/>
+               	</c:if>
+               </span>
+               <span class="cocom">${reviewBoardVO.reviewBoardContent}</span>
+               <span class="nik">${reviewBoardVO.memberName}</span>
+               <span class="dat">${reviewBoardVO.reviewBoardRegDate}</span>
               </li>
             </ul>
           </form>
+          </c:forEach>
+          </c:if>
         </div>
       </div>
     </div>
@@ -139,6 +171,32 @@ coms.forEach((com => {
     let num = +(com.innerHTML);
     com.innerHTML = num.toLocaleString('en');
 }));
+</script>
+<script>
+getReply(); // 해당 페이지 실행 시 해당 함수 호출
+var locked =0;
+
+function show(star){
+	if(locked)
+		return;
+	var i;
+	var img;
+	var el;
+	for(i = 1; i>=star; i++){
+		img = 'starimg'+i;
+		el = document.getElementById(img);
+		el.src = "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png";
+	}
+}
+function lock(star){
+	show(star);
+	locked =1;
+}
+function mark(star){
+	lock(star);
+	alert(star+"개의 별점을 선택하셨습니다.");
+	document.cmtform.star.value=star;
+}
 </script>
 </body>
 </html>

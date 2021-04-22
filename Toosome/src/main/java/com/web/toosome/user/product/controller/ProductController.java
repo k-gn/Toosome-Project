@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductPrecautionsVO;
-import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller

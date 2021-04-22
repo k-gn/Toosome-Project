@@ -29,12 +29,13 @@
 		<typeAlias type="com.web.toosome.user.product.vo.ProductVO" alias="productVO"/>
 		<typeAlias type="com.web.toosome.user.product.vo.ProductImageVO" alias="productImageVO"/>
 		<typeAlias type="com.web.toosome.user.product.vo.ProductPrecautionsVO" alias="productPrecautionsVO"/>
-		<typeAlias type="com.web.toosome.user.product.vo.ProductScoreVO" alias="productScoreVO"/>
 		
 		<typeAlias type="com.web.toosome.user.basket.vo.BasketVO" alias="basketVO"/>
 		
 		<typeAlias type="com.web.toosome.user.membership.vo.MembershipVO" alias="membershipVO"/>
 		<typeAlias type="com.web.toosome.user.membership.vo.LevelVO" alias="levelVO"/>
+		
+		<typeAlias type="com.web.toosome.user.reviewboard.vo.ReviewBoardVO" alias="reviewBoardVO"/>
 
 	</typeAliases>
 </configuration>

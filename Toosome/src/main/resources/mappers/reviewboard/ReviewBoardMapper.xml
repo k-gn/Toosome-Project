@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.reviewboard.dao.IReviewBoardMapper">
+	
+	<resultMap type="reviewBoardVO" id="reviewBoardVO">
+		<id property="reviewBoardId" column="REVIEW_BOARD_ID" />
+		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="reviewBoardContent" column="REVIEW_BOARD_CONTENT" />
+		<result property="reviewBoardRating" column="REVIEW_BOARD_RATING" />
+		<result property="reviewBoardType" column="REVIEW_BOARD_TYPE" />
+		<result property="reviewBoardRegDate" column="REVIEW_BOARD_REG_DATE" />
+		<result property="reviewBoardImageRoute" column="REVIEW_BOARD_IMAGE_ROUTE" />
+		<collection property="memberVO" resultMap="memberVO" />
+		<collection property="productVO" resultMap="productVO" />
+		<collection property="menuVO" resultMap="menuVO" />
+	</resultMap>
+<!--
+	<select id="getproductnewList" resultMap="productVO">
+		SELECT A.REVIEW_BOARD_ID,
+		A.MEMBER_MEMBER_ID,
+		A.PRODUCT_PRODUCT_ID,
+		A.MENU_MENU_ID,
+		A.REVIEW_BOARD_CONTENT,
+		A.REVIEW_BOARD_RATING,
+		A.REVIEW_BOARD_TYPE,
+		A.REVIEW_BOARD_REG_DATE,
+		A.REVIEW_BOARD_IMAGE_ROUTE,
+		B.PRODUCT_IMAGE_ID,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT A INNER
+		JOIN PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
+		WHERE A.PRODUCT_NEW=1 AND A.PRODUCT_STATE != 3;
+	</select>
+-->
+	
+
+</mapper>

@@ -20,7 +20,6 @@ import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.product.dao.IProductMapper;
 import com.web.toosome.user.product.vo.ProductPrecautionsVO;
-import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 
@@ -85,13 +84,6 @@ public class ProductService implements IProductService{
 		return productmapper.getproductDetail(productVO);
 	}
 	
-
-
-	@Override
-	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO) {
-		
-		return productmapper.getscoreDetail(productScoreVO);
-	}
 
 	@Override
 	public ProductVO getproductprecautionsDetail(ProductVO productVO) {

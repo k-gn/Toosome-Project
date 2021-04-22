@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.web.toosome.user.product.dao.ProductMapper">
+<mapper namespace="com.web.toosome.user.product.dao.IProductMapper">
 
 	<resultMap type="productVO" id="productVO">
 		<id property="productId" column="PRODUCT_ID" />
@@ -10,7 +10,7 @@
 		<result property="productContent" column="PRODUCT_CONTENT" />
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
-		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productRegDate" column="PRODUCT_REG_DATE" />
 		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
 		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
 		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
@@ -43,14 +43,6 @@
 		<result property="productPrecautionsContentName3" column="PRODUCT_PRECAUTIONS_CONTENT_NAME3" />
 		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
 		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
-	</resultMap>
-	<resultMap type="productScoreVO" id="productScoreVO">
-		<result property="scoreImageId" column="SCORE_IMAGE_ID" />
-		<result property="scoreImageName" column="SCORE_IMAGE_NAME" />
-		<result property="scoreImageExtention" column="SCORE_IMAGE_EXTENTION" />
-		<result property="scoreImageRoute" column="SCORE_IMAGE_ROUTE" />
-		<result property="scoreImageOnoff" column="SCORE_IMAGE_ONOFF" />
-		<collection property="productVO" resultMap="productVO" />
 	</resultMap>
 
 	<select id="getproductnewList" resultMap="productVO">
@@ -138,11 +130,11 @@
 		C.PRODUCT_PRECAUTIONS_CONTENT2,
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
 		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF		
+		C.PRODUCT_PRECAUTIONS_ONOFF	
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
-		INNER JOIN
-		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
+		INNER JOIN 
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
 		WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3;
 	</select> 
 	<select id="getproductDetailById" resultMap="productVO">
@@ -165,29 +157,14 @@
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME2,
 		C.PRODUCT_PRECAUTIONS_CONTENT2,
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
-		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF		
+		C.PRODUCT_PRECAUTIONS_CONTENT3,	
+		C.PRODUCT_PRECAUTIONS_ONOFF
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
 		INNER JOIN
-		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
-		WHERE A.PRODUCT_ID=#{productId};
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
+		WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3;
 	</select> 
-
-
-
-	
-<!--	
-	<select id="getscoreDetail" resultMap="productScoreVO">
-		SELECT A.PRODUCT_ONOFF,
-		D.SCORE_IMAGE_ID,
-		D.SCORE_IMAGE_NAME,
-		D.SCORE_IMAGE_EXTENTION,
-		D.SCORE_IMAGE_ROUTE
-		FROM PRODUCT A INNER JOIN
-		SCORE_IMAGE D ON (D.SCORE_IMAGE_ONOFF = A.PRODUCT_ONOFF) WHERE A.PRODUCT_ONOFF=0;
-	</select>
--->
 	
 	
 

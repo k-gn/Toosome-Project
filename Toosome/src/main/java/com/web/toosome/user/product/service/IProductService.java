@@ -2,7 +2,6 @@ package com.web.toosome.user.product.service;
 
 import java.util.List;
 
-import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 public interface IProductService {
@@ -13,7 +12,6 @@ public interface IProductService {
 	public ProductVO getproductDetail(ProductVO productVO);
 	public ProductVO getproductDetailById(Integer pid);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
-	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO);
 	
 }
 

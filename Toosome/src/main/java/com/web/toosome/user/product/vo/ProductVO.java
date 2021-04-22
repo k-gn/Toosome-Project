@@ -15,7 +15,8 @@ public class ProductVO {
 	private Integer productPrice;	//상품 가격
 //	private Integer productScope; //별점
 	private String productType;//상품 페이지 타입\n1. 전체\n2. 커피\n3. 커피웨어\n4. 기프트세트; 
-	private Date productregDate; //상품 등록일
+	private Date productRegDate; //상품 등록일
+	private Integer productStar;
 	private Integer productRemainingAmount; //상품의 재고수량
 	private Integer productReceivedAmount; //상품 입고 수량
 	private Integer productReceivedPrice; //상품 입고 가격
