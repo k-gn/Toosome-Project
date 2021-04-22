@@ -2,7 +2,6 @@ package com.web.toosome.user.menu.dao;
 
 import java.util.List;
 
-import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 public interface IMenuMapper {
@@ -31,5 +30,6 @@ public interface IMenuMapper {
 	
 	public List<MenuVO> getIatListFour(MenuVO vo);
 	public List<MenuVO> getSearchIatListFour(MenuVO vo);
+
 	
 }

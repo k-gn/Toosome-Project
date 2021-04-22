@@ -1,5 +1,5 @@
 // 포인트 사용
-
+/* 
 function chkPoint(amt, pnt, min, unit) {
   //input값을 전체 마일리지로 설정 > minusPoint
   //amt : 최초 결제 금액 / pnt : 사용가능,남은 포인트 / min : 사용 가능 최소 포인트 / unit : 사용단위
@@ -52,7 +52,10 @@ function changePoint(amt, pnt, min, unit) {
     v_left[i].innerHTML = pnt - v_point; //= 전체 포인트 중에 사용할 포인트빼고 남은 포인트
   }
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
-}
 
+  var dlatl = amt - v_point;
+
+}
+*/
 
 
