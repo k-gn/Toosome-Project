@@ -54,7 +54,7 @@
                     <input type="tel" name="phone2" id="tel3" value="1111" disabled>
                     &nbsp;-&nbsp;
                     <input type="tel" name="phone3" id="tel4" value="1111" disabled> -->
-                    <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderCompleteList.memberPhone}" required>
+                    <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderCompleteList.memberPhone}" disabled>
                   </td>
                 </tr>
               </tbody>
@@ -92,7 +92,7 @@
                 적립 포인트
               </td>
               <td>
-                <span class="re-point">0</span> P
+                <span class="re-point">${sPoint}</span> P
               </td>
             </tr>
             <tr>
@@ -100,23 +100,23 @@
                 할인 금액
               </td>
               <td>
-                <span class="discount-pay com">0</span> 원
+                <span class="discount-pay com">${salprice}</span> 원
               </td>
             </tr>
             <tr>
               <td>사용한 포인트 </td>
               <td>
-                <span class="use-point com">${v_point}</span> P
+                <span class="use-point com">${usedPoint}</span> P
               </td>
             </tr> 
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue com">${manuPrice}</span>원</td>
+              <td><span class="bold txt_blue com">${menusalt}</span>원</td>
             </tr>
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제된 금액 : <span class="com">${menuOrderCompleteList.menuPrice}</span> 원</p>
+          <p class="txt-red"> 최종 결제된 금액 : <span class="com">${menuEndPrice}</span> 원</p>
         </div>
         <div class="out-btn">
           <a href="/">MAIN</a>

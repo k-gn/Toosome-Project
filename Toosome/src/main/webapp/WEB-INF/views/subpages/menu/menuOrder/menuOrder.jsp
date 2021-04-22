@@ -108,12 +108,12 @@
                 할인 금액
               </td>
               <td>
-                <span class="discount-pay com">${msi }</span> 원
+                <span class="discount-pay com">${msi}</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue com">${menusal }</span>원</td>
+              <td><span class="bold txt_blue com">${menusal}</span>원</td>
             </tr>
             <tr>
               <td> 포 인 트 </td>
@@ -136,7 +136,7 @@
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red com" id="result_pnt">${menusal}</span> 원</p>
           <!-- <input type="submit" value="결제하기"> -->
-          <a id="abcd" href="/import1?menuId=${menuOrderList.menuId}&menuPrice=${menusal}">결제하기</a>
+          <a id="abcd" href="/import1?menuId=${menuOrderList.menuId}&menuEndPrice=${menusal}&menusal=${menusal}">결제하기</a>
         </div>
 
       </div>
@@ -207,7 +207,8 @@ function changePoint(amt, pnt, min, unit) {
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
   
   var dlatl = amt - v_point;
-  document.getElementById("abcd").href = "/import1?menuId=${menuOrderList.menuId}&menuPrice=" + dlatl + "&v_point=" + v_point;
+  var menusal = ${menusal};
+  document.getElementById("abcd").href = "/import1?menuId=${menuOrderList.menuId}&menuEndPrice=" + dlatl + "&menusal=" + menusal;
   
 }
 

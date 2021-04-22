@@ -46,10 +46,17 @@
 	<select id="getLevelInfo" resultMap="levelMap">
 		SELECT * FROM LEVEL
 	</select>
+	
 	<!-- menu에서 포인트 적립 1%로 적용함. -->
 	<select id="getStackPoint">
-		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{point} WHERE MEMBER_ID = #{id}
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = MEMBERSHIP_POINT + #{imsipoint} WHERE MEMBER_ID = #{id}
 	</select>
+	
+	<!-- menu에서 사용 적용함. -->
+	<select id="getDownPoint">
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = MEMBERSHIP_POINT - #{usedPoint} WHERE MEMBER_ID = #{id}
+	</select>
+	
 	<!-- 포인트 누적 
 	<update id="updatePoint">
 		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}

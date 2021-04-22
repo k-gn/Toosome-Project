@@ -41,4 +41,10 @@ public class MembershipService implements IMembershipService {
 		mapper.getStackPoint(map);
 	}
 
+	@Override
+	public void getDownPoint(Map<String, Integer> map) {
+		mapper.getDownPoint(map);
+	}
+	
+
 }

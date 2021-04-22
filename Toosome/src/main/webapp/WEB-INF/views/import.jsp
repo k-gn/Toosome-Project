@@ -21,12 +21,12 @@ IMP.request_pay({
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : '${importList.menuMainTitle}',
-    amount : ${map.menuPrice}, //판매 가격
+    amount : ${menuEndPrice}, //판매 가격
     buyer_email : '${memberImportList.memberEmail}',
     buyer_name : '${memberImportList.memberName}',
     buyer_tel : '${memberImportList.memberPhone}',
-    buyer_addr : '$${memberImportList.memberAddress}',
-    buyer_postcode : '123-456'
+    buyer_addr : '${memberImportList.memberAddress}',
+    buyer_postcode : '123-456',
 }, function(rsp) {
     if ( rsp.success ) {
         var msg = '결제가 완료되었습니다.';
@@ -36,12 +36,11 @@ IMP.request_pay({
         msg += '카드 승인번호 : ' + rsp.apply_num;
         $.ajax({
         	type : "GET",
-            url: "/stackpoint?menuId=${importList.menuId}"
-            success : function() {
-            	$.ajax({
-                	type : "POST",
-                    url: "/menuordercomplete?menuId=${importList.menuId}&memberId=${memberImportList.memberId}&menuPrice=${map.menuPrice}&v_point=${map.v_point}",
-                });
+            url: "/stackpoint?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}",
+            success : function(ser) {
+            	if(ser=="OK"){
+            		location.href="/menuordercomplete?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}";
+            	}
             }
         });
 

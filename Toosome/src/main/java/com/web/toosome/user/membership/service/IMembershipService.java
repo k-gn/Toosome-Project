@@ -21,4 +21,6 @@ public interface IMembershipService {
 	public List<LevelVO> getLevelInfo();
 
 	public void getStackPoint(Map<String, Integer> map);
+	
+	public void getDownPoint(Map<String, Integer> map);
 }

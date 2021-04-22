@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -156,20 +157,17 @@ public class MenuController {
 
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/import1") // 결제 화면...
-	public String import1(MenuVO menuVO, Model model, HttpSession session, int menuPrice, int v_point) {
+	public String import1(MenuVO menuVO, Model model, HttpSession session, int menuEndPrice, int menusal) {
 		System.out.println("결제화면 호출");
-		System.out.println(menuPrice);
+		System.out.println(menuEndPrice);
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO importList = menuService.getimportList(menuVO);
 		model.addAttribute("importList", importList);
-//		model.addAttribute("menuPrice", menuPrice);
-//		model.addAttribute("v_point", v_point);
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("menuPrice" , menuPrice);
-		map.put("v_point" , v_point);
-		model.addAttribute("map", map);
+		model.addAttribute("menuEndPrice", menuEndPrice);
+		model.addAttribute("menusal", menusal);
 		System.out.println(importList);
 		System.out.println(id);
+		System.out.println(menusal);
 		MemberVO memberImportList = memberService.getUserById(id);
 		model.addAttribute("memberImportList", memberImportList);
 		return "import";
@@ -180,12 +178,12 @@ public class MenuController {
 	public String menuorder(MenuVO menuVO, Model model, HttpSession session) {
 		System.out.println("메뉴 결제정보 페이지 호출");
 		Integer id = (Integer) session.getAttribute("id");
-		MenuVO menuOrderList = menuService.getimportList(menuVO);
+		MenuVO menuOrderList = menuService.getimportList(menuVO);  // 여기 메뉴금액...
 		model.addAttribute("menuOrderList", menuOrderList);
 		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
 		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
 		double msi = menuPrice * (ms / 100);
-		double menusal = menuPrice - msi;
+		double menusal = menuPrice - msi;   // 결제 금액....
 		model.addAttribute("msi", (int) msi);
 		model.addAttribute("menusal", (int) menusal);
 		double point = menuPrice * 0.01;
@@ -199,32 +197,47 @@ public class MenuController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_USER')")
+	@ResponseBody
 	@GetMapping("/stackpoint")
-	public void stackPoint(MenuVO menuVO,HttpSession session) {
+	public String stackPoint(MenuVO menuVO,HttpSession session, Integer menusalt, Integer menuEndPrice) {
 		System.out.println("포인트 적립");
 		Integer id = (Integer) session.getAttribute("id");
 		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
 		double imsipoint = menuPrice * 0.01;
-		double imsiDBPoint = memberShipService.getMembershipInfo(id).getMembershipPoint();
-		int point = (int)imsiDBPoint + (int)imsipoint;
+//		double imsiDBPoint = memberShipService.getMembershipInfo(id).getMembershipPoint();
+//		int point = (int)imsiDBPoint + (int)imsipoint;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("id", id);
-		map.put("point", point);
-		System.out.println(point);
+		map.put("imsipoint", (int)imsipoint);
+		System.out.println((int)imsipoint);
 		memberShipService.getStackPoint(map);
+		System.out.println("getStackPoint 실행 완료");
+		Integer usedPoint = menusalt - menuEndPrice;
+		System.out.println(usedPoint);
+		map.put("usedPoint", usedPoint);
+		memberShipService.getDownPoint(map);
+		System.out.println("getDownPoint 실행 완료");
+		return "OK";
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/menuordercomplete")
-	public String menuordercomplete(MenuVO menuVO, Model model, HttpSession session, Integer v_point, Integer menuPrice) {
+	public String menuordercomplete(MenuVO menuVO, Model model, HttpSession session, Integer menusalt, Integer menuEndPrice) {
 		System.out.println("결제 완료 페이지 호출");
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO menuOrderCompleteList = menuService.getimportList(menuVO);
+		Integer menuPrice = menuService.getimportList(menuVO).getMenuPrice(); 	// 상품 금액
 		model.addAttribute("menuOrderCompleteList", menuOrderCompleteList);
-		model.addAttribute("v_point", v_point);
-		model.addAttribute("menuPrice", menuPrice);
-		System.out.println(menuPrice);
-		System.out.println(v_point);
+		model.addAttribute("menusalt", menusalt);   							// 결제 금액
+		model.addAttribute("menuEndPrice", menuEndPrice); 						// 최종 결제 금액
+		Integer usedPoint = menusalt - menuEndPrice; 
+		Integer salprice = menuPrice - menusalt;
+		double sPoint = menuPrice * 0.01;
+		model.addAttribute("usedPoint", usedPoint);
+		model.addAttribute("salprice", salprice);
+		model.addAttribute("sPoint", (int)sPoint);
+		System.out.println(menuEndPrice);
+		System.out.println(menusalt);
 		System.out.println(id);
 		MemberVO memberOrderCompleteList = memberService.getUserById(id);
 		model.addAttribute("memberOrderCompleteList", memberOrderCompleteList);
