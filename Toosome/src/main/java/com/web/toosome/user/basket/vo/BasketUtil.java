@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class BasketUtil {
 
+	private Integer memberId; // 사용자 ID
 	private int point; // 적립 포인트
 	private int discount; // 할인 금액
 	private int total; // 총 결제금액
