@@ -67,6 +67,10 @@ public class LoginController {
 		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
+		String url = (String) session.getAttribute("prevURI");
+		session.removeAttribute("prevURI");
+		if(url == null) url = "/";
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
@@ -74,7 +78,7 @@ public class LoginController {
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
-			out.println("<script>window.opener.location.href='/';self.close();</script>");
+			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			naverLoginBO.deleteToken(oauthToken.getAccessToken());
 			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");
@@ -111,6 +115,10 @@ public class LoginController {
         boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
+		String url = (String) session.getAttribute("prevURI");
+		session.removeAttribute("prevURI");
+		if(url == null) url = "/";
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
@@ -118,7 +126,7 @@ public class LoginController {
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
-			out.println("<script>window.opener.location.href='/';self.close();</script>");
+			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			KakaoLoginApi.deleteToken(code, accessToken);
 			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");

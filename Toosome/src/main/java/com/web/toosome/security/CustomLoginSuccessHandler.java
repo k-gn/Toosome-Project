@@ -26,7 +26,10 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		String url = "/";
+		String url = (String) session.getAttribute("prevURI");
+		session.removeAttribute("prevURI");
+		if(url == null) url = "/";
+		
 		CustomUser user = (CustomUser)authentication.getPrincipal();
 		Collection<GrantedAuthority> authCollection = user.getAuthorities();
 		Iterator<GrantedAuthority> authList = authCollection.iterator();
