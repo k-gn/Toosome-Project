@@ -10,6 +10,7 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/boardManagement/qnaBoardManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/qnaBoardManagement.js" defer></script>
 </head>
 
@@ -145,10 +146,20 @@
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">이미지</label>
-		                          <img class="img" src="" alt="#">
-		                        </div>
+		                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">이미지 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="..." />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+								    </div>
+								</div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>

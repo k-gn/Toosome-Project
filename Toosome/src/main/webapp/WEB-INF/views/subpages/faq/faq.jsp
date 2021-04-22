@@ -45,7 +45,7 @@
 								<span>Q</span> <span>${faqBoardList.faqBoardTitle}</span>
 							</div>
 							<button class="accordion">
-								<img src="/resources/img/subpages/share/down.png" alt="#">
+								<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/down.png" alt="#">
 							</button>
 						</div>
 						<div class="faq-answer">

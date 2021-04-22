@@ -145,7 +145,7 @@
   width: 36px;
   height: 37px;
   margin: 10px 0 0 10px;
-  background: url(/resources/img/subpages/map/marker.png) no-repeat;;
+  background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/map/marker.png) no-repeat;;
 }
 #placesList .item .marker_1 {
   background-position: 0 -10px;

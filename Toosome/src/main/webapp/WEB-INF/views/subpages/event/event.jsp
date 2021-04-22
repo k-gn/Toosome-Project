@@ -15,7 +15,7 @@
         <section>
 	      <div class="event-container">
 	        <div class="title-container">
-	          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
+	          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
 	          <span class="event-title">이벤트</span>
 	        </div>
 	        <div class="tab-container">
@@ -26,7 +26,7 @@
 	        </div>
 	        <div class="tab-content">
 				<ul class="content" id="content"></ul>
-				<button class="load-more"><img src="/resources/img/subpages/share/more_btn.png"></button>	
+				<button class="load-more"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/share/more_btn.png"></button>	
 	        </div>
 	      </div>
 	    </section>

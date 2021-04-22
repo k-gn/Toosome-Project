@@ -39,7 +39,7 @@ const displayDetail = (title, content, items, index) => {
 		let newContent = document.createElement('tr');
 		let contentElement = `
 			<td colspan="4">
-				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[1].eventBoardDetailVO.eventBoardDetailImageRoute}/${items[1].eventBoardDetailVO.eventBoardDetailImageName}.${items[1].eventBoardDetailVO.eventBoardDetailImageExtention}" alt="#">
+				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${items[1].eventBoardDetailVO.eventBoardDetailImageRoute}/${items[1].eventBoardDetailVO.eventBoardDetailImageName}.${items[1].eventBoardDetailVO.eventBoardDetailImageExtention}" alt="#">
 			</td>
 		`;
 		newContent.innerHTML = contentElement;

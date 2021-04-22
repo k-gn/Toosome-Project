@@ -12,7 +12,7 @@
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
         <div class="explanation-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="explanation-title">창업설명회</span>
             </div>
 
@@ -23,7 +23,7 @@
                     *자세한 문의는 <span>080-723-2323</span>으로 연락바랍니다.
                 </p>
 
-                <img src="/resources/img/subpages/explanation/cal.jpg" alt="" class="cancel">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/explanation/cal.jpg" alt="" class="cancel">
             
                 <div class="place-cover">
                     <h5>[정기 창업 설명회]</h5>
@@ -41,7 +41,7 @@
                     </ul>
                     <div class="place-btn">
                         <a href="https://map.naver.com/v5/entry/place/18701944?c=14136517.8058809,4518051.2140016,16,0,0,0,dh">
-                            <img src="/resources/img/subpages/explanation/btn_location.png" alt="">
+                            <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/explanation/btn_location.png" alt="">
                         </a>
                     </div>
 

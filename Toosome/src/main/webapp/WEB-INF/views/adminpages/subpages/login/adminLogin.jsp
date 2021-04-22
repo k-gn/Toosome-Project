@@ -26,7 +26,7 @@
 	<div class="bg"></div>
 	<div class="login-container">
 		<div class="title-container">
-          <img src="/resources/img/admin/subpages/login/admin_login.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/login/admin_login.png" alt="#">
           <span>관리자모드 로그인</span>
           <p>TOOSOME PLACE ADMINISTRATOR</p>
         </div>

@@ -219,7 +219,7 @@ let markers = [];
 const addMarker = (position, idx) => {
   // 마커 이미지
   const imageSrc =
-    '/resources/img/subpages/map/marker.png';
+    'https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/map/marker.png';
   const imageSize = new kakao.maps.Size(36, 37);
   const imageOptions = {
     spriteSize: new kakao.maps.Size(36, 691),
@@ -293,7 +293,7 @@ const displayInfoWindow = (marker, title, address, tel, url) => {
 				<p>${tel}</p>
 			</div>
 			<a href="${url}" target="_blank">
-				<img src="/resources/img/subpages/map/kakao_map.png" alt="#">
+				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/map/kakao_map.png" alt="#">
 			</a>		
 		</div>
 	</div>

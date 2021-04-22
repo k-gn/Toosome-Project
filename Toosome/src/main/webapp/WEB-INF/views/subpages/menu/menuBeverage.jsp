@@ -16,7 +16,7 @@
 		<div class="menu-container">
 			<div class="title-container">
 				<img class="title-logo"
-					src="/resources/img/subpages/share/banner.png" alt=""> <span
+					src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt=""> <span
 					class="menu-title">MENU</span>
 			</div>
 
@@ -39,7 +39,7 @@
 								<a href="/menuDetail?menuId=${menuBeverageList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuBeverageList.menuImageVO.menuImageRoute}/${menuBeverageList.menuImageVO.menuImageName}.${menuBeverageList.menuImageVO.menuImageExtention}" alt="">
 									<c:if test="${menuBeverageList.menuNew == 1}">
-										<img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+										<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
 									<span>${menuBeverageList.menuMainTitle}</span> 
 									<div class="pay-box">

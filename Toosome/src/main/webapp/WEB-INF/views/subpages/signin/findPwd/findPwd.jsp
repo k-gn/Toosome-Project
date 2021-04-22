@@ -16,7 +16,7 @@
 	<section>
        	<div class="info">
        		<h3>비밀번호 재설정</h3>
-       		<img src="/resources/img/subpages/share/warning.png" alt="#">
+       		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/warning.png" alt="#">
        		<h3>잠깐!</h3>
        		<p>투썸플레이스는 고객님의 비밀번호를 기억하지 않습니다.<br>
        		아래 인증 방법을 통해 비밀번호를 재설정 할 수 있습니다.</p><br>
@@ -25,7 +25,7 @@
        	<div class="sns-auth-container">
        		<p>핸드폰 인증</p>
        		<div class="sns-auth">
-       			<img src="/resources/img/subpages/signin/auth_sns.png" alt="#">
+       			<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/auth_sns.png" alt="#">
        			<button id="sns">인증하기</button>
        		</div>
        	</div>    	
@@ -43,7 +43,7 @@
 				<p>핸드폰 번호 입력 <small>※(- 생략)</small></p>
 				<input type="text" id="sms-phone" name="phoneNumber" placeholder="핸드폰 번호를 입력하세요">
 			</div>
-			<div class="modal-input code">
+			<div class="modal-input code" id="code-container">
 				<p>인증코드 입력</p>
 				<input type="text" id="sms-code" name="code" placeholder="인증코드를 입력하세요">
 				<button id="sms-confirm">확인</button>

@@ -30,7 +30,7 @@
         <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
 
         <ul class="star cf">
-          <li><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""></li>
+          <li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_off.png" alt=""></li>
           <li>${productDetail.productSubName}</li>
         </ul> 
         <p class="strong">${productDetail.productTitleName}</p>
@@ -90,11 +90,11 @@
           <form action="#" method="post" class="form1">
             <div class="star-catch-cover">
               <div class="star-catch">
-                <p class="star_img star"><img src="/resources/img/subpages/product/productDetail/ico_star_off.png" alt=""><!--<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></p>
-                <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></p>
-                <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></p>
-                <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></p>
-                <p class="star_img"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></p>
+                <p class="star_img star"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_off.png" alt=""><!--<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${scoreDetail.productScoreVO.scoreImageRoute}/${scoreDetail.productScoreVO.scoreImageName}.${scoreDetail.productScoreVO.scoreImageExtention}" alt="">--></p>
+                <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_4.png" alt=""></p>
+                <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_3.png" alt=""></p>
+                <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_2.png" alt=""></p>
+                <p class="star_img"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_1.png" alt=""></p>
               </div>
 
               <div class="triangle-cover">
@@ -102,11 +102,11 @@
               </div>
               
               <ul class="star-drop">
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_5.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_4.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_2.png" alt=""></a></li>
-                <li><a href="#"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></a></li>
+                <li><a href="#"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_5.png" alt=""></a></li>
+                <li><a href="#"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_4.png" alt=""></a></li>
+                <li><a href="#"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_3.png" alt=""></a></li>
+                <li><a href="#"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_2.png" alt=""></a></li>
+                <li><a href="#"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_1.png" alt=""></a></li>
               </ul>
             </div>
 
@@ -118,13 +118,13 @@
             
             <ul class="comment-end">
               <li>
-                <span class="star-fin"><img src="/resources/img/subpages/product/productDetail/ico_star_1.png" alt=""></span>
+                <span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_1.png" alt=""></span>
                 <span class="cocom">불량식품 맛 나요..ㅡㅡ</span>
                 <span class="nik">admin**</span>
                 <span class="dat">2021.04.02</span>
               </li>
               <li>
-                <span class="star-fin"><img src="/resources/img/subpages/product/productDetail/ico_star_3.png" alt=""></span>
+                <span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_3.png" alt=""></span>
                 <span class="cocom">달달하니 좋네용용용</span>
                 <span class="nik">Tommy.Lee**</span>
                 <span class="dat">2021.04.01</span>

@@ -6,6 +6,7 @@
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">   
     <link rel="stylesheet" href="/resources/css/subpages/franchise/franchise.css">
+	<link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -18,13 +19,13 @@
 
         <div class="franchise-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="franchise-title">창업정보</span>
             </div>
 
             <div class="contents">
                 <div class="img-title">
-                   <img src="/resources/img/subpages/franchise/tit_procedure01.png" alt="">
+                   <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/tit_procedure01.png" alt="">
                 </div>
 
                 <div class="click-way">
@@ -167,7 +168,7 @@
             </ul>
 
             <div class="call">
-                <img src="/resources/img/subpages/franchise/140731_banner.jpg" alt="">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/140731_banner.jpg" alt="">
             </div>
 
             <div class="down-box">

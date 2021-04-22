@@ -5,7 +5,7 @@ const codeBtn = document.querySelector('#code'); // 모달 인증코드 받기 �
 const nameInput = document.querySelector('#sms-name'); // 이름 입력창
 const phoneInput = document.querySelector('#sms-phone'); // 전화번호 입력창
 const codeInput = document.querySelector('#sms-code'); // 인증코드 입력창
-
+const codeContainer = document.querySelector('#code-container'); // 인증코드 입력 컨테이너
 
 // 인증하기 버튼 click event hook
 authBtn.addEventListener('click', () => {
@@ -17,6 +17,7 @@ cancleBtn.addEventListener('click', () => {
 	nameInput.value = '';
 	phoneInput.value = '';
 	codeInput.value = '';
+	codeContainer.style.display = 'none';
 	modal.style.display = 'none';
 })
 
@@ -69,6 +70,7 @@ const getCode = () => {
 					nameInput.value = '';
 					phoneInput.value = '';
 					codeInput.value = '';
+					codeContainer.style.display = 'none';
 					modal.style.display = 'none';
 					return false;
 	            }else{

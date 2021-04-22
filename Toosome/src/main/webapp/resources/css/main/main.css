@@ -14,13 +14,13 @@
   
 }
 #img-wrap .slide .slide-imgs li.img1 {
-	background-image: url("../../img/1.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main1.png");
 }
 #img-wrap .slide .slide-imgs li.img2 {
-	background-image: url("../../img/2.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main2.png");
 }
 #img-wrap .slide .slide-imgs li.img3 {
-	background-image: url("../../img/3.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main3.png");
 }
 #img-wrap .slide p {
   position: absolute;
@@ -45,7 +45,7 @@
   width: 100%;
   height: 620px;
   padding-top: 280px;
-  background: url('../../img/new1.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/new1.png') no-repeat center / cover;
   background-attachment: fixed;
 }
 #new-menu .new-cover {
@@ -117,7 +117,7 @@
   display: flex;
   width: auto;
   height: 100vh;
-  background: url('../../img/bg_sns_01.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/bg_sns_01.png') no-repeat center / cover;
   background-attachment: fixed;
 }
 .section .quick-menu {
@@ -157,7 +157,7 @@
 .section .quick-menu .coffee {
   width: 420px;
   height: 320px;
-  background: url('../../img/coffee.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/coffee.png') no-repeat center / cover;
   margin-right: 100px;
   transition: all 1s;
   box-shadow: 0 4px 5px 2px rgb(172, 172, 172);
@@ -165,7 +165,7 @@
 .section .quick-menu .beverage {
   width: 420px;
   height: 320px;
-  background: url('../../img/beverage.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/beverage.png') no-repeat center / cover;
   margin-right: 100px;
   transition: all 1s;
   box-shadow: 0 4px 5px 2px rgb(172, 172, 172);
@@ -247,7 +247,7 @@
 .button-logo .button-img {
   width: 90px;
   height: 90px;
-  background: url('../../img/buttonlogo.png') no-repeat center / contain;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/buttonlogo.png') no-repeat center / contain;
   transform: scale(0.8);
 }
 .button-logo a.offbutton {
@@ -372,7 +372,7 @@
 .map {
   width: 100%;
   height: 500px;
-  background: url('../../img/map.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png') no-repeat center / cover;
   background-attachment: fixed;
   overflow: hidden;
 }
@@ -428,7 +428,8 @@
   height: 50px;
   font-size: 20px;
   color: #fff;
-  background: url('../../img/search_g@3x.png') rgba(0, 0, 0, 1) no-repeat center /
+  cursor: pointer;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/search_g@3x.png') rgba(0, 0, 0, 1) no-repeat center /
     contain;
 }
 

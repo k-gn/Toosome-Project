@@ -10,9 +10,9 @@
 <!-- Material Kit CSS -->
 <link href="/resources/css/adminpages/share/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 <link
-  rel="shortcut icon"
-  href="/resources/img/AnyConv.com__favicon.ico"
-  type="image/x-icon"
+      rel="shortcut icon"
+      href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/AnyConv.com__favicon.ico"
+      type="image/x-icon"
 />
 <script src="/resources/js/adminpages/main/core/jquery.min.js"></script>
 <script src="/resources/js/adminpages/main/core/popper.min.js"></script>
