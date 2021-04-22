@@ -10,7 +10,6 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/orderManagement/orderCancelList.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
   <script src="/resources/js/adminpages/subpages/orderManagement/orderCancelList.js" defer></script>
 </head>
 
@@ -82,27 +81,9 @@
                              	<button class="period order" value="6M">6개월</button>
                              	<button class="period order" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	</div>
                              </div>
                            </td>
@@ -289,37 +270,37 @@
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품준비처리일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송준비처리일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송중처리일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송완료처리일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -327,7 +308,7 @@
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">구매확정일자</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-10">

@@ -5,7 +5,7 @@ const soldStartCalendar2 = document.querySelector('#calendar4'); // 판매시작
 
 // init
 const calendarInit = () => {
-	const today = moment().format('MM/DD/YYYY');
+	const today = moment().format('YYYY-MM-DD');
 	enrollCalendar.value = today;
 	enrollCalendar2.value = today;
 	soldStartCalendar.value = today;
@@ -15,28 +15,4 @@ const calendarInit = () => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	
-	$('#datetimepicker1').datetimepicker({ format: 'L'});
-	$('#datetimepicker2').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker1").on("change.datetimepicker", function (e) {
-		$('#datetimepicker2').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker2").on("change.datetimepicker", function (e) {
-		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	}); 
-	
-	$('#datetimepicker3').datetimepicker({ format: 'L'});
-	$('#datetimepicker4').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker3").on("change.datetimepicker", function (e) {
-		$('#datetimepicker4').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker4").on("change.datetimepicker", function (e) {
-		$('#datetimepicker3').datetimepicker('maxDate', e.date);
-	}); 
 }); 
