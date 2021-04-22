@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link
       rel="shortcut icon"
-      href="/resources/img/AnyConv.com__favicon.ico"
+      href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/AnyConv.com__favicon.ico"
       type="image/x-icon"
 />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

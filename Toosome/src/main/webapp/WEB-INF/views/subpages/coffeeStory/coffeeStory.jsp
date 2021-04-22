@@ -13,16 +13,16 @@
 
         <div class="coffeestory-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="coffeestory-title">CoffeeStory</span>
             </div>
 
             <div class="contents">
-                <img src="/resources/img/subpages/coffeeStory/img_coffeestory.png" alt="">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeeStory/img_coffeestory.png" alt="">
             </div>
         </div>
-        <img class="bg1" src="/resources/img/subpages/coffeeStory/coffee3.png" alt="#">
-        <img class="bg2" src="/resources/img/subpages/coffeeStory/coffee2.png" alt="#">
+        <img class="bg1" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeeStory/coffee3.png" alt="#">
+        <img class="bg2" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeeStory/coffee2.png" alt="#">
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>

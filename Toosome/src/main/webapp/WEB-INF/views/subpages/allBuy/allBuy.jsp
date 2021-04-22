@@ -13,7 +13,7 @@
     
     <div class="allBuy-container">
       <div class="title-container">
-          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
           <span class="allBuy-title">기업 및 단체 구매 안내</span>
       </div>
 
@@ -25,7 +25,7 @@
         <h2 class="title-content">
           투썸플레이스에서 판매하고 있는 다양한 상품의 대량 구매 및 상담을 도와드립니다.
         </h2>
-        <img src="/resources/img/subpages/allBuy/all-buy.PNG" alt="" class="pic">
+        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/allBuy/all-buy.PNG" alt="" class="pic">
         
         <div class="guide">
           <p class="guide-title">

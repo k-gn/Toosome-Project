@@ -18,13 +18,13 @@
 
         <div class="franchise-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="franchise-title">창업정보</span>
             </div>
 
             <div class="contents">
                 <div class="img-title">
-                   <img src="/resources/img/subpages/franchise/tit_procedure01.png" alt="">
+                   <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/tit_procedure01.png" alt="">
                 </div>
 
                 <div class="click-way">
@@ -167,7 +167,7 @@
             </ul>
 
             <div class="call">
-                <img src="/resources/img/subpages/franchise/140731_banner.jpg" alt="">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/140731_banner.jpg" alt="">
             </div>
 
             <div class="down-box">

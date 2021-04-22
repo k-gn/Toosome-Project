@@ -13,17 +13,17 @@
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 	    <div class="member-container">
 	      <div class="title-container">
-	          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+	          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
 	          <span class="member-title">멤버십 카드</span>
 	      </div>
 	
 	      <div class="contents">
 	          <div class="membership-text">
 	            <h5 class="mb-logo">
-	              <img src="/resources/img/subpages/member/logo_black.png" alt="">
+	              <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/logo_black.png" alt="">
 	            </h5>
 	            <span class="tit">TOOSOME MEMBERSHIP 이란?</span>
-	            <img src="/resources/img/subpages/member/card4.png" alt="" class="card">
+	            <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/card4.png" alt="" class="card">
 	            <p class="comment">
 	              TOOSOME MEMBERSHIP은 문화, 외식, 쇼핑, 엔터테인먼트 등<br/>
 	              TOOSOME의 다양한 라이프스타일 브랜드가 <strong>하나의 멤버십 서비스</strong><br/>
@@ -38,7 +38,7 @@
 	          <ul class="benefit">
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_1.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_1.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>포인트 적립</strong></li>
@@ -55,7 +55,7 @@
 	            </li>
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_2.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_2.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>포인트 사용</strong></li>
@@ -69,7 +69,7 @@
 	            </li>
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_3.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_3.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>보너스포인트 추가적립</strong></li>
@@ -86,7 +86,7 @@
 	            </li>
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_4.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_4.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>쿠폰 서비스</strong></li>
@@ -100,7 +100,7 @@
 	            </li>
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_5.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_5.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>포인트 선물하기</strong></li>
@@ -114,7 +114,7 @@
 	            </li>
 	            <li class="bene-list">
 	              <div class="img-box">
-	                <img src="/resources/img/subpages/member/img_cjone01_7.gif" alt="">
+	                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/member/img_cjone01_7.gif" alt="">
 	              </div>
 	              <ul class="benefit-contents">
 	                <li><strong>문화공연과 이벤트</strong></li>

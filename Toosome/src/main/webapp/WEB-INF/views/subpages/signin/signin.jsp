@@ -22,7 +22,7 @@
 
 	<div class="login-container">
 		<div class="title-container">
-			<img class="title-logo" src="/resources/img/subpages/share/banner.png" alt=""/>
+			<img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt=""/>
 			<span class="login-title">Welcome!</span><span>투썸플레이스에 오신 것을 환영합니다</span>
 		</div>
 		<div class="login-form">
@@ -36,8 +36,8 @@
 			    </div>
 				<input type="submit" value="로그인">
 				<div class="login-value">
-					<a class="kaka" onclick="loginWithKakao()"><img src="/resources/img/subpages/signin/kakao_login.png"></a>
-					<a class="naver" onclick="loginWithNaver()"><img src="/resources/img/subpages/signin/naver_login.png"/></a>
+					<a class="kaka" onclick="loginWithKakao()"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/kakao_login.png"></a>
+					<a class="naver" onclick="loginWithNaver()"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/naver_login.png"/></a>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>

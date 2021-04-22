@@ -176,14 +176,14 @@
           <ul class="online-icon">
             <li>
               <a href="#"
-                ><img src="/resources/img/conversation.png" alt="" /><span
+                ><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/conversation.png" alt="" /><span
                   >온라인상담</span
                 ></a
               >
             </li>
             <li>
               <a href="#"
-                ><img src="/resources/img/giftbox.png" alt="" /><span
+                ><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/giftbox.png" alt="" /><span
                   >온라인주문</span
                 ></a
               >

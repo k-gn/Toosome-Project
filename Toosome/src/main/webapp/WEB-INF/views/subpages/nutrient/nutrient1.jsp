@@ -25,7 +25,7 @@
 		<div class="nutrient-container">
 			<div class="title-container">
 				<img class="title-logo"
-					src="/resources/img/subpages/share/banner.png" alt=""> <span
+					src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt=""> <span
 					class="nutrient-title">영양성분표</span>
 			</div>
 
@@ -40,7 +40,7 @@
 				<form action="/nutrient1/search" method="get">
 			        <div class="search">
 			          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
-			          <input type="image" src="/resources/img/subpages/nutrient/search.gif" alt="">
+			          <input type="image" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/nutrient/search.gif" alt="">
 			        </div>
 				</form>
 

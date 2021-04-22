@@ -14,7 +14,7 @@
 
         <div class="brandstory-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="brandstory-title">BrandStory</span>
             </div>
 
@@ -28,15 +28,15 @@
                 </div>
                 <div class="menu-contents">
                     <ul class="tab-img">
-                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
-                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
-                        <li><img src="/resources/img/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
+                        <li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandstory/txt_brandstory01.gif" alt=""></li>
+                        <li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandstory/txt_brandstory02.gif" alt=""></li>
+                        <li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandstory/txt_brandstory03.gif" alt=""></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <img class="bg1" src="/resources/img/subpages/brandstory/wondo2.png" alt="#">
-        <img class="bg2" src="/resources/img/subpages/brandstory/wondo3.png" alt="#">
+        <img class="bg1" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandstory/wondo2.png" alt="#">
+        <img class="bg2" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandstory/wondo3.png" alt="#">
         <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>
