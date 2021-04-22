@@ -34,6 +34,10 @@
 	<update id="modBasketAmount">
 		UPDATE BASKET SET BASKET_AMOUNT = BASKET_AMOUNT + 1 WHERE MEMBER_ID = #{memberId} AND PRODUCT_ID = #{productId}
 	</update>
+	
+	<update id="setBasketAmount">
+		UPDATE BASKET SET BASKET_AMOUNT = #{amount} WHERE BASKET_ID = #{bid}
+	</update>
 
 	<select id="getBasket" resultMap="basketMap">
 		SELECT
@@ -43,4 +47,8 @@
 		 BASKET B LEFT OUTER JOIN PRODUCT_IMAGE PI on B.PRODUCT_IMAGE_ID = PI.PRODUCT_IMAGE_ID
 		WHERE MEMBER_ID = #{id}
 	</select>
+	
+	<delete id="delBasket">
+	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
+	</delete>
 </mapper>

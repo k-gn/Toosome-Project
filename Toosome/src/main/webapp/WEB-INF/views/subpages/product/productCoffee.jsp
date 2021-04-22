@@ -39,6 +39,7 @@
 									</c:if>
 									<c:if test="${productCoffeeList.productState == 2}">
 									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
+									  
 									</c:if>
 									<span>${productCoffeeList.productTitleName}</span>
 									<div class="pay-box">

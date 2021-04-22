@@ -38,14 +38,14 @@ const removeOn = (periods) => {
 const calcDate = (value, calendar) => {
 	const [num, unit] = value.split('');
 	const today = moment();
-	const newDate = moment(today).subtract(num, unit).format('MM/DD/YYYY');
+	const newDate = moment(today).subtract(num, unit).format('YYYY-MM-DD');
 	calendar.value = newDate;
 };
 
 // init
 const calendarInit = () => {
 	removeOn(eventPeriods);
-	const today = moment().format('MM/DD/YYYY');
+	const today = moment().format('YYYY-MM-DD');
 	eventCalendar.value = today;
 	eventCalendar2.value = today;
 	eventCalendar3.value = today;
@@ -241,29 +241,5 @@ modalCancelBtn.addEventListener('click', (e) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-/*	getAllList();*/
-	
-	$('#datetimepicker1').datetimepicker({ format: 'L'});
-	$('#datetimepicker2').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker1").on("change.datetimepicker", function (e) {
-		$('#datetimepicker2').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker2").on("change.datetimepicker", function (e) {
-		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	});
-	
-	$('#datetimepicker3').datetimepicker({ format: 'L'});
-	$('#datetimepicker4').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker3").on("change.datetimepicker", function (e) {
-		$('#datetimepicker4').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker4").on("change.datetimepicker", function (e) {
-		$('#datetimepicker3').datetimepicker('maxDate', e.date);
-	});  
+/*	getAllList();*/ 
 }); 

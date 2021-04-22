@@ -67,7 +67,21 @@ section > p {
 	background: rgba(102,102,102,0.3);
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
+}
+
+.search-select {
+	outline: none;
+	padding: 0 10px;
+	border: none;
+	margin-left: 15px;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	cursor: pointer;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
 }
 
 .search-wrapper {
@@ -86,6 +100,8 @@ section > p {
 	border: 1px solid #eee;
 	margin-right: 0.9375rem;
 	padding-left: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
 }
 
 .search-wrapper > button {

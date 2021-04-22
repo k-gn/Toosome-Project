@@ -96,13 +96,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">입사일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -110,7 +110,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">

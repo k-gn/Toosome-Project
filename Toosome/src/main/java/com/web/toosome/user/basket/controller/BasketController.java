@@ -7,8 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +20,6 @@ import com.web.toosome.user.basket.vo.BasketUtil;
 import com.web.toosome.user.basket.vo.BasketVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
-import com.web.toosome.user.product.vo.ProductImageVO;
 
 @Controller
 public class BasketController {
@@ -30,24 +32,14 @@ public class BasketController {
 	@Autowired
 	private IMembershipService mservice;
 	
+	// 장바구니 페이지 이동
 	@GetMapping("/basket") // 장바구니
 	public String basket(HttpSession session, Model model, BasketUtil basketUtil) {
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
-		
-		for(BasketVO basket : baskets) {
-			ProductImageVO imageVO = basket.getProductImageVO();
-			String imagePath = basicImagePath + imageVO.getProductImageRoute() + "/" + imageVO.getProductImageName() + "." + imageVO.getProductImageExtention();
-			basket.setImagePath(imagePath);
-		}
 		model.addAttribute("baskets", baskets);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
-		System.out.println(ms);
-		if(ms != null) {
-			
-		}
-		System.out.println(baskets);
-		model.addAttribute("membership", ms);
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		return "subpages/basket/basket";
 	}
 
@@ -66,20 +58,40 @@ public class BasketController {
 		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}
 	
-	@PostMapping("/addBasket") 
+	// 장바구니 추가
+	@PostMapping("/basket") 
 	@ResponseBody
 	public String addBasket(@RequestBody BasketVO basket, HttpSession session) {
 		Integer memberId = (Integer) session.getAttribute("id");
-		if(memberId == null) {
-			return "notLogin";
-		}
 		basket.setMemberId(memberId);
-		System.out.println(basket);
 		int result = service.addBasket(basket);
-		if(result == 1) {
+		if(result == 1) 
 			return "addSuccess";
-		}else {
+		else 
 			return "addFail";
-		}
+		
+	}
+	
+	// 장바구니 수정
+	@PutMapping("/basket/{bid}")
+	@ResponseBody
+	public BasketUtil modBasket(@PathVariable Integer bid, @RequestBody Integer amount, HttpSession session, BasketUtil basketUtil) {
+		service.setBasketAmount(amount, bid);
+		Integer memberId = (Integer) session.getAttribute("id");
+		List<BasketVO> baskets = service.getBasket(memberId);
+		MembershipVO ms = mservice.getMembershipInfo(memberId);
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
+		return basketUtil;
+	}
+	
+	// 장바구니 삭제
+	@DeleteMapping("/basket/{bid}")
+	@ResponseBody
+	public String delBasket(@PathVariable Integer bid) {
+		int result = service.delBasket(bid);
+		if(result > 0) 
+			return "success";
+		else
+			return "fail";
 	}
 }

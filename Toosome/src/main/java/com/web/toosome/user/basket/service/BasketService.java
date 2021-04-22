@@ -1,6 +1,8 @@
 package com.web.toosome.user.basket.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +43,19 @@ public class BasketService implements IBasketService {
 	public List<BasketVO> getBasket(Integer id) {
 		return bmapper.getBasket(id);
 	}
+
+	@Override
+	public int delBasket(Integer id) {
+		return bmapper.delBasket(id);
+	}
+
+	@Override
+	public void setBasketAmount(Integer amount, Integer bid) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("amount", amount);
+		map.put("bid", bid);
+		bmapper.setBasketAmount(map);
+	}
+
 
 }

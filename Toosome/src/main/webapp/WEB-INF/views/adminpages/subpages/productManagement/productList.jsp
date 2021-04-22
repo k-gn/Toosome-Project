@@ -144,13 +144,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품등록일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>

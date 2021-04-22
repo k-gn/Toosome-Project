@@ -11,4 +11,10 @@ public interface IBasketService {
 
 	// 장바구니 가져오기
 	public List<BasketVO> getBasket(Integer id);
+
+	// 장바구니 수량 설정
+	public void setBasketAmount(Integer amount, Integer bid);
+
+	// 장바구니 품목 삭제
+	public int delBasket(Integer id);
 }

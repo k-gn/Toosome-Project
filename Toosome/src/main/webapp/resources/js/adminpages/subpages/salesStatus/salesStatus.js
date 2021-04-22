@@ -34,7 +34,7 @@ const removeOn = (periods) => {
 const calcDate = (value, calendar) => {
 	const [num, unit] = value.split('');
 	const today = moment();
-	const newDate = moment(today).subtract(num, unit).format('MM/DD/YYYY');
+	const newDate = moment(today).subtract(num, unit).format('YYYY-MM-DD');
 	calendar.value = newDate;
 	searchStartDate.textContent = newDate;
 };
@@ -42,7 +42,7 @@ const calcDate = (value, calendar) => {
 // init
 const calendarInit = () => {
 	removeOn(salesPeriods);
-	const today = moment().format('MM/DD/YYYY');
+	const today = moment().format('YYYY-MM-DD');
 	searchStartDate.textContent = today;
 	searchEndDate.textContent = today;
 	salesCalendar.value = today;
@@ -263,17 +263,4 @@ const excelDownload = (id, title) => {
 $(document).ready(() => {
 	calendarInit();
 /*	getAllList();*/
-	
-	$('#datetimepicker1').datetimepicker({ format: 'L'});
-	$('#datetimepicker2').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker1").on("change.datetimepicker", function (e) {
-		$('#datetimepicker2').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker2").on("change.datetimepicker", function (e) {
-		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	}); 
-
 }); 
