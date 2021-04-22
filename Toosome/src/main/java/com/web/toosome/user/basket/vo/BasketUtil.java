@@ -30,9 +30,6 @@ public class BasketUtil {
 			ProductImageVO imageVO = basket.getProductImageVO();
 			String imagePath = basicImagePath + imageVO.getProductImageRoute() + "/" + imageVO.getProductImageName() + "." + imageVO.getProductImageExtention();
 			basket.setImagePath(imagePath);
-		}
-		
-		for(BasketVO basket : baskets) {
 			total += basket.getBasketPrice() * basket.getBasketAmount();
 			amount += basket.getBasketAmount();
 		}
