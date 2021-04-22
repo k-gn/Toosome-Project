@@ -65,9 +65,6 @@ public class BasketController {
 	@ResponseBody
 	public String addBasket(@RequestBody BasketVO basket, HttpSession session) {
 		Integer memberId = (Integer) session.getAttribute("id");
-		if(memberId == null) 
-			return "notLogin";
-		
 		basket.setMemberId(memberId);
 		int result = service.addBasket(basket);
 		if(result == 1) 

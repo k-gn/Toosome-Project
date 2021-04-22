@@ -52,13 +52,13 @@
               </tr>
             </thead>
             <tbody>
-            <c:forEach var="basket" items="${baskets}">
+            <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
                 <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
                 <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
                 <td><span class="name"></span></td>
                 <td>
-                  <input type="number" min="1" max="10" name="quantity" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${basket.basketId})"/>
+                  <input type="number" min="1" max="10" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
                 </td>
                 <td>
                   <span class="pname">${basket.basketName}</span>
@@ -84,7 +84,7 @@
                   주문상품 수
                 </td>
                 <td>
-                  <span class="product-count">${basketUtil.amount}</span>
+                  <span class="product-count">${basketUtil.amount}개</span>
                 </td>
               </tr>
               <tr>

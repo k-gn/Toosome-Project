@@ -57,13 +57,13 @@ function deleteRow(ths, bid) {
 }
 
 let basketInfo = '';
-function modBasket(bid) {
+function modBasket(i, bid) {
 
 	$(document).ajaxSend(function(e, xhr, options) { 
     	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
     }); 
 
-	const amount = $('input[name=quantity]').val();
+	const amount = $("input[name=quantity" + i + "]").val();
 
 	$.ajax({
 	    url: '/basket/' + bid,
