@@ -35,6 +35,7 @@
 		
 		<typeAlias type="com.web.toosome.user.membership.vo.MembershipVO" alias="membershipVO"/>
 		<typeAlias type="com.web.toosome.user.membership.vo.LevelVO" alias="levelVO"/>
-
+		
+		<typeAlias type="com.web.toosome.admin.mainManagement.vo.VisiterVO" alias="visiterVO"/>
 	</typeAliases>
 </configuration>
