@@ -5,7 +5,6 @@
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
     <link rel="stylesheet" href="/resources/css/subpages/franchisePay/franchisePay.css">
-    <link rel="stylesheet" href="./css/franchisePay.css">
     <title>A TOOSOME PLACE</title>
 </head>
 <body>

@@ -16,7 +16,7 @@ $(function () {
      dataType: 'json',
 	 data: id,
      success: function (res) {
-		 const imgPath = "/resources/img/subpages/member/myMembership/tier/";
+		 const imgPath = "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/membership/";
 		 let point = res.membershipPoint;
 		 let level = res.level;
 		 if(level.levelMaxRange == null) {

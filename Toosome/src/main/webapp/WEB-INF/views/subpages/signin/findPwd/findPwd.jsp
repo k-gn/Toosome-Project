@@ -43,7 +43,7 @@
 				<p>핸드폰 번호 입력 <small>※(- 생략)</small></p>
 				<input type="text" id="sms-phone" name="phoneNumber" placeholder="핸드폰 번호를 입력하세요">
 			</div>
-			<div class="modal-input code">
+			<div class="modal-input code" id="code-container">
 				<p>인증코드 입력</p>
 				<input type="text" id="sms-code" name="code" placeholder="인증코드를 입력하세요">
 				<button id="sms-confirm">확인</button>

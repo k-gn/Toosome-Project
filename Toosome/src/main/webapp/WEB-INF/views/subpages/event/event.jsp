@@ -15,7 +15,7 @@
         <section>
 	      <div class="event-container">
 	        <div class="title-container">
-	          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/share/banner.png" alt="#">
+	          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
 	          <span class="event-title">이벤트</span>
 	        </div>
 	        <div class="tab-container">

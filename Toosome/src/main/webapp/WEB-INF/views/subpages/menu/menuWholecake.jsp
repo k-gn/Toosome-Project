@@ -36,7 +36,7 @@
 								<a href="/menuDetail?menuId=${menuWholecakeList.menuId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}" alt="">
 									<c:if test="${menuWholecakeList.menuNew == 1}">
-										<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_new.png" alt=""/>
+										<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
 									<span>${menuWholecakeList.menuMainTitle}</span> 
 									<div class="pay-box">

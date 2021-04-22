@@ -9,9 +9,8 @@
   border-radius: 7px;
   box-shadow: 0 2px 3px #eee;
   display: flex;
-  background: url("../../../img/subpages/myPage/map.png") no-repeat center /cover;
+  background: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png") no-repeat center /cover;
 }
-
 .nav-cover {
   width: 20%;
   height: 100%;
@@ -39,9 +38,6 @@
   border: none;
 }
 
-.nav-cover .nav > ul > li:last-child {
-  
-}
 .nav-cover .nav > ul > li > a {
   display: block;
   width: 100%;

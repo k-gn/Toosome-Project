@@ -145,7 +145,7 @@
                             </li>
                             <li>
                             	<a href="#">
-                            		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/subpages/brandFilm/20-5.jpg" alt="">
+                            		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-5.jpg" alt="">
                             		<span>[투썸플레이스]<br/>Winter in my Fantasy 메이킹 필름</span>
                             	</a>
                             </li>

@@ -156,7 +156,7 @@
                         <ul class="you-thumb-box cf">
                             <li class="box-select">
                                 <a href="#">
-                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/subpages/brandFilm/19-1.jpg" alt="">
+                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-1.jpg" alt="">
                                     <span>[투썸플레이스] 임성현의<br/>노르웨이 숲 가는 길</span>
                                 </a>
                             </li>
@@ -186,7 +186,7 @@
                             </li>
                             <li>
 	                            <a href="#">
-	                            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/subpages/brandFilm/19-6.jpg" alt="">
+	                            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-6.jpg" alt="">
 	                            	<span>[투썸플레이스] 임성현의<br/>wish you a merry christmas</span>
 	                            </a>
                             </li>

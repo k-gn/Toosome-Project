@@ -37,7 +37,7 @@
     height: 228px;
     margin: 0 auto;
     position: relative;
-    background: url("../../../img/subpages/franchise/f.jpg") no-repeat center /contain;
+    background: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/f.jpg") no-repeat center /contain;
 }
 .franchise-container .contents .img-title img {
     position: absolute;
@@ -120,79 +120,79 @@
 }
 
 .franchise-container .contents .click-way article.art1 .art-display {
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info01.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info01.gif");
 }
 .franchise-container .contents .click-way article.art2 .art-display {
     left: -200px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info02.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info02.gif");
 }
 .franchise-container .contents .click-way article.art3 .art-display {
     left: -400px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info03.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info03.gif");
 }
 .franchise-container .contents .click-way article.art4 .art-display {
     left: -600px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info04.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info04.gif");
 }
 .franchise-container .contents .click-way article.art5 .art-display {
     top: 0px;
     left: -600px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info05.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info05.gif");
 }
 .franchise-container .contents .click-way article.art6 .art-display {
     top: -150px;
     left: -600px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info06.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info06.gif");
 }
 .franchise-container .contents .click-way article.art7 .art-display {
     top: -150px;
     left: -400px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info07.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info07.gif");
 }
 .franchise-container .contents .click-way article.art8 .art-display {
     top: -150px;
     left: -200px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info08.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info08.gif");
 }
 .franchise-container .contents .click-way article.art9 .art-display {
     top: -150px;
     border: 2px solid #B52B36;
-    background-image: url("../../../img/subpages/franchise/txt_procedure_info09.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_info09.gif");
 }
 
 .franchise-container .contents .click-way article.art1 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_01.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_01.gif");
 }
 .franchise-container .contents .click-way article.art2 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_02.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_02.gif");
 }
 .franchise-container .contents .click-way article.art3 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_03.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_03.gif");
 }
 .franchise-container .contents .click-way article.art4 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_04.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_04.gif");
 }
 .franchise-container .contents .click-way article.art5 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_05.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_05.gif");
 }
 .franchise-container .contents .click-way article.art6 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_06.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_06.gif");
 }
 .franchise-container .contents .click-way article.art7 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_07.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_07.gif");
 }
 .franchise-container .contents .click-way article.art8 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_08.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_08.gif");
 }
 .franchise-container .contents .click-way article.art9 a{
-    background-image: url("../../../img/subpages/franchise/txt_procedure_09.gif");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/txt_procedure_09.gif");
 }
 
 .contents2 table thead tr th {
@@ -254,17 +254,15 @@
     background: no-repeat center /contain;
 }
 .franchise-container .down-box .download li:first-child {
-    background-image: url("../../../img/subpages/franchise/brochure_down01.png");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/brochure_down01.png");
 }
 .franchise-container .down-box .download li:nth-child(2) {
-    background-image: url("../../../img/subpages/franchise/brochure_down02.png");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/brochure_down02.png");
 }
 .franchise-container .down-box .download li:last-child {
-    background-image: url("../../../img/subpages/franchise/brochure_down03.png");
+    background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchise/brochure_down03.png");
 }
-.franchise-container .down-box .download li .thumbneil {
 
-}
 .franchise-container .down-box .download li span {
     margin-top: 20px;
     text-align: center;

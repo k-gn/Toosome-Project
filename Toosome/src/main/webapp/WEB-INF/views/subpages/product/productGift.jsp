@@ -35,7 +35,7 @@
 								<a href="/productDetail?productId=${productGiftList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productGiftList.productImageVO.productImageRoute}/${productGiftList.productImageVO.productImageName}.${productGiftList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productGiftList.productNew == 1}">
-									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_new.png" alt=""/>
+									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
 									<c:if test="${productGiftList.productState == 2}">
 									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>

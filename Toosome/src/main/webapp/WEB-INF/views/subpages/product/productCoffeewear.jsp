@@ -35,7 +35,7 @@
 								<a href="/productDetail?productId=${productCoffeewearList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productCoffeewearList.productImageVO.productImageRoute}/${productCoffeewearList.productImageVO.productImageName}.${productCoffeewearList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productCoffeewearList.productNew == 1}">
-									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_new.png" alt=""/>
+									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
 									<c:if test="${productCoffeewearList.productState == 2}">
 									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
