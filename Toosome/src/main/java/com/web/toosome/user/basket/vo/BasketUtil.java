@@ -15,10 +15,16 @@ public class BasketUtil {
 	private int discount; // 할인 금액
 	private int total; // 총 결제금액
 	private int amount; // 총 주문상품수
-	private int deliveryPay = 2000; // 배송비
+	private int deliveryPay; // 배송비
 	private int realPayment; // 실제 결제 금액 
 	
 	public void utilMethod(List<BasketVO> baskets, MembershipVO ms, String basicImagePath) {
+		
+		if(baskets.size() <= 0) {
+			deliveryPay = 0;
+		}else {
+			deliveryPay = 2000;
+		}
 		
 		for(BasketVO basket : baskets) {
 			ProductImageVO imageVO = basket.getProductImageVO();
@@ -36,9 +42,9 @@ public class BasketUtil {
 			deliveryPay = lvl.getLevelDeliveryPay(); 
 			point = (int) (total * (lvl.getLevelPointRate() / 100.0)); 
 			discount = (int) (total * (lvl.getLevelDiscountRate() / 100.0)); 
-			realPayment = total - discount - deliveryPay;
+			realPayment = total - discount + deliveryPay;
 		}else {
-			realPayment = total - deliveryPay;
+			realPayment = total + deliveryPay;
 		}
 	}
 }
