@@ -28,6 +28,7 @@ public class MembershipController {
 	public String memberShip(HttpSession session, RedirectAttributes ra) {
 		int id = (Integer) session.getAttribute("id");
 		MembershipVO ms = service.getMembershipInfo(id);
+		System.out.println(ms);
 		if (ms != null) {
 			ra.addFlashAttribute("msg", "already");
 			return "redirect:/mypage"; // 나중에 마이 멤버쉽으로 바꾸기

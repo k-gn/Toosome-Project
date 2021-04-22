@@ -20,5 +20,9 @@ public class MenuVO {
 	private MenuImageVO menuImageVO;
 	private IatVO iatVO;
 	private String keyword;
+	/*
+	 * private Integer menusalt; private Integer menuEndPrice;
+	 */
+	
 	
 }

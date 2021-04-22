@@ -134,7 +134,7 @@
         <div class="order-container"></div>
         <div class="btn-box">
           <input type="button" class="button" value="계속 쇼핑하기">
-          <input type="button" class="button" value="상품구매" onclick="location.href='/basket/order'">
+          <input type="button" class="button" value="상품구매" onclick="OrderProduct('${basketUtil}')">
         </div> 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       </form>
