@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.mainManagement.dao.IVisiterMapper">
+
+	<resultMap type="visiterVO" id="visiterMap">
+		<result property="visitId" column="VISIT_ID" />
+		<result property="visitTime" column="VISIT_TIME" />
+		<result property="visitIp" column="VISIT_IP" />
+	</resultMap>
+
+	<insert id="insertVisitor">
+		INSERT INTO VISITOR (VISIT_IP) VALUES(#{visit_ip})
+	</insert>
+</mapper>
