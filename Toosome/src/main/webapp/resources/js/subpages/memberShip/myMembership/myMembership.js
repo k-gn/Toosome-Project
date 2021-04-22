@@ -29,7 +29,7 @@ $(function () {
 		if(level.levelMaxRange != level.levelMinRange) {
 			$(".progress-bar").attr(
 		      "style", 
-		      "width: calc(1/50*" + (level.levelMaxRange - point) + "%)"
+		      "width: calc(1 / 50 * " + (level.levelMaxRange - point) + "%)"
 	        );
 		    $(".progress-bar").html((1 / 50) * + (level.levelMaxRange - point) + "%");
 			$(".pro-text ul .max").html(level.levelMaxRange + " p");

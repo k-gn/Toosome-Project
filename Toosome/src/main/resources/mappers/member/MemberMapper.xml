@@ -116,4 +116,5 @@
 	<update id="updateLastLogin">
 		UPDATE MEMBER SET MEMBER_LAST_LOGIN_DATE=NOW() WHERE MEMBER_EMAIL = #{email}
 	</update>
+	
 </mapper>
