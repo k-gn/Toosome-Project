@@ -13,8 +13,17 @@
         <div class="explanation-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-                <span class="explanation-title">창업설명회</span>
             </div>
+            <div class="sub-header-container">
+        		<h3>창업설명회</h3>
+        		<div class="navigation-container">
+        			<ul>
+        				<li><a href="/">HOME</a></li>
+        				<li><a href="/franchise">OTHERS</a></li>
+        				<li><a href="/explanation">창업설명회</a></li>
+        			</ul>
+        		</div>
+        	</div>
 
             <div class="contents">
                 <h4>당신의 창업 성공 스토리 <span>투썸플레이스</span>가 함께 합니다.</h4>

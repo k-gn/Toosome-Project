@@ -20,8 +20,17 @@
         <div class="franchise-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-                <span class="franchise-title">창업정보</span>
             </div>
+            <div class="sub-header-container">
+       			<h3>창업정보</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/franchise">OTHERS</a></li>
+       					<li><a href="/franchise">창업정보</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents">
                 <div class="img-title">

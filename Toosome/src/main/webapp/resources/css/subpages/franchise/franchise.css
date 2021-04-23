@@ -16,11 +16,50 @@
     flex-direction: column;
     text-align: center;
 }
-.franchise-container .title-container .franchise-title {
-    margin-top: 50px;
-    font-size: 1.5rem;
-    font-family: gsdr;
-    color: #000;
+.sub-header-container {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 50px;
+	
+}
+.sub-header-container h3 {
+	font-family: gsdr;
+	font-size: 1.5rem;
+	font-weight: 100;
+}
+
+.navigation-container {
+	width: 30%;
+	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 0;
+}
+
+.navigation-container ul {
+	display: flex;
+}
+
+.navigation-container ul li a {
+	font-size: 0.75rem;
+	color: #666666;
+	white-space: nowrap;
+}
+
+.navigation-container ul li a:hover {
+	text-decoration: underline;
+}
+
+.navigation-container ul li::after {
+	content: "\00a0>\00a0";
+}
+
+.navigation-container ul li:last-child::after {
+	content: "";
 }
 .franchise-container .title-container .title-logo {
     display: flex;

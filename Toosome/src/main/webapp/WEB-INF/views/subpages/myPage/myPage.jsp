@@ -23,9 +23,9 @@
 </script> 
 </head>
 <body>
+  <div class="bg"></div>
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-    
     <div class="my-container">
       <div id="main">
           <span class="myTitle">개인정보관리</span>

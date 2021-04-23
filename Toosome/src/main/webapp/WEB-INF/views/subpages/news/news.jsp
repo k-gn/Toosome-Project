@@ -16,13 +16,13 @@
         <section>
         	<div class="sub-header-container">
         		<h3>뉴스</h3>
-        		<nav class="navigation-container">
+        		<div class="navigation-container">
         			<ul>
-        				<li><a href="#">HOME</a></li>
-        				<li><a href="#">WHAT'S NEWS</a></li>
-        				<li><a href="#">뉴스</a></li>
+        				<li><a href="/">HOME</a></li>
+        				<li><a href="/event">WHAT'S NEWS</a></li>
+        				<li><a href="/news">뉴스</a></li>
         			</ul>
-        		</nav>
+        		</div>
         	</div>
 			<p>TOOSOME PLACE의 뉴스를 확인하세요</p>
         	<div class="search-container">
