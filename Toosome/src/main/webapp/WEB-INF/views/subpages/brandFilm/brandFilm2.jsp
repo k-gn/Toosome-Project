@@ -15,8 +15,17 @@
         <div class="brandfilm-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-                <span class="brandfilm-title">Brand Film</span>
             </div>
+            <div class="sub-header-container">
+       			<h3>Brand Film</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">ABOUT US</a></li>
+       					<li><a href="/brandfilm2">브랜드필름</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents-box">
                 <div class="menu-btn">

@@ -14,8 +14,17 @@
         <div class="coffeestory-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-                <span class="coffeestory-title">CoffeeStory</span>
             </div>
+            <div class="sub-header-container">
+       			<h3>Coffee Story</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">ABOUT US</a></li>
+       					<li><a href="/coffeestory">커피이야기</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents">
                 <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeStory/img_coffeestory.png" alt="">
