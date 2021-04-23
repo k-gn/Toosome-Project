@@ -91,9 +91,7 @@
 				<div class="comment-box">
 
 					<div class="btn-group">
-						<button class="prev">&lt;</button>
 						<button class="list">목록</button>
-						<button class="next">&gt;</button>
 					</div>
 
 					<ul class="one-comment">

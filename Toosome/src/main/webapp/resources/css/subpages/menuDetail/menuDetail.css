@@ -101,12 +101,22 @@
 .menuDetail-container .contents .comment-box .btn-group button {
   margin-left: 10px;
   display: block;
-  width: 50px;
-  font-size: 15px;
+  width: 80px;
+  height: 40px;
+  outline: none;
+  appearance: none;
+  border-radius: 5px;
+  border: none;
+  background: #a62326;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
   /* font-weight: bold; */
 }
-.menuDetail-container .contents .comment-box .btn-group button:nth-child(2) {
-  width: 80px;
+.menuDetail-container .contents .comment-box .btn-group button:hover {
+	text-decoration: underline;
 }
 .menuDetail-container .contents .comment-box .one-comment {
   width: 100%;
