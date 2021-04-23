@@ -501,11 +501,11 @@ header .mobile-nav .m-log li a:hover {
 }
 @media screen and (max-width: 770px) {
   .footer {
-    height: 150px;
+    height: 200px;
   }
 }
 @media screen and (max-width: 520px) {
   .footer {
-    height: 200px;
+    height: 250px;
   }
 }
