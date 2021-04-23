@@ -44,6 +44,7 @@
 .navigation-container ul li a {
 	font-size: 0.75rem;
 	color: #666666;
+	white-space: nowrap;
 }
 
 .navigation-container ul li a:hover {

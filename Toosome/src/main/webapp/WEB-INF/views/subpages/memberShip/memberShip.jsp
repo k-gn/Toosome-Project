@@ -14,9 +14,17 @@
 	    <div class="member-container">
 	      <div class="title-container">
 	          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-	          <span class="member-title">멤버십 카드</span>
 	      </div>
-	
+		  <div class="sub-header-container">
+       			<h3>멤버십</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">WHAT'S NEWS</a></li>
+       					<li><a href="/brandstory">멤버십</a></li>
+       				</ul>
+       			</div>
+          </div>	
 	      <div class="contents">
 	          <div class="membership-text">
 	            <h5 class="mb-logo">
