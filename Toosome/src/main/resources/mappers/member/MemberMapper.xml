@@ -17,7 +17,6 @@
 		<result property="status" column="MEMBER_STATUS"/>
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
-		<result property="memberEnabled" column="MEMBER_ENABLED"/>
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 

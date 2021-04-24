@@ -64,7 +64,7 @@
           <tbody>
           	<c:forEach var="lvl" items="${lvl}">
           		<tr>
-	              <th scope="row"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/membership/${lvl.levelImg}" alt=""></th>
+	              <th scope="row"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/membership/tier/${lvl.levelImg}" alt=""></th>
 	              <td>${lvl.levelName}</td>
 	              <td>${lvl.levelMinRange}p ~ ${lvl.levelMaxRange == null ? '∞' : lvl.levelMaxRange}p</td>
 	              <td class="discountRate">${lvl.levelDiscountRate}%</td>

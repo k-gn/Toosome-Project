@@ -74,6 +74,7 @@ public class LoginController {
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
+			service.updateLastLogin(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
@@ -122,6 +123,7 @@ public class LoginController {
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
+			service.updateLastLogin(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
