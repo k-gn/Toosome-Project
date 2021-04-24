@@ -18,14 +18,23 @@
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
 		<result property="memberEnabled" column="MEMBER_ENABLED"/>
-		<collection property="authList" resultMap="authMap" />
-	</resultMap>
-
-	<resultMap type="authVO" id="authMap">
-		<result property="memberEmail" column="MEMBER_EMAIL" />
-		<result property="memberAuth" column="MEMBER_AUTH" />
 	</resultMap>
 	
+	<!-- 중복되는 동적 SQL문 처리-->
+	<sql id="search">
+		<if test="condition == 'id'">
+			WHERE MEMBER_ID LIKE CONCAT('%', #{condition}, '%')
+		</if>
+		<if test="condition == 'name'">
+			WHERE MEMBER_NAME LIKE CONCAT('%', #{condition}, '%')
+		</if>
+	</sql>
+ 	
+	<select id="getMemberList" resultMap="memberMap">
+		SELECT *
+		FROM MEMBER
+		<include refid="search"/>
+	</select>	
 	
 
 </mapper>

@@ -104,12 +104,12 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-/*// AJAX 전체 리스트 불러오기
+// AJAX 전체 리스트 불러오기
 const getAllList = () => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/memberList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -153,19 +153,19 @@ const getAllList = () => {
 			history.back();
 		} 
 	});
-};*/
+};
 
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (member) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/memberList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
+		dataType: "json", //응답받을 데이터의 형태
+		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
 			const listTable = document.querySelector('#list-table-thead');
@@ -210,8 +210,8 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const memberName = ''; // 검색 이름
-	const memberEmail = ''; // 검색 이메일
+
+	const condition = '';
 	const platFormType = ''; // 가입유형
 	const startRegDate = ''; // 회원가입 검색 시작일
 	const endRegDate = ''; // 회원가입 검색 종료일
@@ -221,11 +221,11 @@ const submitHandler = () => {
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			memberName = searchInput.value;	
+			condition = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			memberEmail = searchInput.value;			
+			condition = searchInput.value;			
 		}
 	};
 	
@@ -246,9 +246,8 @@ const submitHandler = () => {
 		endLoginDate = moment(loginCalendar2.value).format('YYYY-MM-DD');
 	}
 	// JSON Data
-	const data = {
-		memberName,
-		memberEmail,
+	const member = {
+		condition,
 		platFormType,
 		startRegDate,
 		endRegDate,
@@ -256,7 +255,7 @@ const submitHandler = () => {
 		endLoginDate,
 	};
 	
-	getList(data);
+	getList(member);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -342,6 +341,6 @@ const excelDownload = (id, title) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-/*	getAllList();*/
-	
+	const member = {}
+	getList(member);
 }); 

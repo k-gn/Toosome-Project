@@ -1,7 +1,9 @@
 package com.web.toosome.user.member.vo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -17,8 +19,10 @@ public class MemberVO{
 	private String memberAddress;
 	private String memberPostcode;
 	private String platFormType;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date regDate;
 	private Integer status;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date lastLoginDate;
 	private Integer memberRePassword;
 	private List<AuthVO> authList;

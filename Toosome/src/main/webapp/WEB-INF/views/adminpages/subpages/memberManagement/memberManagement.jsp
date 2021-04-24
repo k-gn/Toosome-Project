@@ -48,7 +48,7 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="searchType" class="search-select" id="searchType">
+                              <select name="condition" class="search-select" id="searchType">
                                 <option value="id">ID(E-mail)</option>
                                 <option value="name">이름</option>
                               </select>
