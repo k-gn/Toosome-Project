@@ -14,15 +14,16 @@ public class MemberVO{
 	private String memberName;
 	private String memberEmail;
 	private String memberPassword;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date memberBirth;
 	private String memberPhone;
 	private String memberAddress;
 	private String memberPostcode;
 	private String platFormType;
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date regDate;
 	private Integer status;
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date lastLoginDate;
 	private Integer memberRePassword;
 	private List<AuthVO> authList;

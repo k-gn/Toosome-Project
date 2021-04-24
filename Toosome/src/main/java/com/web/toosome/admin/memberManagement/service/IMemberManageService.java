@@ -8,4 +8,8 @@ import com.web.toosome.user.member.vo.MemberVO;
 public interface IMemberManageService {
 
 	public List<MemberVO> getMemberList(MemberSearchVO search);
+
+	public MemberVO getMember(Integer id);
+	
+	public int updateMember(MemberVO member);
 }

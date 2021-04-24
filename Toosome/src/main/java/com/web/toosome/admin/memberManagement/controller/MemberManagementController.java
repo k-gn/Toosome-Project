@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.memberManagement.service.IMemberManageService;
 import com.web.toosome.user.member.vo.MemberSearchVO;
@@ -45,6 +48,21 @@ public class MemberManagementController {
 	public List<MemberVO> getMemberList(MemberSearchVO search) {
 		System.out.println("search : " + search);
 		return service.getMemberList(search);
+	}
+	
+	@GetMapping("/member/{id}")
+	@ResponseBody
+	public MemberVO getMember(@PathVariable Integer id) {
+		return service.getMember(id);
+	}
+	
+	@PostMapping("/member") 
+	public String updateMember(MemberVO member, RedirectAttributes ra) {
+		System.out.println(member);
+		int result = service.updateMember(member);
+		if(result > 0) ra.addFlashAttribute("msg", "modSuccess");
+		else ra.addFlashAttribute("msg", "modFail");
+		return "redirect:/admin/member-management";
 	}
 }
 

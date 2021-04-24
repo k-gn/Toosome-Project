@@ -63,6 +63,11 @@ public class MemberService implements IMemberService {
 	public MemberVO getUserByEmail(String email) {
 		return mapper.getUserByEmail(email);
 	}
+	
+	@Override
+	public void updateLastLogin(String email) {
+		mapper.updateLastLogin(email);
+	}
 
 	// 아이디 찾기 & 비밀번호 찾기 인증 번호 전송
 	@Override

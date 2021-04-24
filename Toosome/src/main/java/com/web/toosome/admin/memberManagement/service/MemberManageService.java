@@ -20,4 +20,14 @@ public class MemberManageService implements IMemberManageService {
 		return mapper.getMemberList(search);
 	}
 
+	@Override
+	public MemberVO getMember(Integer id) {
+		return mapper.getMember(id);
+	}
+
+	@Override
+	public int updateMember(MemberVO member) {
+		return mapper.updateMember(member);
+	}
+
 }

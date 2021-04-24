@@ -17,24 +17,101 @@
 		<result property="status" column="MEMBER_STATUS"/>
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
-		<result property="memberEnabled" column="MEMBER_ENABLED"/>
+		<collection property="authList" resultMap="authMap" />
+	</resultMap>
+	
+	<resultMap type="authVO" id="authMap">
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberAuth" column="MEMBER_AUTH" />
 	</resultMap>
 	
 	<!-- 중복되는 동적 SQL문 처리-->
 	<sql id="search">
+		WHERE MEMBER_STATUS = 1 AND MEMBER_AUTH = 'ROLE_USER'
 		<if test="condition == 'id'">
-			WHERE MEMBER_ID LIKE CONCAT('%', #{condition}, '%')
+			AND mem.MEMBER_EMAIL LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="condition == 'name'">
-			WHERE MEMBER_NAME LIKE CONCAT('%', #{condition}, '%')
+			AND MEMBER_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="platFormType == 'normal'">
+			AND MEMBER_PLATFORM_TYPE = 'Toosome';
+		</if>
+		<if test="platFormType == 'sns'">
+			AND MEMBER_PLATFORM_TYPE IN ('naver', 'kakao');
+		</if>
+		<if test="startRegDate != null and startRegDate != ''">
+			AND MEMBER_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
+		</if>
+		<if test="startLoginDate != null and startLoginDate != ''">
+			AND MEMBER_REG_DATE BETWEEN DATE(#{startLoginDate}) AND DATE(#{endLoginDate})+1
 		</if>
 	</sql>
  	
 	<select id="getMemberList" resultMap="memberMap">
-		SELECT *
-		FROM MEMBER
+		SELECT 
+			MEMBER_ID,
+			MEMBER_NAME,
+			mem.MEMBER_EMAIL,
+			MEMBER_PLATFORM_TYPE,
+			MEMBER_REG_DATE,
+			MEMBER_STATUS,
+			MEMBER_AUTH,
+			MEMBER_BIRTH,
+			MEMBER_LAST_LOGIN_DATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE,
+			CASE
+		        WHEN MEMBER_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE MEMBER_POSTCODE
+		    END as MEMBER_POSTCODE,
+			CASE
+		        WHEN MEMBER_ADDRESS IS NULL THEN "No Address"
+		        ELSE MEMBER_ADDRESS
+		    END as MEMBER_ADDRESS
+		FROM MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		<include refid="search"/>
+		ORDER BY MEMBER_ID DESC
+		<if test="viewCount != null and viewCount != ''">
+			LIMIT 0, #{viewCount}
+		</if>
 	</select>	
 	
+	<!-- 아이디로 회원 조회 -->
+	<select id="getMember" resultMap="memberMap">
+		SELECT
+			MEMBER_ID,
+			MEMBER_NAME,
+			mem.MEMBER_EMAIL,
+			MEMBER_PLATFORM_TYPE,
+			MEMBER_REG_DATE,
+			MEMBER_STATUS,
+			MEMBER_AUTH,
+			MEMBER_BIRTH,
+			MEMBER_LAST_LOGIN_DATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE,
+			CASE
+		        WHEN MEMBER_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE MEMBER_POSTCODE
+		    END as MEMBER_POSTCODE,
+			CASE
+		        WHEN MEMBER_ADDRESS IS NULL THEN "No Address"
+		        ELSE MEMBER_ADDRESS
+		    END as MEMBER_ADDRESS
+		FROM
+			MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		WHERE MEMBER_ID = #{id}
+	</select>
 
+	<!-- 회원정보 수정 -->
+	<update id="updateMember">
+		UPDATE MEMBER 
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_ID = #{memberId};		 
+	</update>
 </mapper>

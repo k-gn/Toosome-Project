@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/memberManagement/memberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/memberManagement.js" defer></script>
+  <script type="text/javascript">
+  	const msg = "${msg}";
+  	if(msg === "modSuccess") {
+  		alert("회원정보 수정 완료");
+  	}
+  </script>
 </head>
 
 <body>
@@ -64,6 +70,7 @@
                            <td>
                         	  <div class="select-box">
                               <select name="memberType" class="search-select" id="memberType">
+                                <option value="all">모두</option>
                                 <option value="normal">일반회원</option>
                                 <option value="simple">간편회원</option>
                               </select>
@@ -138,24 +145,24 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/member" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="email" name="memberEmail" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
+		                          <input type="tel" name="memberPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -163,13 +170,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="lastLoginDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -177,7 +184,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberAddress" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -185,19 +192,19 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberPostcode" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -214,6 +221,8 @@
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="memberId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
@@ -231,7 +240,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="changeSelect()">
+	                      <option value="10">기본</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -267,32 +277,7 @@
                           최종로그인
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="memberList" items="${memberList}">
-	                        <tr>
-	                          <td>
-	                            ${memberList.memberId}
-	                          </td>
-	                          <td>
-	                            ${memberList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${memberList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${memberList.memberName}
-	                          </td>
-	                          <td>
-	                            ${memberList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${memberList.regDate}
-	                          </td>
-	                          <td>
-	                            ${memberList.lastLoginDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>
