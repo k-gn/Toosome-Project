@@ -5,7 +5,9 @@
 <html lang="ko">
   <head>
   	<jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+    <!-- Google web font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="/resources/css/main/main.css" />
     <link rel="stylesheet" href="/resources/css/main/slick.css" />
@@ -34,18 +36,34 @@
   <body>
     <div id="container">
       <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-      <div id="img-wrap" class="img-slide">
+      <div id="img-wrap" class="img-slide">       
         <div class="slide">
           <ul class="slide-imgs cf slider autoplay">
-            <li class="img1"></li>
-            <li class="img2"></li>
-            <li class="img3"></li>
+            <li class="img1">
+            	<div class="img-title">
+        			<div class="img-content">Premium<br>Coffee<small> &amp; </small>Dessert</div>
+        		</div>
+        	</li>
+            <li class="img2">
+            	<div class="img-title">
+        			<div class="img-content">Inviting Pairing<br>Culture</div>
+        		</div>
+            </li>
+            <li class="img3">
+            	<div class="img-title">
+        			<div class="img-content">Pairing<br><small>in</small><br>Moments<br><small>Since 2002</small></div>
+        		</div>
+            </li>
           </ul>
         </div>
       </div>
       <div id="new-menu" class="img-slide">
         <div class="new-cover">
-          <p class="new">NEW</p>
+          <div class="new-wrap">
+	          <span class="new">NEW MENU</span>
+	          <span class="new-title">투썸플레이스의 <strong>신작 메뉴</strong>를 소개합니다</span>
+	          <a class="new-more" href="/menu-new">자세히 보기</a>
+          </div>
           <div class="img_box">
             <ul class="new-menu-box cf slider autoplay2">
               <li>
