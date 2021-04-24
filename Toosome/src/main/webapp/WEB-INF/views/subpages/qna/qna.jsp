@@ -24,13 +24,13 @@
         <section>
         	<div class="sub-header-container">
         		<h3>QnA</h3>
-        		<nav class="navigation-container">
+        		<div class="navigation-container">
         			<ul>
-        				<li><a href="#">HOME</a></li>
-        				<li><a href="#">WHAT'S NEWS</a></li>
-        				<li><a href="#">QnA</a></li>
+        				<li><a href="/">HOME</a></li>
+        				<li><a href="/event">WHAT'S NEWS</a></li>
+        				<li><a href="/qna">QnA</a></li>
         			</ul>
-        		</nav>
+        		</div>
         	</div>
 			<p>고객 한 분 한 분의 의견에 귀 기울이는 투썸플레이스가 되겠습니다</p>
         	<div class="search-container">

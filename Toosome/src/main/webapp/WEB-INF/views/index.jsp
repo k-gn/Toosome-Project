@@ -134,7 +134,7 @@
         <div class="quick-menu">
           <div class="quick-menu-coffee">
             <div class="coffee">
-              <a href="#"></a>
+              <a href="/menu-new"></a>
               <span class="quick-title">Coffee &amp; Cake</span>
             </div>
             <div class="coffee-ment">
@@ -150,7 +150,7 @@
           </div>
           <div class="quick-menu-beverage">
             <div class="beverage">
-            <a href="#"></a>
+            <a href="/product-new"></a>
               <span class="quick-title">Tumbler &amp; Goods</span>
             </div>
             <div class="beverage-ment">

@@ -20,17 +20,55 @@
     flex-direction: column;
     text-align: center;
 }
-.menu-container .title-container .menu-title {
-    margin-top: 50px;
-    font-size: 1.5rem;
-    font-family: gsdr;
-    color: #000;
-}
 .menu-container .title-container .title-logo {
     display: flex;
     width: 600px;
     height: auto;
     margin: 0 auto;
+}
+.sub-header-container {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 50px;
+	
+}
+.sub-header-container h3 {
+	font-family: gsdr;
+	font-size: 1.5rem;
+}
+
+.navigation-container {
+	width: 30%;
+	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin: 0;
+}
+
+.navigation-container ul {
+	display: flex;
+}
+
+.navigation-container ul li a {
+	font-size: 0.75rem;
+	color: #666666;
+	white-space: nowrap;
+}
+
+.navigation-container ul li a:hover {
+	text-decoration: underline;
+}
+
+.navigation-container ul li::after {
+	content: "\00a0>\00a0";
+}
+
+.navigation-container ul li:last-child::after {
+	content: "";
 }
 
 .menu-container .tab-container {
@@ -39,6 +77,7 @@
 .menu-container .tab-container .menu-btn {
     width: 100%;
     height: 100px;
+    border-bottom: 1px solid #ccc;
 }
 .menu-container .tab-container .menu-btn .btn-tab {
     width: 80%;
@@ -51,7 +90,7 @@
     height: 100%;
     display: flex;
     box-sizing: border-box;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     border-right: none;
     justify-content: center;
     align-items: center;
@@ -61,13 +100,16 @@
     background-color: #A62326;
 }
 .menu-container .tab-container .menu-btn .btn-tab li:nth-child(5) {
-    border-right: 1px solid #000;
+    border-right: 1px solid #ccc;
 }
 .menu-container .tab-container .menu-btn .btn-tab li a {
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     font-family: gsdr;
-    color: #000;
+    color: #222;
+}
+.menu-container .tab-container .menu-btn .btn-tab li a:hover {
+	text-decoration: underline;
 }
 .menu-container .tab-container .menu-btn .btn-tab li.select a {
 	color: #fff;
@@ -101,11 +143,15 @@
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #white;
+    background-color: #fff;
     font-family: maple;
     box-shadow: 0 4px 5px #ccc;
     position: relative;
     /* background-color: red; */
+    transition: all 0.3s;    
+}
+.menu-container .tab-container .menu-content ul li a:hover {
+	box-shadow: 0px 6px 10px -1px rgba(0,0,0,0.4);
 } 
 .menu-container .tab-container .menu-content ul li a img:first-child {
     display: block;

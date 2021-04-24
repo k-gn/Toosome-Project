@@ -181,12 +181,9 @@
 .productDetail-container .contents .comment-box .btn-group button {
   margin-left: 10px;
   display: block;
-  width: 50px;
+  width: 80px;
   font-size: 15px;
   /* font-weight: bold; */
-}
-.productDetail-container .contents .comment-box .btn-group button:nth-child(2) {
-  width: 80px;
 }
 .productDetail-container .contents .comment-box .one-comment {
   width: 100%;
