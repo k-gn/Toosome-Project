@@ -15,4 +15,7 @@ public interface IMemberManageService {
 	public int updateMember(MemberVO member);
 	
 	public List<WithdrawVO> getOutList(MemberSearchVO search);
+	
+	public WithdrawVO getOutMember(Integer id);
+	
 }

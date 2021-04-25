@@ -98,24 +98,24 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/member" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="email" name="memberEmail" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
+		                          <input type="tel" name="memberPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -123,13 +123,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="lastLoginDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -137,7 +137,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberAddress" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -145,19 +145,19 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberPostcode" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -174,6 +174,8 @@
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="memberId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
@@ -227,32 +229,7 @@
                           휴면전환일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="sleepMemberList" items="${sleepMemberList}">
-	                        <tr>
-	                          <td>
-	                            ${sleepMemberList.memberId}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.memberName}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.regDate}
-	                          </td>
-	                          <td>
-	                            ${sleepMemberList.changeSleepDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>

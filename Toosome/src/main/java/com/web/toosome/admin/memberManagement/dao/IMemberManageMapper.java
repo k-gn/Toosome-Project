@@ -17,7 +17,10 @@ public interface IMemberManageMapper {
 	// 회원 정보 수정
 	public int updateMember(MemberVO member);
 	
-	// 탈퇴 회원 조회
+	// 탈퇴 회원 목록 조회
 	public List<WithdrawVO> getOutList(MemberSearchVO search);
+
+	// 탈퇴 회원 조회
+	public WithdrawVO getOutMember(Integer id);
 	
 }

@@ -63,6 +63,12 @@ public class MemberManagementController {
 		return service.getMember(id);
 	}
 	
+	@GetMapping("/out/{id}")
+	@ResponseBody
+	public WithdrawVO getOutMember(@PathVariable Integer id) {
+		return service.getOutMember(id);
+	}
+	
 	@PostMapping("/member") 
 	public String updateMember(MemberVO member, RedirectAttributes ra) {
 		System.out.println(member);

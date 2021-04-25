@@ -36,4 +36,9 @@ public class MemberManageService implements IMemberManageService {
 		return mapper.getOutList(search);
 	}
 
+	@Override
+	public WithdrawVO getOutMember(Integer id) {
+		return mapper.getOutMember(id);
+	}
+
 }

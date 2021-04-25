@@ -16,6 +16,7 @@
 		<result property="regDate" column="MEMBER_REG_DATE"/>
 		<result property="status" column="MEMBER_STATUS"/>
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberStatusDate" column="MEMBER_STATUS_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
@@ -62,7 +63,13 @@
 			AND MEMBER_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
 		</if>
 		<if test="startLoginDate != null and startLoginDate != ''">
-			AND MEMBER_REG_DATE BETWEEN DATE(#{startLoginDate}) AND DATE(#{endLoginDate})+1
+			AND MEMBER_LAST_LOGIN_DATE BETWEEN DATE(#{startLoginDate}) AND DATE(#{endLoginDate})+1
+		</if>
+		<if test="startBlackDate != null and startBlackDate != ''">
+			AND MEMBER_STATUS_DATE BETWEEN DATE(#{startBlackDate}) AND DATE(#{endBlackDate})+1
+		</if>
+		<if test="startSleepDate != null and startSleepDate != ''">
+			AND MEMBER_STATUS_DATE BETWEEN DATE(#{startSleepDate}) AND DATE(#{endSleepDate})+1
 		</if>
 	</sql>
 	
@@ -90,6 +97,7 @@
 			MEMBER_AUTH,
 			MEMBER_BIRTH,
 			MEMBER_LAST_LOGIN_DATE,
+			MEMBER_STATUS_DATE,
 			CASE
 		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
 		        ELSE MEMBER_PHONE
@@ -122,6 +130,7 @@
 			MEMBER_AUTH,
 			MEMBER_BIRTH,
 			MEMBER_LAST_LOGIN_DATE,
+			MEMBER_STATUS_DATE,
 			CASE
 		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
 		        ELSE MEMBER_PHONE
@@ -142,11 +151,11 @@
 	<!-- 회원정보 수정 -->
 	<update id="updateMember">
 		UPDATE MEMBER 
-		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}, MEMBER_STATUS = #{status}, MEMBER_STATUS_DATE = NOW() 
 		WHERE MEMBER_ID = #{memberId};		 
 	</update>
 	
-	<!-- 탈퇴 회원 조회 -->
+	<!-- 탈퇴 회원 목록 조회 -->
 	<select id="getOutList" resultMap="withdrawMap">
 		SELECT 
 			WITHDRAW_ID,
@@ -176,4 +185,32 @@
 			LIMIT 0, #{viewCount}
 		</if>
 	</select>	
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="getOutMember" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_ID,
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL,
+			WITHDRAW_PLATFORM_TYPE,
+			WITHDRAW_REGDATE,
+			WITHDRAW_STATUS,
+			WITHDRAW_BIRTH,
+			WITHDRAW_DATE,
+			CASE
+		        WHEN WITHDRAW_PHONE IS NULL THEN "No Phone"
+		        ELSE WITHDRAW_PHONE
+		    END as WITHDRAW_PHONE,
+			CASE
+		        WHEN WITHDRAW_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE WITHDRAW_POSTCODE
+		    END as WITHDRAW_POSTCODE,
+			CASE
+		        WHEN WITHDRAW_ADDRESS IS NULL THEN "No Address"
+		        ELSE WITHDRAW_ADDRESS
+		    END as WITHDRAW_ADDRESS
+		FROM WITHDRAW
+		WHERE WITHDRAW_ID = #{id}
+	</select>
+	
 </mapper>

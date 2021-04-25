@@ -76,7 +76,7 @@ const resetHandler = () => {
 resetBtn.addEventListener('click', resetHandler);
 
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (member) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -91,6 +91,8 @@ const getList = (data) => {
 			console.log(result);
 			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
 			result.forEach(res => {
 				let newEl = document.createElement('tr');
 				newEl.setAttribute( 'onclick', 'listHandler(this)' )
@@ -130,6 +132,11 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
+
+ 	condition = '';
+ 	keyword = '';
+	startOutDate = ''; // 회원가입 검색 시작일
+	endOutDate = ''; // 회원가입 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
@@ -158,7 +165,7 @@ const submitHandler = () => {
 		endOutDate
 	};
 	
-	getList(data);
+	getList(member);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -169,9 +176,32 @@ const listHandler = (e) => {
 	const id = tds[0].innerText;
 	console.log(id);
 	/* index로 AJAX 요청 */
-	
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/out/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			$("input[name=withdrawEmail]").val(res.withdrawEmail);			
+			$("input[name=withdrawName]").val(res.withdrawName);			
+			$("input[name=withdrawPhone]").val(res.withdrawPhone);			
+			$("input[name=regDate]").val(res.regDate);			
+			$("input[name=withdrawDate]").val(res.withdrawDate);			
+			$("input[name=withdrawAddress]").val(res.withdrawAddress);			
+			$("input[name=withdrawPostcode]").val(res.withdrawPostcode);			
+			$("input[name=withdrawBirth]").val(res.withdrawBirth);			
+			$("input[name=platFormType]").val(res.platFormType);			
+			$("input[name=withdrawId]").val(res.withdrawId);			
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
 	profileContainer.style.display = 'block';
-	
+	$("input[name=withdrawName]").focus();
 };
 
 // loop 돌며 list에 event hook
