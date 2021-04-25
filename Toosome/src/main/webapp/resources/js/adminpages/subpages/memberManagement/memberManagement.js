@@ -251,8 +251,8 @@ const listHandler = (e) => {
 			history.back();
 		} 
 	});
-	
 	profileContainer.style.display = 'block';
+	$("input[name=memberName]").focus();
 };
 
 // loop 돌며 list에 event hook
