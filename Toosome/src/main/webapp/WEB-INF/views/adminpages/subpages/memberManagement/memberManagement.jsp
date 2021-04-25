@@ -212,10 +212,10 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원상태</label>
-		                          <select class="custom-select" name="memberState">
-				                  	<option value="">회원상태</option>
-				                  	<option value="sleep">휴면회원</option>
-				                  	<option value="black">블랙회원</option>
+		                          <select class="custom-select" name="status">
+				                  	<option value="1" selected>회원상태</option>
+				                  	<option value="2">휴면회원</option>
+				                  	<option value="3">블랙회원</option>
 				                  </select>
 		                        </div>
 		                      </div>
@@ -238,7 +238,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
+                  <h4 class="card-title" id="search-result"></h4>
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">

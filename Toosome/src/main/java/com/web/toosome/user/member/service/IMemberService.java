@@ -51,7 +51,7 @@ public interface IMemberService {
 
 	// 비밀번호 변경
 	public int changePassword(Integer id, String newpassword);
-	
+
 	// 최종 로그인 등록
 	public void updateLastLogin(String email);
 }

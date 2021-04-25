@@ -60,15 +60,12 @@
 	<!-- Mybatis Bean Scan -->
 	<mybatis-spring:scan
 		base-package="com.web.toosome.*.*.dao" />
-
+		
 	<!-- 트랜잭션 빈 등록 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-	<!-- 트랜잭션 어노테이션 설정 -->
-	<tx:annotation-driven />
 
 	<!-- s3 <bean id="s3Service" class="com.web.toosome.common.s3.S3Service"> 
 		<constructor-arg value="${s3.bucket}"/> <constructor-arg value="${s3.accessKey}"/> 

@@ -17,8 +17,6 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
-let member = {};
-let viewCount = 10;
 let condition = '';
 let keyword = '';
 let platFormType = ''; // 가입유형
@@ -26,7 +24,10 @@ let startRegDate = ''; // 회원가입 검색 시작일
 let endRegDate = ''; // 회원가입 검색 종료일
 let startLoginDate = ''; // 로그인 검색 시작일
 let endLoginDate = ''; // 로그인 검색 종료일
-	
+let viewCount = 10;
+const status = 1;
+let member = {status}; 
+
 // 기간선택 handler
 const joinChangeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
@@ -126,14 +127,16 @@ const getList = (member) => {
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
+			console.log(result);
 			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
 			result.forEach(res => {
 			
 				if(res.lastLoginDate == null) {
 					res.lastLoginDate = '';
 				}
-			
 				let newEl = document.createElement('tr');
 				newEl.setAttribute( 'onclick', 'listHandler(this)' )
 				let content = `
@@ -173,6 +176,14 @@ const getList = (member) => {
 // 검색 버튼 핸들러
 const submitHandler = () => {
 
+	condition = '';
+	keyword = '';
+	platFormType = ''; // 가입유형
+	startRegDate = ''; // 회원가입 검색 시작일
+	endRegDate = ''; // 회원가입 검색 종료일
+	startLoginDate = ''; // 로그인 검색 시작일
+	endLoginDate = ''; // 로그인 검색 종료일
+
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
@@ -202,7 +213,7 @@ const submitHandler = () => {
 	}
 	
 	// 로그인일자
-	if(loginDate.options[joinDate.selectedIndex].value === 'log-use') {
+	if(loginDate.options[loginDate.selectedIndex].value === 'log-use') {
 		startLoginDate = moment(loginCalendar.value).format('YYYY-MM-DD');
 		endLoginDate = moment(loginCalendar2.value).format('YYYY-MM-DD');
 	}
@@ -215,7 +226,8 @@ const submitHandler = () => {
 		endRegDate,
 		startLoginDate,
 		endLoginDate,
-		viewCount
+		viewCount,
+		status
 	};
 	getList(member);
 };
@@ -341,7 +353,8 @@ function changeSelect() {
 		endRegDate,
 		startLoginDate,
 		endLoginDate,
-		viewCount
+		viewCount,
+		status
 	};
 	
 	getList(member);

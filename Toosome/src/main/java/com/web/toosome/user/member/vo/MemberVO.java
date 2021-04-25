@@ -25,6 +25,8 @@ public class MemberVO{
 	private Integer status;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date lastLoginDate;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+	private Date memberStatusDate;
 	private Integer memberRePassword;
 	private List<AuthVO> authList;
 }

@@ -2,6 +2,7 @@ package com.web.toosome.admin.memberManagement.dao;
 
 import java.util.List;
 
+import com.web.toosome.admin.memberManagement.vo.WithdrawVO;
 import com.web.toosome.user.member.vo.MemberSearchVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
@@ -15,5 +16,11 @@ public interface IMemberManageMapper {
 	
 	// 회원 정보 수정
 	public int updateMember(MemberVO member);
+	
+	// 탈퇴 회원 목록 조회
+	public List<WithdrawVO> getOutList(MemberSearchVO search);
+
+	// 탈퇴 회원 조회
+	public WithdrawVO getOutMember(Integer id);
 	
 }
