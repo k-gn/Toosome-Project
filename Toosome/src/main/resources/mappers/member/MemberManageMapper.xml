@@ -20,6 +20,21 @@
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 	
+	<resultMap type="withdrawVO" id="withdrawMap">
+		<id property="withdrawId" column="WITHDRAW_ID"/>
+		<result property="withdrawName" column="WITHDRAW_NAME"/>
+		<result property="withdrawEmail" column="WITHDRAW_EMAIL"/>
+		<result property="withdrawPassword" column="WITHDRAW_PASSWORD"/>
+		<result property="withdrawBirth" column="WITHDRAW_BIRTH"/>
+		<result property="withdrawPhone" column="WITHDRAW_PHONE"/>
+		<result property="withdrawAddress" column="WITHDRAW_POSTCODE"/>
+		<result property="withdrawPostcode" column="WITHDRAW_ADDRESS"/>
+		<result property="platFormType" column="WITHDRAW_PLATFORM_TYPE"/>
+		<result property="regDate" column="WITHDRAW_REGDATE"/>
+		<result property="status" column="WITHDRAW_STATUS"/>
+		<result property="withdrawDate" column="WITHDRAW_DATE"/>
+	</resultMap>
+	
 	<resultMap type="authVO" id="authMap">
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberAuth" column="MEMBER_AUTH" />
@@ -27,7 +42,10 @@
 	
 	<!-- 중복되는 동적 SQL문 처리-->
 	<sql id="search">
-		WHERE MEMBER_STATUS = 1 AND MEMBER_AUTH = 'ROLE_USER'
+		WHERE MEMBER_AUTH = 'ROLE_USER'
+		<if test="status != null">
+			AND MEMBER_STATUS = #{status}
+		</if>
 		<if test="condition == 'id'">
 			AND mem.MEMBER_EMAIL LIKE CONCAT('%', #{keyword}, '%')
 		</if>
@@ -35,16 +53,29 @@
 			AND MEMBER_NAME LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="platFormType == 'normal'">
-			AND MEMBER_PLATFORM_TYPE = 'Toosome';
+			AND MEMBER_PLATFORM_TYPE = 'Toosome'
 		</if>
 		<if test="platFormType == 'sns'">
-			AND MEMBER_PLATFORM_TYPE IN ('naver', 'kakao');
+			AND MEMBER_PLATFORM_TYPE IN ('naver', 'kakao')
 		</if>
 		<if test="startRegDate != null and startRegDate != ''">
 			AND MEMBER_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
 		</if>
 		<if test="startLoginDate != null and startLoginDate != ''">
 			AND MEMBER_REG_DATE BETWEEN DATE(#{startLoginDate}) AND DATE(#{endLoginDate})+1
+		</if>
+	</sql>
+	
+	<sql id="outSearch">
+		WHERE WITHDRAW_STATUS = -1
+		<if test="condition == 'id'">
+			AND WITHDRAW_EMAIL LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND WITHDRAW_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startOutDate != null and startOutDate != ''">
+			AND WITHDRAW_DATE BETWEEN DATE(#{startOutDate}) AND DATE(#{endOutDate})+1
 		</if>
 	</sql>
  	
@@ -74,7 +105,7 @@
 		FROM MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		<include refid="search"/>
 		ORDER BY MEMBER_ID DESC
-		<if test="viewCount != null and viewCount != ''">
+		<if test="viewCount != null">
 			LIMIT 0, #{viewCount}
 		</if>
 	</select>	
@@ -114,4 +145,35 @@
 		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}
 		WHERE MEMBER_ID = #{memberId};		 
 	</update>
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="getOutList" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_ID,
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL,
+			WITHDRAW_PLATFORM_TYPE,
+			WITHDRAW_REGDATE,
+			WITHDRAW_STATUS,
+			WITHDRAW_BIRTH,
+			WITHDRAW_DATE,
+			CASE
+		        WHEN WITHDRAW_PHONE IS NULL THEN "No Phone"
+		        ELSE WITHDRAW_PHONE
+		    END as WITHDRAW_PHONE,
+			CASE
+		        WHEN WITHDRAW_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE WITHDRAW_POSTCODE
+		    END as WITHDRAW_POSTCODE,
+			CASE
+		        WHEN WITHDRAW_ADDRESS IS NULL THEN "No Address"
+		        ELSE WITHDRAW_ADDRESS
+		    END as WITHDRAW_ADDRESS
+		FROM WITHDRAW
+		<include refid="outSearch"/>
+		ORDER BY WITHDRAW_ID DESC
+		<if test="viewCount != null">
+			LIMIT 0, #{viewCount}
+		</if>
+	</select>	
 </mapper>

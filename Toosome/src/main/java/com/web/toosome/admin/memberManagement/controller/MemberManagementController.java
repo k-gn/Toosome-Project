@@ -7,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.memberManagement.service.IMemberManageService;
+import com.web.toosome.admin.memberManagement.vo.WithdrawVO;
 import com.web.toosome.user.member.vo.MemberSearchVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
@@ -48,6 +48,13 @@ public class MemberManagementController {
 	public List<MemberVO> getMemberList(MemberSearchVO search) {
 		System.out.println("search : " + search);
 		return service.getMemberList(search);
+	}
+	
+	@GetMapping("/outList")
+	@ResponseBody
+	public List<WithdrawVO> getOutList(MemberSearchVO search) {
+		System.out.println("search : " + search);
+		return service.getOutList(search);
 	}
 	
 	@GetMapping("/member/{id}")

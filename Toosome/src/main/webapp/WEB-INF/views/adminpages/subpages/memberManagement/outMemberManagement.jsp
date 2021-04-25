@@ -48,7 +48,7 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="searchType" class="search-select" id="searchType">
+                              <select name="condition" class="search-select" id="searchType">
                                 <option value="id">ID(E-mail)</option>
                                 <option value="name">이름</option>
                               </select>
@@ -227,32 +227,7 @@
                           회원탈퇴일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="outMemberList" items="${outMemberList}">
-	                        <tr>
-	                          <td>
-	                            ${outMemberList.memberId}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberName}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.regDate}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.changeOutDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>

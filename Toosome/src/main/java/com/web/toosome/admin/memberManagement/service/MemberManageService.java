@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
+import com.web.toosome.admin.memberManagement.vo.WithdrawVO;
 import com.web.toosome.user.member.vo.MemberSearchVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
@@ -28,6 +29,11 @@ public class MemberManageService implements IMemberManageService {
 	@Override
 	public int updateMember(MemberVO member) {
 		return mapper.updateMember(member);
+	}
+
+	@Override
+	public List<WithdrawVO> getOutList(MemberSearchVO search) {
+		return mapper.getOutList(search);
 	}
 
 }

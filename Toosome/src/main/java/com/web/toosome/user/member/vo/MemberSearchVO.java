@@ -13,5 +13,9 @@ public class MemberSearchVO{
 	private String startLoginDate;
 	private String endLoginDate;
 	
+	private String startOutDate;
+	private String endOutDate;
+	
 	private Integer viewCount;
+	private Integer status;
 }

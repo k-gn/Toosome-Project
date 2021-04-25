@@ -26,6 +26,7 @@ let startRegDate = ''; // 회원가입 검색 시작일
 let endRegDate = ''; // 회원가입 검색 종료일
 let startLoginDate = ''; // 로그인 검색 시작일
 let endLoginDate = ''; // 로그인 검색 종료일
+const status = 1;
 	
 // 기간선택 handler
 const joinChangeHandler = (e) => {
@@ -215,7 +216,8 @@ const submitHandler = () => {
 		endRegDate,
 		startLoginDate,
 		endLoginDate,
-		viewCount
+		viewCount,
+		status
 	};
 	getList(member);
 };
@@ -341,7 +343,8 @@ function changeSelect() {
 		endRegDate,
 		startLoginDate,
 		endLoginDate,
-		viewCount
+		viewCount,
+		status
 	};
 	
 	getList(member);

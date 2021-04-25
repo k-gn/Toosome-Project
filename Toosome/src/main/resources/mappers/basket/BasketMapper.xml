@@ -51,4 +51,7 @@
 	<delete id="delBasket">
 	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
 	</delete>
+	<delete id="delBasketById">
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	</delete>
 </mapper>
