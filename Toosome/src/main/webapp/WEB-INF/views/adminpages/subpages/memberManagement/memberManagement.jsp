@@ -209,12 +209,14 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-12">
+		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
+		                          <label class="bmd-label-floating">회원상태</label>
+		                          <select class="custom-select" name="memberState">
+				                  	<option value="">회원상태</option>
+				                  	<option value="sleep">휴면회원</option>
+				                  	<option value="black">블랙회원</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
