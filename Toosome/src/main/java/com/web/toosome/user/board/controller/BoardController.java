@@ -1,5 +1,8 @@
 package com.web.toosome.user.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
@@ -43,6 +47,8 @@ public class BoardController {
 	@Autowired
 	private IQnaBoardService qnaBoardService;
 	
+	@Autowired
+	private S3Service awsS3; 
 	
 	@RequestMapping(value = "/event") // 이벤트 공지 게시판 화면 주소넘기기
 	public String eventView() {
@@ -267,11 +273,23 @@ public class BoardController {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/qnaenrollment") // qna 등록 처리
-	public String qnaEnrollment(QnaBoardVO vo, RedirectAttributes ra) {
-		MultipartFile uploadFile =  vo.getUploadFile();
+	public String qnaEnrollment(MultipartFile uploadFile ,QnaBoardVO vo, RedirectAttributes ra) throws IllegalStateException, IOException {
+		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
+
+		System.out.println("vo.getUploadFile 값 : "+vo.getUploadFile());
 		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
 		ra.addFlashAttribute("msg", "successBoard");
+
+		//multipartFile 형식 파일을 file 형식으로 변환후  upload 
+			File convFile = new File(uploadFile.getOriginalFilename());
+			uploadFile.transferTo(convFile);
+			File file = convFile;
+			String key = "img/qnaImg/" + vo.getQnaBoardImageName();
+			System.out.println(key);
+			awsS3.upload(file, key);
+		
 		return "redirect:/qna";
 	}
+
 }
