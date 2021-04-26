@@ -17,9 +17,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		MemberVO member = mapper.getUserByEmail(username);
 		if(member == null) {
-			throw new UsernameNotFoundException("username " + username + " not found");
+			 throw new UsernameNotFoundException("username " + username + " not found");
 		}
-		
 		if(member.getMemberPassword() == null) {
 			member.setMemberPassword("");
 		}

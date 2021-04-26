@@ -22,5 +22,4 @@ public class CustomUser extends User {
 				.map(auth -> new SimpleGrantedAuthority(auth.getMemberAuth())).collect(Collectors.toList()));
 		this.member = member;
 	}
-	
 }

@@ -98,12 +98,12 @@
 	width: 170px;
 	height: 40px;
 	border: none;
-	background: #fff;
+	background: #e7e2f8;
 	border-radius: 5px;
 	cursor: pointer;
 	margin-right: 20px;
 	font-size: 1rem;
-	box-shadow: 0 2px 3px #eee;
+	box-shadow: 0 2px 3px #fff;
 	padding-left: 10px;
 	font-weight: 600;
 	color: #222;
@@ -130,9 +130,9 @@
 	cursor: pointer;
 	padding-left: 15px;
 	font-size: 1rem;
-	box-shadow: 0 2px 3px #eee;
+	box-shadow: 0 2px 3px #fff;
 	font-weight: 600;
-	background: #fff;
+	background: #e7e2f8;
 	color: #222;
 }
 
@@ -158,7 +158,7 @@
 
 .profile-container {
 	width: 1000px;
-	height: 430px;
+	height: 560px;
 	position: absolute;
 	top: calc(50% - 280px);
 	left: calc(50% - 500px);

@@ -9,18 +9,6 @@ var seq2 = 0,
 ct = {
 
   initDashboardPageCharts: function() {
-	
-	 $.ajax({
-		type: "get",
-		url: "/admin/getDaily",	
-		headers: {
-           "Content-Type": "application/json"
-        },
-		dataType: "json",
-		success: function(result) {
-			console.log(result);
-		}
-	  });
 
     if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization    ==========---------- */
@@ -98,7 +86,7 @@ ct = {
         high: 1000,
         chartPadding: {
           top: 0,
-          right: 0,
+          right: 5,
           bottom: 0,
           left: 0
         }

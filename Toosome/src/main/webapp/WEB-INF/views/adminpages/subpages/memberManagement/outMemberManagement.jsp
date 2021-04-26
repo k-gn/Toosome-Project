@@ -48,7 +48,7 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="condition" class="search-select" id="searchType">
+                              <select name="searchType" class="search-select" id="searchType">
                                 <option value="id">ID(E-mail)</option>
                                 <option value="name">이름</option>
                               </select>
@@ -103,19 +103,19 @@
 		                      <div class="col-md-5">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" name="withdrawEmail" class="form-control" disabled>
+		                          <input type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" name="withdrawName" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" name="withdrawPhone" class="form-control">
+		                          <input type="tel" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -123,13 +123,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" name="regDate" class="form-control">
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">회원탈퇴일</label>
-		                          <input type="date" name="withdrawDate" class="form-control">
+		                          <label class="bmd-label-floating">최종로그인일</label>
+		                          <input type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -137,7 +137,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" name="withdrawAddress" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -145,23 +145,33 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" name="withdrawPostcode" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" name="withdrawBirth" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" name="platFormType" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button id="modal-delete" class="btn btn-primary pull-right">삭제</button>
+		                    <div class="row">
+		                      <div class="col-md-12">
+		                        <div class="form-group">
+		                          <div class="form-group">
+		                            <label class="bmd-label-floating">비고</label>
+		                            <textarea class="form-control" rows="5"></textarea>
+		                          </div>
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                  </form>
@@ -182,7 +192,6 @@
                     <button id="excel-down" onclick="excelDownload('member-table', '탈퇴회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
-	                      <option value="10">기본</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -218,7 +227,32 @@
                           회원탈퇴일
                         </th>
                       </thead>
-                      <tbody id="list-table-tbody">
+                      <tbody>
+                     	 <c:forEach var="outMemberList" items="${outMemberList}">
+	                        <tr>
+	                          <td>
+	                            ${outMemberList.memberId}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.platFormType}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.memberEmail}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.memberName}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.memberPhone}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.regDate}
+	                          </td>
+	                          <td>
+	                            ${outMemberList.changeOutDate}
+	                          </td>
+	                        </tr>
+                        </c:forEach>
                       </tbody>
                     </table>
                   </div>

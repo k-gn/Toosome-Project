@@ -72,8 +72,4 @@
 	<update id="qnaBoardCount">
 		<![CDATA[ UPDATE QNA_BOARD SET QNA_BOARD_VIEW_COUNT = IFNULL(QNA_BOARD_VIEW_COUNT,0)+1 WHERE QNA_BOARD_ID = #{index} ]]>
 	</update>
-	
-	<delete id="delQna">
-		DELETE FROM QNA_BOARD WHERE MEMBER_MEMBER_ID = #{id}
-	</delete>
 </mapper>

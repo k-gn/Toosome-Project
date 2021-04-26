@@ -98,12 +98,12 @@
 	width: 170px;
 	height: 40px;
 	border: none;
-	background: #fff;
+	background: #e7e2f8;
 	border-radius: 5px;
 	cursor: pointer;
 	margin-right: 20px;
 	font-size: 1rem;
-	box-shadow: 0 2px 3px #eee;
+	box-shadow: 0 2px 3px #fff;
 	padding-left: 10px;
 	font-weight: 600;
 	color: #222;
@@ -130,9 +130,9 @@
 	cursor: pointer;
 	padding-left: 15px;
 	font-size: 1rem;
-	box-shadow: 0 2px 3px #eee;
+	box-shadow: 0 2px 3px #fff;
 	font-weight: 600;
-	background: #fff;
+	background: #e7e2f8;
 	color: #222;
 }
 
@@ -144,35 +144,6 @@
 	background: #eee;
 	cursor: pointer;
 }
-
-/* Pagination Start */
-
-#pagination {
-	width: 12.5rem;
-	height: 1.25rem;
-	margin: 0 auto;
-	text-align: center;
-}
-
-#pagination button {
-	cursor: pointer;
-	border: none;
-	outline: none;
-	appearance: none;
-	background: none;
-	padding: 0 17px;
-}
-
-#pagination button:hover {
-	text-decoration: underline;
-}
-
-#pagination button.showing {
-	color: red;
-	text-decoration: underline;
-}
-
-/* Modal Start */
 
 .modal {
 	display: none;
@@ -187,7 +158,7 @@
 
 .profile-container {
 	width: 1000px;
-	height: 510px;
+	height: 560px;
 	position: absolute;
 	top: calc(50% - 280px);
 	left: calc(50% - 500px);
@@ -196,10 +167,6 @@
 	padding: 20px;
 	z-index: 10002;
 	border-radius: 10px;
-}
-
-.custom-select {
-	width: 100%;
 }
 
 .btn.btn-primary.pull-right.btn-r {

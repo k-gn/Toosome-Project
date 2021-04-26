@@ -24,7 +24,4 @@ public interface IBasketMapper {
 	
 	// 장바구니 품목 삭제
 	public int delBasket(Integer id);
-	
-	// 장바구니 품목 삭제
-	public int delBasketById(Integer id);
 }

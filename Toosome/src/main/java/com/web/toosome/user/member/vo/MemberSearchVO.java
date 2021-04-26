@@ -13,14 +13,5 @@ public class MemberSearchVO{
 	private String startLoginDate;
 	private String endLoginDate;
 	
-	private String startOutDate;
-	private String endOutDate;
-	
-	private String startBlackDate;
-	private String endBlackDate;
-	
-	private String startSleepDate;
-	private String endSleepDate;
-	
-	private Integer status;
+	private Integer viewCount;
 }

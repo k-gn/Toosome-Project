@@ -9,12 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
-import com.web.toosome.user.basket.dao.IBasketMapper;
-import com.web.toosome.user.board.dao.IQnaBoardMapper;
 import com.web.toosome.user.member.dao.IMemberMapper;
 import com.web.toosome.user.member.vo.MemberVO;
-import com.web.toosome.user.membership.dao.IMembershipMapper;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -24,18 +20,6 @@ public class MemberService implements IMemberService {
 
 	@Autowired
 	private IMemberMapper mapper;
-	
-	@Autowired
-	private IMembershipMapper msmapper;
-	
-	@Autowired
-	private IBasketMapper bmapper;
-	
-	@Autowired
-	private IQnaBoardMapper qmapper;
-	
-	@Autowired
-	private IMemberManageMapper mmapper;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -58,11 +42,6 @@ public class MemberService implements IMemberService {
 			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 			member.setMemberPassword(encodePassword);
 		}
-		
-		if(mmapper.getOutMemberByEmail(member.getMemberEmail()) != null) {
-			mmapper.delOutMember(member.getMemberEmail());
-		}
-		
 		int result = mapper.registerMember(member);
 		mapper.registerMemberAuth(member.getMemberEmail());
 		return result;
@@ -187,14 +166,9 @@ public class MemberService implements IMemberService {
 	}
 
 	// 회원 탈퇴
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional
 	@Override
 	public int deleteMember(String email, Integer id) {
-		mapper.insertWithdrawInfo(mapper.getUserById(id));
-		bmapper.delBasketById(id);
-		msmapper.deleteMembership(id);
-		qmapper.delQna(id);
-		// 해당 회원 댓글 삭제 추가 예정
 		mapper.deleteMemberAuth(email);
 		int result = mapper.deleteMember(id);
 		return result;

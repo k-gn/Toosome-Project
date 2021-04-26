@@ -36,12 +36,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		HttpSession session = request.getSession();
 		MemberVO member = mapper.getUserByEmail(authentication.getName());
-		if(member.getStatus() == 3) {
-			session.setAttribute("state", 3);
-		}else if(member.getStatus() == 2) {
-			session.setAttribute("state", 2);
-		}
-		
 		mapper.updateLastLogin(authentication.getName());
 		session.setAttribute("id", member.getMemberId());
 		session.setAttribute("email", member.getMemberEmail());
