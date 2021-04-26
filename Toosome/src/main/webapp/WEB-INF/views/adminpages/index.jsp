@@ -271,8 +271,6 @@
   <script>
     // 차트 그리기
     $(document).ready(function() {
-      let dailyVisit = "${dailyVisit}";
-      console.log(dailyVisit);
       ct.initDashboardPageCharts();
     });
     
