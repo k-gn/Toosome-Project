@@ -19,6 +19,18 @@ public class BoardManagementController {
 	@Autowired
 	private IEventAdminService eventboardservice;
 	
+	//관리자 이벤트 게시판 검색 기능
+	@GetMapping(value = "/admin/eventboardsearch" , produces = "application/json")
+	@ResponseBody
+	public List<EventBoardVO> searchEventBoard(String keyword){
+		List<EventBoardVO> search = eventboardservice.searchEventBoard(keyword);
+		System.out.println(search);
+		return search;
+	}
+	
+	
+	
+	//관리자 이벤트 게시판 리스트 값 
 	@GetMapping(value = "/admin/eventboardmanagement" , produces = "application/json")// 이벤트 공지 게시판 진행중 이벤트 화면 값 넘기기
 	@ResponseBody
 	public List<EventBoardVO> EventBoardManagement(EventBoardVO vo){
@@ -27,7 +39,7 @@ public class BoardManagementController {
 		return adminevent;
 	}
 
-	@RequestMapping("/admin/eventboard-management") // 이벤트 게시판 관리
+	@RequestMapping("/admin/eventboard-management") // 이벤트 게시판 관리 뷰
 	public String EventBoardManagementView() {
 		return "adminpages/subpages/boardManagement/eventBoardManagement";
 	}
