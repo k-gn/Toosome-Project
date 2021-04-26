@@ -56,15 +56,9 @@
 	<select id="getDownPoint">
 		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = MEMBERSHIP_POINT - #{usedPoint} WHERE MEMBER_ID = #{id}
 	</select>
-	
-	<!-- 포인트 누적 
-	<update id="updatePoint">
-		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
-	</update>-->
-	
-	<!-- 포인트 차감 
-	<update id="deductionPoint">
-		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
-	</update>-->
-	
+
+	<!-- 멤버쉽 삭제 -->	
+	<delete id="deleteMembership">
+		DELETE FROM MEMBERSHIP WHERE MEMBER_ID = #{id}
+	</delete>
 </mapper>

@@ -27,6 +27,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
+		return;
 	}
 	
 	let start = rowsPerPage * page; // 시작 번호

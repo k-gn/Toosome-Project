@@ -233,4 +233,15 @@
       <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
   </body>
+  <script type="text/javascript">
+  	const state = "${state}";
+  	console.log(state);
+  	if(state == 3) {
+  		alert("사이트 이용 정지된 계정입니다. 자세한 내용은 문의바랍니다.");
+  		document.getElementById('dologout').submit();
+  	}else if(state == 2) {
+  		alert("휴면 계정입니다. 문의 후 해제 가능합니다.");
+  		document.getElementById('dologout').submit();
+  	}
+  </script>
 </html>

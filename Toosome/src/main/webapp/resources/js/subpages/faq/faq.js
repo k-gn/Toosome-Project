@@ -23,6 +23,7 @@ const displayList = (items, wrapper) => {
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
+		return;
 	}
 	
 	// loop를 돌며 element 생성 후 삽입
