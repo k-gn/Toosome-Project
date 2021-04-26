@@ -118,13 +118,33 @@
 		                <div class="card-body">
 		                  <form>
 		                    <div class="row">
-		                      <div class="col-md-5">
+		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">ID (이메일)</label>
+		                          <label class="bmd-label-floating">멤버십 번호</label>
+		                          <input type="text" class="form-control" disabled>
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">멤버십 등급</label>
+		                          <select class="custom-select" name="status">
+				                  	<option value="1">브론즈</option>
+				                  	<option value="2">실버</option>
+				                  	<option value="3">골드</option>
+				                  	<option value="4">플래티넘</option>
+				                  	<option value="5">다이아</option>
+				                  </select>
+		                        </div>
+		                      </div>
+		                      <div class="col-md-6">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">ID(E-mail)</label>
 		                          <input type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
 		                          <input type="text" class="form-control">
@@ -132,78 +152,14 @@
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주소</label>
+		                          <label class="bmd-label-floating">포인트</label>
 		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">멤버십등급</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                     <div class="row">
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">회원번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">회원가입일</label>
+		                          <label class="bmd-label-floating">멤버십 전환일</label>
 		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">멤버십번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">멤버십전환일</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -254,10 +210,7 @@
                           이름
                         </th>
                         <th>
-                          핸드폰 번호
-                        </th>
-                        <th>
-                          회원가입일
+                          포인트
                         </th>
                         <th>
                           멤버십전환일

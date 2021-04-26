@@ -14,7 +14,6 @@ const loginCalendar2 = document.querySelector('#calendar4'); // 로그인일자 
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
@@ -225,7 +224,6 @@ const getList = (member, wrapper, rowsPerPage, page) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			results = [...result];
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
