@@ -283,6 +283,7 @@
                       <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>
