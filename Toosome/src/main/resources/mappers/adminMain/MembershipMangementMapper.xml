@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.membershipManagement.dao.IMembershipManagementMapper">
+
+	<resultMap type="membershipVO" id="membershipMap">
+		<id property="membershipId" column="MEMBERSHIP_ID"/>
+		<result property="memberId" column="MEMBER_ID"/>
+		<result property="leverId" column="LEVEL_ID"/>
+		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
+		<result property="membershipRegDate" column="MEMBERSHIP_REGDATE"/>
+		<collection property="level" resultMap="levelMap"/>
+		<collection property="member" resultMap="memberMap"/>
+	</resultMap>
+	
+	<resultMap type="levelVO" id="levelMap">
+		<id property="levelId" column="LEVEL_ID"/>
+		<result property="levelDiscountRate" column="LEVEL_DISCOUNT_RATE"/>
+		<result property="levelCount" column="LEVEL_COUNT"/>
+		<result property="levelMinRange" column="LEVEL_MINRANGE"/>
+		<result property="levelMaxRange" column="LEVEL_MAXRANGE"/>
+		<result property="levelPointRate" column="LEVEL_POINT_RATE"/>
+		<result property="levelImg" column="LEVEL_IMG"/>
+		<result property="levelName" column="LEVEL_NAME"/>
+		<result property="levelDeliveryPay" column="LEVEL_DELIVERYPAY"/>
+	</resultMap>
+	
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberStatusDate" column="MEMBER_STATUS_DATE"/>
+	</resultMap>
+	
+	<sql id="search">
+		WHERE MEMBER_AUTH = 'ROLE_USER'
+		<if test="memberLevel != null">
+			AND MS.LEVEL_ID = #{memberLevel}
+		</if>
+		<if test="condition == 'id'">
+			AND MEMBER_EMAIL LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND MEMBER_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startDate != null and startDate != ''">
+			AND MEMBERSHIP_REGDATE BETWEEN DATE(#{startDate}) AND DATE(#{endDate})+1
+		</if>
+	</sql>
+	
+	<select id="getMembershipMember" resultMap="membershipMap">
+		SELECT  
+			MEMBERSHIP_ID, 
+			MS.MEMBER_ID, 
+			MS.LEVEL_ID, 
+			MEMBERSHIP_POINT, 
+			LEVEL_NAME, 
+			MEMBER_NAME, 
+			MEMBER_EMAIL, 
+			MEMBER_BIRTH, 
+			MEMBER_REG_DATE,
+			MEMBER_LAST_LOGIN_DATE,
+			MEMBERSHIP_REGDATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE,
+			CASE
+		        WHEN MEMBER_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE MEMBER_POSTCODE
+		    END as MEMBER_POSTCODE,
+			CASE
+		        WHEN MEMBER_ADDRESS IS NULL THEN "No Address"
+		        ELSE MEMBER_ADDRESS
+		    END as MEMBER_ADDRESS
+		FROM MEMBERSHIP MS LEFT OUTER JOIN LEVEL L ON MS.LEVEL_ID = L.LEVEL_ID
+			 			   LEFT OUTER JOIN MEMBER M ON MS.MEMBER_ID = M.MEMBER_ID
+		<include refid="search"/>
+		ORDER BY MEMBER_ID DESC
+	</select>
+	
+</mapper>

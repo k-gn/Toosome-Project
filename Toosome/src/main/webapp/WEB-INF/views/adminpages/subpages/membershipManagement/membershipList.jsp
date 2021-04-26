@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/membershipManagement/membershipList.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/membershipManagement/membershipList.js" defer></script>
+  <script type="text/javascript">
+    const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("회원정보 수정 완료");
+	}
+  </script>
 </head>
 
 <body>
@@ -263,32 +269,7 @@
                           멤버십전환일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="membershipList" items="${membershipList}">
-	                        <tr>
-	                          <td>
-	                            ${membershipList.memberId}
-	                          </td>
-	                          <td>
-	                            ${membershipList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberName}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${membershipList.regDate}
-	                          </td>
-	                          <td>
-	                            ${membershipList.changeMembershipDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>
