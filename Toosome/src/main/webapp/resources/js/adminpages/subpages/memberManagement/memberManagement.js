@@ -24,7 +24,6 @@ let startRegDate = ''; // 회원가입 검색 시작일
 let endRegDate = ''; // 회원가입 검색 종료일
 let startLoginDate = ''; // 로그인 검색 시작일
 let endLoginDate = ''; // 로그인 검색 종료일
-let viewCount = 10;
 const status = 1;
 let member = {status}; 
 
@@ -226,7 +225,6 @@ const submitHandler = () => {
 		endRegDate,
 		startLoginDate,
 		endLoginDate,
-		viewCount,
 		status
 	};
 	getList(member);
@@ -247,6 +245,15 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			
+			if(res.memberBirth == null) {
+				res.memberBirth = 'No Birth';
+			}
+			
+			if(res.lastLoginDate == null) {
+				res.lastLoginDate = 'No Log';
+			}
+		
 			$("input[name=memberEmail]").val(res.memberEmail);			
 			$("input[name=memberName]").val(res.memberName);			
 			$("input[name=memberPhone]").val(res.memberPhone);			
@@ -338,24 +345,3 @@ $(document).ready(() => {
 	calendarInit();
 	getList(member);
 }); 
-
-
-function changeSelect() {
-	const viewSelect = document.getElementById("memberList-select");
-	viewCount = viewSelect.options[viewSelect.selectedIndex].value;
-	console.log(viewCount);
-	
-	member = {
-		condition,
-		keyword,
-		platFormType,
-		startRegDate,
-		endRegDate,
-		startLoginDate,
-		endLoginDate,
-		viewCount,
-		status
-	};
-	
-	getList(member);
-}

@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/memberManagement/sleepMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/sleepMemberManagement.js" defer></script>
+  <script type="text/javascript">
+  	const msg = "${msg}";
+  	if(msg === "modSuccess") {
+  		alert("회원정보 수정 완료");
+  	}
+  </script>
 </head>
 
 <body>
@@ -123,13 +129,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" name="regDate" class="form-control" disabled>
+		                          <input type="text" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="date" name="lastLoginDate" class="form-control" disabled>
+		                          <input type="text" name="lastLoginDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -165,6 +171,7 @@
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="memberId">
+		                    <input type="hidden" name="check" value="2">
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
@@ -184,6 +191,7 @@
                     <button id="excel-down" onclick="excelDownload('member-table', '휴면회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
+	                      <option value="10">기본</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>

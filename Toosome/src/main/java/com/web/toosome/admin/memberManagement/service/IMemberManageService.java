@@ -18,4 +18,5 @@ public interface IMemberManageService {
 	
 	public WithdrawVO getOutMember(Integer id);
 	
+	public int delOutMember(String email);
 }

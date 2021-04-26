@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
 import com.web.toosome.user.basket.dao.IBasketMapper;
 import com.web.toosome.user.board.dao.IQnaBoardMapper;
 import com.web.toosome.user.member.dao.IMemberMapper;
@@ -32,6 +33,9 @@ public class MemberService implements IMemberService {
 	
 	@Autowired
 	private IQnaBoardMapper qmapper;
+	
+	@Autowired
+	private IMemberManageMapper mmapper;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -54,6 +58,11 @@ public class MemberService implements IMemberService {
 			String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
 			member.setMemberPassword(encodePassword);
 		}
+		
+		if(mmapper.getOutMemberByEmail(member.getMemberEmail()) != null) {
+			mmapper.delOutMember(member.getMemberEmail());
+		}
+		
 		int result = mapper.registerMember(member);
 		mapper.registerMemberAuth(member.getMemberEmail());
 		return result;

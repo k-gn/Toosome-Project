@@ -182,6 +182,7 @@
                     <button id="excel-down" onclick="excelDownload('member-table', '탈퇴회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
+	                      <option value="10">기본</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
