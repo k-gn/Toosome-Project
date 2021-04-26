@@ -241,9 +241,8 @@ const getList = (member, wrapper, rowsPerPage, page) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-
-	condition = '';
-	keyword = '';
+	condition = ''; // 검색어 유형
+	keyword = ''; // 검색 입력값
 	platFormType = ''; // 가입유형
 	startRegDate = ''; // 회원가입 검색 시작일
 	endRegDate = ''; // 회원가입 검색 종료일
@@ -340,11 +339,6 @@ const listHandler = (e) => {
 	profileContainer.style.display = 'block';
 	$("input[name=memberName]").focus();
 };
-
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
 
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
