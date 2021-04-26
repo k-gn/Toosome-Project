@@ -167,6 +167,18 @@
 		                        </div>
 		                      </div>
 		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">회원상태</label>
+		                          <select class="custom-select" name="status">
+				                  	<option value="1">일반회원</option>
+				                  	<option value="2" selected>휴면회원</option>
+				                  	<option value="3">블랙회원</option>
+				                  </select>
+		                        </div>
+		                      </div>
+		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>

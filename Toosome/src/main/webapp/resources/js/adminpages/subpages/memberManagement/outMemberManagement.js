@@ -209,11 +209,6 @@ const listHandler = (e) => {
 	$("input[name=withdrawName]").focus();
 };
 
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
-
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
