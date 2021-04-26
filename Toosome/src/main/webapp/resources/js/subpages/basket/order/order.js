@@ -79,6 +79,8 @@ function chkPoint(amt, pnt, min, unit) {
   document.getElementById("use_pnt").value = v_point; //input 값 설정
 
   changePoint(amt, pnt, min, unit);
+  document.getElementById("result_pnt").innerHTML = amt - v_point;
+  
 }
 
 function changePoint(amt, pnt, min, unit) {
@@ -111,6 +113,10 @@ function changePoint(amt, pnt, min, unit) {
     v_left[i].innerHTML = pnt - v_point; //= 전체 포인트 중에 사용할 포인트빼고 남은 포인트
   }
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
+
+  var dlatl = amt - v_point;
+  var menusal = document.getElementById("realPay").innerHTML;
+  document.getElementById("abcd").href = "/import2?productEndPrice=" + dlatl + "&menusal=" + menusal;
 }
 
 function pointValidate() {

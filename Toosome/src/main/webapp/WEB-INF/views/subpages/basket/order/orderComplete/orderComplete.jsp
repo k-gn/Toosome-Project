@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,48 +40,27 @@
             <tr class="table-secondary">
               <th colspan="2">주문 품목</th>
               <th>수량</th>
-              <th>적립 포인트</th>
-              <th>할인 금액</th>
+              <th>상품명</th>
               <th>결제금액</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">부서진 텀블러 조각</span></td>
-              <td>
-                <span class="number">2</span>
-              </td>
-              <td>
-                <span class="point">8</span>&nbsp;p
-              </td>
-              <td>
-                <span class="discount">1600</span>&nbsp;원
-              </td>
-              <td>
-                <span class="total">6400</span>&nbsp;원
-              </td>
-            </tr>
-
-            <tr>
-              
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
-              <td><span class="name">오래된 원두</span></td>
-              <td>
-                <span class="number">1</span>
-              </td>
-              <td>
-                <span class="point">10</span>&nbsp;p
-              </td>
-              <td>
-                <span class="discount">1000</span>&nbsp;원
-              </td>
-              <td>
-                <span class="total">9000</span>&nbsp;원
-              </td>
-            </tr>
-
+            <c:forEach var="basket" items="${baskets}" varStatus="i">
+              <tr>
+                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td><span class="name"></span></td>
+                <td>
+                  <span class="number">${basket.basketAmount}</span>
+                </td>
+                <td>
+                  <span class="pname">${basket.basketName}</span>
+                </td>
+                <td>
+                  <span class="price">${basket.basketPrice}원</span>
+                </td>
+                
+              </tr>
+            </c:forEach>
           </tbody>
         </table>
       </div>

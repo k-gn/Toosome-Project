@@ -85,25 +85,3 @@ function modBasket(i, bid) {
 	    }
 	 });
 }
-
-function OrderProduct(basketUtil) {
-	$.ajax({
-	   url: '/basket/order',
-	   type: 'GET',
-	   headers: {
-		"Content-Type": "application/json"
-	   }, 
-	   dataType: "text",
-	   data: JSON.stringify(basketUtil),
-	   success: function (res) {
-	     if(res === "addSuccess") {
-			let flag = confirm("상품을 장바구니에 등록하였습니다. 장바구니로 이동하시겠습니까?");
-			if(flag) {
-				location.href="/basket"
-			}
-		 }else {
-			location.href="/signin?error"
-		 }
-	   }
-    });
-}
