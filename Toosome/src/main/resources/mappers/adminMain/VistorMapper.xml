@@ -14,10 +14,14 @@
 	</insert>
 	
 	<select id="selectOne" resultMap="visitorMap">
-		SELECT * FROM VISITOR WHERE VISIT_IP = #{ip}
+		SELECT * FROM VISITOR WHERE VISIT_IP = #{ip} AND DATE_FORMAT(VISIT_TIME, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d');
 	</select>
 	
 	<insert id="setTimezone">
 		SET time_zone = 'Asia/Seoul';
 	</insert>
+	
+	<select id="visitCount" resultType="Integer">
+		SELECT COUNT(*) FROM VISITOR WHERE DATE_FORMAT(VISIT_TIME, '%Y-%m-%d') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 DAY), '%Y-%m-%d');
+	</select>
 </mapper>

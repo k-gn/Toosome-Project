@@ -77,7 +77,6 @@ public class MemberController {
 		MemberVO member = service.getUserById(id);
 		Map<String, String> map = new HashMap<>();
 		if(member.getMemberPhone() != null && member.getMemberAddress() != null) {
-			// 01040178803
 			String tel1 = member.getMemberPhone().substring(0, 3);
 			String tel2 = member.getMemberPhone().substring(3, 7);
 			String tel3 = member.getMemberPhone().substring(7);

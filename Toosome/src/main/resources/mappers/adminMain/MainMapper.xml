@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.mainManagement.dao.IMainMapper">
+
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberStatusDate" column="MEMBER_STATUS_DATE"/>
+	</resultMap>
+	
+	<select id="getRegCount" resultType="Integer">
+		SELECT COUNT(*) from MEMBER WHERE DATE_FORMAT(MEMBER_REG_DATE, '%Y-%m-%d') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 DAY), '%Y-%m-%d');
+	</select>
+
+	<select id="getDailyVisitInfo" resultType="dailyVO">
+		SELECT DATE_FORMAT(VISIT_TIME,'%Y-%m') DAILY, COUNT(*) VISIT 
+		FROM VISITOR 
+		WHERE VISIT_TIME BETWEEN DATE_ADD(NOW(), INTERVAL -1 YEAR) AND NOW() 
+		GROUP BY DAILY 
+		ORDER BY DAILY
+	</select>
+</mapper>

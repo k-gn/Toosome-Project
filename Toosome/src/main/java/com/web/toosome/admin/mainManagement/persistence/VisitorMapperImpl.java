@@ -27,7 +27,7 @@ public class VisitorMapperImpl implements IVisitorMapper {
 
 	@Override
 	public int visitCount() {
-		return 0;
+		return sqlSessionTemplate.selectOne("VisitMapper.visitCount");
 	}
 
 }
