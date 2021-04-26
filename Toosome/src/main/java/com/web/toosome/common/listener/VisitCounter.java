@@ -21,8 +21,9 @@ public class VisitCounter implements HttpSessionListener {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest req = attr.getRequest();
 		IVisitorService service = getVisitorService(se);
+		System.out.println(req.getRemoteAddr());
+		System.out.println(service.getVisitInfo(req.getRemoteAddr()));
 		if (service.getVisitInfo(req.getRemoteAddr()) == null) {
-			service.setTimezone();
 			VisitorVO vo = new VisitorVO();
 			vo.setVisitIp(req.getRemoteAddr());
 			service.insertVisitor(vo);
