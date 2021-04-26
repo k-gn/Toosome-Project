@@ -20,4 +20,10 @@ public class EventAdminService implements IEventAdminService {
 		return mapper.getEventBoard(vo);
 	}
 
+	@Override
+	public List<EventBoardVO> searchEventBoard(String keyword) {
+		System.out.println("관리자 이벤트 게시판 검색 기능" + mapper.searchEventBoard(keyword));
+		return mapper.searchEventBoard(keyword);
+	}
+
 }
