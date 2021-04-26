@@ -197,9 +197,12 @@
         </a>
         <div class="sub-nav">
           <ul>
-       		<li>기본 설정</li>
-       		<li>배너 관리</li>
-       		<li>약관 관리</li>
+       		<li>
+       			<a href="/admin/banner-management">배너 관리</a>
+       		</li>
+       		<li>
+       			<a href="/admin/term-management">약관 관리</a>
+       		</li>
           </ul>
         </div>
       </li>
