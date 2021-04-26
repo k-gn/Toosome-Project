@@ -10,29 +10,33 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.web.toosome.admin.mainManagement.service.IVisiterService;
-import com.web.toosome.admin.mainManagement.vo.VisiterVO;
+import com.web.toosome.admin.mainManagement.service.IVisitorService;
+import com.web.toosome.admin.mainManagement.vo.VisitorVO;
 
 public class VisitCounter implements HttpSessionListener {
 
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
-         ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
-         HttpServletRequest req = attr.getRequest();
-         //request를 파라미터에 넣지 않고도 사용할수 있도록 설정
-         VisiterVO vo = new VisiterVO();
-         vo.setVisitIp(req.getRemoteAddr());
-         getVisitorService(se).insertVisitor(vo);
+
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpServletRequest req = attr.getRequest();
+		IVisitorService service = getVisitorService(se);
+		if (service.getVisitInfo(req.getRemoteAddr()) == null) {
+			service.setTimezone();
+			VisitorVO vo = new VisitorVO();
+			vo.setVisitIp(req.getRemoteAddr());
+			service.insertVisitor(vo);
+		}
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
-
+		
 	}
 
-	private IVisiterService getVisitorService(HttpSessionEvent se) {
+	private IVisitorService getVisitorService(HttpSessionEvent se) {
 		WebApplicationContext context = WebApplicationContextUtils
 				.getWebApplicationContext(se.getSession().getServletContext());
-		return (IVisiterService) context.getBean("visiterService");
+		return (IVisitorService) context.getBean("visiterService");
 	}
 }

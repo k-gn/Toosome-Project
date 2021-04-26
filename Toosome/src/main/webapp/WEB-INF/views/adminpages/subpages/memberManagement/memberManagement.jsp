@@ -170,13 +170,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" name="regDate" class="form-control" disabled>
+		                          <input type="text" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="date" name="lastLoginDate" class="form-control" disabled>
+		                          <input type="text" name="lastLoginDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -213,7 +213,7 @@
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원상태</label>
 		                          <select class="custom-select" name="status">
-				                  	<option value="1" selected>회원상태</option>
+				                  	<option value="1" selected>일반회원</option>
 				                  	<option value="2">휴면회원</option>
 				                  	<option value="3">블랙회원</option>
 				                  </select>
@@ -224,6 +224,7 @@
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="memberId">
+		                    <input type="hidden" name="check" value="1">
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
@@ -242,7 +243,7 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select" onchange="changeSelect()">
+	                    <select id="memberList-select">
 	                      <option value="10">기본</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>

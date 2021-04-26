@@ -22,6 +22,9 @@
 	<listener>
 	    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.web.toosome.common.listener.VisitCounter</listener-class>
+	</listener>
 	
 	<session-config>
 		<session-timeout>30</session-timeout>
@@ -44,10 +47,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- <listener>
-		<listener-class>com.web.toosome.common.listener.VisitCounter</listener-class>
-	</listener> -->
-
 	<!-- 한글 인코딩 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

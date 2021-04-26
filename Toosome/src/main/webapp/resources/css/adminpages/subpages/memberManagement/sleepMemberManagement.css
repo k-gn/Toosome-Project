@@ -169,6 +169,10 @@
 	border-radius: 10px;
 }
 
+.custom-select {
+	width: 100%;
+}
+
 .btn.btn-primary.pull-right.btn-r {
 	margin-right: 15px;
 }

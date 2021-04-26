@@ -67,6 +67,13 @@ public class LoginController {
 		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		if(member.getStatus() == 3) {
+			session.setAttribute("state", 3);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}else if(member.getStatus() == 2) {
+			session.setAttribute("state", 2);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}
 		
 		String url = (String) session.getAttribute("prevURI");
 		session.removeAttribute("prevURI");
@@ -116,6 +123,13 @@ public class LoginController {
         boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		if(member.getStatus() == 3) {
+			session.setAttribute("state", 3);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}else if(member.getStatus() == 2) {
+			session.setAttribute("state", 2);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}
 		
 		String url = (String) session.getAttribute("prevURI");
 		session.removeAttribute("prevURI");

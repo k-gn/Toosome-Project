@@ -27,7 +27,7 @@ public class MemberController {
 
 	@Autowired
 	private IMemberService service;
-
+	
 	// 회원가입 페이지 이동
 	@GetMapping("/signup")
 	public String signup() {

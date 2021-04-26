@@ -23,4 +23,9 @@ public interface IMemberManageMapper {
 	// 탈퇴 회원 조회
 	public WithdrawVO getOutMember(Integer id);
 	
+	// 이메일로 탈퇴 회원 조회
+	public WithdrawVO getOutMemberByEmail(String email);
+	
+	// 이메일로 탈퇴 회원 삭제
+	public int delOutMember(String email);
 }

@@ -22,6 +22,5 @@ public class MemberSearchVO{
 	private String startSleepDate;
 	private String endSleepDate;
 	
-	private Integer viewCount;
 	private Integer status;
 }
