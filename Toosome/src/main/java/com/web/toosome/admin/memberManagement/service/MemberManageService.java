@@ -41,4 +41,9 @@ public class MemberManageService implements IMemberManageService {
 		return mapper.getOutMember(id);
 	}
 
+	@Override
+	public int delOutMember(String email) {
+		return mapper.delOutMember(email);
+	}
+
 }

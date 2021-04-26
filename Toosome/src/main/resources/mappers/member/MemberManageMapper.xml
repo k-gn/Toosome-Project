@@ -113,9 +113,6 @@
 		FROM MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
 		<include refid="search"/>
 		ORDER BY MEMBER_ID DESC
-		<if test="viewCount != null">
-			LIMIT 0, #{viewCount}
-		</if>
 	</select>	
 	
 	<!-- 아이디로 회원 조회 -->
@@ -181,9 +178,6 @@
 		FROM WITHDRAW
 		<include refid="outSearch"/>
 		ORDER BY WITHDRAW_ID DESC
-		<if test="viewCount != null">
-			LIMIT 0, #{viewCount}
-		</if>
 	</select>	
 	
 	<!-- 탈퇴 회원 조회 -->
@@ -213,4 +207,16 @@
 		WHERE WITHDRAW_ID = #{id}
 	</select>
 	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="getOutMemberByEmail" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL
+		FROM WITHDRAW
+		WHERE WITHDRAW_EMAIL = #{email}
+	</select>
+	
+	<delete id="delOutMember">
+		DELETE FROM WITHDRAW WHERE WITHDRAW_EMAIL = #{email}
+	</delete>
 </mapper>
