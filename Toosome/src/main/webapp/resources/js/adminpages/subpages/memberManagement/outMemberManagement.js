@@ -11,7 +11,6 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
-const deleteBtn = document.querySelector('#modal-delete'); // 모달 회원 삭제 버튼
 
 let member = {};
 let condition = '';
@@ -219,11 +218,6 @@ memberList.forEach(list => {
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	profileContainer.style.display = 'none';
-});
-
-// 모달 회원 삭제 버튼
-deleteBtn.addEventListener('click', (e) => {
-	/* 삭제해~ */
 });
 
 // 엑셀 다운로드

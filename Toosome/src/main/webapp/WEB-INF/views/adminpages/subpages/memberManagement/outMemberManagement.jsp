@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/memberManagement/outMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/outMemberManagement.js" defer></script>
+  <script type="text/javascript">
+    const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("회원정보 수정 완료");
+	}
+  </script>
 </head>
 
 <body>
@@ -98,7 +104,7 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/delOutMember" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
@@ -161,9 +167,11 @@
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button id="modal-delete" class="btn btn-primary pull-right">삭제</button>
+		                    <button id="modal-delete" type="submit" class="btn btn-primary pull-right">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="withdrawId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
