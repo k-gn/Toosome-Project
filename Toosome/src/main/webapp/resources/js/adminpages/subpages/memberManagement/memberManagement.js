@@ -28,7 +28,7 @@ let endRegDate = ''; // 회원가입 검색 종료일
 let startLoginDate = ''; // 로그인 검색 시작일
 let endLoginDate = ''; // 로그인 검색 종료일
 let currentPage = 1; // 현재 페이지
-let rows = 10; // 한 페이지에 보여줄 게시글 수
+let rows = 10000; // 한 페이지에 보여줄 게시글 수
 const status = 1;
 let member = {status}; 
 
@@ -153,9 +153,7 @@ const btnHandler = (e,items,page) => {
 	let currentBtn = document.querySelector('#pagination button.showing');
 	currentBtn.classList.remove('showing');
 	// 누른 버튼 활성화
-	e.target.classList.add('showing');
-	
-	console.log(e.target, currentBtn);
+	e.target.classList.add('showing');	
 };
 
 // 리스트 출력하기
@@ -213,7 +211,6 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 		newEl.innerHTML = content;
 		wrapper.appendChild(newEl);
 	};
-	setPagination(result, pagination, rows);
 };
 
 // AJAX 검색 리스트 불러오기
@@ -228,10 +225,12 @@ const getList = (member, wrapper, rowsPerPage, page) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			results = [...result];
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
 			showList(result, wrapper, rowsPerPage, page);
+			setPagination(result, pagination, rows);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -406,6 +405,17 @@ const excelDownload = (id, title) => {
 		elem.click();
 		document.body.removeChild(elem);
 	}
+};
+
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	currentPage = 1;
+	rows = +value;
+	getList(member, listTable, rows, currentPage);
 };
 
 // 기간선택 달력 Jquery
