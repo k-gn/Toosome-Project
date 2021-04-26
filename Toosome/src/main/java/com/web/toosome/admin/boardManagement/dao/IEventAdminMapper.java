@@ -7,5 +7,7 @@ import com.web.toosome.user.board.vo.EventBoardVO;
 public interface IEventAdminMapper {
 	
 	List<EventBoardVO>getEventBoard(EventBoardVO vo);
+	
+	List<EventBoardVO>searchEventBoard(String keyword);
 
 }
