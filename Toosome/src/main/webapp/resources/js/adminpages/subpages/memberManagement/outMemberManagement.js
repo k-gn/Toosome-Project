@@ -11,6 +11,13 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const deleteBtn = document.querySelector('#modal-delete'); // 모달 회원 삭제 버튼
+
+let member = {};
+let condition = '';
+let keyword = '';
+let startOutDate = ''; // 회원가입 검색 시작일
+let endOutDate = ''; // 회원가입 검색 종료일
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -70,98 +77,48 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-/*// AJAX 전체 리스트 불러오기
-const getAllList = () => {
-	// AJAX 요청
-	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
-		}, 
-		error: function() {
-			alert('시스템과에 문의하세요');
-			history.back();
-		} 
-	});
-};*/
-
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (member) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/outList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
+		dataType: "json", //응답받을 데이터의 형태
+		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
+			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
 			result.forEach(res => {
 				let newEl = document.createElement('tr');
+				newEl.setAttribute( 'onclick', 'listHandler(this)' )
 				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.changeOutDate}
-                      </td>
-                    </tr>			
+                  <td>
+                    ${res.withdrawId}
+                  </td>
+                  <td>
+                    ${res.platFormType}
+                  </td>
+                  <td>
+                    ${res.withdrawEmail}
+                  </td>
+                  <td>
+                    ${res.withdrawName}
+                  </td>
+                  <td>
+                    ${res.withdrawPhone}
+                  </td>
+                  <td>
+                    ${res.regDate}
+                  </td>
+                  <td>
+                    ${res.withdrawDate}
+                  </td>
 				`;
 				newEl.innerHTML = content;
 				listTable.appendChild(newEl);
@@ -176,19 +133,22 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const memberName = ''; // 검색 이름
-	const memberEmail = ''; // 검색 이메일
-	const startOutDate = ''; // 회원가입 검색 시작일
-	const endOutDate = ''; // 회원가입 검색 종료일
+
+ 	condition = '';
+ 	keyword = '';
+	startOutDate = ''; // 회원가입 검색 시작일
+	endOutDate = ''; // 회원가입 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			memberName = searchInput.value;	
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			memberEmail = searchInput.value;			
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
 		}
 	};
 	
@@ -199,40 +159,67 @@ const submitHandler = () => {
 	}
 	
 	// JSON Data
-	const data = {
-		memberName,
-		memberEmail,
+	member = {
+		condition,
+		keyword,
 		startOutDate,
-		endOutDate,
+		endOutDate
 	};
 	
-	getList(data);
+	getList(member);
 };
 
 submitBtn.addEventListener('click', submitHandler);
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const tr = e.target.parentNode;
-	const tds = tr.children;
-	const index = tds[0].innerText;
-	
-	/* index로 AJAX 요청 */
-	
-	profileContainer.style.display = 'block';
-	
-};
+	const tds = e.children;
+	const id = tds[0].innerText;
 
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
+	/* index로 AJAX 요청 */
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/out/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+		
+			if(res.withdrawBirth == null) {
+				res.withdrawBirth = 'No Birth';
+			}
+		
+			$("input[name=withdrawEmail]").val(res.withdrawEmail);			
+			$("input[name=withdrawName]").val(res.withdrawName);			
+			$("input[name=withdrawPhone]").val(res.withdrawPhone);			
+			$("input[name=regDate]").val(res.regDate);			
+			$("input[name=withdrawDate]").val(res.withdrawDate);			
+			$("input[name=withdrawAddress]").val(res.withdrawAddress);			
+			$("input[name=withdrawPostcode]").val(res.withdrawPostcode);			
+			$("input[name=withdrawBirth]").val(res.withdrawBirth);			
+			$("input[name=platFormType]").val(res.platFormType);			
+			$("input[name=withdrawId]").val(res.withdrawId);			
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
+	profileContainer.style.display = 'block';
+	$("input[name=withdrawName]").focus();
+};
 
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	profileContainer.style.display = 'none';
-})
+});
+
+// 모달 회원 삭제 버튼
+deleteBtn.addEventListener('click', (e) => {
+	/* 삭제해~ */
+});
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {
@@ -292,6 +279,5 @@ const excelDownload = (id, title) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-/*	getAllList();*/
-	
+	getList(member);
 }); 

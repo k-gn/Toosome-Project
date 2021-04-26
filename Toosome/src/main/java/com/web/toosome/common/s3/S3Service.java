@@ -3,6 +3,9 @@ package com.web.toosome.common.s3;
 import java.io.File;
 import java.io.InputStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -14,16 +17,21 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
+@Service
 public class S3Service {
 	
-	private AmazonS3 s3Client;
 	
-	private String bucket;
-    private String accessKey;
-    private String secretKey;
-    private Regions clientRegion;
+	public AmazonS3 s3Client;
+	
+	private String bucket = "toosome";
+    private String accessKey = "AKIA2EEFD7LC3HPT4W5F";
+    private String secretKey = "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";
+    private Regions clientRegion = Regions.AP_NORTHEAST_2;
     
-    public S3Service() {}
+    public S3Service() {
+    	createS3Client();
+    	
+    }
     
 	public S3Service(String bucket, String accessKey, String secretKey) {
 		this.bucket = bucket;
@@ -32,6 +40,17 @@ public class S3Service {
 		this.clientRegion = Regions.AP_NORTHEAST_2;
 		createS3Client();
 	}
+	//singleton pattern
+	static private S3Service instance = null;
+	
+	public static S3Service getInstance() {
+		if(instance == null) {
+			return new S3Service();
+		}else {
+			return instance;
+		}
+	}
+	
 
 	private void createS3Client() {
 		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
@@ -50,15 +69,22 @@ public class S3Service {
 	
 	public void upload(InputStream is, String key, String contentType, long contentLength) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
+		System.out.println(objectMetadata);
 		objectMetadata.setContentType(contentType);
 		objectMetadata.setContentLength(contentLength);
+		System.out.println(objectMetadata.getContentType());
+		System.out.println(objectMetadata.getContentLength());
 		uploadToS3(new PutObjectRequest(this.bucket, key, is, objectMetadata));
+		
 	}
 
 	// PutObjectRequest는 AWS S3 버킷에 업로드할 객체 메타 데이터와 파일 데이터로 이루어짐
 	private void uploadToS3(PutObjectRequest putObjectRequest) {
 		try {
 			System.out.println("uploadToS3 before");
+			System.out.println("putobject " + putObjectRequest);
+			System.out.println("s3Client 값" + s3Client.putObject(putObjectRequest));
+			
 			s3Client.putObject(putObjectRequest);
 			System.out.println("uploadToS3 after");
 			System.out.println(String.format("[%s] upload complete", putObjectRequest.getKey()));

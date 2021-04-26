@@ -96,6 +96,12 @@
 	</update>
 	
 	<!-- 회원탈퇴 -->
+	<update id="updateWithdrawStatus">
+		UPDATE MEMBER SET MEMBER_STATUS = -1 WHERE MEMBER_ID = #{id}
+	</update>
+	<update id="updateWithdrawAuth">
+		UPDATE MEMBER_AUTH SET MEMBER_AUTH = 'ROLE_ANONYMOUS' WHERE MEMBER_EMAIL = #{email}
+	</update>
 	<delete id="deleteMember">
 		DELETE FROM MEMBER WHERE MEMBER_ID = #{id}
 	</delete>
@@ -115,5 +121,10 @@
 	<update id="updateLastLogin">
 		UPDATE MEMBER SET MEMBER_LAST_LOGIN_DATE=NOW() WHERE MEMBER_EMAIL = #{email}
 	</update>
-	
+	<!-- 탈퇴회원 등록 -->
+	<insert id="insertWithdrawInfo">
+		INSERT INTO 
+		 WITHDRAW(WITHDRAW_NAME, WITHDRAW_EMAIL, WITHDRAW_PASSWORD, WITHDRAW_BIRTH, WITHDRAW_PHONE, WITHDRAW_POSTCODE, WITHDRAW_ADDRESS, WITHDRAW_STATUS, WITHDRAW_PLATFORM_TYPE, WITHDRAW_REGDATE, WITHDRAW_DATE)
+		VALUES(#{memberName}, #{memberEmail}, #{memberPassword}, #{memberBirth}, #{memberPhone}, #{memberPostcode}, #{memberAddress}, -1, #{platFormType}, #{regDate}, NOW())
+	</insert>
 </mapper>

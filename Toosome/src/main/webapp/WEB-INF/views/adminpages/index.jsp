@@ -67,7 +67,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">전날 접속자수</p>
-                  <h3 class="card-title">75
+                  <h3 class="card-title">${visitCount}
                   	<small>명</small>
                   </h3>
                 </div>
@@ -85,7 +85,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">전날 가입자수</p>
-                  <h3 class="card-title">3
+                  <h3 class="card-title">${regCount}
                   	<small>명</small>
                   </h3>
                 </div>
