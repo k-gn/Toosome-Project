@@ -129,13 +129,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" name="regDate" class="form-control">
+		                          <input type="date" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원탈퇴일</label>
-		                          <input type="date" name="withdrawDate" class="form-control">
+		                          <input type="date" name="withdrawDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -157,20 +157,20 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" name="withdrawBirth" class="form-control">
+		                          <input type="text" name="withdrawBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" name="platFormType" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <button id="modal-delete" type="submit" class="btn btn-primary pull-right">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
-		                    <input type="hidden" name="withdrawId">
+		                    <input type="hidden" name="email">
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>

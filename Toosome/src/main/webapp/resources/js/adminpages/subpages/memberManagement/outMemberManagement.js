@@ -198,7 +198,7 @@ const listHandler = (e) => {
 			$("input[name=withdrawPostcode]").val(res.withdrawPostcode);			
 			$("input[name=withdrawBirth]").val(res.withdrawBirth);			
 			$("input[name=platFormType]").val(res.platFormType);			
-			$("input[name=withdrawId]").val(res.withdrawId);			
+			$("input[name=email]").val(res.withdrawEmail);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
