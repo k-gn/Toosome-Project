@@ -11,6 +11,8 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const deleteBtn = document.querySelector('#modal-delete'); // 모달 회원 삭제 버튼
+
 let member = {};
 let condition = '';
 let keyword = '';
@@ -88,7 +90,6 @@ const getList = (member) => {
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
-			console.log(result);
 			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
 			let count = `검색 결과 : ${result.length}건`
@@ -174,7 +175,7 @@ submitBtn.addEventListener('click', submitHandler);
 const listHandler = (e) => {
 	const tds = e.children;
 	const id = tds[0].innerText;
-	console.log(id);
+
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -213,7 +214,12 @@ memberList.forEach(list => {
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	profileContainer.style.display = 'none';
-})
+});
+
+// 모달 회원 삭제 버튼
+deleteBtn.addEventListener('click', (e) => {
+	/* 삭제해~ */
+});
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {

@@ -161,17 +161,7 @@
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
+		                    <button id="modal-delete" class="btn btn-primary pull-right">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                  </form>
