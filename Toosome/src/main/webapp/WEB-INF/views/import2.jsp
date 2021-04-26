@@ -39,7 +39,7 @@ IMP.request_pay({
             url: "/productStactpoint?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}",
             success : function(ser) {
             	if(ser=="OK"){
-            		location.href="/menuordercomplete?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}";
+            		location.href="/orderComplete?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}";
             	}
             }
         });

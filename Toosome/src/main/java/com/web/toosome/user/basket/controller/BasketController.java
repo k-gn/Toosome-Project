@@ -148,7 +148,9 @@ public class BasketController {
 		MemberVO memberImportList = memberService.getUserById(memberId);
 		model.addAttribute("memberImportList", memberImportList);
 		model.addAttribute("basketEndPrice", basketEndPrice);
+		System.out.println(basketEndPrice);
 		model.addAttribute("basketsal", basketsal);
+		System.out.println(basketsal);
 		return "import2";
 	}
 	
@@ -156,17 +158,21 @@ public class BasketController {
 	@GetMapping("/productStactpoint")
 	public String productStactpoint(BasketUtil basketUtil, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제 후 포인트 적립");
-		Integer id = (Integer) session.getAttribute("id");
+		Integer memberId = (Integer) session.getAttribute("id");
+		List<BasketVO> baskets = service.getBasket(memberId);
+		MembershipVO ms = mservice.getMembershipInfo(memberId);
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		double basketPrice = basketUtil.getTotal();
+		System.out.println(basketPrice);
 		double imsipoint = basketPrice * 0.01;			// 적립 포인트
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("id", id);
+		map.put("id", memberId);
 		map.put("imsipoint", (int)imsipoint);
-		System.out.println((int)imsipoint);
+		System.out.println((int)imsipoint);			// 적립포인트
 		mservice.getStackPoint(map);
 		System.out.println("getStackPoint 실행 완료");
 		Integer usedPoint = basketsal - basketEndPrice;
-		System.out.println(usedPoint);
+		System.out.println(usedPoint);				// 사용포인트
 		map.put("usedPoint", usedPoint);
 		mservice.getDownPoint(map);
 		System.out.println("getDownPoint 실행 완료");
@@ -174,13 +180,36 @@ public class BasketController {
 	}
 	
 	@GetMapping("/orderComplete")
-	public String menuordercomplete(BasketUtil basketUtil, Model model, HttpSession session) {
+	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제 완료 페이지 호출");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
 		model.addAttribute("baskets", baskets);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
+		MemberVO memberList = memberService.getUserById(memberId);
+		Map<String, String> map = new HashMap<>();
+		if(memberList.getMemberPhone() != null && memberList.getMemberAddress() != null) {
+			// 01040178803
+			String tel1 = memberList.getMemberPhone().substring(0, 3);
+			String tel2 = memberList.getMemberPhone().substring(3, 7);
+			String tel3 = memberList.getMemberPhone().substring(7);
+			map.put("tel1", tel1);
+			map.put("tel2", tel2);
+			map.put("tel3", tel3);
+			String[] addressArr = memberList.getMemberAddress().split("-");
+			map.put("postcode", memberList.getMemberPostcode());
+			for(int i=0; i<addressArr.length; i++) {
+				map.put("address"+(i+1), addressArr[i]);
+			}
+		}else {
+			map.put("tel1", "010");
+		}
+		model.addAttribute("map", map);
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("basketEndPrice", basketEndPrice);
+		Integer usedPoint = basketsal - basketEndPrice;
+		model.addAttribute("usedPoint", usedPoint);
 		
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}

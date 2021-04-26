@@ -270,7 +270,7 @@
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">${basketUtil.realPayment}</span> 원</p>
           <!-- <input type="submit" value="결제하기">-->
-           <a id="abcd" href="/import2?basketEndPrice=${basketUtil.realPayment}&basketsal=${basketUtil.realPayment}">결제하기</a>
+           <a class="order-submit" id="abcd" href="/import2?basketEndPrice=${basketUtil.realPayment}&basketsal=${basketUtil.realPayment}">결제하기</a>
         </div>
         
       </div>
