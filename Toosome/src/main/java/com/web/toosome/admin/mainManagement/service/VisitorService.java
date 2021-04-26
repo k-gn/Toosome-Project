@@ -25,4 +25,9 @@ public class VisitorService implements IVisitorService {
 		mapper.setTimezone();
 	}
 
+	@Override
+	public int visitCount() {
+		return mapper.visitCount();
+	}
+
 }
