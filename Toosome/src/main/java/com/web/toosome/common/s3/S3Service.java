@@ -1,10 +1,12 @@
 package com.web.toosome.common.s3;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -12,10 +14,12 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.IOUtils;
 
 @Service
 public class S3Service {
@@ -77,6 +81,22 @@ public class S3Service {
 		uploadToS3(new PutObjectRequest(this.bucket, key, is, objectMetadata));
 		
 	}
+	
+	public String upload(MultipartFile file, String path) {
+        String fileName = path + file.getOriginalFilename();
+        ObjectMetadata objMeta = new ObjectMetadata();
+        try {
+        	byte[] bytes = IOUtils.toByteArray(file.getInputStream());
+        	objMeta.setContentLength(bytes.length);
+        	ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+			s3Client.putObject(new PutObjectRequest(bucket, fileName, byteArrayInputStream, objMeta)
+			        .withCannedAcl(CannedAccessControlList.PublicRead));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        System.out.println(s3Client.getUrl(bucket, fileName).toString());
+        return s3Client.getUrl(bucket, fileName).toString();
+    }
 
 	// PutObjectRequest는 AWS S3 버킷에 업로드할 객체 메타 데이터와 파일 데이터로 이루어짐
 	private void uploadToS3(PutObjectRequest putObjectRequest) {

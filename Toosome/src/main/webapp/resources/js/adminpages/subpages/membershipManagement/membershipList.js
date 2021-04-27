@@ -91,6 +91,7 @@ const getList = (member) => {
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
+			console.log(result);
 			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
 			let count = `검색 결과 : ${result.length}건`
@@ -103,13 +104,13 @@ const getList = (member) => {
                     ${res.membershipId}
                   </td>
                   <td>
-                    ${res.levelName}
+                    ${res.level.levelName}
                   </td>
                   <td>
-                    ${res.memberEmail}
+                    ${res.member.memberEmail}
                   </td>
                   <td>
-                    ${res.memberName}
+                    ${res.member.memberName}
                   </td>
                   <td>
                     ${res.membershipPoint}
@@ -178,6 +179,28 @@ const listHandler = (e) => {
 	const id = tds[0].innerText;
 	
 	/* index로 AJAX 요청 */
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/membershipMember/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(res.levelId);
+			$("input[name=membershipId]").val(res.membershipId);			
+			$("#lvl").val(res.levelId).prop("selected", true);;			
+			$("input[name=memberEmail]").val(res.member.memberEmail);			
+			$("input[name=memberName]").val(res.member.memberName);			
+			$("input[name=membershipPoint]").val(res.membershipPoint);			
+			$("input[name=membershipRegDate]").val(res.membershipRegDate);			
+			$("input[name=id]").val(res.membershipId);			
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
 	
 	profileContainer.style.display = 'block';
 	$("input[name=memberName]").focus();

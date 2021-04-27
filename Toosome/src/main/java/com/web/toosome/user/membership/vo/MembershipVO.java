@@ -12,7 +12,7 @@ public class MembershipVO {
 
 	private Integer membershipId;
 	private Integer memberId;
-	private Integer leverId;
+	private Integer levelId;
 	private Integer membershipPoint;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date membershipRegDate;
