@@ -10,7 +10,6 @@ const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
-const deleteBtn = document.querySelector('#modal-delete'); // 모달 회원 삭제 버튼
 
 let member = {};
 let condition = '';
@@ -198,7 +197,7 @@ const listHandler = (e) => {
 			$("input[name=withdrawPostcode]").val(res.withdrawPostcode);			
 			$("input[name=withdrawBirth]").val(res.withdrawBirth);			
 			$("input[name=platFormType]").val(res.platFormType);			
-			$("input[name=withdrawId]").val(res.withdrawId);			
+			$("input[name=email]").val(res.withdrawEmail);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -213,11 +212,6 @@ const listHandler = (e) => {
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	profileContainer.style.display = 'none';
-});
-
-// 모달 회원 삭제 버튼
-deleteBtn.addEventListener('click', (e) => {
-	/* 삭제해~ */
 });
 
 // 엑셀 다운로드

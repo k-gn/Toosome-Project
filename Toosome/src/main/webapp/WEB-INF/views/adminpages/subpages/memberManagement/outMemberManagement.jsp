@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/memberManagement/outMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/outMemberManagement.js" defer></script>
+  <script type="text/javascript">
+    const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("회원정보 수정 완료");
+	}
+  </script>
 </head>
 
 <body>
@@ -98,7 +104,7 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/delOutMember" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
@@ -123,13 +129,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" name="regDate" class="form-control">
+		                          <input type="date" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원탈퇴일</label>
-		                          <input type="date" name="withdrawDate" class="form-control">
+		                          <input type="date" name="withdrawDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -151,19 +157,21 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" name="withdrawBirth" class="form-control">
+		                          <input type="text" name="withdrawBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" name="platFormType" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button id="modal-delete" class="btn btn-primary pull-right">삭제</button>
+		                    <button id="modal-delete" type="submit" class="btn btn-primary pull-right">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="email">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>

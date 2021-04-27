@@ -23,11 +23,14 @@
 	    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
 	<listener>
+   		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+	<listener>
 		<listener-class>com.web.toosome.common.listener.VisitCounter</listener-class>
 	</listener>
 	
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 	
 	<!-- Processes application requests -->

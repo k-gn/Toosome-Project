@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/membershipManagement/membershipList.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/membershipManagement/membershipList.js" defer></script>
+  <script type="text/javascript">
+    const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("멤버쉽 정보 수정 완료");
+	}
+  </script>
 </head>
 
 <body>
@@ -64,12 +70,12 @@
                            <td>
                         	  <div class="select-box">
                               <select name="membershipGrade" class="search-select" id="membershipGrade">
-                                <option value="gradeAll">전체조회</option>
-                                <option value="bronze">브론즈</option>
-                                <option value="silver">실버</option>
-                                <option value="gold">골드</option>
-                                <option value="platinum">플래티넘</option>
-                                <option value="diamond">다이아몬드</option>
+                                <option value="">전체조회</option>
+                                <option value="1">브론즈</option>
+                                <option value="2">실버</option>
+                                <option value="3">골드</option>
+                                <option value="4">플래티넘</option>
+                                <option value="5">다이아몬드</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -116,18 +122,18 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/updateMembership" method="post">
 		                    <div class="row">
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 번호</label>
-		                          <input type="text" class="form-control" disabled>
+		                          <input type="text" name="id" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 등급</label>
-		                          <select class="custom-select" name="status">
+		                          <select class="custom-select" id="lvl" name="levelId">
 				                  	<option value="1">브론즈</option>
 				                  	<option value="2">실버</option>
 				                  	<option value="3">골드</option>
@@ -139,7 +145,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID(E-mail)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="email" name="memberEmail" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -147,25 +153,27 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">포인트</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="membershipPoint" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 전환일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="membershipRegDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="membershipId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
@@ -216,32 +224,7 @@
                           멤버십전환일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="membershipList" items="${membershipList}">
-	                        <tr>
-	                          <td>
-	                            ${membershipList.memberId}
-	                          </td>
-	                          <td>
-	                            ${membershipList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberName}
-	                          </td>
-	                          <td>
-	                            ${membershipList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${membershipList.regDate}
-	                          </td>
-	                          <td>
-	                            ${membershipList.changeMembershipDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>
