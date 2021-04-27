@@ -110,23 +110,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">권한이름</label>
 		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -178,32 +168,7 @@
                           최종로그인
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="adminList" items="${adminList}">
-	                        <tr>
-	                          <td>
-	                            ${adminList.memberId}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberAuth}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberName}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${adminList.regDate}
-	                          </td>
-	                          <td>
-	                            ${adminList.lastLoginDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>

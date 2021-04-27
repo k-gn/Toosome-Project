@@ -169,7 +169,7 @@ public class LoginController {
 	@GetMapping("/accessErrorAdmin")
 	public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
 		ra.addFlashAttribute("msg", "Denied");
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/accessErrorMember")

@@ -10,6 +10,14 @@
   <link href="/resources/css/adminpages/main/admin_main.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
   <script src="/resources/js/adminpages/main/admin_main.js" defer></script>
+  <script>
+		const msg = "${msg}"
+		if(msg === "Denied") {
+			alert("잘못된 접근입니다.");
+		}else if(msg === "duplogin") {
+			alert("다른 기기에서 접속중인 계정입니다.");
+		}
+	</script> 
 </head>
 
 <body>

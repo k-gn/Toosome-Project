@@ -3,6 +3,9 @@ const searchInput = document.querySelector('#search-text'); // 검색어 인풋
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
+let condition = '';
+let keyword = '';
+let member = {};
 
 // 리셋 버튼 핸들러
 const resetHandler = () => {
@@ -12,98 +15,48 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-/*// AJAX 전체 리스트 불러오기
-const getAllList = () => {
-	// AJAX 요청
-	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
-		}, 
-		error: function() {
-			alert('시스템과에 문의하세요');
-			history.back();
-		} 
-	});
-};*/
-
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (member) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/adminList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
+		dataType: "json", //응답받을 데이터의 형태
+		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
+			console.log(result);
+			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
 			result.forEach(res => {
 				let newEl = document.createElement('tr');
 				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.memberAuth}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
+                  <td>
+                    ${res.memberId}
+                  </td>
+                  <td>
+                    ${res.authList[0].memberAuth}
+                  </td>
+                  <td>
+                    ${res.memberEmail}
+                  </td>
+                  <td>
+                    ${res.memberName}
+                  </td>
+                  <td>
+                    ${res.memberPhone}
+                  </td>
+                  <td>
+                    ${res.regDate}
+                  </td>
+                  <td>
+                    ${res.lastLoginDate}
+                  </td>
 				`;
 				newEl.innerHTML = content;
 				listTable.appendChild(newEl);
@@ -118,27 +71,29 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const adminName = ''; // 검색 이름
-	const adminEmail = ''; // 검색 이메일
+	condition = '';
+	keyword = '';
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			adminName = searchInput.value;	
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			adminEmail = searchInput.value;			
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
 		}
 	};
 	
 	// JSON Data
-	const data = {
-		adminName,
-		adminEmail,
+	const member = {
+		condition,
+		keyword
 	};
 	
-	getList(data);
+	getList(member);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -197,3 +152,7 @@ const excelDownload = (id, title) => {
 		document.body.removeChild(elem);
 	}
 };
+
+$(document).ready(() => {
+	getList(member);
+}); 

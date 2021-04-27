@@ -71,7 +71,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">등급 조건 (MAX)</label>
-		                          <input type="text" name="levelMaxRange" class="form-control">
+		                          <input type="text" name="levelMaxRange" id="max" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
