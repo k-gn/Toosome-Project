@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.user.basket.service.IBasketService;
 import com.web.toosome.user.basket.vo.BasketUtil;
@@ -52,10 +53,16 @@ public class BasketController {
 	}
 
 	@GetMapping("/basket/order") // 주문
-	public String order(HttpSession session, BasketUtil basketUtil, Model model) {
+	public String order(HttpSession session, BasketUtil basketUtil, Model model, RedirectAttributes ra) {
 		System.out.println("상품 구매 페이지 출력");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
+		
+		if(baskets == null || baskets.size() == 0) {
+			ra.addFlashAttribute("msg", "empty");
+			return "redirect:/basket";
+		}
+		
 		model.addAttribute("baskets", baskets);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
