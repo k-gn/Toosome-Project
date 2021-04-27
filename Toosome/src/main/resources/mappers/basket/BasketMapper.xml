@@ -78,7 +78,7 @@
 		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
 	</select>
 	
-	<delete id="delBasketById">
+	<delete id="orderBasketDel">
 	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
 	</delete>
 
