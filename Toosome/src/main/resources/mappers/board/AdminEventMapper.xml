@@ -26,8 +26,11 @@
 	
 	<sql id="search">
 		
-		<if test="eventBoardStartday != null and eventBoardStartday != ''">
+		<if test="startRegDate != null and startRegDate != ''">
 			AND B.EVENT_BOARD_DETAIL_DAY BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
+		</if>
+		<if test="keyword != null">
+			ORDER BY A.EVENT_BOARD_ID DESC
 		</if>
 	</sql>
 	
@@ -39,6 +42,7 @@
       				FROM EVENT_BOARD A
 	  					JOIN EVENT_BOARD_DETAIL B
 	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)
+	    						ORDER BY A.EVENT_BOARD_ID DESC
 	
 	</select>
 	
@@ -64,8 +68,18 @@
 	<insert id="insertDetailEvent">
 		INSERT INTO EVENT_BOARD_DETAIL(EVENT_BOARD_DETAIL_ID, EVENT_BOARD_DETAIL_IMAGE_ROUTE, EVENT_BOARD_DETAIL_IMAGE_NAME,
 			 EVENT_BOARD_DETAIL_IMAGE_EXTENTION, EVENT_BOARD_DETAIL_DAY) 
-			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},#{eventBoardDetailDay})
-	</insert>	
+			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},now())
+	</insert>
+	
+	<select id="eventBoardDetail" resultMap="EventAdminMap">
+		SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE, A.EVENT_BOARD_START_DAY, A.EVENT_BOARD_END_DAY, A.EVENT_BOARD_IMAGE_ROUTE, A.EVENT_BOARD_IMAGE_NAME, A.EVENT_BOARD_IMAGE_EXTENTION,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)	
+	    					 WHERE EVENT_BOARD_ID = #{id}
+	</select>	
+	
 	<!-- 
 	<update id="eventBoardCount">
 		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
