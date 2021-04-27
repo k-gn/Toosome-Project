@@ -141,3 +141,17 @@
   font-size: 13px;
   box-sizing: border-box;
 } 
+
+
+/* 반응형 start */
+
+
+@media screen and (max-width: 700px) {
+	
+	.nutrient-container .title-container .title-logo {
+	  width: 400px;
+	}
+	.nutrient-container .contents table thead tr th {
+	  font-size: 10px;
+	}
+}
