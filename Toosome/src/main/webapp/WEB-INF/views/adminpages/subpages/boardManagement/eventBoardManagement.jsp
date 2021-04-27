@@ -143,7 +143,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">본문 이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="imageUpload" />
+								            <input type="file" name="uploadFile" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -159,7 +159,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="eventBoardDetailVO.thumbnailUpload" />
+								            <input type="file" name="eventBoardDetailVO.uploadFile2" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -221,7 +221,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="eventBoardDetailVO.thumbnailUpload" />
+									            <input type="file" name="eventBoardDetailVO.uploadFile2" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -244,7 +244,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="imageUpload" />
+									            <input type="file" name="uploadFile" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -253,8 +253,7 @@
 				                </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">등록</button>
-		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>
+				          <button type="submit" class="btn btn-primary pull-right btn-r">등록</button>
 				        </div>
 			        </form>
 			      </div>

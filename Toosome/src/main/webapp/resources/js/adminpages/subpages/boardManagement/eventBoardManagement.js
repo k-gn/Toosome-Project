@@ -144,13 +144,14 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 		let item = paginatedItems[i];
 
 		let newEl = document.createElement('tr');
-		newEl.setAttribute( 'onclick', 'listHandler(this)' );
 		let content = `
           <td>
             ${item.eventBoardId}
           </td>
-          <td>
-            ${item.eventBoardTitle}
+          <td onclick="listHandler(this);">
+			<a href="#">
+	          ${item.eventBoardTitle}
+			</a>
           </td>
           <td>
             ${item.eventBoardViewCount}
@@ -165,7 +166,7 @@ const showList = (result, wrapper, rowsPerPage, page) => {
             ${item.eventBoardEndday}
           </td>
           <td>
-            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${item.eventBoardImageRoute}/${item.eventBoardImageName}.${item.eventBoardImageExtention}">상세보기</a>
+            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${item.eventBoardDetailVO.eventBoardDetailImageRoute}/${item.eventBoardDetailVO.eventBoardDetailImageName}.${item.eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -185,6 +186,7 @@ const getList = (board, wrapper, rowsPerPage, page) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: board, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(result);
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
