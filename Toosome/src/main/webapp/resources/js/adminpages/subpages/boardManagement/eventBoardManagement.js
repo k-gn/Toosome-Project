@@ -242,12 +242,13 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/" + id, //서버 요청 URI
+		url: "/admin/eventdetail/" + id, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(res);
 			$("input[name=eventBoardId]").val(res.eventBoardId);			
 			$("input[name=eventBoardViewCount]").val(res.eventBoardViewCount);			
 			$("input[name=eventBoardDetailDay]").val(res.eventBoardDetailVO.eventBoardDetailDay);			

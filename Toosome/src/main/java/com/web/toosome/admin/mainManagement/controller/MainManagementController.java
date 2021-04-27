@@ -40,4 +40,9 @@ public class MainManagementController {
 		dailyMap.put("dailyVisit", dailyVisit);
 		return dailyMap;
 	}
+	
+	@GetMapping("/change-password") // 관리자 비밀번호 변경
+	public String ChangePassword() {
+		return "adminpages/subpages/login/changePassword";
+	}
 }
