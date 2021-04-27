@@ -197,6 +197,8 @@ section > p {
 	text-decoration: underline;
 }
 
+/* 반응형 start */
+
 @media screen and (max-width: 680px) {
 	
 	.search-wrapper > input {
