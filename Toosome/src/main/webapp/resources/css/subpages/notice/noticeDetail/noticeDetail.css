@@ -164,3 +164,11 @@ section {
 .next td:last-child a:hover {
 	text-decoration: underline;
 }
+
+
+@media screen and (max-width: 800px) {
+	
+	.navigation-container {
+		width: 50%;
+	}
+}
