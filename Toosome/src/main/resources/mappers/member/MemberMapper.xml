@@ -69,7 +69,7 @@
 	<insert id="registerAdmin">
 		INSERT INTO 
 		 MEMBER(MEMBER_NAME, MEMBER_EMAIL, MEMBER_PASSWORD)
-		VALUES(#{memberName}, #{memberEmail}, #{memberPassword})
+		VALUES(#{memberName}, #{memberEmail}, '1234')
 	</insert>
 	<insert id="registerAdminAuth">
 		INSERT INTO MEMBER_AUTH

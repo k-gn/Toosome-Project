@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.adminManagement.service.IAdminManagementService;
 import com.web.toosome.admin.adminManagement.vo.AdminSearchVO;
+import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 
 @Controller
@@ -17,7 +18,10 @@ import com.web.toosome.user.member.vo.MemberVO;
 public class AdminManagementController {
 	
 	@Autowired
-	private IAdminManagementService service;
+	private IAdminManagementService adminService;
+	
+	@Autowired
+	private IMemberService memberService;
 	
 	@GetMapping("/admin-list") // 운영자 관리
 	public String AdminList() {
@@ -37,6 +41,6 @@ public class AdminManagementController {
 	@GetMapping("/adminList")
 	@ResponseBody
 	public List<MemberVO> getAdminList(AdminSearchVO search) {
-		return service.getAdminList(search);
+		return adminService.getAdminList(search);
 	}
 }
