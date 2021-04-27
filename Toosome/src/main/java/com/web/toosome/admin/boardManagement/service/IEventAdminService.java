@@ -16,6 +16,8 @@ public interface IEventAdminService {
 	void insertEvent(EventBoardVO vo);
 	
 	void insertDetailEvent(EventBoardDetailVO vo);
+	
+	EventBoardVO eventBoardDetail(Integer id);
 
 
 }

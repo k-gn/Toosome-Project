@@ -4,14 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.boardManagement.service.IEventAdminService;
@@ -20,7 +20,7 @@ import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
 
-;
+
 
 @Controller
 public class BoardManagementController {
@@ -42,6 +42,15 @@ public class BoardManagementController {
 	}
 	
 	
+	//관리자 이벤트 디테일 페이지  값
+	@GetMapping(value = "{id}" , produces = "application/json")
+	@ResponseBody
+	public EventBoardVO eventBoardDetail(@PathVariable Integer id){
+		EventBoardVO detail = eventboardservice.eventBoardDetail(id);
+		System.out.println(detail);
+		return detail;
+	}
+	
 	
 	//관리자 이벤트 게시판 리스트 값 
 	
@@ -62,14 +71,24 @@ public class BoardManagementController {
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/eventboard-insert") // 관리자 이벤트게시판 등록기능
 	public String qnaEnrollment(EventBoardVO vo, EventBoardDetailVO vvo,RedirectAttributes ra) throws IllegalStateException, IOException {
-		
+/*		
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
 		System.out.println("이벤트 게시판.getUploadFile 값 : "+vo.getUploadFile());
 		System.out.println("이벤트 디테일 /getUpliadFile 값 :" + vvo.getUploadFile2());
 		
+		
 		vo.setEventBoardImageName(vo.getUploadFile().getOriginalFilename());
 		vvo.setEventBoardDetailImageName(vvo.getUploadFile2().getOriginalFilename());
+		
+		*/
+		vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vo.setEventBoardImageRoute("img/pages/subpages/event/");
+		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		
+		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
+		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
 		eventboardservice.insertEvent(vo);
 		eventboardservice.insertDetailEvent(vvo);
