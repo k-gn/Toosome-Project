@@ -21,7 +21,22 @@
 		<result property="basketPrice" column="BASKET_PRICE" />
 		<collection property="productImageVO" resultMap="productImageMap"/>
 	</resultMap>
-
+	
+	<resultMap type="orderVO" id="orderVO">
+		<result property="ordersId" column="ORDERS_ID" />
+		<result property="memberId" column="MEMBER_MEMBER_ID" />
+		<result property="ordersOrderDate" column="ORDERS_ORDER_DATE" />
+		<result property="ordersPayment" column="ORDERS_PAYMENT" />
+		<result property="ordersState" column="ORDERS_STATE" />
+		<result property="ordersAddress" column="ORDERS_ADDRESS" />
+		<result property="ordersPostcode" column="ORDERS_POSTCODE" />
+		<result property="ordersReceiver" column="ORDERS_RECEIVER" />
+		<result property="ordersDelivery" column="ORDERS_DELIVERY" />
+		<result property="ordersPhone" column="ORDERS_PHONE" />
+		<result property="ordersContent" column="ORDERS_CONTENT" />
+		
+	</resultMap>
+	
 	<insert id="addBasket">
 		INSERT INTO BASKET(MEMBER_ID, PRODUCT_ID, BASKET_NAME, BASKET_PRICE, PRODUCT_IMAGE_ID)
 		VALUES(#{memberId}, #{productId}, #{basketName}, #{basketPrice}, #{productImageId})
@@ -51,4 +66,16 @@
 	<delete id="delBasket">
 	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
 	</delete>
+	
+	<insert id="orderSubmit">
+		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_ADDRESS,
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT)
+		VALUES(#{memberId}, now(), #{ordersPayment}, #{ordersAddress}, #{ordersPostcode},
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent})
+	</insert>
+	
+	<select id="getOrdersList" resultMap="orderVO">
+		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
+	</select>
+	
 </mapper>

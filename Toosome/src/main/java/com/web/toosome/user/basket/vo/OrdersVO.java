@@ -12,7 +12,8 @@ public class OrdersVO {
 	private Integer ordersPayment;
 	private String ordersState;
 	private String ordersAddress;
-	private String ordersPaymentDay;
+	private String ordersPostcode;
+	private String ordersReceiver;
 	private Integer ordersDelivery;
 	private String ordersPhone;
 	private String ordersContent;

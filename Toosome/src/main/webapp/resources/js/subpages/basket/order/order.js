@@ -1,4 +1,6 @@
-  const orderSubmitBtn = document.querySelector('.order-submit');
+
+
+
 // 우편번호 검색
 
 function pCode() {
@@ -155,49 +157,61 @@ $(function () {
   document.getElementById("use_pnt").addEventListener('change', pointValidate);
 });
 
- orderSubmitBtn.addEventListener('click', orderSubmitBtnHandler);
+
+const orderSubmitBtn = document.querySelector('.order-submit');
 
 const orderSubmitBtnHandler = (e) => {
+
+	$(document).ajaxSend(function(e, xhr, options) { 
+    	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+    }); 
+
     //받는 사람
 	const name = $("#orderName2").val();
 	//우편번호
 	const postcode = $("#postcode2").val();
 	//주소
-	const addr3 = $("#addr3").val();
-	//상세주소
-	const addr4 = $("#addr4").val();
+	const addr = $("#addr3").val() + "-" + $("#addr4").val();
 	// 핸드폰 번호
 	const phone = $("#tel2").val() + $("#tel5").val() + $("#tel6").val();
 	//배송 유의사항
 	const content = $("#postText").val();
+	//결제 금액
+	const payment = $("#result_pnt").text();
+	//배송료
+	const delivery = $(".product-delivery").text();
+	// basketEndPrice 최종 결제 금액
+	const basketEndPrice = $(".txt_red").text();
+	// basketsal  포인트 사용 전 금액
+	const basketsal = $(".txt_blue").text();
 	
 	const order = {
-		memberEmail: email,
-		memberPassword: password,
-		memberName: name,
-		memberBirth: birthDate,
-		memberPhone: phone,
-		memberPostcode: postcode,
-		memberAddress: address
+		ordersReceiver: name,
+		ordersPostcode: postcode,
+		ordersAddress: addr,
+		ordersPhone: phone,
+		ordersContent: content,
+		ordersPayment: payment,
+		ordersDelivery: delivery
 	};
 	
 	//클라이언트에서 서버와 통신하는 ajax함수(비동기 통신) 
 	$.ajax({
 		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/signup", //서버 요청 URI
+		url: "/ordersubmit", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(member), //서버로 전송할 데이터
+		data: JSON.stringify(order), //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			console.log("통신 성공!: " + result);
 			if(result === "success") {
-				alert("회원가입에 성공했습니다!");
-				location.href="/signupcomplete";
+				console.log("수령자 정보 저장 완료");
+				location.href="/import2?basketEndPrice=" + basketEndPrice + "&basketsal=" + basketsal;
 			} else {
-				alert("회원가입에 실패했습니다!");
-				location.href="/signup";
+				alert("수령자 정보 저장 실패");
+				location.href="/";
 			}
 		}, 
 		error: function() {
@@ -205,3 +219,5 @@ const orderSubmitBtnHandler = (e) => {
 		} 
 	});
   };
+
+orderSubmitBtn.addEventListener('click', orderSubmitBtnHandler);

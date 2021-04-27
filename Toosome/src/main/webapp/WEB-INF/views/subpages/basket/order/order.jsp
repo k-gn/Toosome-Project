@@ -5,6 +5,8 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -13,7 +15,7 @@
   <link rel="stylesheet" href="/resources/css/subpages/basket/order/order.css">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/resources/js/subpages/basket/basket.js" defer></script>
-  <script src="/resources/js/subpages/basket/order/order.js"></script>
+  <script src="/resources/js/subpages/basket/order/order.js" defer></script>
 <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -39,31 +41,27 @@
         <table class="table text-center">
           <thead>
             <tr class="table-secondary">
-              <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
+              <th></th>
               <th colspan="2">주문 품목</th>
               <th>수량</th>
               <th>상품명</th>
               <th>결제금액</th>
-              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
-                <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
+                <td></td>
                 <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
-                <td><span class="name"></span></td>
-                <td>
-                  <input type="number" min="1" max="10" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
+                <td></td>
+                <td style="width: 50px;">
+                  <input style="width: 50px;" type="text" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
                 </td>
                 <td>
                   <span class="pname">${basket.basketName}</span>
                 </td>
                 <td>
                   <span class="price">${basket.basketPrice}원</span>
-                </td>
-                <td>
-                  <input type="button" value="X" onclick="deleteRow(this, ${basket.basketId});">
                 </td>
               </tr>
             </c:forEach>
@@ -270,7 +268,7 @@
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">${basketUtil.realPayment}</span> 원</p>
           <!-- <input type="submit" value="결제하기">-->
-           <a class="order-submit" id="abcd" href="/import2?basketEndPrice=${basketUtil.realPayment}&basketsal=${basketUtil.realPayment}">결제하기</a>
+           <a class="order-submit" id="abcd">결제하기</a>
         </div>
         
       </div>

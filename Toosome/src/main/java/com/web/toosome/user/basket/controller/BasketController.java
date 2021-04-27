@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.web.toosome.user.basket.service.IBasketService;
 import com.web.toosome.user.basket.vo.BasketUtil;
 import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.basket.vo.OrdersVO;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
@@ -211,6 +212,40 @@ public class BasketController {
 		Integer usedPoint = basketsal - basketEndPrice;
 		model.addAttribute("usedPoint", usedPoint);
 		
+		OrdersVO orderList = service.getOrdersList(memberId);
+		Map<String, String> map1 = new HashMap<>();
+		if(orderList.getOrdersPhone() != null && orderList.getOrdersAddress()!= null) {
+			// 01040178803
+			String tel1 = orderList.getOrdersPhone().substring(0, 3);
+			String tel2 = orderList.getOrdersPhone().substring(3, 7);
+			String tel3 = orderList.getOrdersPhone().substring(7);
+			map.put("tel1", tel1);
+			map.put("tel2", tel2);
+			map.put("tel3", tel3);
+			String[] addressArr = orderList.getOrdersAddress().split("-");
+			map.put("postcode", orderList.getOrdersPostcode());
+			for(int i=0; i<addressArr.length; i++) {
+				map.put("address"+(i+1), addressArr[i]);
+			}
+		}else {
+			map.put("tel1", "010");
+		}
+		model.addAttribute("map", map1);
+		model.addAttribute("orderList", orderList);
+		
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
+	
+	@PostMapping("/ordersubmit") 
+	@ResponseBody
+	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session) {
+		System.out.println("ordersubmit 메서드 실행");
+		System.out.println(order.getOrdersPayment());
+		Integer memberId = (Integer) session.getAttribute("id");
+		order.setMemberId(memberId);
+		int result = service.orderSubmit(order);
+		if(result > 0) return "success";
+		else return "fail";
+	}
+	
 }

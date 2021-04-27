@@ -141,7 +141,7 @@
                     받으실 분
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName2" value="리송죄" disabled>
+                    <input type="text" name="orderName" id="orderName2" value="${${orderList.orderReceiver }" disabled>
                     
                   </td>
                 </tr>
@@ -150,7 +150,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode2" value="22222" disabled>
+                    <input type="text" name="post" id="postcode2" value="${orderList.ordersPostcode }" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -158,7 +158,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr3" value="종각역" disabled>
+                    <input type="text" name="address" id="addr3" value="${map1.address1}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -166,7 +166,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr4" value="4번출구" disabled>
+                    <input type="text" name="address" id="addr4" value="${map1.address2 == null ? '' : map1.address2}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -174,18 +174,25 @@
                     전화번호
                   </td>
                   <td>
-                    <input type="tel" name="phone1" id="tel7" value="010" disabled>
+                    <select name="phone1" id="tel">
+                      <option value="010" ${map1.tel1 == '010' ? 'selected' : ''}>010</option>
+                	  <option value="011" ${map1.tel1 == '011' ? 'selected' : ''}>011</option>
+                	  <option value="016" ${map1.tel1 == '016' ? 'selected' : ''}>016</option>
+                	  <option value="017" ${map1.tel1 == '017' ? 'selected' : ''}>017</option>
+                	  <option value="018" ${map1.tel1 == '018' ? 'selected' : ''}>018</option>
+                	  <option value="019" ${map1.tel1 == '019' ? 'selected' : ''}>019</option>
+                    </select>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel5" value="9123" disabled>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map1.tel2}" required>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel6" value="4567" disabled>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map1.tel3}" required>
                   </td>
                 </tr>
                 <td>
                   배송 유의사항
                 </td>
                 <td>
-                  <input type="text" name="postText" value="자고있으면 깨워주세요." disabled>
+                  <input type="text" name="postText" value="${orderList.ordersContent }" disabled>
                 </td>
               </tbody>
             </table>
