@@ -38,4 +38,9 @@ public class EventAdminService implements IEventAdminService {
 		mapper.insertDetailEvent(vo);
 	}
 
+	@Override
+	public EventBoardVO eventBoardDetail(Integer id) {
+		return mapper.eventBoardDetail(id);
+	}
+
 }

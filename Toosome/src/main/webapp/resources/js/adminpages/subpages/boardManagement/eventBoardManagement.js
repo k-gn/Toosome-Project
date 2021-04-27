@@ -15,9 +15,9 @@ const listTable = document.querySelector('#list-table-tbody'); // 테이블
 const pagination = document.getElementById('pagination'); // 페이징
 
 let board = {};
-let eventBoardTitle = ''; // 검색 제목
-let startEventDate = ''; // 검색 시작일
-let endEventDate = ''; // 검색 종료일
+let keyword = ''; // 검색 제목
+let startRegDate = ''; // 검색 시작일
+let endRegDate = ''; // 검색 종료일
 let currentPage = 1; // 현재 페이지
 let rows = 10000; // 한 페이지에 보여줄 게시글 수
 
@@ -202,26 +202,26 @@ const getList = (url, board, wrapper, rowsPerPage, page) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	eventBoardTitle = ''; // 검색 제목
-	eventBoardStartday = ''; // 검색 시작일
-	eventBoardEndday = ''; // 검색 종료일
+	keyword = ''; // 검색 제목
+	startRegDate = ''; // 검색 시작일
+	endRegDate = ''; // 검색 종료일
 	
 	// 검색 이름
 	if(searchInput.value !== '') {
-		eventBoardTitle = searchInput.value;	
+		keyword = searchInput.value;	
 	};
 	
 	// 가입일자
 	if(eventDate.options[eventDate.selectedIndex].value === 'use') {
-		eventBoardStartday = moment(eventCalendar.value).format('YYYY-MM-DD');
-		eventBoardEndday = moment(eventCalendar2.value).format('YYYY-MM-DD');
+		startRegDate = moment(eventCalendar.value).format('YYYY-MM-DD');
+		endRegDate = moment(eventCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data
 	board = {
-		eventBoardTitle,
-		eventBoardStartday,
-		eventBoardEndday,
+		keyword,
+		startRegDate,
+		endRegDate,
 	};
 	url = '/admin/eventboardsearch';
 	getList(url, board, listTable, rows, currentPage);
