@@ -386,6 +386,11 @@
 
 @media screen and (max-width: 770px) {
     
+	.productDetail-container .contents .order-btn li a {
+	  width: 250px;
+	  line-height: 50px;
+	  font-size: 16px;
+	}
 	.productDetail-container .contents .form1 input[type="text"] {
 	  width: 70%;
 	}
@@ -405,6 +410,11 @@
 
 @media screen and (max-width: 600px) {
     
+	.productDetail-container .contents .order-btn li a {
+	  width: 200px;
+	  line-height: 50px;
+	  font-size: 16px;
+	}
 	.productDetail-container .contents .form1 input[type="text"] {
 	  width: 55%;
 	}
