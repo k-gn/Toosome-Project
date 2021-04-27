@@ -13,8 +13,8 @@ const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소
 
 let condition = '';
 let keyword = '';
-let startBlackDate = ''; // 회원가입 검색 시작일
-let endBlackDate = ''; // 회원가입 검색 종료일
+let startBlackDate = ''; 
+let endBlackDate = ''; 
 const status = 3;
 let member = {status}; 
 	

@@ -6,8 +6,9 @@
 	<resultMap type="membershipVO" id="membershipMap">
 		<id property="membershipId" column="MEMBERSHIP_ID"/>
 		<result property="memberId" column="MEMBER_ID"/>
-		<result property="leverId" column="LEVEL_ID"/>
+		<result property="levelId" column="LEVEL_ID"/>
 		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
+		<result property="membershipRegDate" column="MEMBERSHIP_REGDATE"/>
 		<collection property="level" resultMap="levelMap"/>
 	</resultMap>
 	
