@@ -17,6 +17,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<script src="/resources/js/subpages/basket/basket.js" defer></script>
     <title>A TOOSOME PLACE</title>
+    <script type="text/javascript">
+    	const msg = "${msg}";
+    	if(msg === "empty") {
+    		alert("구매하실 상품이 없습니다.");
+    	}
+    </script>
 </head>
 <body>
     <div id="container">

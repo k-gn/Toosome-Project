@@ -70,6 +70,9 @@ public class MembershipManagementController {
 	
 	@PostMapping("/addlvl")
 	public String addLevel(LevelVO level, RedirectAttributes ra) {
+		
+//		if(level.getLevelImg())
+		
 		System.out.println("ADD : " + level);
 		int result = service.insertLevel(level);
 		if(result > 0) ra.addFlashAttribute("msg", "modSuccess");

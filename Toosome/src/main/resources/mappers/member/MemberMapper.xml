@@ -73,7 +73,7 @@
 	</insert>
 	<insert id="registerAdminAuth">
 		INSERT INTO MEMBER_AUTH
-		VALUES(#{email}, 'ROLE_ADMIN')
+		VALUES(#{memberEmail}, #{memberAuth})
 	</insert>
 
 	<!-- 아이디, 비밀번호 찾기 -->
