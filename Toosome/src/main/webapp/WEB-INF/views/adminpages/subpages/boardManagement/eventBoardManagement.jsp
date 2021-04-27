@@ -91,7 +91,7 @@
 		                  <h4 class="card-title">이벤트 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/eventboard" method="post">
+		                  <form action="/admin/eventboard-insert" method="post">
 		                    <div class="row">
 		                      <div class="col-md-1">
 		                        <div class="form-group">
@@ -108,7 +108,7 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input name="eventBoardDetailVO.eventBoardDetailDay" type="date" class="form-control">
+		                          <input name="eventBoardDetailDay" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -159,7 +159,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="eventBoardDetailVO.uploadFile2" />
+								            <input type="file" name="uploadFile2" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -186,7 +186,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form enctype="multipart/form-data">
+			        <form action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -221,7 +221,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="eventBoardDetailVO.uploadFile2" />
+									            <input type="file" name="uploadFile2" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>

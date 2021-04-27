@@ -61,15 +61,15 @@ public class BoardManagementController {
 	
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/eventboard-insert") // 관리자 이벤트게시판 등록기능
-	public String qnaEnrollment(MultipartFile uploadFile ,MultipartFile uploadFile2 ,EventBoardVO vo, EventBoardDetailVO vvo,RedirectAttributes ra) throws IllegalStateException, IOException {
+	public String qnaEnrollment(EventBoardVO vo, EventBoardDetailVO vvo,RedirectAttributes ra) throws IllegalStateException, IOException {
 		
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
 		System.out.println("이벤트 게시판.getUploadFile 값 : "+vo.getUploadFile());
 		System.out.println("이벤트 디테일 /getUpliadFile 값 :" + vvo.getUploadFile2());
 		
-		vo.setEventBoardImageName(uploadFile.getOriginalFilename());
-		vvo.setEventBoardDetailImageName(uploadFile2.getOriginalFilename());
+		vo.setEventBoardImageName(vo.getUploadFile().getOriginalFilename());
+		vvo.setEventBoardDetailImageName(vvo.getUploadFile2().getOriginalFilename());
 		
 		eventboardservice.insertEvent(vo);
 		eventboardservice.insertDetailEvent(vvo);
@@ -77,16 +77,16 @@ public class BoardManagementController {
 		ra.addFlashAttribute("msg", "successBoard");
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
-			File convFile = new File(uploadFile.getOriginalFilename());
-			uploadFile.transferTo(convFile);
+			File convFile = new File(vo.getUploadFile().getOriginalFilename());
+			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
 			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName();
 			System.out.println(key);
 			awsS3.upload(file, key);
 			
 		//두번쨰 이미지	
-			File convFile2 = new File(uploadFile2.getOriginalFilename());
-			uploadFile2.transferTo(convFile2);
+			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
+			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
 			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName();
 			System.out.println(key2);

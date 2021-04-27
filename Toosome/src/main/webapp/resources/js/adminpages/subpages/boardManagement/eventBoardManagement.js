@@ -175,11 +175,11 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (board, wrapper, rowsPerPage, page) => {
+const getList = (url, board, wrapper, rowsPerPage, page) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/eventboardmanagement", //서버 요청 URI
+		url, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -223,8 +223,8 @@ const submitHandler = () => {
 		eventBoardStartday,
 		eventBoardEndday,
 	};
-	
-	getList(board, listTable, rows, currentPage);
+	url = '/admin/eventboardsearch';
+	getList(url, board, listTable, rows, currentPage);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -276,11 +276,13 @@ const selectHandler = (select) => {
 	// init
 	currentPage = 1;
 	rows = +value;
-	getList(board, listTable, rows, currentPage);
+	url = '/admin/eventboardmanagement';
+	getList(url, board, listTable, rows, currentPage);
 };
 
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(board, listTable, rows, currentPage); 
+	url = '/admin/eventboardmanagement';
+	getList(url, board, listTable, rows, currentPage); 
 }); 
