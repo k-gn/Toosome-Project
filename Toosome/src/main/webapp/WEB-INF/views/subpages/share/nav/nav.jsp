@@ -40,7 +40,7 @@
         <a href="/event">WHAT'S NEWS</a>
         <ul class="sub-con">
           <li><a href="/event">이벤트</a></li>
-          <li><a href="/membership">멤버쉽</a></li>
+          <li><a href="/membership">멤버십</a></li>
           <li><a href="/notice">공지사항</a></li>
           <li><a href="/news">뉴스</a></li>
           <li><a href="/qna">QnA</a></li>
@@ -50,7 +50,7 @@
         <a href="/franchise">OTHERS</a>
         <ul class="sub-con">
           <li><a href="/franchise">창업정보</a></li>
-          <li><a href="/franchisepay">가맹점 전용 금융 상품</a></li>
+          <li><a href="/franchisepay">가맹점전용 금융상품</a></li>
           <li><a href="/explanation" >창업설명회</a></li>
           <li><a href="/allbuy">기업 및 단체구매 안내</a></li>
         </ul>

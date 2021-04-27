@@ -148,3 +148,8 @@
 	font-family: gsdr;
 	color: #999;
 }
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {  
+   opacity: 1;
+}

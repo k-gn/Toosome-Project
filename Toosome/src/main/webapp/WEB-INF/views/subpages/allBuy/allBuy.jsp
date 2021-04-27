@@ -13,19 +13,27 @@
     
     <div class="allBuy-container">
       <div class="title-container">
-          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-          <span class="allBuy-title">기업 및 단체 구매 안내</span>
+          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
+      </div>
+      <div class="sub-header-container">
+     		<h3>기업 및 단체구매 안내</h3>
+     		<div class="navigation-container">
+     			<ul>
+     				<li><a href="/">HOME</a></li>
+     				<li><a href="/franchise">OTHERS</a></li>
+     				<li><a href="/allbuy">기업 및 단체구매 안내</a></li>
+     			</ul>
+			</div>
       </div>
 
       <div class="contents">
-        <p class="sub-title">
-          투썸플레이스에서는 품격있는 다양한 상품을 통해 기업 및 단체 고객에게 최적화된 서비스를 제공 드리고 있습니다.
-        </p>
-
         <h2 class="title-content">
           투썸플레이스에서 판매하고 있는 다양한 상품의 대량 구매 및 상담을 도와드립니다.
         </h2>
-        <img src="/resources/img/subpages/allBuy/all-buy.PNG" alt="" class="pic">
+        <p class="sub-title">
+          투썸플레이스에서는 품격있는 다양한 상품을 통해 기업 및 단체 고객에게 최적화된 서비스를 제공 드리고 있습니다.
+        </p>
+        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/allBuy/all-buy.PNG" alt="" class="pic">
         
         <div class="guide">
           <p class="guide-title">

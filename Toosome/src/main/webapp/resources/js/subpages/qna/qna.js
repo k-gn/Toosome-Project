@@ -61,6 +61,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
+		return;
 	}
 	
 	let start = rowsPerPage * page; // 시작 번호
@@ -86,8 +87,8 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<td>${item.qnaBoardId}</td>
-			<td><img class="lock" src=${item.qnaBoardSecret ? "/resources/img/subpages/qna/lock.png" 
-			: "/resources/img/subpages/qna/unlock.png"}></td>
+			<td><img class="lock" src=${item.qnaBoardSecret ? "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/qna/lock.png" 
+			: "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/qna/unlock.png"}></td>
 			<td class="left"><a href="#" onclick="locateQnaDetail(${item.qnaBoardId},${item.qnaBoardSecret})">${item.qnaBoardTitle}</a></td>
 			<td>${type}</td>
 			<td>${newDate}</td>

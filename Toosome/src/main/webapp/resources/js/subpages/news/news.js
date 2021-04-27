@@ -27,6 +27,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
+		return;
 	}
 	
 	let start = rowsPerPage * page; // 시작 번호
@@ -45,7 +46,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let itemElement = `
 			<tr>
 				<td>${item.newsBoardId}</td>
-				<td><a href="#" onclick="locateNewsDetail(${item.newsBoardId})"><img class="img" src="${item.newsBoardImageRoute+item.newsBoardImageName}.${item.newsBoardImageExtention}"></a></td>
+				<td><a href="#" onclick="locateNewsDetail(${item.newsBoardId})"><img class="img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/news/${item.newsBoardImageRoute}/${item.newsBoardImageName}.${item.newsBoardImageExtention}"></a></td>
 				<td class="left"><a href="#" onclick="locateNewsDetail(${item.newsBoardId})">${item.newsBoardTitle}</a></td>
 				<td>${newDate}</td>
 				<td>${item.newsBoardViewCount}</td>

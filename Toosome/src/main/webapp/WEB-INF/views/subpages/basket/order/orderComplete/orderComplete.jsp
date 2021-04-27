@@ -22,15 +22,15 @@
       <p>주문이 완료되었습니다.</p>
       <div class="process-container">
         <div>
-          <img src="/resources/img/subpages/basket/basket.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/basket.png" alt="#">
           <span>장바구니</span>
         </div>
         <div>
-          <img src="/resources/img/subpages/basket/payment.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/payment.png" alt="#">
           <span>주문/결제</span>
         </div>
         <div>
-          <img src="/resources/img/subpages/basket/complete.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/complete.png" alt="#">
           <span>주문완료</span>
         </div>
       </div>
@@ -141,8 +141,7 @@
                     받으실 분
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName2" value="${${orderList.orderReceiver }" disabled>
-                    
+                    <input type="text" name="orderName" id="orderName2" value="${orderList.ordersReceiver }" disabled>
                   </td>
                 </tr>
                 <tr>

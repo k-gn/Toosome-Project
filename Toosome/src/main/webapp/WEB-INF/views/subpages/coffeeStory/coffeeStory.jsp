@@ -13,16 +13,25 @@
 
         <div class="coffeestory-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-                <span class="coffeestory-title">CoffeeStory</span>
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
             </div>
+            <div class="sub-header-container">
+       			<h3>Coffee Story</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">ABOUT US</a></li>
+       					<li><a href="/coffeestory">커피이야기</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents">
-                <img src="/resources/img/subpages/coffeeStory/img_coffeestory.png" alt="">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeStory/img_coffeestory.png" alt="">
             </div>
         </div>
-        <img class="bg1" src="/resources/img/subpages/coffeeStory/coffee3.png" alt="#">
-        <img class="bg2" src="/resources/img/subpages/coffeeStory/coffee2.png" alt="#">
+        <img class="bg1" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeStory/coffee3.png" alt="#">
+        <img class="bg2" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/coffeStory/coffee2.png" alt="#">
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
 </body>

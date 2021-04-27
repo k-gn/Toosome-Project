@@ -14,9 +14,18 @@
 
         <div class="brandfilm-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-                <span class="brandfilm-title">Brand Film</span>
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
             </div>
+            <div class="sub-header-container">
+       			<h3>Brand Film</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">ABOUT US</a></li>
+       					<li><a href="/brandfilm3">브랜드필름</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents-box">
                 <div class="menu-btn">
@@ -91,31 +100,31 @@
                         <ul class="you-thumb-box cf">
                             <li class="box-select">
                                 <a href="#">
-                                    <img src="/resources/img/subpages/brandFilm/19-7.jpg" alt="">
+                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-7.jpg" alt="">
                                     <span>나의 오늘을 커피하다 TVC<br/>- 블랙그라운드</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="/resources/img/subpages/brandFilm/19-8.jpg" alt="">
+                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-8.jpg" alt="">
                                     <span>어떤 블렌드로 할까?<br/>- 블랙그라운드</span>
                                 </a>
                             </li>
                             <li>
 	                            <a href="#">
-	                            	<img src="/resources/img/subpages/brandFilm/19-9.jpg" alt="">
+	                            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-9.jpg" alt="">
 	                            	<span>나의 오늘을 커피하다 TVC<br/>- 아로마노트</span>
 	                            </a>
                             </li>
                             <li>
 	                            <a href="#">
-	                            	<img src="/resources/img/subpages/brandFilm/19-10.jpg" alt="">
+	                            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-10.jpg" alt="">
 	                            	<span>나의 오늘을 커피하다 TVC<br/>- 아로마노트(아이스)</span>
 	                            </a>
                             </li>
                             <li>
 	                            <a href="#">
-	                            	<img src="/resources/img/subpages/brandFilm/19-11.jpg" alt="">
+	                            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/19-11.jpg" alt="">
 	                            	<span>어떤 블렌드로 할까?<br/>- 아로마노트</span>
 	                            </a>
                             </li>

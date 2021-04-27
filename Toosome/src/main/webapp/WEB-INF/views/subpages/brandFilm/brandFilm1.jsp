@@ -14,9 +14,18 @@
 
         <div class="brandfilm-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-                <span class="brandfilm-title">Brand Film</span>
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
             </div>
+            <div class="sub-header-container">
+       			<h3>Brand Film</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/brandstory">ABOUT US</a></li>
+       					<li><a href="/brandfilm1">브랜드필름</a></li>
+       				</ul>
+       			</div>
+        	</div>
 
             <div class="contents-box">
                 <div class="menu-btn">
@@ -121,31 +130,31 @@
                         <ul class="you-thumb-box cf">
                             <li class="box-select">
                                 <a href="#">
-                                    <img src="/resources/img/subpages/brandFilm/20-1.jpg" alt="">
+                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-1.jpg" alt="">
                                     <span>[투썸플레이스]<br/>Winter in my Fantasy</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="/resources/img/subpages/brandFilm/20-2.jpg" alt="">
+                                    <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-2.jpg" alt="">
                                     <span>[투썸플레이스] 임성현의<br/>Fantasy</span>
                                 </a>
                             </li>
                             <li>
                             	<a href="#">
-                            		<img src="/resources/img/subpages/brandFilm/20-3.jpg" alt="">
+                            		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-3.jpg" alt="">
                             		<span>[투썸플레이스]<br/>클랩 더 챌린지</span>
                             	</a>
                             </li>
                             <li>
                             	<a href="#">
-                            		<img src="/resources/img/subpages/brandFilm/20-4.jpg" alt="">
+                            		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-4.jpg" alt="">
                             		<span>[투썸플레이스]<br/>Winter in my Fantasy 티저</span>
                             	</a>
                             </li>
                             <li>
                             	<a href="#">
-                            		<img src="/resources/img/subpages/brandFilm/20-5.jpg" alt="">
+                            		<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/brandFilm/20-5.jpg" alt="">
                             		<span>[투썸플레이스]<br/>Winter in my Fantasy 메이킹 필름</span>
                             	</a>
                             </li>

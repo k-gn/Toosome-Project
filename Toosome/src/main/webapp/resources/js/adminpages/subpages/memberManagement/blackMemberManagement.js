@@ -8,10 +8,20 @@ const blackCalendar2 = document.querySelector('#calendar2'); // 블랙전환일 
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const pagination = document.getElementById('pagination'); // 페이징
 
+let condition = '';
+let keyword = '';
+let startBlackDate = ''; 
+let endBlackDate = ''; 
+const status = 3;
+let member = {status}; 
+let currentPage = 1; // 현재 페이지
+let rows = 10000; // 한 페이지에 보여줄 게시글 수
+	
 // 기간선택 handler
 const changeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;
@@ -70,102 +80,119 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-/*// AJAX 전체 리스트 불러오기
-const getAllList = () => {
-	// AJAX 요청
-	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
-		}, 
-		error: function() {
-			alert('시스템과에 문의하세요');
-			history.back();
-		} 
-	});
-};*/
+// 페이지네이션 세팅
+const setPagination = (items, wrapper, rowsPerPage) => {
+	wrapper.innerHTML = ""; // 페이징 초기화
+	
+	// 총 페이징 숫자
+	let pageCount = Math.ceil(items.length / rowsPerPage);
+	for(let i = 1; i < pageCount + 1; i++) {
+		let btn = paginationBtn(i, items);
+		wrapper.appendChild(btn);
+	};
+};
+
+// 페이지네이션 버튼 생성 후 반환
+const paginationBtn = (page, items) => {
+	let btn = document.createElement('button');
+	btn.innerText = page;
+	// 현재 페이지에서 showing 활성화
+	if(currentPage == page) {
+		btn.classList.add('showing');
+	};
+	
+	btn.addEventListener('click', (e) => btnHandler(e,items,page));
+	return btn;
+};
+
+// 페이지네이션 버튼 핸들러
+const btnHandler = (e,items,page) => {
+	// 현재 페이지 이동
+	currentPage = page;
+	// 누른 페이지 데이터 출력
+	showList(items, listTable, rows, currentPage);
+	// 이전 버튼 비활성화
+	let currentBtn = document.querySelector('#pagination button.showing');
+	currentBtn.classList.remove('showing');
+	// 누른 버튼 활성화
+	e.target.classList.add('showing');	
+};
+
+// 리스트 출력하기
+const showList = (result, wrapper, rowsPerPage, page) => {
+	wrapper.innerHTML = ''; // 테이블 초기화
+	page--;
+	
+	// 검색 결과가 없을 경우
+	if(result.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="6">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+		return;
+	};
+
+	// 페이징처리 & 데이터 출력	
+	let start = rowsPerPage * page; // 시작 번호
+	let end = start + rowsPerPage; // 끝 번호
+	// 데이터를 rows만큼 끊어온다
+	let paginatedItems = result.slice(start, end);
+	// loop를 돌며 element 생성 후 삽입
+	for (let i = 0; i < paginatedItems.length; i++) {
+		let item = paginatedItems[i];
+		if(item.lastLoginDate == null) {
+			item.lastLoginDate = '';
+		};
+		let newEl = document.createElement('tr');
+		newEl.setAttribute( 'onclick', 'listHandler(this)' );
+		let content = `
+          <td>
+            ${item.memberId}
+          </td>
+          <td>
+            ${item.platFormType}
+          </td>
+          <td>
+            ${item.memberEmail}
+          </td>
+          <td>
+            ${item.memberName}
+          </td>
+          <td>
+            ${item.memberPhone}
+          </td>
+          <td>
+            ${item.regDate}
+          </td>
+          <td>
+            ${item.memberStatusDate}
+          </td>
+		`;
+		newEl.innerHTML = content;
+		wrapper.appendChild(newEl);
+	};
+};
 
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (member, wrapper, rowsPerPage, page) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/memberList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
+		dataType: "json", //응답받을 데이터의 형태
+		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.changeBlackDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
+			// 검색 건수 출력
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
+			// 데이터 출력 및 페이징
+			showList(result, wrapper, rowsPerPage, page);
+			setPagination(result, pagination, rows);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -176,19 +203,21 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const memberName = ''; // 검색 이름
-	const memberEmail = ''; // 검색 이메일
-	const startBlackDate = ''; // 회원가입 검색 시작일
-	const endBlackDate = ''; // 회원가입 검색 종료일
+	condition = '';
+	keyword = '';
+	startBlackDate = ''; // 회원가입 검색 시작일
+	endBlackDate = ''; // 회원가입 검색 종료일
 	
 	// 검색 이름 & 검색 이메일
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			memberName = searchInput.value;	
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			memberEmail = searchInput.value;			
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
 		}
 	};
 	
@@ -199,34 +228,61 @@ const submitHandler = () => {
 	}
 	
 	// JSON Data
-	const data = {
-		memberName,
-		memberEmail,
+	member = {
+		condition,
+		keyword,
 		startBlackDate,
 		endBlackDate,
+		status
 	};
 	
-	getList(data);
+	getList(member, listTable, rows, currentPage);
 };
 
 submitBtn.addEventListener('click', submitHandler);
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const tr = e.target.parentNode;
-	const tds = tr.children;
-	const index = tds[0].innerText;
+	const tds = e.children;
+	const id = tds[0].innerText;
 	
 	/* index로 AJAX 요청 */
-	
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/member/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+		
+			if(res.memberBirth == null) {
+				res.memberBirth = 'No Birth';
+			}
+			
+			if(res.lastLoginDate == null) {
+				res.lastLoginDate = 'No Log';
+			}
+		
+			$("input[name=memberEmail]").val(res.memberEmail);			
+			$("input[name=memberName]").val(res.memberName);			
+			$("input[name=memberPhone]").val(res.memberPhone);			
+			$("input[name=regDate]").val(res.regDate);			
+			$("input[name=lastLoginDate]").val(res.lastLoginDate);			
+			$("input[name=memberAddress]").val(res.memberAddress);			
+			$("input[name=memberPostcode]").val(res.memberPostcode);			
+			$("input[name=memberBirth]").val(res.memberBirth);			
+			$("input[name=platFormType]").val(res.platFormType);			
+			$("input[name=memberId]").val(res.memberId);			
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
 	profileContainer.style.display = 'block';
-	
+	$("input[name=memberName]").focus();
 };
-
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
 
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
@@ -289,9 +345,19 @@ const excelDownload = (id, title) => {
 	}
 };
 
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	currentPage = 1;
+	rows = +value;
+	getList(member, listTable, rows, currentPage);
+};
+
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-/*	getAllList();*/
-
+	getList(member, listTable, rows, currentPage);
 }); 

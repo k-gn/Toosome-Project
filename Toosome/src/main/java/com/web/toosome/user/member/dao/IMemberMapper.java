@@ -32,6 +32,7 @@ public interface IMemberMapper {
 	
 	// 회원 탈퇴
 	public int deleteMember(Integer id);
+	public void insertWithdrawInfo(MemberVO vo);
 	
 	// 회원 권한 제거
 	public int deleteMemberAuth(String email);

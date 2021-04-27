@@ -43,7 +43,7 @@
 							  <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -59,7 +59,7 @@
 		                      <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -78,7 +78,7 @@
 							  <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -94,7 +94,7 @@
 		                      <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -113,7 +113,7 @@
 							  <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -129,7 +129,7 @@
 		                      <div class="col-md-6">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img src="/resources/img/admin/subpages/settings/blank.png" rel="nofollow" alt="...">
+								        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>

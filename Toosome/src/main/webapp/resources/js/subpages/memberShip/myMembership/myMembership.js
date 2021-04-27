@@ -16,22 +16,26 @@ $(function () {
      dataType: 'json',
 	 data: id,
      success: function (res) {
-		 const imgPath = "/resources/img/subpages/member/myMembership/tier/";
+		 const imgPath = "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/membership/tier/";
 		 let point = res.membershipPoint;
 		 let level = res.level;
 		 if(level.levelMaxRange == null) {
 			level.levelMaxRange = level.levelMinRange;
-		 }
-		 let tier = imgPath + level.levelImg;
+		}
+		let tier = imgPath + level.levelImg;
+		let mul = 1 / 50;
+		console.log("mul : ", mul);
+		let result = 100 - (mul * (level.levelMaxRange - point));
+		console.log("result : ", result);
 		
         $(".member-tier img").attr("src", tier);
 	    $(".pro-text ul .min").html(level.levelMinRange + " p");
 		if(level.levelMaxRange != level.levelMinRange) {
 			$(".progress-bar").attr(
 		      "style", 
-		      "width: calc(1/50*" + (level.levelMaxRange - point) + "%)"
+		      "width: calc(" + result + "%)"
 	        );
-		    $(".progress-bar").html((1 / 50) * + (level.levelMaxRange - point) + "%");
+		    $(".progress-bar").html(result + "%");
 			$(".pro-text ul .max").html(level.levelMaxRange + " p");
 		    $(".info-foot span").html(point);
 		    $(".minus span").html((level.levelMaxRange+1) - point);

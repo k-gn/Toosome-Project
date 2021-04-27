@@ -66,7 +66,7 @@
 	<delete id="delBasket">
 	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
 	</delete>
-	
+
 	<insert id="orderSubmit">
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_ADDRESS,
 		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT)
@@ -78,4 +78,8 @@
 		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
 	</select>
 	
+	<delete id="delBasketById">
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	</delete>
+
 </mapper>

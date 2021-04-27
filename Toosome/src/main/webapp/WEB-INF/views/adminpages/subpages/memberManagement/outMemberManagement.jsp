@@ -11,6 +11,12 @@
   <link href="/resources/css/adminpages/subpages/memberManagement/outMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/outMemberManagement.js" defer></script>
+  <script type="text/javascript">
+    const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("회원정보 수정 완료");
+	}
+  </script>
 </head>
 
 <body>
@@ -48,7 +54,7 @@
                            </td>
                            <td>
                              <div class="select-box">
-                              <select name="searchType" class="search-select" id="searchType">
+                              <select name="condition" class="search-select" id="searchType">
                                 <option value="id">ID(E-mail)</option>
                                 <option value="name">이름</option>
                               </select>
@@ -98,24 +104,24 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/delOutMember" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="email" name="withdrawEmail" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="withdrawName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
+		                          <input type="tel" name="withdrawPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -123,13 +129,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="date" class="form-control">
+		                          <label class="bmd-label-floating">회원탈퇴일</label>
+		                          <input type="date" name="withdrawDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -137,7 +143,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="withdrawAddress" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -145,35 +151,27 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="withdrawPostcode" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="withdrawBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
+		                    <button id="modal-delete" type="submit" class="btn btn-primary pull-right">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="email">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
@@ -191,7 +189,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '탈퇴회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -204,6 +203,15 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
+                      <colgroup>
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="25%">
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="15%">
+                      	<col width="15%">
+                      </colgroup>
                       <thead class="text-primary" id="list-table-thead">
                         <th>
                           회원번호
@@ -227,34 +235,10 @@
                           회원탈퇴일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="outMemberList" items="${outMemberList}">
-	                        <tr>
-	                          <td>
-	                            ${outMemberList.memberId}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberName}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.regDate}
-	                          </td>
-	                          <td>
-	                            ${outMemberList.changeOutDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>
