@@ -26,7 +26,7 @@
 }
 .menuDetail-container .title-container .menuDetail-title.big {
   color: #000;
-  font-size: 2rem;
+  font-size: 1.25rem;
 }
 .menuDetail-container .contents img {
   display: block;
@@ -89,6 +89,7 @@
 }
 
 .menuDetail-container .contents .comment-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -245,6 +246,10 @@
 .menuDetail-container .contents .form2 .comment-end li span {
   display: flex;
   height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
 }
 .menuDetail-container .contents .form2 .comment-end li .star-fin {
   width: 12%;
@@ -300,4 +305,56 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+
+
+/* 반응형 start */
+
+@media screen and (max-width: 1000px) {
+    
+	.menuDetail-container .contents .form1 {
+	  padding-right: 10px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+    
+	.menuDetail-container .contents .form2 .comment-end li .cocom {
+	  width: 60%;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .dat {
+	  width: 13%;
+	}
+}
+
+@media screen and (max-width: 750px) {
+    
+	.menuDetail-container .contents .form2 .comment-end li .cocom {
+	  width: 55%;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .nik {
+	  width: 19%;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .dat {
+	  width: 16%;
+	  text-align: right;
+	}
+}
+
+@media screen and (max-width: 700px) {
+    
+	.menuDetail-container .contents .form2 .comment-end li .star-fin {
+	  width: 70px;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .cocom {
+	  width: 50%;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .nik {
+	  width: 23%;
+	}
+	.menuDetail-container .contents .form2 .comment-end li .dat {
+	  width: 16%;
+	  text-align: right;
+	}
 }
