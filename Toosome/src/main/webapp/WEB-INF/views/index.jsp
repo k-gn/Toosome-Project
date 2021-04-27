@@ -61,8 +61,7 @@
         <div class="new-cover">
           <div class="new-wrap">
 	          <span class="new">NEW MENU</span>
-	          <span class="new-title">투썸플레이스의 <strong>신작 메뉴</strong>를 소개합니다</span>
-	          <a class="new-more" href="/menu-new">자세히 보기</a>
+	          <a class="new-more" href="/menu-new">MORE</a>
           </div>
           <div class="img_box">
             <ul class="new-menu-box cf slider autoplay2">

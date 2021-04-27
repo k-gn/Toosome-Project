@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.boardManagement.dao.IEventAdminMapper;
+import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
 
 @Service
@@ -21,9 +22,9 @@ public class EventAdminService implements IEventAdminService {
 	}
 
 	@Override
-	public List<EventBoardVO> searchEventBoard(String keyword) {
-		System.out.println("관리자 이벤트 게시판 검색 기능" + mapper.searchEventBoard(keyword));
-		return mapper.searchEventBoard(keyword);
+	public List<EventBoardVO> searchEventBoard(BoardSearchVO vo) {
+		System.out.println("관리자 이벤트 게시판 검색 기능" + mapper.searchEventBoard(vo));
+		return mapper.searchEventBoard(vo);
 	}
 
 }

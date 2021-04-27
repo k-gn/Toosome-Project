@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.boardManagement.service.IEventAdminService;
+import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
 
 ;
@@ -22,8 +23,8 @@ public class BoardManagementController {
 	//관리자 이벤트 게시판 검색 기능
 	@GetMapping(value = "/admin/eventboardsearch" , produces = "application/json")
 	@ResponseBody
-	public List<EventBoardVO> searchEventBoard(String keyword){
-		List<EventBoardVO> search = eventboardservice.searchEventBoard(keyword);
+	public List<EventBoardVO> searchEventBoard(BoardSearchVO vo){
+		List<EventBoardVO> search = eventboardservice.searchEventBoard(vo);
 		System.out.println(search);
 		return search;
 	}

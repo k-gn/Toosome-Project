@@ -27,7 +27,7 @@
 	<sql id="search">
 		
 		<if test="eventBoardStartday != null and eventBoardStartday != ''">
-			AND B.EVENT_BOARD_DETAIL_DAY BETWEEN DATE(#{eventBoardStartday}) AND DATE(#{eventBoardEndday})+1
+			AND B.EVENT_BOARD_DETAIL_DAY BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
 		</if>
 	</sql>
 	
