@@ -164,6 +164,7 @@
   border-bottom: 2px solid #333;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 .menuDetail-container .contents .form1 .star-catch-cover {
   width: 105px;
@@ -218,18 +219,29 @@
   right: 0;
 }
 .menuDetail-container .contents .form1 input[type="text"] {
-  display: flex;
-  width: 80%;
+  position: absolute;
+  width: 75%;
   height: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
+  top: 10px;
+  left: 120px;
   padding-left: 5px;
 }
 .menuDetail-container .contents .form1 input[type="submit"] {
-  margin-left: 10px;
   height: 30px;
-  margin-top: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   width: 50px;
+  outline: none;
+  appearance: none;
+  border-radius: 5px;
+  border: none;
+  background: #a62326;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
 }
 .menuDetail-container .contents .form2 {
   width: 100%;
@@ -242,18 +254,23 @@
   display: flex;
   height: 30px;
   border-bottom: 1px solid #333;
+  position: relative;
 }
 .menuDetail-container .contents .form2 .comment-end li span {
   display: flex;
+  position: absolute;
   height: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 5px;
+  display: none;
 }
 .menuDetail-container .contents .form2 .comment-end li .star-fin {
-  width: 12%;
-  margin-top: 9px;
+  width: 70px;
+  left: 10px;
+  display: block;
+  top: 9px;
 }
 .menuDetail-container .contents .form2 .comment-end li .star-fin img {
   display: block;
@@ -261,16 +278,25 @@
   height: 12px;
 }
 .menuDetail-container .contents .form2 .comment-end li .cocom {
-  width: 63%;
-  padding-top: 4px;
+  width: 60%;
   height: 26px;
   font-size: 15px;
+  display: block;
+  top: 4px;
+  left: 90px;
 }
 .menuDetail-container .contents .form2 .comment-end li .nik {
   width: 15%;
+  top: 4px; 
+  display: block;
+  right: 100px;
 }
 .menuDetail-container .contents .form2 .comment-end li .dat {
   width: 10%;
+  text-align: right;
+  top: 4px;
+  right: 0px;
+  display: block;
 }
 
 
@@ -313,12 +339,9 @@
 
 @media screen and (max-width: 1000px) {
     
-	.menuDetail-container .contents .form1 {
-	  padding-right: 10px;
-	}
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
     
 	.menuDetail-container .contents .form2 .comment-end li .cocom {
 	  width: 60%;
@@ -327,34 +350,35 @@
 	  width: 13%;
 	}
 }
-
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 850px) {
     
 	.menuDetail-container .contents .form2 .comment-end li .cocom {
-	  width: 55%;
+	  width: 50%;
 	}
-	.menuDetail-container .contents .form2 .comment-end li .nik {
-	  width: 19%;
+}
+
+@media screen and (max-width: 770px) {
+    
+	.menuDetail-container .contents .form1 input[type="text"] {
+	  width: 70%;
 	}
-	.menuDetail-container .contents .form2 .comment-end li .dat {
-	  width: 16%;
-	  text-align: right;
-	}
+	
 }
 
 @media screen and (max-width: 700px) {
     
-	.menuDetail-container .contents .form2 .comment-end li .star-fin {
-	  width: 70px;
+	.menuDetail-container .contents .form1 input[type="text"] {
+	  width: 65%;
 	}
+	
 	.menuDetail-container .contents .form2 .comment-end li .cocom {
-	  width: 50%;
+	  width: 40%;
 	}
-	.menuDetail-container .contents .form2 .comment-end li .nik {
-	  width: 23%;
-	}
-	.menuDetail-container .contents .form2 .comment-end li .dat {
-	  width: 16%;
-	  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+    
+	.menuDetail-container .contents .form1 input[type="text"] {
+	  width: 55%;
 	}
 }
