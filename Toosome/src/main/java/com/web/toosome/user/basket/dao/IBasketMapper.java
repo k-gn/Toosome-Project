@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.basket.vo.OrdersVO;
 
 public interface IBasketMapper {
 	
@@ -25,6 +26,13 @@ public interface IBasketMapper {
 	// 장바구니 품목 삭제
 	public int delBasket(Integer id);
 	
+	// 주문정보 저장.
+	public int orderSubmit(OrdersVO order);
+	
+	// 주문 정보 가져오기
+	public OrdersVO getOrdersList(Integer id);
+	
 	// 장바구니 품목 삭제
 	public int delBasketById(Integer id);
+
 }
