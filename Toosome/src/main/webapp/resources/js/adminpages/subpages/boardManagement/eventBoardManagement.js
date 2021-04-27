@@ -144,13 +144,14 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 		let item = paginatedItems[i];
 
 		let newEl = document.createElement('tr');
-		newEl.setAttribute( 'onclick', 'listHandler(this)' );
 		let content = `
           <td>
             ${item.eventBoardId}
           </td>
-          <td>
-            ${item.eventBoardTitle}
+          <td onclick="listHandler(this);">
+			<a href="#">
+	          ${item.eventBoardTitle}
+			</a>
           </td>
           <td>
             ${item.eventBoardViewCount}
@@ -165,7 +166,7 @@ const showList = (result, wrapper, rowsPerPage, page) => {
             ${item.eventBoardEndday}
           </td>
           <td>
-            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${item.eventBoardImageRoute}/${item.eventBoardImageName}.${item.eventBoardImageExtention}">상세보기</a>
+            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${item.eventBoardDetailVO.eventBoardDetailImageRoute}/${item.eventBoardDetailVO.eventBoardDetailImageName}.${item.eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -174,17 +175,18 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (board, wrapper, rowsPerPage, page) => {
+const getList = (url, board, wrapper, rowsPerPage, page) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/eventboardmanagement", //서버 요청 URI
+		url, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		data: board, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(result);
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
@@ -221,8 +223,8 @@ const submitHandler = () => {
 		eventBoardStartday,
 		eventBoardEndday,
 	};
-	
-	getList(board, listTable, rows, currentPage);
+	url = '/admin/eventboardsearch';
+	getList(url, board, listTable, rows, currentPage);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -274,11 +276,13 @@ const selectHandler = (select) => {
 	// init
 	currentPage = 1;
 	rows = +value;
-	getList(board, listTable, rows, currentPage);
+	url = '/admin/eventboardmanagement';
+	getList(url, board, listTable, rows, currentPage);
 };
 
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(board, listTable, rows, currentPage); 
+	url = '/admin/eventboardmanagement';
+	getList(url, board, listTable, rows, currentPage); 
 }); 
