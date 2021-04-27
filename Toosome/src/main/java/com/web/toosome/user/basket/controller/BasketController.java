@@ -242,6 +242,8 @@ public class BasketController {
 		model.addAttribute("map1", map1);
 		model.addAttribute("orderList", orderList);
 		
+		service.orderBasketDel(memberId);
+		
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
 	
@@ -250,6 +252,7 @@ public class BasketController {
 	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session) {
 		System.out.println("ordersubmit 메서드 실행");
 		System.out.println(order.getOrdersPayment());
+		System.out.println(order.getOrdersDelivery());
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
 		int result = service.orderSubmit(order);

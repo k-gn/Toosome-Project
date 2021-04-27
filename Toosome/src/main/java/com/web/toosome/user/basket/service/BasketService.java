@@ -68,5 +68,10 @@ public class BasketService implements IBasketService {
 		return bmapper.getOrdersList(id);
 	}
 
+	@Override
+	public void orderBasketDel(Integer id) {
+		bmapper.orderBasketDel(id);
+	}
+
 
 }

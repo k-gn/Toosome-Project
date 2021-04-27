@@ -35,4 +35,6 @@ public interface IBasketMapper {
 	// 장바구니 품목 삭제
 	public int delBasketById(Integer id);
 
+	// 상품 결제 완료 후 장바구니 데이터 삭제
+	public void orderBasketDel(Integer id);
 }
