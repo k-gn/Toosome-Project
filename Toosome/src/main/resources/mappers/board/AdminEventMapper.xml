@@ -33,7 +33,6 @@
 	
 	
 	
-	
 	<select	id="getEventBoard" resultMap="EventAdminMap">
 		SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE, A.EVENT_BOARD_END_DAY, A.EVENT_BOARD_START_DAY,
 		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
@@ -53,6 +52,20 @@
 	  	<include refid="search"/> 
 	</select> 
 	
+	<insert id="insertEvent">
+		INSERT INTO EVENT_BOARD(EVENT_BOARD_ID, EVENT_BOARD_IMAGE_ROUTE, EVENT_BOARD_IMAGE_NAME,
+		 	EVENT_BOARD_IMAGE_EXTENTION, EVENT_BOARD_VIEW_COUNT, EVENT_BOARD_TITLE,
+		  	EVENT_BOARD_START_DAY,EVENT_BOARD_END_DAY) 
+		  VALUES(#{eventBoardId},#{eventBoardImageRoute},#{eventBoardImageName},#{eventBoardImageExtention},0,#{eventBoardTitle},#{eventBoardStartday},#{eventBoardEndday})
+	</insert>
+	
+	
+	
+	<insert id="insertDetailEvent">
+		INSERT INTO EVENT_BOARD_DETAIL(EVENT_BOARD_DETAIL_ID, EVENT_BOARD_DETAIL_IMAGE_ROUTE, EVENT_BOARD_DETAIL_IMAGE_NAME,
+			 EVENT_BOARD_DETAIL_IMAGE_EXTENTION, EVENT_BOARD_DETAIL_DAY) 
+			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},#{eventBoardDetailDay})
+	</insert>	
 	<!-- 
 	<update id="eventBoardCount">
 		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
