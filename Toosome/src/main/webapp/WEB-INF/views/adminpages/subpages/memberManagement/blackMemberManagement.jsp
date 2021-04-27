@@ -202,8 +202,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '블랙회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
-	                      <option value="10">기본</option>
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -216,6 +216,15 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
+                      <colgroup>
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="25%">
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="15%">
+                      	<col width="15%">
+                      </colgroup>
                       <thead class="text-primary" id="list-table-thead">
                         <th>
                           회원번호
@@ -242,6 +251,7 @@
                       <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

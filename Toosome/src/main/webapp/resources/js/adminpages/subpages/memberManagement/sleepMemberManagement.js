@@ -10,10 +10,16 @@ const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const pagination = document.getElementById('pagination'); // 페이징
+
+
 let condition = ''; // 검색 이름
 let keyword = ''; // 검색 이메일
 let startSleepDate = ''; // 회원가입 검색 시작일
 let endSleepDate = ''; // 회원가입 검색 종료일
+let currentPage = 1; // 현재 페이지
+let rows = 10000; // 한 페이지에 보여줄 게시글 수
 const status = 2;
 let member = {status}; 
 
@@ -75,8 +81,103 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
+// 페이지네이션 세팅
+const setPagination = (items, wrapper, rowsPerPage) => {
+	wrapper.innerHTML = ""; // 페이징 초기화
+	
+	// 총 페이징 숫자
+	let pageCount = Math.ceil(items.length / rowsPerPage);
+	for(let i = 1; i < pageCount + 1; i++) {
+		let btn = paginationBtn(i, items);
+		wrapper.appendChild(btn);
+	};
+};
+
+// 페이지네이션 버튼 생성 후 반환
+const paginationBtn = (page, items) => {
+	let btn = document.createElement('button');
+	btn.innerText = page;
+	// 현재 페이지에서 showing 활성화
+	if(currentPage == page) {
+		btn.classList.add('showing');
+	};
+	
+	btn.addEventListener('click', (e) => btnHandler(e,items,page));
+	return btn;
+};
+
+// 페이지네이션 버튼 핸들러
+const btnHandler = (e,items,page) => {
+	// 현재 페이지 이동
+	currentPage = page;
+	// 누른 페이지 데이터 출력
+	showList(items, listTable, rows, currentPage);
+	// 이전 버튼 비활성화
+	let currentBtn = document.querySelector('#pagination button.showing');
+	currentBtn.classList.remove('showing');
+	// 누른 버튼 활성화
+	e.target.classList.add('showing');	
+};
+
+// 리스트 출력하기
+const showList = (result, wrapper, rowsPerPage, page) => {
+	wrapper.innerHTML = ''; // 테이블 초기화
+	page--;
+	
+	// 검색 결과가 없을 경우
+	if(result.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="6">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+		return;
+	};
+
+	// 페이징처리 & 데이터 출력	
+	let start = rowsPerPage * page; // 시작 번호
+	let end = start + rowsPerPage; // 끝 번호
+	// 데이터를 rows만큼 끊어온다
+	let paginatedItems = result.slice(start, end);
+	// loop를 돌며 element 생성 후 삽입
+	for (let i = 0; i < paginatedItems.length; i++) {
+		let item = paginatedItems[i];
+		if(item.lastLoginDate == null) {
+			item.lastLoginDate = '';
+		};
+		let newEl = document.createElement('tr');
+		newEl.setAttribute( 'onclick', 'listHandler(this)' );
+		let content = `
+          <td>
+            ${item.memberId}
+          </td>
+          <td>
+            ${item.platFormType}
+          </td>
+          <td>
+            ${item.memberEmail}
+          </td>
+          <td>
+            ${item.memberName}
+          </td>
+          <td>
+            ${item.memberPhone}
+          </td>
+          <td>
+            ${item.regDate}
+          </td>
+          <td>
+            ${item.memberStatusDate}
+          </td>
+		`;
+		newEl.innerHTML = content;
+		wrapper.appendChild(newEl);
+	};
+};
+
 // AJAX 검색 리스트 불러오기
-const getList = (member) => {
+const getList = (member, listTable, rowsPerPage, page) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -87,41 +188,13 @@ const getList = (member) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			console.log(result);
-			const listTable = document.querySelector('#list-table-tbody');
-			listTable.innerHTML = '';
+			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				newEl.setAttribute( 'onclick', 'listHandler(this)' )
-				let content = `
-                  <td>
-                    ${res.memberId}
-                  </td>
-                  <td>
-                    ${res.platFormType}
-                  </td>
-                  <td>
-                    ${res.memberEmail}
-                  </td>
-                  <td>
-                    ${res.memberName}
-                  </td>
-                  <td>
-                    ${res.memberPhone}
-                  </td>
-                  <td>
-                    ${res.regDate}
-                  </td>
-                  <td>
-                    ${res.memberStatusDate}
-                  </td>
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
+			// 데이터 출력 및 페이징
+			showList(result, wrapper, rowsPerPage, page);
+			setPagination(result, pagination, rows);
+			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -274,6 +347,17 @@ const excelDownload = (id, title) => {
 		elem.click();
 		document.body.removeChild(elem);
 	}
+};
+
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	currentPage = 1;
+	rows = +value;
+	getList(member, listTable, rows, currentPage);
 };
 
 // 기간선택 달력 Jquery
