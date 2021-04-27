@@ -249,12 +249,14 @@ public class BasketController {
 	
 	@PostMapping("/ordersubmit") 
 	@ResponseBody
-	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session) {
+	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil) {
 		System.out.println("ordersubmit 메서드 실행");
 		System.out.println(order.getOrdersPayment());
 		System.out.println(order.getOrdersDelivery());
+		System.out.println(basketUtil.getDeliveryPay());
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
+		order.setOrdersDelivery(basketUtil.getDeliveryPay());
 		int result = service.orderSubmit(order);
 		if(result > 0) return "success";
 		else return "fail";
