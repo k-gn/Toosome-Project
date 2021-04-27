@@ -19,10 +19,10 @@
     <div class="productDetail-container"> 
     
 	<div class="title-container">
-		<span class="productDetail-title">NEW</span>
+		<span class="productDetail-title big">NEW</span>
 		<span class="productDetail-title big">커피상품</span>
-		<span class="productDetail-title">커피웨어 / 기타</span>
-		<span class="productDetail-title">기프트세트</span>
+		<span class="productDetail-title big">커피웨어 / 기타</span>
+		<span class="productDetail-title big">기프트세트</span>
 	</div>     
       <div class="contents">
       

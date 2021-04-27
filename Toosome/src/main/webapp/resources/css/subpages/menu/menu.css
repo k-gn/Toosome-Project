@@ -179,3 +179,47 @@
 	display: flex;
 	justify-content: center;
 }
+
+
+/* 반응형 start */
+
+@media screen and (max-width: 1000px) {
+    
+	.menu-container .tab-container .menu-content ul {
+	    gap: 20px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+    
+	.menu-container .tab-container .menu-content ul {
+	    grid-template-columns: auto auto auto;
+	}
+}
+
+@media screen and (max-width: 700px) {
+   
+    
+	.menu-container .title-container .title-logo {
+	    width: 400px;
+	}
+	.menu-container .tab-container .menu-content ul {
+	    gap: 10px;
+	}
+}
+
+
+@media screen and (max-width: 650px) {
+   
+	.menu-container .tab-container .menu-content ul {
+	    grid-template-columns: auto auto;
+	    gap: 30px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+  
+	.menu-container .tab-container .menu-btn .btn-tab li a {
+	    font-size: 12px;
+	}
+}
