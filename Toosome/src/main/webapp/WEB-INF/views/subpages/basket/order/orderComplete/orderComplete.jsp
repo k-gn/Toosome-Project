@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,48 +40,27 @@
             <tr class="table-secondary">
               <th colspan="2">주문 품목</th>
               <th>수량</th>
-              <th>적립 포인트</th>
-              <th>할인 금액</th>
+              <th>상품명</th>
               <th>결제금액</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">부서진 텀블러 조각</span></td>
-              <td>
-                <span class="number">2</span>
-              </td>
-              <td>
-                <span class="point">8</span>&nbsp;p
-              </td>
-              <td>
-                <span class="discount">1600</span>&nbsp;원
-              </td>
-              <td>
-                <span class="total">6400</span>&nbsp;원
-              </td>
-            </tr>
-
-            <tr>
-              
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
-              <td><span class="name">오래된 원두</span></td>
-              <td>
-                <span class="number">1</span>
-              </td>
-              <td>
-                <span class="point">10</span>&nbsp;p
-              </td>
-              <td>
-                <span class="discount">1000</span>&nbsp;원
-              </td>
-              <td>
-                <span class="total">9000</span>&nbsp;원
-              </td>
-            </tr>
-
+            <c:forEach var="basket" items="${baskets}" varStatus="i">
+              <tr>
+                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td><span class="name"></span></td>
+                <td>
+                  <span class="number">${basket.basketAmount}</span>
+                </td>
+                <td>
+                  <span class="pname">${basket.basketName}</span>
+                </td>
+                <td>
+                  <span class="price">${basket.basketPrice}원</span>
+                </td>
+                
+              </tr>
+            </c:forEach>
           </tbody>
         </table>
       </div>
@@ -97,7 +77,7 @@
                     주문자
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName" value="홍길동" disabled>
+                    <input type="text" name="orderName" id="orderName" value="${memberList.memberName}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -105,7 +85,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode" value="11111" disabled>
+                    <input type="text" name="post" id="postcode" value="${memberList.memberPostcode}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -113,7 +93,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr1" value="종로3가역" disabled>
+                    <input type="text" name="address" id="addr1" value="${map.address1}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -121,7 +101,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr2" value="9번출구" disabled>
+                    <input type="text" name="address" id="addr2" value="${map.address2 == null ? '' : map.address2}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -129,11 +109,18 @@
                     전화번호
                   </td>
                   <td>
-                    <input type="tel" name="phone1" id="tel2" value="010" disabled>
+                    <select name="phone1" id="tel">
+                      <option value="010" ${map.tel1 == '010' ? 'selected' : ''}>010</option>
+                	  <option value="011" ${map.tel1 == '011' ? 'selected' : ''}>011</option>
+                	  <option value="016" ${map.tel1 == '016' ? 'selected' : ''}>016</option>
+                	  <option value="017" ${map.tel1 == '017' ? 'selected' : ''}>017</option>
+                	  <option value="018" ${map.tel1 == '018' ? 'selected' : ''}>018</option>
+                	  <option value="019" ${map.tel1 == '019' ? 'selected' : ''}>019</option>
+                    </select>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" value="1234" disabled>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map.tel2}" required>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" value="5678" disabled>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map.tel3}" required>
                   </td>
                 </tr>
               </tbody>
@@ -154,8 +141,7 @@
                     받으실 분
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName2" value="홍길동" disabled>
-                    
+                    <input type="text" name="orderName" id="orderName2" value="${orderList.ordersReceiver }" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -163,7 +149,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode2" value="22222" disabled>
+                    <input type="text" name="post" id="postcode2" value="${orderList.ordersPostcode }" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -171,7 +157,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr3" value="종각역" disabled>
+                    <input type="text" name="address" id="addr3" value="${map1.address1}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -179,7 +165,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr4" value="4번출구" disabled>
+                    <input type="text" name="address" id="addr4" value="${map1.address2 == null ? '' : map1.address2}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -187,18 +173,25 @@
                     전화번호
                   </td>
                   <td>
-                    <input type="tel" name="phone1" id="tel7" value="010" disabled>
+                    <select name="phone1" id="tel">
+                      <option value="010" ${map1.tel1 == '010' ? 'selected' : ''}>010</option>
+                	  <option value="011" ${map1.tel1 == '011' ? 'selected' : ''}>011</option>
+                	  <option value="016" ${map1.tel1 == '016' ? 'selected' : ''}>016</option>
+                	  <option value="017" ${map1.tel1 == '017' ? 'selected' : ''}>017</option>
+                	  <option value="018" ${map1.tel1 == '018' ? 'selected' : ''}>018</option>
+                	  <option value="019" ${map1.tel1 == '019' ? 'selected' : ''}>019</option>
+                    </select>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel5" value="9123" disabled>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map1.tel2}" required>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel6" value="4567" disabled>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map1.tel3}" required>
                   </td>
                 </tr>
                 <td>
                   배송 유의사항
                 </td>
                 <td>
-                  <input type="text" name="postText" value="자고있으면 깨워주세요." disabled>
+                  <input type="text" name="postText" value="${orderList.ordersContent }" disabled>
                 </td>
               </tbody>
             </table>
@@ -217,7 +210,7 @@
                 총 상품금액
               </td>
               <td>
-                <span class="product-pay">18000</span> 원
+                <span class="product-pay">${basketUtil.total}</span> 원
               </td>
             </tr>
             <tr>
@@ -225,7 +218,7 @@
                 적립 포인트
               </td>
               <td>
-                <span class="total-point">18</span> p
+                <span class="total-point">${basketUtil.point}</span> p
               </td>
             </tr>
             <tr>
@@ -233,30 +226,30 @@
                 할인 금액
               </td>
               <td>
-                <span class="total-discount">2600</span> 원
+                <span class="total-discount">${basketUtil.discount}</span> 원
               </td>
             </tr>
             <tr>
               <td>사용한 포인트</td>
-              <td><span class="txt_blue">5400</span> p</td>
+              <td><span class="txt_blue">${usedPoint }</span> p</td>
             </tr>
             <tr>
               <td>
                 배송비
               </td>
               <td>
-                <span class="product-delivery">20000</span> 원
+                <span class="product-delivery">${basketUtil.deliveryPay}</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue">30000</span>원</td>
+              <td><span class="bold txt_blue">${basketEndPrice }</span>원</td>
             </tr>
                 
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제된 금액 : <span class="bold txt_red" id="result_pnt">30000</span> 원</p>
+          <p class="txt-red"> 최종 결제된 금액 : <span class="bold txt_red" id="result_pnt">${basketEndPrice }</span> 원</p>
         </div>
         
         <div class="out-btn">

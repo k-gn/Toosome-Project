@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
   <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -12,7 +15,7 @@
   <link rel="stylesheet" href="/resources/css/subpages/basket/order/order.css">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/resources/js/subpages/basket/basket.js" defer></script>
-  <script src="/resources/js/subpages/basket/order/order.js"></script>
+  <script src="/resources/js/subpages/basket/order/order.js" defer></script>
 <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -38,58 +41,30 @@
         <table class="table text-center">
           <thead>
             <tr class="table-secondary">
-              <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
+              <th></th>
               <th colspan="2">주문 품목</th>
               <th>수량</th>
-              <th>적립 포인트</th>
-              <th>할인 금액</th>
+              <th>상품명</th>
               <th>결제금액</th>
-              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name"></span></td>
-              <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
-              </td>
-              <td>
-                <span class="point"></span>
-              </td>
-              <td>
-                <span class="discount"></span>
-              </td>
-              <td>
-                <span class="total"></span>
-              </td>
-              <td>
-                <input type="button" value="X" onclick="deleteRow(this);">
-              </td>
-            </tr>
-
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p85.png" alt=""></td>
-              <td><span class="name"></span></td>
-              <td>
-                <input type="number" min="1" max="10" name="quantity" value="1" id="quantity"/>
-              </td>
-              <td>
-                <span class="point"></span>
-              </td>
-              <td>
-                <span class="discount"></span>
-              </td>
-              <td>
-                <span class="total"></span>
-              </td>
-              <td>
-                <input type="button" value="X" onclick="deleteRow(this);">
-              </td>
-            </tr>
-
+            <c:forEach var="basket" items="${baskets}" varStatus="i">
+              <tr>
+                <td></td>
+                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td></td>
+                <td style="width: 50px;">
+                  <input style="width: 50px;" type="text" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
+                </td>
+                <td>
+                  <span class="pname">${basket.basketName}</span>
+                </td>
+                <td>
+                  <span class="price">${basket.basketPrice}원</span>
+                </td>
+              </tr>
+            </c:forEach>
           </tbody>
         </table>
       </div>
@@ -106,7 +81,7 @@
                     주문자
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName" placeholder="ex)홍길동" required>
+                    <input type="text" name="orderName" id="orderName" placeholder="ex)홍길동" value="${memberList.memberName}" required>
                   </td>
                 </tr>
                 <tr>
@@ -114,7 +89,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode" placeholder="(5자리)" required>
+                    <input type="text" name="post" id="postcode" placeholder="(5자리)" value="${memberList.memberPostcode}" required>
                     <input id="post-search" type="button" onclick="pCode();" value="검색">
                   </td>
                 </tr>
@@ -123,7 +98,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr1" placeholder="주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr1" placeholder="주소를 입력해주세요." value="${map.address1}" required>
                   </td>
                 </tr>
                 <tr>
@@ -131,7 +106,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr2" placeholder="상세 주소를 입력해주세요." required>
+                    <input type="text" name="address" id="addr2" placeholder="상세 주소를 입력해주세요." value="${map.address2 == null ? '' : map.address2}" required>
                   </td>
                 </tr>
                 <tr>
@@ -140,17 +115,17 @@
                   </td>
                   <td>
                     <select name="phone1" id="tel">
-                      <option value="010" selected>010</option>
-                      <option value="011">011</option>
-                      <option value="016">016</option>
-                      <option value="017">017</option>
-                      <option value="018">018</option>
-                      <option value="019">019</option>
+                      <option value="010" ${map.tel1 == '010' ? 'selected' : ''}>010</option>
+                	  <option value="011" ${map.tel1 == '011' ? 'selected' : ''}>011</option>
+                	  <option value="016" ${map.tel1 == '016' ? 'selected' : ''}>016</option>
+                	  <option value="017" ${map.tel1 == '017' ? 'selected' : ''}>017</option>
+                	  <option value="018" ${map.tel1 == '018' ? 'selected' : ''}>018</option>
+                	  <option value="019" ${map.tel1 == '019' ? 'selected' : ''}>019</option>
                     </select>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" placeholder="1234" required>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map.tel2}" required>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" required>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map.tel3}" required>
                   </td>
                 </tr>
               </tbody>
@@ -242,7 +217,15 @@
                 총 상품금액
               </td>
               <td>
-                <span class="product-pay">7980</span> 원
+                <span class="product-pay">${basketUtil.total}</span> 원
+              </td>
+            </tr>
+            <tr>
+              <td>
+              할인금액
+              </td>
+              <td>
+                <span class="product-delivery">${basketUtil.discount}</span> 원
               </td>
             </tr>
             <tr>
@@ -250,34 +233,42 @@
                 배송비
               </td>
               <td>
-                <span class="product-delivery">0</span> 원
+                <span class="product-delivery">${basketUtil.deliveryPay}</span> 원
+              </td>
+            </tr>
+            <tr>
+              <td>
+                적립금액
+              </td>
+              <td>
+                <span class="product-delivery">${basketUtil.point}</span> 원
               </td>
             </tr>
             <tr>
               <td>결제금액</td>
-              <td><span class="bold txt_blue">7980</span>원</td>
+              <td><span class="bold txt_blue" id="realPay">${basketUtil.realPayment}</span>원</td>
             </tr>
             <tr>
               <td> 포 인 트 </td>
               <td>
-                사용가능 포인트 : <span name="left_pnt">12345678</span>p <span><br/>
-                <input type="checkbox" id="chk_use" onclick="chkPoint(7980,12345678,3000,100)">&nbsp;포인트 전체 사용</span>
+                사용가능 포인트 : <span name="left_pnt">${memberPoint.membershipPoint}</span>p <span><br/>
+                <input type="checkbox" id="chk_use" onclick="chkPoint(${basketUtil.realPayment},${memberPoint.membershipPoint},100,10)">&nbsp;포인트 전체 사용</span>
                 <span style="color: #ff0000; font-size: 16px;">(포인트는 최소 3000p부터 100p단위로 사용 가능합니다.)</span>
               </td>
             </tr>
             <tr>
               <td></td>
               <td>
-                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(7980,12345678,3000,100)"></span> p 
-                <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">12345678</span>p )
+                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(${basketUtil.realPayment},${memberPoint.membershipPoint},100,10)"></span> p 
+                <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">${memberPoint.membershipPoint}</span>p )
               </td>
             </tr>
-                
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">7980</span> 원</p>
-          <input type="submit" value="결제하기">
+          <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red" id="result_pnt">${basketUtil.realPayment}</span> 원</p>
+          <!-- <input type="submit" value="결제하기">-->
+           <a class="order-submit" id="abcd">결제하기</a>
         </div>
         
       </div>

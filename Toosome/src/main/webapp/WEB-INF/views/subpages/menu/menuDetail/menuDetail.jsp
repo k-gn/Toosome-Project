@@ -24,11 +24,11 @@
 
 		<div class="menuDetail-container">
 			<div class="title-container">
-				<span class="menuDetail-title">NEW</span>
+				<span class="menuDetail-title big">NEW</span>
 				<span class="menuDetail-title big">커피 &amp; 음료</span>
-				<span class="menuDetail-title">디저트</span>
-				<span class="menuDetail-title">델리</span>
-				<span class="menuDetail-title">홀케이크</span>
+				<span class="menuDetail-title big">디저트</span>
+				<span class="menuDetail-title big">델리</span>
+				<span class="menuDetail-title big">홀케이크</span>
 			</div>
 
 			<div class="contents">
@@ -140,8 +140,8 @@
 							</ul>
 						</div>
 
-						<input type="text" placeholder="제품 한마디를 등록해 주세요."> <input
-							type="submit" value="쓰기">
+						<input type="text" placeholder="제품 한마디를 등록해 주세요."> 
+						<input	type="submit" value="쓰기">
 
 					</form>
 					<form action="#" method="get" class="form2">
@@ -149,7 +149,7 @@
 						<ul class="comment-end">
 							<li><span class="star-fin"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡ</span> <span class="nik">admin**</span>
+								<span class="cocom">불량식품 맛 나요..ㅡㅡdddddddddddddddddddddddddddddddddddddddddddd</span> <span class="nik">admin**</span>
 								<span class="dat">2021.04.02</span></li>
 							<li><span class="star-fin"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></span>

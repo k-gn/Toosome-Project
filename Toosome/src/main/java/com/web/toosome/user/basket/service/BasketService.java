@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.toosome.user.basket.dao.IBasketMapper;
 import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.basket.vo.OrdersVO;
 import com.web.toosome.user.product.dao.ProductMapper;
 import com.web.toosome.user.product.vo.ProductVO;
 
@@ -55,6 +56,16 @@ public class BasketService implements IBasketService {
 		map.put("amount", amount);
 		map.put("bid", bid);
 		bmapper.setBasketAmount(map);
+	}
+
+	@Override
+	public int orderSubmit(OrdersVO order) {
+		return bmapper.orderSubmit(order);
+	}
+
+	@Override
+	public OrdersVO getOrdersList(Integer id) {
+		return bmapper.getOrdersList(id);
 	}
 
 

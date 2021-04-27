@@ -145,7 +145,6 @@
 
 .table tbody tr:hover {
 	background: #eee;
-	cursor: pointer;
 }
 
 /* Pagination Start */

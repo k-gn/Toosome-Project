@@ -511,6 +511,6 @@ header .mobile-nav .m-log li a:hover {
 }
 @media screen and (max-width: 520px) {
   .footer {
-    height: 250px;
+    height: 350px;
   }
 }

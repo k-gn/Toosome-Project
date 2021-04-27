@@ -227,6 +227,7 @@ const getList = (member, wrapper, rowsPerPage, page) => {
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
+			// 데이터 출력 및 페이징
 			showList(result, wrapper, rowsPerPage, page);
 			setPagination(result, pagination, rows);
 		}, 
