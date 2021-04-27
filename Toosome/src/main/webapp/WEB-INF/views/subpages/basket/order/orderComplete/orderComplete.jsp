@@ -149,7 +149,7 @@
                     우편번호
                   </td>
                   <td>
-                    <input type="text" name="post" id="postcode2" value="${orderList.ordersPostcode }" disabled>
+                    <input type="text" name="post" id="postcode2" value="${orderList.ordersPostcode}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -157,7 +157,7 @@
                     주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr3" value="${map1.address1}" disabled>
+                    <input type="text" name="address" id="addr3" value="${map1.addresstwo1}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -165,7 +165,7 @@
                     상세주소
                   </td>
                   <td>
-                    <input type="text" name="address" id="addr4" value="${map1.address2 == null ? '' : map1.address2}" disabled>
+                    <input type="text" name="address" id="addr4" value="${map1.addresstwo2 == null ? '' : map1.addresstwo2}" disabled>
                   </td>
                 </tr>
                 <tr>
