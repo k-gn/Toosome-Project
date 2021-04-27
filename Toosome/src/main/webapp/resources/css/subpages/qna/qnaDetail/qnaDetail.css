@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section {
-	width: 1000px;
+	max-width: 1000px;
 	height: auto;
 	color: #222222;
 	box-sizing: border-box;
@@ -26,7 +26,7 @@ section {
 }
 
 .navigation-container {
-	width: 30%;
+	width: 50%;
 	height: 50px;
 	display: flex;
 	justify-content: flex-end;
@@ -175,16 +175,22 @@ section {
 	text-align: right;
 }
 
+.comment-table tbody tr td {
+	padding: 10px;
+	width: 100%;
+	margin: 0 auto;
+}
 .comment-table tbody tr td textarea {
 	outline: none;
 	appearance: none;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 10px;
-	margin: 10px;
+	margin: 0 auto;
 	width: 95%;
 	height: auto;
 	resize: none;
+	display: block;
 }
 
 #comment tr td {
