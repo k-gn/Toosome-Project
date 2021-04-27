@@ -3,6 +3,10 @@ const searchInput = document.querySelector('#search-text'); // 검색어 인풋
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
+const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+
 let condition = '';
 let keyword = '';
 let member = {};
@@ -27,14 +31,15 @@ const getList = (member) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
 			console.log(result);
-			const listTable = document.querySelector('#list-table-tbody');
+			
+			// 리스트 생성 후 삽입
 			listTable.innerHTML = '';
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
 			result.forEach(res => {
 				let newEl = document.createElement('tr');
+				newEl.setAttribute( 'onclick', 'listHandler(this)' );
 				let content = `
                   <td>
                     ${res.memberId}
@@ -47,9 +52,6 @@ const getList = (member) => {
                   </td>
                   <td>
                     ${res.memberName}
-                  </td>
-                  <td>
-                    ${res.memberPhone}
                   </td>
                   <td>
                     ${res.regDate}
@@ -97,6 +99,48 @@ const submitHandler = () => {
 };
 
 submitBtn.addEventListener('click', submitHandler);
+
+// 모달 취소 버튼 핸들러
+modalCancelBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	profileContainer.style.display = 'none';
+})
+
+// 리스트 항목 클릭 핸들러
+const listHandler = (e) => {
+	const tds = e.children;
+	const id = tds[0].innerText;
+	/* index로 AJAX 요청 */
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			
+			if(res.lastLoginDate == null) {
+				res.lastLoginDate = 'No Log';
+			}
+		
+			$("input[name=memberId]").val(res.memberId);			
+			$("input[name=memberEmail]").val(res.memberEmail);			
+			$("input[name=memberName]").val(res.memberName);			
+			$("input[name=memberPhone]").val(res.memberPhone);			
+			$("input[name=regDate]").val(res.regDate);			
+			$("input[name=lastLoginDate]").val(res.lastLoginDate);			
+			$("input[name=memberBirth]").val(res.memberBirth);			
+			$("input[name=memberAuth]").val(res.authList.memberAuth).prop("selected", true);			
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
+	profileContainer.style.display = 'block';
+	$("input[name=memberName]").focus();
+};
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {
