@@ -3,10 +3,12 @@ const qnaBoard = document.getElementById('qna');
 const searchBtn = document.getElementById('search-btn'); // 검색 버튼
 const searchInput = document.getElementById('search-input'); // 검색 인풋창
 
+let result = []; // AJAX 결과 복사할 빈 배열
 let currentPage = 1; // 현재 페이지
 let rows = 10; // 한 페이지에 보여줄 게시글 수
 let csrfTokenValue = $("meta[name='_csrf']").attr("content");
 let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
+
 // 게시판 상세 페이지로 이동 함수
 const locateQnaDetail = (index, isLocked) => {
 	let pwd = '';
@@ -35,6 +37,9 @@ const locateQnaDetail = (index, isLocked) => {
 		success: (res) => {
 			if(res === 'success') {
 				location.href='/qna-detail?index='+index;
+			} else {
+				alert('비밀번호가 일치하지 않습니다.');
+				return;
 			}
 		},
 		error: () => {
@@ -56,6 +61,7 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
+		return;
 	}
 	
 	let start = rowsPerPage * page; // 시작 번호
@@ -81,8 +87,8 @@ const displayList = (items, wrapper, rowsPerPage, page) => {
 		let newItem = document.createElement('tr');
 		let itemElement = `
 			<td>${item.qnaBoardId}</td>
-			<td><img class="lock" src=${item.qnaBoardSecret ? "/resources/img/subpages/qna/lock.png" 
-			: "/resources/img/subpages/qna/unlock.png"}></td>
+			<td><img class="lock" src=${item.qnaBoardSecret ? "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/qna/lock.png" 
+			: "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/qna/unlock.png"}></td>
 			<td class="left"><a href="#" onclick="locateQnaDetail(${item.qnaBoardId},${item.qnaBoardSecret})">${item.qnaBoardTitle}</a></td>
 			<td>${type}</td>
 			<td>${newDate}</td>
@@ -136,7 +142,8 @@ const getPage = (url) => {
 	$.ajax({
 		url,
 		success: (res) => {
-			const newRes = res.reverse();
+			result = [...res];
+			const newRes = result.reverse();
 			
 			displayList(newRes, qnaBoard, rows, currentPage);
 			setPagination(newRes, pagination, rows);			
@@ -167,6 +174,41 @@ searchInput.addEventListener('keypress', (e) => {
       searchHandler();
     }
 });
+
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	currentPage = 1;
+	rows = 10;
+	let temp = [...result]; // 배열 복사
+	let newRes = []; // 정렬된 배열을 담을 빈 배열
+	
+	switch(value) {
+		case '0': 
+			displayList(temp, qnaBoard, rows, currentPage);
+			setPagination(temp, pagination, rows);
+			break;
+		case '1': // 작성일순 정렬 
+			newRes = temp.sort((a,b) => {
+				a = new Date(a.qnaBoardRegdate);
+				b = new Date(b.qnaBoardRegdate);
+				return b - a;
+			});
+			displayList(newRes, qnaBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);
+			break;
+		case '2': // 조회수순 정렬
+			newRes = temp.sort((a,b) => {
+				return b.qnaBoardViewCount - a.qnaBoardViewCount;
+			});
+			displayList(newRes, qnaBoard, rows, currentPage);
+			setPagination(newRes, pagination, rows);
+			break;
+	};
+};
 
 // onload시 AJAX 요청
 $(document).ready(() => {

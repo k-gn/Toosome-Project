@@ -36,14 +36,14 @@ const removeOn = (periods) => {
 const calcDate = (value, calendar) => {
 	const [num, unit] = value.split('');
 	const today = moment();
-	const newDate = moment(today).subtract(num, unit).format('MM/DD/YYYY');
+	const newDate = moment(today).subtract(num, unit).format('YYYY-MM-DD');
 	calendar.value = newDate;
 };
 
 // init
 const calendarInit = () => {
 	removeOn(noticePeriods);
-	const today = moment().format('MM/DD/YYYY');
+	const today = moment().format('YYYY-MM-DD');
 	noticeCalendar.value = today;
 	noticeCalendar2.value = today;
 };
@@ -238,16 +238,4 @@ modalCancelBtn.addEventListener('click', (e) => {
 $(document).ready(() => {
 	calendarInit();
 /*	getAllList();*/
-	
-	$('#datetimepicker1').datetimepicker({ format: 'L'});
-	$('#datetimepicker2').datetimepicker({ 
-		format: 'L',
-		useCurrent: false
-	});
-	$("#datetimepicker1").on("change.datetimepicker", function (e) {
-		$('#datetimepicker2').datetimepicker('minDate', e.date);
-	});
-	$("#datetimepicker2").on("change.datetimepicker", function (e) {
-		$('#datetimepicker1').datetimepicker('maxDate', e.date);
-	}); 
 }); 

@@ -6,14 +6,13 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link
-	      rel="shortcut icon"
-	      href="/resources/img/AnyConv.com__favicon.ico"
-	      type="image/x-icon"
+      rel="shortcut icon"
+      href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/AnyConv.com__favicon.ico"
+      type="image/x-icon"
 	/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="/resources/css/share/reset.css" />
 	<link rel="stylesheet" href="/resources/css/adminpages/subpages/login/adminLogin.css" />
-	<script src="/resources/js/adminpages/subpages/login/adminLogin.js"></script>
 	<script type="text/javascript">
 		const msg = "${msg}";
 		if(msg === "notLogin") {
@@ -26,7 +25,7 @@
 	<div class="bg"></div>
 	<div class="login-container">
 		<div class="title-container">
-          <img src="/resources/img/admin/subpages/login/admin_login.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/login/admin_login.png" alt="#">
           <span>관리자모드 로그인</span>
           <p>TOOSOME PLACE ADMINISTRATOR</p>
         </div>

@@ -10,6 +10,16 @@
   <link href="/resources/css/adminpages/main/admin_main.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
   <script src="/resources/js/adminpages/main/admin_main.js" defer></script>
+  <script>
+		const msg = "${msg}"
+		if(msg === "Denied") {
+			alert("해당 권한이 없습니다.");
+		}else if(msg === "duplogin") {
+			alert("다른 기기에서 접속중인 계정입니다.");
+		}else if(msg === "modSuccess") {
+			alert("비밀번호가 변경되었습니다.");
+		}
+	</script> 
 </head>
 
 <body>
@@ -67,7 +77,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">전날 접속자수</p>
-                  <h3 class="card-title">75
+                  <h3 class="card-title">${visitCount}
                   	<small>명</small>
                   </h3>
                 </div>
@@ -85,7 +95,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">전날 가입자수</p>
-                  <h3 class="card-title">3
+                  <h3 class="card-title">${regCount}
                   	<small>명</small>
                   </h3>
                 </div>

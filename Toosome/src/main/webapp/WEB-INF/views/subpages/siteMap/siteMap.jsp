@@ -19,7 +19,7 @@
 
         <div class="siteMap-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
                 <span class="siteMap-title">SITE MAP</span>
             </div>
 
@@ -36,50 +36,50 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href="#">브랜드 이야기</a></td>
-                        <td><a href="#">New</a></td>
-                        <td><a href="#">매장안내</a></td>
-                        <td><a href="#">이벤트</a></td>
-                        <td><a href="#">창업정보</a></td>
+                        <td><a href="/brandstory">브랜드 이야기</a></td>
+                        <td><a href="/menu-new">New</a></td>
+                        <td><a href="/map">매장안내</a></td>
+                        <td><a href="/event">이벤트</a></td>
+                        <td><a href="/franchise">창업정보</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#">커피 이야기</a></td>
-                        <td><a href="#">커피 &amp; 음료</a></td>
+                        <td><a href="/coffeestory">커피 이야기</a></td>
+                        <td><a href="/menu-beverage">커피 &amp; 음료</a></td>
                         <td></td>
-                        <td><a href="#">멤버쉽 &amp; 제휴카드</a></td>
-                        <td><a href="#">가맹점 전용 금융 상품</a></td>
+                        <td><a href="/membership">멤버쉽</a></td>
+                        <td><a href="/franchisepay">가맹점 전용 금융 상품</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#">디저트 이야기</a></td>
-                        <td><a href="#">디저트</a></td>
+                        <td><a href="/dessertstory">디저트 이야기</a></td>
+                        <td><a href="/menu-dessert">디저트</a></td>
                         <td></td>
-                        <td><a href="#">공지사항</a></td>
-                        <td><a href="#">창업설명회</a></td>
+                        <td><a href="/notice">공지사항</a></td>
+                        <td><a href="/explanation">창업설명회</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#">브랜드 필름</a></td>
-                        <td><a href="#">델리</a></td>
+                        <td><a href="/brandfilm1">브랜드 필름</a></td>
+                        <td><a href="/menu-delhi">델리</a></td>
                         <td></td>
-                        <td><a href="#">뉴스</a></td>
-                        <td><a href="#">기업 및 단체구매 안내</a></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td><a href="#">홀케이크</a></td>
-                        <td></td>
-                        <td><a href="#">QnA</a></td>
-                        <td></td>
+                        <td><a href="/news">뉴스</a></td>
+                        <td><a href="/allbuy">기업 및 단체구매 안내</a></td>
                       </tr>
                       <tr>
                         <td></td>
-                        <td><a href="#">상품</a></td>
+                        <td><a href="/menu-wholecake">홀케이크</a></td>
                         <td></td>
-                        <td></td>
+                        <td><a href="/qna">QnA</a></td>
                         <td></td>
                       </tr>
                       <tr>
                         <td></td>
-                        <td><a href="#">영양성분표</a></td>
+                        <td><a href="/product-new">상품</a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td><a href="/nutrient1">영양성분표</a></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -90,29 +90,24 @@
                     <thead class="thead-dark">
                       <tr>
                         <th>마이투썸</th>
+                        <th>고객센터</th>
                         <th>온라인 주문</th>
-                        <th>리쿠르트</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href="#">개인정보관리</a></td>
-                        <td><a href="#">이용안내</a></td>
-                        <td><a href="#">리쿠르트안내</a></td>
+                        <td><a href="/mypage">개인정보관리</a></td>
+                        <td><a href="/faq">FAQ</a></td>
+                        <td><a href="/basket">투썸바구니</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#">마이멤버쉽</a></td>
-                        <td><a href="#">투썸바구니</a></td>
-                        <td><a href="#">매장채용안내</a></td>
-                      </tr>
-                      <tr>
+                        <td><a href="/mypage/check/${id}">개인정보</a></td>
                         <td></td>
-                        <td><a href="#">주문 확인 및 취소</a></td>
-                        <td><a href="#">아카데미등록안내</a></td>
+                        <td><a href="/orderreceipt">주문내역</a></td>
                       </tr>
                       <tr>
+                        <td><a href="/membership/mm">마이멤버십</a></td>
                         <td></td>
-                        <td><a href="#">온라인 주문 정보</a></td>
                         <td></td>
                       </tr>
                     </tbody>

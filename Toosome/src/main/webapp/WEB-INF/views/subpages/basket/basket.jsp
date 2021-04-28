@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>	
     <link rel="stylesheet" href="/resources/css/subpages/basket/basket.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/share/nav_footer_bt.css">
@@ -13,6 +17,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	<script src="/resources/js/subpages/basket/basket.js" defer></script>
     <title>A TOOSOME PLACE</title>
+    <script type="text/javascript">
+    	const msg = "${msg}";
+    	if(msg === "empty") {
+    		alert("구매하실 상품이 없습니다.");
+    	}
+    </script>
 </head>
 <body>
     <div id="container">
@@ -23,15 +33,15 @@
         <p>장바구니</p>
         <div class="process-container">
           <div>
-            <img src="/resources/img/subpages/basket/basket.png" alt="#">
+            <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/basket.png" alt="#">
             <span>장바구니</span>
           </div>
           <div>
-            <img src="/resources/img/subpages/basket/payment.png" alt="#">
+            <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/payment.png" alt="#">
             <span>주문/결제</span>
           </div>
           <div>
-            <img src="/resources/img/subpages/basket/complete.png" alt="#">
+            <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/complete.png" alt="#">
             <span>주문완료</span>
           </div>
         </div>
@@ -48,22 +58,22 @@
               </tr>
             </thead>
             <tbody>
-            <c:forEach var="basket" items="${baskets}">
+            <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
                 <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
                 <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
                 <td><span class="name"></span></td>
                 <td>
-                  <input type="number" min="1" max="10" name="quantity" value="${basket.basketAmount}" id="quantity"/>
+                  <input type="number" min="1" max="10" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
                 </td>
                 <td>
                   <span class="pname">${basket.basketName}</span>
                 </td>
                 <td>
-                  <span class="price">${basket.basketPrice}</span>
+                  <span class="price">${basket.basketPrice}원</span>
                 </td>
                 <td>
-                  <input type="button" value="X" onclick="deleteRow(this);">
+                  <input type="button" value="X" onclick="deleteRow(this, ${basket.basketId});">
                 </td>
               </tr>
             </c:forEach>
@@ -80,7 +90,7 @@
                   주문상품 수
                 </td>
                 <td>
-                  <span class="product-count">2개</span>
+                  <span class="product-count">${basketUtil.amount}개</span>
                 </td>
               </tr>
               <tr>
@@ -88,7 +98,7 @@
                   주문 금액
                 </td>
                 <td>
-                  <span class="product-pay">7,980</span> 원
+                  <span class="product-pay"><fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.total}" /></span> 원
                 </td>
               </tr>
               <tr>
@@ -96,7 +106,7 @@
                   할인 금액
                 </td>
                 <td>
-                  <span class="product-discount">0</span> 원
+                  <span class="product-discount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.discount}" /></span> 원
                 </td>
               </tr>
               <tr>
@@ -104,7 +114,7 @@
                   배송비
                 </td>
                 <td>
-                  <span class="product-delivery">0</span> 원
+                  <span class="product-delivery"><fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.deliveryPay}" /></span> 원
                 </td>
               </tr>
               <tr>
@@ -112,7 +122,7 @@
                   적립 포인트
                 </td>
                 <td>
-                  <span class="product-point">0</span> 점
+                  <span class="product-point"><fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.point}" /></span> 점
                 </td>
               </tr>
               <tr class="final-pay">
@@ -120,7 +130,7 @@
                   최종 결제 금액
                 </td>
                 <td>
-                  <span class="product-total">7,980</span> 원
+                  <span class="product-total"><fmt:formatNumber type="number" maxFractionDigits="3" value="${basketUtil.realPayment}" /></span> 원
                 </td>
               </tr>
 
@@ -129,9 +139,10 @@
         </div>
         <div class="order-container"></div>
         <div class="btn-box">
-          <input type="button" class="button" value="계속 쇼핑하기">
-          <input type="button" class="button" value="상품구매" onclick="location.href='/order'">
+          <input type="button" class="button" value="계속 쇼핑하기" onclick="location.href='/product-new'">
+          <input type="button" class="button" value="상품구매" onclick="location.href='/basket/order'">
         </div> 
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       </form>
     </section>
 		<!-- section end -->

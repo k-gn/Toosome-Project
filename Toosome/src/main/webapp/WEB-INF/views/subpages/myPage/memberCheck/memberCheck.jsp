@@ -15,7 +15,7 @@
     <section>
       <div class="signup-container">
         <div class="title-container">
-          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="#">
+          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
           <span class="signup-title">개인정보</span>
         </div>
         <div class="signup-form-container">

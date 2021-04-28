@@ -20,11 +20,11 @@
       <p>결제 완료</p>
       <div class="process-container">
         <div>
-          <img src="/resources/img/subpages/basket/payment.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/payment.png" alt="#">
           <span>주문/결제</span>
         </div>
         <div>
-          <img src="/resources/img/subpages/basket/complete.png" alt="#">
+          <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/complete.png" alt="#">
           <span>결제완료</span>
         </div>
       </div>
@@ -41,7 +41,7 @@
                     주문자
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName" value="홍길동" disabled>
+                    <input type="text" name="orderName" id="orderName" value="${memberOrderCompleteList.memberName}" disabled>
                   </td>
                 </tr>
                 <tr>
@@ -49,11 +49,12 @@
                     전화번호
                   </td>
                   <td>
-                    <input type="tel" name="phone1" id="tel2" value="010" disabled>
+                    <!-- <input type="tel" name="phone1" id="tel2" value="010" disabled>
                     &nbsp;-&nbsp;
                     <input type="tel" name="phone2" id="tel3" value="1111" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" value="1111" disabled>
+                    <input type="tel" name="phone3" id="tel4" value="1111" disabled> -->
+                    <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderCompleteList.memberPhone}" disabled>
                   </td>
                 </tr>
               </tbody>
@@ -72,7 +73,7 @@
                 상품명
               </td>
               <td>
-                <span class="menu-title">딸기 음료</span>
+                <span class="menu-title">${menuOrderCompleteList.menuMainTitle}</span>
               </td>
             </tr>
             <tr>
@@ -81,7 +82,7 @@
               </td>
               <td>
                 <div class="pay-box">
-                  <span class="com" style="float: left;">4000</span>
+                  <span class="com" style="float: left;">${menuOrderCompleteList.menuPrice}</span>
                   <span style="float: left;">&nbsp;원</span>
                 </div>
               </td>
@@ -91,7 +92,7 @@
                 적립 포인트
               </td>
               <td>
-                <span class="re-point">40</span> P
+                <span class="re-point">${sPoint}</span> P
               </td>
             </tr>
             <tr>
@@ -99,23 +100,23 @@
                 할인 금액
               </td>
               <td>
-                <span class="discount-pay com">1000</span> 원
+                <span class="discount-pay com">${salprice}</span> 원
               </td>
-            </tr>
-            <tr>
-              <td>결제금액</td>
-              <td><span class="bold txt_blue com">3000</span>원</td>
             </tr>
             <tr>
               <td>사용한 포인트 </td>
               <td>
-                <span class="use-point com">3000</span> P
+                <span class="use-point com">${usedPoint}</span> P
               </td>
             </tr> 
+            <tr>
+              <td>결제금액</td>
+              <td><span class="bold txt_blue com">${menusalt}</span>원</td>
+            </tr>
           </tbody>
         </table>
         <div class="pay-do">
-          <p class="txt-red"> 최종 결제된 금액 : <span class="com">0</span> 원</p>
+          <p class="txt-red"> 최종 결제된 금액 : <span class="com">${menuEndPrice}</span> 원</p>
         </div>
         <div class="out-btn">
           <a href="/">MAIN</a>

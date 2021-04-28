@@ -1,6 +1,7 @@
 package com.web.toosome.user.membership.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,16 @@ public class MembershipService implements IMembershipService {
 	public List<LevelVO> getLevelInfo() {
 		return mapper.getLevelInfo();
 	}
+
+	@Override
+	public void getStackPoint(Map<String, Integer> map) {
+		mapper.getStackPoint(map);
+	}
+
+	@Override
+	public void getDownPoint(Map<String, Integer> map) {
+		mapper.getDownPoint(map);
+	}
+	
 
 }

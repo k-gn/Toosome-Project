@@ -20,10 +20,12 @@ public interface IMembershipMapper {
 	// 전체 등급 정보 조회
 	public List<LevelVO> getLevelInfo();
 	
-	// 포인트 누적
-	public int updatePoint(Map<String, Integer> map);
+	// 멤버쉽 삭제
+	public void deleteMembership(Integer id);
 	
-	// 포인트 차감
-	public int deductionPoint(Map<String, Integer> map);
+	// 메뉴 포인트 적립.
+	public void getStackPoint(Map<String, Integer> map);
 	
+	//메뉴 포인트 사용.
+	public void getDownPoint(Map<String, Integer> map);
 }

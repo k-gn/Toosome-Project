@@ -1,15 +1,30 @@
 @charset "utf-8";
 
+.bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png') no-repeat center center;
+	background-size: cover;
+	-webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
+	filter: blur(2px);
+	opacity: 0.6;
+	z-index: -1;
+}
+
 .my-container {
-  margin: 150px auto 0;
+  margin: 120px auto 0;
   padding: 15px;
   box-sizing: border-box;
+  /* background: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png") no-repeat center /cover; */
   width: 100%;
-  border: 1px solid #eee;
-  border-radius: 7px;
   box-shadow: 0 2px 3px #eee;
   display: flex;
-  background: url("../../../img/subpages/myPage/map.png") no-repeat center /cover;
 }
 
 .nav-cover {
@@ -39,9 +54,6 @@
   border: none;
 }
 
-.nav-cover .nav > ul > li:last-child {
-  
-}
 .nav-cover .nav > ul > li > a {
   display: block;
   width: 100%;

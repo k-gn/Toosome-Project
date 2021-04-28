@@ -14,5 +14,10 @@ public interface IQnaBoardMapper {
 	
 	public QnaBoardVO passwordQnaBoard(Integer index);
 	
-
+	public void qnaBoardCount(String index);
+	
+	public List<QnaBoardVO> getSearchQnaBoard(String keyword);
+	
+	// 해당 회원 qna 전체 삭제
+	public void delQna(Integer id);
 }

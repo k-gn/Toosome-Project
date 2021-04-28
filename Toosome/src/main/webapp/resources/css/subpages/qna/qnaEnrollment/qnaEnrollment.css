@@ -26,7 +26,7 @@ section {
 }
 
 .navigation-container {
-	width: 30%;
+	width: 50%;
 	height: 50px;
 	display: flex;
 	justify-content: flex-end;
@@ -58,7 +58,7 @@ section {
 .qna-info-container {
 	position: relative;
 	text-align: center;
-	background: url(/resources/img/main-img3.png);
+	background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/new1.png);
 	background-size: cover;
 }
 
@@ -76,8 +76,7 @@ section {
 .qna-info {
 	position: relative;
 	z-index: 1;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding: 15px;
 }
 
 .qna-info h3 {

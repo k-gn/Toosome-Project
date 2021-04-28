@@ -10,7 +10,7 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/boardManagement/eventBoardManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/eventBoardManagement.js" defer></script>
 </head>
 
@@ -45,16 +45,9 @@
                        <tbody>
                          <tr>
                            <td>
-                             <span><strong>검색어</strong></span>
+                             <span><strong>검색어(제목)</strong></span>
                            </td>
                            <td>
-                             <div class="select-box">
-                              <select name="searchType" class="search-select" id="searchType">
-                                <option value="title">제목</option>
-                                <option value="content">내용</option>
-                              </select>
-                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
-                             </div>
                              <input type="text" id="search-text" name="keyword" placeholder="검색어 입력">
                            </td>
                          </tr>
@@ -77,27 +70,9 @@
                              	<button class="period event" value="6M">6개월</button>
                              	<button class="period event" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-3">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	</div>
                              </div>
                            </td>
@@ -116,36 +91,36 @@
 		                  <h4 class="card-title">이벤트 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/eventboard-insert" method="post">
 		                    <div class="row">
 		                      <div class="col-md-1">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">글번호</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input name="eventBoardId" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">조회수</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input name="eventBoardViewCount" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="text" class="form-control">
+		                          <input name="eventBoardDetailDay" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이벤트시작일</label>
-		                          <input type="tel" class="form-control">
+		                          <input name="eventBoardStartday" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이벤트종료일</label>
-		                          <input type="tel" class="form-control">
+		                          <input name="eventBoardEndday" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -153,26 +128,42 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">제목</label>
-		                          <input type="text" class="form-control">
+		                          <input name="eventBoardTitle" type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">내용</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
+		                    <div class="row text-center">
+		                      <div class="col-md-6">
+		                      	<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img id="eventBoardImage" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">본문 이미지 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="uploadFile" />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
+								    </div>
+								</div>
 		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">이미지</label>
-		                          <img class="img" src="" alt="#">
-		                        </div>
+		                      <div class="col-md-6">
+		                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img id="eventBoardThumbnail" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">썸네일 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="uploadFile2" />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
+								    </div>
+								</div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
@@ -195,7 +186,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form enctype="multipart/form-data">
+			        <form action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -204,7 +195,7 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                  <div class="input-group">
-				                      <input type="text" class="form-control" placeholder="제목을 입력하세요">
+				                      <input name="eventBoardTitle" type="text" class="form-control" placeholder="제목을 입력하세요">
 				                  </div>
 				                </div>
 				                </div>
@@ -212,53 +203,57 @@
 				              <div class="info info-horizontal">
 				                <div class="description">
 				                  <h4 class="info-title">이벤트 기간</h4>
-				                  <div class="calendar-wrapper">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" id="calendar3">
-	                              				<div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-		                              	<span>&nbsp;~&nbsp;</span>
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="calendar4">
-	                              				<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                             	</div>
+				                  <input id="calendar3" class="calendar" name="eventBoardStartday" type="date" value="">
+	                              <span>&nbsp;&nbsp;~&nbsp;&nbsp;</span>
+	                              <input id="calendar4" class="calendar" name="eventBoardEndday" type="date" value="">
 				                </div>
 				              </div>
 							  <div class="info info-horizontal">
 				                <div class="description">
-				                  <h4 class="info-title">이미지</h4>
-				                  <div class="form-group">
-		                            <label class="bmd-label-floating">업로드</label>
-		                            <input type="file" class="custom-file-input" id="file" accept="image/*">
-		                            <label class="btn btn-success custom-file-label btn-s" for="file"></label>
-		                          </div>
+				                  <h4 class="info-title">썸네일</h4>
+				                  <div class="text-center">
+					                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+									    <div class="fileinput-new thumbnail img-raised">
+									        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+									    </div>
+									    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+									    <div>
+									        <span class="btn btn-raised btn-round btn-default btn-file">
+									            <span class="fileinput-new">이미지 선택</span>
+									            <span class="fileinput-exists">수정</span>
+									            <input type="file" name="uploadFile2" />
+									        </span>	
+									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
+									    </div>
+									  </div>
+				                  </div>
 				                </div>
 				              </div>
 				            </div>
 				
 				            <div class="col-md-5 mr-auto">
 				              <div class="description">
-				                <h4 class="info-title">내용</h4>
-	                            <div class="form-group">
-	                              <div class="form-group">
-	                                <textarea class="form-control" rows="10" placeholder="내용을 입력하세요"></textarea>
-	                              </div>
-	                            </div> 
-	                          </div>         
+				                  <h4 class="info-title">본문 이미지</h4>
+				                  <div class="text-center">
+					                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+									    <div class="fileinput-new thumbnail img-raised">
+									        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+									    </div>
+									    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+									    <div>
+									        <span class="btn btn-raised btn-round btn-default btn-file">
+									            <span class="fileinput-new">이미지 선택</span>
+									            <span class="fileinput-exists">수정</span>
+									            <input type="file" name="uploadFile" />
+									        </span>	
+									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
+									    </div>
+									  </div>
+				                  </div>
+				                </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>
-		                  <button class="btn btn-primary pull-right btn-r">삭제</button>
+				          <button type="submit" class="btn btn-primary pull-right btn-r">등록</button>
 				        </div>
 			        </form>
 			      </div>
@@ -279,7 +274,8 @@
     					글등록
 					</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -293,15 +289,15 @@
                   <div class="table-responsive">
                     <table id="list-table" class="table">
                       <colgroup>
-                   		<col width="10%">
-                   		<col width="15%">
+                   		<col width="5%">
                    		<col width="35%">
                    		<col width="10%">
-                   		<col width="10%">
-                   		<col width="10%">
-                   		<col width="10%">
+                   		<col width="15%">
+                   		<col width="15%">
+                   		<col width="15%">
+                   		<col width="5%">
                       </colgroup>
-                      <thead class="text-primary" id="list-table-thead">
+                      <thead class="text-primary text-center" id="list-table-thead">
                         <th>
                           글번호
                         </th>
@@ -309,10 +305,10 @@
                           제목
                         </th>
                         <th>
-                          내용
+                          조회수
                         </th>
                         <th>
-                          조회수
+                          글작성일
                         </th>
                         <th>
                           이벤트시작일
@@ -324,34 +320,9 @@
                           이미지
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="eventBoardList" items="${eventBoardList}">
-	                        <tr>
-	                          <td>
-	                            ${eventBoardList.eventBoardId}
-	                          </td>
-	                          <td>
-	                            ${eventBoardList.eventBoardTitle}
-	                          </td>
-	                          <td>
-	                            ${eventBoardList.eventBoardContent}
-	                          </td>
-	                          <td>
-	                            ${eventBoardList.eventBoardViewCount}
-	                          </td>
-	                          <td>
-	                            ${eventBoardList.eventBoardStartday}
-	                          </td>
-	                          <td>
-	                            ${eventBoardList.eventBoardEndday}
-	                          </td>
-	                          <td>
-	                            <a href="${eventBoardList.eventBoardImageRoute}/${eventBoardList.eventBoardImageName}.${eventBoardList.eventBoardImageExtention}">상세보기</a>
-	                          </td>
-	                        </tr>
-                        </c:forEach>
-                      </tbody>
+                      <tbody id="list-table-tbody" class="text-center"></tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

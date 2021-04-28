@@ -105,6 +105,9 @@ section table {
   background-color: #fff;
 }
 
+.table-box table tbody tr td {
+	line-height: 150px;
+}
 
 
 .total-table {

@@ -67,14 +67,26 @@ public class LoginController {
 		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		if(member.getStatus() == 3) {
+			session.setAttribute("state", 3);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}else if(member.getStatus() == 2) {
+			session.setAttribute("state", 2);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}
+		
+		String url = (String) session.getAttribute("prevURI");
+		session.removeAttribute("prevURI");
+		if(url == null) url = "/";
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
+			service.updateLastLogin(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
-			out.println("<script>window.opener.location.href='/';self.close();</script>");
+			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			naverLoginBO.deleteToken(oauthToken.getAccessToken());
 			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");
@@ -111,14 +123,26 @@ public class LoginController {
         boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
+		if(member.getStatus() == 3) {
+			session.setAttribute("state", 3);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}else if(member.getStatus() == 2) {
+			session.setAttribute("state", 2);
+			out.println("<script>window.opener.location.href='/';self.close();</script>");
+		}
+		
+		String url = (String) session.getAttribute("prevURI");
+		session.removeAttribute("prevURI");
+		if(url == null) url = "/";
 
 		if(!flag) {
 			loginUtil.loginWithoutForm(email);
+			service.updateLastLogin(email);
 			member = service.getUserByEmail(email);
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
-			out.println("<script>window.opener.location.href='/';self.close();</script>");
+			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			KakaoLoginApi.deleteToken(code, accessToken);
 			out.println("<script>alert('이미 가입하신 이메일 입니다.');window.opener.location.href='/signin';self.close();</script>");
@@ -145,7 +169,7 @@ public class LoginController {
 	@GetMapping("/accessErrorAdmin")
 	public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
 		ra.addFlashAttribute("msg", "Denied");
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/accessErrorMember")

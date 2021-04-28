@@ -6,8 +6,9 @@
 	<resultMap type="membershipVO" id="membershipMap">
 		<id property="membershipId" column="MEMBERSHIP_ID"/>
 		<result property="memberId" column="MEMBER_ID"/>
-		<result property="leverId" column="LEVEL_ID"/>
+		<result property="levelId" column="LEVEL_ID"/>
 		<result property="membershipPoint" column="MEMBERSHIP_POINT"/>
+		<result property="membershipRegDate" column="MEMBERSHIP_REGDATE"/>
 		<collection property="level" resultMap="levelMap"/>
 	</resultMap>
 	
@@ -47,14 +48,18 @@
 		SELECT * FROM LEVEL
 	</select>
 	
-	<!-- 포인트 누적 
-	<update id="updatePoint">
-		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
-	</update>-->
+	<!-- menu에서 포인트 적립 1%로 적용함. -->
+	<select id="getStackPoint">
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = MEMBERSHIP_POINT + #{imsipoint} WHERE MEMBER_ID = #{id}
+	</select>
 	
-	<!-- 포인트 차감 
-	<update id="deductionPoint">
-		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = #{} WHERE MEMBER_ID = #{id}
-	</update>-->
-	
+	<!-- menu에서 사용 적용함. -->
+	<select id="getDownPoint">
+		UPDATE MEMBERSHIP SET MEMBERSHIP_POINT = MEMBERSHIP_POINT - #{usedPoint} WHERE MEMBER_ID = #{id}
+	</select>
+
+	<!-- 멤버쉽 삭제 -->	
+	<delete id="deleteMembership">
+		DELETE FROM MEMBERSHIP WHERE MEMBER_ID = #{id}
+	</delete>
 </mapper>

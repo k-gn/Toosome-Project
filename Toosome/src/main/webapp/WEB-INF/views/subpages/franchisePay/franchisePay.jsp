@@ -5,7 +5,6 @@
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
     <link rel="stylesheet" href="/resources/css/subpages/franchisePay/franchisePay.css">
-    <link rel="stylesheet" href="./css/franchisePay.css">
     <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -14,13 +13,21 @@
 
         <div class="franchisePay-container">
             <div class="title-container">
-                <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-                <span class="franchisePay-title">가맹점 전용 금융상품</span>
-                <hr/>
+                <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
             </div>
-
+			<div class="sub-header-container">
+       			<h3>가맹점전용 금융상품</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/franchisepay">OTHERS</a></li>
+       					<li><a href="/franchisepay">가맹점전용 금융상품</a></li>
+       				</ul>
+       			</div>
+        	</div>
+        	<hr>
             <div class="contents">
-                <img src="/resources/img/subpages/franchisePay/pay.PNG" alt="">
+                <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/franchisePay/pay.PNG" alt="">
 
                 <ul class="text">
                     <li>대출한도 및 대출금리는 채무자의 신용등급에 따라 차등 적용됩니다.</li>

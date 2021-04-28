@@ -25,10 +25,19 @@
 		<div class="nutrient-container">
 			<div class="title-container">
 				<img class="title-logo"
-					src="/resources/img/subpages/share/banner.png" alt=""> <span
-					class="nutrient-title">영양성분표</span>
+					src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
 			</div>
-
+			<div class="sub-header-container">
+       			<h3>영양성분표</h3>
+       			<div class="navigation-container">
+       				<ul>
+       					<li><a href="/">HOME</a></li>
+       					<li><a href="/menu-new">MENU</a></li>
+       					<li><a href="/nutrient1">영양성분표</a></li>
+       					<li><a href="/nutrient1">디저트</a></li>
+       				</ul>
+       			</div>
+        	</div>
 			<div class="contents">
 				<ul class="menu-tab">
 					<li class="click"><a href="/nutrient1">디저트</a></li>
@@ -37,14 +46,12 @@
 					<li><a href="/nutrient4">델리</a></li>
 				</ul>
 				
-				<div class="search1">
 				<form action="/nutrient1/search" method="get">
-					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력해주세요.">  
-					<input type="image" src="/resources/img/subpages/nutrient/search.gif"
-						alt="검색버튼">
-				
-				</form>					
-				</div>
+			        <div class="search">
+			          <input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요.">
+			          <input type="image" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/nutrient/search.gif" alt="">
+			        </div>
+				</form>
 
 				<table class="table table-hover">
 					<thead class="thead-dark">

@@ -1,3 +1,6 @@
+
+
+
 // 우편번호 검색
 
 function pCode() {
@@ -73,12 +76,14 @@ function chkPoint(amt, pnt, min, unit) {
 
     if (pnt > amt) {
       //결제금액보다 포인트가 더 클 때
-      v_point = amt - (amt % unit); //사용할 포인트는 결제금액과 동일하게 설정
+      v_point = amt - ((amt % unit)+100); //사용할 포인트는 결제금액과 동일하게 설정
     }
   }
   document.getElementById("use_pnt").value = v_point; //input 값 설정
 
   changePoint(amt, pnt, min, unit);
+  document.getElementById("result_pnt").innerHTML = amt - v_point;
+  
 }
 
 function changePoint(amt, pnt, min, unit) {
@@ -88,13 +93,13 @@ function changePoint(amt, pnt, min, unit) {
 
   if (v_point > pnt) {
     //입력값이 사용가능 포인트보다 클때
-    v_point = pnt;
+    v_point = pnt - 100 ;
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   }
 
-  if (v_point > amt) {
+  if (v_point > amt-100) {
     //결제금액보다 포인트가 더 클 때
-    v_point = amt; //사용할 포인트는 결제금액과 동일하게 설정
+    v_point = amt - 100; //사용할 포인트는 결제금액과 동일하게 설정
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   }
 
@@ -111,6 +116,9 @@ function changePoint(amt, pnt, min, unit) {
     v_left[i].innerHTML = pnt - v_point; //= 전체 포인트 중에 사용할 포인트빼고 남은 포인트
   }
   document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
+
+  var dlatl = amt - v_point;
+  var menusal = document.getElementById("realPay").innerHTML;
 }
 
 function pointValidate() {
@@ -147,3 +155,68 @@ $(function () {
 
   document.getElementById("use_pnt").addEventListener('change', pointValidate);
 });
+
+
+const orderSubmitBtn = document.querySelector('.order-submit');
+
+const orderSubmitBtnHandler = (e) => {
+
+	$(document).ajaxSend(function(e, xhr, options) { 
+    	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+    }); 
+
+    //받는 사람
+	const name = $("#orderName2").val();
+	//우편번호
+	const postcode = $("#postcode2").val();
+	//주소
+	const addr = $("#addr3").val() + "-" + $("#addr4").val();
+	// 핸드폰 번호
+	const phone = $("#tel2").val() + $("#tel5").val() + $("#tel6").val();
+	//배송 유의사항
+	const content = $("#postText").val();
+	//결제 금액
+	const payment = $("#result_pnt").text();
+	//배송료
+	const delivery = $(".product-delivery").text();
+	// basketEndPrice 최종 결제 금액
+	const basketEndPrice = $(".txt_red").text();
+	// basketsal  포인트 사용 전 금액
+	const basketsal = $(".txt_blue").text();
+	
+	const order = {
+		ordersReceiver: name,
+		ordersPostcode: postcode,
+		ordersAddress: addr,
+		ordersPhone: phone,
+		ordersContent: content,
+		ordersPayment: payment,
+		ordersDelivery: delivery
+	};
+	
+	//클라이언트에서 서버와 통신하는 ajax함수(비동기 통신) 
+	$.ajax({
+		type: "POST", //서버에 전송하는 HTTP요청 방식
+		url: "/ordersubmit", //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "text", //응답받을 데이터의 형태
+		data: JSON.stringify(order), //서버로 전송할 데이터
+		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log("통신 성공!: " + result);
+			if(result === "success") {
+				console.log("수령자 정보 저장 완료");
+				location.href="/import2?basketEndPrice=" + basketEndPrice + "&basketsal=" + basketsal;
+			} else {
+				alert("수령자 정보 저장 실패");
+				location.href="/";
+			}
+		}, 
+		error: function() {
+			console.log("통신 실패!");
+		} 
+	});
+  };
+
+orderSubmitBtn.addEventListener('click', orderSubmitBtnHandler);

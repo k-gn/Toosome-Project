@@ -14,10 +14,19 @@
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>   
     <div class="product-container">
       <div class="title-container">
-          <img class="title-logo" src="/resources/img/subpages/share/banner.png" alt="">
-          <span class="product-title">상품</span>
+          <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
       </div>
-
+	  <div class="sub-header-container">
+		<h3>PRODUCT</h3>
+		<div class="navigation-container">
+			<ul>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/product-new">MENU</a></li>
+				<li><a href="/product-new">상품</a></li>
+				<li><a href="/product-new">커피상품</a></li>
+			</ul>
+		</div>
+      </div>
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
@@ -35,10 +44,11 @@
 								<a href="/productDetail?productId=${productCoffeeList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productCoffeeList.productImageVO.productImageRoute}/${productCoffeeList.productImageVO.productImageName}.${productCoffeeList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productCoffeeList.productNew == 1}">
-									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
+									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
 									<c:if test="${productCoffeeList.productState == 2}">
-									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
+									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
+									  
 									</c:if>
 									<span>${productCoffeeList.productTitleName}</span>
 									<div class="pay-box">

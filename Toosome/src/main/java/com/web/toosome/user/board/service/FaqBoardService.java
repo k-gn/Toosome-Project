@@ -19,4 +19,9 @@ public class FaqBoardService implements IFaqBoardService {
 		return mapper.getFaqBoardList(faqBoardVO);
 	}
 
+	@Override
+	public List<FaqBoardVO> getFaqSearchBoardList(String keyword) {
+		return mapper.getFaqSearchBoardList(keyword);
+	}
+
 }

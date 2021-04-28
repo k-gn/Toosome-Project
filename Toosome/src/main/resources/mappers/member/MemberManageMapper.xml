@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.memberManagement.dao.IMemberManageMapper">
+
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberStatusDate" column="MEMBER_STATUS_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+		<collection property="authList" resultMap="authMap" />
+	</resultMap>
+	
+	<resultMap type="withdrawVO" id="withdrawMap">
+		<id property="withdrawId" column="WITHDRAW_ID"/>
+		<result property="withdrawName" column="WITHDRAW_NAME"/>
+		<result property="withdrawEmail" column="WITHDRAW_EMAIL"/>
+		<result property="withdrawPassword" column="WITHDRAW_PASSWORD"/>
+		<result property="withdrawBirth" column="WITHDRAW_BIRTH"/>
+		<result property="withdrawPhone" column="WITHDRAW_PHONE"/>
+		<result property="withdrawAddress" column="WITHDRAW_POSTCODE"/>
+		<result property="withdrawPostcode" column="WITHDRAW_ADDRESS"/>
+		<result property="platFormType" column="WITHDRAW_PLATFORM_TYPE"/>
+		<result property="regDate" column="WITHDRAW_REGDATE"/>
+		<result property="status" column="WITHDRAW_STATUS"/>
+		<result property="withdrawDate" column="WITHDRAW_DATE"/>
+	</resultMap>
+	
+	<resultMap type="authVO" id="authMap">
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberAuth" column="MEMBER_AUTH" />
+	</resultMap>
+	
+	<!-- 중복되는 동적 SQL문 처리-->
+	<sql id="search">
+		WHERE MEMBER_AUTH = 'ROLE_USER'
+		<if test="status != null">
+			AND MEMBER_STATUS = #{status}
+		</if>
+		<if test="condition == 'id'">
+			AND mem.MEMBER_EMAIL LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND MEMBER_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="platFormType == 'normal'">
+			AND MEMBER_PLATFORM_TYPE = 'Toosome'
+		</if>
+		<if test="platFormType == 'sns'">
+			AND MEMBER_PLATFORM_TYPE IN ('naver', 'kakao')
+		</if>
+		<if test="startRegDate != null and startRegDate != ''">
+			AND MEMBER_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
+		</if>
+		<if test="startLoginDate != null and startLoginDate != ''">
+			AND MEMBER_LAST_LOGIN_DATE BETWEEN DATE(#{startLoginDate}) AND DATE(#{endLoginDate})+1
+		</if>
+		<if test="startBlackDate != null and startBlackDate != ''">
+			AND MEMBER_STATUS_DATE BETWEEN DATE(#{startBlackDate}) AND DATE(#{endBlackDate})+1
+		</if>
+		<if test="startSleepDate != null and startSleepDate != ''">
+			AND MEMBER_STATUS_DATE BETWEEN DATE(#{startSleepDate}) AND DATE(#{endSleepDate})+1
+		</if>
+	</sql>
+	
+	<sql id="outSearch">
+		WHERE WITHDRAW_STATUS = -1
+		<if test="condition == 'id'">
+			AND WITHDRAW_EMAIL LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND WITHDRAW_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startOutDate != null and startOutDate != ''">
+			AND WITHDRAW_DATE BETWEEN DATE(#{startOutDate}) AND DATE(#{endOutDate})+1
+		</if>
+	</sql>
+ 	
+	<select id="getMemberList" resultMap="memberMap">
+		SELECT 
+			MEMBER_ID,
+			MEMBER_NAME,
+			mem.MEMBER_EMAIL,
+			MEMBER_PLATFORM_TYPE,
+			MEMBER_REG_DATE,
+			MEMBER_STATUS,
+			MEMBER_AUTH,
+			MEMBER_BIRTH,
+			MEMBER_LAST_LOGIN_DATE,
+			MEMBER_STATUS_DATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE,
+			CASE
+		        WHEN MEMBER_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE MEMBER_POSTCODE
+		    END as MEMBER_POSTCODE,
+			CASE
+		        WHEN MEMBER_ADDRESS IS NULL THEN "No Address"
+		        ELSE MEMBER_ADDRESS
+		    END as MEMBER_ADDRESS
+		FROM MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		<include refid="search"/>
+		ORDER BY MEMBER_ID DESC
+	</select>	
+	
+	<!-- 아이디로 회원 조회 -->
+	<select id="getMember" resultMap="memberMap">
+		SELECT
+			MEMBER_ID,
+			MEMBER_NAME,
+			mem.MEMBER_EMAIL,
+			MEMBER_PLATFORM_TYPE,
+			MEMBER_REG_DATE,
+			MEMBER_STATUS,
+			MEMBER_AUTH,
+			MEMBER_BIRTH,
+			MEMBER_LAST_LOGIN_DATE,
+			MEMBER_STATUS_DATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE,
+			CASE
+		        WHEN MEMBER_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE MEMBER_POSTCODE
+		    END as MEMBER_POSTCODE,
+			CASE
+		        WHEN MEMBER_ADDRESS IS NULL THEN "No Address"
+		        ELSE MEMBER_ADDRESS
+		    END as MEMBER_ADDRESS
+		FROM
+			MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		WHERE MEMBER_ID = #{id}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="updateMember">
+		UPDATE MEMBER 
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}, MEMBER_POSTCODE = #{memberPostcode}, MEMBER_ADDRESS = #{memberAddress}, MEMBER_STATUS = #{status}, MEMBER_STATUS_DATE = NOW() 
+		WHERE MEMBER_ID = #{memberId};		 
+	</update>
+	
+	<!-- 탈퇴 회원 목록 조회 -->
+	<select id="getOutList" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_ID,
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL,
+			WITHDRAW_PLATFORM_TYPE,
+			WITHDRAW_REGDATE,
+			WITHDRAW_STATUS,
+			WITHDRAW_BIRTH,
+			WITHDRAW_DATE,
+			CASE
+		        WHEN WITHDRAW_PHONE IS NULL THEN "No Phone"
+		        ELSE WITHDRAW_PHONE
+		    END as WITHDRAW_PHONE,
+			CASE
+		        WHEN WITHDRAW_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE WITHDRAW_POSTCODE
+		    END as WITHDRAW_POSTCODE,
+			CASE
+		        WHEN WITHDRAW_ADDRESS IS NULL THEN "No Address"
+		        ELSE WITHDRAW_ADDRESS
+		    END as WITHDRAW_ADDRESS
+		FROM WITHDRAW
+		<include refid="outSearch"/>
+		ORDER BY WITHDRAW_ID DESC
+	</select>	
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="getOutMember" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_ID,
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL,
+			WITHDRAW_PLATFORM_TYPE,
+			WITHDRAW_REGDATE,
+			WITHDRAW_STATUS,
+			WITHDRAW_BIRTH,
+			WITHDRAW_DATE,
+			CASE
+		        WHEN WITHDRAW_PHONE IS NULL THEN "No Phone"
+		        ELSE WITHDRAW_PHONE
+		    END as WITHDRAW_PHONE,
+			CASE
+		        WHEN WITHDRAW_POSTCODE IS NULL THEN "No Postcode"
+		        ELSE WITHDRAW_POSTCODE
+		    END as WITHDRAW_POSTCODE,
+			CASE
+		        WHEN WITHDRAW_ADDRESS IS NULL THEN "No Address"
+		        ELSE WITHDRAW_ADDRESS
+		    END as WITHDRAW_ADDRESS
+		FROM WITHDRAW
+		WHERE WITHDRAW_ID = #{id}
+	</select>
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="getOutMemberByEmail" resultMap="withdrawMap">
+		SELECT 
+			WITHDRAW_NAME,
+			WITHDRAW_EMAIL
+		FROM WITHDRAW
+		WHERE WITHDRAW_EMAIL = #{email}
+	</select>
+	
+	<delete id="delOutMember">
+		DELETE FROM WITHDRAW WHERE WITHDRAW_EMAIL = #{email}
+	</delete>
+</mapper>

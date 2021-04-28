@@ -23,29 +23,29 @@
 		<section>
 			<div class="sub-header-container">
 				<h3>FAQ</h3>
-				<nav class="navigation-container">
+				<div class="navigation-container">
 					<ul>
-						<li><a href="#">HOME</a></li>
-						<li><a href="#">FAQ</a></li>
+						<li><a href="/">HOME</a></li>
+						<li><a href="/faq">FAQ</a></li>
 					</ul>
-				</nav>
+				</div>
 			</div>
 			<p>TOOSOME PLACE에 대한 문의사항을 쉽고 빠르게 찾아보세요.</p>
 			<div class="search-container">
 				<div class="search-wrapper">
-					<input type="search" placeholder="검색어를 입력하세요">
-					<button>검색</button>
+					<input id="search-input" type="search" placeholder="검색어를 입력하세요">
+					<button id="search-btn">검색</button>
 				</div>
 			</div>
 			<div class="faq-container">
 				<c:forEach var="faqBoardList" items="${faqBoardList}">
 					<div class="faq-wrapper">
-						<div class="faq-question">
+						<div class="faq-question" onclick="accordionHandler(this);">
 							<div>
 								<span>Q</span> <span>${faqBoardList.faqBoardTitle}</span>
 							</div>
 							<button class="accordion">
-								<img src="/resources/img/subpages/share/down.png" alt="#">
+								<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/down.png" alt="#">
 							</button>
 						</div>
 						<div class="faq-answer">

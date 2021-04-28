@@ -1,6 +1,40 @@
 @charset "utf-8";
 
 /******************** imgSlide-start *******************/
+
+#img-wrap .slide .img1 .img-title {
+	width: 1000px;
+	text-align: center;
+	margin-top: 200px;
+	margin-left: calc(50% - 500px);
+}
+
+#img-wrap .slide .img2 .img-title {
+	width: 700px;
+	height: 280px;
+	margin-top: 250px;
+	margin-left: 1000px;
+}
+
+#img-wrap .slide .img3 .img-title {
+	width: 700px;
+	height: 280px;
+	text-align: center;
+	margin-top: 300px;
+	margin-left: 20px;	
+}
+
+#img-wrap .slide .img-title .img-content {
+	color: white;
+	font-family: gsdr;
+	font-size: 5rem;
+	z-index: 1000;
+}
+
+#img-wrap .slide .img-title .img-content small {
+	font-size: 3.75rem;
+}
+
 #img-wrap .slide {
   width: 100%;
   height: 100vh;
@@ -10,17 +44,17 @@
   display: block;
   width: 100%;
   height: 100vh;
-	background: no-repeat center /cover;
+  background: no-repeat center /cover;
   
 }
 #img-wrap .slide .slide-imgs li.img1 {
-	background-image: url("../../img/1.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main1.png");
 }
 #img-wrap .slide .slide-imgs li.img2 {
-	background-image: url("../../img/2.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main2.png");
 }
 #img-wrap .slide .slide-imgs li.img3 {
-	background-image: url("../../img/3.png");
+	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main3.png");
 }
 #img-wrap .slide p {
   position: absolute;
@@ -43,36 +77,91 @@
 
 #new-menu {
   width: 100%;
-  height: 620px;
-  padding-top: 280px;
-  background: url('../../img/new1.png') no-repeat center / cover;
+  height: 740px;
+  padding-top: 240px;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/new1.png') no-repeat center / cover;
   background-attachment: fixed;
 }
 #new-menu .new-cover {
   width: 100%;
   height: 100%;
 }
-#new-menu .new {
-  width: 100%;
-  height: 48px;
-  text-align: center;
-  margin: 0 auto;
-  margin-bottom: 42px;
-  color: #a62326;
-  font-family: gsdr;
-  font-weight: bold;
-  font-size: 36px;
+#new-menu .new-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 42px; 
   position: relative;
 }
-#new-menu .new::after {
+#new-menu .new {
+  color: #fff;
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-weight: bold;
+  font-size: 5rem;
+  text-shadow: 4px 2px 2px #a62326;
+}
+#new-menu .new-wrap::after {
   content: '';
   position: absolute;
-  width: 100px;
+  width: 400px;
   height: 3px;
   background-color: #a62326;
   left: 50%;
-  bottom: -10px;
+  bottom: -20px;
   transform: translateX(-50%);
+}
+
+#new-menu .new-title {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+}
+#new-menu .new-title strong {
+  color: #e9ff88;
+  font-size: 28px;
+  border-radius: 10px;
+  padding: 7px;
+  background: rgba(206, 39, 39, 0.76);
+}
+
+#new-menu .new-wrap .new-more {
+	position: absolute;
+	box-sizing: border-box;
+	width: 150px;
+	height: 60px;
+	top: calc(50% - 35px);
+	right: 70px;
+	background: transparent;
+	border: 2px solid #fff;
+	padding: 5px;
+	cursor: pointer;
+	color: #fff;
+	font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+	font-size: 1.25rem;
+	font-weight: 100;
+	text-align: center;
+	line-height: 45px;
+	transition: all 0.3s linear;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#new-menu .new-wrap .new-more:hover {
+    border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+ 	animation-name: example;
+	animation-duration: 0.25s;
+	animation-fill-mode: forwards;
+	border-left: 8px solid #fff;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+@keyframes example {
+    0%   {color: #ececec}
+    25%  {color: #d9d9d9}
+    50%  {color: #c4c4c4}
+    100% {color: #aaaaaa}
 }
 
 #new-menu .img_box {
@@ -90,6 +179,7 @@
   height: 296px;
   margin: 0 auto;
   display: block;
+  overflow: hidden;
 }
 #new-menu .img_box .new-menu-box li a img {
   display: block;
@@ -99,8 +189,9 @@
   box-shadow: 0 5px 5px rgba(80, 80, 80, 0.4);
   transition: all 0.1s ease-in;
 }
-#new-menu .img_box .new-menu-box li a img:hover {
-  transform: translateY(-5%);
+#new-menu .img_box .new-menu-box li a:hover img {
+  transform: scale(1.05);
+  transition: all 0.6s;
 }
 
 #new-menu .img_box .new-menu-box .slick-prev {
@@ -117,7 +208,7 @@
   display: flex;
   width: auto;
   height: 100vh;
-  background: url('../../img/bg_sns_01.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/bg_sns_01.png') no-repeat center / cover;
   background-attachment: fixed;
 }
 .section .quick-menu {
@@ -157,7 +248,7 @@
 .section .quick-menu .coffee {
   width: 420px;
   height: 320px;
-  background: url('../../img/coffee.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/coffee.png') no-repeat center / cover;
   margin-right: 100px;
   transition: all 1s;
   box-shadow: 0 4px 5px 2px rgb(172, 172, 172);
@@ -165,7 +256,7 @@
 .section .quick-menu .beverage {
   width: 420px;
   height: 320px;
-  background: url('../../img/beverage.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/beverage.png') no-repeat center / cover;
   margin-right: 100px;
   transition: all 1s;
   box-shadow: 0 4px 5px 2px rgb(172, 172, 172);
@@ -247,7 +338,7 @@
 .button-logo .button-img {
   width: 90px;
   height: 90px;
-  background: url('../../img/buttonlogo.png') no-repeat center / contain;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/buttonlogo.png') no-repeat center / contain;
   transform: scale(0.8);
 }
 .button-logo a.offbutton {
@@ -372,7 +463,7 @@
 .map {
   width: 100%;
   height: 500px;
-  background: url('../../img/map.png') no-repeat center / cover;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png') no-repeat center / cover;
   background-attachment: fixed;
   overflow: hidden;
 }
@@ -417,6 +508,8 @@
   font-size: 20px;
   color: #fff;
   padding-left: 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .map .form-cover form fieldset input[type='submit'] {
@@ -428,9 +521,91 @@
   height: 50px;
   font-size: 20px;
   color: #fff;
-  background: url('../../img/search_g@3x.png') rgba(0, 0, 0, 1) no-repeat center /
+  cursor: pointer;
+  background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/search_g@3x.png') rgba(0, 0, 0, 1) no-repeat center /
     contain;
 }
 
 /******************** map-end **************************/
+
+/* 반응형 start */
+
+
+@media screen and (max-width: 1120px) {
+	
+	#img-wrap .slide {
+	  height: 500px;
+	}
+	#img-wrap .slide .slide-imgs li {
+	  height: 500px;
+	}
+	
+	#new-menu {
+	  height: auto;
+	  padding: 100px 0;
+	}
+	
+	.map .form-cover form fieldset input[type='search'] {
+	  
+	  top: 70%;
+	  left: 50%;
+	  transform: translate(-50%,-50%);
+	  width: 60%;
+  	  font-size: 16px;
+	}
+	.map .form-cover form fieldset input[type='submit'] {
+	  top: 100%;
+	  left: 50%;
+	  width: 100px;
+	  transform: translate(-50%,-50%);
+	}
+	.button-logo {
+	  display: none;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.section {
+	  display: block;
+	  height: auto;
+	  padding-top: 50px;
+	}
+	.section .quick-menu {
+	  margin: 0 auto;
+	}
+	
+	.quick-menu-coffee {
+	  display: block;
+	  margin-bottom: 50px;
+	}
+	
+	.quick-menu-beverage {
+	  display: block;
+	  margin-bottom: 50px;
+	}
+	
+	.section .quick-menu .coffee {
+	  margin: 0 auto;
+	}
+	.section .quick-menu .beverage {
+	  margin: 0 auto;
+	}
+	.section .quick-menu .coffee-ment {
+	  padding-top: 30px;
+	  text-align: center;
+	}
+	.section .quick-menu .beverage-ment {
+	  padding-top: 30px;
+	  text-align: center;
+	}
+	.section .quick-menu .coffee-ment h3,
+	.section .quick-menu .beverage-ment h3 {
+	  margin-bottom: 30px;
+	}
+}
+
+@media screen and (max-width: 770px) {}
+
+
+
 

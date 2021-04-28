@@ -10,6 +10,29 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/adminManagement/adminList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/adminManagement/adminList.js" defer></script>
+  <script type="text/javascript">
+  	const msg = "${msg}";
+  	if(msg === "success") {
+  		alert("관리자 등록 성공!");
+  		opener.parent.location.reload();
+  		window.close();
+  	}else if(msg === "dupEmail") {
+  		alert("이미 존재하는 이메일 입니다.")
+  		opener.parent.location.reload();
+  		window.close();
+  	}else if(msg === "fail") {
+  		alert("입력하신 정보가 올바르지 않습니다.");
+  		window.close();
+  	}else if(msg === "modSuccess") {
+  		alert("관리자 정보 수정 완료.");
+  	}else if(msg === "modFail") {
+  		alert("관리자 정보 수정 실패.");
+  	}else if(msg === "delSuccess") {
+  		alert("관리자 정보 삭제 완료.");
+  	}else if(msg === "delFail") {
+  		alert("관리자 정보 삭제 실패.");
+  	}
+  </script>
 </head>
 
 <body>
@@ -67,28 +90,34 @@
 		            <div class="col-md-8">
 		              <div class="card">
 		                <div class="card-header card-header-rose">
-		                  <h4 class="card-title">프로필 수정</h4>
+		                  <h4 class="card-title">관리자 수정/삭제</h4>
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form id="formObj" action="/admin/mod" method="post">
 		                    <div class="row">
-		                      <div class="col-md-5">
+		                      <div class="col-md-1">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">번호</label>
+		                          <input name="memberId" type="text" class="form-control" disabled>
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input name="memberEmail" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input name="memberName" type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
+		                          <input name="memberPhone" type="tel" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -96,43 +125,33 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">입사일</label>
-		                          <input type="text" class="form-control">
+		                          <input name="regDate" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="text" class="form-control">
+		                          <input name="lastLoginDate" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-6">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">권한이름</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">권한설정</label>
+		                          <select name="memberAuth" class="custom-select" id="memberAuth">
+				                  	<option value="ROLE_HEAD">ROLE_HEAD</option>
+				                  	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-rose pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-rose pull-right btn-r">취소</button>
+		                    <input type="submit" class="btn btn-rose pull-right" value="업데이트"/>
+		                    <input type="button" id="modal-delete" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
+		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                    <input type="hidden" name="memberEmail" value="${email}">
 		                  </form>
 		                </div>
 		              </div>
@@ -155,9 +174,17 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
+                      <colgroup>
+                      	<col width="10%">
+                      	<col width="15%">
+                      	<col width="30%">
+                      	<col width="15%">
+                      	<col width="15%">
+                      	<col width="15%">
+                      </colgroup>
                       <thead class="text-rose" id="list-table-thead">
                         <th>
-                          회원번호
+                          관리자번호
                         </th>
                         <th>
                           권한이름
@@ -169,41 +196,13 @@
                           이름
                         </th>
                         <th>
-                          핸드폰 번호
-                        </th>
-                        <th>
                           입사일
                         </th>
                         <th>
                           최종로그인
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="adminList" items="${adminList}">
-	                        <tr>
-	                          <td>
-	                            ${adminList.memberId}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberAuth}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberName}
-	                          </td>
-	                          <td>
-	                            ${adminList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${adminList.regDate}
-	                          </td>
-	                          <td>
-	                            ${adminList.lastLoginDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
                   </div>

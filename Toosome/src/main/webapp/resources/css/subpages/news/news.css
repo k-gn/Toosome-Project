@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section {
-	width: 1000px;
+	max-width: 1000px;
 	height: auto;
 	box-sizing: border-box;
 	border: 1px solid #eee;
@@ -18,11 +18,12 @@ section {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	
+	margin-top: 50px;
 }
 .sub-header-container h3 {
 	font-family: gsdr;
 	font-size: 1.5rem;
+	font-weight: 100;
 }
 
 .navigation-container {
@@ -41,6 +42,7 @@ section {
 .navigation-container ul li a {
 	font-size: 0.75rem;
 	color: #666666;
+	white-space: nowrap;
 }
 
 .navigation-container ul li a:hover {
@@ -67,7 +69,21 @@ section > p {
 	background: rgba(102,102,102,0.3);
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
+}
+
+.search-select {
+	outline: none;
+	padding: 0 10px;
+	border: none;
+	margin-left: 15px;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	cursor: pointer;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
 }
 
 .search-wrapper {
@@ -78,6 +94,7 @@ section > p {
 }
 
 .search-wrapper > input {
+	flex: none;
 	outline: none;
 	appearance: none;
 	width: 350px;
@@ -86,9 +103,12 @@ section > p {
 	border: 1px solid #eee;
 	margin-right: 0.9375rem;
 	padding-left: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
 }
 
 .search-wrapper > button {
+	flex: none;
 	outline: none;
 	appearance: none;
 	width: 60px;
@@ -158,26 +178,23 @@ section > p {
 }
 
 #pagination {
-	width: 12.5rem;
-	height: 1.25rem;
-	margin: 0 auto;
-	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
-#pagination button {
-	cursor: pointer;
-	border: none;
-	outline: none;
-	appearance: none;
-	background: none;
-	padding: 0 17px;
+
+/* 반응형 start */
+
+@media screen and (max-width: 680px) {
+	
+	.search-wrapper > input {
+		width: 80%;
+	}
 }
 
-#pagination button:hover {
-	text-decoration: underline;
-}
-
-#pagination button.active {
-	color: red;
-	text-decoration: underline;
+@media screen and (max-width: 540px) {
+	
+	.search-wrapper > input {
+		width: 70%;
+	}
 }

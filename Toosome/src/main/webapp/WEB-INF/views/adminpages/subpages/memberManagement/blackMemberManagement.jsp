@@ -10,8 +10,13 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/memberManagement/blackMemberManagement.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/blackMemberManagement.js" defer></script>
+  <script type="text/javascript">
+  	const msg = "${msg}";
+  	if(msg === "modSuccess") {
+  		alert("회원정보 수정 완료");
+  	}
+  </script>
 </head>
 
 <body>
@@ -77,27 +82,9 @@
                              	<button class="period black" value="6M">6개월</button>
                              	<button class="period black" value="1y">1년</button>
                              	<div class="calendar-wrapper">
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
-                              	<span>&nbsp;~&nbsp;</span>
-                              	<div class="col-md-3">
-                              		<div class="form-group">
-                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              				</div>
-                              			</div>
-                              		</div>
-                              	</div>
+                              		<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	</div>
                              </div>
                            </td>
@@ -117,24 +104,24 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/member" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="email" name="memberEmail" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">전화번호</label>
-		                          <input type="tel" class="form-control">
+		                          <input type="tel" name="memberPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -142,13 +129,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">회원가입일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="regDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="lastLoginDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -156,7 +143,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberAddress" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -164,35 +151,40 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberPostcode" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberBirth" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">가입유형</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="platFormType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-12">
+		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">비고</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
+		                          <label class="bmd-label-floating">회원상태</label>
+		                          <select class="custom-select" name="status">
+				                  	<option value="1">일반회원</option>
+				                  	<option value="2">휴면회원</option>
+				                  	<option value="3" selected>블랙회원</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                    <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>
+		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="memberId">
+		                    <input type="hidden" name="check" value="3">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>
@@ -210,7 +202,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '블랙회원리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -223,6 +216,15 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
+                      <colgroup>
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="25%">
+                      	<col width="10%">
+                      	<col width="10%">
+                      	<col width="15%">
+                      	<col width="15%">
+                      </colgroup>
                       <thead class="text-primary" id="list-table-thead">
                         <th>
                           회원번호
@@ -246,34 +248,10 @@
                           블랙전환일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="blackMemberList" items="${blackMemberList}">
-	                        <tr>
-	                          <td>
-	                            ${blackMemberList.memberId}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.platFormType}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.memberEmail}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.memberName}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.memberPhone}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.regDate}
-	                          </td>
-	                          <td>
-	                            ${blackMemberList.changeBlackDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

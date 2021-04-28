@@ -13,10 +13,21 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="material-icons">notifications</i> Notifications
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">person</i>
+            <p class="d-lg-none d-md-block">
+              Account
+            </p>
           </a>
+          <form id="dologout" action="/admin/dologout" method="POST">
+		    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+		  </form>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+            <a class="dropdown-item" href="/admin/change-password">비밀번호 변경</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="document.getElementById('dologout').submit();">로그아웃</a>
+          </div>
         </li>
         <!-- your navbar here -->
       </ul>

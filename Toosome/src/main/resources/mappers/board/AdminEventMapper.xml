@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.boardManagement.dao.IEventAdminMapper">
+
+	<!-- board -->
+	<resultMap type="eventBoardVO" id="EventAdminMap">
+		<id property="eventBoardId" column="EVENT_BOARD_ID"/>
+		<result property="eventBoardImageRoute" column="EVENT_BOARD_IMAGE_ROUTE" />
+		<result property="eventBoardImageName" column="EVENT_BOARD_IMAGE_NAME" />
+	 	<result property="eventBoardImageExtention" column="EVENT_BOARD_IMAGE_EXTENTION" /> 
+		<result property="eventBoardViewCount" column="EVENT_BOARD_VIEW_COUNT" />
+		<result property="eventBoardTitle" column="EVENT_BOARD_TITLE" />
+		<result property="eventBoardStartday" column="EVENT_BOARD_START_DAY" />	
+		<result property="eventBoardEndday" column="EVENT_BOARD_END_DAY" />
+		<collection property="eventBoardDetailVO" resultMap="EventAdminDetailMap"/>
+	</resultMap>
+	
+	<resultMap type="eventBoardDetailVO" id="EventAdminDetailMap">
+		<id property="eventBoardDetailId" column="EVENT_BOARD_DETAIL_ID" />
+		<result property="eventBoardDetailImageRoute" column="EVENT_BOARD_DETAIL_IMAGE_ROUTE" />
+		<result property="eventBoardDetailImageName" column="EVENT_BOARD_DETAIL_IMAGE_NAME" />
+		<result property="eventBoardDetailImageExtention" column="EVENT_BOARD_DETAIL_IMAGE_EXTENTION" />	
+		<result property="eventBoardDetailDay" column="EVENT_BOARD_DETAIL_DAY" />
+	</resultMap>
+	
+	<sql id="search">
+		
+		<if test="startRegDate != null and startRegDate != ''">
+			AND B.EVENT_BOARD_DETAIL_DAY BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1
+		</if>
+		<if test="keyword != null">
+			ORDER BY A.EVENT_BOARD_ID DESC
+		</if>
+	</sql>
+	
+	
+	
+	<select	id="getEventBoard" resultMap="EventAdminMap">
+		SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE, A.EVENT_BOARD_END_DAY, A.EVENT_BOARD_START_DAY,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)
+	    						ORDER BY A.EVENT_BOARD_ID DESC
+	
+	</select>
+	
+	<select id="searchEventBoard" resultMap="EventAdminMap">
+		SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE, A.EVENT_BOARD_END_DAY, A.EVENT_BOARD_START_DAY,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID) WHERE A.EVENT_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+	
+	  	<include refid="search"/> 
+	</select> 
+	
+	<insert id="insertEvent">
+		INSERT INTO EVENT_BOARD(EVENT_BOARD_ID, EVENT_BOARD_IMAGE_ROUTE, EVENT_BOARD_IMAGE_NAME,
+		 	EVENT_BOARD_IMAGE_EXTENTION, EVENT_BOARD_VIEW_COUNT, EVENT_BOARD_TITLE,
+		  	EVENT_BOARD_START_DAY,EVENT_BOARD_END_DAY) 
+		  VALUES(#{eventBoardId},#{eventBoardImageRoute},#{eventBoardImageName},#{eventBoardImageExtention},0,#{eventBoardTitle},#{eventBoardStartday},#{eventBoardEndday})
+	</insert>
+	
+	
+	
+	<insert id="insertDetailEvent">
+		INSERT INTO EVENT_BOARD_DETAIL(EVENT_BOARD_DETAIL_ID, EVENT_BOARD_DETAIL_IMAGE_ROUTE, EVENT_BOARD_DETAIL_IMAGE_NAME,
+			 EVENT_BOARD_DETAIL_IMAGE_EXTENTION, EVENT_BOARD_DETAIL_DAY) 
+			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},now())
+	</insert>
+	
+	<select id="eventBoardDetail" resultMap="EventAdminMap">
+		SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE, A.EVENT_BOARD_START_DAY, A.EVENT_BOARD_END_DAY, A.EVENT_BOARD_IMAGE_ROUTE, A.EVENT_BOARD_IMAGE_NAME, A.EVENT_BOARD_IMAGE_EXTENTION,
+		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
+      				FROM EVENT_BOARD A
+	  					JOIN EVENT_BOARD_DETAIL B
+	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)	
+	    					 WHERE EVENT_BOARD_ID = #{id}
+	</select>	
+	
+	<!-- 
+	<update id="eventBoardCount">
+		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
+	</update> -->
+</mapper>

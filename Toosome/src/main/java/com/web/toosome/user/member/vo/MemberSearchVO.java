@@ -1,17 +1,26 @@
 package com.web.toosome.user.member.vo;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
 public class MemberSearchVO{
 	
-	private String memberName;
-	private String memberEmail;
+	private String condition;
+	private String keyword;
 	private String platFormType;
-	private Date startRegDate;
-	private Date endRegDate;
-	private Date startLoginDate;
-	private Date endLoginDate;
+	private String startRegDate;
+	private String endRegDate;
+	private String startLoginDate;
+	private String endLoginDate;
+	
+	private String startOutDate;
+	private String endOutDate;
+	
+	private String startBlackDate;
+	private String endBlackDate;
+	
+	private String startSleepDate;
+	private String endSleepDate;
+	
+	private Integer status;
 }

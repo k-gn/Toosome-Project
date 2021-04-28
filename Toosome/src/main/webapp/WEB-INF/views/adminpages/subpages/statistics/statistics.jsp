@@ -10,7 +10,6 @@
   <link href="/resources/css/adminpages/subpages/statistics/statistics.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>  
   <script src="/resources/js/adminpages/subpages/statistics/statistics.js" defer></script>
 </head>
 
@@ -54,27 +53,9 @@
 	                             	<button class="period" value="1y">1년</button>                             	
                              	</div>
                              	<div class="calendar-wrapper">
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="calendar1">
-	                              				<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
-	                              	<span>&nbsp;~&nbsp;</span>
-	                              	<div class="col-md-6">
-	                              		<div class="form-group">
-	                              			<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-	                              				<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="calendar2">
-	                              				<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-	                              					<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-	                              				</div>
-	                              			</div>
-	                              		</div>
-	                              	</div>
+	                              	<input id="calendar1" class="calendar" type="date" value="">
+	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	                             	<input id="calendar2" class="calendar" type="date" value="">
                              	</div>
                              </div>
                            </td>
