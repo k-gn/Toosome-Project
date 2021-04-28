@@ -15,7 +15,7 @@
     <div class="product-container">
       <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-          <span class="product-title">상품</span>
+          <span class="product-title"></span>
       </div>
       <div class="sub-header-container">
 		<h3>PRODUCT</h3>
@@ -42,23 +42,12 @@
 					<ul class="all">
 						<c:forEach var="productNewList" items="${productNewList}">
 							<li>
-
-
-
 								<a href="/productDetail?productId=${productNewList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productNewList.productNew == 1}">
-									  <img src="/resources/img/subpages/menuDetail/ico_new.png" alt=""/>
-									</c:if>
-									<c:if test="${productNewList.productState == 2}">
-									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
-									</c:if>
-								<a href="/productDetail?productId=${productAllList.productId}">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
-									<c:if test="${productAllList.productNew == 1}">
 									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
-									<c:if test="${productAllList.productState == 2}">
+									<c:if test="${productNewList.productState == 2}">
 									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
 
 									</c:if>

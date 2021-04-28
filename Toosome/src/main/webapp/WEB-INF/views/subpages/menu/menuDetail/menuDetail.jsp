@@ -24,19 +24,13 @@
 
 		<div class="menuDetail-container">
 			<div class="title-container">
-<<<<<<< HEAD
-				<span class="menuDetail-title ">NEW</span> 
-				<span class="menuDetail-title big">커피 &amp; 음료</span> 
-				<span class="menuDetail-title">디저트</span> 
-				<span class="menuDetail-title">델리</span>
-				<span class="menuDetail-title">홀케이크</span>
-=======
+
 				<span class="menuDetail-title big">NEW</span>
 				<span class="menuDetail-title big">커피 &amp; 음료</span>
 				<span class="menuDetail-title big">디저트</span>
 				<span class="menuDetail-title big">델리</span>
 				<span class="menuDetail-title big">홀케이크</span>
->>>>>>> origin/sang
+
 			</div>
 
 			<div class="contents">
