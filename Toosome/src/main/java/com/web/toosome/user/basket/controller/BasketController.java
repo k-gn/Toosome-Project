@@ -95,7 +95,7 @@ public class BasketController {
 			return "subpages/basket/order/order";
 		}else {
 			
-			return "/mypage/update/" + memberId;
+			return "mypage/update/" + memberId;
 
 		}
 		
