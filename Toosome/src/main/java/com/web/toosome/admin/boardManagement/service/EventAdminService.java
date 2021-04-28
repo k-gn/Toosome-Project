@@ -43,4 +43,25 @@ public class EventAdminService implements IEventAdminService {
 		return mapper.eventBoardDetail(id);
 	}
 
+	@Override
+	public void deleteEvent(Integer id) {
+		mapper.deleteEvent(id);
+		
+	}
+
+	@Override
+	public void deleteDetailEvent(Integer id) {
+		mapper.deleteDetailEvent(id);		
+	}
+
+	@Override
+	public void updateEvent(Integer id) {
+		mapper.updateEvent(id);
+	}
+
+	@Override
+	public void updateEventDetail(Integer id) {
+		mapper.updateEventDetail(id);
+	}
+
 }
