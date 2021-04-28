@@ -109,9 +109,6 @@
        			<a href="/admin/order-totallist">주문통합 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-depositlist">입금대기 리스트</a>
-       		</li>
-       		<li>
        			<a href="/admin/order-finishlist">결제완료 리스트</a>
        		</li>
        		<li>
@@ -127,16 +124,7 @@
        			<a href="/admin/order-confirm-finishlist">구매확정 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-faillist">결제 중단/실패 리스트</a>
-       		</li>
-       		<li>
        			<a href="/admin/order-cancellist">주문취소 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-refundlist">반품 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-exchangelist">교환 리스트</a>
        		</li>
           </ul>
         </div>
