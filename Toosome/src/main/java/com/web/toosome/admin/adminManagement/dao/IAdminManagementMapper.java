@@ -17,4 +17,16 @@ public interface IAdminManagementMapper {
 
 	// 비밀번호 변경
 	public int changePassword(AdminVO admin);
+	
+	// 아이디로 관리자 조회
+	public MemberVO getAdmin(Integer id);
+	
+	// 관리자 정보 수정
+	public int updateAdmin(AdminVO admin);
+	public int updateAdminAuth(AdminVO admin);
+	
+	// 관리자 삭제
+	public int deleteAdmin(AdminVO admin);
+	public int deleteAdminAuth(AdminVO admin);
+	
 }

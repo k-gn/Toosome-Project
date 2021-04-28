@@ -3,8 +3,10 @@ package com.web.toosome.admin.adminManagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,4 +85,35 @@ public class AdminManagementController {
 			return "redirect:/admin/change-password";
 		}
 	}
+	
+	@GetMapping("/{id}") 
+	@ResponseBody
+	public MemberVO getAdminInfo(@PathVariable Integer id) {
+		return adminService.getAdmin(id);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_HEAD')")
+	@PostMapping("/mod")
+	public String modAdmin(AdminVO admin, RedirectAttributes ra) {
+		int result = adminService.updateAdmin(admin);
+		if(result > 0) {
+			ra.addFlashAttribute("msg", "modSuccess");
+		}else {
+			ra.addFlashAttribute("msg", "modFail");
+		}
+		return "redirect:/admin/admin-list";
+	}
+	
+	@PreAuthorize("hasRole('ROLE_HEAD')")
+	@PostMapping("/del")
+	public String delAdmin(AdminVO admin, RedirectAttributes ra) {
+		int result = adminService.deleteAdmin(admin);
+		if(result > 0) {
+			ra.addFlashAttribute("msg", "delSuccess");
+		}else {
+			ra.addFlashAttribute("msg", "delFail");
+		}
+		return "redirect:/admin/admin-list";
+	}
+	
 }

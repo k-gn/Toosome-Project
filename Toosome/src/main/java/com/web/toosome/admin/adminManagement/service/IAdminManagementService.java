@@ -14,4 +14,10 @@ public interface IAdminManagementService {
 	public boolean passwordCheck(AdminVO admin);
 
 	public int changePassword(AdminVO admin);
+
+	public MemberVO getAdmin(Integer id);
+
+	public int updateAdmin(AdminVO admin);
+
+	public int deleteAdmin(AdminVO admin);
 }

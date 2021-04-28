@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.adminManagement.dao.IAdminManagementMapper;
 import com.web.toosome.admin.adminManagement.vo.AdminSearchVO;
@@ -43,6 +44,27 @@ public class AdminManagementService implements IAdminManagementService{
 		String password = bCryptPasswordEncoder.encode(admin.getAdminNewPwd());
 		admin.setAdminNewPwd(password);
 		return mapper.changePassword(admin);
+	}
+
+	@Override
+	public MemberVO getAdmin(Integer id) {
+		return mapper.getAdmin(id);
+	}
+
+	@Transactional
+	@Override
+	public int updateAdmin(AdminVO admin) {
+		int result = mapper.updateAdmin(admin);
+		mapper.updateAdminAuth(admin);
+		return result;
+	}
+
+	@Transactional
+	@Override
+	public int deleteAdmin(AdminVO admin) {
+		mapper.deleteAdminAuth(admin);
+		int result = mapper.deleteAdmin(admin);
+		return result;
 	}
 
 	

@@ -13,7 +13,7 @@
   <script>
 		const msg = "${msg}"
 		if(msg === "Denied") {
-			alert("잘못된 접근입니다.");
+			alert("해당 권한이 없습니다.");
 		}else if(msg === "duplogin") {
 			alert("다른 기기에서 접속중인 계정입니다.");
 		}else if(msg === "modSuccess") {

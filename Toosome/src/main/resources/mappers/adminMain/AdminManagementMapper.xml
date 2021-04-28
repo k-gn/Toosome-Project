@@ -66,4 +66,38 @@
 	<update id="changePassword">
 		UPDATE MEMBER SET MEMBER_PASSWORD=#{adminNewPwd} WHERE MEMBER_EMAIL = #{memberEmail}
 	</update>
+	
+	<select id="getAdmin" resultMap="memberMap">
+		SELECT 
+			MEMBER_ID,
+			MEMBER_NAME,
+			mem.MEMBER_EMAIL,
+			MEMBER_REG_DATE,
+			MEMBER_AUTH,
+			MEMBER_LAST_LOGIN_DATE,
+			CASE
+		        WHEN MEMBER_PHONE IS NULL THEN "No Phone"
+		        ELSE MEMBER_PHONE
+		    END as MEMBER_PHONE
+		FROM MEMBER mem LEFT OUTER JOIN MEMBER_AUTH auth on mem.MEMBER_EMAIL = auth.MEMBER_EMAIL
+		WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<update id="updateAdmin">
+		UPDATE MEMBER 
+		 SET MEMBER_NAME = #{memberName}, MEMBER_PHONE = #{memberPhone}
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</update>
+	<update id="updateAdminAuth">
+		UPDATE MEMBER_AUTH
+		 SET MEMBER_AUTH = #{memberAuth}
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</update>
+	
+	<delete id="deleteAdmin">
+		DELETE FROM MEMBER WHERE MEMBER_EMAIL = #{memberEmail}
+	</delete>
+	<delete id="deleteAdminAuth">
+		DELETE FROM MEMBER_AUTH WHERE MEMBER_EMAIL = #{memberEmail}
+	</delete>
 </mapper>

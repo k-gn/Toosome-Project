@@ -23,6 +23,14 @@
   	}else if(msg === "fail") {
   		alert("입력하신 정보가 올바르지 않습니다.");
   		window.close();
+  	}else if(msg === "modSuccess") {
+  		alert("관리자 정보 수정 완료.");
+  	}else if(msg === "modFail") {
+  		alert("관리자 정보 수정 실패.");
+  	}else if(msg === "delSuccess") {
+  		alert("관리자 정보 삭제 완료.");
+  	}else if(msg === "delFail") {
+  		alert("관리자 정보 삭제 실패.");
   	}
   </script>
 </head>
@@ -86,12 +94,12 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/#" method="post">
+		                  <form id="formObj" action="/admin/mod" method="post">
 		                    <div class="row">
 		                      <div class="col-md-1">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">번호</label>
-		                          <input name="memberId" type="email" class="form-control" disabled>
+		                          <input name="memberId" type="text" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
@@ -117,37 +125,33 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">입사일</label>
-		                          <input name="regDate" type="date" class="form-control">
+		                          <input name="regDate" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">최종로그인일</label>
-		                          <input name="lastLoginDate" type="date" class="form-control">
+		                          <input name="lastLoginDate" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">생년월일</label>
-		                          <input name="memberBirth" type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-6">
-		                        <div class="form-group">
 		                          <label class="bmd-label-floating">권한설정</label>
-		                          <select name="memberAuth" class="custom-select" name="status">
+		                          <select name="memberAuth" class="custom-select" id="memberAuth">
 				                  	<option value="ROLE_HEAD">ROLE_HEAD</option>
 				                  	<option value="ROLE_ADMIN">ROLE_ADMIN</option>
 				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button type="submit" class="btn btn-rose pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-rose pull-right btn-r">취소</button>
-		                    <button id="modal-delete" class="btn btn-rose pull-right btn-r">삭제</button>
+		                    <input type="submit" class="btn btn-rose pull-right" value="업데이트"/>
+		                    <input type="button" id="modal-delete" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
+		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                    <input type="hidden" name="memberEmail" value="${email}">
 		                  </form>
 		                </div>
 		              </div>
