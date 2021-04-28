@@ -60,5 +60,10 @@
 		ORDER BY MEMBER_ID DESC
 	</select>	
 	
-	
+	<select id="passwordCheck" resultType="String">
+		SELECT MEMBER_PASSWORD FROM MEMBER WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	<update id="changePassword">
+		UPDATE MEMBER SET MEMBER_PASSWORD=#{adminNewPwd} WHERE MEMBER_EMAIL = #{memberEmail}
+	</update>
 </mapper>

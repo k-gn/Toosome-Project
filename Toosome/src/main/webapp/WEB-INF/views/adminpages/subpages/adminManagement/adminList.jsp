@@ -10,6 +10,21 @@
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/subpages/adminManagement/adminList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/adminManagement/adminList.js" defer></script>
+  <script type="text/javascript">
+  	const msg = "${msg}";
+  	if(msg === "success") {
+  		alert("관리자 등록 성공!");
+  		opener.parent.location.reload();
+  		window.close();
+  	}else if(msg === "dupEmail") {
+  		alert("이미 존재하는 이메일 입니다.")
+  		opener.parent.location.reload();
+  		window.close();
+  	}else if(msg === "fail") {
+  		alert("입력하신 정보가 올바르지 않습니다.");
+  		window.close();
+  	}
+  </script>
 </head>
 
 <body>

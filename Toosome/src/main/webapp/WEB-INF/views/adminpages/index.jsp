@@ -16,6 +16,8 @@
 			alert("잘못된 접근입니다.");
 		}else if(msg === "duplogin") {
 			alert("다른 기기에서 접속중인 계정입니다.");
+		}else if(msg === "modSuccess") {
+			alert("비밀번호가 변경되었습니다.");
 		}
 	</script> 
 </head>

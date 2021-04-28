@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.toosome.admin.adminManagement.vo.AdminVO;
 import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
 import com.web.toosome.user.basket.dao.IBasketMapper;
 import com.web.toosome.user.board.dao.IQnaBoardMapper;
@@ -71,11 +72,11 @@ public class MemberService implements IMemberService {
 	// 관리자
 	@Transactional
 	@Override
-	public int registerAdmin(MemberVO member) {
-		String encodePassword = bCryptPasswordEncoder.encode(member.getMemberPassword());
-		member.setMemberPassword(encodePassword);
+	public int registerAdmin(AdminVO member) {
+		String encodePassword = bCryptPasswordEncoder.encode("1234");
+		member.setAdminPwd(encodePassword);
 		int result = mapper.registerAdmin(member);
-		mapper.registerAdminAuth(member.getMemberEmail());
+		mapper.registerAdminAuth(member);
 		return result;
 	}
 

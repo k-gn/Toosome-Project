@@ -34,6 +34,11 @@ const getList = (member) => {
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
 			result.forEach(res => {
+			
+				if(res.lastLoginDate == null) {
+					res.lastLoginDate = "";
+				}
+			
 				let newEl = document.createElement('tr');
 				let content = `
                   <td>

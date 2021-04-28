@@ -1,5 +1,6 @@
 package com.web.toosome.user.member.service;
 
+import com.web.toosome.admin.adminManagement.vo.AdminVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberService {
@@ -11,7 +12,7 @@ public interface IMemberService {
 	public int registerMember(MemberVO member);
 
 	// 회원 등록 (관리자)
-	public int registerAdmin(MemberVO member);
+	public int registerAdmin(AdminVO member);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);
