@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,26 +32,23 @@
               <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
               <th scope="col" colspan="2">주문 품목</th>
               <th scope="col">수량</th>
-              <th scope="col">송장</th>
               <th scope="col">배송상태</th>
               <th scope="col">결제금액</th>
               <th scope="col" style="text-align: center;">비고</th>
             </tr>
           </thead>
+          <c:forEach var="orderDetailList" items="${orderDetailList}" varStatus="i">
           <tbody>
             <tr>
               <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
               <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">이것 저것</span></td>
-              <td>1</td>
+              <td><span class="name">${orderDetailList.ordersDetailName}</span></td>
+              <td>${orderDetailList.ordersDetailAmount}</td>
               <td>
-                <span class="post-number">11111111</span>
+                <span class="post-state">${orderDetailList.ordersDetailState}</span>
               </td>
               <td>
-                <span class="post-state">가능중</span>
-              </td>
-              <td>
-                <span class="total">450</span> 원
+                <span class="total">${orderDetailList.ordersDetailPrice}</span> 원
               </td>
               <td>
                 <ul>
@@ -59,28 +57,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">이것 저것</span></td>
-              <td>1</td>
-              <td>
-                <span class="post-number">11111111</span>
-              </td>
-              <td>
-                <span class="post-state">갈준비</span>
-              </td>
-              <td>
-                <span class="total">450</span> 원
-              </td>
-              <td>
-                <ul>
-                  <li><a href="#">후기쓰기</a></li>
-                  <li><a href="#">주문취소</a></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
+          </c:forEach>
         </table>
       </div>
       <div class="text">

@@ -11,11 +11,6 @@ public class OrderManagementController {
 		return "adminpages/subpages/orderManagement/orderTotalList";
 	}
 	
-	@GetMapping("/admin/order-depositlist") // 주문 입금대기 리스트
-	public String OrderDepositList() {
-		return "adminpages/subpages/orderManagement/orderDepositList";
-	}
-	
 	@GetMapping("/admin/order-finishlist") // 주문 결제완료 리스트
 	public String OrderFinishList() {
 		return "adminpages/subpages/orderManagement/orderFinishList";
@@ -46,24 +41,9 @@ public class OrderManagementController {
 		return "adminpages/subpages/orderManagement/orderConfirmFinishList";
 	}
 	
-	@GetMapping("/admin/order-faillist") // 주문 결제중단/실패 리스트
-	public String OrderFailList() {
-		return "adminpages/subpages/orderManagement/orderFailList";
-	}
-	
 	@GetMapping("/admin/order-cancellist") // 주문 취소 리스트
 	public String OrderCancelList() {
 		return "adminpages/subpages/orderManagement/orderCancelList";
-	}
-	
-	@GetMapping("/admin/order-refundlist") // 주문 반품 리스트
-	public String OrderRefundList() {
-		return "adminpages/subpages/orderManagement/orderRefundList";
-	}
-	
-	@GetMapping("/admin/order-exchangelist") // 주문 교환 리스트
-	public String OrderExchangeList() {
-		return "adminpages/subpages/orderManagement/orderExchangeList";
 	}
 	
 }

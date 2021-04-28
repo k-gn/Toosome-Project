@@ -18,6 +18,25 @@ let keyword = ''; // 검색 제목
 let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
 let rows = 10000;
+let boardId = '';
+
+// 글 삭제 버튼
+const delBtnFunc = ()  => {
+	let flag = confirm('정말로 삭제하시겠습니까?');
+	if(flag) {
+		$.ajax({
+			type: 'post',
+			url: `/admin/eventboard-delete/${boardId}`,
+			success: () => {
+				window.location.reload();
+			},
+			error: () => {
+				alert('통신장애');
+				window.history.back();
+			}
+		})
+	};
+};
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -212,16 +231,18 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			$("input[name=eventBoardId]").val(res.eventBoardId);			
-			$("input[name=eventBoardViewCount]").val(res.eventBoardViewCount);			
-			$("input[name=eventBoardDetailDay]").val(res.eventBoardDetailVO.eventBoardDetailDay);			
-			$("input[name=eventBoardStartday]").val(res.eventBoardStartday);			
-			$("input[name=eventBoardEndday]").val(res.eventBoardEndday);			
-			$("input[name=eventBoardTitle]").val(res.eventBoardTitle);
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
-			$("#eventBoardImage").attr("src",imageURL);			
-			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}/${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
-			$("#eventBoardThumbnail").attr("src",thumbnailURL);			
+			boardId = res.eventBoardId;
+			$("#detail-id").val(res.eventBoardId);			
+			$('input[name=eventBoardId]').val(res.eventBoardId);			
+			$("#detail-view").val(res.eventBoardViewCount);			
+			$("#detail-reg").val(res.eventBoardDetailVO.eventBoardDetailDay);			
+			$("#detail-start").val(res.eventBoardStartday);			
+			$("#detail-end").val(res.eventBoardEndday);			
+			$("#detail-title").val(res.eventBoardTitle);
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
+			$("#detail-img").attr("src",imageURL);			
+			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
+			$("#detail-thumb").attr("src",thumbnailURL);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');

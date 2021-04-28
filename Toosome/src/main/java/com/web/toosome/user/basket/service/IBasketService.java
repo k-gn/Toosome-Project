@@ -3,6 +3,7 @@ package com.web.toosome.user.basket.service;
 import java.util.List;
 
 import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 
 public interface IBasketService {
@@ -27,5 +28,13 @@ public interface IBasketService {
 	
 	// 상품 결제 완료 후 장바구니 데이터 삭제
 	public void orderBasketDel(Integer id);
+	
+	//장바구니에 데이터를 order_diteil에 복사.
+	public void basketsendorder(BasketVO basket);
+	
+	// 장바구니 정보 정렬해서 가져오기
+	public List<BasketVO> getBasketList(Integer id);
+	
+	public List<OrdersDetailVO> getOrdersDetailList(Integer id);
 	 
 }
