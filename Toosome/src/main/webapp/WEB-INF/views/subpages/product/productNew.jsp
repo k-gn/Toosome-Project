@@ -42,7 +42,7 @@
 					<ul class="all">
 						<c:forEach var="productNewList" items="${productNewList}">
 							<li>
-<<<<<<< HEAD
+
 
 
 								<a href="/productDetail?productId=${productNewList.productId}">
@@ -52,7 +52,7 @@
 									</c:if>
 									<c:if test="${productNewList.productState == 2}">
 									  <img class="sold" src="/resources/img/subpages/product/soldOut.png" alt=""/>
-=======
+									</c:if>
 								<a href="/productDetail?productId=${productAllList.productId}">
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
 									<c:if test="${productAllList.productNew == 1}">
@@ -60,7 +60,7 @@
 									</c:if>
 									<c:if test="${productAllList.productState == 2}">
 									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
->>>>>>> origin/sang
+
 									</c:if>
 									<span>${productNewList.productTitleName}</span>
 

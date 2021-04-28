@@ -34,11 +34,11 @@ function AddToCart(pid) {
 		 }
 	   }
     });
-<<<<<<< HEAD
+
 }
-=======
+
 	
-}
+
 
 $(function(){
 	
@@ -50,4 +50,4 @@ $(function(){
 	
 	
 });
->>>>>>> origin/sang
+
