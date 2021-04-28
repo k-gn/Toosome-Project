@@ -178,29 +178,10 @@ section > p {
 }
 
 #pagination {
-	width: 12.5rem;
-	height: 1.25rem;
-	margin: 0 auto;
-	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
-#pagination button {
-	cursor: pointer;
-	border: none;
-	outline: none;
-	appearance: none;
-	background: none;
-	padding: 0 17px;
-}
-
-#pagination button:hover {
-	text-decoration: underline;
-}
-
-#pagination button.active {
-	color: red;
-	text-decoration: underline;
-}
 
 /* 반응형 start */
 
