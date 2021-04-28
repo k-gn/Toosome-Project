@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.boardManagement.dao.IEventAdminMapper;
 import com.web.toosome.user.board.vo.BoardSearchVO;
@@ -27,41 +28,58 @@ public class EventAdminService implements IEventAdminService {
 		System.out.println("관리자 이벤트 게시판 검색 기능" + mapper.searchEventBoard(vo));
 		return mapper.searchEventBoard(vo);
 	}
-
+	
+	
 	@Override
-	public void insertEvent(EventBoardVO vo) {
+	public int insertEvent(EventBoardVO vo) {
 		mapper.insertEvent(vo);
+		int insertevent = mapper.insertEvent(vo);
+		return insertevent;
 	}
-
+	
+	
 	@Override
-	public void insertDetailEvent(EventBoardDetailVO vo) {
+	public int insertDetailEvent(EventBoardDetailVO vo) {
 		mapper.insertDetailEvent(vo);
+		int insertdetailevent = mapper.insertDetailEvent(vo);
+		return insertdetailevent;
 	}
-
+	
+	
 	@Override
 	public EventBoardVO eventBoardDetail(Integer id) {
 		return mapper.eventBoardDetail(id);
 	}
-
+	
+	
 	@Override
-	public void deleteEvent(Integer id) {
+	public int deleteEvent(Integer id) {
 		mapper.deleteEvent(id);
-		
+		int deleteevent = mapper.deleteEvent(id);
+		return deleteevent;
 	}
-
+	
+	
 	@Override
-	public void deleteDetailEvent(Integer id) {
-		mapper.deleteDetailEvent(id);		
+	public int deleteDetailEvent(Integer id) {
+		mapper.deleteDetailEvent(id);
+		int deletedetailevent = mapper.deleteDetailEvent(id);
+		return deletedetailevent;
 	}
-
+	
+	
 	@Override
-	public void updateEvent(Integer id) {
-		mapper.updateEvent(id);
+	public int updateEvent(EventBoardVO vo) {
+		mapper.updateEvent(vo);
+		int updateevent = mapper.updateEvent(vo);
+		return updateevent;
 	}
-
+	
 	@Override
-	public void updateEventDetail(Integer id) {
-		mapper.updateEventDetail(id);
+	public int updateEventDetail(EventBoardDetailVO vo) {
+		mapper.updateEventDetail(vo);
+		int updateeventdetail = mapper.updateEventDetail(vo);
+		return updateeventdetail;
 	}
 
 }

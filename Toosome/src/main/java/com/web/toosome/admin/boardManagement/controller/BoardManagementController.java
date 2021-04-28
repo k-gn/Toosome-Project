@@ -88,7 +88,7 @@ public class BoardManagementController {
 		eventboardservice.insertEvent(vo);
 		eventboardservice.insertDetailEvent(vvo);
 		
-		ra.addFlashAttribute("msg", "successBoard");
+		
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
@@ -102,22 +102,33 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
+			
+		if(eventboardservice.insertEvent(vo) > 0) {
+			if(eventboardservice.insertDetailEvent(vvo) >0) {
+				ra.addFlashAttribute("msg", "successBoard");
+			}else {
+				ra.addFlashAttribute("msg", "failBoard");
+			}
+				
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}
 		
 		return "redirect:/admin/eventboard-management";
 	}
 	
 	
 	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
-	public String eventdelete(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id) throws IllegalStateException, IOException {
+	public String eventdelete(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
 
 		eventboardservice.deleteDetailEvent(id);
 		eventboardservice.deleteEvent(id);
 		
-		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+vo.getEventBoardImageExtention();
-		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+vvo.getEventBoardDetailImageExtention();
+		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
 		System.out.println("이벤트 게시판 이미지 경로" + key);
 		System.out.println("이벤트 디테일 이미지 경로" + key2);
@@ -125,16 +136,25 @@ public class BoardManagementController {
 		awsS3.delete(key);
 		awsS3.delete(key2);
 		
-		//ra.addFlashAttribute("msg", "successBoard");
+			if(eventboardservice.deleteEvent(id)>0) {
+				if(eventboardservice.deleteDetailEvent(id) >0) {
+					ra.addFlashAttribute("msg", "successBoard");
+				}else {
+					ra.addFlashAttribute("msg", "failBoard");
+				}
+			}else {
+				ra.addFlashAttribute("msg", "failBoard");
+			}
+		
 
 		return "redirect:/admin/eventboard-management";
 	}
 	
-	@PostMapping("/admin/eventboard-update/{id}") // 관리자 이벤트게시판 업데이트기능
-	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id) throws IllegalStateException, IOException {
+	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
+	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+vo.getEventBoardImageExtention();
-		String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+vvo.getEventBoardDetailImageExtention();
+		String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+		String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
 		System.out.println("이벤트 게시판 이미지 경로(지울거) " + rote);
 		System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote);
@@ -152,9 +172,10 @@ public class BoardManagementController {
 		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
-		eventboardservice.updateEvent(id);
-		eventboardservice.updateEventDetail(id);
+		eventboardservice.updateEvent(vo);
+		eventboardservice.updateEventDetail(vvo);
 		
+		System.out.println("DB 파일 update구문 완료");
 		//ra.addFlashAttribute("msg", "successBoard");
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
@@ -169,10 +190,21 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
-		
+			
+			if(eventboardservice.updateEvent(vo)>0) {
+				if(eventboardservice.updateEventDetail(vvo)>0) {
+					ra.addFlashAttribute("msg", "successBoard");
+				}else {
+					ra.addFlashAttribute("msg", "failBoard");
+				}
+			}else {
+				ra.addFlashAttribute("msg", "failBoard");
+			}
+			
+			
 		return "redirect:/admin/eventboard-management";
 	}
 	
