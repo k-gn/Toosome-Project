@@ -45,6 +45,7 @@
 		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
+		<result property="ordersDetailState" column="ORDERS_DETAIL_STATE" />
 	</resultMap>
 	
 	<insert id="addBasket">
@@ -106,4 +107,9 @@
 		 BASKET B LEFT OUTER JOIN PRODUCT_IMAGE PI on B.PRODUCT_IMAGE_ID = PI.PRODUCT_IMAGE_ID
 		WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC
 	</select>
+	
+	<select id="getOrdersDetailList" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id};
+	</select>
+	
 </mapper>

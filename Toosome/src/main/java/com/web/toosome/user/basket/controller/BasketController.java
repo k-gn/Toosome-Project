@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.web.toosome.user.basket.service.IBasketService;
 import com.web.toosome.user.basket.vo.BasketUtil;
 import com.web.toosome.user.basket.vo.BasketVO;
+import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -107,7 +108,12 @@ public class BasketController {
 	}
 
 	@GetMapping("orderreceipt") // 주문내역
-	public String orderreceipt(OrdersVO orderVO, HttpSession session) {
+	public String orderreceipt(OrdersDetailVO orderDetailVO, Model model, HttpSession session) {
+		System.out.println("주문 내역 페이지 출력");
+		Integer memberId = (Integer) session.getAttribute("id");
+		List<OrdersDetailVO> orderDetailList = service.getOrdersDetailList(memberId);
+		System.out.println(orderDetailList);
+		model.addAttribute("orderDetailList", orderDetailList);
 		
 		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}

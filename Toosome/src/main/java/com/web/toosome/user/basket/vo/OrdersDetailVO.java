@@ -12,4 +12,5 @@ public class OrdersDetailVO {
 	private Integer ordersDetailAmount;
 	private String ordersDetailName;
 	private Integer ordersDetailPrice;
+	private String ordersDetailState;
 }
