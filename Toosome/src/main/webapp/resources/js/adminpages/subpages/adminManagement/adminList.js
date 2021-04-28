@@ -11,6 +11,19 @@ let condition = '';
 let keyword = '';
 let member = {};
 
+const formElement = $("#formObj");
+const delBtn = $("#modal-cancel");
+
+function delBtnFunc() {
+	console.log("수정 버튼이 클릭됨!")
+	let flag = confirm('정말로 삭제하시겠습니까?');
+	if(flag) {
+		formElement.attr("action", "/admin/del");
+		formElement.attr("method", "post");		
+		formElement.submit();
+	}
+}
+
 // 리셋 버튼 핸들러
 const resetHandler = () => {
 	searchType.options[0].selected = 'true';
@@ -38,6 +51,11 @@ const getList = (member) => {
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
 			result.forEach(res => {
+			
+				if(res.lastLoginDate == null) {
+					res.lastLoginDate = "";
+				}
+			
 				let newEl = document.createElement('tr');
 				newEl.setAttribute( 'onclick', 'listHandler(this)' );
 				let content = `
@@ -123,19 +141,16 @@ const listHandler = (e) => {
 			if(res.lastLoginDate == null) {
 				res.lastLoginDate = 'No Log';
 			}
-		
 			$("input[name=memberId]").val(res.memberId);			
 			$("input[name=memberEmail]").val(res.memberEmail);			
 			$("input[name=memberName]").val(res.memberName);			
 			$("input[name=memberPhone]").val(res.memberPhone);			
 			$("input[name=regDate]").val(res.regDate);			
 			$("input[name=lastLoginDate]").val(res.lastLoginDate);			
-			$("input[name=memberBirth]").val(res.memberBirth);			
-			$("input[name=memberAuth]").val(res.authList.memberAuth).prop("selected", true);			
+			$("#memberAuth").val(res.authList[0].memberAuth).prop("selected", true);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
-			history.back();
 		} 
 	});
 	profileContainer.style.display = 'block';

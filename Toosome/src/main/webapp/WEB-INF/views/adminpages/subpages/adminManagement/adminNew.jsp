@@ -22,9 +22,6 @@
 <link
 	href="/resources/css/adminpages/subpages/adminManagement/adminNew.css"
 	rel="stylesheet" />
-<script
-	src="/resources/js/adminpages/subpages/adminManagement/adminNew.js"
-	defer></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -36,25 +33,26 @@
 							<div class="card card-profile">
 								<div class="card-body">
 									<h4 class="card-title">운영자 등록</h4>
-									<h6 class="card-category text-gray">운영자 등록 시 작성한 이메일 주소로 알림 메일이 발송됩니다.</h6>
-									<form action="#">
+									<h6 class="card-category text-gray">운영자 등록 시 작성한 이메일 주소.로 알림 메일이 발송됩니다.</h6>
+									<form action="/admin/register" id="regForm" method="post">
 										<div class="flex-temp">
 											<span class="card-description">권한설정:</span>
-											<select class="custom-select">
-												<option value="">권한이름</option>
+											<select class="custom-select" name="memberAuth">
+												<option value="ROLE_ADMIN">권한이름</option>
 												<option value="ROLE_HEAD">ROLE_HEAD</option>
 												<option value="ROLE_ADMIN">ROLE_ADMIN</option>
 											</select>
 										</div>
 										<div class="flex-temp">
 											<span class="card-description">운영자명:</span>
-											<input type="text" class="form-control" placeholder="운영자명을 입력하세요">
+											<input type="text" name="memberName" id="name" class="form-control" placeholder="운영자명을 입력하세요">
 										</div>
 										<div class="flex-temp">
 											<span class="card-description">이메일:</span>
-											<input type="email" class="form-control" placeholder="이메일을 입력하세요">
+											<input type="email" name="memberEmail" id="email" class="form-control" placeholder="이메일을 입력하세요">
 										</div>
 										<button type="submit" class="btn btn-rose btn-round">등록</button>
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 									</form>
 								</div>
 							</div>
