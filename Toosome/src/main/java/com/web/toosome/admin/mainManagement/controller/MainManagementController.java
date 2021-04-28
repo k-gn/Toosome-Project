@@ -29,6 +29,11 @@ public class MainManagementController {
 	public String admin(Model model) {
 		model.addAttribute("visitCount", visitService.visitCount());
 		model.addAttribute("regCount", mainService.getRegCount());
+		model.addAttribute("newNoticeList", mainService.getNewNoticeList());
+		model.addAttribute("newQnaList", mainService.getNewQnaList());
+		model.addAttribute("orderCount", mainService.getOrderCount());
+		model.addAttribute("sales", mainService.getSales());
+		model.addAttribute("manualPath", "https://toosome.s3.ap-northeast-2.amazonaws.com/download/");
 		return "adminpages/index";
 	}
 	

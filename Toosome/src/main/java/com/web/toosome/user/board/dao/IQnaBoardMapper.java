@@ -20,4 +20,6 @@ public interface IQnaBoardMapper {
 	
 	// 해당 회원 qna 전체 삭제
 	public void delQna(Integer id);
+	
+	public List<QnaBoardVO> getNewQnaList();
 }

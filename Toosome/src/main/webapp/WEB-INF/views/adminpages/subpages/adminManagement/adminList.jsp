@@ -107,7 +107,7 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input name="memberEmail" type="email" class="form-control" disabled>
+		                          <input name="email" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -153,7 +153,7 @@
 		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                    <input type="hidden" name="memberEmail" value="${email}">
+		                    <input type="hidden" name="memberEmail">
 		                  </form>
 		                </div>
 		              </div>

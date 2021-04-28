@@ -167,6 +167,7 @@ const listHandler = (e) => {
 				res.lastLoginDate = 'No Log';
 			}
 			$("input[name=memberId]").val(res.memberId);			
+			$("input[name=email]").val(res.memberEmail);			
 			$("input[name=memberEmail]").val(res.memberEmail);			
 			$("input[name=memberName]").val(res.memberName);			
 			$("input[name=memberPhone]").val(res.memberPhone);			
