@@ -149,7 +149,7 @@
 		                      </div>
 		                    </div>
 		                    <input type="submit" class="btn btn-rose pull-right" value="업데이트"/>
-		                    <input type="button" id="modal-delete" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
+		                    <input type="button" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
 		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
