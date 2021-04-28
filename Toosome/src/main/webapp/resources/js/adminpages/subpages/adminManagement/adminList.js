@@ -12,10 +12,8 @@ let keyword = '';
 let member = {};
 
 const formElement = $("#formObj");
-const delBtn = $("#modal-cancel");
 
 function delBtnFunc() {
-	console.log("수정 버튼이 클릭됨!")
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		formElement.attr("action", "/admin/del");
@@ -32,8 +30,68 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
+// 리스트 출력하기
+const showList = (result, wrapper) => {
+	wrapper.innerHTML = ''; // 테이블 초기화
+	
+	// 검색 결과가 없을 경우
+	if(result.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="6">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+		return;
+	};
+	
+	// loop를 돌며 element 생성 후 삽입
+	for (let i = 0; i < result.length; i++) {
+		if(result[i].lastLoginDate == null) {
+			result[i].lastLoginDate = "";
+		};
+
+		let newEl = document.createElement('tr');
+		newEl.setAttribute( 'onclick', 'listHandler(this)' );
+		let content = `
+          <td>
+            ${result[i].memberId}
+          </td>
+          <td>
+            ${result[i].authList[0].memberAuth}
+          </td>
+          <td>
+            ${result[i].memberEmail}
+          </td>
+          <td>
+            ${result[i].memberName}
+          </td>
+          <td>
+            ${result[i].regDate}
+          </td>
+          <td>
+            ${result[i].lastLoginDate}
+          </td>
+		`;
+		newEl.innerHTML = content;
+		wrapper.appendChild(newEl);
+	};	
+};
+
+// 페이징 처리 후 데이터 출력
+const setData = (result, wrapper) => {
+	$('#pagination').pagination({
+	    dataSource: result,
+	    pageSize: 5,
+	    pageNumber: 5,
+	    callback: function(data, pagination) {
+			showList(data, wrapper);					
+	    }
+	});
+};
+
 // AJAX 검색 리스트 불러오기
-const getList = (member) => {
+const getList = (member, wrapper) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -44,43 +102,10 @@ const getList = (member) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
-			
-			// 리스트 생성 후 삽입
-			listTable.innerHTML = '';
+			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
-			result.forEach(res => {
-			
-				if(res.lastLoginDate == null) {
-					res.lastLoginDate = "";
-				}
-			
-				let newEl = document.createElement('tr');
-				newEl.setAttribute( 'onclick', 'listHandler(this)' );
-				let content = `
-                  <td>
-                    ${res.memberId}
-                  </td>
-                  <td>
-                    ${res.authList[0].memberAuth}
-                  </td>
-                  <td>
-                    ${res.memberEmail}
-                  </td>
-                  <td>
-                    ${res.memberName}
-                  </td>
-                  <td>
-                    ${res.regDate}
-                  </td>
-                  <td>
-                    ${res.lastLoginDate}
-                  </td>
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
+			setData(result, wrapper);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -113,7 +138,7 @@ const submitHandler = () => {
 		keyword
 	};
 	
-	getList(member);
+	getList(member,listTable);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -214,5 +239,5 @@ const excelDownload = (id, title) => {
 };
 
 $(document).ready(() => {
-	getList(member);
+	getList(member, listTable);
 }); 

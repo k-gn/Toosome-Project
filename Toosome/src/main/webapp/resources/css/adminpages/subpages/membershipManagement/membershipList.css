@@ -145,6 +145,15 @@
 	cursor: pointer;
 }
 
+/* Pagination start */
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
+
+/* Modal start */
+
 .modal {
 	display: none;
 	position: fixed;

@@ -7,7 +7,9 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
     <link rel="stylesheet" href="/resources/css/subpages/qna/qna.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
     <script type="text/javascript">
