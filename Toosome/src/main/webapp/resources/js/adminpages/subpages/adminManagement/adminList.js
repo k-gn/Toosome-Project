@@ -12,10 +12,8 @@ let keyword = '';
 let member = {};
 
 const formElement = $("#formObj");
-const delBtn = $("#modal-cancel");
 
 function delBtnFunc() {
-	console.log("수정 버튼이 클릭됨!")
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		formElement.attr("action", "/admin/del");
