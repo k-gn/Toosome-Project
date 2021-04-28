@@ -2,6 +2,8 @@ package com.web.toosome.user.product.vo;
 
 import java.util.Date;
 
+import com.web.toosome.user.member.vo.MemberVO;
+import com.web.toosome.user.reviewboard.vo.ReviewBoardVO;
 
 import lombok.Data;
 
@@ -28,4 +30,6 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
+	private ReviewBoardVO reviewBoardVO;
+	private MemberVO memberVO;
 }

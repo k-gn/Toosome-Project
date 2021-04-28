@@ -22,6 +22,8 @@
 		<result property="productOnoff" column="PRODUCT_ONOFF" />
 		<collection property="productImageVO" resultMap="productImageVO" />
 		<collection property="productPrecautionsVO" resultMap="productPrecautionsVO" />
+	<!--	<collection property="reviewBoardVO" resultMap="reviewBoardVO" />
+		<collection property="memberVO" resultMap="memberVO" /> -->
 	</resultMap>
 
 	<resultMap type="productImageVO" id="productImageVO">
@@ -44,7 +46,37 @@
 		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
 		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
 	</resultMap>
-
+<!--	
+	<resultMap type="reviewBoardVO" id="reviewBoardVO">
+		<id property="reviewBoardId" column="REVIEW_BOARD_ID" />
+		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="reviewBoardWriter" column="REVIEW_BOARD_WRITER" />
+		<result property="reviewBoardContent" column="REVIEW_BOARD_CONTENT" />
+		<result property="reviewBoardRating" column="REVIEW_BOARD_RATING" />
+		<result property="reviewBoardType" column="REVIEW_BOARD_TYPE" />
+		<result property="reviewBoardRegDate" column="REVIEW_BOARD_REG_DATE" />
+		<result property="reviewBoardImageRoute" column="REVIEW_BOARD_IMAGE_ROUTE" />
+	</resultMap>
+	
+	<resultMap type="memberVO" id="memberVO">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+		<result property="memberEnabled" column="MEMBER_ENABLED"/>
+	</resultMap>
+-->
 	<select id="getproductnewList" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
@@ -130,13 +162,72 @@
 		C.PRODUCT_PRECAUTIONS_CONTENT2,
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
 		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF	
+		C.PRODUCT_PRECAUTIONS_ONOFF
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
 		INNER JOIN 
 		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
-		WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3;
+        WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3
 	</select> 
+	 <!-- 댓글 목록 -->
+  <!--   
+  <select id="getproductDetail" resultMap="productVO" parameterType="productVO">
+		SELECT A.PRODUCT_ID,
+		A.PRODUCT_TITLE_NAME,
+		A.PRODUCT_SUB_NAME,
+		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		A.PRODUCT_TYPE,
+		A.PRODUCT_REG_DATE,
+		A.PRODUCT_REMAINING_AMOUNT,
+		A.PRODUCT_RECEIVED_AMOUNT,
+		A.PRODUCT_RECEIVED_PRICE,
+		A.PRODUCT_LIMIT_AMOUNT,
+		A.PRODUCT_START_DAY,
+		A.PRODUCT_CHECK_COUNT,
+		A.PRODUCT_STATE,
+		A.PRODUCT_NEW,
+		A.PRODUCT_ONOFF,
+		B.PRODUCT_IMAGE_NAME,
+		B.PRODUCT_IMAGE_EXTENTION,
+		B.PRODUCT_IMAGE_ROUTE,
+		C.PRODUCT_PRECAUTIONS_ID,
+		C.PRODUCT_PRECAUTIONS_TITLE,
+		C.PRODUCT_PRECAUTIONS_CONTENT,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME1,
+		C.PRODUCT_PRECAUTIONS_CONTENT1,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME2,
+		C.PRODUCT_PRECAUTIONS_CONTENT2,
+		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
+		C.PRODUCT_PRECAUTIONS_CONTENT3,
+		C.PRODUCT_PRECAUTIONS_ONOFF,
+		D.REVIEW_BOARD_CONTENT,
+        D.PRODUCT_PRODUCT_ID,
+        D.REVIEW_BOARD_REG_DATE,
+        D.REVIEW_BOARD_WRITER,
+        F.MEMBER_ID AS REVIEW_BOARD_WRITER
+		FROM PRODUCT A INNER JOIN
+		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
+		INNER JOIN 
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
+		INNER JOIN
+        REVIEW_BOARD D ON (A.PRODUCT_ID = D.PRODUCT_PRODUCT_ID)
+        INNER JOIN
+        MEMBER F ON (D.MEMBER_MEMBER_ID = F.MEMBER_ID)
+        WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3
+	</select> 
+  <select id="getreviewList" resultType="reviewBoardVO">
+		SELECT A.REVIEW_BOARD_CONTENT,
+		B.PRODUCT_ID,
+        B.PRODUCT_STATE,
+        C.MEMBER_ID,
+		C.MEMBER_NAME AS REVIEW_BOARD_WRITER
+        FROM REVIEW_BOARD A INNER
+        JOIN PRODUCT B ON (A.PRODUCT_PRODUCT_ID = B.PRODUCT_ID) 
+        INNER
+        JOIN MEMBER C ON (A.MEMBER_MEMBER_ID = C.MEMBER_ID)
+        WHERE  B.PRODUCT_ID=#{productProductId} AND B.PRODUCT_STATE != 3 AND C.MEMBER_ID=#{memberMemberId};
+    </select>-->
 	<select id="getproductDetailById" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
