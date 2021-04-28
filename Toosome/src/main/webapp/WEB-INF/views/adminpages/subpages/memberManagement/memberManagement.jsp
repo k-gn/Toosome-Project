@@ -8,7 +8,9 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/memberManagement/memberManagement.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/memberManagement/memberManagement.js" defer></script>
   <script type="text/javascript">
@@ -245,8 +247,8 @@
                     <div class="select-box">
 	                    <select id="memberList-select" onchange="selectHandler(this);">
 	                      <option value="10000">전체보기</option>
-	                      <option value="3">3개씩 보기</option>
-	                      <option value="5">5개씩 보기</option>
+	                      <option value="30">30개씩 보기</option>
+	                      <option value="50">50개씩 보기</option>
 	                      <option value="10">10개씩 보기</option>
 	                      <option value="200">200개씩 보기</option>
 	                    </select>
