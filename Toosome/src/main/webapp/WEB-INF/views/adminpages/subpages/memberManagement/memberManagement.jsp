@@ -247,8 +247,8 @@
                     <div class="select-box">
 	                    <select id="memberList-select" onchange="selectHandler(this);">
 	                      <option value="10000">전체보기</option>
-	                      <option value="3">3개씩 보기</option>
-	                      <option value="5">5개씩 보기</option>
+	                      <option value="30">30개씩 보기</option>
+	                      <option value="50">50개씩 보기</option>
 	                      <option value="10">10개씩 보기</option>
 	                      <option value="200">200개씩 보기</option>
 	                    </select>
