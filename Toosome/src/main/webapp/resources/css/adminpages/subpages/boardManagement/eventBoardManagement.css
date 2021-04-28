@@ -185,13 +185,13 @@
 	width: 100vw;
 	height: 100vh;
 	background: rgba(0,0,0,0.4);
+	overflow-y: auto;
 }
 
 .profile-container {
 	width: 1000px;
-	height: 560px;
 	position: absolute;
-	top: calc(50% - 280px);
+	top: calc(10%);
 	left: calc(50% - 500px);
 	background: #fff;
 	margin: 0 auto;

@@ -2,6 +2,7 @@ package com.web.toosome.user.member.dao;
 
 import java.util.Map;
 
+import com.web.toosome.admin.adminManagement.vo.AdminVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberMapper {
@@ -16,10 +17,10 @@ public interface IMemberMapper {
 	public void registerMemberAuth(String email);
 	
 	// 회원 등록 (관리자)
-	public int registerAdmin(MemberVO member);
+	public int registerAdmin(AdminVO member);
 	
 	// 회원 권한 등록 (관리자)
-	public void registerAdminAuth(String email);
+	public void registerAdminAuth(AdminVO member);
 
 	// 이메일로 회원 조회
 	public MemberVO getUserByEmail(String email);

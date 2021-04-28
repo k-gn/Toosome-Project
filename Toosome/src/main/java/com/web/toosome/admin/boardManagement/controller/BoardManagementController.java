@@ -43,7 +43,7 @@ public class BoardManagementController {
 	
 	
 	//관리자 이벤트 디테일 페이지  값
-	@GetMapping(value = "{id}" , produces = "application/json")
+	@GetMapping(value = "/admin/eventdetail/{id}" , produces = "application/json")
 	@ResponseBody
 	public EventBoardVO eventBoardDetail(@PathVariable Integer id){
 		EventBoardVO detail = eventboardservice.eventBoardDetail(id);

@@ -94,6 +94,12 @@
 	cursor: pointer;
 }
 
+.custom-select {
+	width: 100%;
+}
+
+/* Modal start */
+
 .modal {
 	display: none;
 	position: fixed;
@@ -107,9 +113,8 @@
 
 .profile-container {
 	width: 1000px;
-	height: 560px;
 	position: absolute;
-	top: calc(50% - 280px);
+	top: calc(30%);
 	left: calc(50% - 500px);
 	background: #fff;
 	margin: 0 auto;

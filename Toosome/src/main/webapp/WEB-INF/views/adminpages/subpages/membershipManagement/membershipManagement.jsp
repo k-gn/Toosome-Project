@@ -46,7 +46,7 @@
 		                  </select>
 		                </div>
 		                <div class="card-body">
-		                  <form id="lvlForm" enctype="multipart/form-data" action="/admin/addlvl?${_csrf.parameterName}=${_csrf.token}" method="post">
+		                  <form role='form' enctype="multipart/form-data" action="/admin/addlvl?${_csrf.parameterName}=${_csrf.token}" method="post">
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
@@ -57,7 +57,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 이름</label>
-		                          <input type="text" name="levelName" class="form-control">
+		                          <input type="text" name="levelName" id="name" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -65,7 +65,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">등급 조건 (MIN)</label>
-		                          <input type="text" name="levelMinRange" class="form-control">
+		                          <input type="text" name="levelMinRange" id="min" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
@@ -79,19 +79,19 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">할인율 (%)</label>
-		                          <input type="text" name="levelDiscountRate" class="form-control">
+		                          <input type="text" name="levelDiscountRate" id="rate1" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">적립률 (%)</label>
-		                          <input type="text" name="levelPointRate" class="form-control">
+		                          <input type="text" name="levelPointRate" id="rate2" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송비</label>
-		                          <input type="text" name="levelDeliveryPay" class="form-control">
+		                          <input type="text" name="levelDeliveryPay" id="dpay" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -106,7 +106,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="file" />
+								            <input type="file" name="file" id="file" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
 								    </div>

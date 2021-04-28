@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section {
-	width: 1000px;
+	max-width: 1000px;
 	height: auto;
 	color: #222222;
 	box-sizing: border-box;
@@ -163,4 +163,12 @@ section {
 
 .next td:last-child a:hover {
 	text-decoration: underline;
+}
+
+
+@media screen and (max-width: 800px) {
+	
+	.navigation-container {
+		width: 50%;
+	}
 }

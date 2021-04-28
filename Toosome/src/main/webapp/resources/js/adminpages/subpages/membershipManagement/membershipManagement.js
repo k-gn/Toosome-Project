@@ -1,5 +1,6 @@
-let selectLevel = document.getElementById("lvl");
 const lvlImgPath = "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/membership/tier/";
+let selectLevel = document.getElementById("lvl");
+const lvlBtn = document.querySelector("#lvlBtn");
 
 function changeLevel() {
 
@@ -62,3 +63,39 @@ $(document).ready(() => {
 		}
 	});
 }); 
+
+const name = document.querySelector("#name");
+const min = document.querySelector("#min");
+const rate1 = document.querySelector("#rate1");
+const rate2 = document.querySelector("#rate2");
+const dpay = document.querySelector("#dpay");
+const file = document.querySelector("#file");
+
+const FormCheck = (e) => {
+
+	let formObj = $("form[role='form']");
+	const num_check=/^[0-9]*$/;
+	e.preventDefault();
+	if(name.value === "" || name.value.length < 2) {
+		alert("이름값이 올바르지 않습니다.(3글자 이상)");
+	}else if(min.value === "" || !num_check.test(min.value)) {
+		alert("등급조건이 올바르지 않습니다.");
+	}else if(rate1.value === "" || !num_check.test(rate1.value)) {
+		alert("할인율이 올바르지 않습니다.");
+	}else if(rate2.value === "" || !num_check.test(rate2.value)) {
+		alert("적립율이 올바르지 않습니다.");
+	}else if(dpay.value === "" || !num_check.test(dpay.value)) {
+		alert("배송비가 올바르지 않습니다.");
+	}else if(file.value === "") {
+		alert("파일을 선택해주세요.");
+	}else {
+		formObj.submit();
+	}
+
+};
+
+
+
+// event hook
+lvlBtn.addEventListener("click", FormCheck);
+

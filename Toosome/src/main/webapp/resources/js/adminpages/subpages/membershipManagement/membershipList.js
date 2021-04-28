@@ -189,7 +189,7 @@ const listHandler = (e) => {
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			console.log(res.levelId);
 			$("input[name=membershipId]").val(res.membershipId);			
-			$("#lvl").val(res.levelId).prop("selected", true);;			
+			$("#lvl").val(res.levelId).prop("selected", true);			
 			$("input[name=memberEmail]").val(res.member.memberEmail);			
 			$("input[name=memberName]").val(res.member.memberName);			
 			$("input[name=membershipPoint]").val(res.membershipPoint);			

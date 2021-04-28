@@ -27,7 +27,7 @@
 		<security:csrf disabled="false"/> 
 		
 		<security:logout
-			logout-url="/dologout"
+			logout-url="/admin/dologout"
 			logout-success-url="/admin/signin"
 			invalidate-session="true"
 			delete-cookies="remember-me, JSESSION_ID"/>

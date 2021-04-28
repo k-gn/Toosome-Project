@@ -68,6 +68,7 @@ public class BasketController {
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		MemberVO memberList = memberService.getUserById(memberId);
 		Map<String, String> map = new HashMap<>();
+		System.out.println(memberList);
 		if(memberList.getMemberPhone() != null && memberList.getMemberAddress() != null) {
 			// 01040178803
 			String tel1 = memberList.getMemberPhone().substring(0, 3);
