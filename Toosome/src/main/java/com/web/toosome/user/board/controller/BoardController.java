@@ -235,6 +235,7 @@ public class BoardController {
 		}
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	public String qnaDetailView(String index) {
 		return "subpages/qna/qnaDetail/qnaDetail";

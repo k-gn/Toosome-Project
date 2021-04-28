@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="ko">
 
@@ -194,19 +195,27 @@
                   <div class="tab-content">
                     <div class="tab-pane active" id="notice">
                       <table class="table">
+                      <!-- 공지사항 -->
                         <tbody>
-                          <tr>
-                            <td><a href="#">Sign contract for "What are conference organizers afraid of?"</a></td>
-                          </tr>
+                          <c:forEach var="notice" items="${newNoticeList}">
+                          	<tr>
+                          		<td width="10%">${notice.noticeBoardId}</td>
+                          		<td width="90%"><a href="/notice-detail?index=${notice.noticeBoardId}">${notice.noticeBoardTitle}</a></td>
+                          	</tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
                     <div class="tab-pane" id="qna">
                       <table class="table">
+                      <!-- 문의사항 -->
                         <tbody>
-                          <tr>
-                            <td><a href="#">Flooded: One year later, assessing what was lost and what was found when a ravaging</a></td>
-                          </tr>
+                          <c:forEach var="qna" items="${newQnaList}">
+                          	<tr>
+                          		<td width="10%">${qna.qnaBoardId}</td>
+                          		<td width="90%"><a href="/qna-detail?index=${qna.qnaBoardId}">${qna.qnaBoardTitle}</a></td>
+                          	</tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>

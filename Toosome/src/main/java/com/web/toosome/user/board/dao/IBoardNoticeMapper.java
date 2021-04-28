@@ -21,12 +21,10 @@ public interface IBoardNoticeMapper {
 	//조회수 업데이트 기능
 	public void NoticeBoardCount(String index);
 	
-	
-	
 	public void updateNoticeBoard(NoticeBoardVO noticeboard) ;
 		
-
-
 	public void deleteNoticeBoard(int noticeBoardId);
+	
+	public List<NoticeBoardVO> getNewNoticeList();
 	
 }

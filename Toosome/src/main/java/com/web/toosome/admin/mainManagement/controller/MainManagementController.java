@@ -29,6 +29,8 @@ public class MainManagementController {
 	public String admin(Model model) {
 		model.addAttribute("visitCount", visitService.visitCount());
 		model.addAttribute("regCount", mainService.getRegCount());
+		model.addAttribute("newNoticeList", mainService.getNewNoticeList());
+		model.addAttribute("newQnaList", mainService.getNewQnaList());
 		return "adminpages/index";
 	}
 	

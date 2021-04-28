@@ -55,12 +55,9 @@ public class BoardNoticeService implements IBoardNoticeService {
 	@Override
 	public void NoticeBoardCount(String index) throws Exception {
 		mapper.NoticeBoardCount(index);
-
 		
 	}
 	
-
-
 	
 	
 	
