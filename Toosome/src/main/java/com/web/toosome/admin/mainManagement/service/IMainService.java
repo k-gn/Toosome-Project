@@ -17,5 +17,7 @@ public interface IMainService {
 	public List<QnaBoardVO> getNewQnaList();
 	
 	public Integer getOrderCount();
+	
+	public Integer getSales();
 
 }

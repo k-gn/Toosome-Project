@@ -62,7 +62,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">전날 매출액</p>
-                  <h3 class="card-title">4,000,000
+                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales}" />
                   	<small>원</small>
                   </h3>
                 </div>

@@ -49,4 +49,9 @@ public class MainService implements IMainService {
 		return mapper.getOrderCount();
 	}
 
+	@Override
+	public Integer getSales() {
+		return mapper.getSales();
+	}
+
 }

@@ -13,6 +13,7 @@ public interface IMainMapper {
 	public Integer getOrderCount();
 	
 	// 전날 매출
+	public Integer getSales();
 	
 	// 데일리 세일즈
 	
