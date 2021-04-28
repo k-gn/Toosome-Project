@@ -2,6 +2,8 @@ package com.web.toosome.user.board.vo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -10,7 +12,7 @@ public class NoticeBoardVO {
 	private String noticeBoardTitle;
 	private String noticeBoardContent;
 	private Integer noticeBoardViewCount;
-//	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date noticeBoardRegdate;
 
 	
