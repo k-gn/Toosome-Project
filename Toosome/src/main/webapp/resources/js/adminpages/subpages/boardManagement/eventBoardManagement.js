@@ -17,6 +17,7 @@ let board = {};
 let keyword = ''; // 검색 제목
 let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
+let rows = 10000;
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -127,10 +128,10 @@ const showList = (result, wrapper) => {
 };
 
 // 페이징 처리 후 데이터 출력
-const setData = (result, wrapper) => {
+const setData = (result, wrapper, rows) => {
 	$('#pagination').pagination({
 	    dataSource: result,
-	    pageSize: 5,
+	    pageSize: rows,
 	    pageNumber: 5,
 	    callback: function(data, pagination) {
 			showList(data, wrapper);					
@@ -139,7 +140,7 @@ const setData = (result, wrapper) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (url, board, wrapper) => {
+const getList = (url, board, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -154,7 +155,7 @@ const getList = (url, board, wrapper) => {
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
 			const newRes = result.reverse();
-			setData(newRes, wrapper);
+			setData(newRes, wrapper, rows);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -187,7 +188,8 @@ const submitHandler = () => {
 		endRegDate,
 	};
 	url = '/admin/eventboardsearch';
-	getList(url, board, listTable, rows, currentPage);
+	rows = 10000;
+	getList(url, board, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -237,15 +239,14 @@ const selectHandler = (select) => {
 	let value = select.options[select.selectedIndex].value;
 	
 	// init
-	currentPage = 1;
 	rows = +value;
 	url = '/admin/eventboardmanagement';
-	getList(url, board, listTable);
+	getList(url, board, listTable, rows);
 };
 
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
 	url = '/admin/eventboardmanagement';
-	getList(url, board, listTable); 
+	getList(url, board, listTable, rows); 
 }); 
