@@ -5,23 +5,27 @@
 #img-wrap .slide .img1 .img-title {
 	max-width: 1000px;
 	text-align: center;
-	margin-top: 200px;
-	margin-left: calc(50% - 500px);
+	position: absolute;
+	top: 200px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #img-wrap .slide .img2 .img-title {
 	max-width: 700px;
 	height: 280px;
-	margin-top: 250px;
-	margin-left: 1000px;
+	position: absolute;
+	top: 250px;
+	right: 100px;
 }
 
 #img-wrap .slide .img3 .img-title {
 	max-width: 700px;
 	height: 280px;
 	text-align: center;
-	margin-top: 300px;
-	margin-left: 20px;	
+	position: absolute;
+	top: 300px;
+	left: 100px;
 }
 
 #img-wrap .slide .img-title .img-content {
@@ -44,17 +48,12 @@
   display: block;
   width: 100%;
   height: 100vh;
-  background: no-repeat center /cover;
-  
+  position: relative;
 }
-#img-wrap .slide .slide-imgs li.img1 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main1.png");
-}
-#img-wrap .slide .slide-imgs li.img2 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main2.png");
-}
-#img-wrap .slide .slide-imgs li.img3 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main3.png");
+#img-wrap .slide .slide-imgs li img {
+	display: block;
+	width: 100vw;
+	height: 100vh;
 }
 #img-wrap .slide p {
   position: absolute;
@@ -530,34 +529,18 @@
 /******************** map-end **************************/
 
 /* 반응형 start */
-@media screen and (max-width: 1450px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 800px;
-	}
-}
-
-@media screen and (max-width: 1250px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 600px;
-	}
-}
-
 @media screen and (max-width: 1120px) {
 	
 	#img-wrap .slide .img1 .img-title {
-		margin-top: 100px;
+		top: 35%;
 	}
 	
 	#img-wrap .slide .img2 .img-title {
-		margin-top: 100px;
+		top: 40%;
 	}
 	
 	#img-wrap .slide .img3 .img-title {
-		margin-top: 100px;
-		text-align: left;
-		margin-left: 50px;
+		top: 35%;
 	}
 	
 	#img-wrap .slide .img1 .img-title .img-content {
@@ -578,11 +561,18 @@
 	}
 	
 	#img-wrap .slide {
-	  height: 500px;
+	  height: auto;
+	  margin-bottom: -50px;
 	}
 	#img-wrap .slide .slide-imgs li {
-	  height: 500px;
+	  height: auto;
 	}
+	#img-wrap .slide .slide-imgs li img {
+		display: block;
+		width: 100vw;
+		height: auto;
+	}
+		
 	
 		
 	
@@ -612,15 +602,12 @@
 
 @media screen and (max-width: 1100px) {
 	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 550px;
-	}
 }
 
 @media screen and (max-width: 1000px) {
 	
 	#img-wrap .slide .img2 .img-title {
-		margin-left: 450px;
+		top: 30%;
 	}
 	
 	
@@ -682,17 +669,36 @@
 	}
 }
 
+@media screen and (max-width: 900px) {
+	
+	#img-wrap .slide .img2 .img-title .img-content {
+		font-size: 3rem;
+	}
+	#img-wrap .slide .img3 .img-title .img-content {
+		font-size: 3rem;
+	}
+}
+
 @media screen and (max-width: 800px) {
 	
 	#img-wrap .slide .img1 .img-title {
-		margin: 100px auto 0;
+		top: 20%;
+	}
+	#img-wrap .slide .img3 .img-title {
+		top: 25%;
+	}
+	#img-wrap .slide .img2 .img-title .img-content {
+		font-size: 2.5rem;
+	}
+	#img-wrap .slide .img3 .img-title .img-content {
+		font-size: 2.75rem;
 	}
 }
 
 @media screen and (max-width: 770px) {
 	
 	#img-wrap .slide .img2 .img-title {
-		margin-left: 350px;
+		top: 30%;
 	}
 	
 	#new-menu .new {
@@ -705,6 +711,16 @@
 }
 
 @media screen and (max-width: 700px) {
+	
+	#img-wrap .slide .img2 .img-title {
+		right: 50px;
+	}
+	#img-wrap .slide .img2 .img-title .img-content {
+		font-size: 2.25rem;
+	}
+	#img-wrap .slide .img3 .img-title .img-content {
+		font-size: 2.5rem;
+	}
 	
 	#new-menu .new-wrap .new-more {
 		width: 100px;
@@ -728,6 +744,9 @@
 	#img-wrap .slide .img-title .img-content small {
 		font-size: 3rem;
 	}
+	#img-wrap .slide .img3 .img-title .img-content {
+		font-size: 2rem;
+	}
 	
 	#new-menu .new-wrap .new-more {
 		width: 100px;
@@ -744,7 +763,7 @@
 @media screen and (max-width: 630px) {
 	
 	#img-wrap .slide .img2 .img-title {
-		margin-left: 250px;
+		
 	}
 	#new-menu .new-wrap .new-more {
 		width: 100px;
@@ -768,7 +787,7 @@
 		font-size: 2.5rem;
 	}
 	#img-wrap .slide .img2 .img-title .img-content {
-		font-size: 3rem;
+		font-size: 2rem;
 	}
 }
 
