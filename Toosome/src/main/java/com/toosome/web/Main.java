@@ -16,12 +16,16 @@ public class Main {
 	
 		File file = new File("C:\\ex.png");
 		String key = "img/main123.png";
-		main.upload(file, key);
-
+	//	main.upload(file, key);
+		main.delete(key);
 	}
 
 	public void upload(File file, String key) {
 		awsS3.upload(file, key);
+	}
+	
+	public void delete(String key) {
+		awsS3.delete(key);
 	}
 	
 }
