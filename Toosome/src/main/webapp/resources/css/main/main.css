@@ -3,21 +3,21 @@
 /******************** imgSlide-start *******************/
 
 #img-wrap .slide .img1 .img-title {
-	width: 1000px;
+	max-width: 1000px;
 	text-align: center;
 	margin-top: 200px;
 	margin-left: calc(50% - 500px);
 }
 
 #img-wrap .slide .img2 .img-title {
-	width: 700px;
+	max-width: 700px;
 	height: 280px;
 	margin-top: 250px;
 	margin-left: 1000px;
 }
 
 #img-wrap .slide .img3 .img-title {
-	width: 700px;
+	max-width: 700px;
 	height: 280px;
 	text-align: center;
 	margin-top: 300px;
@@ -529,9 +529,32 @@
 /******************** map-end **************************/
 
 /* 반응형 start */
+@media screen and (max-width: 1450px) {
+	
+	#img-wrap .slide .img2 .img-title {
+		margin-left: 800px;
+	}
+}
 
+@media screen and (max-width: 1250px) {
+	
+	#img-wrap .slide .img2 .img-title {
+		margin-left: 600px;
+	}
+}
 
 @media screen and (max-width: 1120px) {
+	
+	#img-wrap .slide .img1 .img-title {
+		margin-top: 100px;
+	}
+	#img-wrap .slide .img1 .img-title .img-content {
+		font-size: 3.75rem;
+	}
+	
+	#img-wrap .slide .img-title .img-content small {
+		font-size: 3.25rem;
+	}
 	
 	#img-wrap .slide {
 	  height: 500px;
@@ -539,6 +562,8 @@
 	#img-wrap .slide .slide-imgs li {
 	  height: 500px;
 	}
+	
+		
 	
 	#new-menu {
 	  height: auto;
