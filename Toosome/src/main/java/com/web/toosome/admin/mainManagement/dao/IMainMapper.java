@@ -10,6 +10,7 @@ public interface IMainMapper {
 	public Integer getRegCount();
 	
 	// 전날 주문건수
+	public Integer getOrderCount();
 	
 	// 전날 매출
 	

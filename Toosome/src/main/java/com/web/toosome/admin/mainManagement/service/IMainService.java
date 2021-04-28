@@ -15,5 +15,7 @@ public interface IMainService {
 	public List<NoticeBoardVO> getNewNoticeList();
 	
 	public List<QnaBoardVO> getNewQnaList();
+	
+	public Integer getOrderCount();
 
 }

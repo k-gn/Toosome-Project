@@ -31,6 +31,8 @@ public class MainManagementController {
 		model.addAttribute("regCount", mainService.getRegCount());
 		model.addAttribute("newNoticeList", mainService.getNewNoticeList());
 		model.addAttribute("newQnaList", mainService.getNewQnaList());
+		model.addAttribute("orderCount", mainService.getOrderCount());
+		model.addAttribute("manualPath", "https://toosome.s3.ap-northeast-2.amazonaws.com/download/");
 		return "adminpages/index";
 	}
 	

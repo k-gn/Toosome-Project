@@ -44,4 +44,9 @@ public class MainService implements IMainService {
 		return qnaMapper.getNewQnaList();
 	}
 
+	@Override
+	public Integer getOrderCount() {
+		return mapper.getOrderCount();
+	}
+
 }

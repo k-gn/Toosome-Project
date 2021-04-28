@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="ko">
 
@@ -42,7 +44,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">전날 주문건수</p>
-                  <h3 class="card-title">10
+                  <h3 class="card-title">${orderCount}
                     <small>건</small>
                   </h3>
                 </div>
@@ -260,19 +262,19 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <td><a href="#"><i class="material-icons">production_quantity_limits</i>&nbsp;&nbsp;&nbsp;상품관리 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual1.pdf" target='_blank'><i class="material-icons">production_quantity_limits</i>&nbsp;&nbsp;&nbsp;상품관리 매뉴얼</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#"><i class="material-icons">inbox</i>&nbsp;&nbsp;&nbsp;주문/취소 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual2.pdf" target='_blank'><i class="material-icons">inbox</i>&nbsp;&nbsp;&nbsp;주문/취소 매뉴얼</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#"><i class="material-icons">imagesearch_roller</i>&nbsp;&nbsp;&nbsp;디자인 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual3.pdf" target='_blank'><i class="material-icons">imagesearch_roller</i>&nbsp;&nbsp;&nbsp;디자인 매뉴얼</a></td>
                       </tr>
                       <tr>  
-                        <td><a href="#"><i class="material-icons">settings</i>&nbsp;&nbsp;&nbsp;설정/기타 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual4.pdf" target='_blank'><i class="material-icons">settings</i>&nbsp;&nbsp;&nbsp;설정/기타 매뉴얼</a></td>
                       </tr>
                       <tr>  
-                        <td><a href="#"><i class="material-icons">device_unknown</i>&nbsp;&nbsp;&nbsp;모바일 어드민 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual5.pdf" target='_blank'><i class="material-icons">device_unknown</i>&nbsp;&nbsp;&nbsp;모바일 어드민 매뉴얼</a></td>
                       </tr>
                     </tbody>
                   </table>
