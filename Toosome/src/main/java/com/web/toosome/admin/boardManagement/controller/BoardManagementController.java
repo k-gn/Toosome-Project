@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.boardManagement.service.IEventAdminService;
+import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
+import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 
 
@@ -27,6 +29,9 @@ public class BoardManagementController {
 	
 	@Autowired
 	private IEventAdminService eventboardservice;
+	
+	@Autowired
+	private INoticeAdminService noticeboardservice;
 	
 	@Autowired
 	private S3Service awsS3;
@@ -89,7 +94,7 @@ public class BoardManagementController {
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
 			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
-			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName();
+			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 			System.out.println(key);
 			awsS3.upload(file, key);
 			
@@ -97,7 +102,7 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName();
+			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 		
@@ -156,7 +161,7 @@ public class BoardManagementController {
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
 			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
-			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName();
+			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 			System.out.println(key);
 			awsS3.upload(file, key);
 			
@@ -164,7 +169,7 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName();
+			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 		
@@ -175,9 +180,18 @@ public class BoardManagementController {
 	
 	
 	
-	@GetMapping("/admin/noticeboard-management") // 공지사항 게시판 관리
-	public String NoticeBoardManagement() {
+	@RequestMapping("/admin/noticeboard-management") // 공지사항 게시판 관리
+	public String NoticeBoardManagementView() {
 		return "adminpages/subpages/boardManagement/noticeBoardManagement";
+	}
+	
+	
+	@GetMapping(value = "/admin/noticeboardmanagement" , produces = "application/json")// 공지사항 게시판 리스트 값 넘기기
+	@ResponseBody
+	public List<NoticeBoardVO> NoticeBoardManagement(NoticeBoardVO vo){
+		List<NoticeBoardVO> adminnotice = noticeboardservice.getNoticeBoard(vo);
+		System.out.println(adminnotice);
+		return adminnotice;
 	}
 	
 	@GetMapping("/admin/newsboard-management") // 뉴스 게시판 관리
