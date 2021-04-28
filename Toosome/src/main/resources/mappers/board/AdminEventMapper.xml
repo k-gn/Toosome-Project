@@ -90,7 +90,7 @@
 	
 	<update id= "updateEvent">
 	UPDATE EVENT_BOARD SET EVENT_BOARD_IMAGE_ROUTE = #{eventBoardImageRoute}, 
-			EVENT_BOARD_IMAGE_NAME = #{eventBoardImageName}, EVENT_BOARD_IMAGE_EXETENTION = #{eventBoardImageExetention},
+			EVENT_BOARD_IMAGE_NAME = #{eventBoardImageName}, EVENT_BOARD_IMAGE_EXTENTION = #{eventBoardImageExtention},
 			 EVENT_BOARD_VIEW_COUNT = #{eventBoardViewCount}, EVENT_BOARD_TITLE = #{eventBoardTitle}, 
 			 EVENT_BOARD_START_DAY = #{eventBoardStartday}, EVENT_BOARD_END_DAY = #{eventBoardEndday} 
 		 	WHERE EVENT_BOARD_ID = #{eventBoardId}
