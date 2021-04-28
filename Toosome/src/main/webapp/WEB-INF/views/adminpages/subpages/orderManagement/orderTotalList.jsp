@@ -97,9 +97,6 @@
 						     	<input type="checkbox" id="check-all" value="total" onclick="checkAll(this);" >전체선택
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="deposit" onclick="confirmCheckAll();">입금대기
-						     </label>
-						     <label class="checkbox-label">
 						     	<input type="checkbox" name="state" value="o-finish" onclick="confirmCheckAll();">결제완료
 						     </label>
 						     <label class="checkbox-label">
