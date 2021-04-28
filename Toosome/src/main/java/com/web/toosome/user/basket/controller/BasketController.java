@@ -94,10 +94,8 @@ public class BasketController {
 			return "subpages/basket/order/order";
 		}else {
 			
-			return "<script>"
-			         + "alert(\"개인 정보를 기입해주세요.\");"
-			         + "location.href=\"/mypage/update/" + memberId + "\";"
-			         + "</script>";
+			return "/mypage/update/" + memberId;
+
 		}
 		
 	}
@@ -123,7 +121,6 @@ public class BasketController {
 			return "addSuccess";
 		else 
 			return "addFail";
-		
 	}
 	
 	// 장바구니 수정
