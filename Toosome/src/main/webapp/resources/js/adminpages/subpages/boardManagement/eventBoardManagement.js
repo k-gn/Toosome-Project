@@ -12,14 +12,31 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const boardContainer = document.querySelector('#board-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
-const pagination = document.getElementById('pagination'); // 페이징
 
 let board = {};
 let keyword = ''; // 검색 제목
 let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
-let currentPage = 1; // 현재 페이지
-let rows = 10000; // 한 페이지에 보여줄 게시글 수
+let rows = 10000;
+let boardId = '';
+
+// 글 삭제 버튼
+const delBtnFunc = ()  => {
+	let flag = confirm('정말로 삭제하시겠습니까?');
+	if(flag) {
+		$.ajax({
+			type: 'post',
+			url: `/admin/eventboard-delete/${boardId}`,
+			success: () => {
+				window.location.reload();
+			},
+			error: () => {
+				alert('통신장애');
+				window.history.back();
+			}
+		})
+	};
+};
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -80,48 +97,9 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-// 페이지네이션 세팅
-const setPagination = (items, wrapper, rowsPerPage) => {
-	wrapper.innerHTML = ""; // 페이징 초기화
-	
-	// 총 페이징 숫자
-	let pageCount = Math.ceil(items.length / rowsPerPage);
-	for(let i = 1; i < pageCount + 1; i++) {
-		let btn = paginationBtn(i, items);
-		wrapper.appendChild(btn);
-	};
-};
-
-// 페이지네이션 버튼 생성 후 반환
-const paginationBtn = (page, items) => {
-	let btn = document.createElement('button');
-	btn.innerText = page;
-	// 현재 페이지에서 showing 활성화
-	if(currentPage == page) {
-		btn.classList.add('showing');
-	};
-	
-	btn.addEventListener('click', (e) => btnHandler(e,items,page));
-	return btn;
-};
-
-// 페이지네이션 버튼 핸들러
-const btnHandler = (e,items,page) => {
-	// 현재 페이지 이동
-	currentPage = page;
-	// 누른 페이지 데이터 출력
-	showList(items, listTable, rows, currentPage);
-	// 이전 버튼 비활성화
-	let currentBtn = document.querySelector('#pagination button.showing');
-	currentBtn.classList.remove('showing');
-	// 누른 버튼 활성화
-	e.target.classList.add('showing');	
-};
-
 // 리스트 출력하기
-const showList = (result, wrapper, rowsPerPage, page) => {
+const showList = (result, wrapper) => {
 	wrapper.innerHTML = ''; // 테이블 초기화
-	page--;
 	
 	// 검색 결과가 없을 경우
 	if(result.length === 0) {
@@ -134,39 +112,33 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 		return;
 	};
 	
-	// 페이징처리 & 데이터 출력	
-	let start = rowsPerPage * page; // 시작 번호
-	let end = start + rowsPerPage; // 끝 번호
-	// 데이터를 rows만큼 끊어온다
-	let paginatedItems = result.slice(start, end);
 	// loop를 돌며 element 생성 후 삽입
-	for (let i = 0; i < paginatedItems.length; i++) {
-		let item = paginatedItems[i];
+	for (let i = 0; i < result.length; i++) {
 
 		let newEl = document.createElement('tr');
 		let content = `
           <td>
-            ${item.eventBoardId}
+            ${result[i].eventBoardId}
           </td>
           <td>
 			<a href="#" onclick="listHandler(this);">
-	          ${item.eventBoardTitle}
+	          ${result[i].eventBoardTitle}
 			</a>
           </td>
           <td>
-            ${item.eventBoardViewCount}
+            ${result[i].eventBoardViewCount}
           </td>
           <td>
-            ${item.eventBoardDetailVO.eventBoardDetailDay}
+            ${result[i].eventBoardDetailVO.eventBoardDetailDay}
           </td>
           <td>
-            ${item.eventBoardStartday}
+            ${result[i].eventBoardStartday}
           </td>
           <td>
-            ${item.eventBoardEndday}
+            ${result[i].eventBoardEndday}
           </td>
           <td>
-            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${item.eventBoardDetailVO.eventBoardDetailImageRoute}/${item.eventBoardDetailVO.eventBoardDetailImageName}.${item.eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
+            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${result[i].eventBoardDetailVO.eventBoardDetailImageRoute}/${result[i].eventBoardDetailVO.eventBoardDetailImageName}.${result[i].eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -174,8 +146,20 @@ const showList = (result, wrapper, rowsPerPage, page) => {
 	};	
 };
 
+// 페이징 처리 후 데이터 출력
+const setData = (result, wrapper, rows) => {
+	$('#pagination').pagination({
+	    dataSource: result,
+	    pageSize: rows,
+	    pageNumber: 5,
+	    callback: function(data, pagination) {
+			showList(data, wrapper);					
+	    }
+	});
+};
+
 // AJAX 검색 리스트 불러오기
-const getList = (url, board, wrapper, rowsPerPage, page) => {
+const getList = (url, board, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -185,13 +169,12 @@ const getList = (url, board, wrapper, rowsPerPage, page) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		data: board, //서버로 전송할 데이터
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
+		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
-			showList(result, wrapper, rowsPerPage, page);
-			setPagination(result, pagination, rows);
+			const newRes = result.reverse();
+			setData(newRes, wrapper, rows);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -224,7 +207,8 @@ const submitHandler = () => {
 		endRegDate,
 	};
 	url = '/admin/eventboardsearch';
-	getList(url, board, listTable, rows, currentPage);
+	rows = 10000;
+	getList(url, board, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -247,17 +231,18 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(res);
-			$("input[name=eventBoardId]").val(res.eventBoardId);			
-			$("input[name=eventBoardViewCount]").val(res.eventBoardViewCount);			
-			$("input[name=eventBoardDetailDay]").val(res.eventBoardDetailVO.eventBoardDetailDay);			
-			$("input[name=eventBoardStartday]").val(res.eventBoardStartday);			
-			$("input[name=eventBoardEndday]").val(res.eventBoardEndday);			
-			$("input[name=eventBoardTitle]").val(res.eventBoardTitle);
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
-			$("#eventBoardImage").attr("src",imageURL);			
-			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}/${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
-			$("#eventBoardThumbnail").attr("src",thumbnailURL);			
+			boardId = res.eventBoardId;
+			$("#detail-id").val(res.eventBoardId);			
+			$('input[name=eventBoardId]').val(res.eventBoardId);			
+			$("#detail-view").val(res.eventBoardViewCount);			
+			$("#detail-reg").val(res.eventBoardDetailVO.eventBoardDetailDay);			
+			$("#detail-start").val(res.eventBoardStartday);			
+			$("#detail-end").val(res.eventBoardEndday);			
+			$("#detail-title").val(res.eventBoardTitle);
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
+			$("#detail-img").attr("src",imageURL);			
+			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
+			$("#detail-thumb").attr("src",thumbnailURL);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -274,15 +259,14 @@ const selectHandler = (select) => {
 	let value = select.options[select.selectedIndex].value;
 	
 	// init
-	currentPage = 1;
 	rows = +value;
 	url = '/admin/eventboardmanagement';
-	getList(url, board, listTable, rows, currentPage);
+	getList(url, board, listTable, rows);
 };
 
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
 	url = '/admin/eventboardmanagement';
-	getList(url, board, listTable, rows, currentPage); 
+	getList(url, board, listTable, rows); 
 }); 

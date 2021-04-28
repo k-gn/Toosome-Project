@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.boardManagement.dao.INoticeAdminMapper">
+
+	<resultMap type="noticeBoardVO" id="NoticeBoardMap">
+		<id property="noticeBoardId" column="NOTICE_BOARD_ID"/>
+		<result property="noticeBoardTitle" column="NOTICE_BOARD_TITLE"/>
+		<result property="noticeBoardContent" column="NOTICE_BOARD_CONTENT"/>
+	 	<result property="noticeBoardViewCount" column="NOTICE_BOARD_VIEW_COUNT"/> 
+		<result property="noticeBoardRegdate" column="NOTICE_BOARD_REG_DATE"/>
+	
+	</resultMap>
+	
+	<sql id ="search">
+		<if test="condition == 'title'">
+			WHERE NOTICE_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE NOTICE_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startRegDate != null and startRegDate != ''">
+			AND NOTICE_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
+		</if>
+		<if test="keyword != null">
+			ORDER BY NOTICE_BOARD_ID DESC
+		</if>
+	</sql>
+	
+	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
+		
+		SELECT NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_VIEW_COUNT, NOTICE_BOARD_REG_DATE FROM NOTICE_BOARD ORDER BY NOTICE_BOARD_ID DESC
+	
+	</select>
+
+	<select id="searchNoticeBoard" resultMap="NoticeBoardMap">
+		
+		SELECT * FROM NOTICE_BOARD
+		<include refid="search"/>
+		
+	</select>
+	
+	<!-- LIKE CONCAT('%',#{keyword},'%') -->
+	
+</mapper>

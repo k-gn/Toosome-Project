@@ -126,6 +126,7 @@ public class S3Service {
 	public void delete(String key) {
 		try {
 			DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(this.bucket, key);
+			this.s3Client.deleteObject(deleteObjectRequest);
 			System.out.println(String.format("delete complete [%s]", key));
 		} catch (Exception e) {
 			e.printStackTrace();

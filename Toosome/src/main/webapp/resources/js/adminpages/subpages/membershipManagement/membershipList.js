@@ -12,12 +12,15 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+
 let condition = '';
 let keyword = '';
 let startDate = '';
 let endDate = '';
 let memberLevel = '';
 let member = {}; 
+let rows = 10000;
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -78,8 +81,64 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
+// 리스트 출력하기
+const showList = (result, wrapper) => {
+	wrapper.innerHTML = ''; // 테이블 초기화
+	
+	// 검색 결과가 없을 경우
+	if(result.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="6">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+		return;
+	};
+	
+	// loop를 돌며 element 생성 후 삽입
+	for (let i = 0; i < result.length; i++) {
+		let newEl = document.createElement('tr');
+		newEl.setAttribute( 'onclick', 'listHandler(this)');
+		let content = `
+          <td>
+            ${result[i].membershipId}
+          </td>
+          <td>
+            ${result[i].level.levelName}
+          </td>
+          <td>
+            ${result[i].member.memberEmail}
+          </td>
+          <td>
+            ${result[i].member.memberName}
+          </td>
+          <td>
+            ${result[i].membershipPoint}
+          </td>
+          <td>
+            ${result[i].membershipRegDate}
+          </td>
+		`;
+		newEl.innerHTML = content;
+		wrapper.appendChild(newEl);
+	};			
+};
+
+// 페이징 처리 후 데이터 출력
+const setData = (result, wrapper, rows) => {
+	$('#pagination').pagination({
+	    dataSource: result,
+	    pageSize: rows,
+	    pageNumber: 5,
+	    callback: function(data, pagination) {
+			showList(data, wrapper);					
+	    }
+	});
+};
+
 // AJAX 검색 리스트 불러오기
-const getList = (member) => {
+const getList = (member, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -90,38 +149,11 @@ const getList = (member) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: member, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			console.log(result);
-			const listTable = document.querySelector('#list-table-tbody');
-			listTable.innerHTML = '';
+			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				newEl.setAttribute( 'onclick', 'listHandler(this)' )
-				let content = `
-                  <td>
-                    ${res.membershipId}
-                  </td>
-                  <td>
-                    ${res.level.levelName}
-                  </td>
-                  <td>
-                    ${res.member.memberEmail}
-                  </td>
-                  <td>
-                    ${res.member.memberName}
-                  </td>
-                  <td>
-                    ${res.membershipPoint}
-                  </td>
-                  <td>
-                    ${res.membershipRegDate}
-                  </td>
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
+			const newRes = result.reverse();
+			setData(newRes, wrapper, rows);				
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -167,8 +199,8 @@ const submitHandler = () => {
 		startDate,
 		endDate
 	};
-	
-	getList(member);
+	rows = 10000;
+	getList(member, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -187,7 +219,6 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(res.levelId);
 			$("input[name=membershipId]").val(res.membershipId);			
 			$("#lvl").val(res.levelId).prop("selected", true);			
 			$("input[name=memberEmail]").val(res.member.memberEmail);			
@@ -272,9 +303,18 @@ const excelDownload = (id, title) => {
 	}
 };
 
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	rows = +value;
+	getList(member, listTable, rows);
+};
+
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(member);
-	
+	getList(member, listTable, rows); 	
 }); 

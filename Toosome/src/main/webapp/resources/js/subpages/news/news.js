@@ -81,8 +81,8 @@ const selectHandler = (select) => {
 const setData = (result) => {
 	$('#pagination').pagination({
 	    dataSource: result,
-	    pageSize: 5,
-	    pageNumber: 10,
+	    pageSize: 10,
+	    pageNumber: 5,
 	    callback: function(data, pagination) {
 			displayList(data, newsBoard);					
 	    }
@@ -95,8 +95,7 @@ const getPage = (url) => {
 		url,
 		success: (res) => {
 			result = [...res];
-			const newRes = result.reverse();
-			setData(newRes);
+			setData(res);
 		},
 		error: () => {
 			alert('통신장애');
