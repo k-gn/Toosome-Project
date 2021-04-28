@@ -148,8 +148,8 @@ const showList = (result, wrapper, rowsPerPage, page) => {
           <td>
             ${item.eventBoardId}
           </td>
-          <td onclick="listHandler(this);">
-			<a href="#">
+          <td>
+			<a href="#" onclick="listHandler(this);">
 	          ${item.eventBoardTitle}
 			</a>
           </td>
@@ -237,8 +237,7 @@ modalCancelBtn.addEventListener('click', (e) => {
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const tds = e.children;
-	const id = tds[0].innerText;
+	const id = e.parentNode.parentNode.children[0].innerText;
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -255,9 +254,9 @@ const listHandler = (e) => {
 			$("input[name=eventBoardStartday]").val(res.eventBoardStartday);			
 			$("input[name=eventBoardEndday]").val(res.eventBoardEndday);			
 			$("input[name=eventBoardTitle]").val(res.eventBoardTitle);
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
 			$("#eventBoardImage").attr("src",imageURL);			
-			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${res.eventBoardDetailVO.eventBoardDetailImageRoute}/${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
+			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}/${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
 			$("#eventBoardThumbnail").attr("src",thumbnailURL);			
 		}, 
 		error: function() {

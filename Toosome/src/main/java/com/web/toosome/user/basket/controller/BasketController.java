@@ -90,7 +90,16 @@ public class BasketController {
 		model.addAttribute("memberPoint", memberPoint);
 		// double realPayment = basketUtil.getRealPayment();	// 할인전 금액
 		
-		return "subpages/basket/order/order";
+		if(memberService.getUserById(memberId).getMemberPostcode() != null && memberService.getUserById(memberId).getMemberPhone() != null ) {
+			return "subpages/basket/order/order";
+		}else {
+			
+			return "<script>"
+			         + "alert(\"개인 정보를 기입해주세요.\");"
+			         + "location.href=\"/mypage/update/" + memberId + "\";"
+			         + "</script>";
+		}
+		
 	}
 
 	@GetMapping("/basket/ordercomplete") // 주문완료
@@ -226,30 +235,35 @@ public class BasketController {
 			String tel1 = orderList.getOrdersPhone().substring(0, 3);
 			String tel2 = orderList.getOrdersPhone().substring(3, 7);
 			String tel3 = orderList.getOrdersPhone().substring(7);
-			map.put("tel1", tel1);
-			map.put("tel2", tel2);
-			map.put("tel3", tel3);
-			String[] addressArr = orderList.getOrdersAddress().split("-");
-			map.put("postcode", orderList.getOrdersPostcode());
-			for(int i=0; i<addressArr.length; i++) {
-				map.put("address"+(i+1), addressArr[i]);
+			map1.put("tel1", tel1);
+			map1.put("tel2", tel2);
+			map1.put("tel3", tel3);
+			String[] addressArr1 = orderList.getOrdersAddress().split("-");
+			map1.put("postcode", orderList.getOrdersPostcode());
+			for(int i=0; i<addressArr1.length; i++) {
+				map1.put("addresstwo"+(i+1), addressArr1[i]);
 			}
 		}else {
-			map.put("tel1", "010");
+			map1.put("tel1", "010");
 		}
-		model.addAttribute("map", map1);
+		model.addAttribute("map1", map1);
 		model.addAttribute("orderList", orderList);
+		
+		service.orderBasketDel(memberId);
 		
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
 	
 	@PostMapping("/ordersubmit") 
 	@ResponseBody
-	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session) {
+	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil) {
 		System.out.println("ordersubmit 메서드 실행");
 		System.out.println(order.getOrdersPayment());
+		System.out.println(order.getOrdersDelivery());
+		System.out.println(basketUtil.getDeliveryPay());
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
+		order.setOrdersDelivery(basketUtil.getDeliveryPay());
 		int result = service.orderSubmit(order);
 		if(result > 0) return "success";
 		else return "fail";

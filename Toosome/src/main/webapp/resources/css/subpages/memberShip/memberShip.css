@@ -169,7 +169,7 @@
 
 
 .sign-form {
-	width: 500px;
+	width: 460px;
 	height: 300px;
 	margin: 0 auto;
 	border-radius: 20px;
@@ -240,4 +240,47 @@
 }
 
 
+/* 반응형 start */
 
+@media screen and (max-width: 1000px) {
+	
+	.member-container .contents .membership-text .card {
+	  display: none;
+	}
+	.member-container .contents .membership-text .comment {
+	  width: 490px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+}
+
+@media screen and (max-width: 700px) {
+	
+	.member-container .title-container .title-logo {
+	  width: 400px;
+	}
+	.member-container .contents .membership-text .tit {
+	  font-size: 20px;
+  	  margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	
+	.member-container .contents .membership-text {
+	  height: 250px;
+	}
+	.member-container .contents .membership-text .comment {
+	  width: 80%;
+	}
+}
+
+@media screen and (max-width: 553px) {
+	
+	.member-container .contents .membership-text {
+	  height: 300px;
+	}
+	.member-container .contents .membership-text .comment {
+	  width: 80%;
+	}
+}
