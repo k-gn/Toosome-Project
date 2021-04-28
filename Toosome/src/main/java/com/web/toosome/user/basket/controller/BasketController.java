@@ -95,7 +95,7 @@ public class BasketController {
 			return "subpages/basket/order/order";
 		}else {
 			
-			return "/mypage/update/" + memberId;
+			return null;
 
 		}
 		
@@ -107,7 +107,8 @@ public class BasketController {
 	}
 
 	@GetMapping("orderreceipt") // 주문내역
-	public String orderreceipt() {
+	public String orderreceipt(OrdersVO orderVO, HttpSession session) {
+		
 		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}
 	
@@ -246,9 +247,12 @@ public class BasketController {
 		}
 		model.addAttribute("map1", map1);
 		model.addAttribute("orderList", orderList);
-		
-		service.orderBasketDel(memberId);
-		
+		List<BasketVO> basketsList = service.getBasketList(memberId);
+		for(BasketVO basketOne : basketsList) {
+			basketOne.setOrdersId(service.getOrdersList(memberId).getOrdersId()); 
+			service.basketsendorder(basketOne);
+			service.orderBasketDel(memberId);
+		}
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
 	

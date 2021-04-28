@@ -33,8 +33,18 @@
 		<result property="ordersReceiver" column="ORDERS_RECEIVER" />
 		<result property="ordersDelivery" column="ORDERS_DELIVERY" />
 		<result property="ordersPhone" column="ORDERS_PHONE" />
-		<result property="ordersContent" column="ORDERS_CONTENT" />
-		
+		<result property="ordersContent" column="ORDERS_CONTENT" />	
+	</resultMap>
+	
+	<resultMap type="ordersDetailVO" id="ordersDetailVO">
+		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
+		<result property="ordersId" column="ORDERS_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
+		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
+		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
 	</resultMap>
 	
 	<insert id="addBasket">
@@ -68,9 +78,9 @@
 	</delete>
 
 	<insert id="orderSubmit">
-		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_ADDRESS,
+		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
 		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT)
-		VALUES(#{memberId}, now(), #{ordersPayment}, #{ordersAddress}, #{ordersPostcode},
+		VALUES(#{memberId}, now(), #{ordersPayment}, "결제완료", #{ordersAddress}, #{ordersPostcode},
 		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent})
 	</insert>
 	
@@ -79,7 +89,21 @@
 	</select>
 	
 	<delete id="orderBasketDel">
-	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
 	</delete>
 
+	<insert id="basketsendorder">
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID, PRODUCT_ID, ORDER_DETAIL_AMOUNT, ORDER_DETAIL_NAME,
+		 ORDER_DETAIL_PRICE, PRODUCT_IMAGE_ID)
+		VALUES(#{ordersId}, #{memberId}, #{productId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{productImageId})
+	</insert>
+	
+	<select id="getBasketList" resultMap="basketMap">
+		SELECT
+		 BASKET_ID, MEMBER_ID, PRODUCT_ID, B.PRODUCT_IMAGE_ID, BASKET_AMOUNT, BASKET_NAME, BASKET_PRICE,
+		 PRODUCT_IMAGE_NAME, PRODUCT_IMAGE_ROUTE, PRODUCT_IMAGE_EXTENTION
+		FROM
+		 BASKET B LEFT OUTER JOIN PRODUCT_IMAGE PI on B.PRODUCT_IMAGE_ID = PI.PRODUCT_IMAGE_ID
+		WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC
+	</select>
 </mapper>
