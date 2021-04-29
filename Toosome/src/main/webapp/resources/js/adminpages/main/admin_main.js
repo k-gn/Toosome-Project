@@ -21,41 +21,7 @@ ct = {
 		labels: [],
 		series: []
 	};
-	
-	 let today = moment();
-	 for(let i=6; i>=0; i--) {
-		let date = moment(today).subtract(i, 'days').format('MMM DD');
-		dataWebsiteViewsChart.labels.push(date);
-		dataDailySalesChart.labels.push(date);
-		dataDailyOrderChart.labels.push(date);
-	 };
-	 console.log(dataWebsiteViewsChart,dataDailySalesChart,dataDailyOrderChart);
-
-	 $.ajax({
-		type: "get",
-		url: "/admin/getDaily",	
-		headers: {
-           "Content-Type": "application/json"
-        },
-		dataType: "json",
-		success: function(result) {
-			
-			const visitData = [...result.dailyVisit];
-			
-		}
-	  });
-
-    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
-      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
-
-      dataDailySalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        series: [
-          [12, 17, 7, 17, 23, 18, 38]
-        ]
-      };
-
-      var optionsDailySalesChart = {
+	var optionsDailySalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -68,23 +34,7 @@ ct = {
           left: 0
         },
       }
-
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-      ct.startAnimationForLineChart(dailySalesChart);
-
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      dataDailyOrderChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-        series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
-        ]
-      };
-
-      var optionsDailyOrderChart = {
+	  var optionsDailyOrderChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -97,22 +47,12 @@ ct = {
           left: 0
         }
       }
-
-      var dailyOrderChart = new Chartist.Line('#dailyOrderChart', dataDailyOrderChart, optionsDailyOrderChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      ct.startAnimationForLineChart(dailyOrderChart);
-
-
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-     
-      var optionsWebsiteViewsChart = {
+	 var optionsWebsiteViewsChart = {
         axisX: {
           showGrid: false
         },
         low: 0,
-        high: 1000,
+        high: 50,
         chartPadding: {
           top: 0,
           right: 0,
@@ -130,10 +70,74 @@ ct = {
           }
         }]
       ];
-      var websiteViewsChart = Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+	
+	 let today = moment();
+	 for(let i=6; i>=0; i--) {
+		let date = moment(today).subtract(i, 'days').format('MMM DD');
+		dataWebsiteViewsChart.labels.push(date);
+		dataDailySalesChart.labels.push(date);
+		dataDailyOrderChart.labels.push(date);
+	 };
+
+	 $.ajax({
+		type: "get",
+		url: "/admin/getDaily",	
+		headers: {
+           "Content-Type": "application/json"
+        },
+		dataType: "json",
+		success: function(results) {
+			console.log(results);
+			results.dailyVisit.forEach(data => {
+				dataWebsiteViewsChart.series.push(data.visit);
+			});
+			results.dailyOrders.forEach(data => {
+				dataDailyOrderChart.series.push(data.orders);
+			});
+			results.dailySales.forEach(data => {
+				dataDailySalesChart.series.push(data.sales);
+			});
+			var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+			var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+			var dailyOrderChart = new Chartist.Line('#dailyOrderChart', dataDailyOrderChart, optionsDailyOrderChart);
+			ct.startAnimationForLineChart(dailySalesChart);
+			ct.startAnimationForLineChart(dailyOrderChart);
+			ct.startAnimationForBarChart(websiteViewsChart);
+			console.log(dataWebsiteViewsChart);
+			console.log(dataDailyOrderChart);
+			console.log(dataDailySalesChart);
+		}
+	  });
+
+    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
+      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
+
+      
+
+      
+
+      
+
+
+
+      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+
+      
+
+      
+
+      // start animation for the Completed Tasks Chart - Line Chart
+      
+
+
+      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+
+     
+      
+      
 
       //start animation for the Emails Subscription Chart
-      ct.startAnimationForBarChart(websiteViewsChart);
+      
     }
   },
 
