@@ -13,6 +13,6 @@ public class OrdersDetailVO {
 	private String ordersDetailName;
 	private Integer ordersDetailPrice;
 	private String ordersDetailState;
-	
-	private String imagePath;
+	private String ordersDetailImagePath;
+
 }

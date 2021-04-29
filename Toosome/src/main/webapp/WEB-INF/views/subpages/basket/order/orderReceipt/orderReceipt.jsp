@@ -41,7 +41,7 @@
           <tbody>
             <tr>
               <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${orderDetailList.productImageId}" alt=""></td>
+              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${orderDetailList.ordersDetailImagePath}" alt=""></td>
               <td><span class="name">${orderDetailList.ordersDetailName}</span></td>
               <td>${orderDetailList.ordersDetailAmount}</td>
               <td>

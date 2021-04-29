@@ -27,6 +27,7 @@ import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
+import com.web.toosome.user.product.vo.ProductImageVO;
 
 @Controller
 public class BasketController {
@@ -108,7 +109,7 @@ public class BasketController {
 	}
 
 	@GetMapping("orderreceipt") // 주문내역
-	public String orderreceipt(OrdersDetailVO orderDetailVO, Model model, HttpSession session) {
+	public String orderreceipt(OrdersDetailVO orderDetailVO, Model model, HttpSession session, ProductImageVO imageVO) {
 		System.out.println("주문 내역 페이지 출력");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<OrdersDetailVO> orderDetailList = service.getOrdersDetailList(memberId);
@@ -254,8 +255,9 @@ public class BasketController {
 		model.addAttribute("map1", map1);
 		model.addAttribute("orderList", orderList);
 		List<BasketVO> basketsList = service.getBasketList(memberId);
+		basketUtil.utilMethod(basketsList, ms, basicImagePath);
 		for(BasketVO basketOne : basketsList) {
-			basketOne.setOrdersId(service.getOrdersList(memberId).getOrdersId()); 
+			basketOne.setOrdersId(service.getOrdersList(memberId).getOrdersId());
 			service.basketsendorder(basketOne);
 			service.orderBasketDel(memberId);
 		}

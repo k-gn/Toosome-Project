@@ -46,6 +46,7 @@
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
 		<result property="ordersDetailState" column="ORDERS_DETAIL_STATE" />
+		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />
 	</resultMap>
 	
 	<insert id="addBasket">
@@ -95,8 +96,8 @@
 
 	<insert id="basketsendorder">
 		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID, PRODUCT_ID, ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
-		 ORDERS_DETAIL_PRICE, PRODUCT_IMAGE_ID)
-		VALUES(#{ordersId}, #{memberId}, #{productId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{productImageId})
+		 ORDERS_DETAIL_PRICE, PRODUCT_IMAGE_ID, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId}, #{productId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{productImageId}, #{imagePath})
 	</insert>
 	
 	<select id="getBasketList" resultMap="basketMap">
