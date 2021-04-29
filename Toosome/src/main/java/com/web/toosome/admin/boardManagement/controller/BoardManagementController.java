@@ -169,7 +169,7 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
 		eventboardservice.updateEvent(vo);
@@ -190,7 +190,7 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 			
