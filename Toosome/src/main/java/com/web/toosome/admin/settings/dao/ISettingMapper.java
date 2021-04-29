@@ -23,6 +23,6 @@ public interface ISettingMapper {
 	public int modBanner(BannerVO banner);
 	
 	// 배너 삭제
-	public int delBanner(BannerVO banner);
+	public int delBanner(Integer id);
 	
 }

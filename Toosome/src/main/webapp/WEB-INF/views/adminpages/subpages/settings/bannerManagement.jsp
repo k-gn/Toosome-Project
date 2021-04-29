@@ -45,11 +45,10 @@
 		                  <p class="card-category">배너 이미지를 수정할 수 있습니다</p>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/addBanner?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+		                  <form role='form' action="/admin/addBanner?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		                  	<br>
 							<div class="row">
 							  <c:forEach begin="1" end="6" varStatus="i">
-							  		<!-- /img/pages/admin/subpages/setting/blank.png -->
 								  <div class="col-md-3 text-center">
 									<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									    <div class="fileinput-new thumbnail img-raised">
@@ -61,7 +60,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">배너${i.count}</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="bannerList[${i.count - 1}].file" />
+									            <input type="file" name="bannerList[${i.count - 1}].file"/>
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -72,15 +71,15 @@
 			                          <label class="bmd-label-floating">제목${i.count}</label>
 			                          <input type="text" class="form-control" name="bannerList[${i.count - 1}].bannerTitle" value="${bannerList[i.count - 1].bannerTitle}">
 			                        </div>
-                             		<button type="button" class="close delete">
-			          				  <i class="material-icons">clear</i>
-			          			    </button>
+                              <button type="button" class="close delete">
+			          				        <i class="material-icons">clear</i>
+			          			        </button>
 			                      </div>
 			                      <input type="hidden" name="bannerList[${i.count - 1}].bannerId" value="${bannerList[i.count - 1].bannerId}">
 			                      <input type="hidden" name="bannerList[${i.count - 1}].originImgName" value="${bannerList[i.count - 1].bannerName}">
 							  </c:forEach>
 							</div>
-		                    <button type="submit" class="btn btn-success pull-right">등록</button>
+		                    <button type="submit" id="subBtn" class="btn btn-success pull-right">등록</button>
 		                    <button type="reset" class="btn btn-success pull-right btn-r">초기화</button>
 		                    <div class="clearfix"></div>
 		                  </form>
