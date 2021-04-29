@@ -61,7 +61,7 @@
             <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
                 <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td style="width: 100px;"><img style="display: block; width: 100px; height: 100px;" src="${basket.imagePath}" alt=""></td>
                 <td><span class="name"></span></td>
                 <td>
                   <input type="number" min="1" max="10" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
