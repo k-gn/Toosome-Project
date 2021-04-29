@@ -78,7 +78,7 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/img/subpages/agreement/check_none.png) no-repeat center center;
+  background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/agreement/check_none.png) no-repeat center center;
   background-size: 40px;
 }
 
@@ -86,7 +86,7 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/img/subpages/agreement/check_ok.png) no-repeat center center;
+  background: url(https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/agreement/check_ok.png) no-repeat center center;
   background-size: 40px;
 }
 
@@ -157,8 +157,10 @@
   .signup-container {
     min-width: 320px;
   }
+}
 
-  .sign-terms-wrapper {
-    min-width: 300px;
-  }
+@media screen and (max-width: 620px) {
+	.sign-terms-wrapper {
+	   max-width: 90%;
+	 }
 }
