@@ -11,6 +11,7 @@
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/main/admin_main.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
   <script src="/resources/js/adminpages/main/admin_main.js" defer></script>
   <script>
@@ -44,7 +45,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">전날 주문건수</p>
-                  <h3 class="card-title">${orderCount}
+                  <h3 class="card-title">${orderCount == null ? 0 : orderCount}
                     <small>건</small>
                   </h3>
                 </div>
@@ -62,7 +63,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">전날 매출액</p>
-                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales}" />
+                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales == null ? 0 : sales}" />
                   	<small>원</small>
                   </h3>
                 </div>
@@ -80,7 +81,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">전날 접속자수</p>
-                  <h3 class="card-title">${visitCount}
+                  <h3 class="card-title">${visitCount == null ? 0 : visitCount}
                   	<small>명</small>
                   </h3>
                 </div>
@@ -98,7 +99,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">전날 가입자수</p>
-                  <h3 class="card-title">${regCount}
+                  <h3 class="card-title">${regCount == null ? 0 : regCount}
                   	<small>명</small>
                   </h3>
                 </div>
@@ -134,7 +135,7 @@
                   <div class="ct-chart" id="websiteViewsChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">데일리 접속자수</h4>
+                  <h4 class="card-title">월별 접속자수</h4>
                   <p class="card-category">
                   	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
                 </div>
@@ -148,7 +149,7 @@
             <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-danger">
-                  <div class="ct-chart" id="completedTasksChart"></div>
+                  <div class="ct-chart" id="dailyOrderChart"></div>
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">데일리 주문건수</h4>
@@ -183,12 +184,6 @@
                             <div class="ripple-container"></div>
                           </a>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#issue" data-toggle="tab">
-                            <i class="material-icons">task</i> 이슈
-                            <div class="ripple-container"></div>
-                          </a>
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -218,33 +213,6 @@
                           		<td width="90%"><a href="/qna-detail?index=${qna.qnaBoardId}">${qna.qnaBoardTitle}</a></td>
                           	</tr>
                           </c:forEach>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="tab-pane" id="issue">
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" value="">
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
-                            </td>
-                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                            <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                <i class="material-icons">edit</i>
-                              </button>
-                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                <i class="material-icons">close</i>
-                              </button>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>

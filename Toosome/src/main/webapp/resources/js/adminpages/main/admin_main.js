@@ -9,7 +9,28 @@ var seq2 = 0,
 ct = {
 
   initDashboardPageCharts: function() {
+	let dataWebsiteViewsChart = {
+		labels: [],
+		series: []
+	};
+	let dataDailySalesChart = {
+		labels: [],
+		series: []
+	};
+	let dataDailyOrderChart = {
+		labels: [],
+		series: []
+	};
 	
+	 let today = moment();
+	 for(let i=6; i>=0; i--) {
+		let date = moment(today).subtract(i, 'days').format('MMM DD');
+		dataWebsiteViewsChart.labels.push(date);
+		dataDailySalesChart.labels.push(date);
+		dataDailyOrderChart.labels.push(date);
+	 };
+	 console.log(dataWebsiteViewsChart,dataDailySalesChart,dataDailyOrderChart);
+
 	 $.ajax({
 		type: "get",
 		url: "/admin/getDaily",	
@@ -18,7 +39,9 @@ ct = {
         },
 		dataType: "json",
 		success: function(result) {
-			console.log(result);
+			
+			const visitData = [...result.dailyVisit];
+			
 		}
 	  });
 
@@ -32,7 +55,7 @@ ct = {
         ]
       };
 
-      optionsDailySalesChart = {
+      var optionsDailySalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -54,14 +77,14 @@ ct = {
 
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-      dataCompletedTasksChart = {
+      dataDailyOrderChart = {
         labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
         series: [
           [230, 750, 450, 300, 280, 240, 200, 190]
         ]
       };
 
-      optionsCompletedTasksChart = {
+      var optionsDailyOrderChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
@@ -75,21 +98,15 @@ ct = {
         }
       }
 
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+      var dailyOrderChart = new Chartist.Line('#dailyOrderChart', dataDailyOrderChart, optionsDailyOrderChart);
 
       // start animation for the Completed Tasks Chart - Line Chart
-      ct.startAnimationForLineChart(completedTasksChart);
+      ct.startAnimationForLineChart(dailyOrderChart);
 
 
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
-      var dataWebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
+     
       var optionsWebsiteViewsChart = {
         axisX: {
           showGrid: false

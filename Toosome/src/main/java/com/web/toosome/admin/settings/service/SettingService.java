@@ -43,12 +43,10 @@ public class SettingService implements ISettingService {
 	public int addBanner(BannerListVO bannerList) {
 		int result = 0;
 		for(BannerVO banner : bannerList.getBannerList()) {
-			String bannerName = banner.getFile().getOriginalFilename();
-			
-//			if(banner.getBannerId() != null && bannerName.equals("") && banner.getBannerTitle() == null) {
-//				result = mapper.delBanner(banner);
-//				s3.delete(bannerPath + banner.getOriginImgName());
-//			}
+			String bannerName = "";
+			if(banner.getFile() != null) {
+				bannerName = banner.getFile().getOriginalFilename();
+			}
 			
 			if(banner.getBannerId() == null && !bannerName.equals("")) {
 				System.out.println("addBanner");
@@ -68,6 +66,11 @@ public class SettingService implements ISettingService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public int delBanner(Integer id) {
+		return mapper.delBanner(id);
 	}
 	
 	

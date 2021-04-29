@@ -37,6 +37,6 @@
 	</update>
 	
 	<delete id="delBanner">
-		DELETE FROM BANNER WHERE BANNER_ID = #{bannerId}
+		DELETE FROM BANNER WHERE BANNER_ID = #{id}
 	</delete>
 </mapper>

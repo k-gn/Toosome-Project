@@ -19,20 +19,17 @@ public class EventAdminService implements IEventAdminService {
 	
 	@Override
 	public List<EventBoardVO> getEventBoard(EventBoardVO vo) {
-		System.out.println("관리자 이벤트 게시판 서비스" + mapper.getEventBoard(vo));
 		return mapper.getEventBoard(vo);
 	}
 
 	@Override
 	public List<EventBoardVO> searchEventBoard(BoardSearchVO vo) {
-		System.out.println("관리자 이벤트 게시판 검색 기능" + mapper.searchEventBoard(vo));
 		return mapper.searchEventBoard(vo);
 	}
 	
 	
 	@Override
 	public int insertEvent(EventBoardVO vo) {
-		mapper.insertEvent(vo);
 		int insertevent = mapper.insertEvent(vo);
 		return insertevent;
 	}
@@ -40,7 +37,6 @@ public class EventAdminService implements IEventAdminService {
 	
 	@Override
 	public int insertDetailEvent(EventBoardDetailVO vo) {
-		mapper.insertDetailEvent(vo);
 		int insertdetailevent = mapper.insertDetailEvent(vo);
 		return insertdetailevent;
 	}
@@ -54,7 +50,6 @@ public class EventAdminService implements IEventAdminService {
 	
 	@Override
 	public int deleteEvent(Integer id) {
-		mapper.deleteEvent(id);
 		int deleteevent = mapper.deleteEvent(id);
 		return deleteevent;
 	}
@@ -62,7 +57,6 @@ public class EventAdminService implements IEventAdminService {
 	
 	@Override
 	public int deleteDetailEvent(Integer id) {
-		mapper.deleteDetailEvent(id);
 		int deletedetailevent = mapper.deleteDetailEvent(id);
 		return deletedetailevent;
 	}
@@ -70,16 +64,30 @@ public class EventAdminService implements IEventAdminService {
 	
 	@Override
 	public int updateEvent(EventBoardVO vo) {
-		mapper.updateEvent(vo);
 		int updateevent = mapper.updateEvent(vo);
 		return updateevent;
 	}
 	
 	@Override
 	public int updateEventDetail(EventBoardDetailVO vo) {
-		mapper.updateEventDetail(vo);
 		int updateeventdetail = mapper.updateEventDetail(vo);
+		System.out.println(updateeventdetail + "이벤트 디테일 업데이트 구문");
 		return updateeventdetail;
+	}
+
+	@Override
+	public EventBoardVO selectFile(EventBoardVO vo) {
+		return mapper.selectFile(vo);	
+	}
+
+	@Override
+	public EventBoardDetailVO selectDetailFile(EventBoardDetailVO vo) {
+		return mapper.selectDetailFile(vo);	
+	}
+
+	@Override
+	public void updateEventText(EventBoardVO vo) {
+		 mapper.updateEventText(vo);
 	}
 
 }

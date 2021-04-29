@@ -42,7 +42,11 @@ public class MainManagementController {
 	public Map<String, List<DailyVO>> getDaily() {
 		Map<String, List<DailyVO>> dailyMap = new HashMap<>();
 		List<DailyVO> dailyVisit = mainService.getDailyVisitInfo();
+		List<DailyVO> dailySales = mainService.getDailySalesInfo();
+		List<DailyVO> dailyOrders = mainService.getDailyOrderInfo();
 		dailyMap.put("dailyVisit", dailyVisit);
+		dailyMap.put("dailySales", dailySales);
+		dailyMap.put("dailyOrders", dailyOrders);
 		return dailyMap;
 	}
 	

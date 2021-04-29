@@ -16,9 +16,9 @@
   <script src="/resources/js/adminpages/subpages/boardManagement/eventBoardManagement.js" defer></script>
   <script type="text/javascript">
  	const msg = "${msg}";
- 	if(msg === "success") {
+ 	if(msg === "successBoard") {
  		alert("정상 등록되었습니다");
- 	}else if(msg === "fail") {
+ 	}else if(msg === "failBoard") {
  		alert("입력하신 정보가 올바르지 않습니다.");
  	}
   </script>
@@ -101,7 +101,7 @@
 		                  <h4 class="card-title">이벤트 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/eventboard-update?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+		                  <form id="update-form" action="/admin/eventboard-update?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		                    <div class="row">
 		                      <div class="col-md-1">
 		                        <div class="form-group">
@@ -153,7 +153,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">본문 이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input id="detail-img" type="file" name="uploadFile" />
+								            <input type="file" name="uploadFile" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -169,18 +169,19 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile2" />
+								            <input type="file" name="uploadFile2" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
 								</div>
 		                      </div>
 		                    </div>
-		                    <input type="submit" class="btn btn-primary pull-right" value="업데이트" />
+		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
 		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제" />
 		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
 		                  	<input type="hidden" name="eventBoardId" />
+		                  	<input type="hidden" name="eventBoardDetailId" />
 		                  </form>
 		                </div>
 		             </div>
@@ -197,7 +198,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+			        <form id="enroll-form" action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -206,7 +207,7 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                  <div class="input-group">
-				                      <input name="eventBoardTitle" type="text" class="form-control" placeholder="제목을 입력하세요">
+				                      <input id="enroll-title" name="eventBoardTitle" type="text" class="form-control" placeholder="제목을 입력하세요">
 				                  </div>
 				                </div>
 				                </div>
@@ -232,7 +233,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="uploadFile2" />
+									            <input id="enroll-thumb" type="file" name="uploadFile2" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -255,7 +256,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="uploadFile" />
+									            <input id="enroll-image" type="file" name="uploadFile" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -264,7 +265,7 @@
 				                </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right btn-r">등록</button>
+				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right btn-r">등록</button>
 				        </div>
 			        </form>
 			      </div>
