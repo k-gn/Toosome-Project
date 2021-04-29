@@ -119,3 +119,19 @@
     width: 100%;
     height: inherit;
 }
+
+@media screen and (max-width: 700px) {
+	
+	.explanation-container .title-container .title-logo {
+	    width: 400px;
+	}
+		
+	.explanation-container .contents .cancel {
+	    width: 100%;
+	    height: auto;
+	}
+		
+	.explanation-container .contents .place-cover {
+	    width: 100%;
+	}
+}
