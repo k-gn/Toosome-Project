@@ -61,6 +61,9 @@
 		                          <label class="bmd-label-floating">입력1</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 		                      <div class="col-md-3 text-center">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -83,6 +86,9 @@
 		                          <label class="bmd-label-floating">입력2</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 							</div>
 							<br>
@@ -108,6 +114,9 @@
 		                          <label class="bmd-label-floating">입력3</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 		                      <div class="col-md-3 text-center">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -130,6 +139,9 @@
 		                          <label class="bmd-label-floating">입력4</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 							</div>
 							<br>
@@ -155,6 +167,9 @@
 		                          <label class="bmd-label-floating">입력5</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 		                      <div class="col-md-3 text-center">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -177,6 +192,9 @@
 		                          <label class="bmd-label-floating">입력6</label>
 		                          <input type="text" class="form-control">
 		                        </div>
+		                        <button type="button" class="close delete">
+			          				<i class="material-icons">clear</i>
+			          			</button>
 		                      </div>
 							</div>
 		                    <button type="submit" class="btn btn-success pull-right">등록</button>

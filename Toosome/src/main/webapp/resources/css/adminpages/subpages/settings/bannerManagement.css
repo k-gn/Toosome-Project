@@ -52,3 +52,10 @@
 .btn.btn-success.pull-right.btn-r {
 	margin-right: 15px;
 }
+
+.close.delete {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	
+}
