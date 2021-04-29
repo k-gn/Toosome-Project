@@ -26,7 +26,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 1000,
         chartPadding: {
           top: 0,
           right: 0,
@@ -39,7 +39,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 50,
         chartPadding: {
           top: 0,
           right: 0,
@@ -87,58 +87,36 @@ ct = {
         },
 		dataType: "json",
 		success: function(results) {
-			console.log(results);
+			// AJAX로 얻은 데이터를 차트 데이터에 삽입
+			let temp = [];
+			let temp2 = [];
+			let temp3 = [];
 			results.dailyVisit.forEach(data => {
-				dataWebsiteViewsChart.series.push(data.visit);
+				temp.push(data.visit);
 			});
+			dataWebsiteViewsChart.series.push(temp);
+			
 			results.dailyOrders.forEach(data => {
-				dataDailyOrderChart.series.push(data.orders);
+				temp2.push(data.orders);
 			});
+			dataDailyOrderChart.series.push(temp2);
+			
 			results.dailySales.forEach(data => {
-				dataDailySalesChart.series.push(data.sales);
+				temp3.push(data.sales);
 			});
+			dataDailySalesChart.series.push(temp3);
+			
+			// 차트 선언
 			var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 			var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
 			var dailyOrderChart = new Chartist.Line('#dailyOrderChart', dataDailyOrderChart, optionsDailyOrderChart);
+			
+			// 차트 그리기
 			ct.startAnimationForLineChart(dailySalesChart);
 			ct.startAnimationForLineChart(dailyOrderChart);
 			ct.startAnimationForBarChart(websiteViewsChart);
-			console.log(dataWebsiteViewsChart);
-			console.log(dataDailyOrderChart);
-			console.log(dataDailySalesChart);
 		}
 	  });
-
-    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
-      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
-
-      
-
-      
-
-      
-
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      
-
-      
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      
-
-
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-     
-      
-      
-
-      //start animation for the Emails Subscription Chart
-      
-    }
   },
 
   startAnimationForLineChart: function (chart) {
