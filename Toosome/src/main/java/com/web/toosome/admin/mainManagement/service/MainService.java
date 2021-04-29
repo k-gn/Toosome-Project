@@ -54,4 +54,14 @@ public class MainService implements IMainService {
 		return mapper.getSales();
 	}
 
+	@Override
+	public List<DailyVO> getDailySalesInfo() {
+		return mapper.getDailySalesInfo();
+	}
+
+	@Override
+	public List<DailyVO> getDailyOrderInfo() {
+		return mapper.getDailyOrderInfo();
+	}
+
 }
