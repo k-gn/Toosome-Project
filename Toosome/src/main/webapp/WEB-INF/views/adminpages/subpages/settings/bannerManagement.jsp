@@ -71,7 +71,7 @@
 			                          <label class="bmd-label-floating">제목${i.count}</label>
 			                          <input type="text" class="form-control" name="bannerList[${i.count - 1}].bannerTitle" value="${bannerList[i.count - 1].bannerTitle}">
 			                        </div>
-                              <button type="button" class="close delete">
+                              			<button type="button" class="close delete">
 			          				        <i class="material-icons">clear</i>
 			          			        </button>
 			                      </div>
