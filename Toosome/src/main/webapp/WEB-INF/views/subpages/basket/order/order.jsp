@@ -146,7 +146,7 @@
                     받으실 분
                   </td>
                   <td>
-                    <input type="text" name="orderName" id="orderName2" placeholder="ex)홍길동" required>
+                    <input type="text" name="orderName" id="orderName2" placeholder="ex)홍길동" value="" required>
                     &nbsp;<input type="checkbox" name="same" id="same">&nbsp;주문하시는 분과 동일
                   </td>
                 </tr>

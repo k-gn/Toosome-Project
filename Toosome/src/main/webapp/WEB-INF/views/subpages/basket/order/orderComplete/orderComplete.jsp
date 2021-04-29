@@ -64,8 +64,6 @@
           </tbody>
         </table>
       </div>
-      
-
       <div id="order1" class="order">
         <p class="order-title"><span class="big">01.</span><strong>주문하시는 분</strong></p>
         <form id="or1" action="#" method="post" name="form1">

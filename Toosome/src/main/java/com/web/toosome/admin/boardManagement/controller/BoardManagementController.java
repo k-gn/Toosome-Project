@@ -41,8 +41,7 @@ public class BoardManagementController {
 	@GetMapping(value = "/admin/eventboardsearch" , produces = "application/json")
 	@ResponseBody
 	public List<EventBoardVO> searchEventBoard(BoardSearchVO vo){
-		List<EventBoardVO> search = eventboardservice.searchEventBoard(vo);
-		System.out.println(search);
+		List<EventBoardVO> search = eventboardservice.searchEventBoard(vo);;
 		return search;
 	}
 	
@@ -63,7 +62,6 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<EventBoardVO> EventBoardManagement(EventBoardVO vo){
 		List<EventBoardVO> adminevent = eventboardservice.getEventBoard(vo);
-		System.out.println(adminevent);
 		return adminevent;
 	}
 	
@@ -82,11 +80,11 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
-		eventboardservice.insertEvent(vo);
-		eventboardservice.insertDetailEvent(vvo);
+		int in = eventboardservice.insertEvent(vo);
+		int in2 = eventboardservice.insertDetailEvent(vvo);
 		
 		
 
@@ -105,27 +103,25 @@ public class BoardManagementController {
 			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
+		
 			
-		if(eventboardservice.insertEvent(vo) > 0) {
-			if(eventboardservice.insertDetailEvent(vvo) >0) {
-				ra.addFlashAttribute("msg", "successBoard");
-			}else {
-				ra.addFlashAttribute("msg", "failBoard");
-			}
-				
+		if(in > 0 && in2 >0) {
+				ra.addFlashAttribute("msg", "successBoard");	
 		}else {
 			ra.addFlashAttribute("msg", "failBoard");
 		}
-		
+			
 		return "redirect:/admin/eventboard-management";
+	
 	}
 	
 	
 	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
 	public String eventdelete(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
 
-		eventboardservice.deleteDetailEvent(id);
-		eventboardservice.deleteEvent(id);
+		
+		int de = eventboardservice.deleteDetailEvent(id);
+		int de2 = eventboardservice.deleteEvent(id);
 		
 		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
@@ -136,28 +132,25 @@ public class BoardManagementController {
 		awsS3.delete(key);
 		awsS3.delete(key2);
 		
-			if(eventboardservice.deleteEvent(id)>0) {
-				if(eventboardservice.deleteDetailEvent(id) >0) {
-					ra.addFlashAttribute("msg", "successBoard");
-				}else {
-					ra.addFlashAttribute("msg", "failBoard");
-				}
+			if(de>0 && de2 >0) {
+					ra.addFlashAttribute("msg", "successBoard");		
 			}else {
 				ra.addFlashAttribute("msg", "failBoard");
-			}
-		
-
+			}	
+			
 		return "redirect:/admin/eventboard-management";
 	}
 	
 	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
 	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
-		String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+		if(vo.getEventBoardImageName() != null || vvo.getEventBoardDetailImageName() != null) {
+		
+			String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+			String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
 		System.out.println("이벤트 게시판 이미지 경로(지울거) " + rote);
-		System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote);
+		System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote2);
 		
 		awsS3.delete(rote);
 		System.out.println("첫번쨰 파일 삭제 성공");
@@ -169,11 +162,11 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
-		eventboardservice.updateEvent(vo);
-		eventboardservice.updateEventDetail(vvo);
+		int up = eventboardservice.updateEvent(vo);
+		int up2 = eventboardservice.updateEventDetail(vvo);
 		
 		System.out.println("DB 파일 update구문 완료");
 		//ra.addFlashAttribute("msg", "successBoard");
@@ -190,20 +183,16 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 			
-			if(eventboardservice.updateEvent(vo)>0) {
-				if(eventboardservice.updateEventDetail(vvo)>0) {
-					ra.addFlashAttribute("msg", "successBoard");
-				}else {
-					ra.addFlashAttribute("msg", "failBoard");
-				}
+			if(up >0 && up2>0) {
+				ra.addFlashAttribute("msg", "successBoard");
 			}else {
 				ra.addFlashAttribute("msg", "failBoard");
 			}
-			
+		}
 			
 		return "redirect:/admin/eventboard-management";
 	}
