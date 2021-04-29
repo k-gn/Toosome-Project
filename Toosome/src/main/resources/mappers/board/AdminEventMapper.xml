@@ -110,4 +110,9 @@
 		SELECT * FROM EVENT_BOARD_DETAIL WHERE EVENT_BOARD_DETAIL_ID = #{eventBoardDetailId}
 	</select>
 	
+	<update id= "updateEventText">
+	UPDATE EVENT_BOARD SET EVENT_BOARD_TITLE = #{eventBoardTitle}, EVENT_BOARD_START_DAY = #{eventBoardStartday},
+	 EVENT_BOARD_END_DAY = #{eventBoardEndday} WHERE EVENT_BOARD_ID = #{eventBoardId}
+	</update>
+	
 </mapper>

@@ -29,5 +29,7 @@ public interface IEventAdminMapper {
 	EventBoardVO selectFile(EventBoardVO vo);
 	
 	EventBoardDetailVO selectDetailFile(EventBoardDetailVO vo);
+	
+	void updateEventText(EventBoardVO vo);
 
 }
