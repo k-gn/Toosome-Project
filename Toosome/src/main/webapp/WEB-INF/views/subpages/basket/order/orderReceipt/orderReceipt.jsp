@@ -22,7 +22,32 @@
       <p class="title">주문 내역 / 주문 취소</p>
       
       <div class="smart-post">
-        <!-- 택배 공간 -->
+      	<p class="post-title">배송 상태</p>
+        <ul class="post-text">
+        	<li class="one">
+        		<p class="one-text">결제완료</p>
+        		<span></span>
+        	</li>
+        	<li class="two">
+        		<p class="two-text">접수완료</p>
+        		<span></span>
+        	</li>
+        	<li class="three">
+        		<p class="three-text">배송준비중</p>
+        		<span></span>
+        	</li>
+        	<li class="four">
+        		<p class="four-text">배송중</p>
+        		<span></span>
+        	</li>
+        	<li class="five">
+        		<p class="five-text">배송완료</p>
+        		<span></span>
+        	</li>
+        </ul>
+        <form>
+        	<input class="data" type="hidden" value="배송중"/>
+        </form>
       </div>
 
       <div class="table-cover">
