@@ -11,6 +11,7 @@
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
   <link href="/resources/css/adminpages/main/admin_main.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
   <script src="/resources/js/adminpages/main/admin_main.js" defer></script>
   <script>
@@ -134,7 +135,7 @@
                   <div class="ct-chart" id="websiteViewsChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">데일리 접속자수</h4>
+                  <h4 class="card-title">월별 접속자수</h4>
                   <p class="card-category">
                   	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
                 </div>
@@ -148,7 +149,7 @@
             <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-danger">
-                  <div class="ct-chart" id="completedTasksChart"></div>
+                  <div class="ct-chart" id="dailyOrderChart"></div>
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">데일리 주문건수</h4>

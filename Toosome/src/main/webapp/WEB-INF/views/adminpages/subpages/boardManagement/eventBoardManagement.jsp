@@ -16,9 +16,9 @@
   <script src="/resources/js/adminpages/subpages/boardManagement/eventBoardManagement.js" defer></script>
   <script type="text/javascript">
  	const msg = "${msg}";
- 	if(msg === "success") {
+ 	if(msg === "successBoard") {
  		alert("정상 등록되었습니다");
- 	}else if(msg === "fail") {
+ 	}else if(msg === "failBoard") {
  		alert("입력하신 정보가 올바르지 않습니다.");
  	}
   </script>
