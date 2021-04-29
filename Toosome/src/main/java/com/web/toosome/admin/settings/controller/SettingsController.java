@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.settings.service.ISettingService;
+import com.web.toosome.admin.settings.vo.BannerListVO;
+import com.web.toosome.admin.settings.vo.BannerVO;
 import com.web.toosome.user.terms.vo.TermsVO;
 
 @Controller
@@ -19,7 +21,9 @@ public class SettingsController {
 	private ISettingService service;
 	
 	@GetMapping("/banner-management") // 배너 관리
-	public String BannerManagement() {
+	public String BannerManagement(Model model) {
+		model.addAttribute("bannerList", service.getBannerList());
+		model.addAttribute("path", "https://toosome.s3.ap-northeast-2.amazonaws.com");
 		return "adminpages/subpages/settings/bannerManagement";
 	}
 	
@@ -39,5 +43,18 @@ public class SettingsController {
 			ra.addFlashAttribute("msg", "fail");
 		}
 		return "redirect:/admin/term-management";
+	}
+	
+	@PostMapping("/addBanner")
+	public String addBanner(BannerListVO bannerList, RedirectAttributes ra) {
+		int result = service.addBanner(bannerList);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("msg", "success");
+		}else {
+			ra.addFlashAttribute("msg", "fail");
+		}
+		
+		return "redirect:/admin/banner-management";
 	}
 }

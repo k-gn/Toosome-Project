@@ -39,24 +39,14 @@
       <div id="img-wrap" class="img-slide">       
         <div class="slide">
           <ul class="slide-imgs cf slider autoplay">
-            <li class="img1">
-            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main1.png" alt=""/>
-            	<div class="img-title">
-        			<div class="img-content">Premium<br>Coffee<small> &amp; </small>Dessert</div>
-        		</div>
-        	</li>
-            <li class="img2">
-            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main2.png" alt="" />
-            	<div class="img-title">
-        			<div class="img-content">Inviting Pairing<br>Culture</div>
-        		</div>
-            </li>
-            <li class="img3">
-            	<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main3.png" alt="" />
-            	<div class="img-title">
-        			<div class="img-content">Pairing<br><small>in</small><br>Moments<br><small>Since 2002</small></div>
-        		</div>
-            </li>
+          	<c:forEach var="banner" items="${bannerList}" varStatus="i">
+	            <li class="img${i.count}">
+	            	<img src="${path}${banner.bannerRoute}${banner.bannerName}" alt=""/>
+	            	<div class="img-title">
+	        			<div class="img-content">${banner.bannerTitle}</div>
+	        		</div>
+	        	</li>
+          	</c:forEach>
           </ul>
         </div>
       </div>
