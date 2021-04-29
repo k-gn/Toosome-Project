@@ -15,6 +15,22 @@
 		ORDER BY DAILY
 	</select>
 	
+	<select id="getDailySalesInfo" resultType="dailyVO">
+		SELECT DATE_FORMAT(ORDERS_ORDER_DATE,'%Y-%m') DAILY, COUNT(*) SALES 
+		FROM ORDERS 
+		WHERE ORDERS_ORDER_DATE BETWEEN DATE_ADD(NOW(), INTERVAL -1 YEAR) AND NOW() 
+		GROUP BY DAILY 
+		ORDER BY DAILY;
+	</select>
+	
+	<select id="getDailyOrderInfo" resultType="dailyVO">
+		SELECT DATE_FORMAT(ORDERS_ORDER_DATE,'%Y-%m') DAILY, COUNT(*) ORDERS 
+		FROM ORDERS 
+		WHERE ORDERS_ORDER_DATE BETWEEN DATE_ADD(NOW(), INTERVAL -1 YEAR) AND NOW() 
+		GROUP BY DAILY 
+		ORDER BY DAILY;
+	</select>
+	
 	<select id="getOrderCount" resultType="Integer">
 		SELECT COUNT(*) from ORDERS WHERE DATE_FORMAT(ORDERS_ORDER_DATE, '%Y-%m-%d') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 DAY), '%Y-%m-%d');
 	</select>

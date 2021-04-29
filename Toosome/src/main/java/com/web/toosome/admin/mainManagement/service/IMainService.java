@@ -12,6 +12,10 @@ public interface IMainService {
 	
 	public List<DailyVO> getDailyVisitInfo();
 	
+	public List<DailyVO> getDailySalesInfo();
+	
+	public List<DailyVO> getDailyOrderInfo();
+	
 	public List<NoticeBoardVO> getNewNoticeList();
 	
 	public List<QnaBoardVO> getNewQnaList();
