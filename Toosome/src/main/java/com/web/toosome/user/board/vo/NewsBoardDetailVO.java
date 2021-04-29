@@ -2,6 +2,8 @@ package com.web.toosome.user.board.vo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -12,6 +14,7 @@ public class NewsBoardDetailVO {
 	private String newsBoardDetailImageExtention;
 	private Integer newsBoardDetailViewCount;
 	private String newsBoardDetailTitle;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date newsBoardDetailRegdate;
 	
 }

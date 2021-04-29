@@ -12,7 +12,7 @@
 		<typeAlias type="com.web.toosome.user.terms.vo.TermsVO" alias="termsVO"/>
 
 		<typeAlias type="com.web.toosome.user.board.vo.QnaBoardVO" alias="qnaBoardVO"/>
-		
+		<typeAlias type="com.web.toosome.user.board.vo.QnaBoardCommentVO" alias="qnaBoardCommentVO"/>
 		
 		
 		<typeAlias type="com.web.toosome.user.board.vo.NewsBoardVO" alias="newsBoardVO"/>

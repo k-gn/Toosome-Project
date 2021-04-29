@@ -48,4 +48,10 @@ public class QnaBoardService implements IQnaBoardService {
 		return mapper.getSearchQnaBoard(keyword);
 	}
 
+	@Override
+	public void insertQnaBoardText(QnaBoardVO vo) {
+		mapper.insertQnaBoardText(vo);
+		
+	}
+
 }

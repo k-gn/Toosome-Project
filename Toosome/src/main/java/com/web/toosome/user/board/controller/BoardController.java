@@ -2,7 +2,6 @@ package com.web.toosome.user.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +21,14 @@ import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
+import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.service.IQnaBoardService;
+import com.web.toosome.user.board.service.QnaBoardCommentService;
 import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 @Controller
@@ -46,6 +48,9 @@ public class BoardController {
 	
 	@Autowired
 	private IQnaBoardService qnaBoardService;
+	
+	@Autowired
+	private IQnaBoardCommentService qnaBoardCommentService;
 	
 	@Autowired
 	private S3Service awsS3; 
@@ -97,6 +102,14 @@ public class BoardController {
 			return null;
 		}
 		
+	}
+	
+	@GetMapping(value = "/qnacomment" , produces = "application/json")// 이벤트 공지 게시판 진행중 이벤트 화면 값 넘기기
+	@ResponseBody
+	public List<QnaBoardCommentVO> qnaComment(QnaBoardCommentVO vo)throws Exception{
+		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo);
+		System.out.println("컨트롤러 이벤트 게시판 진행중 이벤트 리스트 값 : " + qnacomment );
+		return qnacomment;
 	}
 	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
@@ -277,10 +290,9 @@ public class BoardController {
 	public String qnaEnrollment(MultipartFile uploadFile ,QnaBoardVO vo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
-		System.out.println("vo.getUploadFile 값 : "+vo.getUploadFile());
+		if(vo.getUploadFile().getSize() != 0) {
 		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
-		ra.addFlashAttribute("msg", "successBoard");
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 
 			File convFile = new File(uploadFile.getOriginalFilename());
@@ -289,6 +301,12 @@ public class BoardController {
 			String key = "img/qnaImg/" + vo.getQnaBoardImageName();
 			System.out.println(key);
 			awsS3.upload(file, key);
+		}
+		
+		if(vo.getUploadFile().getSize() == 0 ) {
+			qnaBoardService.insertQnaBoardText(vo);
+		}
+		ra.addFlashAttribute("msg", "successBoard");
 		
 		return "redirect:/qna";
 	}
