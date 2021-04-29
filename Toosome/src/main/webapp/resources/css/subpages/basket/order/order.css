@@ -107,7 +107,7 @@ section table {
 
 
 .table-box table tbody tr td {
-	line-height: 150px;
+	line-height: 100px;
 }
 .table-box table tbody tr td input[type="text"] {
 	height: 25px;
