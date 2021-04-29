@@ -44,7 +44,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">전날 주문건수</p>
-                  <h3 class="card-title">${orderCount}
+                  <h3 class="card-title">${orderCount == null ? 0 : orderCount}
                     <small>건</small>
                   </h3>
                 </div>
@@ -62,7 +62,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">전날 매출액</p>
-                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales}" />
+                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales == null ? 0 : sales}" />
                   	<small>원</small>
                   </h3>
                 </div>
@@ -80,7 +80,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">전날 접속자수</p>
-                  <h3 class="card-title">${visitCount}
+                  <h3 class="card-title">${visitCount == null ? 0 : visitCount}
                   	<small>명</small>
                   </h3>
                 </div>
@@ -98,7 +98,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">전날 가입자수</p>
-                  <h3 class="card-title">${regCount}
+                  <h3 class="card-title">${regCount == null ? 0 : regCount}
                   	<small>명</small>
                   </h3>
                 </div>

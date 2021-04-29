@@ -8,6 +8,8 @@
 <title>Toosomeplace - Admin</title>
 <!-- meta & link -->
 <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <link
 	href="/resources/css/adminpages/subpages/settings/bannerManagement.css"
 	rel="stylesheet" />
@@ -71,9 +73,9 @@
 			                          <label class="bmd-label-floating">제목${i.count}</label>
 			                          <input type="text" class="form-control" name="bannerList[${i.count - 1}].bannerTitle" value="${bannerList[i.count - 1].bannerTitle}">
 			                        </div>
-                              			<button type="button" class="close delete">
-			          				        <i class="material-icons">clear</i>
-			          			        </button>
+                             		<button type="button" class="close delete" onclick="delFunc(${bannerList[i.count - 1].bannerId});">
+		          				        <i class="material-icons">clear</i>
+		          			        </button>
 			                      </div>
 			                      <input type="hidden" name="bannerList[${i.count - 1}].bannerId" value="${bannerList[i.count - 1].bannerId}">
 			                      <input type="hidden" name="bannerList[${i.count - 1}].originImgName" value="${bannerList[i.count - 1].bannerName}">
