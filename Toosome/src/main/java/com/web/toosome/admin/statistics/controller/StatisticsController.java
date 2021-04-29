@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StatisticsController {
 	@GetMapping("/admin/statistics") // 통계 페이지
 	public String Statistics(Model model) {
-		
 		return "adminpages/subpages/statistics/statistics";
 	}
 }
