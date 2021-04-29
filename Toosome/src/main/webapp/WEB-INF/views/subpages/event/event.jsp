@@ -35,7 +35,7 @@
 	        </div>
 	        <div class="tab-content">
 				<ul class="content" id="content"></ul>
-				<button class="load-more"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/share/more_btn.png"></button>	
+				<button class="load-more"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/more_btn.png"></button>	
 	        </div>
 	      </div>
 	    </section>

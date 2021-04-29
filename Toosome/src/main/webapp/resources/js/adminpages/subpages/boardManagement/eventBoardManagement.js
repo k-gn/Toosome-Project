@@ -53,7 +53,7 @@ const enrollCheck = (title,thumb,image,startDate,endDate) => {
 };
 
 // 업데이트 유효성 검사
-const enrollCheck = (title,startDate,endDate) => {
+const updateCheck = (title,startDate,endDate) => {
 	if(title.value === '') {
 		alert('제목 입력란이 비어있습니다.');
 		title.focus();
