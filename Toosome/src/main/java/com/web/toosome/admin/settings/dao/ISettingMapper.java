@@ -25,6 +25,4 @@ public interface ISettingMapper {
 	// 배너 삭제
 	public int delBanner(BannerVO banner);
 	
-	// 배너 한개 조회
-	public BannerVO getBanner(BannerVO banner);
 }

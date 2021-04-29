@@ -13,6 +13,7 @@
 		<id property="bannerId" column="BANNER_ID"/>
 		<result property="bannerRoute" column="BANNER_ROUTE"/>
 		<result property="bannerName" column="BANNER_NAME"/>
+		<result property="bannerTitle" column="BANNER_TITLE"/>
 	</resultMap>
 
 	<select id="getTermList" resultMap="termsMap">
@@ -26,4 +27,16 @@
 	<select id="getBannerList" resultMap="bannerMap">
 		SELECT * FROM BANNER
 	</select>
+	
+	<insert id="addBanner">
+		INSERT INTO BANNER(BANNER_NAME, BANNER_TITLE) VALUES(#{bannerName}, #{bannerTitle})
+	</insert>
+	
+	<update id="modBanner">
+		UPDATE BANNER SET BANNER_NAME = #{bannerName}, BANNER_TITLE = #{bannerTitle} WHERE BANNER_ID = #{bannerId}
+	</update>
+	
+	<delete id="delBanner">
+		DELETE FROM BANNER WHERE BANNER_ID = #{bannerId}
+	</delete>
 </mapper>
