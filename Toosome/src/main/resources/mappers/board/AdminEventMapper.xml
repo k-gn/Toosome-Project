@@ -101,4 +101,13 @@
 	EVENT_BOARD_DETAIL_IMAGE_EXTENTION = #{eventBoardDetailImageExtention} 
 	WHERE EVENT_BOARD_DETAIL_ID = #{eventBoardDetailId}
 	</update>
+	
+	<select id= "selectFile" resultMap="EventAdminMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_ID = #{eventBoardId}
+	</select>
+	
+	<select id= "selectDetailFile" resultMap="EventAdminDetailMap">
+		SELECT * FROM EVENT_BOARD_DETAIL WHERE EVENT_BOARD_DETAIL_ID = #{eventBoardDetailId}
+	</select>
+	
 </mapper>
