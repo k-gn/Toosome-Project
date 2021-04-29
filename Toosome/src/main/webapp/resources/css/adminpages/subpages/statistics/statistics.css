@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+.search-select {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #222;
+	border-radius: 5px;
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.card-header.card-header-info.flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.select-box {
+	position: relative;
+	display: inline-block;
+	align-items: center;
+	cursor: pointer;
+}
+
+.select-box .arrow-down {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	color: #a62326;
+}
+
+
 .date-picker {
 	display: flex;
 	align-items: center;
@@ -53,4 +82,55 @@
 
 .form-control.datetimepicker-input {
 	letter-spacing: 3px;
+}
+
+.list-btn-box {
+	display: flex;
+	align-items: center;
+	width: 380px;
+}
+
+.list-btn-box button {
+	position: relative;
+	outline: none;
+	appearance: none;
+	width: 170px;
+	height: 40px;
+	border: none;
+	background: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 20px;
+	font-size: 1rem;
+	box-shadow: 0 2px 3px #eee;
+	padding-left: 10px;
+	font-weight: 600;
+	color: #222;
+}
+
+.list-btn-box button:active {
+	transform: translate(1px, 2px);
+}
+
+.list-btn-box button i {
+	position: absolute;
+	left: 10px;
+	font-size: 1.25rem;
+	margin-right: 5px;
+	color: #666;
+	line-height: 20px;
+}
+
+#memberList-select {
+	width: 170px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding-left: 15px;
+	font-size: 1rem;
+	box-shadow: 0 2px 3px #eee;
+	font-weight: 600;
+	background: #fff;
+	color: #222;
 }
