@@ -40,7 +40,7 @@
         <div class="slide">
           <ul class="slide-imgs cf slider autoplay">
           	<c:forEach var="banner" items="${bannerList}" varStatus="i">
-	            <li class="img${i.count}">
+	            <li class="img">
 	            	<img src="${path}${banner.bannerRoute}${banner.bannerName}" alt=""/>
 	            	<div class="img-title">
 	        			<div class="img-content">${banner.bannerTitle}</div>

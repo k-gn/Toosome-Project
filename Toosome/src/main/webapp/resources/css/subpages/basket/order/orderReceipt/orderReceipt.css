@@ -25,6 +25,56 @@ section .smart-post {
   margin-bottom: 50px;
 }
 
+section .smart-post .post-title {
+	font-family: gsdr;
+	font-size: 1.5rem;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.smart-post .post-text {
+	width: 80%;
+	height: 100px;
+	background: #fff;
+	margin: 50px auto 0;
+	display: flex;
+}
+
+.smart-post .post-text li {
+	width: 20%;
+	height: 100%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #333;
+}
+.smart-post .post-text li p {
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+.smart-post .post-text li span {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #333;
+	position: absolute;
+	bottom: -10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.smart-post .post-text li.colorRed p{
+	color: #a62326;
+}
+
+.smart-post .post-text li.colorRed span {
+	background: #a62326;
+	width: 30px;
+	height: 30px;
+	bottom: -15px;
+}
+
 section .table-cover {
   width: 90%;
 
