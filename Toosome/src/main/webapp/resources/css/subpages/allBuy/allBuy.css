@@ -110,3 +110,19 @@
 .allBuy-container .contents .guide .guide-content li:last-child {
   margin-bottom: 0;
 }
+
+/* 반응형 start */
+
+@media screen and (max-width: 700px) {
+		
+	.allBuy-container .title-container .title-logo {
+	  width: 400px;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	
+	.navigation-container {
+		margin-top: 50px;
+	}
+}
