@@ -33,9 +33,10 @@
 	<!--   SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = 1; -->
 	</select>
 	
-	  <update id="NoticeBoardCount">
-	<![CDATA[ UPDATE NOTICE_BOARD SET NOTICE_BOARD_VIEW_COUNT = IFNULL(NOTICE_BOARD_VIEW_COUNT,0)+1 WHERE NOTICE_BOARD_ID = #{index} ]]>
+	<update id="NoticeBoardCount">
+		<![CDATA[ UPDATE NOTICE_BOARD SET NOTICE_BOARD_VIEW_COUNT = IFNULL(NOTICE_BOARD_VIEW_COUNT,0)+1 WHERE NOTICE_BOARD_ID = #{index} ]]>
 	</update>
+	
 	<!--  <update id="updateNoticeBoard" parameterType="hashMap">
 		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = #{}, NOTICE_BOARD_COUTENT = #{}, NOTICE_BOARD_REG_DATE = #{} WHERE NOTICE_BOARD_ID = #{noticeBoardId}
 	</update> -->
@@ -44,5 +45,9 @@
 		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}	
 	</delete>
 -->
+
+	<select id="getNewNoticeList" resultMap="NoticeBoardMap">
+		SELECT * FROM NOTICE_BOARD ORDER BY NOTICE_BOARD_REG_DATE DESC LIMIT 0, 5;
+	</select>
 	
 </mapper>

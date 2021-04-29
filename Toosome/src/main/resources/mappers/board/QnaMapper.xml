@@ -76,4 +76,8 @@
 	<delete id="delQna">
 		DELETE FROM QNA_BOARD WHERE MEMBER_MEMBER_ID = #{id}
 	</delete>
+	
+	<select id="getNewQnaList" resultMap="QnaBoardMap">
+		SELECT * FROM QNA_BOARD ORDER BY QNA_BOARD_REG_DATE DESC LIMIT 0, 5;
+	</select>
 </mapper>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="ko">
 
@@ -41,7 +44,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">전날 주문건수</p>
-                  <h3 class="card-title">10
+                  <h3 class="card-title">${orderCount}
                     <small>건</small>
                   </h3>
                 </div>
@@ -59,7 +62,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">전날 매출액</p>
-                  <h3 class="card-title">4,000,000
+                  <h3 class="card-title"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales}" />
                   	<small>원</small>
                   </h3>
                 </div>
@@ -194,19 +197,27 @@
                   <div class="tab-content">
                     <div class="tab-pane active" id="notice">
                       <table class="table">
+                      <!-- 공지사항 -->
                         <tbody>
-                          <tr>
-                            <td><a href="#">Sign contract for "What are conference organizers afraid of?"</a></td>
-                          </tr>
+                          <c:forEach var="notice" items="${newNoticeList}">
+                          	<tr>
+                          		<td width="10%">${notice.noticeBoardId}</td>
+                          		<td width="90%"><a href="/notice-detail?index=${notice.noticeBoardId}">${notice.noticeBoardTitle}</a></td>
+                          	</tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
                     <div class="tab-pane" id="qna">
                       <table class="table">
+                      <!-- 문의사항 -->
                         <tbody>
-                          <tr>
-                            <td><a href="#">Flooded: One year later, assessing what was lost and what was found when a ravaging</a></td>
-                          </tr>
+                          <c:forEach var="qna" items="${newQnaList}">
+                          	<tr>
+                          		<td width="10%">${qna.qnaBoardId}</td>
+                          		<td width="90%"><a href="/qna-detail?index=${qna.qnaBoardId}">${qna.qnaBoardTitle}</a></td>
+                          	</tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
@@ -251,19 +262,19 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <td><a href="#"><i class="material-icons">production_quantity_limits</i>&nbsp;&nbsp;&nbsp;상품관리 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual1.pdf" target='_blank'><i class="material-icons">production_quantity_limits</i>&nbsp;&nbsp;&nbsp;상품관리 매뉴얼</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#"><i class="material-icons">inbox</i>&nbsp;&nbsp;&nbsp;주문/취소 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual2.pdf" target='_blank'><i class="material-icons">inbox</i>&nbsp;&nbsp;&nbsp;주문/취소 매뉴얼</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#"><i class="material-icons">imagesearch_roller</i>&nbsp;&nbsp;&nbsp;디자인 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual3.pdf" target='_blank'><i class="material-icons">imagesearch_roller</i>&nbsp;&nbsp;&nbsp;디자인 매뉴얼</a></td>
                       </tr>
                       <tr>  
-                        <td><a href="#"><i class="material-icons">settings</i>&nbsp;&nbsp;&nbsp;설정/기타 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual4.pdf" target='_blank'><i class="material-icons">settings</i>&nbsp;&nbsp;&nbsp;설정/기타 매뉴얼</a></td>
                       </tr>
                       <tr>  
-                        <td><a href="#"><i class="material-icons">device_unknown</i>&nbsp;&nbsp;&nbsp;모바일 어드민 매뉴얼</a></td>
+                        <td><a href="${manualPath}manual5.pdf" target='_blank'><i class="material-icons">device_unknown</i>&nbsp;&nbsp;&nbsp;모바일 어드민 매뉴얼</a></td>
                       </tr>
                     </tbody>
                   </table>

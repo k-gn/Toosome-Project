@@ -10,7 +10,6 @@ public class TermsVO {
 	private String termsTitle ;
 	private String termsContent;
 	private Integer termsNecessary;
-	private Date termsApplyDate;
 	private Date termsRegDate;
 	private Date termsExpireDate;
 	private Date termsChangeDate;

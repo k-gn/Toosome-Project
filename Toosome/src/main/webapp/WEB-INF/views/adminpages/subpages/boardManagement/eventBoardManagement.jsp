@@ -118,7 +118,7 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input id="detail-reg" name="eventBoardDetailDay" type="date" class="form-control">
+		                          <input id="detail-reg" name="eventBoardDetailDay" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -180,7 +180,6 @@
 		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제" />
 		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
-		                  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  	<input type="hidden" name="eventBoardId" />
 		                  </form>
 		                </div>

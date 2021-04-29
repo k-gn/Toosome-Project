@@ -42,6 +42,6 @@
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.DailyVO" alias="dailyVO"/>
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.VisitorVO" alias="visitorVO"/>
 		<typeAlias type="com.web.toosome.admin.memberManagement.vo.WithdrawVO" alias="withdrawVO"/>
-		
+		<typeAlias type="com.web.toosome.admin.settings.vo.BannerVO" alias="bannerVO"/>
 	</typeAliases>
 </configuration>
