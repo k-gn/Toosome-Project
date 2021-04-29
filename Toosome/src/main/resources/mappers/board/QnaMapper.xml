@@ -32,6 +32,13 @@
 	 	QNA_BOARD_IMAGE_NAME, QNA_BOARD_SECRET) 
 	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, #{qnaBoardImageName}, #{qnaBoardSecret});
 	</insert>
+	<insert id="insertQnaBoardText">
+	INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, QNA_BOARD_TITLE, QNA_BOARD_CONTENT,
+	 	QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, QNA_BOARD_PASSWORD, 		  
+	 	QNA_BOARD_IMAGE_NAME, QNA_BOARD_SECRET) 
+	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, '' , #{qnaBoardSecret});
+	</insert>
+	
 	
 	<select id="passwordQnaBoard" resultMap="QnaBoardMap">
 		<![CDATA[ SELECT QNA_BOARD_PASSWORD, QNA_BOARD_SECRET FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index}  ]]>

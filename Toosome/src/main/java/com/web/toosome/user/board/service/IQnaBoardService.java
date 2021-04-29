@@ -23,4 +23,7 @@ public interface IQnaBoardService {
 	
 	//qna 게시물 검색기능
 	public List<QnaBoardVO> getSearchQnaBoard(String keyword);
+	
+	
+	public void insertQnaBoardText(QnaBoardVO vo);
 }

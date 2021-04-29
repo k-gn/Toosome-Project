@@ -22,4 +22,6 @@ public interface IQnaBoardMapper {
 	public void delQna(Integer id);
 	
 	public List<QnaBoardVO> getNewQnaList();
+	
+	public void insertQnaBoardText(QnaBoardVO vo);
 }
