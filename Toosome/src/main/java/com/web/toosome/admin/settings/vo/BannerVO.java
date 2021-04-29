@@ -13,4 +13,5 @@ public class BannerVO {
 	private String bannerTitle;
 	private String originImgName;
 	private MultipartFile file;
+	
 }

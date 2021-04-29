@@ -183,12 +183,6 @@
                             <div class="ripple-container"></div>
                           </a>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#issue" data-toggle="tab">
-                            <i class="material-icons">task</i> 이슈
-                            <div class="ripple-container"></div>
-                          </a>
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -218,33 +212,6 @@
                           		<td width="90%"><a href="/qna-detail?index=${qna.qnaBoardId}">${qna.qnaBoardTitle}</a></td>
                           	</tr>
                           </c:forEach>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="tab-pane" id="issue">
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" value="">
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
-                            </td>
-                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                            <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                <i class="material-icons">edit</i>
-                              </button>
-                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                <i class="material-icons">close</i>
-                              </button>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>

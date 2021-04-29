@@ -15,4 +15,7 @@ public interface ISettingService {
 	public List<BannerVO> getBannerList();
 	
 	public int addBanner(BannerListVO bannerList);
+	
+	public int delBanner(Integer id);
 }
+
