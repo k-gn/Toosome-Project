@@ -218,5 +218,25 @@
 	background: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/check_on.png") no-repeat center /cover;
 }
 
+/* 반응형 start */
 
+@media screen and (max-width: 550px) {
+	
+	.login-form form input[type="text"],
+	.login-form form input[type="password"] {
+	    width: 90%;
+	} 
+		
+	.login-form form input[type="submit"] {
+		width: 90%;
+	}
+	.login-form .login-value .kaka img {
+	    display: block;
+	    height: 40px;
+	}
+	.login-form .login-value .naver img {
+	    display: block;
+	    height: 40px;
+	}
+}
 
