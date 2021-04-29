@@ -248,4 +248,50 @@ section {
 }
 
 
+/* 반응형 start */
 
+@media screen and (max-width: 950px) {
+	
+	.qna-type-container {
+		display: block;
+		width: 100%;
+	}
+	.qna-title-container {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 930px) {
+	
+	.qna-img-container .title {
+		display: block;
+		margin-bottom: 10px;
+	}
+	.qna-img-container input {
+		margin-left: 10px;
+	}
+	.qna-radio-container {
+		display: block;
+		width: 50%;
+	}
+
+	.qna-pwd-container {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	
+	.qna-radio-container {
+		width: 100%;
+	}
+	.qna-pwd-container {
+		width: 80%;
+	}
+	.btn-container input {
+		width: 100px;
+		height: 40px;
+		font-size: 0.75rem;
+	}
+}
