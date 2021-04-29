@@ -144,17 +144,24 @@ public class BoardManagementController {
 	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
 	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		if(vo.getEventBoardImageName() != null || vvo.getEventBoardDetailImageName() != null) {
+		EventBoardVO ebvo = eventboardservice.selectFile(vo);
+		EventBoardDetailVO ebvo2 = eventboardservice.selectDetailFile(vvo);
 		
-			String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
-			String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+		System.out.println(ebvo +"파일1");
+		System.out.println(ebvo2 +"파일2");
+		if(vo.getUploadFile() != null || vvo.getUploadFile2() != null) {
 		
+			
+			String rote = ebvo.getEventBoardImageRoute()+ebvo.getEventBoardImageName()+"."+ebvo.getEventBoardImageExtention();
+		//	String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
+		
+			
 		System.out.println("이벤트 게시판 이미지 경로(지울거) " + rote);
-		System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote2);
+	//	System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote2);
 		
 		awsS3.delete(rote);
 		System.out.println("첫번쨰 파일 삭제 성공");
-		awsS3.delete(rote2);
+	//	awsS3.delete(rote2);
 		System.out.println("두번쨰 파일 삭제 성공");
 		
 		vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
