@@ -41,7 +41,7 @@ $(function () {
     speed: 1300,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
   });
 

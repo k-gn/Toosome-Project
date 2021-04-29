@@ -8,7 +8,9 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/adminManagement/adminList.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script src="/resources/js/adminpages/subpages/adminManagement/adminList.js" defer></script>
   <script type="text/javascript">
   	const msg = "${msg}";
@@ -147,7 +149,7 @@
 		                      </div>
 		                    </div>
 		                    <input type="submit" class="btn btn-rose pull-right" value="업데이트"/>
-		                    <input type="button" id="modal-delete" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
+		                    <input type="button" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
 		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -205,6 +207,7 @@
                       <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

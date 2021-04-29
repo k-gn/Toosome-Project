@@ -17,5 +17,13 @@ public interface IEventAdminMapper {
 	void insertDetailEvent(EventBoardDetailVO vo);
 	
 	EventBoardVO eventBoardDetail(Integer id);
+	
+	void deleteEvent(Integer id);
+	
+	void deleteDetailEvent(Integer id);
+	
+	void updateEvent(Integer id);
+	
+	void updateEventDetail(Integer id);
 
 }
