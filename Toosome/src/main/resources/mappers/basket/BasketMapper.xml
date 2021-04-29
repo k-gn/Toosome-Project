@@ -117,4 +117,8 @@
 		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id};
 	</select>
 	
+	<select id="getAllOrdersList" resultMap="orderVO">
+		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id}
+	</select>
+	
 </mapper>

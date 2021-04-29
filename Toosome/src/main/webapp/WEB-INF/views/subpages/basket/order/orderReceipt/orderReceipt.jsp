@@ -12,6 +12,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/subpages/basket/order/orderReceipt/orderReceipt.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+  <script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -53,7 +61,7 @@
               <td>
                 <ul>
                   <li><a href="#">후기쓰기</a></li>
-                  <li><a href="#">주문취소</a></li>
+                  <li><a href="#" onclick="cancelPay()">주문취소</a></li>
                 </ul>
               </td>
             </tr>
@@ -79,4 +87,5 @@
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
 </body>
+
 </html>

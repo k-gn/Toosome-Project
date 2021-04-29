@@ -15,5 +15,9 @@ public class TestController {
 	public String testsms2() {
 		return "testsms2";
 	}
-
+	
+	@GetMapping("/import3")
+	public String import3() {
+		return "import3";
+	}
 }

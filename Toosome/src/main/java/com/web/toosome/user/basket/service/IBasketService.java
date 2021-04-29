@@ -35,6 +35,10 @@ public interface IBasketService {
 	// 장바구니 정보 정렬해서 가져오기
 	public List<BasketVO> getBasketList(Integer id);
 	
+	// 주문 내역 가져오기.
 	public List<OrdersDetailVO> getOrdersDetailList(Integer id);
+	
+	// 주문 정보 전부 가져오기(orders)
+	public List<OrdersVO> getAllOrdersList(Integer id);
 	 
 }
