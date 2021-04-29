@@ -85,4 +85,9 @@ public class EventAdminService implements IEventAdminService {
 		return mapper.selectDetailFile(vo);	
 	}
 
+	@Override
+	public void updateEventText(EventBoardVO vo) {
+		 mapper.updateEventText(vo);
+	}
+
 }

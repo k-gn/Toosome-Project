@@ -143,41 +143,64 @@ public class BoardManagementController {
 	
 	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
 	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
+		System.out.println(vvo.getEventBoardDetailId());
 		
 		EventBoardVO ebvo = eventboardservice.selectFile(vo);
 		EventBoardDetailVO ebvo2 = eventboardservice.selectDetailFile(vvo);
-		
 		System.out.println(ebvo +"파일1");
 		System.out.println(ebvo2 +"파일2");
-		if(vo.getUploadFile() != null || vvo.getUploadFile2() != null) {
 		
-			
+		if(vo.getUploadFile().getSize()!= 0) {
+		
 			String rote = ebvo.getEventBoardImageRoute()+ebvo.getEventBoardImageName()+"."+ebvo.getEventBoardImageExtention();
-		//	String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
-		
+			awsS3.delete(rote);
+			System.out.println("첫번쨰 파일 삭제 성공");
+			vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+			vo.setEventBoardImageRoute("img/pages/subpages/event/");
+			vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 			
-		System.out.println("이벤트 게시판 이미지 경로(지울거) " + rote);
-	//	System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote2);
+			int up = eventboardservice.updateEvent(vo);
+			
+			File convFile = new File(vo.getUploadFile().getOriginalFilename());
+			vo.getUploadFile().transferTo(convFile);
+			File file = convFile;
+			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+			System.out.println(key);
+			awsS3.upload(file, key);
+		}
+			
 		
-		awsS3.delete(rote);
-		System.out.println("첫번쨰 파일 삭제 성공");
-	//	awsS3.delete(rote2);
-		System.out.println("두번쨰 파일 삭제 성공");
+			System.out.println("두번쨰 파일 값"+vvo.getUploadFile2());
+		if(vvo.getUploadFile2().getSize() != 0) {
+			
+			String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
+			awsS3.delete(rote2);
+			System.out.println("두번쨰 파일 삭제 성공");
+			vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
+			vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
+			vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
+			
+			int up2 = eventboardservice.updateEventDetail(vvo);
+			eventboardservice.updateEventText(vo);
+			
+			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
+			vvo.getUploadFile2().transferTo(convFile2);
+			File file2 = convFile2;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			System.out.println(key2);
+			awsS3.upload(file2, key2);
+		}
 		
-		vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
-		vo.setEventBoardImageRoute("img/pages/subpages/event/");
-		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		if(vo.getUploadFile().getSize()== 0 && vvo.getUploadFile2().getSize() == 0) {
+			eventboardservice.updateEventText(vo);
+		}
 		
-		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
-		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
-		int up = eventboardservice.updateEvent(vo);
-		int up2 = eventboardservice.updateEventDetail(vvo);
+		
 		
 		System.out.println("DB 파일 update구문 완료");
-		//ra.addFlashAttribute("msg", "successBoard");
-
+	
+/*
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
 			vo.getUploadFile().transferTo(convFile);
@@ -199,7 +222,7 @@ public class BoardManagementController {
 			}else {
 				ra.addFlashAttribute("msg", "failBoard");
 			}
-		}
+		*/
 			
 		return "redirect:/admin/eventboard-management";
 	}
