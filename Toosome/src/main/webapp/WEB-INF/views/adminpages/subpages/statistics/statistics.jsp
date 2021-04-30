@@ -119,10 +119,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">선택날짜</p>
-                  <h3 class="card-title">
-                  	<small>2021-04-19</small>
-                  	<small>~</small>
-                  	<small>2021-04-20</small>
+                  <h3 class="card-title" id="selectDate">
                   </h3>
                 </div>
               </div>

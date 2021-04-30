@@ -4,6 +4,7 @@ const endDate = document.querySelector('#calendar2'); // 달력2
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const selectDate = document.querySelector('#selectDate'); // 테이블
 
 let data = {};
 let rows = 10000;
@@ -27,13 +28,18 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
-	console.log(moment().startOf('month').format('YYYY-MM-DD'));
-	console.log(moment().endOf('month').format('YYYY-MM-DD'));
 	removeOn(periods);
 	const today = moment().format('YYYY-MM-DD');
-	const start = moment().startOf('month').format('YYYY-MM-DD');
+	const start = moment(today).subtract("1","M").format("YYYY-MM-DD");
 	startDate.value = start;
 	endDate.value = today;
+	
+	let content = `
+		<small>${start}</small>
+      	<small>~</small>
+      	<small>${today}</small>
+	`;
+	selectDate.innerHTML = content;
 };
 
 // 기간 버튼 event hook
@@ -161,6 +167,13 @@ const submitHandler = () => {
 	rows = 10000;
 	getStatistics(data);
 	getList(data, listTable, rows);
+	
+	let content = `
+		<small>${startDate.value}</small>
+      	<small>~</small>
+      	<small>${endDate.value}</small>
+	`;
+	selectDate.innerHTML = content;
 };
 
 submitBtn.addEventListener('click', submitHandler);
