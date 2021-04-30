@@ -120,46 +120,38 @@ const displayDetail = (title, content, c_content, item, index) => {
 		content.appendChild(newContent);
 		
 		// 댓글
-		if(!item[0].qnaBoardCommentVO) {
+		if(item[0].qnaBoardComment.length === 0) {
 			let newCommentTitle = document.createElement('tr');
-			let c_titleElement = `
-				<td colspan="4">등록된 댓글이 없습니다<td>
-			`;
+			let c_titleElement = `<td colspan="4">등록된 댓글이 없습니다</td>`;
 			newCommentTitle.innerHTML = c_titleElement;
-			c_title.appendChild(newCommentTitle);
+			c_content.appendChild(newCommentTitle);
 			
-			// 받은 데이터로 새 댓글 본문 생성 후 삽입
-			let newCommentContent = document.createElement('tr');
-			let c_contentElement = `
-				<td colspan="4">등록된 댓글이 없습니다</td>
-			`;
-			newCommentContent.innerHTML = c_contentElement;
-			c_content.appendChild(newCommentContent);
 		} else {
-			for(let i=0; i<item[0].qnaBoardCommentVO.length; i++) {
+			for(let i=0; i<item[0].qnaBoardComment.length; i++) {
+				console.log(id, item[0].memberMemberId);
 				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
-				let commentId = item[0].qnaBoardCommentVO[i].qnaBoardCommentId;
-				let title = item[0].qnaBoardCommentVO[i].qnaBoardCommentTitle;
+				let commentId = item[0].qnaBoardComment[i].qnaBoardCommentId;
+				let title = item[0].qnaBoardComment[i].qnaBoardCommentTitle;
 				let newCommentTitle = document.createElement('tr');
-				let c_titleElement = `
-					<td>번호: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentId}</td>
-					<td>제목: ${id === item[0].memberId ? `<input type="text" value=${title} />`: title}</td>
-					<td>작성자: ${item[0].qnaBoardCommentVO[i].member.memberName}</td>
-					<td>작성일: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentDay}</td>
-					${id === item[0].memberId ?
-					 `<th><input type="button" class="comment-btn" onclick="deleteHandler(${commentId});" value="삭제" /></th><th><input type="button" class="comment-btn" onclick="updateHandler(this,${commentId});" value="수정"></th>` 
+				let c_titleElements = `
+					<td scope="col">번호: ${item[0].qnaBoardComment[i].qnaBoardCommentId}</td>
+					<td scope="col">제목: ${+id === +item[0].memberMemberId ? `<input type="text" value=${title} />`: title}</td>
+					<td scope="col">작성자: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
+					<td scope="col">작성일: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
+					${+id === +item[0].memberMemberId ?
+					 `<td><button class="comment-btn" onclick="deleteHandler(${commentId});">삭제</button></th><th><button class="comment-btn" onclick="updateHandler(this,${commentId});">수정</button></td>` 
 					: ''}
 				`;
-				newCommentTitle.innerHTML = c_titleElement;
-				c_title.appendChild(newCommentTitle);
+				newCommentTitle.innerHTML = c_titleElements;
+				c_content.appendChild(newCommentTitle);
 				
 				// 받은 데이터로 새 댓글 본문 생성 후 삽입
-				let content = item[0].qnaBoardCommentVO[i].qnaBoardCommentContent;
+				let content = item[0].qnaBoardComment[i].qnaBoardCommentContent;
 				let newCommentContent = document.createElement('tr');
-				let c_contentElement = `
-					<td colspan="4">${id === item[0].memberId ? `<textarea rows="5" value=${content} />`: content}</td><hr><br><br>
+				let c_contentElements = `
+					<td colspan="6">${+id === +item[0].memberMemberId ? `<textarea rows="5">${content}</textarea>`: content}</td>
 				`;
-				newCommentContent.innerHTML = c_contentElement;
+				newCommentContent.innerHTML = c_contentElements;
 				c_content.appendChild(newCommentContent);				
 			};
 		};
@@ -175,7 +167,7 @@ $(document).ready(() => {
 	let index = getParam('index');
 	$("#qnaBoardId").val(index);
 	// 게시글 데이터 요청 AJAX
-	id = $('input[name=memberMemberId]').val();
+	id = $('input[name=memberMemberCommentId]').val();
 	
 	$.ajax({
 		url: '/qnadetail?index='+index,

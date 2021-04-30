@@ -206,7 +206,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-info" id="list-table-thead">
+                      <thead class="text-info text-center" id="list-table-thead">
                         <th>
                           멤버십번호
                         </th>
@@ -226,7 +226,7 @@
                           멤버십전환일
                         </th>
                       </thead>
-                      <tbody id="list-table-tbody">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>
