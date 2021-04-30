@@ -2,26 +2,62 @@
 let csrfTokenValue = $("meta[name='_csrf']").attr("content");
 let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
 
-function cancelPay() {
+function cancelPay(s) {
+	$(document).ajaxSend(function(e, xhr, options) { 
+	    	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	    });
       $.ajax({
         "type": "POST",
-        "url": "/testToken",
+        "url": "/createToken",
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "text", //응답받을 데이터의 형태
 		success: function(result) {
-			$.ajax({
-        		"type": "POST",
-       			"url": "/testToken?ordersId=",
-				headers: {
-					"Content-Type": "application/json"
-				}, //요청 헤더 정보
-				dataType: "text", //응답받을 데이터의 형태
-				success: function(result) {
-		
-				}
-      		});
+			if(result !== null) {
+				$.ajax({
+			        "type": "POST",
+			        "url": "/getMerchantUid?ordersId="+s,
+					headers: {
+						"Content-Type": "application/json"
+					}, //요청 헤더 정보
+					dataType: "text", //응답받을 데이터의 형태
+					success: function(uid) {
+						if(uid != null ){
+							$.ajax({
+						        "type": "POST",
+						        "url": "/cancelPayment?token="+result +"&mid="+ uid,
+								headers: {
+									"Content-Type": "application/json"
+								}, //요청 헤더 정보
+								dataType: "text", //응답받을 데이터의 형태
+								success: function(ok) {
+									if(ok == 1){
+										$.ajax({
+									        "type": "POST",
+									        "url": "/ordersCancelReceipt?ordersId="+s,
+											headers: {
+												"Content-Type": "application/json"
+											}, //요청 헤더 정보
+											dataType: "text", //응답받을 데이터의 형태
+											success: function(complete) {
+												if(complete == 1){
+													alert('환불 성공하였습니다.');
+													location.href="/orderreceipt";
+												}else{
+													alert('데이터 삭제 실패');
+												}
+											}
+							      		});
+									}else{
+										alert('환불 실패하였습니다.');
+									}
+								}
+				      		});
+						}
+					}
+	      		});
+			}
 		}
       });
     }
