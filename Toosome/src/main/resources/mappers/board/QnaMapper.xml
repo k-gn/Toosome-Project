@@ -15,6 +15,18 @@
 		<result property="qnaBoardPassword" column="QNA_BOARD_PASSWORD" />		
 		<result property="qnaBoardImageName" column="QNA_BOARD_IMAGE_NAME" />
 		<result property="qnaBoardSecret" column="QNA_BOARD_SECRET" />
+		<collection property="qnaBoardComment" resultMap="QnaBoardCommentMap" />
+	</resultMap>
+	
+	<!-- QNA board Comment -->
+	<resultMap type="qnaBoardCommentVO" id="QnaBoardCommentMap">
+		<id property="qnaBoardCommentId" column="QNA_BOARD_COMMENT_ID"/>
+		<result property="qnaQnaBoardId" column="QNA_QNA_BOARD_ID" />
+		<result property="memberMemberCommentId" column="MEMBER_MEMBER_COMMENT_ID" />
+		<result property="qnaBoardCommentTitle" column="QNA_BOARD_COMMENT_TITLE" />
+		<result property="qnaBoardCommentContent" column="QNA_BOARD_COMMENT_CONTENT" />
+	 	<result property="qnaBoardCommentDay" column="QNA_BOARD_COMMENT_DAY" /> 
+	 	
 	</resultMap>
 	
 	
@@ -22,8 +34,19 @@
 		SELECT * FROM QNA_BOARD ORDER BY QNA_BOARD_ID DESC;
 	</select>
 	
+	<select id="getQnaZeroComment">
+		SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index} 	
+	</select>
+	
 	<select id="getQnaBoardDetail" resultMap="QnaBoardMap">
-		<![CDATA[ SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index}  ]]>
+		<![CDATA[ SELECT A.QNA_BOARD_ID, A.MEMBER_MEMBER_ID, A.QNA_BOARD_TYPE, A.QNA_BOARD_TITLE,
+		A.QNA_BOARD_CONTENT, A.QNA_BOARD_REG_DATE, A.QNA_BOARD_VIEW_COUNT, A.QNA_BOARD_PASSWORD, 
+		A.QNA_BOARD_IMAGE_NAME, A.QNA_BOARD_SECRET,
+		B.QNA_BOARD_COMMENT_ID, B.QNA_QNA_BOARD_ID, B.MEMBER_MEMBER_COMMENT_ID, B.QNA_BOARD_COMMENT_TITLE, B.QNA_BOARD_COMMENT_CONTENT, B.QNA_BOARD_COMMENT_DAY 
+		FROM QNA_BOARD A
+		JOIN QNA_BOARD_COMMENT B
+		ON(A.QNA_BOARD_ID = B.QNA_QNA_BOARD_ID)
+		WHERE QNA_BOARD_ID = #{index}  ]]>
 	</select>
 	
 	<insert id="insertQnaBoard">

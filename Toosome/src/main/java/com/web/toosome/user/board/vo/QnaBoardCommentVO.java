@@ -11,13 +11,12 @@ import lombok.Data;
 public class QnaBoardCommentVO {
 	
 	private Integer qnaBoardCommentId;
-	private Integer	memberMemberId;
-	private Integer qnaBoardId;
+	private Integer	memberMemberCommentId;
+	private Integer qnaQnaBoardId;
 	
 	private String qnaBoardCommentTitle;
 	private String qnaBoardCommentContent;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date qnaBoardCommentDay;
-	private QnaBoardVO qnaBoard;
-	private MemberVO member;
+	
 }
