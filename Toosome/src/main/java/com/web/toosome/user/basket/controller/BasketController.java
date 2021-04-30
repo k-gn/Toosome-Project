@@ -126,14 +126,13 @@ public class BasketController {
 	}
 
 	@GetMapping("orderreceipt") // 주문내역
-	public String orderreceipt(OrdersDetailVO orderDetailVO, Model model, HttpSession session, ProductImageVO imageVO) {
+	public String orderreceipt(OrdersVO ordersVO, Model model, HttpSession session, ProductImageVO imageVO) {
 		System.out.println("주문 내역 페이지 출력");
 		Integer memberId = (Integer) session.getAttribute("id");
-		List<OrdersDetailVO> orderDetailList = service.getOrdersDetailList(memberId);
-		System.out.println(orderDetailList);
-		model.addAttribute("orderDetailList", orderDetailList);
-		List<OrdersVO> orderVO = service.getAllOrdersList(memberId);
-		model.addAttribute("orderVO", orderVO);
+		List<OrdersVO> orderList = service.getAllOrdersList(memberId);
+		System.out.println(orderList);
+		model.addAttribute("orderList", orderList);
+		
 		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}
 
@@ -200,7 +199,7 @@ public class BasketController {
 	@ResponseBody
 	@GetMapping("/productStactpoint")
 	public String productStactpoint(BasketUtil basketUtil, HttpSession session, Integer basketEndPrice,
-			Integer basketsal) {
+			Integer basketsal, String merchantUid, OrdersVO ordersVO) {
 		System.out.println("상품 결제 후 포인트 적립");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
@@ -220,6 +219,10 @@ public class BasketController {
 		map.put("usedPoint", usedPoint);
 		mservice.getDownPoint(map);
 		System.out.println("getDownPoint 실행 완료");
+		Integer id =  service.getOrdersList(memberId).getOrdersId();
+		ordersVO.setOrdersId(id);
+		ordersVO.setOrdersMerchantUid(merchantUid);
+		service.updateMerchantUid(ordersVO);
 		return "OK";
 	}
 
@@ -288,14 +291,16 @@ public class BasketController {
 
 	@PostMapping("/ordersubmit")
 	@ResponseBody
-	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil) {
+	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil, String merchantUid) {
 		System.out.println("ordersubmit 메서드 실행");
-		System.out.println(order.getOrdersPayment());
-		System.out.println(order.getOrdersDelivery());
-		System.out.println(basketUtil.getDeliveryPay());
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
 		order.setOrdersDelivery(basketUtil.getDeliveryPay());
+		int basketcount = service.getBasketList(memberId).size();
+		System.out.println(basketcount);
+		String basketName = service.getbasketName(memberId).getBasketName();
+		String name = basketName + "외" + (basketcount-1) +"개";
+		order.setOrdersProductName(name);
 		int result = service.orderSubmit(order);
 		if (result > 0)
 			return "success";

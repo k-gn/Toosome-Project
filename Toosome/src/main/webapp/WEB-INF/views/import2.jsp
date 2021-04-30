@@ -36,7 +36,7 @@ IMP.request_pay({
         msg += '카드 승인번호 : ' + rsp.apply_num;
         $.ajax({
         	type : "GET",
-            url: "/productStactpoint?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}",
+            url: "/productStactpoint?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}&merchantUid="+rsp.merchant_uid,
             success : function(ser) {
             	if(ser=="OK"){
             		location.href="/orderComplete?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}";

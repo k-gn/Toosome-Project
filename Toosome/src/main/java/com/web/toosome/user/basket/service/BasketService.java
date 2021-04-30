@@ -93,6 +93,16 @@ public class BasketService implements IBasketService {
 	public List<OrdersVO> getAllOrdersList(Integer id) {
 		return bmapper.getAllOrdersList(id);
 	}
+
+	@Override
+	public int updateMerchantUid(OrdersVO ordersVO) {
+		return bmapper.updateMerchantUid(ordersVO);
+	}
+
+	@Override
+	public BasketVO getbasketName(Integer id) {
+		return bmapper.getbasketName(id);
+	}
 	
 
 

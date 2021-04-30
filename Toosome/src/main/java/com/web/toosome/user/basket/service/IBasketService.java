@@ -40,5 +40,12 @@ public interface IBasketService {
 	
 	// 주문 정보 전부 가져오기(orders)
 	public List<OrdersVO> getAllOrdersList(Integer id);
+	
+	// merchantUid를 Orders에 저장
+	public int updateMerchantUid(OrdersVO ordersVO);
+	
+	// 장바구니에서 상품이름 하나만 가져오기.
+	public BasketVO getbasketName(Integer id);
+
 	 
 }

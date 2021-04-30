@@ -70,18 +70,17 @@
               <th scope="col" style="text-align: center;">비고</th>
             </tr>
           </thead>
-          <c:forEach var="orderDetailList" items="${orderDetailList}" varStatus="i">
+          <c:forEach var="orderList" items="${orderList}" varStatus="i">
           <tbody>
             <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${orderDetailList.ordersDetailImagePath}" alt=""></td>
-              <td><span class="name">${orderDetailList.ordersDetailName}</span></td>
-              <td>${orderDetailList.ordersDetailAmount}</td>
+              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="" alt=""></td>
+              <td><span class="name"></span></td>
+              <td></td>
               <td>
-                <span class="post-state">${orderDetailList.ordersDetailState}</span>
+                <span class="post-state"></span>
               </td>
               <td>
-                <span class="total">${orderDetailList.ordersDetailPrice}</span> 원
+                <span class="total"></span> 원
               </td>
               <td>
                 <ul>

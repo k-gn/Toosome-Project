@@ -34,6 +34,8 @@
 		<result property="ordersDelivery" column="ORDERS_DELIVERY" />
 		<result property="ordersPhone" column="ORDERS_PHONE" />
 		<result property="ordersContent" column="ORDERS_CONTENT" />	
+		<result property="ordersMerchantUid" column="ORDERS_MERCHANT_UID" />	
+		<result property="ordersProductName" column="ORDERS_PRODUCT_NAME" />	
 	</resultMap>
 	
 	<resultMap type="ordersDetailVO" id="ordersDetailVO">
@@ -81,9 +83,9 @@
 
 	<insert id="orderSubmit">
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
-		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT)
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_PRODUCT_NAME)
 		VALUES(#{memberId}, now(), #{ordersPayment}, "결제완료", #{ordersAddress}, #{ordersPostcode},
-		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent})
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersProductName})
 	</insert>
 	
 	<select id="getOrdersList" resultMap="orderVO">
@@ -119,6 +121,14 @@
 	
 	<select id="getAllOrdersList" resultMap="orderVO">
 		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id}
+	</select>
+	
+	<update id="updateMerchantUid">
+		UPDATE ORDERS SET ORDERS_MERCHANT_UID = #{ordersMerchantUid} WHERE ORDERS_ID = #{ordersId}
+	</update>
+	
+	<select id="getbasketName" resultMap="basketMap">
+		SELECT * FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
 	</select>
 	
 </mapper>
