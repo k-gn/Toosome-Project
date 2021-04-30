@@ -125,14 +125,13 @@ public class BasketController {
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
 
-	@GetMapping("orderreceipt") // 주문내역
+	@GetMapping("/orderreceipt") // 주문내역
 	public String orderreceipt(OrdersVO ordersVO, Model model, HttpSession session, ProductImageVO imageVO) {
 		System.out.println("주문 내역 페이지 출력");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<OrdersVO> orderList = service.getAllOrdersList(memberId);
 		System.out.println(orderList);
 		model.addAttribute("orderList", orderList);
-		
 		return "subpages/basket/order/orderReceipt/orderReceipt";
 	}
 
@@ -321,6 +320,28 @@ public class BasketController {
 		System.out.println(ordersDetailList);
 		return ordersDetailList;
 	}
+	
+	@PostMapping("/getMerchantUid")
+	@ResponseBody
+	public String getMerchantUid(Integer ordersId) {
+		String uid = service.getMerchantUid(ordersId);
+		return uid;
+	}
+	
+	@PostMapping("/ordersCancelReceipt")
+	@ResponseBody
+	public int ordersCancelReceipt(Integer ordersId) {
+		int detailDel = service.ordersDetailDel(ordersId);
+		int ordersDel = service.ordersDel(ordersId);
+		if(detailDel == 1 && ordersDel == 1) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
+	
 
 	// 테스트 진행중....
 	public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken";
@@ -331,7 +352,7 @@ public class BasketController {
 	public static final String SECRET = "3pXrXWleqhPI4QmOdvx3mTiAvx8OIBSL1PcYMydcP2UTThI6Ng99asJFZRuHtnsucFtYeHb3J5XCnFJa";
 
 	// 아임포트 인증(토큰)을 받아주는 함수
-	@PostMapping("/testToken")
+	@PostMapping("/createToken")
 	@ResponseBody
 	public String getImportToken() {
 		String result = "";

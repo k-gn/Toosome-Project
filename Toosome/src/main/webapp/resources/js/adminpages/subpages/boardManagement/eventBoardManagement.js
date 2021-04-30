@@ -234,7 +234,7 @@ const setData = (result, wrapper, rows) => {
 	$('#pagination').pagination({
 	    dataSource: result,
 	    pageSize: rows,
-	    pageNumber: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			showList(data, wrapper);					
 	    }
@@ -256,8 +256,7 @@ const getList = (url, board, wrapper, rows) => {
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
-			const newRes = result.reverse();
-			setData(newRes, wrapper, rows);
+			setData(result, wrapper, rows);
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');

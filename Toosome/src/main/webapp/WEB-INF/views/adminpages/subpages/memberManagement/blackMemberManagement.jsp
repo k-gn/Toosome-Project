@@ -227,7 +227,7 @@
                       	<col width="15%">
                       	<col width="15%">
                       </colgroup>
-                      <thead class="text-primary" id="list-table-thead">
+                      <thead class="text-primary text-center" id="list-table-thead">
                         <th>
                           회원번호
                         </th>
@@ -250,7 +250,7 @@
                           블랙전환일
                         </th>
                       </thead>
-                      <tbody id="list-table-tbody">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>

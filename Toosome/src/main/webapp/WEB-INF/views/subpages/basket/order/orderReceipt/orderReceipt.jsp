@@ -86,16 +86,9 @@
 	        
 	        <table class="table none">
 	        	<tbody class="under-table a${orderList.ordersId}">
-	        		<tr class="text-bold">
-	        			<td>이미지</td>
-		              	<td colspan="2">상품명</td>
-		              	<td>수량</td>
-		              	<td>금액</td>
-		              	<td>배송상태</td>
-	        		</tr>
+	        		
 	        	</tbody>
 	        </table>
-	        
       </div>
       </c:forEach>
       <div class="text">
