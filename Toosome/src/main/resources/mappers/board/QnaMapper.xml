@@ -19,7 +19,7 @@
 	
 	
 	<select id="getQnaBoardList" resultMap="QnaBoardMap">
-		SELECT * FROM QNA_BOARD;
+		SELECT * FROM QNA_BOARD ORDER BY QNA_BOARD_ID DESC;
 	</select>
 	
 	<select id="getQnaBoardDetail" resultMap="QnaBoardMap">
@@ -32,6 +32,13 @@
 	 	QNA_BOARD_IMAGE_NAME, QNA_BOARD_SECRET) 
 	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, #{qnaBoardImageName}, #{qnaBoardSecret});
 	</insert>
+	<insert id="insertQnaBoardText">
+	INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, QNA_BOARD_TITLE, QNA_BOARD_CONTENT,
+	 	QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, QNA_BOARD_PASSWORD, 		  
+	 	QNA_BOARD_IMAGE_NAME, QNA_BOARD_SECRET) 
+	 	VALUES (#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType}, #{qnaBoardTitle}, #{qnaBoardContent}, #{qnaBoardRegdate}, 0, #{qnaBoardPassword}, '' , #{qnaBoardSecret});
+	</insert>
+	
 	
 	<select id="passwordQnaBoard" resultMap="QnaBoardMap">
 		<![CDATA[ SELECT QNA_BOARD_PASSWORD, QNA_BOARD_SECRET FROM QNA_BOARD WHERE QNA_BOARD_ID = #{index}  ]]>
@@ -41,33 +48,7 @@
 		SELECT * FROM QNA_BOARD WHERE QNA_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');		
 	</select>
 	
-	<!--  
-	<select id="getEventBoardList" resultMap="EventBoardMap">
-		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() >= EVENT_BOARD_END_DAY; ]]>
-	</select>
 	
-	<select id="getEndEventBoardList" resultMap="EventBoardMap">
-		<![CDATA[ SELECT * FROM EVENT_BOARD WHERE NOW() < EVENT_BOARD_END_DAY; ]]>
-	</select>
-	
-	<select id="getEventBoardDetail" resultMap="EventBoardMap">
-		<![CDATA[SELECT A.EVENT_BOARD_ID, A.EVENT_BOARD_VIEW_COUNT, A.EVENT_BOARD_TITLE,
-		   		B.EVENT_BOARD_DETAIL_ID, B.EVENT_BOARD_DETAIL_IMAGE_ROUTE, B.EVENT_BOARD_DETAIL_IMAGE_NAME, B.EVENT_BOARD_DETAIL_IMAGE_EXTENTION, B.EVENT_BOARD_DETAIL_DAY
-      				FROM EVENT_BOARD A
-	  					JOIN EVENT_BOARD_DETAIL B
-	    					ON (A.EVENT_BOARD_ID = B.EVENT_BOARD_DETAIL_ID)
-	    						WHERE A.EVENT_BOARD_ID >= #{index}-1 AND A.EVENT_BOARD_ID <= #{index}+1]]>
-	</select>
-	
-	<select id="getSearchList" resultMap="EventBoardMap">
-		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');
-	</select>
-	
-	
-	<update id="eventBoardCount">
-		<![CDATA[ UPDATE EVENT_BOARD SET EVENT_BOARD_VIEW_COUNT = IFNULL(EVENT_BOARD_VIEW_COUNT,0)+1 WHERE EVENT_BOARD_ID = #{index} ]]>
-	</update>
-	-->
 	
 	<update id="qnaBoardCount">
 		<![CDATA[ UPDATE QNA_BOARD SET QNA_BOARD_VIEW_COUNT = IFNULL(QNA_BOARD_VIEW_COUNT,0)+1 WHERE QNA_BOARD_ID = #{index} ]]>

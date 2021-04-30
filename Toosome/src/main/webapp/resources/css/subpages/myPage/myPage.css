@@ -159,3 +159,84 @@
 #main .grid-box .grid li input[type="button"]:hover {
   text-decoration: underline;
 }
+
+
+/* 반응형 start */
+
+@media screen and (max-width: 1180px) {
+	
+	#main .grid-box .grid {
+	  height: 100%;
+  	  padding-bottom: 30px;
+	}
+	#main .grid-box .grid li {
+	  height: auto;
+	}
+	#main .grid-box .grid li img {
+	  height: 64px;
+	}
+	#main .grid-box .grid li .list-comment {
+	  font-size: 14px;
+	  margin-top: 10px;
+	}
+	#main .grid-box .grid li input[type="button"] {
+	  margin: 10px auto;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	
+	#main .grid-box .grid li img {
+	  height: 64px;
+	}
+	#main .grid-box .grid li .list-comment {
+	  font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 950px) {
+	
+	#main .grid-box .grid li input[type="button"] {
+	  margin: 10px auto;
+	  padding: 10px;
+	  font-size: 13px;
+	}
+}
+
+
+@media screen and (max-width: 880px) {
+	
+	.my-container {
+		position: relative;
+	}
+		
+	.nav-cover {
+	  position: absolute;
+	  width: 40%;
+	  top: 30px;
+	  right: 0;
+	}
+	#main {
+		width: 100%;
+	}
+	#main .grid-box .grid {
+	  width: 50%;
+	  margin: 0;
+	  margin-top: 10px;
+	  display: grid;
+	  grid-template-columns: auto;
+	  background-color: #fff;
+	  border-radius: 20px;
+	}
+	#main .grid-box .grid li {
+		border: none;
+		margin-top: 20px;
+		border-bottom: 1px solid #333;
+	}
+	#main .grid-box .grid li img{
+	  display: none;
+	}
+}
+
+
+

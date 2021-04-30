@@ -3,6 +3,8 @@ const detailContent = document.querySelector('#qnaDetail'); // QnA 세부 본문
 const commentTitle = document.querySelector('.comment-table thead') // QnA 댓글 타이틀
 const commentContent = document.querySelector('#comment'); // QnA 댓글 본문
 
+let id = '';
+
 // parameter 받아오는 함수
 const getParam = (param) => {
 	let url = location.href;
@@ -14,7 +16,35 @@ const getParam = (param) => {
 		/* error code 작성 */
 		alert('경고\n올바른 요청이 아닙니다.');
 	}
-}
+};
+
+// 댓글 유효성 검사
+const enrollCheck = () => {
+	const title = document.querySelector('#comment-title');
+	const content = document.querySelector('#comment-content');
+	
+	if(title.value === '') {
+		alert('제목 입력란이 비어있습니다.');
+		title.focus();
+		return false;
+	} else if (content.value === '') {
+		alert('내용 입력란이 비어있습니다.');
+		content.focus();
+		return false;
+	} 
+	
+	return true;
+};
+
+// 댓글 삭제 버튼
+const deleteHandler = () => {
+	
+};
+
+// 댓글 업데이트 버튼
+const updateHandler = () => {
+	
+};
 
 // 리스트 출력
 const displayDetail = (title, content, c_title, c_content, item, index) => {
@@ -51,7 +81,7 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		// 문의사항 이미지 존재 여부
-		let existImg = item[0].qnaBoardImageName ? `<img src='https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/qna/${item[0].qnaBoardImageName}' alt="#">` : "";
+		let existImg = item[0].qnaBoardImageName ? `<img src='https://toosome.s3.ap-northeast-2.amazonaws.com/${item[0].qnaBoardImageName}' alt="#">` : "";
 		let contentElement = `
 			<td colspan="5">${item[0].qnaBoardContent}<br>${existImg}</td>
 		`;
@@ -59,11 +89,10 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		content.appendChild(newContent);
 		
 		// 댓글
-		if(!item[0].commentVO) {
+		if(!item[0].qnaBoardCommentVO) {
 			let newCommentTitle = document.createElement('tr');
 			let c_titleElement = `
-				<th colspan="4">등록된 댓글이 없습니다</td>
-				<th></td>
+				<th colspan="3">등록된 댓글이 없습니다<th>
 			`;
 			newCommentTitle.innerHTML = c_titleElement;
 			c_title.appendChild(newCommentTitle);
@@ -71,18 +100,21 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 			// 받은 데이터로 새 댓글 본문 생성 후 삽입
 			let newCommentContent = document.createElement('tr');
 			let c_contentElement = `
-				<td colspan="5">등록된 댓글이 없습니다</td>
+				<td colspan="3">등록된 댓글이 없습니다</td>
 			`;
 			newCommentContent.innerHTML = c_contentElement;
 			c_content.appendChild(newCommentContent);
 		} else {
-			/*for(let i=0; i<item[0].commentVO.length; i++) {
+			for(let i=0; i<item[0].qnaBoardCommentVO.length; i++) {
 				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
 				let newCommentTitle = document.createElement('tr');
 				let c_titleElement = `
-					<th colspan="3">${item[0].commentVO[i].comment_title}</td>
-					<th>${item[0].commentVO[i].comment_writer}</td>
-					<th>${item[0].commentVO[i].comment_date}</td>
+					<th>제목: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentTitle}</th>
+					<th>작성자: ${item[0].qnaBoardCommentVO[i].member.memberName}</th>
+					<th>작성일: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentDay}</th>
+					${id === item[0].memberId ?
+					 '<th><input type="button" class="comment-btn" onclick="deleteHandler();" value="삭제" /></th><th><input type="button" class="comment-btn" onclick="updateHandler();" value="수정"></th>' 
+					: ''}
 				`;
 				newCommentTitle.innerHTML = c_titleElement;
 				c_title.appendChild(newCommentTitle);
@@ -90,11 +122,11 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 				// 받은 데이터로 새 댓글 본문 생성 후 삽입
 				let newCommentContent = document.createElement('tr');
 				let c_contentElement = `
-					<td colspan="5">${item[0].commentVO[i].comment_content}</td>
+					<td colspan="5">${item[0].qnaBoardCommentVO[i].qnaBoardCommentContent}</td>
 				`;
 				newCommentContent.innerHTML = c_contentElement;
 				c_content.appendChild(newCommentContent);				
-			};*/
+			};
 		};
 	} else {
 		alert('잘못된 요청입니다');
@@ -106,11 +138,14 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 $(document).ready(() => {
 	// param의 index 빼오기
 	let index = getParam('index');
+	$("#qnaBoardId").val(index);
 	// 게시글 데이터 요청 AJAX
+	id = $('input[name=memberMemberId]').val();
+	
 	$.ajax({
 		url: '/qnadetail?index='+index,
 		success: (res) => {
-			console.log(res);
+			console.log(res);	
 			displayDetail(detailTitle, detailContent, commentTitle, commentContent, res, index);
 		},
 		error: () => {

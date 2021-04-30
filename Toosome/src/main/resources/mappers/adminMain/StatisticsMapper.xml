@@ -3,6 +3,50 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.toosome.admin.statistics.dao.IStatisticsMapper">
 
-	
+	<sql id="search">
+		<if test="startStatisticsDate != null and startStatisticsDate != ''">
+			WHERE ORDERS_ORDER_DATE BETWEEN DATE(#{startStatisticsDate}) AND DATE(#{endStatisticsDate})+1
+		</if>
+	</sql>
 
+	<select id="getDailyOrdersList" resultType="statisticsVO">
+		SELECT  
+			ORDERS_ID AS ORDERID, 
+			MEMBER_EMAIL AS MEMBEREMAIL, 
+			DATE_FORMAT(ORDERS_ORDER_DATE, '%Y-%m-%d') AS ORDERDATE, 
+			SUM(ORDERS_PAYMENT) AS PAYMENT
+		FROM MEMBER M JOIN ORDERS O ON M.MEMBER_ID = O.MEMBER_MEMBER_ID
+		<include refid="search"/>
+		<if test="startStatisticsDate == null and startStatisticsDate == ''">
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
+		</if>
+        GROUP BY ORDERDATE
+	</select>
+
+	<select id="getTotalSalesCount" resultType="Integer">
+		SELECT COUNT(*) from ORDERS
+		<include refid="search"/>
+		<if test="startStatisticsDate == null and startStatisticsDate == ''">
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
+		</if>
+	</select>
+	
+	<select id="getTotalPayment" resultType="Integer">
+		SELECT SUM(ORDERS_PAYMENT) from ORDERS
+		<include refid="search"/>
+		<if test="startStatisticsDate == null and startStatisticsDate == ''">
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
+		</if>
+	</select>
+	
+	<select id="getDailyInfo" resultType="dailyOrderVO">
+		SELECT DATE_FORMAT(ORDERS_ORDER_DATE,'%Y-%m') DAILY, SUM(ORDERS_PAYMENT) DAILYPAYMENT, COUNT(*) AS DAILYSALES 
+		FROM ORDERS 
+		<include refid="search"/>
+		<if test="startStatisticsDate == null and startStatisticsDate == ''">
+			WHERE ORDERS_ORDER_DATE BETWEEN DATE_ADD(NOW(), INTERVAL -1 YEAR) AND NOW() 
+		</if>
+		GROUP BY DAILY 
+		ORDER BY DAILY
+	</select>
 </mapper>

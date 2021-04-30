@@ -4,10 +4,19 @@
 <html lang="ko">
 <head>
     <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
+    <title>A TOOSOME PLACE</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/subpages/qna/qnaDetail/qnaDetail.css">
   	<script src="/resources/js/subpages/qna/qnaDetail/qnaDetail.js" defer></script>
-    <title>A TOOSOME PLACE</title>
+  	<script type="text/javascript">
+	  	const msg = "${msg}";
+	  	if(msg === "insertSuccess") {
+	  		alert("댓글 등록 완료");
+	  		location.reload();
+	  	} else if (msg === "updateFail"){
+	  		alert("댓글 등록 실패");
+	  	}
+	</script>
 </head>
 <body>
     <div id="container">
@@ -43,11 +52,12 @@
         			<col width="15%">
         			<col width="15%">
         		</colgroup>
-        		<thead></thead>
+        		<thead>		
+        		</thead>
         		<tbody id="comment"></tbody>
         	</table>
         	<h3>댓글 등록</h3>
-        	<form action="#" method="POST">
+        	<form action="/qnacommentinsert?${_csrf.parameterName}=${_csrf.token}" method="POST">
 	        	<table summary="QnAComment" class="comment-table">
 	        		<colgroup>
 	        			<col width="70%">
@@ -56,18 +66,20 @@
 	        		</colgroup>
 	        		<thead>
 	        			<tr>
-		        			<th>제목 : <input type="text" name="commentTitle" placeholder="제목을 입력하세요"></th>
-	        				<th><button type="submit">등록</button></th>
+		        			<th>제목 : <input id="comment-title" type="text" name="qnaBoardCommentTitle" placeholder="제목을 입력하세요"></th>
+	        				<th><button type="submit" onclick="return enrollCheck();">등록</button></th>
 	        			</tr>
 	        		</thead>
 	        		<tbody>
 	        			<tr>
 		        			<td colspan="5">
-								<textarea name="commentContent" rows="5" placeholder="명예훼손, 개인정보 유출, 분쟁 유발, 허위사실 유포 등의 글은 이용약관에 의해 제재는 물론 법률에 의해 처벌받을 수 있습니다. 건전한 인터넷 사용을 위해 자제를 당부드립니다."></textarea>	        				
+								<textarea id="comment-content" name="qnaBoardCommentContent" rows="5" placeholder="명예훼손, 개인정보 유출, 분쟁 유발, 허위사실 유포 등의 글은 이용약관에 의해 제재는 물론 법률에 의해 처벌받을 수 있습니다. 건전한 인터넷 사용을 위해 자제를 당부드립니다."></textarea>	        				
 		        			</td>
 	        			</tr>
 	        		</tbody>
 	        	</table>
+	        	<input id="qnaBoardId" name="qnaBoardId" type="hidden" />
+	        	<input name="memberMemberId" type="hidden" value="${id}"/>
         	</form>
         </section>
 		<!-- section end -->

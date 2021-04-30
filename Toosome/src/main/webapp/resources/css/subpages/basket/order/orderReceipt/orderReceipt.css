@@ -79,22 +79,40 @@ section .table-cover {
   width: 90%;
 
 }
-section .table-cover table tbody td {
-  line-height: 150px;
+
+section .table-cover .under-table {
+  display: none;
+  /* display: table-row-group; */
 }
+section .table-cover .under-table .text-bold td {
+  font-weight: bold;
+  text-align: center;
+}
+section .table-cover .under-table .under-tr img {
+	display: block;
+	width: 100px;
+	height: auto;
+	margin: 0 auto;
+}
+section .table-cover tbody tr td {
+  text-align: center;
+}
+
 section .table-cover table tbody td ul {
-  height: 150px;
+  width: 100%;
 }
 section .table-cover table tbody td ul li {
-  height: 50%;
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
   justify-content: center;
-  align-items: center;
+}
+section .table-cover table tbody td ul li:last-child {
+  margin-bottom: 0;
 }
 section .table-cover table tbody td ul li a {
   display: flex;
-  width: 80%;
+  width: 70%;
   justify-content: center;
   line-height: 18px;
   padding: 10px 0;
@@ -107,6 +125,25 @@ section .table-cover table tbody td ul li a {
 section .table-cover table tbody td ul li:first-child a {
   background-color: #38383b;
 }
+
+
+section .table-cover table .under-btn {
+	appearance: none;
+	outline: none;
+	border: none;
+	width: 100px;
+	height: 50px;
+	background: #A62326;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 1rem;
+}
+section .table-cover table .under-btn:hover {
+	text-decoration: underline;
+}
+
 section .table-cover .orderCom {
   margin: 20px 0;
   font-family: gsdr;

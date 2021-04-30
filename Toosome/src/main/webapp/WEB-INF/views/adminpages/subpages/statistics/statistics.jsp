@@ -7,8 +7,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/statistics/statistics.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/statistics/statistics.js" defer></script>
 </head>
@@ -60,7 +62,7 @@
                              </div>
                            </td>
                            <td>
-                             <button type="submit" class="btn btn-warning pull-right">검색</button>
+                             <button id="search-submit" class="btn btn-warning pull-right">검색</button>
                            </td>
                          </tr>
                        </tbody>
@@ -78,7 +80,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">총 결제금액</p>
-                  <h3 class="card-title">9,387,000
+                  <h3 class="card-title" id="totalPayment">0
                     <small>원</small>
                   </h3>
                 </div>
@@ -104,7 +106,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">총 판매건수</p>
-                  <h3 class="card-title">82
+                  <h3 class="card-title" id="totalSalesCount">0
                   	<small>건</small>
                   </h3>
                 </div>
@@ -117,10 +119,7 @@
                     <i class="material-icons">person_add</i>
                   </div>
                   <p class="card-category">선택날짜</p>
-                  <h3 class="card-title">
-                  	<small>2021-04-19</small>
-                  	<small>~</small>
-                  	<small>2021-04-20</small>
+                  <h3 class="card-title" id="selectDate">
                   </h3>
                 </div>
               </div>
@@ -178,6 +177,59 @@
                 </div>
               </div>
             </div>     
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-info flex">
+                  <div>
+	                  <h4 class="card-title">일자별 판매현황</h4>
+	                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
+                  </div>
+                  <div class="list-btn-box">
+                    <button id="excel-down" onclick="excelDownload('member-table', '판매리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
+                    <div class="select-box">
+	                    <select id="memberList-select">
+	                      <option value="10000">전체보기</option>
+	                      <option value="30">30개씩 보기</option>
+	                      <option value="50">50개씩 보기</option>
+	                      <option value="100">100개씩 보기</option>
+	                      <option value="200">200개씩 보기</option>
+	                    </select>
+	                    <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="member-table" class="table">
+                      <colgroup>
+                      	<col width="25%">
+                      	<col width="25%">
+                      	<col width="25%">
+                      	<col width="25%">
+                      </colgroup>
+                      <thead class="text-warning text-center">
+                        <th>
+                          주문번호
+                        </th>
+                        <th>
+                          주문자
+                        </th>
+                        <th>
+                          주문일자
+                        </th>
+                        <th>
+                          결제금액
+                        </th>
+                      </thead>
+                      <tbody id="list-table-tbody" class="text-center"></tbody>
+                    </table>
+                    <div id="pagination"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
       <!-- Footer -->

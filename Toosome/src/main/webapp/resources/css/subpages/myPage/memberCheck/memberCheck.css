@@ -36,6 +36,9 @@
   font-family: gsdr;
   margin-bottom: 15px;
 }
+.signform-email-wrapper {
+	margin-bottom: 15px;
+}
 .signup-form {
   height: 50px;
   border-radius: 10px;
@@ -81,4 +84,12 @@
   .signup-container {
     min-width: 320px;
   }
+  
+}
+
+@media screen and (max-width: 620px) {
+		
+	.signup-form-tb input[type="tel"] {
+	  width: 100px !important;
+	}
 }

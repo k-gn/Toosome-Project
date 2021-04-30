@@ -259,7 +259,7 @@ const getList = (url, board, wrapper, rows) => {
 			const newRes = result.reverse();
 			setData(newRes, wrapper, rows);
 		}, 
-		error: function() {
+		error: () => {
 			alert('시스템과에 문의하세요');
 			history.back();
 		} 
