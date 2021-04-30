@@ -217,7 +217,6 @@ public class BoardController {
 	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	@ResponseBody
 	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
-		System.out.println(vo);
 		if (vo.getQnaBoardSecret() != 1) {
 			return "success";
 		} else {
@@ -237,22 +236,11 @@ public class BoardController {
 
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
 	@ResponseBody
-	public List<QnaBoardVO> qnaDetail(String index, QnaBoardCommentVO vo){
+	public List<QnaBoardVO> qnaDetail(String index){
 		
-		if(vo.getQnaQnaBoardId() != null) {
-		List<QnaBoardVO> zerocomment = qnaBoardService.getQnaZeroComment(index); // 댓글이 0 개일 경우
-		
-		qnaBoardService.qnaBoardCount(index); // 조회수 증가
-		
-		return zerocomment;  
-	
-		}else {
 		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index); //상세페이지 댓글 정보 가져오는값
-		
 		qnaBoardService.qnaBoardCount(index); // 조회수 증가
-	
 		return qnadetail;  
-		}
 	}
 	
 	@GetMapping(value = "/qnasearch", produces = "application/json") // 게시판 검색기능
@@ -305,6 +293,7 @@ public class BoardController {
 	
 	@PostMapping("/qnacommentinsert")// qna 댓글입력
 	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+		System.out.println("QnaBoardCommentVO : " + vo);
 		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
 		if(insert > 0) {
 			ra.addFlashAttribute("msg", "insertSuccess");

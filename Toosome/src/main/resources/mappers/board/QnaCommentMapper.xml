@@ -6,13 +6,11 @@
 	<!-- QNA board Comment -->
 	<resultMap type="qnaBoardCommentVO" id="QnaBoardCommentMap">
 		<id property="qnaBoardCommentId" column="QNA_BOARD_COMMENT_ID"/>
-		<result property="qnaBoardId" column="QNA_BOARD_ID" />
-		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
+		<result property="qnaQnaBoardId" column="QNA_QNA_BOARD_ID" />
+		<result property="memberMemberCommentId" column="MEMBER_MEMBER_COMMENT_ID" />
 		<result property="qnaBoardCommentTitle" column="QNA_BOARD_COMMENT_TITLE" />
 		<result property="qnaBoardCommentContent" column="QNA_BOARD_COMMENT_CONTENT" />
 	 	<result property="qnaBoardCommentDay" column="QNA_BOARD_COMMENT_DAY" /> 
-	 	<collection property="qnaBoard" resultMap="QnaboardMap" />
-	 	<collection property="member" resultMap="memberMap" />
 	</resultMap>
 	<!--
 
@@ -51,7 +49,7 @@
 	</select>
 	
 	<insert id="insertQnaBoardComment">
-		INSERT INTO QNA_BOARD_COMMENT(QNA_BOARD_COMMENT_ID, QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_COMMENT_TITLE, QNA_BOARD_COMMENT_CONTENT, QNA_BOARD_COMMENT_DAY) VALUES(#{qnaBoardCommentId},#{qnaBoardId},#{memberMemberId},#{qnaBoardCommentTitle},#{qnaBoardCommentContent},NOW())
+		INSERT INTO QNA_BOARD_COMMENT(QNA_BOARD_COMMENT_ID, QNA_QNA_BOARD_ID, MEMBER_MEMBER_COMMENT_ID, QNA_BOARD_COMMENT_TITLE, QNA_BOARD_COMMENT_CONTENT, QNA_BOARD_COMMENT_DAY) VALUES(#{qnaBoardCommentId},#{qnaQnaBoardId},#{memberMemberCommentId},#{qnaBoardCommentTitle},#{qnaBoardCommentContent},NOW())
 	</insert>
 	
 	<update id="updateQnaBoardComment">
