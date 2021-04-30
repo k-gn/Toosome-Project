@@ -3,6 +3,8 @@ const detailContent = document.querySelector('#qnaDetail'); // QnA 세부 본문
 const commentTitle = document.querySelector('.comment-table thead') // QnA 댓글 타이틀
 const commentContent = document.querySelector('#comment'); // QnA 댓글 본문
 
+let id = '';
+
 // parameter 받아오는 함수
 const getParam = (param) => {
 	let url = location.href;
@@ -32,6 +34,16 @@ const enrollCheck = () => {
 	} 
 	
 	return true;
+};
+
+// 댓글 삭제 버튼
+const deleteHandler = () => {
+	
+};
+
+// 댓글 업데이트 버튼
+const updateHandler = () => {
+	
 };
 
 // 리스트 출력
@@ -80,8 +92,7 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 		if(!item[0].qnaBoardCommentVO) {
 			let newCommentTitle = document.createElement('tr');
 			let c_titleElement = `
-				<th colspan="4">등록된 댓글이 없습니다</td>
-				<th></td>
+				<th colspan="3">등록된 댓글이 없습니다<th>
 			`;
 			newCommentTitle.innerHTML = c_titleElement;
 			c_title.appendChild(newCommentTitle);
@@ -89,7 +100,7 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 			// 받은 데이터로 새 댓글 본문 생성 후 삽입
 			let newCommentContent = document.createElement('tr');
 			let c_contentElement = `
-				<td colspan="5">등록된 댓글이 없습니다</td>
+				<td colspan="3">등록된 댓글이 없습니다</td>
 			`;
 			newCommentContent.innerHTML = c_contentElement;
 			c_content.appendChild(newCommentContent);
@@ -98,9 +109,12 @@ const displayDetail = (title, content, c_title, c_content, item, index) => {
 				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
 				let newCommentTitle = document.createElement('tr');
 				let c_titleElement = `
-					<th colspan="3">${item[0].qnaBoardCommentVO[i].qnaBoardCommentTitle}</td>
-					<th>${item[0].qnaBoardCommentVO[i].member.memberName}</td>
-					<th>${item[0].qnaBoardCommentVO[i].qnaBoardCommentDay}</td>
+					<th>제목: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentTitle}</th>
+					<th>작성자: ${item[0].qnaBoardCommentVO[i].member.memberName}</th>
+					<th>작성일: ${item[0].qnaBoardCommentVO[i].qnaBoardCommentDay}</th>
+					${id === item[0].memberId ?
+					 '<th><input type="button" class="comment-btn" onclick="deleteHandler();" value="삭제" /></th><th><input type="button" class="comment-btn" onclick="updateHandler();" value="수정"></th>' 
+					: ''}
 				`;
 				newCommentTitle.innerHTML = c_titleElement;
 				c_title.appendChild(newCommentTitle);
@@ -126,6 +140,8 @@ $(document).ready(() => {
 	let index = getParam('index');
 	$("#qnaBoardId").val(index);
 	// 게시글 데이터 요청 AJAX
+	id = $('input[name=memberMemberId]').val();
+	
 	$.ajax({
 		url: '/qnadetail?index='+index,
 		success: (res) => {
