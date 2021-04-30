@@ -10,6 +10,8 @@ public interface IQnaBoardMapper {
 	
 	public List<QnaBoardVO> getQnaBoardDetail(String index);
 	
+	public List<QnaBoardVO> getQnaZeroComment(String index);
+	
 	public void insertQnaBoard(QnaBoardVO vo);
 	
 	public QnaBoardVO passwordQnaBoard(Integer index);

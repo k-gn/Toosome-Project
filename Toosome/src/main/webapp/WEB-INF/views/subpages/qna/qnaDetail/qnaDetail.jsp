@@ -13,8 +13,18 @@
 	  	if(msg === "insertSuccess") {
 	  		alert("댓글 등록 완료");
 	  		location.reload();
-	  	} else if (msg === "updateFail"){
+	  	} else if (msg === "updateFail") {
 	  		alert("댓글 등록 실패");
+	  	} else if (msg === "deleteSuccess") {
+	  		alert("댓글 삭제 완료");
+	  		location.reload();
+	  	} else if (msg === "deleteFail") {
+	  		alert("댓글 삭제 실패");
+	  	} else if (msg === "updateSuccess") {
+	  		alert("댓글 수정 완료");
+	  		location.reload();
+	  	} else if (msg === "updateFail") {
+	  		alert("댓글 수정 실패");
 	  	}
 	</script>
 </head>
@@ -48,17 +58,16 @@
         	<h3>댓글</h3>
         	<table summary="QnAComment" class="comment-table">
         		<colgroup>
-        			<col width="70%">
-        			<col width="15%">
-        			<col width="15%">
+        			<col width="10%">
+        			<col width="40%">
+        			<col width="25%">
+        			<col width="25%">
         		</colgroup>
-        		<thead>		
-        		</thead>
         		<tbody id="comment"></tbody>
         	</table>
         	<h3>댓글 등록</h3>
         	<form action="/qnacommentinsert?${_csrf.parameterName}=${_csrf.token}" method="POST">
-	        	<table summary="QnAComment" class="comment-table">
+	        	<table summary="QnAComment" class="comment-table enroll">
 	        		<colgroup>
 	        			<col width="70%">
 	        			<col width="15%">
@@ -78,8 +87,8 @@
 	        			</tr>
 	        		</tbody>
 	        	</table>
-	        	<input id="qnaBoardId" name="qnaBoardId" type="hidden" />
-	        	<input name="memberMemberId" type="hidden" value="${id}"/>
+	        	<input id="qnaBoardId" type="hidden" name="qnaQnaBoardId" />
+	        	<input name="memberMemberCommentId" type="hidden" value="${id}"/>
         	</form>
         </section>
 		<!-- section end -->

@@ -184,7 +184,7 @@
                       	<col width="15%">
                       	<col width="15%">
                       </colgroup>
-                      <thead class="text-rose" id="list-table-thead">
+                      <thead class="text-rose text-center" id="list-table-thead">
                         <th>
                           관리자번호
                         </th>
@@ -204,7 +204,7 @@
                           최종로그인
                         </th>
                       </thead>
-                      <tbody id="list-table-tbody">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>

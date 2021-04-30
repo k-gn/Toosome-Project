@@ -217,7 +217,6 @@ public class BoardController {
 	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	@ResponseBody
 	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
-		System.out.println(vo);
 		if (vo.getQnaBoardSecret() != 1) {
 			return "success";
 		} else {
@@ -237,14 +236,11 @@ public class BoardController {
 
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
 	@ResponseBody
-	public List<QnaBoardVO> qnaDetail(String index, QnaBoardCommentVO vo){
+	public List<QnaBoardVO> qnaDetail(String index){
 		
-		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo); // 댓글 리스트 가져오는 쿼리문
-		
-		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
-		qnaBoardService.qnaBoardCount(index);
+		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index); //상세페이지 댓글 정보 가져오는값
+		qnaBoardService.qnaBoardCount(index); // 조회수 증가
 		return qnadetail;  
-		
 	}
 	
 	@GetMapping(value = "/qnasearch", produces = "application/json") // 게시판 검색기능
@@ -297,35 +293,38 @@ public class BoardController {
 	
 	@PostMapping("/qnacommentinsert")// qna 댓글입력
 	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+		System.out.println("QnaBoardCommentVO : " + vo);
 		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
 		if(insert > 0) {
 			ra.addFlashAttribute("msg", "insertSuccess");
 		}else{
 			ra.addFlashAttribute("msg", "insertFail");
 		}
-		return "redirect:/qna-detail?index=" + vo.getQnaBoardId();
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 	
 	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
 	@ResponseBody
-	public String qnaCommentUpdate(QnaBoardCommentVO vo)throws Exception{
+	public String qnaCommentUpdate(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int update = qnaBoardCommentService.updateQnaBoardComment(vo);
 		if(update > 0) {
-		return "updateSuccess";
+			ra.addFlashAttribute("msg", "updateSuccess");
 		}else {
-			return "updateFail";
+			ra.addFlashAttribute("msg", "updateFail");
 		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 	
 	@GetMapping(value = "/qnacommentdelete" , produces = "application/json")// qna 댓글 삭제
 	@ResponseBody
-	public String qnaCommentDelete(QnaBoardCommentVO vo)throws Exception{
+	public String qnaCommentDelete(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
 		if(delete > 0 ) {
-		return "insertSuccess";
+			 ra.addFlashAttribute("msg", "insertSuccess");
 		}else{
-			return "insertFail";
+			ra.addFlashAttribute("msg", "insertFail");;
 		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 
 }

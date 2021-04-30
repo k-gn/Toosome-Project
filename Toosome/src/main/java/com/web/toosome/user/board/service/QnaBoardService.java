@@ -54,4 +54,9 @@ public class QnaBoardService implements IQnaBoardService {
 		
 	}
 
+	@Override
+	public List<QnaBoardVO> getQnaZeroComment(String index) {
+		return mapper.getQnaZeroComment(index);
+	}
+
 }

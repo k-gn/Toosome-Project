@@ -26,4 +26,7 @@ public interface IQnaBoardService {
 	
 	
 	public void insertQnaBoardText(QnaBoardVO vo);
+	
+	
+	public List<QnaBoardVO> getQnaZeroComment(String index);
 }

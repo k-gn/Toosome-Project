@@ -55,7 +55,7 @@
                 <td style="width: 100px;"><img style="display: block; width: 100px; height: 100px;" src="${basket.imagePath}" alt=""></td>
                 <td></td>
                 <td style="width: 50px;">
-                  <input style="width: 50px;" type="text" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
+                  <input style="width: 50px;" type="text" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})" disabled/>
                 </td>
                 <td>
                   <span class="pname">${basket.basketName}</span>
@@ -147,7 +147,7 @@
                   </td>
                   <td>
                     <input type="text" name="orderName" id="orderName2" placeholder="ex)홍길동" value="" required>
-                    &nbsp;<input type="checkbox" name="same" id="same">&nbsp;주문하시는 분과 동일
+                    &nbsp;<div class="order-enter" style="display: inline;"><input type="checkbox" name="same" id="same">&nbsp;주문하시는 분과 동일</div>
                   </td>
                 </tr>
                 <tr>
@@ -260,7 +260,7 @@
               <td></td>
               <td>
                 <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(${basketUtil.realPayment},${memberPoint.membershipPoint},100,10)" value=""></span> p 
-                <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">${memberPoint.membershipPoint}</span>p )
+                <div class="enter" style="display: inline;"><span class="span-enter"> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt"  class="span-enter">${memberPoint.membershipPoint}</span>p )</div>
               </td>
             </tr>
           </tbody>
