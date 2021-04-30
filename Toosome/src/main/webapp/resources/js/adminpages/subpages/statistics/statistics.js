@@ -27,9 +27,12 @@ const calcDate = (value, calendar) => {
 
 // init
 const calendarInit = () => {
+	console.log(moment().startOf('month').format('YYYY-MM-DD'));
+	console.log(moment().endOf('month').format('YYYY-MM-DD'));
 	removeOn(periods);
 	const today = moment().format('YYYY-MM-DD');
-	startDate.value = today;
+	const start = moment().startOf('month').format('YYYY-MM-DD');
+	startDate.value = start;
 	endDate.value = today;
 };
 
@@ -60,7 +63,7 @@ const showList = (result, wrapper) => {
 	};
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < result.length; i++) {
-		let payment = result[i].payment.toLocaleString()
+		let payment = result[i].payment.toLocaleString();
 		let newEl = document.createElement('tr');
 		let content = `
           <td>
@@ -131,7 +134,9 @@ const getStatistics = (data) => {
 		data: data, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			console.log(result);
-		}, 
+			$("#totalPayment").html(result.totalPayment.toLocaleString() + ' <small>원<small>');
+			$("#totalSalesCount").html(result.totalSales.toLocaleString() + ' <small>건<small>');
+		},
 		error: () => {
 			alert('시스템과에 문의하세요');
 			//history.back();
@@ -148,12 +153,13 @@ const submitHandler = () => {
 	endStatisticsDate = moment(endDate.value).format('YYYY-MM-DD');
 
 	// JSON Data
-	const data = {
+	data = {
 		startStatisticsDate,
 		endStatisticsDate
 	};
 	
 	rows = 10000;
+	getStatistics(data);
 	getList(data, listTable, rows);
 };
 

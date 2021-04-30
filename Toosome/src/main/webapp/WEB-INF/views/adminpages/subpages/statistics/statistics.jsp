@@ -80,7 +80,7 @@
                     <i class="material-icons">content_copy</i>
                   </div>
                   <p class="card-category">총 결제금액</p>
-                  <h3 class="card-title">9,387,000
+                  <h3 class="card-title" id="totalPayment">0
                     <small>원</small>
                   </h3>
                 </div>
@@ -106,7 +106,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">총 판매건수</p>
-                  <h3 class="card-title">82
+                  <h3 class="card-title" id="totalSalesCount">0
                   	<small>건</small>
                   </h3>
                 </div>

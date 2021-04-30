@@ -13,21 +13,21 @@
 		SELECT  
 			ORDERS_ID AS ORDERID, 
 			MEMBER_EMAIL AS MEMBEREMAIL, 
-			ORDERS_ORDER_DATE AS ORDERDATE, 
+			DATE_FORMAT(ORDERS_ORDER_DATE, '%Y-%m-%d') AS ORDERDATE, 
 			SUM(ORDERS_PAYMENT) AS PAYMENT
-		FROM MEMBER M INNER JOIN ORDERS O ON M.MEMBER_ID = O.MEMBER_MEMBER_ID
+		FROM MEMBER M JOIN ORDERS O ON M.MEMBER_ID = O.MEMBER_MEMBER_ID
 		<include refid="search"/>
 		<if test="startStatisticsDate == null and startStatisticsDate == ''">
-			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1;
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
 		</if>
-        GROUP BY MEMBER_EMAIL
+        GROUP BY ORDERDATE
 	</select>
 
 	<select id="getTotalSalesCount" resultType="Integer">
 		SELECT COUNT(*) from ORDERS
 		<include refid="search"/>
 		<if test="startStatisticsDate == null and startStatisticsDate == ''">
-			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1;
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
 		</if>
 	</select>
 	
@@ -35,7 +35,7 @@
 		SELECT SUM(ORDERS_PAYMENT) from ORDERS
 		<include refid="search"/>
 		<if test="startStatisticsDate == null and startStatisticsDate == ''">
-			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1;
+			WHERE ORDERS_ORDER_DATE BETWEEN LAST_DAY(NOW() - interval 1 month) + interval 1 DAY AND LAST_DAY(NOW()) + 1
 		</if>
 	</select>
 	

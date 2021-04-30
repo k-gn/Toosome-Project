@@ -87,6 +87,7 @@ ct = {
         },
 		dataType: "json",
 		success: function(results) {
+			console.log(results);
 			// AJAX로 얻은 데이터를 차트 데이터에 삽입
 			let temp = [];
 			let temp2 = [];
