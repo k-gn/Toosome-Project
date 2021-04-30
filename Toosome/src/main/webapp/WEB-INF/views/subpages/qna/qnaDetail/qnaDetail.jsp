@@ -52,7 +52,8 @@
         			<col width="15%">
         			<col width="15%">
         		</colgroup>
-        		<thead></thead>
+        		<thead>		
+        		</thead>
         		<tbody id="comment"></tbody>
         	</table>
         	<h3>댓글 등록</h3>
