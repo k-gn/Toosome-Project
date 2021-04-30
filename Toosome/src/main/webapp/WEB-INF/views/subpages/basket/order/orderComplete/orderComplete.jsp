@@ -47,7 +47,7 @@
           <tbody>
             <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
-                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td style="width: 100px;"><img style="display: block; width: 100px; height: 100px;" src="${basket.imagePath}" alt=""></td>
                 <td><span class="name"></span></td>
                 <td>
                   <span class="number">${basket.basketAmount}</span>
