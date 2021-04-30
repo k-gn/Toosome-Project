@@ -14,8 +14,8 @@
 	 	<collection property="qnaBoard" resultMap="QnaboardMap" />
 	 	<collection property="member" resultMap="memberMap" />
 	</resultMap>
-	
-	<!-- qna게시판 -->
+	<!--
+
 	<resultMap type="qnaBoardVO" id="QnaBoardMap">
 		<id property="qnaBoardId" column="QNA_BOARD_ID"/>
 		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
@@ -29,7 +29,7 @@
 		<result property="qnaBoardSecret" column="QNA_BOARD_SECRET" />
 	</resultMap>
 	
-	<!-- member 정보 -->
+
 	<resultMap type="memberVO" id="memberMap">
 		<id property="memberId" column="MEMBER_ID"/>
 		<result property="memberName" column="MEMBER_NAME"/>
@@ -45,7 +45,7 @@
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
 	</resultMap>
-	
+	-->
 	<select id ="qnaBoardCommentList" resultMap="QnaBoardCommentMap">
 		SELECT * FROM QNA_BOARD_COMMENT ORDER BY QNA_BOARD_COMMENT_DAY DESC;
 	</select>

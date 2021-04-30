@@ -13,8 +13,18 @@
 	  	if(msg === "insertSuccess") {
 	  		alert("댓글 등록 완료");
 	  		location.reload();
-	  	} else if (msg === "updateFail"){
+	  	} else if (msg === "updateFail") {
 	  		alert("댓글 등록 실패");
+	  	} else if (msg === "deleteSuccess") {
+	  		alert("댓글 삭제 완료");
+	  		location.reload();
+	  	} else if (msg === "deleteFail") {
+	  		alert("댓글 삭제 실패");
+	  	} else if (msg === "updateSuccess") {
+	  		alert("댓글 수정 완료");
+	  		location.reload();
+	  	} else if (msg === "updateFail") {
+	  		alert("댓글 수정 실패");
 	  	}
 	</script>
 </head>
@@ -48,9 +58,10 @@
         	<h3>댓글</h3>
         	<table summary="QnAComment" class="comment-table">
         		<colgroup>
-        			<col width="70%">
-        			<col width="15%">
-        			<col width="15%">
+        			<col width="5%">
+        			<col width="55%">
+        			<col width="20%">
+        			<col width="20%">
         		</colgroup>
         		<thead>		
         		</thead>

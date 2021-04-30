@@ -239,12 +239,20 @@ public class BoardController {
 	@ResponseBody
 	public List<QnaBoardVO> qnaDetail(String index, QnaBoardCommentVO vo){
 		
-		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo); // 댓글 리스트 가져오는 쿼리문
+		if(vo.getQnaQnaBoardId() != null) {
+		List<QnaBoardVO> zerocomment = qnaBoardService.getQnaZeroComment(index); // 댓글이 0 개일 경우
 		
-		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
-		qnaBoardService.qnaBoardCount(index);
+		qnaBoardService.qnaBoardCount(index); // 조회수 증가
+		
+		return zerocomment;  
+	
+		}else {
+		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index); //상세페이지 댓글 정보 가져오는값
+		
+		qnaBoardService.qnaBoardCount(index); // 조회수 증가
+	
 		return qnadetail;  
-		
+		}
 	}
 	
 	@GetMapping(value = "/qnasearch", produces = "application/json") // 게시판 검색기능
@@ -303,29 +311,31 @@ public class BoardController {
 		}else{
 			ra.addFlashAttribute("msg", "insertFail");
 		}
-		return "redirect:/qna-detail?index=" + vo.getQnaBoardId();
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 	
 	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
 	@ResponseBody
-	public String qnaCommentUpdate(QnaBoardCommentVO vo)throws Exception{
+	public String qnaCommentUpdate(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int update = qnaBoardCommentService.updateQnaBoardComment(vo);
 		if(update > 0) {
-		return "updateSuccess";
+			ra.addFlashAttribute("msg", "updateSuccess");
 		}else {
-			return "updateFail";
+			ra.addFlashAttribute("msg", "updateFail");
 		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 	
 	@GetMapping(value = "/qnacommentdelete" , produces = "application/json")// qna 댓글 삭제
 	@ResponseBody
-	public String qnaCommentDelete(QnaBoardCommentVO vo)throws Exception{
+	public String qnaCommentDelete(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
 		if(delete > 0 ) {
-		return "insertSuccess";
+			 ra.addFlashAttribute("msg", "insertSuccess");
 		}else{
-			return "insertFail";
+			ra.addFlashAttribute("msg", "insertFail");;
 		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 
 }
