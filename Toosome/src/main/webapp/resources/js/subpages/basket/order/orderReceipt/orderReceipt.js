@@ -53,7 +53,7 @@ $(function(){
 		$(".post-text li").removeClass("colorRed");
 		$(".post-text .four").addClass("colorRed");
 		
-	} else if ($(".post-text .five p").text() == testData) {4
+	} else if ($(".post-text .five p").text() == testData) {
 	// 배송완료와 같다면
 	
 		$(".post-text li").removeClass("colorRed");
@@ -73,4 +73,10 @@ $(function(){
     }
   });
 });
+
+function button1_click() {
+	$.ajax({
+		
+	});
+}
 

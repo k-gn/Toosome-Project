@@ -19,4 +19,6 @@ public class OrdersVO {
 	private String ordersPhone;
 	private String ordersContent;
 	private String ordersMerchantUid;
+	private Integer ordersAmount;
+	
 }
