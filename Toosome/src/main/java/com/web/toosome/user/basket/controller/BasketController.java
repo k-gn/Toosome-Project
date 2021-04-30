@@ -279,9 +279,7 @@ public class BasketController {
 		}
 		model.addAttribute("map1", map1);
 		model.addAttribute("orderList", orderList);
-		List<BasketVO> basketsList = service.getBasketList(memberId);
-		basketUtil.utilMethod(basketsList, ms, basicImagePath);
-		for (BasketVO basketOne : basketsList) {
+		for (BasketVO basketOne : baskets) {
 			basketOne.setOrdersId(service.getOrdersList(memberId).getOrdersId());
 			service.basketsendorder(basketOne);
 			service.orderBasketDel(memberId);
