@@ -47,7 +47,7 @@ periods.forEach((period) => {
 // 리스트 출력하기
 const showList = (result, wrapper) => {
 	wrapper.innerHTML = ''; // 테이블 초기화
-	
+	console.log("list : ", result);
 	// 검색 결과가 없을 경우
 	if(result.length === 0) {
 		let newItem = document.createElement('tr');
@@ -58,26 +58,23 @@ const showList = (result, wrapper) => {
 		wrapper.appendChild(newItem);
 		return;
 	};
-	
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < result.length; i++) {
-
+		let payment = result[i].payment.toLocaleString()
 		let newEl = document.createElement('tr');
 		let content = `
-			<tr>
-              <td>
-                ${res.ordersId}
-              </td>
-              <td>
-                ${res.memberId}
-              </td>
-              <td>
-                ${res.ordersOrderDate}
-              </td>
-              <td>
-                ${res.ordersPayment}
-              </td>
-            </tr>			
+          <td>
+            ${result[i].orderId}
+          </td>
+          <td>
+            ${result[i].memberEmail}
+          </td>
+          <td>
+            ${result[i].orderDate}
+          </td>
+          <td>
+            ${payment} 원
+          </td>
 		`;
 		newEl.innerHTML = content;
 		wrapper.appendChild(newEl);
@@ -100,14 +97,15 @@ const setData = (result, wrapper, rows) => {
 const getList = (data, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/#", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/slist", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		data: data, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(result);
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
@@ -116,7 +114,27 @@ const getList = (data, wrapper, rows) => {
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');
-			history.back();
+			//history.back();
+		} 
+	});
+};
+
+const getStatistics = (data) => {
+	// AJAX 요청
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/state", //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		data: data, //서버로 전송할 데이터
+		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(result);
+		}, 
+		error: () => {
+			alert('시스템과에 문의하세요');
+			//history.back();
 		} 
 	});
 };
@@ -154,7 +172,8 @@ const selectHandler = (select) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	/*getList(data, listTable, rows);*/
+	getStatistics(data);
+	getList(data, listTable, rows);
 }); 
 
 // ================================================= chart start
