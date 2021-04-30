@@ -134,3 +134,10 @@
 	background: #fff;
 	color: #222;
 }
+
+/* Pagination start */
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
