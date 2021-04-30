@@ -46,7 +46,7 @@ public interface IBasketMapper {
 	public List<BasketVO> getBasketList(Integer id);
 	
 	// 주문 내역 가져오기.
-	public List<OrdersDetailVO> getOrdersDetailList(Integer id);
+	public List<OrdersDetailVO> getOrdersDetailList(Map<String, Integer> map);
 	
 	// 주문 정보 전부 가져오기(orders)
 	public List<OrdersVO> getAllOrdersList(Integer id);

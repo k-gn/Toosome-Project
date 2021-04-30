@@ -308,14 +308,18 @@ public class BasketController {
 			return "fail";
 	}
 
-	@PostMapping("/getMerchantUid") // 결제 취소...
+	@PostMapping("/ordersViewContent")
 	@ResponseBody
-	public String getMerchantUid(HttpSession session, Integer ordersId) {
-		
-		if (1 > 0)
-			return "success";
-		else
-			return "fail";
+	public List<OrdersDetailVO> ordersViewContent(Integer ordersId, HttpSession session) {
+		Integer memberId = (Integer) session.getAttribute("id");
+		Map<String, Integer> map = new HashMap<>();
+		map.put("id", memberId);
+		map.put("ordersId", ordersId);
+		System.out.println(memberId);
+		System.out.println(ordersId);
+		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map); 
+		System.out.println(ordersDetailList);
+		return ordersDetailList;
 	}
 
 	// 테스트 진행중....
