@@ -1,4 +1,29 @@
 
+
+function cancelPay() {
+      $.ajax({
+        "type": "POST",
+        "url": "/testToken",
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "text", //응답받을 데이터의 형태
+		success: function(result) {
+			$.ajax({
+        		"type": "POST",
+       			"url": "/testToken?ordersId=",
+				headers: {
+					"Content-Type": "application/json"
+				}, //요청 헤더 정보
+				dataType: "text", //응답받을 데이터의 형태
+				success: function(result) {
+		
+				}
+      		});
+		}
+      });
+    }
+
 $(function(){
 	// test 데이터
 	var testData = $(".data").val();
@@ -48,3 +73,4 @@ $(function(){
     }
   });
 });
+
