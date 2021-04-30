@@ -19,4 +19,19 @@ public class QnaBoardCommentService implements IQnaBoardCommentService{
 		return mapper.qnaBoardCommentList(vo);
 	}
 
+	@Override
+	public int insertQnaBoardComment(QnaBoardCommentVO vo) {
+		return mapper.insertQnaBoardComment(vo);
+	}
+
+	@Override
+	public int updateQnaBoardComment(QnaBoardCommentVO vo) {
+		return mapper.updateQnaBoardComment(vo);
+	}
+
+	@Override
+	public int deleteQnaBoardComment(QnaBoardCommentVO vo) {
+		return mapper.deleteQnaBoardComment(vo);
+	}
+
 }
