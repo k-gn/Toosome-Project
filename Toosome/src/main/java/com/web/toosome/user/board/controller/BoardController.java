@@ -249,8 +249,10 @@ public class BoardController {
 
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
 	@ResponseBody
-	public List<QnaBoardVO> qnaDetail(String index){
-	
+	public List<QnaBoardVO> qnaDetail(String index, QnaBoardCommentVO vo){
+		
+		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo); // 댓글 리스트 가져오는 쿼리문
+		
 		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
 		qnaBoardService.qnaBoardCount(index);
 		System.out.println("공개글 qna게시물 세부정보(컨트롤러): " + qnadetail);
@@ -305,12 +307,7 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping(value = "/qnacomment" , produces = "application/json")// qna 댓글 리스트
-	@ResponseBody
-	public List<QnaBoardCommentVO> qnaComment(QnaBoardCommentVO vo)throws Exception{
-		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo);
-		return qnacomment;
-	}
+	
 	
 	@GetMapping(value = "/qnacommentinsert" , produces = "application/json")// qna 댓글입력
 	@ResponseBody
