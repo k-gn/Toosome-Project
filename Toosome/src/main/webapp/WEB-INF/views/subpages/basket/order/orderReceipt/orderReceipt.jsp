@@ -51,42 +51,53 @@
         	<input class="data" type="hidden" value="배송중"/>
         </form>
       </div>
-      <div class="table-cover">
-      	<c:forEach var="orderList" items="${orderList}" varStatus="i">
-        <table class="table">
-          <thead class="text-center">
-            <tr>
-              <th scope="col">상품명</th>
-              <th scope="col">수량</th>
-              <th scope="col">날짜</th>
-              <th scope="col">배송비</th>
-              <th scope="col">총금액</th>
-              <th scope="col">비고</th>
-            </tr>
-          </thead>
-          <tbody class="top-table">
-            <tr class="top-table-pick">
-              <td><span class="total-name">${orderList.ordersProductName}</span></td>
-              <td><span class="total-count">${orderList.ordersAmount}</span></td>
-              <td><span class="total-day">${orderList.ordersOrderDate}</span></td>
-              <td><span class="total-post-pay">${orderList.ordersDelivery}</span>원</td>
-              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
-              <td>
-                <ul>
-                  <li><a href="#">주문취소</a></li>
-                  <li><a href="#">배송상태보기</a></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-          <tr>
-            <td colspan="6"><button class="under-btn" onclick="viewContent(${orderList.ordersId});">내용보기</button></td>
-          </tr>
-          <tbody class="under-table" id="test">
-          </tbody>
-        </table>
-        </c:forEach>
+      
+      <c:forEach var="orderList" items="${orderList}" varStatus="i">
+	      <div class="table-cover">
+	        <table class="table">
+	          <thead class="text-center">
+	            <tr>
+	              <th scope="col">상품명</th>
+	              <th scope="col">수량</th>
+	              <th scope="col">날짜</th>
+	              <th scope="col">배송비</th>
+	              <th scope="col">총금액</th>
+	              <th scope="col">비고</th>
+	            </tr>
+	          </thead>
+	          <tbody class="top-table">
+	            <tr class="top-table-pick">
+	              <td><span class="total-name">${orderList.ordersProductName}</span></td>
+	              <td><span class="total-count">${orderList.ordersAmount}</span></td>
+	              <td><span class="total-day">${orderList.ordersOrderDate}</span></td>
+	              <td><span class="total-post-pay">${orderList.ordersDelivery}</span>원</td>
+	              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
+	              <td>
+	                <ul>
+	                  <li><a href="#">주문취소</a></li>
+	                  <li><a href="#">배송상태보기</a></li>
+	                </ul>
+	              </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	        
+	        <button class="under-btn" onclick="viewContent(${orderList.ordersId});">내용보기</button>
+	        
+	        <table class="table none">
+	        	<tbody class="under-table a${orderList.ordersId}">
+	        		<tr class="text-bold">
+	        			<td>이미지</td>
+		              	<td colspan="2">상품명</td>
+		              	<td>수량</td>
+		              	<td>금액</td>
+		              	<td>배송상태</td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+	        
       </div>
+      </c:forEach>
       <div class="text">
                         ※ <span class="red-text">배송중</span>이면 주문취소가 안됩니다!!!
         <p class="sub-text">
@@ -106,5 +117,4 @@
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
 </body>
-
 </html>

@@ -62,18 +62,20 @@ $(function(){
 		$(".post-text .five").addClass("colorRed");
 	}
 	
+    $(".table-cover .under-btn").click(function () {
+	    var d = $(this).next(".none").css("display");
 	
-	$(".under-btn").click(function () {
-    var d = $(".under-table").css("display");
-
-    if (d == "none") {
-      $(".under-table").css("display", "table-row-group");
-      $(".under-btn").html("내용감추기");
-    } else {
-      $(".under-table").css("display", "none");
-      $(".under-btn").html("내용보기");
-    }
-  });
+	    if (d == "none") {
+	      $(this).next(".none").css("display", "table");
+	      $(this).html("내용 감추기");
+	    } else if (d == "table") {
+	      $(this).next(".none").css("display", "none");
+	      $(this).html("내용보기");
+	    }
+	 });
+	    
+	
+	
 });
 
 function viewContent(s) {
@@ -89,7 +91,7 @@ function viewContent(s) {
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(results) {
 		console.log(results);
-			const tableBody = document.querySelector('#test');
+			const tableBody = document.querySelector(`.under-table.a${s}`);
 			tableBody.innerHTML = '';
 			let new2El = document.createElement('tr');
 			new2El.classList.add('text-bold');
