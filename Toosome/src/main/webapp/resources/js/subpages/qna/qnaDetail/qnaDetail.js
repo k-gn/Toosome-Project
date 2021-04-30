@@ -107,6 +107,7 @@ const displayDetail = (title, content, c_content, item, index) => {
 		`;
 		newTitle.innerHTML = titleElement;
 		title.appendChild(newTitle);
+		$("#qnaBoardId").val(item[0].qnaBoardId);
 		
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');

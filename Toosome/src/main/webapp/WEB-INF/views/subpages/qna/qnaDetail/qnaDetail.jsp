@@ -89,8 +89,8 @@
 	        			</tr>
 	        		</tbody>
 	        	</table>
-	        	<input id="qnaBoardId" name="qnaBoardId" type="hidden" />
-	        	<input name="memberMemberId" type="hidden" value="${id}"/>
+	        	<input id="qnaBoardId" type="hidden" name="qnaQnaBoardId" />
+	        	<input name="memberMemberCommentId" type="hidden" value="${id}"/>
         	</form>
         </section>
 		<!-- section end -->

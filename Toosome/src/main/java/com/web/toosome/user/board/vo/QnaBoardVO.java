@@ -1,6 +1,7 @@
 package com.web.toosome.user.board.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,6 @@ public class QnaBoardVO {
 	private Integer qnaBoardSecret; // 비밀글 일시 참(1) 아닐시 거짓(0) 디폴트 값 (0) 
 	private MultipartFile uploadFile;
 	private boolean qnaBoardConfirm; //기본값 false
-	private QnaBoardCommentVO qnaBoardComment;
+	private List<QnaBoardCommentVO> qnaBoardComment;
 	
 }
