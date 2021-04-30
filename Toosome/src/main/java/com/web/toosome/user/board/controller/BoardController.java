@@ -312,15 +312,15 @@ public class BoardController {
 		return qnacomment;
 	}
 	
-	@GetMapping(value = "/qnacommentinsert" , produces = "application/json")// qna 댓글입력
-	@ResponseBody
-	public String qnaCommentinsert(QnaBoardCommentVO vo)throws Exception{
+	@PostMapping("/qnacommentinsert")// qna 댓글입력
+	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
 		if(insert > 0) {
-		return "insertSuccess";
+			ra.addFlashAttribute("msg", "insertSuccess");
 		}else{
-			return "insertFail";
+			ra.addFlashAttribute("msg", "insertFail");
 		}
+		return "redirect:/qna-detail?index=" + vo.getQnaBoardId();
 	}
 	
 	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
