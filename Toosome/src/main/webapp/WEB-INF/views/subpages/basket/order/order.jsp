@@ -259,7 +259,7 @@
             <tr>
               <td></td>
               <td>
-                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(${basketUtil.realPayment},${memberPoint.membershipPoint},100,10)"></span> p 
+                <span> <input type="number" name="use_pnt" id="use_pnt" min="3000" onchange="changePoint(${basketUtil.realPayment},${memberPoint.membershipPoint},100,10)" value=""></span> p 
                 <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">${memberPoint.membershipPoint}</span>p )
               </td>
             </tr>

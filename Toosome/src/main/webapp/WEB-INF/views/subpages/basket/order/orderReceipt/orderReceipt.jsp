@@ -57,7 +57,6 @@
         	<input class="data" type="hidden" value="배송중"/>
         </form>
       </div>
-
       <div class="table-cover">
         <table class="table">
           <thead>

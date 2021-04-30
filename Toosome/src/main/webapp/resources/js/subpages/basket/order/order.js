@@ -78,6 +78,16 @@ function chkPoint(amt, pnt, min, unit) {
       //결제금액보다 포인트가 더 클 때
       v_point = amt - ((amt % unit)+100); //사용할 포인트는 결제금액과 동일하게 설정
     }
+	console.log(v_point);
+	
+	if (v_point < min) {
+    	//최소 사용 단위보다 작을 때
+    	v_point = 0;
+    	document.getElementById("use_pnt").value = v_point; //input 값 재설정
+  	} else {
+    	v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+  	}
+	
   }
   document.getElementById("use_pnt").value = v_point; //input 값 설정
 
