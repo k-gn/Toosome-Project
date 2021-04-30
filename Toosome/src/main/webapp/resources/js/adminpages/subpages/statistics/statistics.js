@@ -8,6 +8,7 @@ const selectDate = document.querySelector('#selectDate'); // 테이블
 
 let data = {};
 let rows = 10000;
+let chartData = [];
 
 // on 클래스 제거
 const removeOn = (periods) => {
@@ -56,7 +57,6 @@ periods.forEach((period) => {
 // 리스트 출력하기
 const showList = (result, wrapper) => {
 	wrapper.innerHTML = ''; // 테이블 초기화
-	console.log("list : ", result);
 	// 검색 결과가 없을 경우
 	if(result.length === 0) {
 		let newItem = document.createElement('tr');
@@ -114,35 +114,12 @@ const getList = (data, wrapper, rows) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: data, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
 			const newRes = result.reverse();
 			setData(newRes, wrapper, rows);		
 		}, 
-		error: () => {
-			alert('시스템과에 문의하세요');
-			//history.back();
-		} 
-	});
-};
-
-const getStatistics = (data) => {
-	// AJAX 요청
-	$.ajax({
-		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/state", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		dataType: "json", //응답받을 데이터의 형태
-		data: data, //서버로 전송할 데이터
-		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
-			$("#totalPayment").html(result.totalPayment.toLocaleString() + ' <small>원<small>');
-			$("#totalSalesCount").html(result.totalSales.toLocaleString() + ' <small>건<small>');
-		},
 		error: () => {
 			alert('시스템과에 문의하세요');
 			//history.back();
@@ -188,12 +165,6 @@ const selectHandler = (select) => {
 	getList(data, listTable, rows);
 };
 
-// 기간선택 달력 Jquery
-$(document).ready(() => {
-	calendarInit();
-	getStatistics(data);
-	getList(data, listTable, rows);
-}); 
 
 // ================================================= chart start
 
@@ -207,90 +178,42 @@ var seq2 = 0,
 
 ct = {
 
-  initDashboardPageCharts: function() {
-
-    if ($('#salesChart').length != 0 || $('#profitChart').length != 0 || $('#caseChart').length != 0) {
-      /* ----------==========     Sales Chart initialization    ==========---------- */
-
-      dataSalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        series: [
-          [12, 17, 7, 17, 23, 18, 38]
-        ]
-      };
-
-      optionsSalesChart = {
+  initDashboardPageCharts: function(results) {
+	let dataSalesChart = {
+		labels: [],
+		series: []
+	};
+	let dataCaseChart = {
+		labels: [],
+		series: []
+	};
+	var optionsSalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
         low: 0,
-        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 5000,
         chartPadding: {
           top: 0,
           right: 0,
           bottom: 0,
           left: 0
         },
-      }
-
-      var salesChart = new Chartist.Line('#salesChart', dataSalesChart, optionsSalesChart);
-
-      ct.startAnimationForLineChart(salesChart);
-
-
-
-      /* ----------==========     Sales Profit Chart initialization    ==========---------- */
-
-      dataProfitChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-        series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
-        ]
-      };
-
-      optionsProfitChart = {
-        lineSmooth: Chartist.Interpolation.cardinal({
-          tension: 0
-        }),
-        low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-        chartPadding: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0
-        }
-      }
-
-      var profitChart = new Chartist.Line('#profitChart', dataProfitChart, optionsProfitChart);
-
-      // start animation for the Profit Chart - Line Chart
-      ct.startAnimationForLineChart(profitChart);
-
-
-      /* ----------==========    Number of Case Chart initialization    ==========---------- */
-
-      var dataCaseChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionsCaseChart = {
+    };
+	var optionsCaseChart = {
         axisX: {
           showGrid: false
         },
         low: 0,
-        high: 1000,
+        high: 50,
         chartPadding: {
           top: 0,
-          right: 5,
+          right: 0,
           bottom: 0,
           left: 0
         }
-      };
-      var responsiveOptions = [
+    };
+	var responsiveOptions = [
         ['screen and (max-width: 640px)', {
           seriesBarDistance: 5,
           axisX: {
@@ -298,13 +221,33 @@ ct = {
               return value[0];
             }
           }
-        }]
-      ];
-      var caseChart = Chartist.Bar('#caseChart', dataCaseChart, optionsCaseChart, responsiveOptions);
+       }]
+    ];
 
-      //start animation for the case Chart
-      ct.startAnimationForBarChart(caseChart);
-    }
+	let temp = [];
+	let temp2 = [];
+	let dates = [];
+	
+	results.forEach(data => {
+		let day = moment(data.daily).format('MMM DD');
+		temp.push(data.dailySales);
+		temp2.push(data.dailyPayment);
+		dates.push(day);
+	});
+	dataSalesChart.labels = dates;
+	dataCaseChart.labels = dates;
+	dataSalesChart.series.push(temp2);
+	dataCaseChart.series.push(temp);
+	console.log(dataCaseChart);
+	
+	// 차트 선언
+	var salesChart = new Chartist.Line('#salesChart', dataSalesChart, optionsSalesChart);
+	var caseChart = Chartist.Bar('#caseChart', dataCaseChart, optionsCaseChart, responsiveOptions);
+	
+	// 차트 그리기
+	ct.startAnimationForLineChart(salesChart);
+	ct.startAnimationForBarChart(caseChart);
+
   },
 
   startAnimationForLineChart: function (chart) {
@@ -413,3 +356,44 @@ const excelDownload = (id, title) => {
 		document.body.removeChild(elem);
 	}
 };
+
+// 데이터 요청 AJAX
+const getStatistics = (data) => {
+	// AJAX 요청
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/state", //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		data: data, //서버로 전송할 데이터
+		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			$("#totalPayment").html(result.totalPayment.toLocaleString() + ' <small>원<small>');
+			$("#totalSalesCount").html(result.totalSales.toLocaleString() + ' <small>건<small>');
+			chartData = [...result.dailyInfo];
+			ct.initDashboardPageCharts(chartData);
+		},
+		error: () => {
+			alert('시스템과에 문의하세요');
+			//history.back();
+		} 
+	});
+};
+
+// 최초 실행
+$(document).ready(() => {
+	calendarInit();
+	getStatistics(data);
+	getList(data, listTable, rows);
+}); 
+
+/*// 윈도우 리사이즈시 차트 다시 그리기
+$(window).resize(function () {
+  // reset the seq for charts drawing animations
+  seq = seq2 = 0;
+
+  setTimeout(function () {
+    ct.initDashboardPageCharts();
+  }, 500);
+});*/

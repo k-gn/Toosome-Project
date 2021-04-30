@@ -27,6 +27,42 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
+            <div class="col-md-6">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <div class="ct-chart" id="salesChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">결제금액 추이</h4>
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <div class="ct-chart" id="caseChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">판매건수 추이</h4>
+                  <p class="card-category">
+                  	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                   <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </div>
+          <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-info">
@@ -73,7 +109,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
@@ -86,20 +122,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">store</i>
-                  </div>
-                  <p class="card-category">총 판매이익</p>
-                  <h3 class="card-title">7,283,000
-                  	<small>원</small>
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
@@ -112,7 +135,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
@@ -125,59 +148,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="salesChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">결제금액 추이</h4>
-                  <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="caseChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">판매건수 추이</h4>
-                  <p class="card-category">
-                  	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <div class="ct-chart" id="profitChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">판매이익 추이</h4>
-                  <p class="card-category">
-                   <span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>     
-          </div>
+          
           <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -238,21 +209,5 @@
       </div>
     </div>
   </div>
-  <script>
-    // 차트 그리기
-    $(document).ready(function() {
-      ct.initDashboardPageCharts();
-    });
-    
-    // 윈도우 리사이즈시 차트 다시 그리기
-    $(window).resize(function () {
-   	  // reset the seq for charts drawing animations
-   	  seq = seq2 = 0;
-
-   	  setTimeout(function () {
-   	    ct.initDashboardPageCharts();
-   	  }, 500);
-    });
-  </script>
 </body>
 </html>
