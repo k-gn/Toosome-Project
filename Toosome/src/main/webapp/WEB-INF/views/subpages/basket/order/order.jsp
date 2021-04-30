@@ -52,7 +52,7 @@
             <c:forEach var="basket" items="${baskets}" varStatus="i">
               <tr>
                 <td></td>
-                <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${basket.imagePath}" alt=""></td>
+                <td style="width: 100px;"><img style="display: block; width: 100px; height: 100px;" src="${basket.imagePath}" alt=""></td>
                 <td></td>
                 <td style="width: 50px;">
                   <input style="width: 50px;" type="text" name="quantity${i.count}" value="${basket.basketAmount}" id="quantity" oninput="modBasket(${i.count}, ${basket.basketId})"/>
