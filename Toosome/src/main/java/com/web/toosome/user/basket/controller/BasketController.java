@@ -298,7 +298,9 @@ public class BasketController {
 		System.out.println(basketcount);
 		String basketName = service.getbasketName(memberId).getBasketName();
 		String name = basketName + "외" + (basketcount-1) +"개";
+		Integer amount = service.getbasketName(memberId).getBasketAmount();
 		order.setOrdersProductName(name);
+		order.setOrdersAmount(amount);
 		int result = service.orderSubmit(order);
 		if (result > 0)
 			return "success";

@@ -36,6 +36,8 @@
 		<result property="ordersContent" column="ORDERS_CONTENT" />	
 		<result property="ordersMerchantUid" column="ORDERS_MERCHANT_UID" />	
 		<result property="ordersProductName" column="ORDERS_PRODUCT_NAME" />	
+		<result property="ordersAmount" column="ORDERS_AMOUNT" />	
+		
 	</resultMap>
 	
 	<resultMap type="ordersDetailVO" id="ordersDetailVO">
@@ -83,9 +85,9 @@
 
 	<insert id="orderSubmit">
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
-		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_PRODUCT_NAME)
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT)
 		VALUES(#{memberId}, now(), #{ordersPayment}, "결제완료", #{ordersAddress}, #{ordersPostcode},
-		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersProductName})
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersProductName}, #{ordersAmount})
 	</insert>
 	
 	<select id="getOrdersList" resultMap="orderVO">
@@ -130,5 +132,5 @@
 	<select id="getbasketName" resultMap="basketMap">
 		SELECT * FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
 	</select>
-	
+
 </mapper>

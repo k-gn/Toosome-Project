@@ -58,6 +58,7 @@
         </form>
       </div>
       <div class="table-cover">
+      	<c:forEach var="orderList" items="${orderList}" varStatus="i">
         <table class="table">
           <thead class="text-center">
             <tr>
@@ -71,11 +72,11 @@
           </thead>
           <tbody class="top-table">
             <tr class="top-table-pick">
-              <td><span class="total-name">투썸 에이리스트 초콜릿 라떼 외 3</span></td>
-              <td><span class="total-count">5</span></td>
-              <td><span class="total-day">04.30</span></td>
-              <td><span class="total-post-pay">2,000</span>원</td>
-              <td><span class="total-pay">3,000</span>원</td>
+              <td><span class="total-name">${orderList.ordersProductName}</span></td>
+              <td><span class="total-count">${orderList.ordersAmount}</span></td>
+              <td><span class="total-day">${orderList.ordersOrderDate}</span></td>
+              <td><span class="total-post-pay">${orderList.ordersDelivery}</span>원</td>
+              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
               <td>
                 <ul>
                   <li><a href="#">주문취소</a></li>
@@ -85,7 +86,7 @@
             </tr>
           </tbody>
           <tr>
-            <td colspan="6"><button class="under-btn">내용보기</button></td>
+            <td colspan="6"><button class="under-btn" onclick="viewContent()">내용보기</button></td>
           </tr>
           <tbody class="under-table">
             <tr class="text-bold">
@@ -104,6 +105,7 @@
             </tr>
           </tbody>
         </table>
+        </c:forEach>
       </div>
       <div class="text">
                         ※ <span class="red-text">배송중</span>이면 주문취소가 안됩니다!!!
