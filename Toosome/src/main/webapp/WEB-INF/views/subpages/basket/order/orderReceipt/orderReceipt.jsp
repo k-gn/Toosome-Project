@@ -52,37 +52,50 @@
 
       <div class="table-cover">
         <table class="table">
-          <thead>
+          <thead class="text-center">
             <tr>
-              <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
-              <th scope="col" colspan="2">주문 품목</th>
+              <th scope="col">상품명</th>
               <th scope="col">수량</th>
-              <th scope="col">배송상태</th>
-              <th scope="col">결제금액</th>
-              <th scope="col" style="text-align: center;">비고</th>
+              <th scope="col">날짜</th>
+              <th scope="col">배송비</th>
+              <th scope="col">총금액</th>
+              <th scope="col">비고</th>
             </tr>
           </thead>
-          <c:forEach var="orderDetailList" items="${orderDetailList}" varStatus="i">
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="${orderDetailList.productImageId}" alt=""></td>
-              <td><span class="name">${orderDetailList.ordersDetailName}</span></td>
-              <td>${orderDetailList.ordersDetailAmount}</td>
-              <td>
-                <span class="post-state">${orderDetailList.ordersDetailState}</span>
-              </td>
-              <td>
-                <span class="total">${orderDetailList.ordersDetailPrice}</span> 원
-              </td>
+          <tbody class="top-table">
+            <tr class="top-table-pick">
+              <td><span class="total-name">상품 외 3</span></td>
+              <td><span class="total-count">5</span></td>
+              <td><span class="total-day">04.30</span></td>
+              <td><span class="total-post-pay">2,000</span>원</td>
+              <td><span class="total-pay">3,000</span>원</td>
               <td>
                 <ul>
-                  <li><a href="#">후기쓰기</a></li>
                   <li><a href="#">주문취소</a></li>
+                  <li><a href="#">배송상태보기</a></li>
                 </ul>
               </td>
             </tr>
-          </c:forEach>
+          </tbody>
+          <tr>
+            <td colspan="6"><button class="under-btn">내용보기</button></td>
+          </tr>
+          <tbody class="under-table">
+            <tr class="text-bold">
+              <td colspan="2">이미지</td>
+              <td>상품명</td>
+              <td>수량</td>
+              <td>금액</td>
+              <td>배송상태</td>
+            </tr>
+            <tr class="">
+              <td colspan="2"><img src="" alt=""></td>
+              <td><span class="pro-name">크크루</span></td>
+              <td><span class="pro-count">2</span></td>
+              <td><span class="pro-pay">200</span></td>
+              <td><span class="post-status">곧 갈겨</span></td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="text">

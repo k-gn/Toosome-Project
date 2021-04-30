@@ -79,22 +79,34 @@ section .table-cover {
   width: 90%;
 
 }
-section .table-cover table tbody td {
-  line-height: 150px;
+
+section .table-cover .under-table {
+  display: none;
+  /* display: table-row-group; */
 }
+section .table-cover .under-table .text-bold td {
+  font-weight: bold;
+  text-align: center;
+}
+section .table-cover tbody tr td {
+  text-align: center;
+}
+
 section .table-cover table tbody td ul {
-  height: 150px;
+  width: 100%;
 }
 section .table-cover table tbody td ul li {
-  height: 50%;
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
   justify-content: center;
-  align-items: center;
+}
+section .table-cover table tbody td ul li:last-child {
+  margin-bottom: 0;
 }
 section .table-cover table tbody td ul li a {
   display: flex;
-  width: 80%;
+  width: 70%;
   justify-content: center;
   line-height: 18px;
   padding: 10px 0;
