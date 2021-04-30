@@ -7,8 +7,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/statistics/statistics.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/main/share/plugins/chartist.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/statistics/statistics.js" defer></script>
 </head>
@@ -184,7 +186,7 @@
               <div class="card">
                 <div class="card-header card-header-info flex">
                   <div>
-	                  <h4 class="card-title" id="search-result">일자별 판매현황</h4>
+	                  <h4 class="card-title">일자별 판매현황</h4>
 	                  <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   </div>
                   <div class="list-btn-box">
@@ -226,6 +228,7 @@
                       </thead>
                       <tbody id="list-table-tbody" class="text-center"></tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>
