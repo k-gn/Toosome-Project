@@ -39,6 +39,18 @@
 		<include refid="search"/>
 		
 	</select>
+	<insert id="insertNotice">
+		INSERT INTO NOTICE_BOARD(NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_VIEW_COUNT, NOTICE_BOARD_REG_DATE) 
+		 VALUES(#{NOTICE_BOARD_ID},#{NOTICE_BOARD_TITLE},#{NOTICE_BOARD_CONTENT},0,NOW())
+	</insert>
+	
+	<update id="updateNotice">
+		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = #{noticeBoardTitle}, NOTICE_BOARD_CONTENT = #{noticeBoardContent} WHERE NOTICE_BOARD_ID = #{noticeBoardId}
+	</update>
+	
+	<delete id="deleteNotice">
+	
+	</delete>
 	
 	<!-- LIKE CONCAT('%',#{keyword},'%') -->
 	

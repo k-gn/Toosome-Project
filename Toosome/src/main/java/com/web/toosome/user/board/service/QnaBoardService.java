@@ -16,13 +16,13 @@ public class QnaBoardService implements IQnaBoardService {
 	
 	@Override
 	public List<QnaBoardVO> getQnaBoardList(QnaBoardVO vo) {
-		System.out.println("qna게시판 리스트 값(서비스): " + mapper.getQnaBoardList(vo));
+	
 		return mapper.getQnaBoardList(vo);
 	}
 
 	@Override
 	public List<QnaBoardVO> getQnaBoardDetail(String index) {
-		System.out.println("qna게시판 디테일(서비스): " + mapper.getQnaBoardDetail(index));
+		
 		return mapper.getQnaBoardDetail(index);
 	}
 
@@ -44,7 +44,7 @@ public class QnaBoardService implements IQnaBoardService {
 
 	@Override
 	public List<QnaBoardVO> getSearchQnaBoard(String keyword) {
-		System.out.println("qna 검색기능 : " + mapper.getSearchQnaBoard(keyword));
+		
 		return mapper.getSearchQnaBoard(keyword);
 	}
 

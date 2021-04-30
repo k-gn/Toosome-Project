@@ -64,7 +64,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> event(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventboardlist = eventBoardService.getEventBoard(vo);
-		System.out.println("컨트롤러 이벤트 게시판 진행중 이벤트 리스트 값 : " + eventboardlist );
+		
 		return eventboardlist;
 	}
 	
@@ -72,7 +72,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> eventEnd(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventendlist = eventBoardService.getEndEventBoard(vo);
-		System.out.println("컨트롤러 종료된 이벤트 게시판 리스트 값 : "  + eventendlist); 
+		 
 		return eventendlist;
 	}
 	
@@ -85,7 +85,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> eventDetail(String index)throws Exception{
 		List<EventBoardVO> eventboarddetail = eventBoardService.getEventBoardDetail(index);
-		System.out.println("컨트롤러 이벤트 게시물 상세 값 " + eventboarddetail);
+		
 		eventBoardService.eventBoardCount(index); // 게시물 조회 수 증가
 		return eventboarddetail;
 	}
@@ -96,7 +96,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<EventBoardVO> searchevent = eventBoardService.getSearchList(keyword);
-		System.out.println("검색 값넘기기: " +searchevent);
 		return searchevent;
 		}else {
 			return null;
@@ -107,10 +106,8 @@ public class BoardController {
 	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
-		System.out.println("FAQ 내용가져오기 : Controller");
 		List<FaqBoardVO> faqBoardList = faqBoardService.getFaqBoardList(faqBoardVO);
 		model.addAttribute("faqBoardList",faqBoardList);
-		System.out.println(model);
 		return "subpages/faq/faq";
 	}
 
@@ -122,7 +119,7 @@ public class BoardController {
 	@GetMapping(value = "/noticelist", produces = "application/json") // 게시판 목록 조회값
 	@ResponseBody
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO) throws Exception {
-		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
+	
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
 		System.out.println(noticeBoardList);
 		return noticeBoardList;
@@ -131,8 +128,6 @@ public class BoardController {
 	
 	@RequestMapping(value ="/notice-detail") //해당 게시물 상세 화면
 	public String noticeDetailView(String index) throws Exception {
-		
-		System.out.println("notice-detail 화면 출력: " + index);
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 	
@@ -142,7 +137,6 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
-		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
 	
@@ -153,7 +147,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<NoticeBoardVO> searchnotice = noticeBoardService.getSearchNotice(keyword);
-		System.out.println("검색 값넘기기: " +searchnotice);
 		return searchnotice;
 		}else {
 			return null;
@@ -171,7 +164,6 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> news(NewsBoardVO vo)throws Exception{
 		List<NewsBoardVO> newsboard = newsBoardService.getNewsBoardList(vo);
-		System.out.println(newsboard);
 		return newsboard;
 	}
 	
@@ -181,7 +173,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<NewsBoardVO> searchnews = newsBoardService.getSearchNews(keyword);
-		System.out.println("검색 값넘기기: " +searchnews);
 		return searchnews;
 		}else {
 			return null;
@@ -205,8 +196,6 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
-		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
-
 		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
@@ -221,7 +210,6 @@ public class BoardController {
 	@ResponseBody
 	public List<QnaBoardVO> qnaList(QnaBoardVO vo){
 		List<QnaBoardVO> qnalist = qnaBoardService.getQnaBoardList(vo);
-		System.out.println("qna리스트 값 (컨트롤러)" +qnalist);
 		return qnalist;	
 	}
 	
@@ -255,7 +243,6 @@ public class BoardController {
 		
 		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
 		qnaBoardService.qnaBoardCount(index);
-		System.out.println("공개글 qna게시물 세부정보(컨트롤러): " + qnadetail);
 		return qnadetail;  
 		
 	}
@@ -266,7 +253,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<QnaBoardVO> searchqna = qnaBoardService.getSearchQnaBoard(keyword);
-		System.out.println("검색 값넘기기: " +searchqna);
 		return searchqna;
 		}else {
 			return null;
@@ -286,7 +272,7 @@ public class BoardController {
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
 		if(vo.getUploadFile().getSize() != 0) {
-		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
+		vo.setQnaBoardImageName("img/qnaImg/"+uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 

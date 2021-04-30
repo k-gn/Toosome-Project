@@ -16,13 +16,13 @@ public class EventBoardService implements IEventBoardService {
 
 	@Override
 	public List<EventBoardVO> getEventBoard(EventBoardVO vo) throws Exception{
-		System.out.println("이벤트 게시판 리스트 (서비스)넘어가는 값 : "+ mapper.getEventBoardList(vo));
+		
 		return mapper.getEventBoardList(vo);
 	}
 
 	@Override
 	public List<EventBoardVO> getEventBoardDetail(String index) throws Exception {
-		System.out.println("이벤트 게시판 세부 정보(서비스)넘어가는 값 :" + mapper.getEventBoardDetail(index));
+	
 		return mapper.getEventBoardDetail(index);
 	}
 
@@ -33,13 +33,13 @@ public class EventBoardService implements IEventBoardService {
 
 	@Override
 	public List<EventBoardVO> getSearchList(String keyword) throws Exception {
-		System.out.println("이벤트 게시판 검색(서비스)값: " + mapper.getSearchList(keyword));
+		
 		return mapper.getSearchList(keyword);
 	}
 
 	@Override
 	public List<EventBoardVO> getEndEventBoard(EventBoardVO vo) throws Exception {
-		System.out.println("이벤트 게시판 리스트 마감된이벤트(서비스)값 : " +  mapper.getEndEventBoardList(vo));
+		
 		return mapper.getEndEventBoardList(vo);
 	}
 
