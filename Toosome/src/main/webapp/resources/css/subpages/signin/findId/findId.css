@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section {
-	width: 600px;
+	max-width: 600px;
 	height: auto;
 	box-sizing: border-box;
 	border: 1px solid #eee;
@@ -254,3 +254,6 @@ small {
 }
 
 /* modal end */
+
+
+/* 반응형 start */

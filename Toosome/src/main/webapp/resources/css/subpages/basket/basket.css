@@ -107,7 +107,7 @@
 }
 
 .table-box table tbody tr td {
-	line-height: 150px;
+	line-height: 100px;
 }
 .table-box table tbody tr td input[type="number"] {
 	line-height: normal;
@@ -159,4 +159,29 @@
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {  
    opacity: 1;
+}
+
+
+/* 반응형 start */
+
+@media screen and (max-width: 750px) {
+	
+	.table-box table tbody tr td {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 710px) {
+	.table-box table thead tr th {
+		font-size: 14px;
+	}
+	.table-box table tbody tr td {
+		font-size: 12px;
+		line-height: normal;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.table-box table tbody tr td {
+	}
 }
