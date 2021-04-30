@@ -64,7 +64,7 @@
           </thead>
           <tbody class="top-table">
             <tr class="top-table-pick">
-              <td><span class="total-name">상품 외 3</span></td>
+              <td><span class="total-name">투썸 에이리스트 초콜릿 라떼 외 3</span></td>
               <td><span class="total-count">5</span></td>
               <td><span class="total-day">04.30</span></td>
               <td><span class="total-post-pay">2,000</span>원</td>
@@ -82,15 +82,15 @@
           </tr>
           <tbody class="under-table">
             <tr class="text-bold">
-              <td colspan="2">이미지</td>
-              <td>상품명</td>
+              <td>이미지</td>
+              <td colspan="2">상품명</td>
               <td>수량</td>
               <td>금액</td>
               <td>배송상태</td>
             </tr>
-            <tr class="">
-              <td colspan="2"><img src="" alt=""></td>
-              <td><span class="pro-name">크크루</span></td>
+            <tr class="under-tr">
+              <td><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/p03.png" alt=""></td>
+              <td colspan="2"><span class="pro-name">투썸 에이리스트 초콜릿 라떼</span></td>
               <td><span class="pro-count">2</span></td>
               <td><span class="pro-pay">200</span></td>
               <td><span class="post-status">곧 갈겨</span></td>
