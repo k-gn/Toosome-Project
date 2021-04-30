@@ -158,3 +158,21 @@ function viewContent(s) {
 	});
 }
 
+function lookPost(s) {
+	$(document).ajaxSend(function(e, xhr, options) { 
+	    	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	    });
+      $.ajax({
+        "type": "POST",
+        "url": "/lookPost?ordersId=" + s,
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "text", //응답받을 데이터의 형태
+		success: function(result) {
+			console.log(result);
+			$('.data').val(result);
+		}
+	});
+}
+

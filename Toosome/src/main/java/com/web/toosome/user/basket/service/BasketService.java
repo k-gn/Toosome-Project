@@ -118,6 +118,11 @@ public class BasketService implements IBasketService {
 	public int ordersDel(Integer id) {
 		return bmapper.ordersDel(id);
 	}
+
+	@Override
+	public String getLookPostList(Integer id) {
+		return bmapper.getLookPostList(id);
+	}
 	
 
 

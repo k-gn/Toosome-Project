@@ -340,6 +340,14 @@ public class BasketController {
 		}
 	}
 	
+	@PostMapping("/lookPost")
+	@ResponseBody
+	public String lookPost(Integer ordersId) {
+		String lookPost = service.getLookPostList(ordersId);
+		System.out.println(lookPost);
+		return lookPost;
+	}
+	
 	
 	
 

@@ -65,6 +65,9 @@ public interface IBasketMapper {
 		
 	// 주문 취소 후 orders 삭제
 	public int ordersDel(Integer id);
+	
+	// order테이블에 맞는 배송상태 출력
+	public String getLookPostList(Integer id);
 
 		
 }
