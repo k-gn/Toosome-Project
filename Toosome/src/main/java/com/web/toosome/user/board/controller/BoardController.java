@@ -104,13 +104,6 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping(value = "/qnacomment" , produces = "application/json")// 이벤트 공지 게시판 진행중 이벤트 화면 값 넘기기
-	@ResponseBody
-	public List<QnaBoardCommentVO> qnaComment(QnaBoardCommentVO vo)throws Exception{
-		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo);
-		System.out.println("컨트롤러 이벤트 게시판 진행중 이벤트 리스트 값 : " + qnacomment );
-		return qnacomment;
-	}
 	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
@@ -309,6 +302,47 @@ public class BoardController {
 		ra.addFlashAttribute("msg", "successBoard");
 		
 		return "redirect:/qna";
+	}
+	
+	
+	@GetMapping(value = "/qnacomment" , produces = "application/json")// qna 댓글 리스트
+	@ResponseBody
+	public List<QnaBoardCommentVO> qnaComment(QnaBoardCommentVO vo)throws Exception{
+		List<QnaBoardCommentVO> qnacomment = qnaBoardCommentService.qnaBoardCommentList(vo);
+		return qnacomment;
+	}
+	
+	@GetMapping(value = "/qnacommentinsert" , produces = "application/json")// qna 댓글입력
+	@ResponseBody
+	public String qnaCommentinsert(QnaBoardCommentVO vo)throws Exception{
+		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
+		if(insert > 0) {
+		return "insertSuccess";
+		}else{
+			return "insertFail";
+		}
+	}
+	
+	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
+	@ResponseBody
+	public String qnaCommentUpdate(QnaBoardCommentVO vo)throws Exception{
+		int update = qnaBoardCommentService.updateQnaBoardComment(vo);
+		if(update > 0) {
+		return "updateSuccess";
+		}else {
+			return "updateFail";
+		}
+	}
+	
+	@GetMapping(value = "/qnacommentdelete" , produces = "application/json")// qna 댓글 삭제
+	@ResponseBody
+	public String qnaCommentDelete(QnaBoardCommentVO vo)throws Exception{
+		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
+		if(delete > 0 ) {
+		return "insertSuccess";
+		}else{
+			return "insertFail";
+		}
 	}
 
 }
