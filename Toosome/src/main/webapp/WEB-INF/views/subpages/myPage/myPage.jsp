@@ -95,7 +95,7 @@
               </ul>
             </li>
             <li>
-              <a href="#">사이트맵</a>
+              <a href="#" onclick="location.href='/sitemap'">사이트맵</a>
             </li>
           </ul>
         </div>

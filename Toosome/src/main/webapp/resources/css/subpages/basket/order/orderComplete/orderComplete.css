@@ -304,3 +304,42 @@ section table {
   text-decoration: underline;
 }
 
+
+/* 반응형 start */
+
+@media screen and (max-width: 750px) {
+		
+	.table-box table tbody tr td {
+		line-height: normal;
+	}
+	.order #or2 .or2-wrap table tbody tr td input[name="postText"] {
+	  width: 400px;
+	}
+	.order #or1 .or1-wrap table tbody tr td:first-child {
+	  font-size: 16px;
+	}
+	.order #or2 .or2-wrap table tbody tr td:first-child {
+	  font-size: 16px;
+	}
+	.total-test table tbody tr td:first-child {
+		font-size: 16px;
+	}
+	
+}
+@media screen and (max-width: 640px) {
+	
+	.order table input[type="tel"] {
+		width: 50px;
+	}
+	.order #or2 .or2-wrap table tbody tr td input[name="postText"] {
+	  width: 300px;
+	}
+	.out-btn {
+	  height: 40px;
+	}
+	.out-btn a {
+	  width: 30%;
+	  line-height: 40px;
+		font-size: 16px;
+	}
+}
