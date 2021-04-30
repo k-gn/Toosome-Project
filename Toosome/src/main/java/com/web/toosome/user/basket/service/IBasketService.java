@@ -59,6 +59,5 @@ public interface IBasketService {
 	
 	// order테이블에 맞는 배송상태 출력
 	public String getLookPostList(Integer id);
-		
-	
+
 }

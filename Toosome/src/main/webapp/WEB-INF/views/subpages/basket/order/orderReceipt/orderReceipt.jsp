@@ -48,7 +48,7 @@
         	</li>
         </ul>
         <form>
-        	<input class="data" type="hidden" value="배송중"/>
+			<input class="data" type="text" value=""/>
         </form>
       </div>
       
@@ -74,8 +74,8 @@
 	              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
 	              <td>
 	                <ul>
-	                  <li><a href="#">주문취소</a></li>
-	                  <li><a href="#">배송상태보기</a></li>
+	                  	<li><a href="#" onclick="cancelPay(${orderList.ordersId});">주문취소</a></li>
+                  		<li><a href="#" onclick="lookPost(${orderList.ordersId})">배송상태보기</a></li>
 	                </ul>
 	              </td>
 	            </tr>

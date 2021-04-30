@@ -1,5 +1,6 @@
 package com.web.toosome.user.basket.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,9 @@ import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
+
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -340,7 +344,7 @@ public class BasketController {
 		}
 	}
 	
-	@PostMapping("/lookPost")
+	@PostMapping(value="/lookPost", produces ="application/text; charset=utf8")
 	@ResponseBody
 	public String lookPost(Integer ordersId) {
 		String lookPost = service.getLookPostList(ordersId);
@@ -350,7 +354,8 @@ public class BasketController {
 	
 	
 	
-
+	
+	
 	// 테스트 진행중....
 	public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken";
 	public static final String IMPORT_PAYMENTINFO_URL = "https://api.iamport.kr/payments/find/";
