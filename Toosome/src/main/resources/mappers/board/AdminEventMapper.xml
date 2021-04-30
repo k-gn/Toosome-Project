@@ -68,7 +68,7 @@
 	<insert id="insertDetailEvent">
 		INSERT INTO EVENT_BOARD_DETAIL(EVENT_BOARD_DETAIL_ID, EVENT_BOARD_DETAIL_IMAGE_ROUTE, EVENT_BOARD_DETAIL_IMAGE_NAME,
 			 EVENT_BOARD_DETAIL_IMAGE_EXTENTION, EVENT_BOARD_DETAIL_DAY) 
-			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},now())
+			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},NOW())
 	</insert>
 	
 	<select id="eventBoardDetail" resultMap="EventAdminMap">
@@ -115,4 +115,11 @@
 	 EVENT_BOARD_END_DAY = #{eventBoardEndday} WHERE EVENT_BOARD_ID = #{eventBoardId}
 	</update>
 	
+	<select id="selectIdFile" resultMap="EventAdminMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_ID = #{id}
+	</select>
+	
+	<select id ="selectIdDetailFile" resultMap="EventAdminDetailMap">
+		SELECT * FROM EVENT_BOARD_DETAIL WHERE EVENT_BOARD_DETAIL_ID = #{id}
+	</select>
 </mapper>

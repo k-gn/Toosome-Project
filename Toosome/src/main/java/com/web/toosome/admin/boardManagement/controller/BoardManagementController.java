@@ -117,20 +117,31 @@ public class BoardManagementController {
 	
 	
 	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
-	public String eventdelete(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
-
+	public String eventdelete(@PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		int de = eventboardservice.deleteDetailEvent(id);
-		int de2 = eventboardservice.deleteEvent(id);
+		//이미지 삭제
+		//1.셀렉트 구문으로 경로를 불러온다
 		
+		EventBoardVO vo = eventboardservice.selectIdFile(id); 
+		EventBoardDetailVO vvo = eventboardservice.selectIdDetailFile(id);
+		
+		//2.vo로 연결해서 key 값에 경로를 넣는다 
 		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
 		System.out.println("이벤트 게시판 이미지 경로" + key);
 		System.out.println("이벤트 디테일 이미지 경로" + key2);
 		
+		//3.awsS3 delete 구문을 사용하여 파일을 제거한다.
 		awsS3.delete(key);
 		awsS3.delete(key2);
+		
+		
+		// id 값을 받아서 delete 구문을 실행 시켜 db에서 자료를 삭제한다.
+		int de = eventboardservice.deleteEvent(id);
+		int de2 = eventboardservice.deleteDetailEvent(id);
+		
+		System.out.println("db에서 제거 완료");
 		
 			if(de>0 && de2 >0) {
 					ra.addFlashAttribute("msg", "successBoard");		
@@ -143,12 +154,10 @@ public class BoardManagementController {
 	
 	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
 	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
-		System.out.println(vvo.getEventBoardDetailId());
 		
 		EventBoardVO ebvo = eventboardservice.selectFile(vo);
 		EventBoardDetailVO ebvo2 = eventboardservice.selectDetailFile(vvo);
-		System.out.println(ebvo +"파일1");
-		System.out.println(ebvo2 +"파일2");
+		
 		
 		if(vo.getUploadFile().getSize()!= 0) {
 		
@@ -170,7 +179,6 @@ public class BoardManagementController {
 		}
 			
 		
-			System.out.println("두번쨰 파일 값"+vvo.getUploadFile2());
 		if(vvo.getUploadFile2().getSize() != 0) {
 			
 			String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
@@ -194,8 +202,6 @@ public class BoardManagementController {
 		if(vo.getUploadFile().getSize()== 0 && vvo.getUploadFile2().getSize() == 0) {
 			eventboardservice.updateEventText(vo);
 		}
-		
-		
 		
 		
 		System.out.println("DB 파일 update구문 완료");
