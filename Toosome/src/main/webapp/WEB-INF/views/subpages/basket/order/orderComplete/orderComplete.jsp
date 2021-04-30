@@ -107,18 +107,11 @@
                     전화번호
                   </td>
                   <td>
-                    <select name="phone1" id="tel">
-                      <option value="010" ${map.tel1 == '010' ? 'selected' : ''}>010</option>
-                	  <option value="011" ${map.tel1 == '011' ? 'selected' : ''}>011</option>
-                	  <option value="016" ${map.tel1 == '016' ? 'selected' : ''}>016</option>
-                	  <option value="017" ${map.tel1 == '017' ? 'selected' : ''}>017</option>
-                	  <option value="018" ${map.tel1 == '018' ? 'selected' : ''}>018</option>
-                	  <option value="019" ${map.tel1 == '019' ? 'selected' : ''}>019</option>
-                    </select>
+                  	<input type="tel" name="phone1" id="tel9" placeholder="123" value="${map.tel1}" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map.tel2}" required>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map.tel2}" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map.tel3}" required>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map.tel3}" disabled>
                   </td>
                 </tr>
               </tbody>
@@ -171,18 +164,11 @@
                     전화번호
                   </td>
                   <td>
-                    <select name="phone1" id="tel">
-                      <option value="010" ${map1.tel1 == '010' ? 'selected' : ''}>010</option>
-                	  <option value="011" ${map1.tel1 == '011' ? 'selected' : ''}>011</option>
-                	  <option value="016" ${map1.tel1 == '016' ? 'selected' : ''}>016</option>
-                	  <option value="017" ${map1.tel1 == '017' ? 'selected' : ''}>017</option>
-                	  <option value="018" ${map1.tel1 == '018' ? 'selected' : ''}>018</option>
-                	  <option value="019" ${map1.tel1 == '019' ? 'selected' : ''}>019</option>
-                    </select>
+                  	<input type="tel" name="phone1" id="tel8" placeholder="123" value="${map1.tel1}" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map1.tel2}" required>
+                    <input type="tel" name="phone2" id="tel3" placeholder="1234" value="${map1.tel2}" disabled>
                     &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map1.tel3}" required>
+                    <input type="tel" name="phone3" id="tel4" placeholder="1234" value="${map1.tel3}" disabled>
                   </td>
                 </tr>
                 <td>
