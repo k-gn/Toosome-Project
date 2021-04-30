@@ -98,7 +98,7 @@ function viewContent(s) {
 				<td>이미지</td>
               	<td colspan="2">상품명</td>
               	<td>수량</td>
-              	<td>금액</td>
+              	<td>상품가격</td>
               	<td>배송상태</td>
 			`;
 			new2El.innerHTML = content2;

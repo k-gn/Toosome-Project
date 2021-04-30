@@ -86,37 +86,52 @@ section .table-cover .under-table .text-bold td {
 }
 section .table-cover .under-table .under-tr img {
 	display: block;
-	width: 100px;
+	width: 75px;
 	height: auto;
 	margin: 0 auto;
+}
+section .table-cover .under-table .under-tr td {
+	line-height: 75px;
 }
 section .table-cover tbody tr td {
   text-align: center;
 }
+section .table-cover tbody.top-table tr td {
+  height: 75px;
+}
 
+section .table-cover table {
+	background: #eee;
+}
+section .table-cover table tbody.top-table tr td:first-child {
+	width: 418px;
+}
+section .table-cover table tbody.top-table td {
+	padding-bottom: 0 !important;
+}
 section .table-cover table tbody td ul {
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0;
 }
 section .table-cover table tbody td ul li {
   display: flex;
-  width: 100%;
   margin-bottom: 10px;
   justify-content: center;
 }
-section .table-cover table tbody td ul li:last-child {
-  margin-bottom: 0;
-}
 section .table-cover table tbody td ul li a {
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   line-height: 18px;
-  padding: 10px 0;
+  padding: 10px;
   background-color: #a62326;
   color: #fff;
   font-weight: bold;
   font-size: 16px;
   border-radius: 5px;
+  white-space: nowrap;
 }
 section .table-cover table tbody td ul li:first-child a {
   background-color: #38383b;
@@ -135,11 +150,17 @@ section .table-cover .under-btn {
 	padding: 5px;
 	cursor: pointer;
 	font-size: 1rem;
+	margin: 25px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 
 section .table-cover table.none {
   display: none;
+  margin-bottom: 30px;
+  background: #fff !important;
 }
 
 section .table-cover table .under-btn:hover {
@@ -196,4 +217,31 @@ section .btn-group li a {
   color: #fff;
   font-family: gsdr;
   background-color: #a62326;
+}
+
+@media screen and (max-width: 1065px) {
+	
+	section .table-cover table tbody td ul li a {
+	  
+	  font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 765px) {
+	section .table-cover table tr th,
+	section .table-cover table tr td {
+		font-size: 14px !important;
+	}
+	section .table-cover .under-table .under-tr td {
+		line-height: normal;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	
+	.smart-post .post-text li p {
+		font-size: 1rem;
+		font-weight: bold;
+		white-space: nowrap;
+	}
 }

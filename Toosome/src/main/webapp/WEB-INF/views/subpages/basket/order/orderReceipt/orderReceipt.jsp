@@ -61,7 +61,7 @@
 	              <th scope="col">수량</th>
 	              <th scope="col">날짜</th>
 	              <th scope="col">배송비</th>
-	              <th scope="col">총금액</th>
+	              <th scope="col">결제</th>
 	              <th scope="col">비고</th>
 	            </tr>
 	          </thead>
@@ -74,8 +74,8 @@
 	              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
 	              <td>
 	                <ul>
-	                  	<li><a href="#" onclick="cancelPay(${orderList.ordersId});">주문취소</a></li>
-                  		<li><a href="#" onclick="lookPost(${orderList.ordersId})">배송상태보기</a></li>
+	                  <li><a href="#" onclick="cancelPay(${orderList.ordersId});">주문<br/>취소</a></li>
+	                  <li><a href="#" onclick="lookPost(${orderList.ordersId})">배송상태<br/>보기</a></li>
 	                </ul>
 	              </td>
 	            </tr>
@@ -101,8 +101,8 @@
       </div>
       
       <ul class="btn-group">
-        <li><a class="payback" href="#">주문취소</a></li>
-        <li><a class="main" href="#">MAIN</a></li>
+      	<li></li>
+        <li><a class="main" href="/">MAIN</a></li>
       </ul>
       
     </section>
