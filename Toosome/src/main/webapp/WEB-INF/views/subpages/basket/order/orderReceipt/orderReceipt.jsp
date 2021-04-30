@@ -74,8 +74,8 @@
 	              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
 	              <td>
 	                <ul>
-	                  <li><a href="#">주문취소</a></li>
-	                  <li><a href="#">배송상태보기</a></li>
+	                  <li><a href="#">주문<br/>취소</a></li>
+	                  <li><a href="#">배송상태<br/>보기</a></li>
 	                </ul>
 	              </td>
 	            </tr>
