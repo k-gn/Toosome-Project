@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.web.toosome.admin.statistics.dao.IStatisticsMapper;
 import com.web.toosome.admin.statistics.vo.DailyOrderVO;
 import com.web.toosome.admin.statistics.vo.StatisticsVO;
-import com.web.toosome.user.basket.vo.OrdersVO;
 
 @Service
 public class StatisticsService implements IStatisticsService {
