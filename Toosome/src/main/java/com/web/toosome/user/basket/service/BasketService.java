@@ -85,8 +85,8 @@ public class BasketService implements IBasketService {
 	}
 
 	@Override
-	public List<OrdersDetailVO> getOrdersDetailList(Integer id) {
-		return bmapper.getOrdersDetailList(id);
+	public List<OrdersDetailVO> getOrdersDetailList(Map<String, Integer> map) {
+		return bmapper.getOrdersDetailList(map);
 	}
 
 	@Override

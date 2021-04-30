@@ -1,6 +1,7 @@
 package com.web.toosome.user.basket.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.web.toosome.user.basket.vo.BasketVO;
 import com.web.toosome.user.basket.vo.OrdersDetailVO;
@@ -36,7 +37,7 @@ public interface IBasketService {
 	public List<BasketVO> getBasketList(Integer id);
 	
 	// 주문 내역 가져오기.
-	public List<OrdersDetailVO> getOrdersDetailList(Integer id);
+	public List<OrdersDetailVO> getOrdersDetailList(Map<String, Integer> map);
 	
 	// 주문 정보 전부 가져오기(orders)
 	public List<OrdersVO> getAllOrdersList(Integer id);

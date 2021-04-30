@@ -114,7 +114,7 @@
 	</select>
 	
 	<select id="getOrdersDetailList" resultMap="ordersDetailVO">
-		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id};
+		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id} AND ORDERS_ID = #{ordersId};
 	</select>
 	
 	<select id="getOrdersDetailProductImagePath" resultMap="ordersDetailVO">

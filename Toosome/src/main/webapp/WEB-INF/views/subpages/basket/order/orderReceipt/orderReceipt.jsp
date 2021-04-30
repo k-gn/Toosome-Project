@@ -12,14 +12,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/subpages/basket/order/orderReceipt/orderReceipt.js" defer></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
-  <script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-  
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -86,23 +80,9 @@
             </tr>
           </tbody>
           <tr>
-            <td colspan="6"><button class="under-btn" onclick="viewContent()">내용보기</button></td>
+            <td colspan="6"><button class="under-btn" onclick="viewContent(${orderList.ordersId});">내용보기</button></td>
           </tr>
-          <tbody class="under-table">
-            <tr class="text-bold">
-              <td>이미지</td>
-              <td colspan="2">상품명</td>
-              <td>수량</td>
-              <td>금액</td>
-              <td>배송상태</td>
-            </tr>
-            <tr class="under-tr">
-              <td><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/p03.png" alt=""></td>
-              <td colspan="2"><span class="pro-name">투썸 에이리스트 초콜릿 라떼</span></td>
-              <td><span class="pro-count">2</span></td>
-              <td><span class="pro-pay">200</span></td>
-              <td><span class="post-status">곧 갈겨</span></td>
-            </tr>
+          <tbody class="under-table" id="test">
           </tbody>
         </table>
         </c:forEach>
