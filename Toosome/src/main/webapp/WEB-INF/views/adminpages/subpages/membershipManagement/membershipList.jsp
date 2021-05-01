@@ -72,12 +72,6 @@
                            <td>
                         	  <div class="select-box">
                               <select name="membershipGrade" class="search-select" id="membershipGrade">
-                                <option value="">전체조회</option>
-                                <option value="1">브론즈</option>
-                                <option value="2">실버</option>
-                                <option value="3">골드</option>
-                                <option value="4">플래티넘</option>
-                                <option value="5">다이아몬드</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -136,11 +130,6 @@
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">멤버십 등급</label>
 		                          <select class="custom-select" id="lvl" name="levelId">
-				                  	<option value="1">브론즈</option>
-				                  	<option value="2">실버</option>
-				                  	<option value="3">골드</option>
-				                  	<option value="4">플래티넘</option>
-				                  	<option value="5">다이아</option>
 				                  </select>
 		                        </div>
 		                      </div>
