@@ -137,6 +137,37 @@ const setData = (result, wrapper, rows) => {
 	});
 };
 
+// AJAX 멤버십 등급 초기화
+const initGrade = () => {
+	$.ajax({
+		type: "get",
+		url: "/admin/level",
+		success: (result) => {
+			// loop를 돌며 select box의 level 재생성
+			const level = document.querySelector('#lvl');
+			const whole = document.createElement('option');
+			whole.setAttribute('value', '');
+			whole.innerText = '전체조회';
+			membershipGrade.appendChild(whole);
+			for (let i = 0; i < result.length; i++) {
+				let newOption = document.createElement('option');
+				newOption.setAttribute('value', result[i].levelId);
+				newOption.innerText = result[i].levelName;
+				membershipGrade.appendChild(newOption);
+			};
+			for (let i = 0; i < result.length; i++) {
+				let newOption = document.createElement('option');
+				newOption.setAttribute('value', result[i].levelId);
+				newOption.innerText = result[i].levelName;
+				level.appendChild(newOption);
+			};
+		},
+		error: () => {
+			alert('멤버십 등급 초기화 실패');
+		}
+	})
+};
+
 // AJAX 검색 리스트 불러오기
 const getList = (member, wrapper, rows) => {
 	// AJAX 요청
@@ -236,11 +267,6 @@ const listHandler = (e) => {
 	$("input[name=memberName]").focus();
 };
 
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
-
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -315,5 +341,6 @@ const selectHandler = (select) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
+	initGrade();
 	getList(member, listTable, rows); 	
 }); 

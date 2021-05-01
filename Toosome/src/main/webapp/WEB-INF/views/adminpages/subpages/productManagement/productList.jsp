@@ -8,6 +8,9 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <link href="/resources/css/adminpages/subpages/productManagement/productList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/productManagement/productList.js" defer></script>
 </head>
@@ -62,16 +65,39 @@
                            </td>
                            <td>
                         	  <div class="select-box">
+                              <select name="isNew" class="search-select" id="isNew">
+                                <option value="2">전체상품</option>
+                                <option value="0">구상품</option>
+                                <option value="1">신상품</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                        	  <div class="select-box">
                               <select name="categories" class="search-select" id="categories">
-			                  	<option value="new">NEW</option>
-			                  	<option value="coffee">커피상품</option>
-			                  	<option value="etc">커피웨어/기타</option>
-			                  	<option value="gift">기프트세트</option>
+                                <option value="0">전체상품</option>
+                                <option value="1">커피상품</option>
+                                <option value="2">커피웨어/기타</option>
+                                <option value="3">기프트세트</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
                            </td>
-                         </tr>         
+                         </tr>
+                         <tr>
+                           <td>
+                             <span><strong>판매상태</strong></span>
+                           </td>
+                           <td>
+                             <div class="select-box">
+                              <select name="searchType" class="search-select" id="state">
+                                <option value="1">판매중</option>
+                                <option value="2">판매중지</option>
+                                <option value="3">품절</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                           </td>
+                         </tr>                
                        </tbody>
                      </table>
                   </div>
@@ -87,56 +113,83 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form id="formObj">
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품번호</label>
-		                          <input type="text" class="form-control" disabled>
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품이름</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품이름(상세)</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품가격</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">카테고리</label>
-		                          <input type="text" class="form-control" disabled>
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="productId" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매상태</label>
-		                          <input type="text" class="form-control">
+		                          <select class="custom-select" id="modal-state" name="productState">
+				                  	<option value="1">판매중</option>
+				                  	<option value="2">판매중지</option>
+				                  	<option value="3">품절</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">신상품여부</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">신메뉴여부</label>
+		                          <select class="custom-select" id="modal-isNew" name="productNew">
+				                  	<option value="1">신상품</option>
+				                  	<option value="0">구상품</option>
+				                  </select>
+		                        </div>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">카테고리</label>
+		                          <select class="custom-select" id="modal-categories" name="productType">
+				                  	<option value="1">커피상품</option>
+				                  	<option value="2">커피웨어/기타</option>
+				                  	<option value="3">기프트세트</option>
+				                  </select>
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="row">
+			                  <div class="col-md-12">
+			                    <div class="form-group">
+			                      <label class="bmd-label-floating">상품이름</label>
+			                      <input type="text" class="form-control" name="productMainTitle">
+			                    </div>
+			                  </div>
+		                    </div>
+		                    <div class="row">
+			                  <div class="col-md-12">
+			                    <div class="form-group">
+	  	                          <label class="bmd-label-floating">상품이름(상세)</label>
+		                          <input type="text" class="form-control" name="productSubTitle">
+			                    </div>
+			                  </div>
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-12">
+		                        <div class="form-group">
+		                          <div class="form-group">
+		                            <label class="bmd-label-floating">상품 내용</label>
+		                            <input type="text" class="form-control" name="productContent">
+		                          </div>
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-6">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">상품가격</label>
+		                          <input type="text" class="form-control" name="productPrice">
+		                        </div>
+		                      </div>
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-6">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">재고수량</label>
+		                          <input type="text" class="form-control" name="productCheckCount">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -144,39 +197,39 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품등록일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" class="form-control" name="productRegDate">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" class="form-control" name="productStartDate">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">상품 내용</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">상품 이미지</label>
-		                            <textarea class="form-control" rows="5"></textarea>
-		                          </div>
-		                        </div>
+							  <div class="col-md-12 text-center">
+								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+								    <div class="fileinput-new thumbnail img-raised">
+								        <img id="menuImg" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								    </div>
+								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+								    <div>
+								        <span class="btn btn-raised btn-round btn-default btn-file">
+								            <span class="fileinput-new">이미지 선택</span>
+								            <span class="fileinput-exists">수정</span>
+								            <input type="file" name="file" id="file" accept="image/*" />
+								        </span>	
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
+								    </div>
+								</div>
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-success pull-right">업데이트</button>
+		                    <button class="btn btn-success pull-right btn-r" onclick="delBtnFunc();">삭제</button>
 		                    <button id="modal-cancel" class="btn btn-success pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="productId">
 		                  </form>
 		                </div>
 		              </div>
@@ -194,7 +247,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '상품리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                   	<div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -207,7 +261,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-success" id="list-table-thead">
+                      <thead class="text-success text-center">
                         <th>
                           상품번호
                         </th>
@@ -230,34 +284,10 @@
                           상품등록일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="productList" items="${productList}">
-	                        <tr>
-	                          <td>
-	                            ${productList.productId}
-	                          </td>
-	                          <td>
-	                            ${productList.productType}
-	                          </td>
-	                          <td>
-	                            ${productList.productMainTitle}
-	                          </td>
-	                          <td>
-	                            ${productList.productState}
-	                          </td>
-	                          <td>
-	                            ${productList.productCheckCount}
-	                          </td>
-	                          <td>
-	                            ${productList.productPrice}
-	                          </td>
-	                          <td>
-	                            ${productList.productRegDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-body" class="text-center">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

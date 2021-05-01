@@ -320,9 +320,9 @@ public class BoardController {
 	public String qnaCommentDelete(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
 		if(delete > 0 ) {
-			 ra.addFlashAttribute("msg", "insertSuccess");
+			 ra.addFlashAttribute("msg", "deleteSuccess");
 		}else{
-			ra.addFlashAttribute("msg", "insertFail");;
+			ra.addFlashAttribute("msg", "deleteFail");;
 		}
 		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}

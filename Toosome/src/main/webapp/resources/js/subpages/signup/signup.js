@@ -488,6 +488,7 @@
 	// 주소
 	const postcode = $(".signup-form.postcode").val();
 	const address =  $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
+	
 	const member = {
 		memberEmail: email,
 		memberPassword: password,
@@ -495,7 +496,8 @@
 		memberBirth: birthDate,
 		memberPhone: phone,
 		memberPostcode: postcode,
-		memberAddress: address
+		memberAddress: address,
+		platFormType: 'Toosome'
 	};
 	
 	//클라이언트에서 서버와 통신하는 ajax함수(비동기 통신) 

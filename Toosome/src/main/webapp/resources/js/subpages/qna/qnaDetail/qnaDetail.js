@@ -45,6 +45,9 @@ const deleteHandler = (id) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		data: {qnaBoardCommentId: id}, //서버로 전송할 데이터
+		success: () => {
+			location.reload();
+		},
 		error: () => {
 			alert('시스템과에 문의하세요');
 			history.back();
@@ -53,10 +56,13 @@ const deleteHandler = (id) => {
 };
 
 // 댓글 업데이트 버튼
-const updateHandler = (target, id) => {
-	console.log(target);
-	let commentTitle = $(target).prev().prev().prev().prev().val();
-	let commentContent = $(target).next().next().val();
+const updateHandler = (e, id) => {
+	let parent = e.parentNode.parentNode;
+	let tds = parent.children;
+	let commentTitle = tds[0].children[0].value;
+	let sibling = parent.nextSibling;
+	let commentContent = sibling.children[0].children[0].value;
+	
 	// 서버에 데이터 업데이트 요청 AJAX
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -69,6 +75,9 @@ const updateHandler = (target, id) => {
 			qnaBoardCommentId: id,
 			qnaBoardCommentTitle: commentTitle,
 			qnaBoardCommentContent: commentContent
+		},
+		success: () => {
+			location.reload();
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');
@@ -128,19 +137,17 @@ const displayDetail = (title, content, c_content, item, index) => {
 			
 		} else {
 			for(let i=0; i<item[0].qnaBoardComment.length; i++) {
-				console.log(id, item[0].memberMemberId);
 				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
 				let commentId = item[0].qnaBoardComment[i].qnaBoardCommentId;
 				let title = item[0].qnaBoardComment[i].qnaBoardCommentTitle;
 				let newCommentTitle = document.createElement('tr');
 				let c_titleElements = `
-					<td scope="col">번호: ${item[0].qnaBoardComment[i].qnaBoardCommentId}</td>
-					<td scope="col">제목: ${+id === +item[0].memberMemberId ? `<input type="text" value=${title} />`: title}</td>
+					<td scope="col">제목: ${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ? `<input type="text" value=${title} />`: title}</td>
 					<td scope="col">작성자: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
 					<td scope="col">작성일: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
-					${+id === +item[0].memberMemberId ?
-					 `<td><button class="comment-btn" onclick="deleteHandler(${commentId});">삭제</button></th><th><button class="comment-btn" onclick="updateHandler(this,${commentId});">수정</button></td>` 
-					: ''}
+					${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ?
+					 `<td><button class="comment-btn" onclick="deleteHandler(${commentId});">삭제</button></td><td><button class="comment-btn" onclick="updateHandler(this,${commentId});">수정</button></td>` 
+					: '<td scope="col" colspan="2"></td>'}
 				`;
 				newCommentTitle.innerHTML = c_titleElements;
 				c_content.appendChild(newCommentTitle);
@@ -149,7 +156,7 @@ const displayDetail = (title, content, c_content, item, index) => {
 				let content = item[0].qnaBoardComment[i].qnaBoardCommentContent;
 				let newCommentContent = document.createElement('tr');
 				let c_contentElements = `
-					<td colspan="6">${+id === +item[0].memberMemberId ? `<textarea rows="5">${content}</textarea>`: content}</td>
+					<td colspan="6">${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ? `<textarea rows="5">${content}</textarea>`: content}</td>
 				`;
 				newCommentContent.innerHTML = c_contentElements;
 				c_content.appendChild(newCommentContent);				

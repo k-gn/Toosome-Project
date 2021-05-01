@@ -82,6 +82,10 @@
 	<delete id="delBasket">
 	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
 	</delete>
+	
+	<delete id="delBasketById">
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	</delete>
 
 	<insert id="orderSubmit">
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
