@@ -5,7 +5,7 @@ const isNew = document.querySelector('#isNew'); // 신,구메뉴 선택
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
+const profileContainer = document.querySelector('#profile-modal'); // 모달 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
 
@@ -175,7 +175,6 @@ submitBtn.addEventListener('click', submitHandler);
 const listHandler = (e) => {
 	const tds = e.children;
 	const id = tds[0].innerText;
-	console.log(id);
 	
 	/* index로 AJAX 요청 */
 	$.ajax({

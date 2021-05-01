@@ -259,7 +259,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-success text-center" id="list-table-thead">
+                      <thead class="text-success text-center">
                         <th>
                           메뉴번호
                         </th>
