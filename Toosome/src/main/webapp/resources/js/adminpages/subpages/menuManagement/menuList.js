@@ -1,9 +1,18 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
 const categories = document.querySelector('#categories'); // 카테고리 선택
+const isNew = document.querySelector('#isNew'); // 신,구메뉴 선택
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
+const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
+const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+
+let condition = '';
+let keyword = '';
+let category = '';
+let type = '';
+let menu = {}; 
 
 // 리셋 버튼 핸들러
 const resetHandler = () => {
@@ -14,98 +23,50 @@ const resetHandler = () => {
 
 resetBtn.addEventListener('click', resetHandler);
 
-/*// AJAX 전체 리스트 불러오기
-const getAllList = () => {
-	// AJAX 요청
-	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
-		}, 
-		error: function() {
-			alert('시스템과에 문의하세요');
-			history.back();
-		} 
-	});
-};*/
-
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (menu) => {
+	console.log(menu);
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/mlist", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
+		dataType: "json", //응답받을 데이터의 형태
+		data: menu, //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
+			console.log(result);
+			const listTable = document.querySelector('#list-table-tbody');
 			listTable.innerHTML = '';
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
 			result.forEach(res => {
 				let newEl = document.createElement('tr');
+				newEl.setAttribute( 'onclick', 'listHandler(this)' );
 				let content = `
-					<tr>
-                      <td>
-                        ${res.menuId}
-                      </td>
-                      <td>
-                        ${res.menuType}
-                      </td>
-                      <td>
-                        ${res.menuMainTitle}
-                      </td>
-                      <td>
-                        ${res.menuState}
-                      </td>
-                      <td>
-                        ${res.menuCheckCount}
-                      </td>
-                      <td>
-                        ${res.menuPrice}
-                      </td>
-                      <td>
-                        ${res.menuRegDate}
-                      </td>
-                    </tr>			
+                  <td>
+                    ${res.menuId}
+                  </td>
+                  <td>
+                    ${res.menuType}
+                  </td>
+                  <td>
+                    ${res.menuMainTitle}
+                  </td>
+                  <td>
+                    ${res.menuState}
+                  </td>
+                  <td>
+                    ${res.menuCheckCount}
+                  </td>
+                  <td>
+                    ${res.menuPrice}
+                  </td>
+                  <td>
+                    ${res.menuRegDate}
+                  </td>
 				`;
 				newEl.innerHTML = content;
 				listTable.appendChild(newEl);
@@ -113,41 +74,71 @@ const getList = (data) => {
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
-			history.back();
 		} 
 	});
 };
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	const menuId = ''; // 메뉴 번호
-	const menuMainTitle = ''; // 메뉴 이름
-	const menuType = ''; // 메뉴 카테고리
+    condition = '';
+    keyword = '';
+	category = '';
+	type = '';
 	
 	// 메뉴 번호 & 메뉴 이름
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 아이디로 검색시
 		if(searchInput.value !== '') {
-			menuId = searchInput.value;	
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
 		}
 	} else if(searchType.options[searchType.selectedIndex].value === 'name') { // 이름으로 검색시
 		if(searchInput.value !== '') {
-			menuMainTitle = searchInput.value;			
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
 		}
 	};
 	
-	menuType = categories.options[categories.selectedIndex].value; // 카테고리
+	category = categories.options[categories.selectedIndex].value; // 카테고리
+	type = isNew.options[isNew.selectedIndex].value; // 카테고리
 	
 	// JSON Data
-	const data = {
-		menuId,
-		menuMainTitle,
-		menuType,
+	menu = {
+		condition,
+		keyword,
+		category,
+		type
 	};
 	
-	getList(data);
+	getList(menu);
 };
 
 submitBtn.addEventListener('click', submitHandler);
+
+// 리스트 항목 클릭 핸들러
+const listHandler = (e) => {
+	const tds = e.children;
+	const id = tds[0].innerText;
+	
+	/* index로 AJAX 요청 
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/menu/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			console.log(res);
+		}, 
+		error: function() {
+			alert('시스템과에 문의하세요');
+		} 
+	});*/
+	
+	profileContainer.style.display = 'block';
+	$("input[name=menuName]").focus();
+};
+
 
 // 엑셀 다운로드
 const excelDownload = (id, title) => {
@@ -203,3 +194,12 @@ const excelDownload = (id, title) => {
 		document.body.removeChild(elem);
 	}
 };
+
+modalCancelBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	profileContainer.style.display = 'none';
+})
+
+$(document).ready(() => {
+	getList(menu);
+}); 
