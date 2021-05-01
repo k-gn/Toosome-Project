@@ -238,6 +238,8 @@ section {
 	outline: none;
 	appearance: none;
 	border: none;
+	width: 55px;
+	height: 40px;
 	border-radius: 5px;
 	padding: 10px;
 	color: white;

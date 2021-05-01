@@ -58,8 +58,7 @@
         	<h3>댓글</h3>
         	<table summary="QnAComment" class="comment-table">
         		<colgroup>
-        			<col width="10%">
-        			<col width="40%">
+        			<col width="50%">
         			<col width="25%">
         			<col width="25%">
         		</colgroup>
