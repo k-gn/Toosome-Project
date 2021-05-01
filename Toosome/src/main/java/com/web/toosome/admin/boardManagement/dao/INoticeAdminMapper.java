@@ -11,6 +11,8 @@ public interface INoticeAdminMapper {
 	
 	List<NoticeBoardVO> searchNoticeBoard(BoardSearchVO vo);
 	
+	List<NoticeBoardVO> noticeDetail(NoticeBoardVO vo);
+	
 	int insertNotice(NoticeBoardVO vo);
 	
 	int updateNotice(NoticeBoardVO vo);

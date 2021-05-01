@@ -51,7 +51,7 @@ public class BoardManagementController {
 	@ResponseBody
 	public EventBoardVO eventBoardDetail(@PathVariable Integer id){
 		EventBoardVO detail = eventboardservice.eventBoardDetail(id);
-		System.out.println(detail);
+	
 		return detail;
 	}
 	
@@ -249,6 +249,53 @@ public class BoardManagementController {
 		List<NoticeBoardVO> adminnotice = noticeboardservice.getNoticeBoard(vo);
 		System.out.println(adminnotice);
 		return adminnotice;
+	}
+	
+	@GetMapping(value = "/admin/noticeboarddetail" , produces = "application/json")// 공지사항 게시판 디테일 값 넘기기
+	@ResponseBody
+	public List<NoticeBoardVO> NoticeBoarddetail(NoticeBoardVO vo){
+		List<NoticeBoardVO> noticedetail = noticeboardservice.noticeDetail(vo);
+		System.out.println(noticedetail);
+		return noticedetail;
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-insert")//공지사항 insert
+	public String insertNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int intsertnotice = noticeboardservice.insertNotice(vo);
+		
+		if(intsertnotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-update")//공지사항 update
+	public String updateNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int updatenotice = noticeboardservice.updateNotice(vo);
+		
+		if(updatenotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-delete")//공지사항 delete
+	public String deleteNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int deletenotice = noticeboardservice.deleteNotice(vo);
+		
+		if(deletenotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
 	}
 	
 	@GetMapping("/admin/newsboard-management") // 뉴스 게시판 관리

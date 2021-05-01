@@ -19,4 +19,24 @@ public class NoticeAdminService implements INoticeAdminService {
 		return mapper.getNoticeBoard(vo);
 	}
 
+	@Override
+	public int insertNotice(NoticeBoardVO vo) {
+		return mapper.insertNotice(vo);
+	}
+
+	@Override
+	public int updateNotice(NoticeBoardVO vo) {
+		return mapper.updateNotice(vo);
+	}
+
+	@Override
+	public int deleteNotice(NoticeBoardVO vo) {
+		return mapper.deleteNotice(vo);
+	}
+
+	@Override
+	public List<NoticeBoardVO> noticeDetail(NoticeBoardVO vo) {
+		return mapper.noticeDetail(vo);
+	}
+
 }
