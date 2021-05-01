@@ -17,6 +17,7 @@ import com.web.toosome.user.member.dao.IMemberMapper;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.dao.IMembershipMapper;
 
+import net.nurigo.java_sdk.api.Image;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -120,17 +121,15 @@ public class MemberService implements IMemberService {
 	public void sendImage(String phoneNumber) {
 		String api_key = "NCSYDBSNPVO2LUFF";
 		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
+
 		Message coolsms = new Message(api_key, api_secret);
-		System.out.println("3");
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", phoneNumber); // 발신번호
 		params.put("from", "01056592176"); // 수신번호
 		params.put("type", "MMS");
 		params.put("text", "CoolSMS");
-		params.put("app_version", "test app 1.2"); // application name and version
-		params.put("image", "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/Untitled-1.jpg");
-		System.out.println("4");
+		params.put("image", "C:/gitSpring/Toosome/2.jpeg"); // image file (지원형식 : 200KB 이하의 JPEG)
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
 			System.out.println(obj.toString());

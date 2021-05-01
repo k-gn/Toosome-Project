@@ -149,4 +149,8 @@
 	 	DELETE FROM ORDERS WHERE ORDERS_ID = #{id}
 	</delete>
 	
+	<select id="getLookPostList" resultType="String">
+		SELECT ORDERS_STATE FROM ORDERS WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
 </mapper>

@@ -112,13 +112,14 @@ function changePoint(amt, pnt, min, unit) {
     v_point = amt - 100; //사용할 포인트는 결제금액과 동일하게 설정
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   }
-
+	
   if (v_point < min) {
     //최소 사용 단위보다 작을 때
     v_point = 0;
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   } else {
     v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+  	document.getElementById("use_pnt").value = v_point;
   }
 
   var v_left = document.getElementsByName("left_pnt"); //사용가능 마일리지, 남은 포인트 값 설정

@@ -1,5 +1,6 @@
 package com.web.toosome.user.basket.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,9 @@ import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
+
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -296,9 +300,14 @@ public class BasketController {
 		int basketcount = service.getBasketList(memberId).size();
 		System.out.println(basketcount);
 		String basketName = service.getbasketName(memberId).getBasketName();
-		String name = basketName + "외" + (basketcount-1) +"개";
+		if(basketcount != 1) {
+			String name = basketName + "외 " + (basketcount-1) +"개";
+			order.setOrdersProductName(name);
+		}else {
+			String name = basketName;
+			order.setOrdersProductName(name);
+		}
 		Integer amount = service.getbasketName(memberId).getBasketAmount();
-		order.setOrdersProductName(name);
 		order.setOrdersAmount(amount);
 		int result = service.orderSubmit(order);
 		if (result > 0)
@@ -340,9 +349,18 @@ public class BasketController {
 		}
 	}
 	
+	@PostMapping(value="/lookPost", produces ="application/text; charset=utf8")
+	@ResponseBody
+	public String lookPost(Integer ordersId) {
+		String lookPost = service.getLookPostList(ordersId);
+		System.out.println(lookPost);
+		return lookPost;
+	}
 	
 	
-
+	
+	
+	
 	// 테스트 진행중....
 	public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken";
 	public static final String IMPORT_PAYMENTINFO_URL = "https://api.iamport.kr/payments/find/";
