@@ -300,9 +300,14 @@ public class BasketController {
 		int basketcount = service.getBasketList(memberId).size();
 		System.out.println(basketcount);
 		String basketName = service.getbasketName(memberId).getBasketName();
-		String name = basketName + "외" + (basketcount-1) +"개";
+		if(basketcount != 1) {
+			String name = basketName + "외 " + (basketcount-1) +"개";
+			order.setOrdersProductName(name);
+		}else {
+			String name = basketName;
+			order.setOrdersProductName(name);
+		}
 		Integer amount = service.getbasketName(memberId).getBasketAmount();
-		order.setOrdersProductName(name);
 		order.setOrdersAmount(amount);
 		int result = service.orderSubmit(order);
 		if (result > 0)
