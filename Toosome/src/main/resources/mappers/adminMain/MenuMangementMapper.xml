@@ -22,8 +22,7 @@
 		<result property="menuImageId" column="MENU_IMAGE_ID" />
 		<result property="menuMenuId" column="MENU_MENU_ID" />
 		<result property="menuImageName" column="MENU_IMAGE_NAME" />
-		<result property="menuImageExtention"
-			column="MENU_IMAGE_EXTENTION" />
+		<result property="menuImageExtention" column="MENU_IMAGE_EXTENTION" />
 		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE" />
 	</resultMap>
 	
@@ -79,5 +78,24 @@
 			MENU_IMAGE_ROUTE
 		FROM MENU M INNER JOIN MENU_IMAGE MI ON M.MENU_ID = MI.MENU_MENU_ID
 		WHERE M.MENU_ID = #{id}
+	</select>
+	
+	<insert id="addMenu">
+		INSERT INTO MENU(MENU_MAIN_TITLE, MENU_SUB_TITLE, MENU_CONTENT, MENU_PRICE, MENU_NEW, MENU_TYPE, MENU_CHECK_COUNT, MENU_STATE, MENU_START_DAY)
+		VALUES(#{menuMainTitle}, #{menuSubTitle}, #{menuContent}, #{menuPrice}, #{menuNew}, #{menuType}, #{menuCheckCount}, #{menuState}, #{menuStartDay})
+	</insert>
+	
+	<insert id="addMenuImage">
+		INSERT INTO MENU_IMAGE(MENU_MENU_ID, MENU_IMAGE_NAME, MENU_IMAGE_EXTENTION, MENU_IMAGE_ROUTE)
+		VALUES(#{menuMenuId}, #{menuImageName}, #{menuImageExtention}, #{menuImageRoute})
+	</insert>
+	
+	<insert id="addIat">
+		INSERT INTO IAT(MENU_MENU_ID, IAT_FULL_SUPPLY, IAT_ONE_SUPPLY, IAT_WEIGHT, IAT_KCAL, IAT_SUGARS, IAT_PROTEIN, IAT_SATURATED_FAT, IAT_NATRIUM)
+		VALUES(#{menuMenuId}, #{iatFullSupply}, #{iatOneSupply}, #{iatWeight}, #{iatKcal}, #{iatSugars}, #{iatProtein}, #{iatSaturatedFat}, #{iatNatrium})
+	</insert>
+	
+	<select id="getMenuIndex" resultType="Integer">
+		SELECT MAX(MENU_ID) + 1 FROM MENU
 	</select>
 </mapper>

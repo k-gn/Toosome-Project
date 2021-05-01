@@ -39,69 +39,60 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form enctype="multipart/form-data">
+		                  <form role='form' enctype="multipart/form-data" action="/admin/addMenu?${_csrf.parameterName}=${_csrf.token}" method="post">
 		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 번호</label>
-		                          <input type="text" class="form-control" disabled>
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴 이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuMainTitle" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 이름(상세)</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">메뉴 이름(서브)</label>
+		                          <input type="text" name="menuSubTitle" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴 가격</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuPrice" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <select class="custom-select">
+		                          <select class="custom-select" name="menuType">
 				                  	<option value="">카테고리</option>
-				                  	<option value="new">NEW</option>
-				                  	<option value="delhi">델리</option>
-				                  	<option value="dessert">디저트</option>
-				                  	<option value="wholecake">홀케이크</option>
-				                  	<option value="beverage">음료</option>
+				                  	<option value="1">음료</option>
+				                  	<option value="2">디저트</option>
+				                  	<option value="3">델리</option>
+				                  	<option value="4">홀케이크</option>
 				                  </select>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuCheckCount" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <select class="custom-select" name="state">
+		                          <select class="custom-select" name="menuState">
 				                  	<option value="">판매상태</option>
-				                  	<option value="ready">판매대기</option>
-				                  	<option value="ing">판매중</option>
-				                  	<option value="done">판매완료</option>
-				                  	<option value="soldout">품절</option>
+				                  	<option value="0">판매대기</option>
+				                  	<option value="1">판매중</option>
 				                  </select>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
-		                          <select class="custom-select" name="new">
+		                          <select class="custom-select" name="menuNew">
 				                  	<option value="">신메뉴 여부</option>
-				                  	<option value="yes">YES</option>
-				                  	<option value="no">NO</option>
+				                  	<option value="1">YES</option>
+				                  	<option value="0">NO</option>
 				                  </select>
 		                        </div>
 		                      </div>
@@ -109,21 +100,9 @@
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 등록일</label>
-		                          <div class="calendar-wrapper">
-								    <input id="calendar1" class="calendar" type="date" value="">
-	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
-	                             	<input id="calendar2" class="calendar" type="date" value="">
-                             	  </div>
-		                        </div>
-		                      </div>
-		                      <div class="col-md-6">
-		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매 시작일</label>
 		                          <div class="calendar-wrapper">
-								    <input id="calendar3" class="calendar" type="date" value="">
-	                              	<span>&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;</span>
-	                             	<input id="calendar4" class="calendar" type="date" value="">
+								    <input id="calendar3" class="calendar" type="date" name="menuStartDay" value="">
                              	  </div>
 		                        </div>
 		                      </div>
@@ -133,7 +112,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">메뉴 내용</label>
-		                            <textarea class="form-control" rows="3"></textarea>
+		                            <textarea class="form-control" name="menuContent" rows="3"></textarea>
 		                          </div>
 		                        </div>
 		                      </div>
@@ -143,7 +122,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">총 제공량</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatFullSupply" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -151,7 +130,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">1회 제공량</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatOneSupply" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -161,7 +140,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">중량(g) / 용량(ml)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatWeight" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -169,7 +148,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">열량(kcal)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatKcal" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -177,7 +156,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">당류(g/%)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatSugars" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -185,7 +164,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">단백질(g/%)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatProtein" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -193,7 +172,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">포화지방(g/%)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatSaturatedFat" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -201,7 +180,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">나트륨(g/%)</label>
-		                            <input type="text" class="form-control">
+		                            <input type="text" name="iatVO.iatNatrium" class="form-control">
 		                          </div>
 		                        </div>
 		                      </div>
@@ -217,7 +196,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="..." accept="image/*" />
+								            <input type="file" name="file" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
 								    </div>

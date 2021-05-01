@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.menuManagement.service.IMenuManagementService;
 import com.web.toosome.admin.menuManagement.vo.MenuSearchVO;
+import com.web.toosome.user.membership.vo.LevelVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -40,5 +43,11 @@ public class MenuManagementController {
 	@ResponseBody
 	public MenuVO getMenu(@PathVariable Integer id) {
 		return service.getMenu(id);
+	}
+	
+	@PostMapping("/addMenu")
+	public String addLevel(MenuVO menu, RedirectAttributes ra) {
+		System.out.println("ADD : " + menu);
+		return "redirect:/admin/enroll-menu";
 	}
 }

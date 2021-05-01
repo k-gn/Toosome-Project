@@ -2,6 +2,8 @@ package com.web.toosome.user.menu.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -24,6 +26,7 @@ public class MenuVO {
 	private MenuImageVO menuImageVO;
 	private IatVO iatVO;
 	private String keyword;
+	private MultipartFile file;
 	/*
 	 * private Integer menusalt; private Integer menuEndPrice;
 	 */
