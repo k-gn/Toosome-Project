@@ -48,5 +48,12 @@ public interface IBasketService {
 	// 장바구니에서 상품이름 하나만 가져오기.
 	public BasketVO getbasketName(Integer id);
 
-	 
+	// MerchantUid 가져오기.
+	public String getMerchantUid(Integer id);
+	
+	// 주문 취소 후 ordersDetail 삭제
+	public int ordersDetailDel(Integer id);
+	
+	// 주문 취소 후 orders 삭제
+	public int ordersDel(Integer id);
 }

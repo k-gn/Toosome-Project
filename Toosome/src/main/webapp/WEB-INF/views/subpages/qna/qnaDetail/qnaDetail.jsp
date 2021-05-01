@@ -58,18 +58,16 @@
         	<h3>댓글</h3>
         	<table summary="QnAComment" class="comment-table">
         		<colgroup>
-        			<col width="5%">
-        			<col width="55%">
-        			<col width="20%">
-        			<col width="20%">
+        			<col width="10%">
+        			<col width="40%">
+        			<col width="25%">
+        			<col width="25%">
         		</colgroup>
-        		<thead>		
-        		</thead>
         		<tbody id="comment"></tbody>
         	</table>
         	<h3>댓글 등록</h3>
         	<form action="/qnacommentinsert?${_csrf.parameterName}=${_csrf.token}" method="POST">
-	        	<table summary="QnAComment" class="comment-table">
+	        	<table summary="QnAComment" class="comment-table enroll">
 	        		<colgroup>
 	        			<col width="70%">
 	        			<col width="15%">

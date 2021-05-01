@@ -132,5 +132,17 @@
 	<select id="getbasketName" resultMap="basketMap">
 		SELECT * FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
 	</select>
-
+	
+	<select id="getMerchantUid" resultType="String">
+		SELECT ORDERS_MERCHANT_UID FROM ORDERS WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
+	<delete id="ordersDetailDel">
+	 	DELETE FROM ORDERS_DETAIL WHERE ORDERS_ID = #{id}
+	</delete>
+	
+	<delete id="ordersDel">
+	 	DELETE FROM ORDERS WHERE ORDERS_ID = #{id}
+	</delete>
+	
 </mapper>

@@ -2,26 +2,62 @@
 let csrfTokenValue = $("meta[name='_csrf']").attr("content");
 let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
 
-function cancelPay() {
+function cancelPay(s) {
+	$(document).ajaxSend(function(e, xhr, options) { 
+	    	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	    });
       $.ajax({
         "type": "POST",
-        "url": "/testToken",
+        "url": "/createToken",
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "text", //응답받을 데이터의 형태
 		success: function(result) {
-			$.ajax({
-        		"type": "POST",
-       			"url": "/testToken?ordersId=",
-				headers: {
-					"Content-Type": "application/json"
-				}, //요청 헤더 정보
-				dataType: "text", //응답받을 데이터의 형태
-				success: function(result) {
-		
-				}
-      		});
+			if(result !== null) {
+				$.ajax({
+			        "type": "POST",
+			        "url": "/getMerchantUid?ordersId="+s,
+					headers: {
+						"Content-Type": "application/json"
+					}, //요청 헤더 정보
+					dataType: "text", //응답받을 데이터의 형태
+					success: function(uid) {
+						if(uid != null ){
+							$.ajax({
+						        "type": "POST",
+						        "url": "/cancelPayment?token="+result +"&mid="+ uid,
+								headers: {
+									"Content-Type": "application/json"
+								}, //요청 헤더 정보
+								dataType: "text", //응답받을 데이터의 형태
+								success: function(ok) {
+									if(ok == 1){
+										$.ajax({
+									        "type": "POST",
+									        "url": "/ordersCancelReceipt?ordersId="+s,
+											headers: {
+												"Content-Type": "application/json"
+											}, //요청 헤더 정보
+											dataType: "text", //응답받을 데이터의 형태
+											success: function(complete) {
+												if(complete == 1){
+													alert('환불 성공하였습니다.');
+													location.href="/orderreceipt";
+												}else{
+													alert('데이터 삭제 실패');
+												}
+											}
+							      		});
+									}else{
+										alert('환불 실패하였습니다.');
+									}
+								}
+				      		});
+						}
+					}
+	      		});
+			}
 		}
       });
     }
@@ -62,18 +98,20 @@ $(function(){
 		$(".post-text .five").addClass("colorRed");
 	}
 	
+    $(".table-cover .under-btn").click(function () {
+	    var d = $(this).next(".none").css("display");
 	
-	$(".under-btn").click(function () {
-    var d = $(".under-table").css("display");
-
-    if (d == "none") {
-      $(".under-table").css("display", "table-row-group");
-      $(".under-btn").html("내용감추기");
-    } else {
-      $(".under-table").css("display", "none");
-      $(".under-btn").html("내용보기");
-    }
-  });
+	    if (d == "none") {
+	      $(this).next(".none").css("display", "table");
+	      $(this).html("내용 감추기");
+	    } else if (d == "table") {
+	      $(this).next(".none").css("display", "none");
+	      $(this).html("내용보기");
+	    }
+	 });
+	    
+	
+	
 });
 
 function viewContent(s) {
@@ -89,7 +127,7 @@ function viewContent(s) {
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(results) {
 		console.log(results);
-			const tableBody = document.querySelector('#test');
+			const tableBody = document.querySelector(`.under-table.a${s}`);
 			tableBody.innerHTML = '';
 			let new2El = document.createElement('tr');
 			new2El.classList.add('text-bold');

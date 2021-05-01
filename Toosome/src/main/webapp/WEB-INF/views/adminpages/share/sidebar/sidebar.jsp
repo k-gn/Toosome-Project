@@ -129,23 +129,10 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">
-          <i class="material-icons">table_view</i>
-          <p>판매 현황</p>
-        </a>
-        <div class="sub-nav">
-          <ul>
-       		<li>
-       			<a href="/admin/best-status">베스트 현황</a>
-       		</li>
-          </ul>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="/admin/statistics">
           <i class="material-icons">language</i>
-          <p>통계</p>
+          <p>매출 통계</p>
         </a>
         <div class="sub-nav">
         </div>

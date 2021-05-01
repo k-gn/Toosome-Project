@@ -103,6 +103,21 @@ public class BasketService implements IBasketService {
 	public BasketVO getbasketName(Integer id) {
 		return bmapper.getbasketName(id);
 	}
+
+	@Override
+	public String getMerchantUid(Integer id) {
+		return bmapper.getMerchantUid(id);
+	}
+
+	@Override
+	public int ordersDetailDel(Integer id) {
+		return bmapper.ordersDetailDel(id);
+	}
+
+	@Override
+	public int ordersDel(Integer id) {
+		return bmapper.ordersDel(id);
+	}
 	
 
 

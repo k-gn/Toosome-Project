@@ -135,7 +135,7 @@ const setData = (result, wrapper, rows) => {
 	$('#pagination').pagination({
 	    dataSource: result,
 	    pageSize: rows,
-	    pageNumber: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			showList(data, wrapper);					
 	    }
