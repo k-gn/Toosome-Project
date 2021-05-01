@@ -141,7 +141,7 @@ const setData = (result, wrapper, rows) => {
 const initGrade = () => {
 	$.ajax({
 		type: "get",
-		url: "/admin/membershipGrade",
+		url: "/admin/level",
 		success: (result) => {
 			// loop를 돌며 select box의 level 재생성
 			const level = document.querySelector('#lvl');
@@ -151,9 +151,14 @@ const initGrade = () => {
 			membershipGrade.appendChild(whole);
 			for (let i = 0; i < result.length; i++) {
 				let newOption = document.createElement('option');
-				newOption.setAttribute('value', result[i].level.levelId);
-				newOption.innerText = result[i].level.levelName;
-				membershipGrade.appendChild(newOption);	
+				newOption.setAttribute('value', result[i].levelId);
+				newOption.innerText = result[i].levelName;
+				membershipGrade.appendChild(newOption);
+			};
+			for (let i = 0; i < result.length; i++) {
+				let newOption = document.createElement('option');
+				newOption.setAttribute('value', result[i].levelId);
+				newOption.innerText = result[i].levelName;
 				level.appendChild(newOption);
 			};
 		},

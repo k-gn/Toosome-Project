@@ -28,6 +28,10 @@
 		SELECT * FROM BANNER
 	</select>
 	
+	<select id="getBanner" resultMap="bannerMap">
+		SELECT * FROM BANNER WHERE BANNER_ID = #{id};
+	</select>
+	
 	<insert id="addBanner">
 		INSERT INTO BANNER(BANNER_NAME, BANNER_TITLE) VALUES(#{bannerName}, #{bannerTitle})
 	</insert>

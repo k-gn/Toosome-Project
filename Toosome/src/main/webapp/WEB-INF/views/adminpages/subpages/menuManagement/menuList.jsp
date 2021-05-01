@@ -13,6 +13,20 @@
   <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <link href="/resources/css/adminpages/subpages/menuManagement/menuList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/menuManagement/menuList.js" defer></script>
+  <script type="text/javascript">
+  	const parameterName = "${_csrf.parameterName}";
+  	const token = "${_csrf.token}";
+  	const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("메뉴 수정 완료");
+	}else if(msg === "modFail") {
+		alert("메뉴 수정 실패");
+	}else if(msg === "delSuccess") {
+		alert("메뉴 삭제 완료");
+	}else if(msg === "delFail") {
+		alert("메뉴 삭제 실패");
+	}
+  </script>
 </head>
 
 <body>
@@ -91,9 +105,10 @@
                            <td>
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="state">
+                                <option value="3">전체메뉴</option>
+                                <option value="0">판매중지</option>
                                 <option value="1">판매중</option>
-                                <option value="2">판매중지</option>
-                                <option value="3">단종</option>
+                                <option value="2">단종</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -114,21 +129,21 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form id="formObj">
+		                  <form name="formObj" action="/admin/modMenu?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴번호</label>
-		                          <input type="text" name="menuId" class="form-control" disabled>
+		                          <input type="text" name="id" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매상태</label>
 		                          <select class="custom-select" id="modal-state" name="menuState">
+				                  	<option value="0">판매중지</option>
 				                  	<option value="1">판매중</option>
-				                  	<option value="2">판매중지</option>
-				                  	<option value="3">단종</option>
+				                  	<option value="2">단종</option>
 				                  </select>
 		                        </div>
 		                      </div>
@@ -224,10 +239,13 @@
 		                      </div>
 		                    </div>
 		                    <button type="submit" class="btn btn-success pull-right">업데이트</button>
-		                    <button class="btn btn-success pull-right btn-r" onclick="delBtnFunc();">삭제</button>
+		                    <input type="button" class="btn btn-success pull-right btn-r" onclick="delBtnFunc();" value="삭제">
 		                    <button id="modal-cancel" class="btn btn-success pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                    <input type="hidden" name="menuId">
+		                    <input type="hidden" name="oldImageName">
+		                    <input type="hidden" name="oldCategory">
 		                  </form>
 		                </div>
 		              </div>

@@ -70,7 +70,10 @@ public class SettingService implements ISettingService {
 
 	@Override
 	public int delBanner(Integer id) {
-		return mapper.delBanner(id);
+		BannerVO banner = mapper.getBanner(id);
+		int result = mapper.delBanner(id);
+		s3.delete(banner.getBannerRoute().substring(1) + banner.getBannerName());
+		return result;
 	}
 	
 	

@@ -106,7 +106,7 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/delOutMember" method="post">
+		                  <form id="formObj" action="/admin/delOutMember" method="post">
 		                    <div class="row">
 		                      <div class="col-md-5">
 		                        <div class="form-group">
@@ -169,7 +169,7 @@
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button id="modal-delete" type="submit" class="btn btn-primary pull-right">삭제</button>
+		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제">
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="email">

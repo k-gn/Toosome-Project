@@ -9,4 +9,5 @@ public class MenuSearchVO {
 	private String keyword;
 	private Integer category;
 	private Integer type;
+	private Integer state;
 }
