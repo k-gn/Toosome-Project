@@ -257,7 +257,7 @@ const submitHandler = () => {
 		status
 	};
 	rows = 10000;
-	getList(member, listTable, rows, currentPage);
+	getList(member, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
