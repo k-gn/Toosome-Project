@@ -59,7 +59,7 @@
 	            <tr>
 	              <th scope="col">상품명</th>
 	              <th scope="col">수량</th>
-	              <th scope="col">날짜</th>
+	              <th scope="col">결제날짜</th>
 	              <th scope="col">배송비</th>
 	              <th scope="col">결제</th>
 	              <th scope="col">비고</th>

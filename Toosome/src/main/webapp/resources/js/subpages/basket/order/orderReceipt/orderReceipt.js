@@ -136,12 +136,9 @@ function lookPost(s) {
 		dataType: "text",
 		success: function(resul) {
 			console.log(resul);
-			$(".data").val(resul);
+			var testData = $(".data").val(resul);
 		}
 	});
-}
-
-$(function(){
 	
 	var testData = $(".data").val();
 	
@@ -176,6 +173,13 @@ $(function(){
 		$(".post-text li").removeClass("colorRed");
 		$(".post-text .five").addClass("colorRed");
 	}
+}
+
+
+
+$(function(){
+	
+	
     $(".table-cover .under-btn").click(function () {
 	    var d = $(this).next(".none").css("display");
 	
