@@ -108,7 +108,7 @@
 								            <span class="fileinput-exists">수정</span>
 								            <input type="file" name="file" id="file" accept="image/*" />
 								        </span>	
-								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
 								</div>
 		                      </div>
