@@ -19,6 +19,16 @@ let startOutDate = ''; // 회원가입 검색 시작일
 let endOutDate = ''; // 회원가입 검색 종료일
 let rows = 10000; // 한 페이지에 보여줄 게시글 수
 
+function delBtnFunc() {
+	const formElement = document.querySelector('#formObj');
+	let flag = confirm('정말로 삭제하시겠습니까?');
+	if(flag) {
+		formElement.submit();
+	}else {
+		return;
+	}
+}
+
 // 기간선택 handler
 const changeHandler = (e) => {
 	const option = e.options[e.selectedIndex].value;

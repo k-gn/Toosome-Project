@@ -31,5 +31,7 @@ public class MenuVO {
 	 * private Integer menusalt; private Integer menuEndPrice;
 	 */
 	
-	
+	private String oldImageName;
+	private String oldCategory;
+	private String menuImagePath;
 }

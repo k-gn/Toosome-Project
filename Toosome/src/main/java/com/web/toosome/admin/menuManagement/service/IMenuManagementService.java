@@ -15,4 +15,7 @@ public interface IMenuManagementService {
 
 	public int addMenu(MenuVO menu);
 
+	public int modMenu(MenuVO menu);
+	
+	public int delMenu(MenuVO menu);
 }

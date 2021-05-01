@@ -15,6 +15,9 @@ public interface ISettingMapper {
 	
 	// 배너 전체 조회
 	public List<BannerVO> getBannerList();
+	
+	// 배너 조회
+	public BannerVO getBanner(Integer id);
 
 	// 배너 등록
 	public int addBanner(BannerVO banner);

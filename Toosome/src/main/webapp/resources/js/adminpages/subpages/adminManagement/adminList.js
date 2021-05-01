@@ -19,6 +19,8 @@ function delBtnFunc() {
 		formElement.attr("action", "/admin/del");
 		formElement.attr("method", "post");		
 		formElement.submit();
+	}else {
+		return;
 	}
 }
 

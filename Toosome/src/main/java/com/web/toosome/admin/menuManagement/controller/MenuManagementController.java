@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.menuManagement.service.IMenuManagementService;
 import com.web.toosome.admin.menuManagement.vo.MenuSearchVO;
-import com.web.toosome.user.membership.vo.LevelVO;
+import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -46,8 +46,35 @@ public class MenuManagementController {
 	}
 	
 	@PostMapping("/addMenu")
-	public String addLevel(MenuVO menu, RedirectAttributes ra) {
-		System.out.println("ADD : " + menu);
+	public String addMenu(MenuVO menu, RedirectAttributes ra) {
+		MenuImageVO menuImage = new MenuImageVO();
+		menu.setMenuImageVO(menuImage);
+		
+		int result = service.addMenu(menu);
+		if(result > 0) ra.addFlashAttribute("msg", "success");
+		else ra.addFlashAttribute("msg", "fail");
 		return "redirect:/admin/enroll-menu";
+	}
+	
+	@PostMapping("/modMenu")
+	public String modMenu(MenuVO menu, RedirectAttributes ra) {
+		System.out.println("mod : " + menu);
+		MenuImageVO menuImage = new MenuImageVO();
+		menu.setMenuImageVO(menuImage);
+		
+		int result = service.modMenu(menu);
+		if(result > 0) ra.addFlashAttribute("msg", "modSuccess");
+		else ra.addFlashAttribute("msg", "modFail");
+		return "redirect:/admin/menu-list";
+	}
+	
+	@PostMapping("/delMenu")
+	public String delMenu(MenuVO menu, RedirectAttributes ra) {
+		System.out.println("del : " + menu);
+		
+		int result = service.delMenu(menu);
+		if(result > 0) ra.addFlashAttribute("msg", "delSuccess");
+		else ra.addFlashAttribute("msg", "delFail");
+		return "redirect:/admin/menu-list";
 	}
 }

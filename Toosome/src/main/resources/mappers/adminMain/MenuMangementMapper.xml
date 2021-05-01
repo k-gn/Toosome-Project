@@ -53,6 +53,9 @@
 		<if test="type != null and type != 2">
 			AND MENU_NEW = #{type}
 		</if>
+		<if test="state != null and state != 3">
+			AND MENU_STATE = #{state}
+		</if>
 	</sql>
 	
 	<select id="getMenuList" resultMap="menuMap">
@@ -76,7 +79,7 @@
 			MENU_IMAGE_NAME,
 			MENU_IMAGE_EXTENTION,
 			MENU_IMAGE_ROUTE
-		FROM MENU M INNER JOIN MENU_IMAGE MI ON M.MENU_ID = MI.MENU_MENU_ID
+		FROM MENU M LEFT OUTER JOIN MENU_IMAGE MI ON M.MENU_ID = MI.MENU_MENU_ID
 		WHERE M.MENU_ID = #{id}
 	</select>
 	
@@ -98,4 +101,43 @@
 	<select id="getMenuIndex" resultType="Integer">
 		SELECT MAX(MENU_ID) + 1 FROM MENU
 	</select>
+	
+	<update id="aiReset">
+		ALTER TABLE MENU AUTO_INCREMENT = 1
+	</update>
+	
+	<update id="modMenu">
+		UPDATE MENU SET 
+			MENU_MAIN_TITLE = #{menuMainTitle}, 
+			MENU_SUB_TITLE = #{menuSubTitle},
+			MENU_CONTENT = #{menuContent},
+			MENU_PRICE = #{menuPrice},
+			MENU_NEW = #{menuNew},
+			MENU_TYPE = #{menuType},
+			MENU_CHECK_COUNT = #{menuCheckCount},
+			MENU_STATE = #{menuState},
+			MENU_START_DAY = #{menuStartDay}
+		WHERE MENU_ID = #{menuId};
+	</update>
+	
+	<update id="modMenuImage">
+		UPDATE MENU_IMAGE SET
+			MENU_IMAGE_NAME = #{menuImageName},
+			MENU_IMAGE_EXTENTION = #{menuImageExtention},
+			MENU_IMAGE_ROUTE = #{menuImageRoute}
+		WHERE MENU_MENU_ID = #{menuMenuId}
+	</update>
+	
+	<delete id="delMenu">
+		DELETE FROM MENU WHERE MENU_ID = #{menuId}
+	</delete>
+	
+	<delete id="delMenuImage">
+		DELETE FROM MENU_IMAGE WHERE MENU_MENU_ID = #{id}
+	</delete>
+	
+	<delete id="delIat">
+		DELETE FROM IAT WHERE MENU_MENU_ID = #{id}
+	</delete>
+	
 </mapper>

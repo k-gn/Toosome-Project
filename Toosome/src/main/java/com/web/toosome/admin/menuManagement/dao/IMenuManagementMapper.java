@@ -26,16 +26,16 @@ public interface IMenuManagementMapper {
 	public int modMenu(MenuVO menu);
 	public int modMenuImage(MenuImageVO menu);
 	
-	// 영양성분표 수정
-	public int modIat(IatVO iat);
-	
 	// 메뉴 삭제
-	public int delMenu(Integer id);
-	public int delMenuImage(MenuImageVO menu);
+	public int delMenu(MenuVO menu);
+	public int delMenuImage(Integer id);
 	
 	// 영양성분표 삭제
 	public int delIat(Integer id);
 
 	// 메뉴 인덱스
 	public int getMenuIndex();
+	
+	// AI 초기화
+	public void aiReset();
 }
