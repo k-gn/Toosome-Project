@@ -8,6 +8,9 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <link href="/resources/css/adminpages/subpages/menuManagement/menuList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/menuManagement/menuList.js" defer></script>
 </head>
@@ -62,12 +65,20 @@
                            </td>
                            <td>
                         	  <div class="select-box">
+                              <select name="isNew" class="search-select" id="isNew">
+                                <option value="2">전체메뉴</option>
+                                <option value="0">구메뉴</option>
+                                <option value="1">신메뉴</option>
+                              </select>
+                              <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
+                             </div>
+                        	  <div class="select-box">
                               <select name="categories" class="search-select" id="categories">
-                                <option value="new">NEW</option>
-                                <option value="wholecake">홀케이크</option>
-                                <option value="delhi">델리</option>
-                                <option value="dessert">디저트</option>
-                                <option value="beverage">음료</option>
+                                <option value="0">전체메뉴</option>
+                                <option value="4">홀케이크</option>
+                                <option value="3">델리</option>
+                                <option value="2">디저트</option>
+                                <option value="1">음료</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -93,25 +104,25 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴번호</label>
-		                          <input type="text" class="form-control" disabled>
+		                          <input type="text" name="id" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴이름</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuMainTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴이름(상세)</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuSubTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴가격</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuPrice" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -119,25 +130,25 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">카테고리</label>
-		                          <input type="text" class="form-control" disabled>
+		                          <input type="text" name="menuType" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuCheckCount" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매상태</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuState" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">신메뉴여부</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="menuNew" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -145,13 +156,13 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴등록일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="menuRegDate" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="menuSalesDate" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -178,6 +189,7 @@
 		                    <button type="submit" class="btn btn-success pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-success pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="menuId">
 		                  </form>
 		                </div>
 		              </div>
@@ -231,34 +243,10 @@
                           메뉴등록일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="menuList" items="${menuList}">
-	                        <tr>
-	                          <td>
-	                            ${menuList.menuId}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuType}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuMainTitle}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuState}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuCheckCount}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuPrice}
-	                          </td>
-	                          <td>
-	                            ${menuList.menuRegDate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

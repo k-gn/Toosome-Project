@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.menuManagement.dao.IMenuManagementMapper">
+	<resultMap type="menuVO" id="menuMap">
+		<id property="menuId" column="MENU_ID" />
+		<result property="menuMainTitle" column="MENU_MAIN_TITLE" />
+		<result property="menuSubTitle" column="MENU_SUB_TITLE" />
+		<result property="menuContent" column="MENU_CONTENT" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuType" column="MENU_TYPE" />
+		<result property="menuRegDate" column="MENU_REG_DATE" />
+		<result property="menuStartDay" column="MENU_START_DAY" />
+		<result property="menuCheckCount" column="MENU_CHECK_COUNT" />
+		<result property="menuState" column="MENU_STATE" />
+		<result property="menuNew" column="MENU_NEW" />
+		<collection property="menuImageVO" resultMap="menuImageVO" />
+		<collection property="iatVO" resultMap="iatVO" />
+	</resultMap>
+
+	<resultMap type="menuImageVO" id="menuImageVO">
+		<result property="menuImageId" column="MENU_IMAGE_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="menuImageName" column="MENU_IMAGE_NAME" />
+		<result property="menuImageExtention"
+			column="MENU_IMAGE_EXTENTION" />
+		<result property="menuImageRoute" column="MENU_IMAGE_ROUTE" />
+	</resultMap>
+	
+	<resultMap type="iatVO" id="iatVO">
+		<result property="iatId" column="IAT_ID" />
+		<result property="menuMenuId" column="MENU_MENU_ID" />
+		<result property="iatFullSupply" column="IAT_FULL_SUPPLY" />
+		<result property="iatOneSupply" column="IAT_ONE_SUPPLY" />
+		<result property="iatWeight" column="IAT_WEIGHT" />
+		<result property="iatKcal" column="IAT_KCAL" />
+		<result property="iatSugars" column="IAT_SUGARS" />
+		<result property="iatProtein" column="IAT_PROTEIN" />
+		<result property="iatSaturatedFat" column="IAT_SATURATED_FAT" />
+		<result property="iatNatrium" column="IAT_NATRIUM" />
+	</resultMap>
+	
+	<sql id="search">
+		WHERE 1 = 1
+		<if test="condition == 'id'">
+			AND MENU_ID LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND MENU_MAIN_TITLE LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="category != null and category != 0">
+			AND MENU_TYPE = #{category}
+		</if>
+		<if test="type != null and type != 2">
+			AND MENU_NEW = #{type}
+		</if>
+	</sql>
+	
+	<select id="getMenuList" resultMap="menuMap">
+		SELECT * FROM MENU
+		<include refid="search"/>
+	</select>
+	
+	<select id="getMenu" resultMap="menuMap">
+		SELECT 
+			M.MENU_ID,
+			MENU_MAIN_TITLE,
+			MENU_SUB_TITLE,
+			MENU_CONTENT,
+			MENU_PRICE,
+			MENU_NEW,
+			MENU_TYPE,
+			MENU_REG_DATE,
+			MENU_CHECK_COUNT,
+			MENU_STATE,
+			MENU_START_DAY,
+			MENU_IMAGE_NAME,
+			MENU_IMAGE_EXTENTION,
+			MENU_IMAGE_ROUTE
+		FROM MENU M INNER JOIN MENU_IMAGE MI ON M.MENU_ID = MI.MENU_MENU_ID
+		WHERE M.MENU_ID = #{id}
+	</select>
+</mapper>
