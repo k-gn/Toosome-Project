@@ -2,17 +2,20 @@ const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
 const categories = document.querySelector('#categories'); // 카테고리 선택
 const isNew = document.querySelector('#isNew'); // 신,구메뉴 선택
+const isState = document.querySelector('#state'); // 판매 상태 선택
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
 const profileContainer = document.querySelector('#profile-modal'); // 모달 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const basicPath = "https://toosome.s3.ap-northeast-2.amazonaws.com/";
 
 let condition = '';
 let keyword = '';
 let category = '';
 let type = '';
+let state = '';
 let rows = 10000; // 한 페이지에 보여줄 게시글 수
 let product = {}; 
 
@@ -27,17 +30,20 @@ resetBtn.addEventListener('click', resetHandler);
 
 // 메뉴 삭제 버튼
 function delBtnFunc() {
-	const formElement = document.querySelector('#formObj');
+	const formElement = document.formObj;
 	let flag = confirm('정말로 삭제하시겠습니까?');
+	let content = `/admin/delProduct?${parameterName}=${token}`;
 	if(flag) {
-		formElement.attr("action", "/admin/menu/del");
-		formElement.attr("method", "post");		
+		formElement.action = content;
 		formElement.submit();
+	}else {
+		return;
 	}
 }
 
 // 리스트 출력하기
 const showList = (result, wrapper) => {
+	console.log(result, wrapper);
 	wrapper.innerHTML = ''; // 테이블 초기화
 	let p_Type = ''; // 카테고리 초기화
 	let p_State = ''; // 판매상태 초기화
@@ -62,9 +68,10 @@ const showList = (result, wrapper) => {
 			case '3': p_Type = '기프트세트'; break;
 		};
 		switch(result[i].productState){
+			case 0: p_State = '판매중지'; break;
 			case 1: p_State = '판매중'; break;
-			case 2: p_State = '판매중지'; break;
-			case 3: p_State = '품절'; break;
+			case 2: p_State = '품절'; break;
+			case 3: p_State = '단종'; break;
 		};
 		
 		let newEl = document.createElement('tr');
@@ -77,7 +84,7 @@ const showList = (result, wrapper) => {
             ${p_Type}
           </td>
           <td>
-            ${result[i].productMainTitle}
+            ${result[i].productTitleName}
           </td>
           <td>
             ${p_State}
@@ -89,7 +96,7 @@ const showList = (result, wrapper) => {
             ${result[i].productPrice}
           </td>
           <td>
-            ${result[i].productRegDate}
+            ${result[i].productregDate}
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -111,6 +118,7 @@ const setData = (result, wrapper, rows) => {
 
 // AJAX 검색 리스트 불러오기
 const getList = (product, wrapper, rows) => {
+	console.log(product);
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -119,7 +127,7 @@ const getList = (product, wrapper, rows) => {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
-		data: menu, //서버로 전송할 데이터
+		data: product, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			console.log(result);
 			// 리스트 생성 후 삽입
@@ -139,6 +147,7 @@ const submitHandler = () => {
     keyword = '';
 	category = '';
 	type = '';
+	state = '';
 	
 	// 상품 번호 & 상품 이름
 	if(searchType.options[searchType.selectedIndex].value === 'id') { // 번호로 검색시
@@ -154,14 +163,16 @@ const submitHandler = () => {
 	};
 	
 	category = categories.options[categories.selectedIndex].value; // 카테고리
-	type = isNew.options[isNew.selectedIndex].value; // 카테고리
+	type = isNew.options[isNew.selectedIndex].value; 
+	state = isState.options[isState.selectedIndex].value; 
 	
 	// JSON Data
 	product = {
 		condition,
 		keyword,
 		category,
-		type
+		type,
+		state
 	};
 	
 	rows = 10000;
@@ -185,21 +196,24 @@ const listHandler = (e) => {
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			
-			if(res.productStartDate == null) {
-				res.productStartDate = '';
+			if(res.productStartDay == null) {
+				res.productStartDay = '';
 			}
+			
+			let productPath = basicPath + res.productImagePath;
 		
+			$("input[name=id]").val(res.productId);			
 			$("input[name=productId]").val(res.productId);			
 			$("input[name=productPrice]").val(res.productPrice);			
 			$("#modal-isNew").val(res.productNew).prop("selected", true);			
 			$("#modal-categories").val(res.productType).prop("selected", true);			
 			$("#modal-state").val(res.productState).prop("selected", true);			
-			$("input[name=productMainTitle]").val(res.productMainTitle);			
-			$("input[name=productSubTitle]").val(res.productSubTitle);			
+			$("input[name=productMainTitle]").val(res.productTitleName);			
+			$("input[name=productSubTitle]").val(res.productSubName);			
 			$("input[name=productContent]").val(res.productContent);
 			$("input[name=productCheckCount]").val(res.productCheckCount);
-			$("input[name=productRegDate]").val(res.productRegDate);			
-			$("input[name=productStartDate]").val(res.productStartDate);			
+			$("input[name=productStartDate]").val(res.productStartDay);		
+			$("#productImg").attr("src", productPath);	
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
