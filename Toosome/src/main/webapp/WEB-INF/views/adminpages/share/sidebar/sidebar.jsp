@@ -109,13 +109,10 @@
        			<a href="/admin/order-totallist">주문통합 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-depositlist">입금대기 리스트</a>
-       		</li>
-       		<li>
        			<a href="/admin/order-finishlist">결제완료 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-product-readylist">상품준비중 리스트</a>
+       			<a href="/admin/order-product-readylist">접수완료 리스트</a>
        		</li>
        		<li>
        			<a href="/admin/order-delivery-readylist">배송준비중 리스트</a>
@@ -124,35 +121,10 @@
        			<a href="/admin/order-delivery-finishlist">배송완료 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-confirm-finishlist">구매확정 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-faillist">결제 중단/실패 리스트</a>
+       			<a href="/admin/order-confirm-finishlist">기프티콘 리스트</a>
        		</li>
        		<li>
        			<a href="/admin/order-cancellist">주문취소 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-refundlist">반품 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-exchangelist">교환 리스트</a>
-       		</li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">
-          <i class="material-icons">table_view</i>
-          <p>판매 현황</p>
-        </a>
-        <div class="sub-nav">
-          <ul>
-       		<li>
-       			<a href="/admin/sales-status">매출 현황</a>
-       		</li>
-       		<li>
-       			<a href="/admin/best-status">베스트 현황</a>
        		</li>
           </ul>
         </div>
@@ -160,7 +132,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/admin/statistics">
           <i class="material-icons">language</i>
-          <p>통계</p>
+          <p>매출 통계</p>
         </a>
         <div class="sub-nav">
         </div>

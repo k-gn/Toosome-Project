@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.settings.dao.ISettingMapper">
+
+	<resultMap type="termsVO" id="termsMap">
+		<id property="termsId" column="TERMS_ID"/>
+		<result property="termsTitle" column="TERMS_TITLE"/>
+		<result property="termsContent" column="TERMS_CONTENT"/>
+	</resultMap>
+	
+	<resultMap type="bannerVO" id="bannerMap">
+		<id property="bannerId" column="BANNER_ID"/>
+		<result property="bannerRoute" column="BANNER_ROUTE"/>
+		<result property="bannerName" column="BANNER_NAME"/>
+		<result property="bannerTitle" column="BANNER_TITLE"/>
+	</resultMap>
+
+	<select id="getTermList" resultMap="termsMap">
+		SELECT TERMS_ID, TERMS_TITLE, TERMS_CONTENT FROM TERMS
+	</select>
+	
+	<update id="addTerm">
+		UPDATE TERMS SET TERMS_CONTENT = #{termsContent} WHERE TERMS_ID = #{termsId}
+	</update>	
+	
+	<select id="getBannerList" resultMap="bannerMap">
+		SELECT * FROM BANNER
+	</select>
+	
+	<select id="getBanner" resultMap="bannerMap">
+		SELECT * FROM BANNER WHERE BANNER_ID = #{id};
+	</select>
+	
+	<insert id="addBanner">
+		INSERT INTO BANNER(BANNER_NAME, BANNER_TITLE) VALUES(#{bannerName}, #{bannerTitle})
+	</insert>
+	
+	<update id="modBanner">
+		UPDATE BANNER SET BANNER_NAME = #{bannerName}, BANNER_TITLE = #{bannerTitle} WHERE BANNER_ID = #{bannerId}
+	</update>
+	
+	<delete id="delBanner">
+		DELETE FROM BANNER WHERE BANNER_ID = #{id}
+	</delete>
+</mapper>

@@ -8,6 +8,7 @@ import lombok.Data;
 public class OrdersVO {
 	private Integer ordersId;
 	private Integer memberId;
+	private String ordersProductName;
 	private Date ordersOrderDate;
 	private Integer ordersPayment;
 	private String ordersState;
@@ -17,4 +18,7 @@ public class OrdersVO {
 	private Integer ordersDelivery;
 	private String ordersPhone;
 	private String ordersContent;
+	private String ordersMerchantUid;
+	private Integer ordersAmount;
+	
 }

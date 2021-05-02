@@ -167,26 +167,38 @@ function chkPoint(amt, pnt, min, unit) {
     }
 
     if (pnt > amt) {
-      //결제금액보다 포인트가 더 클 때
-      v_point = amt; //사용할 포인트는 결제금액과 동일하게 설정
-    }
+        //결제금액보다 포인트가 더 클 때
+        v_point = amt - ((amt % unit)+100); //사용할 포인트는 결제금액과 동일하게 설정
+      }
+    
+  	console.log(v_point);
+  	
+  	if (v_point < min) {
+      	//최소 사용 단위보다 작을 때
+      	v_point = 0;
+      	document.getElementById("use_pnt").value = v_point; //input 값 재설정
+    	} else {
+      	v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+    	}
   }
   document.getElementById("use_pnt").value = v_point; //input 값 설정
 
   changePoint(amt, pnt, min, unit);
+  document.getElementById("result_pnt").innerHTML = amt - v_point;
 }
 
 function changePoint(amt, pnt, min, unit) {
   //input값을 불러옴 > left_pnt 변경 > 최종결제 변경
   //amt : 최초 결제 금액 / pnt : 사용가능,남은 포인트 / min : 사용 가능 최소 포인트 / unit : 사용단위
   var v_point = parseInt(document.getElementById("use_pnt").value); //사용할 포인트 (input 입력값)
+  
   if (v_point > pnt) {
     //입력값이 사용가능 포인트보다 클때
-    v_point = pnt;
+    v_point = pnt - 100;
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   }
 
-  if (v_point > amt) {
+  if (v_point > amt - 100) {
     //결제금액보다 포인트가 더 클 때
     v_point = amt; //사용할 포인트는 결제금액과 동일하게 설정
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
@@ -198,6 +210,7 @@ function changePoint(amt, pnt, min, unit) {
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   } else {
     v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+    document.getElementById("use_pnt").value = v_point;
   }
 
   var v_left = document.getElementsByName("left_pnt"); //사용가능 마일리지, 남은 포인트 값 설정

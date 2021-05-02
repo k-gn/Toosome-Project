@@ -12,12 +12,114 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const boardContainer = document.querySelector('#board-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const enrollSubmitBtn = document.querySelector('#enroll-submit'); // 글등록 버튼
+const updateSubmitBtn = document.querySelector('#update-submit'); // 업데이트 버튼
 
 let board = {};
 let keyword = ''; // 검색 제목
 let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
 let rows = 10000;
+let boardId = '';
+
+// 글 등록 유효성 검사
+const enrollCheck = (title,thumb,image,startDate,endDate) => {
+	if(title.value === '') {
+		alert('제목 입력란이 비어있습니다.');
+		title.focus();
+		return false;
+	} else if(startDate.value === '') {
+		alert('이벤트 시작일을 선택하세요.');
+		startDate.focus();
+		return false;
+	} else if (endDate.value === '') {
+		alert('이벤트 종료일을 선택하세요.');
+		endDate.focus();
+		return false;
+	} else if (startDate.value > endDate.value) {
+		alert('이벤트 시작일은 종료일보다 이후일 수 없습니다');
+		startDate.focus();
+		return false;
+	} else if (thumb.value === '') {
+		alert('썸네일 이미지를 선택하세요.');
+		thumb.focus();
+		return false;
+	} else if (image.value === '') {
+		alert('본문 이미지를 선택하세요.');
+		image.focus();
+		return false;
+	};
+	return true;
+};
+
+// 업데이트 유효성 검사
+const updateCheck = (title,startDate,endDate) => {
+	if(title.value === '') {
+		alert('제목 입력란이 비어있습니다.');
+		title.focus();
+		return false;
+	} else if(startDate.value === '') {
+		alert('이벤트 시작일을 선택하세요.');
+		startDate.focus();
+		return false;
+	} else if (endDate.value === '') {
+		alert('이벤트 종료일을 선택하세요.');
+		endDate.focus();
+		return false;
+	} else if (startDate.value > endDate.value) {
+		alert('이벤트 시작일은 종료일보다 이후일 수 없습니다');
+		startDate.focus();
+		return false;
+	}
+	return true;
+};
+
+// 글등록 버튼 event hook
+enrollSubmitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	const e_title = document.querySelector('#enroll-title');
+	const e_thumb = document.querySelector('#enroll-thumb');
+	const e_image = document.querySelector('#enroll-image');
+	
+	if(!enrollCheck(e_title,e_thumb,e_image,eventCalendar3,eventCalendar4)) {
+		return;
+	} else {
+		document.querySelector('#enroll-form').submit();
+	}
+});
+
+// 업데이트 버튼 event hook
+updateSubmitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	const u_title = document.querySelector('#detail-title');
+	const u_start = document.querySelector('#detail-start');
+	const u_end = document.querySelector('#detail-end');
+	
+	if(!updateCheck(u_title,u_start,u_end)) {
+		return;
+	} else {
+		document.querySelector('#update-form').submit();
+	}
+});
+
+
+// 글 삭제 버튼
+const delBtnFunc = ()  => {
+	let flag = confirm('정말로 삭제하시겠습니까?');
+	if(flag) {
+		$.ajax({
+			type: 'post',
+			url: `/admin/eventboard-delete/${boardId}`,
+			success: () => {
+				window.location.reload();
+			},
+			error: () => {
+				alert('통신장애');
+				window.history.back();
+			}
+		})
+	};
+};
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -132,7 +234,7 @@ const setData = (result, wrapper, rows) => {
 	$('#pagination').pagination({
 	    dataSource: result,
 	    pageSize: rows,
-	    pageNumber: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			showList(data, wrapper);					
 	    }
@@ -154,10 +256,9 @@ const getList = (url, board, wrapper, rows) => {
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`;
 			searchResult.innerText = count;
-			const newRes = result.reverse();
-			setData(newRes, wrapper, rows);
+			setData(result, wrapper, rows);
 		}, 
-		error: function() {
+		error: () => {
 			alert('시스템과에 문의하세요');
 			history.back();
 		} 
@@ -212,16 +313,21 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(res) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			$("input[name=eventBoardId]").val(res.eventBoardId);			
-			$("input[name=eventBoardViewCount]").val(res.eventBoardViewCount);			
-			$("input[name=eventBoardDetailDay]").val(res.eventBoardDetailVO.eventBoardDetailDay);			
-			$("input[name=eventBoardStartday]").val(res.eventBoardStartday);			
-			$("input[name=eventBoardEndday]").val(res.eventBoardEndday);			
-			$("input[name=eventBoardTitle]").val(res.eventBoardTitle);
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}/${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
-			$("#eventBoardImage").attr("src",imageURL);			
-			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}/${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
-			$("#eventBoardThumbnail").attr("src",thumbnailURL);			
+			console.log(res);
+			boardDetailId = res.eventBoardDetailVO.eventBoardDetailId;
+			boardId = res.eventBoardId;
+			$("#detail-id").val(res.eventBoardId);			
+			$('input[name=eventBoardId]').val(res.eventBoardId);			
+			$('input[name=eventBoardDetailId]').val(res.eventBoardDetailVO.eventBoardDetailId);			
+			$("#detail-view").val(res.eventBoardViewCount);			
+			$("#detail-reg").val(res.eventBoardDetailVO.eventBoardDetailDay);			
+			$("#detail-start").val(res.eventBoardStartday);			
+			$("#detail-end").val(res.eventBoardEndday);			
+			$("#detail-title").val(res.eventBoardTitle);
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardImageRoute}${res.eventBoardImageName}.${res.eventBoardImageExtention}`;			
+			$("#detail-img").attr("src",imageURL);			
+			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res.eventBoardDetailVO.eventBoardDetailImageRoute}${res.eventBoardDetailVO.eventBoardDetailImageName}.${res.eventBoardDetailVO.eventBoardDetailImageExtention}`;			
+			$("#detail-thumb").attr("src",thumbnailURL);			
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');

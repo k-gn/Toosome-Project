@@ -266,11 +266,11 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/sendGift")
 	public String sendGift(String phoneNumber) {
+		System.out.println("/sendGift 실행");
 		MemberVO vo = new MemberVO();
 		vo.setMemberPhone(phoneNumber);
-		System.out.println("2");
 		service.sendImage(phoneNumber);
-		return "/";
+		return "OK";
 	}
 
 }

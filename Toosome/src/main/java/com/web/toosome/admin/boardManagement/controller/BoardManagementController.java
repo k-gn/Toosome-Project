@@ -41,8 +41,7 @@ public class BoardManagementController {
 	@GetMapping(value = "/admin/eventboardsearch" , produces = "application/json")
 	@ResponseBody
 	public List<EventBoardVO> searchEventBoard(BoardSearchVO vo){
-		List<EventBoardVO> search = eventboardservice.searchEventBoard(vo);
-		System.out.println(search);
+		List<EventBoardVO> search = eventboardservice.searchEventBoard(vo);;
 		return search;
 	}
 	
@@ -52,7 +51,7 @@ public class BoardManagementController {
 	@ResponseBody
 	public EventBoardVO eventBoardDetail(@PathVariable Integer id){
 		EventBoardVO detail = eventboardservice.eventBoardDetail(id);
-		System.out.println(detail);
+	
 		return detail;
 	}
 	
@@ -63,7 +62,6 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<EventBoardVO> EventBoardManagement(EventBoardVO vo){
 		List<EventBoardVO> adminevent = eventboardservice.getEventBoard(vo);
-		System.out.println(adminevent);
 		return adminevent;
 	}
 	
@@ -82,13 +80,13 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
-		eventboardservice.insertEvent(vo);
-		eventboardservice.insertDetailEvent(vvo);
+		int in = eventboardservice.insertEvent(vo);
+		int in2 = eventboardservice.insertDetailEvent(vvo);
 		
-		ra.addFlashAttribute("msg", "successBoard");
+		
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
@@ -102,61 +100,113 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 		
+			
+		if(in > 0 && in2 >0) {
+				ra.addFlashAttribute("msg", "successBoard");	
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}
+			
 		return "redirect:/admin/eventboard-management";
+	
 	}
 	
 	
 	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
-	public String eventdelete(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id) throws IllegalStateException, IOException {
-
-		eventboardservice.deleteDetailEvent(id);
-		eventboardservice.deleteEvent(id);
+	public String eventdelete(@PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+vo.getEventBoardImageExtention();
-		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+vvo.getEventBoardDetailImageExtention();
+		//이미지 삭제
+		//1.셀렉트 구문으로 경로를 불러온다
+		
+		EventBoardVO vo = eventboardservice.selectIdFile(id); 
+		EventBoardDetailVO vvo = eventboardservice.selectIdDetailFile(id);
+		
+		//2.vo로 연결해서 key 값에 경로를 넣는다 
+		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
 		System.out.println("이벤트 게시판 이미지 경로" + key);
 		System.out.println("이벤트 디테일 이미지 경로" + key2);
 		
+		//3.awsS3 delete 구문을 사용하여 파일을 제거한다.
 		awsS3.delete(key);
 		awsS3.delete(key2);
 		
-		//ra.addFlashAttribute("msg", "successBoard");
-
+		
+		// id 값을 받아서 delete 구문을 실행 시켜 db에서 자료를 삭제한다.
+		int de = eventboardservice.deleteEvent(id);
+		int de2 = eventboardservice.deleteDetailEvent(id);
+		
+		System.out.println("db에서 제거 완료");
+		
+			if(de>0 && de2 >0) {
+					ra.addFlashAttribute("msg", "successBoard");		
+			}else {
+				ra.addFlashAttribute("msg", "failBoard");
+			}	
+			
 		return "redirect:/admin/eventboard-management";
 	}
 	
-	@PostMapping("/admin/eventboard-update/{id}") // 관리자 이벤트게시판 업데이트기능
-	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, @PathVariable Integer id) throws IllegalStateException, IOException {
+	@PostMapping("/admin/eventboard-update") // 관리자 이벤트게시판 업데이트기능
+	public String updateEvent(EventBoardVO vo, EventBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
-		String rote = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+vo.getEventBoardImageExtention();
-		String rote2= vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+vvo.getEventBoardDetailImageExtention();
+		EventBoardVO ebvo = eventboardservice.selectFile(vo);
+		EventBoardDetailVO ebvo2 = eventboardservice.selectDetailFile(vvo);
 		
-		System.out.println("이벤트 게시판 이미지 경로(지울거) " + rote);
-		System.out.println("이벤트 디테일 이미지 경로 (지울거)" + rote);
 		
-		awsS3.delete(rote);
-		System.out.println("첫번쨰 파일 삭제 성공");
-		awsS3.delete(rote2);
-		System.out.println("두번쨰 파일 삭제 성공");
+		if(vo.getUploadFile().getSize()!= 0) {
 		
-		vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
-		vo.setEventBoardImageRoute("img/pages/subpages/event/");
-		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+			String rote = ebvo.getEventBoardImageRoute()+ebvo.getEventBoardImageName()+"."+ebvo.getEventBoardImageExtention();
+			awsS3.delete(rote);
+			System.out.println("첫번쨰 파일 삭제 성공");
+			vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+			vo.setEventBoardImageRoute("img/pages/subpages/event/");
+			vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+			
+			int up = eventboardservice.updateEvent(vo);
+			
+			File convFile = new File(vo.getUploadFile().getOriginalFilename());
+			vo.getUploadFile().transferTo(convFile);
+			File file = convFile;
+			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
+			System.out.println(key);
+			awsS3.upload(file, key);
+		}
+			
 		
-		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/");
-		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
+		if(vvo.getUploadFile2().getSize() != 0) {
+			
+			String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
+			awsS3.delete(rote2);
+			System.out.println("두번쨰 파일 삭제 성공");
+			vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
+			vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
+			vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
+			
+			int up2 = eventboardservice.updateEventDetail(vvo);
+			eventboardservice.updateEventText(vo);
+			
+			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
+			vvo.getUploadFile2().transferTo(convFile2);
+			File file2 = convFile2;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			System.out.println(key2);
+			awsS3.upload(file2, key2);
+		}
 		
-		eventboardservice.updateEvent(id);
-		eventboardservice.updateEventDetail(id);
+		if(vo.getUploadFile().getSize()== 0 && vvo.getUploadFile2().getSize() == 0) {
+			eventboardservice.updateEventText(vo);
+		}
 		
-		//ra.addFlashAttribute("msg", "successBoard");
-
+		
+		System.out.println("DB 파일 update구문 완료");
+	
+/*
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
 			vo.getUploadFile().transferTo(convFile);
@@ -169,10 +219,17 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();;
+			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
-		
+			
+			if(up >0 && up2>0) {
+				ra.addFlashAttribute("msg", "successBoard");
+			}else {
+				ra.addFlashAttribute("msg", "failBoard");
+			}
+		*/
+			
 		return "redirect:/admin/eventboard-management";
 	}
 	
@@ -192,6 +249,53 @@ public class BoardManagementController {
 		List<NoticeBoardVO> adminnotice = noticeboardservice.getNoticeBoard(vo);
 		System.out.println(adminnotice);
 		return adminnotice;
+	}
+	
+	@GetMapping(value = "/admin/noticeboarddetail" , produces = "application/json")// 공지사항 게시판 디테일 값 넘기기
+	@ResponseBody
+	public List<NoticeBoardVO> NoticeBoarddetail(NoticeBoardVO vo){
+		List<NoticeBoardVO> noticedetail = noticeboardservice.noticeDetail(vo);
+		System.out.println(noticedetail);
+		return noticedetail;
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-insert")//공지사항 insert
+	public String insertNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int intsertnotice = noticeboardservice.insertNotice(vo);
+		
+		if(intsertnotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-update")//공지사항 update
+	public String updateNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int updatenotice = noticeboardservice.updateNotice(vo);
+		
+		if(updatenotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
+	}
+	
+	@GetMapping(value = "/admin/noticeboard-delete")//공지사항 delete
+	public String deleteNotice(NoticeBoardVO vo, RedirectAttributes ra){
+		
+		int deletenotice = noticeboardservice.deleteNotice(vo);
+		
+		if(deletenotice > 0) {
+			ra.addFlashAttribute("msg", "successBoard");
+		}else {
+			ra.addFlashAttribute("msg", "failBoard");
+		}			
+		return "redirect:/admin/noticeboard-management";
 	}
 	
 	@GetMapping("/admin/newsboard-management") // 뉴스 게시판 관리

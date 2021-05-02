@@ -19,6 +19,8 @@ function delBtnFunc() {
 		formElement.attr("action", "/admin/del");
 		formElement.attr("method", "post");		
 		formElement.submit();
+	}else {
+		return;
 	}
 }
 
@@ -83,7 +85,7 @@ const setData = (result, wrapper) => {
 	$('#pagination').pagination({
 	    dataSource: result,
 	    pageSize: 5,
-	    pageNumber: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			showList(data, wrapper);					
 	    }
@@ -167,6 +169,7 @@ const listHandler = (e) => {
 				res.lastLoginDate = 'No Log';
 			}
 			$("input[name=memberId]").val(res.memberId);			
+			$("input[name=email]").val(res.memberEmail);			
 			$("input[name=memberEmail]").val(res.memberEmail);			
 			$("input[name=memberName]").val(res.memberName);			
 			$("input[name=memberPhone]").val(res.memberPhone);			

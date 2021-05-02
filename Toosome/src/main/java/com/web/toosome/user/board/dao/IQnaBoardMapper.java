@@ -10,6 +10,8 @@ public interface IQnaBoardMapper {
 	
 	public List<QnaBoardVO> getQnaBoardDetail(String index);
 	
+	public List<QnaBoardVO> getQnaZeroComment(String index);
+	
 	public void insertQnaBoard(QnaBoardVO vo);
 	
 	public QnaBoardVO passwordQnaBoard(Integer index);
@@ -20,4 +22,8 @@ public interface IQnaBoardMapper {
 	
 	// 해당 회원 qna 전체 삭제
 	public void delQna(Integer id);
+	
+	public List<QnaBoardVO> getNewQnaList();
+	
+	public void insertQnaBoardText(QnaBoardVO vo);
 }

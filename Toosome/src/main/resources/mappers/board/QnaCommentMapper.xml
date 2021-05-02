@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.user.board.dao.IQnaBoardCommentMapper">
+
+	<!-- QNA board Comment -->
+	<resultMap type="qnaBoardCommentVO" id="QnaBoardCommentMap">
+		<id property="qnaBoardCommentId" column="QNA_BOARD_COMMENT_ID"/>
+		<result property="qnaQnaBoardId" column="QNA_QNA_BOARD_ID" />
+		<result property="memberMemberCommentId" column="MEMBER_MEMBER_COMMENT_ID" />
+		<result property="qnaBoardCommentTitle" column="QNA_BOARD_COMMENT_TITLE" />
+		<result property="qnaBoardCommentContent" column="QNA_BOARD_COMMENT_CONTENT" />
+	 	<result property="qnaBoardCommentDay" column="QNA_BOARD_COMMENT_DAY" /> 
+	</resultMap>
+	<!--
+
+	<resultMap type="qnaBoardVO" id="QnaBoardMap">
+		<id property="qnaBoardId" column="QNA_BOARD_ID"/>
+		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
+		<result property="qnaBoardType" column="QNA_BOARD_TYPE" />
+	 	<result property="qnaBoardTitle" column="QNA_BOARD_TITLE" /> 
+		<result property="qnaBoardContent" column="QNA_BOARD_CONTENT" />
+		<result property="qnaBoardRegdate" column="QNA_BOARD_REG_DATE" />
+		<result property="qnaBoardViewCount" column="QNA_BOARD_VIEW_COUNT" />	
+		<result property="qnaBoardPassword" column="QNA_BOARD_PASSWORD" />		
+		<result property="qnaBoardImageName" column="QNA_BOARD_IMAGE_NAME" />
+		<result property="qnaBoardSecret" column="QNA_BOARD_SECRET" />
+	</resultMap>
+	
+
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+	</resultMap>
+	-->
+	<select id ="qnaBoardCommentList" resultMap="QnaBoardCommentMap">
+		SELECT * FROM QNA_BOARD_COMMENT ORDER BY QNA_BOARD_COMMENT_DAY DESC;
+	</select>
+	
+	<insert id="insertQnaBoardComment">
+		INSERT INTO QNA_BOARD_COMMENT(QNA_BOARD_COMMENT_ID, QNA_QNA_BOARD_ID, MEMBER_MEMBER_COMMENT_ID, QNA_BOARD_COMMENT_TITLE, QNA_BOARD_COMMENT_CONTENT, QNA_BOARD_COMMENT_DAY) VALUES(#{qnaBoardCommentId},#{qnaQnaBoardId},#{memberMemberCommentId},#{qnaBoardCommentTitle},#{qnaBoardCommentContent},NOW())
+	</insert>
+	
+	<update id="updateQnaBoardComment">
+	UPDATE QNA_BOARD_COMMENT SET 
+		QNA_BOARD_COMMENT_TITLE = #{qnaBoardCommentTitle}, QNA_BOARD_COMMENT_CONTENT = #{qnaBoardCommentContent} 
+		  WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
+		   
+	</update>
+	
+	<delete id="deleteQnaBoardComment">
+		DELETE FROM QNA_BOARD_COMMENT 
+		 WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId} 
+
+	</delete>
+
+		
+</mapper>

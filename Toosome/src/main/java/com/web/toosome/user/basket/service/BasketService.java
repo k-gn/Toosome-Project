@@ -12,10 +12,14 @@ import org.springframework.stereotype.Service;
 import com.web.toosome.user.basket.dao.IBasketMapper;
 import com.web.toosome.user.basket.vo.BasketVO;
 
+
 import com.web.toosome.user.product.dao.IProductMapper;
 
+
+import com.web.toosome.user.basket.vo.OrdersDetailVO;
+
 import com.web.toosome.user.basket.vo.OrdersVO;
-import com.web.toosome.user.product.dao.IProductMapper;
+
 
 import com.web.toosome.user.product.vo.ProductVO;
 
@@ -78,6 +82,56 @@ public class BasketService implements IBasketService {
 	@Override
 	public void orderBasketDel(Integer id) {
 		bmapper.orderBasketDel(id);
+	}
+
+	@Override
+	public void basketsendorder(BasketVO basket) {
+		bmapper.basketsendorder(basket);
+	}
+
+	@Override
+	public List<BasketVO> getBasketList(Integer id) {
+		return bmapper.getBasketList(id);
+	}
+
+	@Override
+	public List<OrdersDetailVO> getOrdersDetailList(Map<String, Integer> map) {
+		return bmapper.getOrdersDetailList(map);
+	}
+
+	@Override
+	public List<OrdersVO> getAllOrdersList(Integer id) {
+		return bmapper.getAllOrdersList(id);
+	}
+
+	@Override
+	public int updateMerchantUid(OrdersVO ordersVO) {
+		return bmapper.updateMerchantUid(ordersVO);
+	}
+
+	@Override
+	public BasketVO getbasketName(Integer id) {
+		return bmapper.getbasketName(id);
+	}
+
+	@Override
+	public String getMerchantUid(Integer id) {
+		return bmapper.getMerchantUid(id);
+	}
+
+	@Override
+	public int ordersDetailDel(Integer id) {
+		return bmapper.ordersDetailDel(id);
+	}
+
+	@Override
+	public int ordersDel(Integer id) {
+		return bmapper.ordersDel(id);
+	}
+
+	@Override
+	public String getLookPostList(Integer id) {
+		return bmapper.getLookPostList(id);
 	}
 
 

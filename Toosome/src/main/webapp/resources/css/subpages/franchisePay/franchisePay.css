@@ -87,3 +87,26 @@
 .franchisePay-container .contents .text li:first-child {
     margin-top: 10px;
 }
+
+@media screen and (max-width: 800px) {
+	
+	.franchisePay-container .contents img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	
+	.franchisePay-container .title-container .title-logo {
+	    width: 400px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	
+	.navigation-container {
+		margin-top: 50px;
+	}
+		
+}

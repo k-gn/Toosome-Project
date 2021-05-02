@@ -2,33 +2,31 @@
 
 /******************** imgSlide-start *******************/
 
-#img-wrap .slide .img1 .img-title {
-	max-width: 1000px;
+#img-wrap .slide .img .img-title {
+	width: 100%;
+	height: 100vh;
 	text-align: center;
-	margin-top: 200px;
-	margin-left: calc(50% - 500px);
+	background-color: rgba(0,0,0,0.3);
+	position: absolute;
+	top: 0;
+	left: 0;
 }
-
-#img-wrap .slide .img2 .img-title {
-	max-width: 700px;
-	height: 280px;
-	margin-top: 250px;
-	margin-left: 1000px;
-}
-
-#img-wrap .slide .img3 .img-title {
-	max-width: 700px;
-	height: 280px;
-	text-align: center;
-	margin-top: 300px;
-	margin-left: 20px;	
-}
-
 #img-wrap .slide .img-title .img-content {
+	width: 50%;
+	height: 40%;
+	padding: 50px;
+	border: 1px solid #fff;
 	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-family: gsdr;
 	font-size: 5rem;
-	z-index: 1000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	/*animation: border 2s infinite;*/
 }
 
 #img-wrap .slide .img-title .img-content small {
@@ -44,17 +42,12 @@
   display: block;
   width: 100%;
   height: 100vh;
-  background: no-repeat center /cover;
-  
+  position: relative;
 }
-#img-wrap .slide .slide-imgs li.img1 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main1.png");
-}
-#img-wrap .slide .slide-imgs li.img2 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main2.png");
-}
-#img-wrap .slide .slide-imgs li.img3 {
-	background-image: url("https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/main3.png");
+#img-wrap .slide .slide-imgs li img {
+	display: block;
+	width: 100vw;
+	height: 100vh;
 }
 #img-wrap .slide p {
   position: absolute;
@@ -530,59 +523,30 @@
 /******************** map-end **************************/
 
 /* 반응형 start */
-@media screen and (max-width: 1450px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 800px;
-	}
-}
-
-@media screen and (max-width: 1250px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 600px;
-	}
-}
-
 @media screen and (max-width: 1120px) {
 	
-	#img-wrap .slide .img1 .img-title {
-		margin-top: 100px;
+	#img-wrap .slide .img .img-title {
+		width: 100%;
+		height: 100%;
 	}
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-top: 100px;
-	}
-	
-	#img-wrap .slide .img3 .img-title {
-		margin-top: 100px;
-		text-align: left;
-		margin-left: 50px;
-	}
-	
-	#img-wrap .slide .img1 .img-title .img-content {
-		font-size: 3.75rem;
-	}
-	#img-wrap .slide .img2 .img-title .img-content {
-		font-size: 3.25rem;
-	}
-	#img-wrap .slide .img3 .img-title .img-content {
-		font-size: 3.25rem;
-	}
-	
-	#img-wrap .slide .img-title .img-content small {
-		font-size: 3.25rem;
-	}
-	#img-wrap .slide .img3 .img-title .img-content small {
-		font-size: 2.75rem;
+	#img-wrap .slide .img-title .img-content {
+		padding: 20px;
+		font-size: 3rem;
 	}
 	
 	#img-wrap .slide {
-	  height: 500px;
+	  height: auto;
+	  margin-bottom: -50px;
 	}
 	#img-wrap .slide .slide-imgs li {
-	  height: 500px;
+	  height: auto;
 	}
+	#img-wrap .slide .slide-imgs li img {
+		display: block;
+		width: 100vw;
+		height: auto;
+	}
+		
 	
 		
 	
@@ -612,17 +576,9 @@
 
 @media screen and (max-width: 1100px) {
 	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 550px;
-	}
 }
 
 @media screen and (max-width: 1000px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 450px;
-	}
-	
 	
 	#new-menu .new {
 	  font-size: 4rem;
@@ -682,18 +638,8 @@
 	}
 }
 
-@media screen and (max-width: 800px) {
-	
-	#img-wrap .slide .img1 .img-title {
-		margin: 100px auto 0;
-	}
-}
 
 @media screen and (max-width: 770px) {
-	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 350px;
-	}
 	
 	#new-menu .new {
 	  font-size: 3.25rem;
@@ -705,6 +651,11 @@
 }
 
 @media screen and (max-width: 700px) {
+	
+	#img-wrap .slide .img-title .img-content {
+		padding: 20px;
+		font-size: 2.5rem;
+	}
 	
 	#new-menu .new-wrap .new-more {
 		width: 100px;
@@ -721,14 +672,6 @@
 
 @media screen and (max-width: 650px) {
 	
-	#img-wrap .slide .img1 .img-title .img-content {
-		font-size: 3.25rem;
-	}
-	
-	#img-wrap .slide .img-title .img-content small {
-		font-size: 3rem;
-	}
-	
 	#new-menu .new-wrap .new-more {
 		width: 100px;
 		height: 50px;
@@ -743,9 +686,6 @@
 
 @media screen and (max-width: 630px) {
 	
-	#img-wrap .slide .img2 .img-title {
-		margin-left: 250px;
-	}
 	#new-menu .new-wrap .new-more {
 		width: 100px;
 		height: 50px;
@@ -760,16 +700,6 @@
 
 @media screen and (max-width: 550px) {
 	
-	#img-wrap .slide .img1 .img-title .img-content {
-		font-size: 3rem;
-	}
-	
-	#img-wrap .slide .img-title .img-content small {
-		font-size: 2.5rem;
-	}
-	#img-wrap .slide .img2 .img-title .img-content {
-		font-size: 3rem;
-	}
 }
 
 

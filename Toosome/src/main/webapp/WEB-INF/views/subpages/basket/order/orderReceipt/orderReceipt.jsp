@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/resources/js/subpages/basket/order/orderReceipt/orderReceipt.js" defer></script>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
@@ -21,68 +24,74 @@
       <p class="title">주문 내역 / 주문 취소</p>
       
       <div class="smart-post">
-        <!-- 택배 공간 -->
+      	<p class="post-title">배송 상태</p>
+        <ul class="post-text">
+        	<li class="one">
+        		<p class="one-text">결제완료</p>
+        		<span></span>
+        	</li>
+        	<li class="two">
+        		<p class="two-text">접수완료</p>
+        		<span></span>
+        	</li>
+        	<li class="three">
+        		<p class="three-text">배송준비중</p>
+        		<span></span>
+        	</li>
+        	<li class="four">
+        		<p class="four-text">배송중</p>
+        		<span></span>
+        	</li>
+        	<li class="five">
+        		<p class="five-text">배송완료</p>
+        		<span></span>
+        	</li>
+        </ul>
+        <!-- 가프티콘 -->
+        <form>
+			<input class="data" type="text" value=""/>
+        </form>
       </div>
-
-      <div class="table-cover">
-        <table class="table">
-          <thead>
-            <tr>
-              <th><input type="checkbox" class="c-box" name="checkAll" id="checkAll" onclick="selectAll(this)"></th>
-              <th scope="col" colspan="2">주문 품목</th>
-              <th scope="col">수량</th>
-              <th scope="col">송장</th>
-              <th scope="col">배송상태</th>
-              <th scope="col">결제금액</th>
-              <th scope="col" style="text-align: center;">비고</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">이것 저것</span></td>
-              <td>1</td>
-              <td>
-                <span class="post-number">11111111</span>
-              </td>
-              <td>
-                <span class="post-state">가능중</span>
-              </td>
-              <td>
-                <span class="total">450</span> 원
-              </td>
-              <td>
-                <ul>
-                  <li><a href="#">후기쓰기</a></li>
-                  <li><a href="#">주문취소</a></li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="c-box" name="check" onclick="checkSelectAll()"></td>
-              <td style="width: 150px;"><img style="display: block; width: 150px; height: 150px;" src="/resources/img/subpages/basket/p05.png" alt=""></td>
-              <td><span class="name">이것 저것</span></td>
-              <td>1</td>
-              <td>
-                <span class="post-number">11111111</span>
-              </td>
-              <td>
-                <span class="post-state">갈준비</span>
-              </td>
-              <td>
-                <span class="total">450</span> 원
-              </td>
-              <td>
-                <ul>
-                  <li><a href="#">후기쓰기</a></li>
-                  <li><a href="#">주문취소</a></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      
+      <c:forEach var="orderList" items="${orderList}" varStatus="i">
+	      <div class="table-cover">
+	        <table class="table">
+	          <thead class="text-center">
+	            <tr>
+	              <th scope="col">상품명</th>
+	              <th scope="col">수량</th>
+	              <th scope="col">결제날짜</th>
+	              <th scope="col">배송비</th>
+	              <th scope="col">결제</th>
+	              <th scope="col">비고</th>
+	            </tr>
+	          </thead>
+	          <tbody class="top-table">
+	            <tr class="top-table-pick">
+	              <td><span class="total-name">${orderList.ordersProductName}</span></td>
+	              <td><span class="total-count">${orderList.ordersAmount}</span></td>
+	              <td><span class="total-day">${orderList.ordersOrderDate}</span></td>
+	              <td><span class="total-post-pay">${orderList.ordersDelivery}</span>원</td>
+	              <td><span class="total-pay">${orderList.ordersPayment}</span>원</td>
+	              <td>
+	                <ul>
+	                  <li><a href="#" onclick="cancelPay(${orderList.ordersId});">주문<br/>취소</a></li>
+	                  <li><a href="#" onclick="lookPost(${orderList.ordersId})">배송상태<br/>보기</a></li>
+	                </ul>
+	              </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	        
+	        <button class="under-btn" onclick="viewContent(${orderList.ordersId});">내용보기</button>
+	        
+	        <table class="table none">
+	        	<tbody class="under-table a${orderList.ordersId}">
+	        		
+	        	</tbody>
+	        </table>
       </div>
+      </c:forEach>
       <div class="text">
                         ※ <span class="red-text">배송중</span>이면 주문취소가 안됩니다!!!
         <p class="sub-text">
@@ -93,8 +102,8 @@
       </div>
       
       <ul class="btn-group">
-        <li><a class="payback" href="#">주문취소</a></li>
-        <li><a class="main" href="#">MAIN</a></li>
+      	<li></li>
+        <li><a class="main" href="/">MAIN</a></li>
       </ul>
       
     </section>

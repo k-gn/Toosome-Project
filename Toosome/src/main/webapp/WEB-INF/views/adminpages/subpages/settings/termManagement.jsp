@@ -14,6 +14,15 @@
 <script
 	src="/resources/js/adminpages/subpages/settings/termManagement.js"
 	defer></script>
+	
+	<script type="text/javascript">
+		const msg = "${msg}";
+		if(msg === "success") {
+			alert("약관을 수정하였습니다.");
+		}else if(msg === "fail") {
+			alert("약관을 수정을 실패하였습니다.");
+		}
+	</script>
 </head>
 
 <body>
@@ -36,31 +45,25 @@
 		                  <p class="card-category">약관을 수정할 수 있습니다</p>
 		                </div>
 		                <div class="card-body">
-		                  <form action="#">	                 
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">홈페이지 이용약관 동의</label>
-		                            <textarea class="form-control" rows="20"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <div class="form-group">
-		                            <label class="bmd-label-floating">개인정보 수집 및 이용 동의</label>
-		                            <textarea class="form-control" rows="20"></textarea>
-		                          </div>
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-success pull-right">등록</button>
-		                    <button type="reset" class="btn btn-success pull-right btn-r">초기화</button>
-		                    <div class="clearfix"></div>
-		                  </form>
+		                  	<c:forEach var="term" items="${termList}" varStatus="i">
+			                  <form action="/admin/addTerm" method="post">	        
+				                    <div class="row">
+				                      <div class="col-md-12">
+				                        <div class="form-group">
+				                          <div class="form-group">
+				                            <label class="bmd-label-floating">${term.termsTitle}</label>
+				                            <textarea class="form-control" name="termsContent" rows="20">${term.termsContent}</textarea>
+				                            <input type="hidden" name="termsId" value="${term.termsId}">
+				                          </div>
+				                        </div>
+				                      </div>
+				                    </div>
+			                    <button type="submit" class="btn btn-success pull-right">업데이트</button>
+			                    <button type="reset" class="btn btn-success pull-right btn-r">초기화</button>
+			                    <div class="clearfix"></div>
+			                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			                  </form>
+		                  	</c:forEach>         
 		                </div>
 		              </div>
 		            </div>

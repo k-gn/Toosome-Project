@@ -2,7 +2,6 @@ package com.web.toosome.user.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +21,14 @@ import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
+import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.service.IQnaBoardService;
+import com.web.toosome.user.board.service.QnaBoardCommentService;
 import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 @Controller
@@ -48,6 +50,9 @@ public class BoardController {
 	private IQnaBoardService qnaBoardService;
 	
 	@Autowired
+	private IQnaBoardCommentService qnaBoardCommentService;
+	
+	@Autowired
 	private S3Service awsS3; 
 	
 	@RequestMapping(value = "/event") // 이벤트 공지 게시판 화면 주소넘기기
@@ -59,7 +64,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> event(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventboardlist = eventBoardService.getEventBoard(vo);
-		System.out.println("컨트롤러 이벤트 게시판 진행중 이벤트 리스트 값 : " + eventboardlist );
+		
 		return eventboardlist;
 	}
 	
@@ -67,7 +72,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> eventEnd(EventBoardVO vo)throws Exception{
 		List<EventBoardVO> eventendlist = eventBoardService.getEndEventBoard(vo);
-		System.out.println("컨트롤러 종료된 이벤트 게시판 리스트 값 : "  + eventendlist); 
+		 
 		return eventendlist;
 	}
 	
@@ -80,7 +85,7 @@ public class BoardController {
 	@ResponseBody
 	public List<EventBoardVO> eventDetail(String index)throws Exception{
 		List<EventBoardVO> eventboarddetail = eventBoardService.getEventBoardDetail(index);
-		System.out.println("컨트롤러 이벤트 게시물 상세 값 " + eventboarddetail);
+		
 		eventBoardService.eventBoardCount(index); // 게시물 조회 수 증가
 		return eventboarddetail;
 	}
@@ -91,7 +96,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<EventBoardVO> searchevent = eventBoardService.getSearchList(keyword);
-		System.out.println("검색 값넘기기: " +searchevent);
 		return searchevent;
 		}else {
 			return null;
@@ -99,12 +103,11 @@ public class BoardController {
 		
 	}
 	
+	
 	@GetMapping("/faq") //FAQ 게시판 목록 조회
 	public String faq(FaqBoardVO faqBoardVO, Model model) {
-		System.out.println("FAQ 내용가져오기 : Controller");
 		List<FaqBoardVO> faqBoardList = faqBoardService.getFaqBoardList(faqBoardVO);
 		model.addAttribute("faqBoardList",faqBoardList);
-		System.out.println(model);
 		return "subpages/faq/faq";
 	}
 
@@ -116,7 +119,7 @@ public class BoardController {
 	@GetMapping(value = "/noticelist", produces = "application/json") // 게시판 목록 조회값
 	@ResponseBody
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO) throws Exception {
-		System.out.println("공지사항 게시판 네용 보여주기 : Controller");
+	
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
 		System.out.println(noticeBoardList);
 		return noticeBoardList;
@@ -125,8 +128,6 @@ public class BoardController {
 	
 	@RequestMapping(value ="/notice-detail") //해당 게시물 상세 화면
 	public String noticeDetailView(String index) throws Exception {
-		
-		System.out.println("notice-detail 화면 출력: " + index);
 		return "subpages/notice/noticeDetail/noticeDetail";
 	}
 	
@@ -136,7 +137,6 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
-		System.out.println("index 값넘기기: " +noticeBoard);
 		return noticeBoard;
 	}
 	
@@ -147,7 +147,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<NoticeBoardVO> searchnotice = noticeBoardService.getSearchNotice(keyword);
-		System.out.println("검색 값넘기기: " +searchnotice);
 		return searchnotice;
 		}else {
 			return null;
@@ -165,7 +164,6 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> news(NewsBoardVO vo)throws Exception{
 		List<NewsBoardVO> newsboard = newsBoardService.getNewsBoardList(vo);
-		System.out.println(newsboard);
 		return newsboard;
 	}
 	
@@ -175,7 +173,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<NewsBoardVO> searchnews = newsBoardService.getSearchNews(keyword);
-		System.out.println("검색 값넘기기: " +searchnews);
 		return searchnews;
 		}else {
 			return null;
@@ -199,8 +196,6 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
-		System.out.println("newsdetail 넘어가는자료 "+ newsdetail);
-
 		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
@@ -215,7 +210,6 @@ public class BoardController {
 	@ResponseBody
 	public List<QnaBoardVO> qnaList(QnaBoardVO vo){
 		List<QnaBoardVO> qnalist = qnaBoardService.getQnaBoardList(vo);
-		System.out.println("qna리스트 값 (컨트롤러)" +qnalist);
 		return qnalist;	
 	}
 	
@@ -223,7 +217,6 @@ public class BoardController {
 	@PostMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	@ResponseBody
 	public String qnaPassCheck(@RequestBody QnaBoardVO vo) {
-		System.out.println(vo);
 		if (vo.getQnaBoardSecret() != 1) {
 			return "success";
 		} else {
@@ -235,6 +228,7 @@ public class BoardController {
 		}
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/qna-detail") // qna 상세 페이지 주소값 리턴
 	public String qnaDetailView(String index) {
 		return "subpages/qna/qnaDetail/qnaDetail";
@@ -243,12 +237,10 @@ public class BoardController {
 	@GetMapping(value="/qnadetail", produces = "application/json" ) //qna 상세페이지 값
 	@ResponseBody
 	public List<QnaBoardVO> qnaDetail(String index){
-	
-		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index);
-		qnaBoardService.qnaBoardCount(index);
-		System.out.println("공개글 qna게시물 세부정보(컨트롤러): " + qnadetail);
-		return qnadetail;  
 		
+		List<QnaBoardVO> qnadetail = qnaBoardService.getQnaBoardDetail(index); //상세페이지 댓글 정보 가져오는값
+		qnaBoardService.qnaBoardCount(index); // 조회수 증가
+		return qnadetail;  
 	}
 	
 	@GetMapping(value = "/qnasearch", produces = "application/json") // 게시판 검색기능
@@ -257,7 +249,6 @@ public class BoardController {
 		
 		if(keyword != null) {		
 		List<QnaBoardVO> searchqna = qnaBoardService.getSearchQnaBoard(keyword);
-		System.out.println("검색 값넘기기: " +searchqna);
 		return searchqna;
 		}else {
 			return null;
@@ -276,10 +267,9 @@ public class BoardController {
 	public String qnaEnrollment(MultipartFile uploadFile ,QnaBoardVO vo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
-		System.out.println("vo.getUploadFile 값 : "+vo.getUploadFile());
-		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
+		if(vo.getUploadFile().getSize() != 0) {
+		vo.setQnaBoardImageName("img/qnaImg/"+uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
-		ra.addFlashAttribute("msg", "successBoard");
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 
 			File convFile = new File(uploadFile.getOriginalFilename());
@@ -288,8 +278,53 @@ public class BoardController {
 			String key = "img/qnaImg/" + vo.getQnaBoardImageName();
 			System.out.println(key);
 			awsS3.upload(file, key);
+		}
+		
+		if(vo.getUploadFile().getSize() == 0 ) {
+			qnaBoardService.insertQnaBoardText(vo);
+		}
+		ra.addFlashAttribute("msg", "successBoard");
 		
 		return "redirect:/qna";
+	}
+	
+	
+	
+	
+	@PostMapping("/qnacommentinsert")// qna 댓글입력
+	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+		System.out.println("QnaBoardCommentVO : " + vo);
+		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
+		if(insert > 0) {
+			ra.addFlashAttribute("msg", "insertSuccess");
+		}else{
+			ra.addFlashAttribute("msg", "insertFail");
+		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
+	}
+	
+	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
+	@ResponseBody
+	public String qnaCommentUpdate(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+		int update = qnaBoardCommentService.updateQnaBoardComment(vo);
+		if(update > 0) {
+			ra.addFlashAttribute("msg", "updateSuccess");
+		}else {
+			ra.addFlashAttribute("msg", "updateFail");
+		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
+	}
+	
+	@GetMapping(value = "/qnacommentdelete" , produces = "application/json")// qna 댓글 삭제
+	@ResponseBody
+	public String qnaCommentDelete(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
+		if(delete > 0 ) {
+			 ra.addFlashAttribute("msg", "deleteSuccess");
+		}else{
+			ra.addFlashAttribute("msg", "deleteFail");;
+		}
+		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 
 }

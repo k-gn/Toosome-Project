@@ -327,3 +327,126 @@
     color: #fff;
     font-weight: bold;
 }
+
+
+/* 반응형 start */
+
+@media screen and (max-width: 800px) {
+	
+	.franchise-container .contents .click-way {
+		width: 100%;
+		height: auto;
+		position: static;
+		display: flex;
+		flex-direction: column;
+	}
+	.franchise-container .contents .click-way article {
+	    width: 100%;
+	    height: 100px !important;
+	    position: static;
+	    margin-bottom: 10px;
+	}
+	
+	.franchise-container .contents .click-way article .art-display {
+	    position: static;
+	    display: inline-block !important;
+	    width: 550px;
+	    height: 100px;
+	}
+	
+	.franchise-container .contents .click-way article a {
+	    width: 160px;
+	    display: inline-block;
+	}
+	.franchise-container .down-box {
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	}
+	.franchise-container .down-box .download {
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	}
+}
+
+@media screen and (max-width: 770px) {
+	
+	.franchise-container .contents {
+	    width: 100%;
+	    display: flex;
+		flex-direction: column;
+	}
+	.franchise-container .contents .img-title {
+	    display: none;
+	}
+	.franchise-container .contents .click-way {
+		width: auto;
+		height: auto;
+		position: static;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.franchise-container .contents .click-way article {
+	    width: 100%;
+	    height: 70px !important;
+	    position: static;
+	    margin-bottom: 10px;
+	}
+	
+	.franchise-container .contents .click-way article .art-display {
+	    position: static;
+	    display: inline-block !important;
+	    width: 400px;
+	    height: 70px;
+	}
+	
+	.franchise-container .contents .click-way article a {
+	    width: 110px;
+	    display: inline-block;
+	}
+	.franchise-container .contents .click-way article.click-on a {
+	    background-position: 0 0px;
+	}
+	.franchise-container .call img {
+		width: 100%;
+	    height: auto;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	
+	.franchise-container .title-container .title-logo {
+	    width: 400px;
+	}
+}
+
+@media screen and (max-width: 570px) {
+	
+	.franchise-container .contents .click-way article {
+	    width: 100%;
+	    height: 50px !important;
+	    position: static;
+	    margin-bottom: 10px;
+	}
+	
+	.franchise-container .contents .click-way article .art-display {
+	    position: static;
+	    display: inline-block !important;
+	    width: 275px;
+	    height: 50px;
+	}
+	
+	.franchise-container .contents .click-way article a {
+	    width: 80px;
+	    display: inline-block;
+	}
+	.franchise-container .contents .click-way article.click-on a {
+	    background-position: 0 0px;
+	}
+}
+
+
+

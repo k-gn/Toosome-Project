@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.productManagement.dao.IProductManagementMapper">
+
+	<resultMap type="productVO" id="productMap">
+		<id property="productId" column="PRODUCT_ID" />
+		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
+		<result property="productSubName" column="PRODUCT_SUB_NAME" />
+		<result property="productContent" column="PRODUCT_CONTENT" />
+		<result property="productPrice" column="PRODUCT_PRICE" />
+		<result property="productType" column="PRODUCT_TYPE" />
+		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
+		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
+		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStartDay" column="PRODUCT_START_DAY" />
+		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
+		<result property="productState" column="PRODUCT_STATE" />
+		<result property="productNew" column="PRODUCT_NEW" />
+		<result property="productOnoff" column="PRODUCT_ONOFF" />
+		<collection property="productImageVO" resultMap="productImageVO" />
+	</resultMap>
+
+	<resultMap type="productImageVO" id="productImageVO">
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
+		<result property="productImageName" column="PRODUCT_IMAGE_NAME" />
+		<result property="productImageExtention" column="PRODUCT_IMAGE_EXTENTION" />
+		<result property="productImageRoute" column="PRODUCT_IMAGE_ROUTE" />
+	</resultMap>
+	
+	<sql id="search">
+		WHERE 1 = 1
+		<if test="condition == 'id'">
+			AND PRODUCT_ID LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND PRODUCT_TITLE_NAME LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="category != null and category != 0">
+			AND PRODUCT_TYPE = #{category}
+		</if>
+		<if test="type != null and type != 2">
+			AND PRODUCT_NEW = #{type}
+		</if>
+		<if test="state != null and state != 4">
+			AND PRODUCT_STATE = #{state}
+		</if>
+	</sql>
+	
+	<select id="getProductList" resultMap="productMap">
+		SELECT * FROM PRODUCT
+		<include refid="search"/>
+	</select>
+	
+	<select id="getProduct" resultMap="productMap">
+		SELECT 
+			PRODUCT_ID,
+			PRODUCT_TITLE_NAME,
+			PRODUCT_SUB_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_TYPE,
+			PRODUCT_CHECK_COUNT,
+			PRODUCT_START_DAY,
+			PRODUCT_STATE, 
+			PRODUCT_NEW,
+			PRODUCT_IMAGE_ID,
+			PRODUCT_IMAGE_NAME,
+			PRODUCT_IMAGE_EXTENTION,
+			PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT P LEFT OUTER JOIN PRODUCT_IMAGE PI ON P.PRODUCT_ID = PI.PRODUCT_PRODUCT_ID
+		WHERE P.PRODUCT_ID = #{id}
+	</select>
+</mapper>

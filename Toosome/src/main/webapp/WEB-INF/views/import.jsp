@@ -39,7 +39,23 @@ IMP.request_pay({
             url: "/stackpoint?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}",
             success : function(ser) {
             	if(ser=="OK"){
-            		location.href="/menuordercomplete?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}";
+            		$.ajax({
+                    	type : "GET",
+                        url: "/saveGift?phone=${memberImportList.memberPhone}&merchantUid="+rsp.merchant_uid + "&menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}",
+                        success : function(sa) {
+                        	if(sa == "OK"){
+			            		$.ajax({
+			                    	type : "GET",
+			                        url: "/sendGift?phoneNumber=${memberImportList.memberPhone}",
+			                        success : function(s) {
+			                        	if(s=="OK"){
+			                        		location.href="/menuordercomplete?menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}";
+			                        	}
+			                        }
+			                    });
+                        	}
+                        }
+                    });			
             	}
             }
         });

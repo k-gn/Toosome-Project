@@ -78,6 +78,16 @@ function chkPoint(amt, pnt, min, unit) {
       //결제금액보다 포인트가 더 클 때
       v_point = amt - ((amt % unit)+100); //사용할 포인트는 결제금액과 동일하게 설정
     }
+	console.log(v_point);
+	
+	if (v_point < min) {
+    	//최소 사용 단위보다 작을 때
+    	v_point = 0;
+    	document.getElementById("use_pnt").value = v_point; //input 값 재설정
+  	} else {
+    	v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+  	}
+	
   }
   document.getElementById("use_pnt").value = v_point; //input 값 설정
 
@@ -102,13 +112,14 @@ function changePoint(amt, pnt, min, unit) {
     v_point = amt - 100; //사용할 포인트는 결제금액과 동일하게 설정
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   }
-
+	
   if (v_point < min) {
     //최소 사용 단위보다 작을 때
     v_point = 0;
     document.getElementById("use_pnt").value = v_point; //input 값 재설정
   } else {
     v_point = v_point - (v_point % unit); //사용할 포인트 = 사용할 마일리지 중 최소단위 이하 마일리지를 뺀 포인트
+  	document.getElementById("use_pnt").value = v_point;
   }
 
   var v_left = document.getElementsByName("left_pnt"); //사용가능 마일리지, 남은 포인트 값 설정
@@ -160,11 +171,16 @@ $(function () {
 const orderSubmitBtn = document.querySelector('.order-submit');
 
 const orderSubmitBtnHandler = (e) => {
-
+	// 받으실 분 내용이 비었을 때
+	if(($("#orderName2").val() == "") || ($("#postcode2").val() == "") || ($("#addr3").val() == "") || ($("#addr4").val() == "") || ($("#tel5").val() == "") || ($("#tel6").val() == "")) {
+		alert("주문 멈춰! 정보를 입력하세요!");
+		return;
+	}
+	
 	$(document).ajaxSend(function(e, xhr, options) { 
     	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
     }); 
-
+	
     //받는 사람
 	const name = $("#orderName2").val();
 	//우편번호
@@ -220,3 +236,8 @@ const orderSubmitBtnHandler = (e) => {
   };
 
 orderSubmitBtn.addEventListener('click', orderSubmitBtnHandler);
+
+
+
+
+// 받으시는 분에 데이터가 아무것도 없을 때 결제 버튼 막기

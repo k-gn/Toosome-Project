@@ -10,6 +10,7 @@ const getElements = (data, number) => {
 	let results = [];
 	
 	if(data.length >= number) {
+		moreBtn.style.display = 'block';
 		results = data.slice(number-6,number).map((result) => {
 			// 날짜 변환
 			let startDate = new Date(result.eventBoardStartday);
@@ -113,7 +114,6 @@ const getData = (url, number) => {
 	$.ajax({
 		url,
 		success: (res) => {
-			console.log(res);
 			const newRes = res.reverse();
 			const elements = getElements(newRes, number);
 			elements.forEach(element => {
@@ -129,5 +129,5 @@ const getData = (url, number) => {
 // document 준비시 실행
 $(document).ready(() => {
 	url = '/eventlist';
-	getData(url);
+	getData(url, currentItems);
 });

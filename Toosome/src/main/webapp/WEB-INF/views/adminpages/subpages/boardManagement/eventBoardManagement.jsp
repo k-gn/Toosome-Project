@@ -14,6 +14,14 @@
   <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/eventBoardManagement.js" defer></script>
+  <script type="text/javascript">
+ 	const msg = "${msg}";
+ 	if(msg === "successBoard") {
+ 		alert("정상 등록되었습니다");
+ 	}else if(msg === "failBoard") {
+ 		alert("입력하신 정보가 올바르지 않습니다.");
+ 	}
+  </script>
 </head>
 
 <body>
@@ -93,36 +101,36 @@
 		                  <h4 class="card-title">이벤트 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form action="/admin/eventboard-insert" method="post">
+		                  <form id="update-form" action="/admin/eventboard-update?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		                    <div class="row">
 		                      <div class="col-md-1">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">글번호</label>
-		                          <input name="eventBoardId" type="email" class="form-control" disabled>
+		                          <input id="detail-id" name="id" type="text" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">조회수</label>
-		                          <input name="eventBoardViewCount" type="email" class="form-control" disabled>
+		                          <input id="detail-view" name="eventBoardViewCount" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input name="eventBoardDetailDay" type="date" class="form-control">
+		                          <input id="detail-reg" name="eventBoardDetailDay" type="date" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이벤트시작일</label>
-		                          <input name="eventBoardStartday" type="date" class="form-control">
+		                          <input id="detail-start" name="eventBoardStartday" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">이벤트종료일</label>
-		                          <input name="eventBoardEndday" type="date" class="form-control">
+		                          <input id="detail-end" name="eventBoardEndday" type="date" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -130,7 +138,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">제목</label>
-		                          <input name="eventBoardTitle" type="text" class="form-control">
+		                          <input id="detail-title" name="eventBoardTitle" type="text" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -138,14 +146,14 @@
 		                      <div class="col-md-6">
 		                      	<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img id="eventBoardImage" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								        <img id="detail-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">본문 이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile" />
+								            <input type="file" name="uploadFile" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -154,24 +162,26 @@
 		                      <div class="col-md-6">
 		                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img id="eventBoardThumbnail" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								        <img id="detail-thumb" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile2" />
+								            <input type="file" name="uploadFile2" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
 								</div>
 		                      </div>
 		                    </div>
-		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
-		                    <button id="delete" class="btn btn-primary pull-right btn-r">삭제</button>
+		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
+		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제" />
+		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
+		                  	<input type="hidden" name="eventBoardId" />
+		                  	<input type="hidden" name="eventBoardDetailId" />
 		                  </form>
 		                </div>
 		             </div>
@@ -188,7 +198,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+			        <form id="enroll-form" action="/admin/eventboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -197,7 +207,7 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                  <div class="input-group">
-				                      <input name="eventBoardTitle" type="text" class="form-control" placeholder="제목을 입력하세요">
+				                      <input id="enroll-title" name="eventBoardTitle" type="text" class="form-control" placeholder="제목을 입력하세요">
 				                  </div>
 				                </div>
 				                </div>
@@ -223,7 +233,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="uploadFile2" />
+									            <input id="enroll-thumb" type="file" name="uploadFile2" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -246,7 +256,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="uploadFile" />
+									            <input id="enroll-image" type="file" name="uploadFile" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -255,7 +265,7 @@
 				                </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right btn-r">등록</button>
+				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right btn-r">등록</button>
 				        </div>
 			        </form>
 			      </div>

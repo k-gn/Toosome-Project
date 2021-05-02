@@ -68,7 +68,7 @@
 	<insert id="insertDetailEvent">
 		INSERT INTO EVENT_BOARD_DETAIL(EVENT_BOARD_DETAIL_ID, EVENT_BOARD_DETAIL_IMAGE_ROUTE, EVENT_BOARD_DETAIL_IMAGE_NAME,
 			 EVENT_BOARD_DETAIL_IMAGE_EXTENTION, EVENT_BOARD_DETAIL_DAY) 
-			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},now())
+			 VALUES(#{eventBoardDetailId},#{eventBoardDetailImageRoute},#{eventBoardDetailImageName},#{eventBoardDetailImageExtention},NOW())
 	</insert>
 	
 	<select id="eventBoardDetail" resultMap="EventAdminMap">
@@ -90,15 +90,36 @@
 	
 	<update id= "updateEvent">
 	UPDATE EVENT_BOARD SET EVENT_BOARD_IMAGE_ROUTE = #{eventBoardImageRoute}, 
-			EVENT_BOARD_IMAGE_NAME = #{eventBoardImageName}, EVENT_BOARD_IMAGE_EXETENTION = #{eventBoardImageExetention},
-			 EVENT_BOARD_VIEW_COUNT = #{eventBoardViewCount}, EVENT_BOARD_TITLE = #{eventBoardTitle}, 
+			EVENT_BOARD_IMAGE_NAME = #{eventBoardImageName}, EVENT_BOARD_IMAGE_EXTENTION = #{eventBoardImageExtention},
+			 EVENT_BOARD_TITLE = #{eventBoardTitle}, 
 			 EVENT_BOARD_START_DAY = #{eventBoardStartday}, EVENT_BOARD_END_DAY = #{eventBoardEndday} 
-		 	WHERE EVENT_BOARD_ID = #{id}
+		 	WHERE EVENT_BOARD_ID = #{eventBoardId}
 	</update>
 	
 	<update id = "updateEventDetail">
 	UPDATE EVENT_BOARD_DETAIL SET EVENT_BOARD_DETAIL_IMAGE_ROUTE = #{eventBoardDetailImageRoute}, EVENT_BOARD_DETAIL_IMAGE_NAME = #{eventBoardDetailImageName}, 
-	EVENT_BOARD_DETAIL_IMAGE_EXTENTION = #{eventBoardDetailImageExtention}, EVENT_BOARD_DETAIL_DAY = #{eventBoardDetailDay} 
-	WHERE EVENT_BOARD_DETAIL_ID = #{id}
+	EVENT_BOARD_DETAIL_IMAGE_EXTENTION = #{eventBoardDetailImageExtention} 
+	WHERE EVENT_BOARD_DETAIL_ID = #{eventBoardDetailId}
 	</update>
+	
+	<select id= "selectFile" resultMap="EventAdminMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_ID = #{eventBoardId}
+	</select>
+	
+	<select id= "selectDetailFile" resultMap="EventAdminDetailMap">
+		SELECT * FROM EVENT_BOARD_DETAIL WHERE EVENT_BOARD_DETAIL_ID = #{eventBoardDetailId}
+	</select>
+	
+	<update id= "updateEventText">
+	UPDATE EVENT_BOARD SET EVENT_BOARD_TITLE = #{eventBoardTitle}, EVENT_BOARD_START_DAY = #{eventBoardStartday},
+	 EVENT_BOARD_END_DAY = #{eventBoardEndday} WHERE EVENT_BOARD_ID = #{eventBoardId}
+	</update>
+	
+	<select id="selectIdFile" resultMap="EventAdminMap">
+		SELECT * FROM EVENT_BOARD WHERE EVENT_BOARD_ID = #{id}
+	</select>
+	
+	<select id ="selectIdDetailFile" resultMap="EventAdminDetailMap">
+		SELECT * FROM EVENT_BOARD_DETAIL WHERE EVENT_BOARD_DETAIL_ID = #{id}
+	</select>
 </mapper>

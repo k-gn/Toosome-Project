@@ -16,4 +16,5 @@ public class BasketVO {
 	private ProductImageVO productImageVO;
 	
 	private String imagePath;
+	private Integer ordersId;
 }

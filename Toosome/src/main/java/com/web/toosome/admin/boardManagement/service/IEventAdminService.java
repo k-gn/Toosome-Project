@@ -13,19 +13,27 @@ public interface IEventAdminService {
 	
 	List<EventBoardVO>searchEventBoard(BoardSearchVO vo);
 	
-	void insertEvent(EventBoardVO vo);
+	int insertEvent(EventBoardVO vo);
 	
-	void insertDetailEvent(EventBoardDetailVO vo);
+	int insertDetailEvent(EventBoardDetailVO vo);
 	
 	EventBoardVO eventBoardDetail(Integer id);
 	
-	void deleteEvent(Integer id);
+	int deleteEvent(Integer id);
 	
-	void deleteDetailEvent(Integer id);
+	int deleteDetailEvent(Integer id);
 	
-	void updateEvent(Integer id);
+	int updateEvent(EventBoardVO vo);
 	
-	void updateEventDetail(Integer id);
+	int updateEventDetail(EventBoardDetailVO vo);
+	
+	EventBoardVO selectFile(EventBoardVO vo);
+	
+	EventBoardDetailVO selectDetailFile(EventBoardDetailVO vo);
+	
+	void updateEventText(EventBoardVO vo);
+	
+	EventBoardVO selectIdFile(Integer id);
 
-
+	EventBoardDetailVO selectIdDetailFile(Integer id);
 }

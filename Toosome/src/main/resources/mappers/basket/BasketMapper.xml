@@ -33,8 +33,24 @@
 		<result property="ordersReceiver" column="ORDERS_RECEIVER" />
 		<result property="ordersDelivery" column="ORDERS_DELIVERY" />
 		<result property="ordersPhone" column="ORDERS_PHONE" />
-		<result property="ordersContent" column="ORDERS_CONTENT" />
+		<result property="ordersContent" column="ORDERS_CONTENT" />	
+		<result property="ordersMerchantUid" column="ORDERS_MERCHANT_UID" />	
+		<result property="ordersProductName" column="ORDERS_PRODUCT_NAME" />	
+		<result property="ordersAmount" column="ORDERS_AMOUNT" />	
 		
+	</resultMap>
+	
+	<resultMap type="ordersDetailVO" id="ordersDetailVO">
+		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
+		<result property="ordersId" column="ORDERS_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
+		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
+		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
+		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
+		<result property="ordersDetailState" column="ORDERS_DETAIL_STATE" />
+		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />
 	</resultMap>
 	
 	<insert id="addBasket">
@@ -66,12 +82,16 @@
 	<delete id="delBasket">
 	 	DELETE FROM BASKET WHERE BASKET_ID = #{id}
 	</delete>
+	
+	<delete id="delBasketById">
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	</delete>
 
 	<insert id="orderSubmit">
-		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_ADDRESS,
-		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT)
-		VALUES(#{memberId}, now(), #{ordersPayment}, #{ordersAddress}, #{ordersPostcode},
-		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent})
+		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT)
+		VALUES(#{memberId}, now(), #{ordersPayment}, "결제완료", #{ordersAddress}, #{ordersPostcode},
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersProductName}, #{ordersAmount})
 	</insert>
 	
 	<select id="getOrdersList" resultMap="orderVO">
@@ -79,7 +99,58 @@
 	</select>
 	
 	<delete id="orderBasketDel">
-	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id}
+	 	DELETE FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
 	</delete>
 
+	<insert id="basketsendorder">
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
+		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId},  #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
+	</insert>
+	
+	<select id="getBasketList" resultMap="basketMap">
+		SELECT
+		 BASKET_ID, MEMBER_ID, PRODUCT_ID, B.PRODUCT_IMAGE_ID, BASKET_AMOUNT, BASKET_NAME, BASKET_PRICE,
+		 PRODUCT_IMAGE_NAME, PRODUCT_IMAGE_ROUTE, PRODUCT_IMAGE_EXTENTION
+		FROM
+		 BASKET B LEFT OUTER JOIN PRODUCT_IMAGE PI on B.PRODUCT_IMAGE_ID = PI.PRODUCT_IMAGE_ID
+		WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC
+	</select>
+	
+	<select id="getOrdersDetailList" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id} AND ORDERS_ID = #{ordersId};
+	</select>
+	
+	<select id="getOrdersDetailProductImagePath" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE MEMBER_ID = #{id};
+	</select>
+	
+	<select id="getAllOrdersList" resultMap="orderVO">
+		SELECT * FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id}
+	</select>
+	
+	<update id="updateMerchantUid">
+		UPDATE ORDERS SET ORDERS_MERCHANT_UID = #{ordersMerchantUid} WHERE ORDERS_ID = #{ordersId}
+	</update>
+	
+	<select id="getbasketName" resultMap="basketMap">
+		SELECT * FROM BASKET WHERE MEMBER_ID = #{id} ORDER BY BASKET_ID DESC limit 1
+	</select>
+	
+	<select id="getMerchantUid" resultType="String">
+		SELECT ORDERS_MERCHANT_UID FROM ORDERS WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
+	<delete id="ordersDetailDel">
+	 	DELETE FROM ORDERS_DETAIL WHERE ORDERS_ID = #{id}
+	</delete>
+	
+	<delete id="ordersDel">
+	 	DELETE FROM ORDERS WHERE ORDERS_ID = #{id}
+	</delete>
+	
+	<select id="getLookPostList" resultType="String">
+		SELECT ORDERS_STATE FROM ORDERS WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
 </mapper>

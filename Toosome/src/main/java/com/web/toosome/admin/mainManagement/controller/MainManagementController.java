@@ -29,6 +29,11 @@ public class MainManagementController {
 	public String admin(Model model) {
 		model.addAttribute("visitCount", visitService.visitCount());
 		model.addAttribute("regCount", mainService.getRegCount());
+		model.addAttribute("newNoticeList", mainService.getNewNoticeList());
+		model.addAttribute("newQnaList", mainService.getNewQnaList());
+		model.addAttribute("orderCount", mainService.getOrderCount());
+		model.addAttribute("sales", mainService.getSales());
+		model.addAttribute("manualPath", "https://toosome.s3.ap-northeast-2.amazonaws.com/download/");
 		return "adminpages/index";
 	}
 	
@@ -37,7 +42,11 @@ public class MainManagementController {
 	public Map<String, List<DailyVO>> getDaily() {
 		Map<String, List<DailyVO>> dailyMap = new HashMap<>();
 		List<DailyVO> dailyVisit = mainService.getDailyVisitInfo();
+		List<DailyVO> dailySales = mainService.getDailySalesInfo();
+		List<DailyVO> dailyOrders = mainService.getDailyOrderInfo();
 		dailyMap.put("dailyVisit", dailyVisit);
+		dailyMap.put("dailySales", dailySales);
+		dailyMap.put("dailyOrders", dailyOrders);
 		return dailyMap;
 	}
 	

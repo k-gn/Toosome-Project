@@ -107,7 +107,7 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">ID (이메일)</label>
-		                          <input name="memberEmail" type="email" class="form-control" disabled>
+		                          <input name="email" type="email" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -149,11 +149,11 @@
 		                      </div>
 		                    </div>
 		                    <input type="submit" class="btn btn-rose pull-right" value="업데이트"/>
-		                    <input type="button" id="modal-delete" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
+		                    <input type="button" class="btn btn-rose pull-right btn-r" value="삭제" onclick="delBtnFunc()"/>
 		                    <input type="button" id="modal-cancel" class="btn btn-rose pull-right btn-r" value="취소"/>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                    <input type="hidden" name="memberEmail" value="${email}">
+		                    <input type="hidden" name="memberEmail">
 		                  </form>
 		                </div>
 		              </div>
@@ -184,7 +184,7 @@
                       	<col width="15%">
                       	<col width="15%">
                       </colgroup>
-                      <thead class="text-rose" id="list-table-thead">
+                      <thead class="text-rose text-center" id="list-table-thead">
                         <th>
                           관리자번호
                         </th>
@@ -204,7 +204,7 @@
                           최종로그인
                         </th>
                       </thead>
-                      <tbody id="list-table-tbody">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>

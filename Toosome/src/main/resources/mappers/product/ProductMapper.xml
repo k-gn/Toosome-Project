@@ -12,6 +12,7 @@
 		<result property="productType" column="PRODUCT_TYPE" />
 		<result property="productRegDate" column="PRODUCT_REG_DATE" />
 		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
+		<result property="productregDate" column="PRODUCT_REG_DATE" />
 		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
 		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
 		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />

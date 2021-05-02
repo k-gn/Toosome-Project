@@ -4,7 +4,7 @@
   <div class="foot-cover">
     <ul class="foot-first cf">
       <li><a href="/sitemap">사이트맵</a></li>
-      <li><a href="/recruit">리쿠르트</a></li>
+      <li><a href="#">리쿠르트</a></li>
       <li><a href="#">이용약관</a></li>
       <li class="yellow"><a href="#">개인정보처리방침</a></li>
       <li><a href="#">위치기반서비스 이용약관</a></li>

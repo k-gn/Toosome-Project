@@ -121,7 +121,7 @@ section {
 	width: 100%;
 	height: auto;
 	margin-top: 1.25rem;
-	margin-bottom: 1.25rem;
+	margin-bottom: 1.875rem;
 	border-top: 2px solid #666666;
 	border-bottom: 2px solid #666666;
 	border-collapse: collapse;
@@ -160,26 +160,35 @@ section {
 	text-decoration: underline;
 }
 
-.comment-table thead tr th:first-child {
+.comment-table.enroll thead tr th:first-child {
 	background-color: #eee;
 	text-align: left;
 }
 
-.comment-table thead tr th:nth-child(2) {
+.comment-table.enroll thead tr th:nth-child(2) {
 	background-color: #eee;
 	text-align: right;
 }
 
-.comment-table thead tr th:last-child {
+.comment-table.enroll thead tr th:last-child {
 	background-color: #eee;
 	text-align: right;
 }
 
 .comment-table tbody tr td {
 	padding: 10px;
-	width: 100%;
-	margin: 0 auto;
 }
+
+.comment-table tbody tr td input {
+	outline: none;
+	appearance: none;
+	width: 80%;
+	height: 30px;
+	padding-left: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
 .comment-table tbody tr td textarea {
 	outline: none;
 	appearance: none;
@@ -193,8 +202,48 @@ section {
 	display: block;
 }
 
-#comment tr td {
-	font-size: 0.9375rem;
-	border-bottom: 2px solid #666666;
+.comment-table.enroll tbody tr td {
+	font-size: 1rem;
 	padding: 30px 10px;
+}
+
+#comment tr:nth-child(odd){
+	background: #eee;
+	border-bottom: 2px solid #666666;
+}
+
+#comment tr:nth-child(odd) td {
+	font-size: 0.9375rem;
+}
+
+#comment tr:nth-child(odd) td:nth-child(3) {
+	text-align: right;
+}
+
+#comment tr:nth-child(odd) td:nth-child(4) {
+	text-align: right;
+}
+
+#comment tr:nth-child(even) {
+	border-bottom: 2px solid #666666;
+	margin-bottom: 1.875rem;
+}
+
+#comment tr:nth-child(even) td {
+	font-size: 1rem;
+	padding: 30px 10px;
+}
+
+.comment-btn {
+	outline: none;
+	appearance: none;
+	border: none;
+	width: 55px;
+	height: 40px;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	background-color: #a62326;
+	font-size: 1rem;
+	cursor: pointer;
 }

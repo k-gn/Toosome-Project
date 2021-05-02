@@ -9,35 +9,24 @@ var seq2 = 0,
 ct = {
 
   initDashboardPageCharts: function() {
-	
-	 $.ajax({
-		type: "get",
-		url: "/admin/getDaily",	
-		headers: {
-           "Content-Type": "application/json"
-        },
-		dataType: "json",
-		success: function(result) {
-			console.log(result);
-		}
-	  });
-
-    if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
-      /* ----------==========     Daily Sales Chart initialization    ==========---------- */
-
-      dataDailySalesChart = {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        series: [
-          [12, 17, 7, 17, 23, 18, 38]
-        ]
-      };
-
-      optionsDailySalesChart = {
+	let dataWebsiteViewsChart = {
+		labels: [],
+		series: []
+	};
+	let dataDailySalesChart = {
+		labels: [],
+		series: []
+	};
+	let dataDailyOrderChart = {
+		labels: [],
+		series: []
+	};
+	var optionsDailySalesChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
         low: 0,
-        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 1000,
         chartPadding: {
           top: 0,
           right: 0,
@@ -45,28 +34,12 @@ ct = {
           left: 0
         },
       }
-
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-      ct.startAnimationForLineChart(dailySalesChart);
-
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      dataCompletedTasksChart = {
-        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-        series: [
-          [230, 750, 450, 300, 280, 240, 200, 190]
-        ]
-      };
-
-      optionsCompletedTasksChart = {
+	  var optionsDailyOrderChart = {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
         low: 0,
-        high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 50,
         chartPadding: {
           top: 0,
           right: 0,
@@ -74,28 +47,12 @@ ct = {
           left: 0
         }
       }
-
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      ct.startAnimationForLineChart(completedTasksChart);
-
-
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-      var dataWebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionsWebsiteViewsChart = {
+	 var optionsWebsiteViewsChart = {
         axisX: {
           showGrid: false
         },
         low: 0,
-        high: 1000,
+        high: 50,
         chartPadding: {
           top: 0,
           right: 0,
@@ -113,11 +70,54 @@ ct = {
           }
         }]
       ];
-      var websiteViewsChart = Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+	
+	 let today = moment();
+	 for(let i=6; i>=0; i--) {
+		let date = moment(today).subtract(i, 'days').format('MMM DD');
+		dataWebsiteViewsChart.labels.push(date);
+		dataDailySalesChart.labels.push(date);
+		dataDailyOrderChart.labels.push(date);
+	 };
 
-      //start animation for the Emails Subscription Chart
-      ct.startAnimationForBarChart(websiteViewsChart);
-    }
+	 $.ajax({
+		type: "get",
+		url: "/admin/getDaily",	
+		headers: {
+           "Content-Type": "application/json"
+        },
+		dataType: "json",
+		success: function(results) {
+			console.log(results);
+			// AJAX로 얻은 데이터를 차트 데이터에 삽입
+			let temp = [];
+			let temp2 = [];
+			let temp3 = [];
+			results.dailyVisit.forEach(data => {
+				temp.push(data.visit);
+			});
+			dataWebsiteViewsChart.series.push(temp);
+			
+			results.dailyOrders.forEach(data => {
+				temp2.push(data.orders);
+			});
+			dataDailyOrderChart.series.push(temp2);
+			
+			results.dailySales.forEach(data => {
+				temp3.push(data.sales);
+			});
+			dataDailySalesChart.series.push(temp3);
+			
+			// 차트 선언
+			var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+			var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+			var dailyOrderChart = new Chartist.Line('#dailyOrderChart', dataDailyOrderChart, optionsDailyOrderChart);
+			
+			// 차트 그리기
+			ct.startAnimationForLineChart(dailySalesChart);
+			ct.startAnimationForLineChart(dailyOrderChart);
+			ct.startAnimationForBarChart(websiteViewsChart);
+		}
+	  });
   },
 
   startAnimationForLineChart: function (chart) {
