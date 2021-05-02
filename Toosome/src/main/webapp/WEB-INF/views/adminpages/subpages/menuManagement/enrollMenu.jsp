@@ -47,27 +47,23 @@
 		                <div class="card-body">
 		                  <form role='form' enctype="multipart/form-data" action="/admin/addMenu?${_csrf.parameterName}=${_csrf.token}" method="post">
 		                    <div class="row">
-		                      <div class="col-md-4">
+		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴 이름</label>
 		                          <input type="text" id="name1" name="menuMainTitle" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-4">
+		                    </div>
+		                    <div class="row">
+		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">메뉴 이름(서브)</label>
 		                          <input type="text"  id="name2" name="menuSubTitle" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">메뉴 가격</label>
-		                          <input type="text" id="price" name="menuPrice" class="form-control">
-		                        </div>
-		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <select class="custom-select" name="menuType" id="category">
 				                  	<option value="">카테고리</option>
@@ -78,13 +74,7 @@
 				                  </select>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" id="count" name="menuCheckCount" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <select class="custom-select" name="menuState" id="state">
 				                  	<option value="">판매상태</option>
@@ -93,23 +83,33 @@
 				                  </select>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <select class="custom-select" name="menuNew" id="isNew">
 				                  	<option value="">신메뉴 여부</option>
-				                  	<option value="1">YES</option>
-				                  	<option value="0">NO</option>
+				                  	<option value="1">신메뉴</option>
+				                  	<option value="0">구메뉴</option>
 				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-6">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
+		                          <label class="bmd-label-floating">메뉴 가격</label>
+		                          <input type="text" id="price" name="menuPrice" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">재고수량</label>
+		                          <input type="text" id="count" name="menuCheckCount" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-4">
+		                        <div class="form-group cal">
 		                          <label class="bmd-label-floating">판매 시작일</label>
-		                          <div class="calendar-wrapper">
-								    <input id="calendar3" class="calendar" type="date" name="menuStartDay" value="">
-                             	  </div>
+								  <input id="calendar3" class="calendar" type="date" name="menuStartDay" value="">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -204,7 +204,7 @@
 								            <span class="fileinput-exists">수정</span>
 								            <input type="file" name="file" id="file" accept="image/*" />
 								        </span>	
-								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
 								</div>
 		                      </div>
