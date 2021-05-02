@@ -161,8 +161,8 @@ const submitHandler = () => {
 	};
 	
 	category = categories.options[categories.selectedIndex].value; // 카테고리
-	type = isNew.options[isNew.selectedIndex].value; // 카테고리
-	state = isState.options[isState.selectedIndex].value; // 카테고리
+	type = isNew.options[isNew.selectedIndex].value; 
+	state = isState.options[isState.selectedIndex].value; 
 	
 	// JSON Data
 	menu = {
@@ -196,8 +196,8 @@ const listHandler = (e) => {
 			
 			console.log(res);
 			
-			if(res.menuStartDate == null) {
-				res.menuStartDate = '';
+			if(res.menuStartDay == null) {
+				res.menuStartDay = '';
 			}
 			
 			let menuPath = basicPath + res.menuImagePath;
