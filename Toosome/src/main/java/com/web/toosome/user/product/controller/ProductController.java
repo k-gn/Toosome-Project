@@ -2,14 +2,16 @@ package com.web.toosome.user.product.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
@@ -62,11 +64,15 @@ public class ProductController {
 	}
 
 	@GetMapping("/productDetail") // 주문가능한 상품 리스트
-	public String productDetail(ProductVO productVO, Model model ,ReviewBoardVO reviewBoardVO) throws Exception{
+	public String productDetail(ProductVO productVO, Model model) throws NumberFormatException{
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
 		System.out.println(productDetail);
+		System.out.println("댓글 디테일 출력");
+		List<ReviewBoardVO> reviewBoardList = reviewBoardService.reviewList(productVO.getProductId());
+		model.addAttribute("reviewBoardList", reviewBoardList);
+		System.out.println(reviewBoardList);
 		return "subpages/product/productDetail/productDetail";
 	}
 	

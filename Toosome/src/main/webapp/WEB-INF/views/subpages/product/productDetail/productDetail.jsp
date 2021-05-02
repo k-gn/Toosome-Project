@@ -54,6 +54,7 @@
 					<li>${productDetail.productPrecautionsVO.productPrecautionsContent}</li>
 
 				</ul>
+				
 
 				<div class="comment-box">
 
@@ -88,7 +89,10 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="/signin" method="post" class="form1">
+					<form action="review-insert" method="post" class="form1">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}">
+
 						<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
@@ -143,23 +147,9 @@
 							type="submit" value="쓰기">
 
 					</form>
+
 					<form action="#" method="get" class="form2">
 						<ul class="comment-end">
-							<li><span class="star-fin"><img
-									src="/resources/img/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">${reviewBoardList.reviewBoardContent}</span>
-								<span class="nik">${reviewBoardList.reviewBoardWriter} </span> <span
-								class="dat"><fmt:formatDate pattern="yyyy.MM.dd"
-										value="${reviewBoardList.reviewBoardRegDate}" /></span></li>
-							<li><span class="star-fin"><img
-									src="/resources/img/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">${reviewBoardList.reviewBoardContent}</span>
-								<span class="nik">Tommy.Lee**</span> <span class="dat">2021.04.01</span></li>
-							<li><span class="star-fin"><img
-									src="/resources/img/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
-								<span class="dat">2021.04.01</span></li>
-							<li></li>
 						</ul>
 						<!--
 						<ul class="comment-end">
@@ -173,6 +163,20 @@
 								<span class="dat">2021.04.01</span></li>
 						</ul>
 						 -->
+						 <div id="reviewBoardId">
+  <ol class="reviewBoardList">
+    <c:forEach items="${reviewBoardList}" var="reviewBoardList">
+      <li>
+        <p>
+        작성자 : ${reviewBoardList.reviewBoardWriter}<br />
+        작성 날짜 :  <fmt:formatDate value="${reviewBoardList.reviewBoardRegDate}" pattern="yyyy-MM-dd" />
+        </p>
+
+        <p>${replyList.reviewBoardContent}</p>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
 					</form>
 				</div>
 			</div>

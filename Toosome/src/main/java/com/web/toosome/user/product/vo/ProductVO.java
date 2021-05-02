@@ -30,6 +30,5 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
-	private ReviewBoardVO reviewBoardVO;
 	private MemberVO memberVO;
 }

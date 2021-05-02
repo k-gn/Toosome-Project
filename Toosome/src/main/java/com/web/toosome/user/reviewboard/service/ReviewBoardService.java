@@ -14,38 +14,31 @@ public class ReviewBoardService implements IReviewBoardService{
 	@Autowired
 	private IReviewBoardMapper reviewBoardMapper;
 
+//	@Override
+//	public int reviewCount(int reviewBoardId) throws Exception {
+//		return reviewBoardMapper.reviewCount(reviewBoardId);
+//	}
+
+	@Override
+	public List<ReviewBoardVO> reviewList(Integer productId) throws NumberFormatException{
+		return reviewBoardMapper.reviewList(productId);
+	}
+
+//	@Override
+//	public int reviewInsert(ReviewBoardVO reviewBoardVO) throws Exception {
+//		return reviewBoardMapper.reviewInsert(reviewBoardVO);
+//	}
+//
+//	@Override
+//	public int reviewUpdate(ReviewBoardVO reviewBoardVO) throws Exception {
+//		return reviewBoardMapper.reviewUpdate(reviewBoardVO);
+//	}
+//
+//	@Override
+//	public int reviewDelete(ReviewBoardVO reviewBoardVO) throws Exception {
+//		return reviewBoardMapper.reviewDelete(reviewBoardVO);
+//	}
+
 	
-	@Override
-	public int reviewBoardCount() throws Exception {
-		
-		return reviewBoardMapper.reviewBoardCount();
-	}
 	
-	@Override
-	public List<ReviewBoardVO> getreviewBoardList(int productProductId) throws Exception {
-		
-		return reviewBoardMapper.getreviewBoardList(productProductId);
-	}
-
-	@Override
-	public int reviewBoardInsert(ReviewBoardVO reviewBoardVO) throws Exception {
-		
-		return reviewBoardMapper.reviewBoardInsert(reviewBoardVO);
-		
-	}
-
-	@Override
-	public int reviewBoardUpdate(ReviewBoardVO reviewBoardVO) throws Exception {
-		
-		return reviewBoardMapper.reviewBoardUpdate(reviewBoardVO);
-	}
-
-	@Override
-	public int reviewBoardDelete(int reviewBoardId) throws Exception {
-		
-		return reviewBoardMapper.reviewBoardDelete(reviewBoardId);
-		
-	}
-
-
 }
