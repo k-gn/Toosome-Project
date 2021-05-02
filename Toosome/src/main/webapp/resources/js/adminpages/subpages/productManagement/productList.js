@@ -46,7 +46,7 @@ const showList = (result, wrapper) => {
 	if(result.length === 0) {
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<td colspan="6">검색 결과가 없습니다.</td>
+			<td colspan="7">검색 결과가 없습니다.</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
