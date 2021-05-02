@@ -59,6 +59,7 @@
 			PRODUCT_ID,
 			PRODUCT_TITLE_NAME,
 			PRODUCT_SUB_NAME,
+			PRODUCT_CONTENT,
 			PRODUCT_PRICE,
 			PRODUCT_TYPE,
 			PRODUCT_CHECK_COUNT,
@@ -72,4 +73,52 @@
 		FROM PRODUCT P LEFT OUTER JOIN PRODUCT_IMAGE PI ON P.PRODUCT_ID = PI.PRODUCT_PRODUCT_ID
 		WHERE P.PRODUCT_ID = #{id}
 	</select>
+	
+	<insert id="addProduct">
+		INSERT INTO PRODUCT(PRODUCT_TITLE_NAME, PRODUCT_SUB_NAME, PRODUCT_TYPE, PRODUCT_STATE, PRODUCT_NEW, PRODUCT_PRICE, PRODUCT_CHECK_COUNT, PRODUCT_START_DAY, PRODUCT_CONTENT)
+		VALUES(#{productTitleName}, #{productSubName}, #{productType}, #{productState}, #{productNew}, #{productPrice}, #{productCheckCount}, #{productStartDay}, #{productContent})
+	</insert>
+	
+	<insert id="addProductImage">
+		INSERT INTO PRODUCT_IMAGE(PRODUCT_PRODUCT_ID, PRODUCT_IMAGE_NAME, PRODUCT_IMAGE_EXTENTION, PRODUCT_IMAGE_ROUTE)
+		VALUES(#{productProductId}, #{productImageName}, #{productImageExtention}, #{productImageRoute})
+	</insert>
+	
+	<select id="getProductIndex" resultType="Integer">
+		SELECT MAX(PRODUCT_ID) + 1 FROM PRODUCT
+	</select>
+	
+	<update id="aiReset">
+		ALTER TABLE PRODUCT AUTO_INCREMENT = 1
+	</update>
+	
+	<update id="modProduct">
+		UPDATE PRODUCT SET 
+			PRODUCT_TITLE_NAME = #{productTitleName}, 
+			PRODUCT_SUB_NAME = #{productSubName},
+			PRODUCT_CONTENT = #{productContent},
+			PRODUCT_PRICE = #{productPrice},
+			PRODUCT_NEW = #{productNew},
+			PRODUCT_TYPE = #{productType},
+			PRODUCT_CHECK_COUNT = #{productCheckCount},
+			PRODUCT_STATE = #{productState},
+			PRODUCT_START_DAY = #{productStartDay}
+		WHERE PRODUCT_ID = #{productId};
+	</update>
+	
+	<update id="modProductImage">
+		UPDATE PRODUCT_IMAGE SET
+			PRODUCT_IMAGE_NAME = #{productImageName},
+			PRODUCT_IMAGE_EXTENTION = #{productImageExtention},
+			PRODUCT_IMAGE_ROUTE = #{productImageRoute}
+		WHERE PRODUCT_PRODUCT_ID = #{productProductId}
+	</update>
+	
+	<delete id="delProduct">
+		DELETE FROM PRODUCT WHERE PRODUCT_ID = #{productId}
+	</delete>
+	
+	<delete id="delProductImage">
+		DELETE FROM PRODUCT_IMAGE WHERE PRODUCT_PRODUCT_ID = #{id}
+	</delete>
 </mapper>
