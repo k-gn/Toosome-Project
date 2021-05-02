@@ -11,7 +11,6 @@
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
 		<result property="productregDate" column="PRODUCT_REG_DATE" />
-		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
 		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
 		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
 		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
@@ -55,4 +54,22 @@
 		<include refid="search"/>
 	</select>
 	
+	<select id="getProduct" resultMap="productMap">
+		SELECT 
+			PRODUCT_ID,
+			PRODUCT_TITLE_NAME,
+			PRODUCT_SUB_NAME,
+			PRODUCT_PRICE,
+			PRODUCT_TYPE,
+			PRODUCT_CHECK_COUNT,
+			PRODUCT_START_DAY,
+			PRODUCT_STATE, 
+			PRODUCT_NEW,
+			PRODUCT_IMAGE_ID,
+			PRODUCT_IMAGE_NAME,
+			PRODUCT_IMAGE_EXTENTION,
+			PRODUCT_IMAGE_ROUTE
+		FROM PRODUCT P LEFT OUTER JOIN PRODUCT_IMAGE PI ON P.PRODUCT_ID = PI.PRODUCT_PRODUCT_ID
+		WHERE P.PRODUCT_ID = #{id}
+	</select>
 </mapper>

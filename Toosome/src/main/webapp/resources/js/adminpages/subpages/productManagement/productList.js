@@ -9,6 +9,7 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const profileContainer = document.querySelector('#profile-modal'); // 모달 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
 const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const basicPath = "https://toosome.s3.ap-northeast-2.amazonaws.com/";
 
 let condition = '';
 let keyword = '';
@@ -198,6 +199,8 @@ const listHandler = (e) => {
 			if(res.productStartDay == null) {
 				res.productStartDay = '';
 			}
+			
+			let productPath = basicPath + res.productImagePath;
 		
 			$("input[name=id]").val(res.productId);			
 			$("input[name=productId]").val(res.productId);			
@@ -209,7 +212,8 @@ const listHandler = (e) => {
 			$("input[name=productSubTitle]").val(res.productSubName);			
 			$("input[name=productContent]").val(res.productContent);
 			$("input[name=productCheckCount]").val(res.productCheckCount);
-			$("input[name=productStartDate]").val(res.productStartDay);			
+			$("input[name=productStartDate]").val(res.productStartDay);		
+			$("#productImg").attr("src", productPath);	
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');

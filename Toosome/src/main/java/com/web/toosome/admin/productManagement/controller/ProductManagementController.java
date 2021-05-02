@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.productManagement.service.IProductManagementService;
 import com.web.toosome.admin.productManagement.vo.ProductSearchVO;
+import com.web.toosome.user.menu.vo.MenuVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
@@ -34,5 +36,11 @@ public class ProductManagementController {
 	public List<ProductVO> getProductList(ProductSearchVO product) {
 		System.out.println(product);
 		return service.getProductList(product);
+	}
+	
+	@GetMapping("/product/{id}")
+	@ResponseBody
+	public ProductVO getProduct(@PathVariable Integer id) {
+		return service.getProduct(id);
 	}
 }

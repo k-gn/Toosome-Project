@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.web.toosome.admin.productManagement.dao.IProductManagementMapper;
 import com.web.toosome.admin.productManagement.vo.ProductSearchVO;
 import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.user.product.vo.ProductImageVO;
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Service
@@ -28,7 +29,14 @@ public class ProductManagementService implements IProductManagementService {
 
 	@Override
 	public ProductVO getProduct(Integer id) {
-		return null;
+		ProductVO menu = mapper.getProduct(id);
+		ProductImageVO image = menu.getProductImageVO();
+		if(image != null) {
+			menu.setProductImagePath(image.getProductImageRoute() + "/" + image.getProductImageName() + "." + image.getProductImageExtention());
+		}else {
+			menu.setProductImagePath("img/pages/admin/subpages/setting/blank.png");
+		}
+		return menu;
 	}
 
 	@Override
