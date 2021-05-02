@@ -2,6 +2,7 @@ package com.web.toosome.user.menu.service;
 
 import java.util.List;
 
+import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 public interface IMenuService {
@@ -42,4 +43,23 @@ public interface IMenuService {
 	
 	//영양성분표 리스트4 검색
 	public List<MenuVO> getSearchIatListFour(MenuVO vo);
+	
+	// 기프트콘 구매 후 주문 내역 orders 테이블에 저장.
+	public int saveGift(MenuVO vo);
+	
+	// 기프트콘 구매 후 주문 내역 orders 테이블에 저장할 때 메뉴이름 얻어오기
+	public String getMenuMainTitle(Integer id);
+	
+	// orderDetail 데이터 만들기.
+	public int giftSendOrder(MenuVO vo);
+	
+	// menuid 하나 받아서 이미지 경로 생성
+	public MenuImageVO getMenuImagePath(Integer id);
+	
+	// memberId 최신순으로 정렬 후 ordersId 가져오기
+	public int getOrdersId(Integer id);
+		
+	// 메뉴 가격 가져오기
+	public int getMenuPrice(Integer id);
+				
 }

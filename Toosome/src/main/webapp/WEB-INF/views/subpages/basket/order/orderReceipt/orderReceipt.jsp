@@ -47,6 +47,7 @@
         		<span></span>
         	</li>
         </ul>
+        <!-- 가프티콘 -->
         <form>
 			<input class="data" type="text" value=""/>
         </form>

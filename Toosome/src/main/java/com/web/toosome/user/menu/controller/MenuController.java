@@ -23,6 +23,8 @@ import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
 public class MenuController {
+	
+	private final String basicImagePath = "https://toosome.s3.ap-northeast-2.amazonaws.com/";
 
 	@Autowired
 	private IMenuService menuService;
@@ -204,8 +206,6 @@ public class MenuController {
 		Integer id = (Integer) session.getAttribute("id");
 		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
 		double imsipoint = menuPrice * 0.01;
-//		double imsiDBPoint = memberShipService.getMembershipInfo(id).getMembershipPoint();
-//		int point = (int)imsiDBPoint + (int)imsipoint;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("id", id);
 		map.put("imsipoint", (int)imsipoint);
@@ -218,6 +218,37 @@ public class MenuController {
 		memberShipService.getDownPoint(map);
 		System.out.println("getDownPoint 실행 완료");
 		return "OK";
+	}
+	
+	@ResponseBody
+	@GetMapping("/saveGift")
+	public String saveGift(MenuVO menuVO,HttpSession session, Integer menuEndPrice, String phone, String merchantUid, Integer menuId, Integer menusalt) {
+		System.out.println("saveGift 메서드 실행");
+		Integer id = (Integer) session.getAttribute("id");
+		menuVO.setMemberId(id);
+		menuVO.setMenuPrice(menuEndPrice);
+		menuVO.setMemberName(memberService.getUserById(id).getMemberName());
+		menuVO.setMemberPhone(phone);
+		menuVO.setMerchantUid(merchantUid);
+		menuVO.setMenuMainTitle(menuService.getMenuMainTitle(menuId));
+		String imageName = menuService.getMenuImagePath(menuId).getMenuImageName();
+		String imageExtention = menuService.getMenuImagePath(menuId).getMenuImageExtention();
+		String imageRoute = menuService.getMenuImagePath(menuId).getMenuImageRoute();
+		String imagePath = basicImagePath + imageRoute + "/" + imageName + "." + imageExtention;
+		System.out.println(imageName);
+		System.out.println(imageExtention);
+		System.out.println(imageRoute);
+		menuVO.setMenuImagePath(imagePath);
+		System.out.println(imagePath);
+		int num = menuService.saveGift(menuVO);
+		menuVO.setOrdersId(menuService.getOrdersId(id));
+		menuVO.setMenuPrice(menuService.getMenuPrice(menuId));
+		int num2 = menuService.giftSendOrder(menuVO);
+		if(num > 0 & num2 > 0) {
+			return "OK";
+		}else {
+			return "NO";
+		}
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER')")

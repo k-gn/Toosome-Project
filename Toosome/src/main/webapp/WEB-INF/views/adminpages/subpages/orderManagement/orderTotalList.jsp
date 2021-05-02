@@ -100,7 +100,7 @@
 						     	<input type="checkbox" name="state" value="o-finish" onclick="confirmCheckAll();">결제완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="p-ready" onclick="confirmCheckAll();">상품준비중
+						     	<input type="checkbox" name="state" value="p-ready" onclick="confirmCheckAll();">접수완료
 						     </label>
 						     <label class="checkbox-label">
 						     	<input type="checkbox" name="state" value="d-ready" onclick="confirmCheckAll();">배송준비중
@@ -112,7 +112,7 @@
 						     	<input type="checkbox" name="state" value="d-finish" onclick="confirmCheckAll();">배송완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="ok" onclick="confirmCheckAll();">구매확정
+						     	<input type="checkbox" name="state" value="ok" onclick="confirmCheckAll();">기프티콘
 						     </label>
                            </td>
                          </tr>

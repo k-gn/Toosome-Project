@@ -103,9 +103,9 @@
 	</delete>
 
 	<insert id="basketsendorder">
-		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID, PRODUCT_ID, ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
-		 ORDERS_DETAIL_PRICE, PRODUCT_IMAGE_ID, ORDERS_DETAIL_IMAGE_PATH)
-		VALUES(#{ordersId}, #{memberId}, #{productId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{productImageId}, #{imagePath})
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
+		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId},  #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
 	</insert>
 	
 	<select id="getBasketList" resultMap="basketMap">
