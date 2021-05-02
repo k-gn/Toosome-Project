@@ -204,8 +204,6 @@ public class MenuController {
 		Integer id = (Integer) session.getAttribute("id");
 		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
 		double imsipoint = menuPrice * 0.01;
-//		double imsiDBPoint = memberShipService.getMembershipInfo(id).getMembershipPoint();
-//		int point = (int)imsiDBPoint + (int)imsipoint;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("id", id);
 		map.put("imsipoint", (int)imsipoint);
@@ -218,6 +216,27 @@ public class MenuController {
 		memberShipService.getDownPoint(map);
 		System.out.println("getDownPoint 실행 완료");
 		return "OK";
+	}
+	
+	@ResponseBody
+	@GetMapping("/saveGift")
+	public String saveGift(MenuVO menuVO,HttpSession session, Integer menuEndPrice, String phone, Integer merchantUid, Integer menuId) {
+		Integer id = (Integer) session.getAttribute("id");
+		menuVO.setMemberId(id);
+		menuVO.setMenuPrice(menuEndPrice);
+		menuVO.setMemberName(memberService.getUserById(id).getMemberName());
+		menuVO.setMemberPhone(phone);
+		menuVO.setMerchantUid(merchantUid);
+		menuVO.setMenuMainTitle(menuService.getMenuMainTitle(menuId));
+		menuVO.setMenuId(menuId);
+		menuVO.setMenuImagePath(menuService.get);
+		int num = menuService.saveGift(menuVO);
+		int num2 = menuService.giftSendOrder(menuVO);
+		if(num > 0 & num2 > 0) {
+			return "OK";
+		}else {
+			return "NO";
+		}
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER')")

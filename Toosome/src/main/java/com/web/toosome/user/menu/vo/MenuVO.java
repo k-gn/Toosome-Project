@@ -34,4 +34,11 @@ public class MenuVO {
 	private String oldImageName;
 	private String oldCategory;
 	private String menuImagePath;
+
+	private Integer memberId;
+	private String memberName;
+	private String memberPhone;
+	private Integer merchantUid;
+	private Integer ordersId;
+	
 }

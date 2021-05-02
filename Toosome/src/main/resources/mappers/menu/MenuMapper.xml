@@ -332,5 +332,21 @@
 		INNER JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
-
+	
+	<insert id="saveGift">
+		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE,
+		 ORDERS_RECEIVER, ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MERCHANT_UID)
+		VALUES(#{memberId}, now(), #{menuPrice}, "기프티콘",
+		 #{memberName}, #{ordersPhone}, #{menuMainTitle}, 1, #{merchantUid})
+	</insert>
+	
+	<select id="getMenuMainTitle" resultType="String">
+		SELECT MENU_MAIN_TITLE FROM MENU WHERE MENU_ID = #{id}
+	</select>
+	
+	<insert id="giftSendOrder">
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID, PRODUCT_ID, ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
+		 ORDERS_DETAIL_PRICE, PRODUCT_IMAGE_ID, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId}, #{productId}, 1, #{menuMainTitle}, #{menuPrice}, #{productImageId}, #{menuImagePath})
+	</insert>
 </mapper>

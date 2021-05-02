@@ -31,5 +31,13 @@ public interface IMenuMapper {
 	public List<MenuVO> getIatListFour(MenuVO vo);
 	public List<MenuVO> getSearchIatListFour(MenuVO vo);
 
+	// 기프트콘 구매 후 주문 내역 orders 테이블에 저장.
+	public int saveGift(MenuVO vo);
+	
+	// 기프트콘 구매 후 주문 내역 orders 테이블에 저장할 때 메뉴이름 얻어오기
+	public String getMenuMainTitle(Integer id);
+
+	// orderDetail 데이터 만들기.
+	public int giftSendOrder(MenuVO vo);
 	
 }

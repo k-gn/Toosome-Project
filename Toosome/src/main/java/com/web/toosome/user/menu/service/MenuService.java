@@ -159,6 +159,21 @@ public class MenuService implements IMenuService {
 		return mapper.getSearchIatListFour(vo);
 	}
 
+	@Override
+	public int saveGift(MenuVO vo) {
+		return mapper.saveGift(vo);
+	}
+
+	@Override
+	public String getMenuMainTitle(Integer id) {
+		return mapper.getMenuMainTitle(id);
+	}
+
+	@Override
+	public int giftSendOrder(MenuVO vo) {
+		return mapper.giftSendOrder(vo);
+	}
+
 	
 
 

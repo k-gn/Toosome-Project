@@ -123,7 +123,6 @@ public class BasketService implements IBasketService {
 	public String getLookPostList(Integer id) {
 		return bmapper.getLookPostList(id);
 	}
-	
 
 
 }
