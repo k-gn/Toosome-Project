@@ -173,3 +173,10 @@
     opacity: 0;
     direction: ltr;
 }
+
+/* Pagination start */
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
