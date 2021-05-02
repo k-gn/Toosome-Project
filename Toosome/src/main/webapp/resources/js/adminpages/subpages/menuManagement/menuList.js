@@ -51,7 +51,7 @@ const showList = (result, wrapper) => {
 	if(result.length === 0) {
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<td colspan="6">검색 결과가 없습니다.</td>
+			<td colspan="7">검색 결과가 없습니다.</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
@@ -161,8 +161,8 @@ const submitHandler = () => {
 	};
 	
 	category = categories.options[categories.selectedIndex].value; // 카테고리
-	type = isNew.options[isNew.selectedIndex].value; // 카테고리
-	state = isState.options[isState.selectedIndex].value; // 카테고리
+	type = isNew.options[isNew.selectedIndex].value; 
+	state = isState.options[isState.selectedIndex].value; 
 	
 	// JSON Data
 	menu = {
@@ -196,8 +196,8 @@ const listHandler = (e) => {
 			
 			console.log(res);
 			
-			if(res.menuStartDate == null) {
-				res.menuStartDate = '';
+			if(res.menuStartDay == null) {
+				res.menuStartDay = '';
 			}
 			
 			let menuPath = basicPath + res.menuImagePath;

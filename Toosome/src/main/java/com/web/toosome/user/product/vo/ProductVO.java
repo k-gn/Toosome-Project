@@ -2,7 +2,9 @@ package com.web.toosome.user.product.vo;
 
 import java.util.Date;
 
-import com.web.toosome.user.menu.vo.IatVO;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -17,11 +19,12 @@ public class ProductVO {
 	private Integer productPrice;	//상품 가격
 //	private Integer productScope; //별점
 	private String productType;//상품 페이지 타입\n1. 전체\n2. 커피\n3. 커피웨어\n4. 기프트세트; 
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date productregDate; //상품 등록일
-	private Integer productRemainingAmount; //상품의 재고수량
 	private Integer productReceivedAmount; //상품 입고 수량
 	private Integer productReceivedPrice; //상품 입고 가격
 	private Integer productLimitAmount; //알람용 최소 재고량
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date productStartDay; //판매시작일
 	private Integer productCheckCount; //상품 조회수
 	private Integer productState; //상품 현재 상태\n1. 정상판매중\n2. 단종\n3. Sold out
@@ -31,4 +34,8 @@ public class ProductVO {
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
 //	private String searchCondition; //검색 조건
 //	private String searchKeyword; //검색 키워드
+	
+	private MultipartFile file;
+	private String oldImageName;
+	private String productImagePath;
 }

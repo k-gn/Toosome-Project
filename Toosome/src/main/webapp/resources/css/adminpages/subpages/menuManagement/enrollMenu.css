@@ -4,9 +4,10 @@
 	width: 100%;
 }
 
-.calendar-wrapper {
+.form-group.cal {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .calendar {
@@ -15,8 +16,7 @@
 	border: 1px solid #d2d2d2;
     border-radius: 0.25rem;
 	cursor: pointer;
-	width: 100%;
-	height: calc(2.4375rem + 2px);
+	width: 80%;
     padding: 0.375rem 1.75rem 0.375rem 0.75rem;
 }
 

@@ -13,6 +13,20 @@
   <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <link href="/resources/css/adminpages/subpages/productManagement/productList.css" rel="stylesheet" />
   <script src="/resources/js/adminpages/subpages/productManagement/productList.js" defer></script>
+  <script type="text/javascript">
+  	const parameterName = "${_csrf.parameterName}";
+  	const token = "${_csrf.token}";
+  	const msg = "${msg}";
+	if(msg === "modSuccess") {
+		alert("상품 수정 완료");
+	}else if(msg === "modFail") {
+		alert("상품 수정 실패");
+	}else if(msg === "delSuccess") {
+		alert("상품 삭제 완료");
+	}else if(msg === "delFail") {
+		alert("상품 삭제 실패");
+	}
+  </script>
 </head>
 
 <body>
@@ -90,9 +104,11 @@
                            <td>
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="state">
+                              	<option value="4">전체상품</option>
+                                <option value="0">판매중지</option>
                                 <option value="1">판매중</option>
-                                <option value="2">판매중지</option>
-                                <option value="3">품절</option>
+                                <option value="2">품절</option>
+                                <option value="3">단종</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -113,21 +129,22 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form id="formObj">
+		                  <form name="formObj" action="/admin/modProduct?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품번호</label>
-		                          <input type="text" name="productId" class="form-control" disabled>
+		                          <input type="text" name="id" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매상태</label>
 		                          <select class="custom-select" id="modal-state" name="productState">
+				                  	<option value="0">판매중지</option>
 				                  	<option value="1">판매중</option>
-				                  	<option value="2">판매중지</option>
-				                  	<option value="3">품절</option>
+				                  	<option value="2">품절</option>
+				                  	<option value="3">단종</option>
 				                  </select>
 		                        </div>
 		                      </div>
@@ -196,12 +213,6 @@
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품등록일</label>
-		                          <input type="date" class="form-control" name="productRegDate">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-6">
-		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
 		                          <input type="date" class="form-control" name="productStartDate">
 		                        </div>
@@ -211,7 +222,7 @@
 							  <div class="col-md-12 text-center">
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 								    <div class="fileinput-new thumbnail img-raised">
-								        <img id="menuImg" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
+								        <img id="productImg" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
 								    </div>
 								    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
 								    <div>
@@ -230,6 +241,8 @@
 		                    <button id="modal-cancel" class="btn btn-success pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="productId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                    <input type="hidden" name="oldImageName">
 		                  </form>
 		                </div>
 		              </div>
@@ -284,7 +297,7 @@
                           상품등록일
                         </th>
                       </thead>
-                      <tbody id="list-table-body" class="text-center">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>
