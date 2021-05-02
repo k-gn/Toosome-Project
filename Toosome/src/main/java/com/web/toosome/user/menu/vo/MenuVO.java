@@ -38,7 +38,8 @@ public class MenuVO {
 	private Integer memberId;
 	private String memberName;
 	private String memberPhone;
-	private Integer merchantUid;
+	private String merchantUid;
 	private Integer ordersId;
+	
 	
 }

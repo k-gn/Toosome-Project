@@ -41,7 +41,7 @@ IMP.request_pay({
             	if(ser=="OK"){
             		$.ajax({
                     	type : "GET",
-                        url: "/saveGift?phone=${memberImportList.memberPhone}&merchantUid="+rsp.merchant_uid + "&menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}",
+                        url: "/saveGift?phone=${memberImportList.memberPhone}&merchantUid="+rsp.merchant_uid + "&menuId=${importList.menuId}&menuEndPrice=${menuEndPrice}&menusalt=${menusal}",
                         success : function(sa) {
                         	if(sa == "OK"){
 			            		$.ajax({

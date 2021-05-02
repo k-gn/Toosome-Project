@@ -337,7 +337,7 @@
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE,
 		 ORDERS_RECEIVER, ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MERCHANT_UID)
 		VALUES(#{memberId}, now(), #{menuPrice}, "기프티콘",
-		 #{memberName}, #{ordersPhone}, #{menuMainTitle}, 1, #{merchantUid})
+		 #{memberName}, #{memberPhone}, #{menuMainTitle}, 1, #{merchantUid})
 	</insert>
 	
 	<select id="getMenuMainTitle" resultType="String">
@@ -345,8 +345,21 @@
 	</select>
 	
 	<insert id="giftSendOrder">
-		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID, PRODUCT_ID, ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
-		 ORDERS_DETAIL_PRICE, PRODUCT_IMAGE_ID, ORDERS_DETAIL_IMAGE_PATH)
-		VALUES(#{ordersId}, #{memberId}, #{productId}, 1, #{menuMainTitle}, #{menuPrice}, #{productImageId}, #{menuImagePath})
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
+		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId}, 1, #{menuMainTitle}, #{menuPrice}, #{menuImagePath})
 	</insert>
+	
+	<select id="getMenuImagePath" resultMap="menuImageVO">
+		SELECT * FROM MENU_IMAGE WHERE MENU_MENU_ID = #{id}
+	</select>
+	
+	<select id="getOrdersId" resultType="Integer">
+		SELECT ORDERS_ID FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
+	</select>
+	
+	<select id="getMenuPrice" resultType="Integer">
+		SELECT MENU_PRICE FROM MENU WHERE MENU_ID = #{id}
+	</select>
+	
 </mapper>

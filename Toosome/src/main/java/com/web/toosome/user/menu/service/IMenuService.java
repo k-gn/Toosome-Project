@@ -2,6 +2,7 @@ package com.web.toosome.user.menu.service;
 
 import java.util.List;
 
+import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 public interface IMenuService {
@@ -51,5 +52,14 @@ public interface IMenuService {
 	
 	// orderDetail 데이터 만들기.
 	public int giftSendOrder(MenuVO vo);
+	
+	// menuid 하나 받아서 이미지 경로 생성
+	public MenuImageVO getMenuImagePath(Integer id);
+	
+	// memberId 최신순으로 정렬 후 ordersId 가져오기
+	public int getOrdersId(Integer id);
 		
+	// 메뉴 가격 가져오기
+	public int getMenuPrice(Integer id);
+				
 }
