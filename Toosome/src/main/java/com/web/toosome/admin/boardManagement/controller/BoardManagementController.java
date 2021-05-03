@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.boardManagement.service.IEventAdminService;
+import com.web.toosome.admin.boardManagement.service.IFaqAdminService;
 import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.common.s3.S3Service;
@@ -24,6 +25,7 @@ import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
+import com.web.toosome.user.board.vo.FaqBoardVO;
 
 
 
@@ -38,6 +40,9 @@ public class BoardManagementController {
 	
 	@Autowired
 	private INewsAdminService newsadminservice;
+	
+	@Autowired
+	private IFaqAdminService faqadminservice;
 	
 	@Autowired
 	private S3Service awsS3;
@@ -311,7 +316,7 @@ public class BoardManagementController {
 		return searchevent;
 	}
 	
-	@GetMapping(value="/admin/newsboard-insert") // 뉴스관리자 게시물 insert
+	@PostMapping(value="/admin/newsboard-insert") // 뉴스관리자 게시물 insert
 	public String insertNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
 		vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
@@ -344,7 +349,7 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@GetMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
+	@PostMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
 	public String deleteNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) {
 	   
 		//해당 파일 경로 정보
@@ -367,7 +372,7 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@GetMapping(value="/admin/newsboard-update") // 이벤트 게시물 update
+	@PostMapping(value="/admin/newsboard-update") // 이벤트 게시물 update
 	public String updateNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
 		
 		//파일 조회후 삭제
@@ -418,10 +423,19 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@GetMapping("/admin/faqboard-management") // faq 게시판 관리
-	public String FaqBoardManagement() {
+	@RequestMapping("/admin/faqboard-management") // faq 게시판 관리
+	public String FaqBoardManagementView() {
 		return "adminpages/subpages/boardManagement/faqBoardManagement";
 	}
+	
+	@GetMapping(value = "/admin/faqboardmanagement" , produces = "application/json")
+	@ResponseBody
+	public List<FaqBoardVO> FaqBoardList(FaqBoardVO vo){ //faq 게시판 리스트 값
+		List<FaqBoardVO> faqboardlist = faqadminservice.faqBoardList(vo);
+		return faqboardlist;
+	}
+	
+	
 	
 	@GetMapping("/admin/qnaboard-management") // qna 게시판 관리
 	public String QnaBoardManagement() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.web.toosome.user.board.dao.IFaqBoardMapper">
+<mapper namespace="com.web.toosome.admin.boardManagement.dao.IFaqAdminMapper">
 
 	<resultMap type="faqBoardVO" id="FaqBoardMap">
 		<id property="faqBoardId" column="FAQ_BOARD_ID"/>
@@ -10,12 +10,7 @@
 		<result property="faqBoardRegDate" column="FAQ_BOARD_REG_DATE"/>
 	</resultMap>
 	
-	<select id="getFaqBoardList" resultMap="FaqBoardMap">
-		SELECT * FROM FAQ_BOARD
+	<select id="faqBoardList" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD ORDER BY FAQ_BOARD_ID DESC;
 	</select>
-
-	<select id="getFaqSearchBoardList" resultMap="FaqBoardMap">
-		SELECT * FROM FAQ_BOARD WHERE FAQ_BOARD_TITLE LIKE CONCAT('%',#{keyword},'%');
-	</select>
-	
 </mapper>
