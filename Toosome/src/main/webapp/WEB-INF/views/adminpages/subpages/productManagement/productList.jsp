@@ -201,8 +201,6 @@
 		                          <input type="text" class="form-control" name="productPrice">
 		                        </div>
 		                      </div>
-		                    </div>
-		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">재고수량</label>
