@@ -138,37 +138,53 @@ function lookPost(s) {
 			console.log(resul);
 			$(".data").val(resul);
 			var testData = $(".data").val();
-			
+			//var testData = "기프티콘";
 			// 만약에 testData가
 			if ($(".post-text .one p").text() == testData) {
 			// 결제완료와 같다면
 			
+				$(".post-text").css("display","flex");
+				$(".giftcon").css("display","none");
 				$(".post-text li").removeClass("colorRed");
 				$(".post-text .one").addClass("colorRed");
 				
 			} else if ($(".post-text .two p").text() == testData) {
 			// 접수완료와 같다면
 			
+				$(".post-text").css("display","flex");
+				$(".giftcon").css("display","none");
 				$(".post-text li").removeClass("colorRed");
 				$(".post-text .two").addClass("colorRed");
 				
 			} else if ($(".post-text .three p").text() == testData) {
 			// 배송준비중과 같다면
 			
+				$(".post-text").css("display","flex");
+				$(".giftcon").css("display","none");
 				$(".post-text li").removeClass("colorRed");
 				$(".post-text .three").addClass("colorRed");
 				
 			} else if ($(".post-text .four p").text() == testData) {
 			// 배송중과 같다면
 			
+				$(".post-text").css("display","flex");
+				$(".giftcon").css("display","none");
 				$(".post-text li").removeClass("colorRed");
 				$(".post-text .four").addClass("colorRed");
 				
 			} else if ($(".post-text .five p").text() == testData) {
 			// 배송완료와 같다면
 			
+				$(".post-text").css("display","flex");
+				$(".giftcon").css("display","none");
 				$(".post-text li").removeClass("colorRed");
 				$(".post-text .five").addClass("colorRed");
+				
+			} else if ("기프티콘" == testData) {
+			// 기프티콘과 같다면
+			
+				$(".post-text").css("display","none");
+				$(".giftcon").css("display","flex");
 			}
 		}
 	});
