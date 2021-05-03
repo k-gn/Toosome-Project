@@ -172,7 +172,7 @@
 			                  <div class="col-md-12">
 			                    <div class="form-group">
 			                      <label class="bmd-label-floating">상품이름</label>
-			                      <input type="text" class="form-control" name="productMainTitle">
+			                      <input type="text" class="form-control" name="productTitleName">
 			                    </div>
 			                  </div>
 		                    </div>
@@ -180,7 +180,7 @@
 			                  <div class="col-md-12">
 			                    <div class="form-group">
 	  	                          <label class="bmd-label-floating">상품이름(상세)</label>
-		                          <input type="text" class="form-control" name="productSubTitle">
+		                          <input type="text" class="form-control" name="productSubName">
 			                    </div>
 			                  </div>
 		                    </div>
@@ -212,7 +212,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">판매시작일</label>
-		                          <input type="date" class="form-control" name="productStartDate">
+		                          <input type="date" class="form-control" name="productStartDay">
 		                        </div>
 		                      </div>
 		                    </div>

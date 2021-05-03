@@ -72,16 +72,13 @@ const showList = (result, wrapper) => {
 		let payment = result[i].payment.toLocaleString();
 		let newEl = document.createElement('tr');
 		let content = `
-          <td>
-            ${result[i].orderId}
+          <td style='font-size:16px;'>
+            ${i}
           </td>
-          <td>
-            ${result[i].memberEmail}
-          </td>
-          <td>
+          <td style='font-size:16px;'>
             ${result[i].orderDate}
           </td>
-          <td>
+          <td style='font-size:16px;'>
             ${payment} 원
           </td>
 		`;

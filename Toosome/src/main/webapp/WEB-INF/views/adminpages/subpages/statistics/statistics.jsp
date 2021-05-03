@@ -182,10 +182,7 @@
                       </colgroup>
                       <thead class="text-warning text-center">
                         <th>
-                          주문번호
-                        </th>
-                        <th>
-                          주문자
+                          번호
                         </th>
                         <th>
                           주문일자
