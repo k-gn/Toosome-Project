@@ -231,6 +231,7 @@ public class MenuController {
 		menuVO.setMemberPhone(phone);
 		menuVO.setMerchantUid(merchantUid);
 		menuVO.setMenuMainTitle(menuService.getMenuMainTitle(menuId));
+		menuVO.setMemberEmail(memberService.getUserById(id).getMemberEmail());
 		String imageName = menuService.getMenuImagePath(menuId).getMenuImageName();
 		String imageExtention = menuService.getMenuImagePath(menuId).getMenuImageExtention();
 		String imageRoute = menuService.getMenuImagePath(menuId).getMenuImageRoute();

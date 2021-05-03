@@ -21,6 +21,7 @@ let startDate = ''; // 검색 시작날짜
 let endDate = ''; // 검색 종료날짜
 let orderState = []; // 주문상태 선택
 let rows = 10000;
+let orders = {};
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -124,10 +125,10 @@ const showList = (result, wrapper) => {
             ${result[i].ordersState}
           </td>
           <td>
-            ${result[i].memberVO.memberEmail}
+            ${result[i].ordersMemberEmail}
           </td>
           <td>
-            ${result[i].memberVO.memberName}
+            ${result[i].ordersReceiver}
           </td>
           <td>
             ${result[i].ordersProductName}
@@ -137,6 +138,9 @@ const showList = (result, wrapper) => {
           </td>
           <td>
             ${result[i].ordersPayment}
+          </td>
+          <td>
+            ${result[i].ordersOrderDate}
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -157,16 +161,16 @@ const setData = (result, wrapper, rows) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (order, wrapper, rows) => {
+const getList = (orders, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/ddddddddddd", //서버 요청 URI
+		url: "/admin/orderList", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
-		data: order, //서버로 전송할 데이터
+		data: orders, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			// 검색 건수 출력
 			let count = `검색 결과 : ${result.length}건`
@@ -207,16 +211,17 @@ const submitHandler = () => {
 	});
 
 	// JSON Data
-	order = {
+	orders = {
 		condition,
 		keyword,
 		startDate,
 		endDate,
 		orderState,
+		orders,
 	};
 	
 	rows = 10000;
-	getList(order, listTable, rows);/
+	getList(orders, listTable, rows);
 };
 
 // 검색 버튼 event hook
@@ -230,7 +235,7 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/ddddddddddddd" + id, //서버 요청 URI
+		url: "/admin/orderx/" + id, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -317,11 +322,11 @@ const selectHandler = (select) => {
 	
 	// init
 	rows = +value;
-	getList(order, listTable, rows);
+	getList(orders, listTable, rows);
 };
 
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	/*getList(order, listTable, rows); 테스트시 주석 해제 */
+	getList(orders, listTable, rows); //테스트시 주석 해제 
 }); 

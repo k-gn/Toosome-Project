@@ -340,7 +340,10 @@
                           상품수량
                         </th>
                         <th>
-                          상품가격
+                          결제금액
+                        </th>
+						<th>
+           	 구매일
                         </th>
                       </thead>
                       <tbody id="list-table-tbody" class="text-center">

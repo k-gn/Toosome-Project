@@ -1,10 +1,20 @@
 package com.web.toosome.admin.orderManagement.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.web.toosome.admin.orderManagement.service.OrderManagementService;
+import com.web.toosome.admin.orderManagement.vo.OrderManagementVO;
+import com.web.toosome.user.basket.vo.OrdersVO;
 
 @Controller
 public class OrderManagementController {
+	@Autowired
+	private OrderManagementService orderService;
 	
 	@GetMapping("/admin/order-totallist") // 주문 통합 리스트
 	public String OrderTotalList() {
@@ -46,4 +56,13 @@ public class OrderManagementController {
 		return "adminpages/subpages/orderManagement/orderCancelList";
 	}
 	
+	@GetMapping("/admin/orderList")
+	@ResponseBody
+	public List<OrdersVO> getorderList(OrderManagementVO orderVO) {
+		System.out.println("/admin/orderList 메서드 실행");
+		System.out.println("");
+		List<OrdersVO> ordersList = orderService.getOrderList(orderVO);
+		System.out.println(ordersList);
+		return orderService.getOrderList(orderVO);
+	}
 }

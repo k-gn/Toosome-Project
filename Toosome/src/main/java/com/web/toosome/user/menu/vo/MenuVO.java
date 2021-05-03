@@ -40,6 +40,7 @@ public class MenuVO {
 	private String memberPhone;
 	private String merchantUid;
 	private Integer ordersId;
+	private String memberEmail;
 	
 	
 }
