@@ -154,9 +154,9 @@ public class BoardManagementController {
 		System.out.println("db에서 제거 완료");
 		
 			if(de>0 && de2 >0) {
-					ra.addFlashAttribute("msg", "successBoard");		
+					ra.addFlashAttribute("msg", "successDelete");		
 			}else {
-				ra.addFlashAttribute("msg", "failBoard");
+				ra.addFlashAttribute("msg", "failDelete");
 			}	
 			
 		return "redirect:/admin/eventboard-management";
@@ -188,9 +188,9 @@ public class BoardManagementController {
 			awsS3.upload(file, key);
 			
 			if(up >0) {
-				ra.addFlashAttribute("msg", "updateseccess");
+				ra.addFlashAttribute("msg", "updateSuccess");
 				}else {
-					ra.addFlashAttribute("msg", "updatefail");
+					ra.addFlashAttribute("msg", "updateFail");
 				}
 		}
 			
@@ -215,15 +215,15 @@ public class BoardManagementController {
 			awsS3.upload(file2, key2);
 		
 			if(up2 > 0) {
-				ra.addFlashAttribute("msg", "updateseccess");
+				ra.addFlashAttribute("msg", "updateSuccess");
 				}else {
-					ra.addFlashAttribute("msg", "updatefail");
+					ra.addFlashAttribute("msg", "updateFail");
 				}
 		}
 		
 		if(vo.getUploadFile().getSize()== 0 && vvo.getUploadFile2().getSize() == 0) {
 			eventboardservice.updateEventText(vo);
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updateSuccess");
 		}
 		
 		
