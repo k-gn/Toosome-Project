@@ -63,9 +63,9 @@ public class ProductManagementController {
 		product.setProductImageVO(productImage);
 		System.out.println(product);
 		int result = service.modProduct(product);
-		if(result > 0) ra.addFlashAttribute("msg", "success");
-		else ra.addFlashAttribute("msg", "fail");
-		return "redirect:/admin/enroll-product";
+		if(result > 0) ra.addFlashAttribute("msg", "modSuccess");
+		else ra.addFlashAttribute("msg", "modFail");
+		return "redirect:/admin/product-list";
 	}
 	
 	@PostMapping("/delProduct")
@@ -74,8 +74,8 @@ public class ProductManagementController {
 		product.setProductImageVO(productImage);
 		System.out.println(product);
 		int result = service.delProduct(product);
-		if(result > 0) ra.addFlashAttribute("msg", "success");
-		else ra.addFlashAttribute("msg", "fail");
-		return "redirect:/admin/enroll-product";
+		if(result > 0) ra.addFlashAttribute("msg", "delSuccess");
+		else ra.addFlashAttribute("msg", "delFail");
+		return "redirect:/admin/product-list";
 	}
 }

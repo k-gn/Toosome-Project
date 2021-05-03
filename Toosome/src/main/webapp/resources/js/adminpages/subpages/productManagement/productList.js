@@ -208,11 +208,11 @@ const listHandler = (e) => {
 			$("#modal-isNew").val(res.productNew).prop("selected", true);			
 			$("#modal-categories").val(res.productType).prop("selected", true);			
 			$("#modal-state").val(res.productState).prop("selected", true);			
-			$("input[name=productMainTitle]").val(res.productTitleName);			
-			$("input[name=productSubTitle]").val(res.productSubName);			
+			$("input[name=productTitleName]").val(res.productTitleName);			
+			$("input[name=productSubName]").val(res.productSubName);			
 			$("input[name=productContent]").val(res.productContent);
 			$("input[name=productCheckCount]").val(res.productCheckCount);
-			$("input[name=productStartDate]").val(res.productStartDay);		
+			$("input[name=productStartDay]").val(res.productStartDay);		
 			$("#productImg").attr("src", productPath);	
 			$("input[name=oldImageName]").val(res.productImagePath);
 		}, 
