@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.menu.dao.IMenuMapper;
+import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Service
@@ -159,8 +160,35 @@ public class MenuService implements IMenuService {
 		return mapper.getSearchIatListFour(vo);
 	}
 
-	
+	@Override
+	public int saveGift(MenuVO vo) {
+		return mapper.saveGift(vo);
+	}
 
+	@Override
+	public String getMenuMainTitle(Integer id) {
+		return mapper.getMenuMainTitle(id);
+	}
+
+	@Override
+	public int giftSendOrder(MenuVO vo) {
+		return mapper.giftSendOrder(vo);
+	}
+
+	@Override
+	public MenuImageVO getMenuImagePath(Integer id) {
+		return mapper.getMenuImagePath(id);
+	}
+
+	@Override
+	public int getOrdersId(Integer id) {
+		return mapper.getOrdersId(id);
+	}
+
+	@Override
+	public int getMenuPrice(Integer id) {
+		return mapper.getMenuPrice(id);
+	}
 
 
 	

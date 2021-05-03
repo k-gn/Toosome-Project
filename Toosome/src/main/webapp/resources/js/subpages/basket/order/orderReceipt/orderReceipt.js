@@ -136,61 +136,55 @@ function lookPost(s) {
 		dataType: "text",
 		success: function(resul) {
 			console.log(resul);
-			var testData = $(".data").val(resul);
+			$(".data").val(resul);
+			var testData = $(".data").val();
+			
+			// 만약에 testData가
+			if ($(".post-text .one p").text() == testData) {
+			// 결제완료와 같다면
+			
+				$(".post-text li").removeClass("colorRed");
+				$(".post-text .one").addClass("colorRed");
+				
+			} else if ($(".post-text .two p").text() == testData) {
+			// 접수완료와 같다면
+			
+				$(".post-text li").removeClass("colorRed");
+				$(".post-text .two").addClass("colorRed");
+				
+			} else if ($(".post-text .three p").text() == testData) {
+			// 배송준비중과 같다면
+			
+				$(".post-text li").removeClass("colorRed");
+				$(".post-text .three").addClass("colorRed");
+				
+			} else if ($(".post-text .four p").text() == testData) {
+			// 배송중과 같다면
+			
+				$(".post-text li").removeClass("colorRed");
+				$(".post-text .four").addClass("colorRed");
+				
+			} else if ($(".post-text .five p").text() == testData) {
+			// 배송완료와 같다면
+			
+				$(".post-text li").removeClass("colorRed");
+				$(".post-text .five").addClass("colorRed");
+			}
 		}
 	});
-	
-	var testData = $(".data").val();
-	
-	// 만약에 testData가
-	if ($(".post-text .one p").text() == testData) {
-	// 결제완료와 같다면
-	
-		$(".post-text li").removeClass("colorRed");
-		$(".post-text .one").addClass("colorRed");
-		
-	} else if ($(".post-text .two p").text() == testData) {
-	// 접수완료와 같다면
-	
-		$(".post-text li").removeClass("colorRed");
-		$(".post-text .two").addClass("colorRed");
-		
-	} else if ($(".post-text .three p").text() == testData) {
-	// 배송준비중과 같다면
-	
-		$(".post-text li").removeClass("colorRed");
-		$(".post-text .three").addClass("colorRed");
-		
-	} else if ($(".post-text .four p").text() == testData) {
-	// 배송중과 같다면
-	
-		$(".post-text li").removeClass("colorRed");
-		$(".post-text .four").addClass("colorRed");
-		
-	} else if ($(".post-text .five p").text() == testData) {
-	// 배송완료와 같다면
-	
-		$(".post-text li").removeClass("colorRed");
-		$(".post-text .five").addClass("colorRed");
-	}
 }
 
 
-
 $(function(){
-	
-	
     $(".table-cover .under-btn").click(function () {
 	    var d = $(this).next(".none").css("display");
-	
-	    if (d == "none") {
-	      $(this).next(".none").css("display", "table");
+	if (d == "none") {
+		$(this).next(".none").css("display", "table");
 	      $(this).html("내용 감추기");
 	    } else if (d == "table") {
 	      $(this).next(".none").css("display", "none");
 	      $(this).html("내용보기");
 	    }
 	 });
-
 });
 

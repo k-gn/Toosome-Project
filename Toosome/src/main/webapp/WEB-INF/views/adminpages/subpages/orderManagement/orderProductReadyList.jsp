@@ -28,7 +28,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-danger">
-                  <h4 class=card-title>상품준비중 리스트</h4>
+                  <h4 class=card-title>접수완료 리스트</h4>
                   <div class="list-btn-box">
                     <button id="search-reset"><i class="material-icons">restart_alt</i>초기화</button>
                     <button id="search-submit"><i class="material-icons">search</i>검색</button>  
