@@ -20,6 +20,14 @@
  		alert("정상 등록되었습니다");
  	}else if(msg === "failBoard") {
  		alert("입력하신 정보가 올바르지 않습니다.");
+ 	}else if(msg === 'updateSuccess') {
+ 		alert("수정 완료");
+ 	}else if(msg === 'updateFail') {
+ 		alert("수정 실패");
+ 	}else if(msg === 'successDelete') {
+ 		alert("삭제 완료");
+ 	}else if(msg === 'failDelete') {
+ 		alert("삭제 실패");
  	}
   </script>
 </head>

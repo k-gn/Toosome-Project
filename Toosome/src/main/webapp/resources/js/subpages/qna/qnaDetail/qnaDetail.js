@@ -82,7 +82,6 @@ const updateHandler = (e, id) => {
 			qnaBoardCommentContent: commentContent
 		},
 		success: (result) => {
-			console.log(result);
 			if(result === 'updateSuccess') {
 				alert("댓글 수정 완료");
 			}else if(result === 'updateFail') {
@@ -91,7 +90,6 @@ const updateHandler = (e, id) => {
 			location.reload();
 		}, 
 		error: (e) => {
-			console.log(e);
 			alert('시스템과에 문의하세요');
 			//history.back();
 		}
