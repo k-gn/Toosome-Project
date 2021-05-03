@@ -16,7 +16,7 @@ public class OrderManagementController {
 		return "adminpages/subpages/orderManagement/orderFinishList";
 	}
 	
-	@GetMapping("/admin/order-product-readylist") // 주문 상품준비중 리스트
+	@GetMapping("/admin/order-product-readylist") // 주문 접수완료 리스트
 	public String OrderProductReadyList() {
 		return "adminpages/subpages/orderManagement/orderProductReadyList";
 	}
@@ -36,7 +36,7 @@ public class OrderManagementController {
 		return "adminpages/subpages/orderManagement/orderDeliveryFinishList";
 	}
 	
-	@GetMapping("/admin/order-confirm-finishlist") // 주문 구매확정 리스트
+	@GetMapping("/admin/order-confirm-finishlist") // 주문 기프티콘 리스트
 	public String OrderConfirmFinishList() {
 		return "adminpages/subpages/orderManagement/orderConfirmFinishList";
 	}

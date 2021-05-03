@@ -403,31 +403,6 @@
                         </th>
                       </thead>
                       <tbody>
-                     	 <c:forEach var="orderList" items="${orderList}">
-	                        <tr>
-	                          <td>
-	                            ${orderList.orderId}
-	                          </td>
-	                          <td>
-	                            ${orderList.orderState}
-	                          </td>
-	                          <td>
-	                            ${orderList.ordererId}
-	                          </td>
-	                          <td>
-	                            ${orderList.ordererName}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productName}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productCheckCount}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productPrice}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
                       </tbody>
                     </table>
                   </div>
