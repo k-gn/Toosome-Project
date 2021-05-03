@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.orderManagement.dao.IOrderManagementMapper;
 import com.web.toosome.admin.orderManagement.vo.OrderManagementVO;
+import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 
 @Service
@@ -19,5 +20,17 @@ public class OrderManagementService implements IOrderManagementService {
 	public List<OrdersVO> getOrderList(OrderManagementVO orderVO) {
 		return mapper.getOrderList(orderVO);
 	}
+
+	@Override
+	public OrdersVO getorderDetail(Integer id) {
+		return mapper.getorderDetail(id);
+	}
+	
+	@Override
+	public List<OrdersDetailVO> getorderDetailList(Integer id) {
+		return mapper.getorderDetailList(id);
+	}
+
+	
 
 }

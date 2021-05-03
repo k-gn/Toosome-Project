@@ -19,6 +19,7 @@
 		<result property="ordersProductName" column="ORDERS_PRODUCT_NAME" />	
 		<result property="ordersAmount" column="ORDERS_AMOUNT" />
 		<result property="ordersMemberEmail" column="ORDERS_MEMBER_EMAIL" />
+		
 	</resultMap>
 	
 	<resultMap type="ordersDetailVO" id="ordersDetailVO">
@@ -38,6 +39,14 @@
 	
 	<select id="getOrderList" resultMap="orderVO">
 		SELECT * FROM ORDERS
+	</select>
+	
+	<select id="getorderDetail" resultMap="orderVO">
+		SELECT * FROM ORDERS WHERE ORDERS_ID = #{id}
+	</select>
+	
+	<select id="getorderDetailList" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{id}
 	</select>
 	
 <!-- 	<select id="getOrderList" resultMap="orderVO">

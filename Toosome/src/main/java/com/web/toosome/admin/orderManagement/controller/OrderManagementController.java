@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.orderManagement.service.OrderManagementService;
 import com.web.toosome.admin.orderManagement.vo.OrderManagementVO;
+import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 
 @Controller
@@ -59,10 +61,22 @@ public class OrderManagementController {
 	@GetMapping("/admin/orderList")
 	@ResponseBody
 	public List<OrdersVO> getorderList(OrderManagementVO orderVO) {
-		System.out.println("/admin/orderList 메서드 실행");
-		System.out.println("");
-		List<OrdersVO> ordersList = orderService.getOrderList(orderVO);
-		System.out.println(ordersList);
+		System.out.println("getorderList 메서드 실행");
 		return orderService.getOrderList(orderVO);
 	}
+	
+	@GetMapping("/admin/order/{id}")
+	@ResponseBody
+	public OrdersVO getorderDetail(@PathVariable Integer id, OrderManagementVO orderVO) {
+		System.out.println("getorderDetail 메서드 실행");
+		return orderService.getorderDetail(id);
+	}
+	
+	@GetMapping("/admin/orderDetail/{id}")
+	@ResponseBody
+	public List<OrdersDetailVO> getorderDetailList(@PathVariable Integer id, OrderManagementVO orderVO) {
+		System.out.println("getorderDetailList 메서드 실행");
+		return orderService.getorderDetailList(id);
+	}
+	
 }

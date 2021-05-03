@@ -303,6 +303,7 @@ public class BasketController {
 		}
 		Integer amount = service.getbasketName(memberId).getBasketAmount();
 		order.setOrdersAmount(amount);
+		order.setOrdersMemberEmail(memberService.getUserById(memberId).getMemberEmail());
 		int result = service.orderSubmit(order);
 		if (result > 0)
 			return "success";

@@ -235,14 +235,16 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/orderx/" + id, //서버 요청 URI
+		url: "/admin/order/" + id, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			$("input[name=ordersId]").val(res.ordersId);			
-			/*$("#lvl").val(res.levelId).prop("selected", true);*/						
+			$("input[name=ordersId]").val(res.ordersId);
+			console.log(res.ordersId);
+			
+			$("#lvl").val(res.levelId).prop("selected", true);				
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');
