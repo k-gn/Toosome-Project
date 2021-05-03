@@ -17,7 +17,10 @@
 		const msg = "${msg}";
 		if(msg === "notLogin") {
 			alert("로그인이 필요한 서비스 입니다.");
+		}else if(msg === "Denied") {
+			alert("해당 권한이 없습니다.");
 		}
+			
 	</script>
 <title>A TOOSOME PLACE - Admin</title>
 </head>

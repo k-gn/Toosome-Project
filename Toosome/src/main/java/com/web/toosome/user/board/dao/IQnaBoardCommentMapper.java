@@ -17,5 +17,8 @@ public interface IQnaBoardCommentMapper {
 	
 	//댓글 수정
 	int updateQnaBoardComment(QnaBoardCommentVO vo);
+	
+	//회원 댓글 삭제
+	int delQnaCommentById(Integer id);
 
 }
