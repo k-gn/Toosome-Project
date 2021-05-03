@@ -18,5 +18,5 @@ public class QnaBoardCommentVO {
 	private String qnaBoardCommentContent;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date qnaBoardCommentDay;
-	
+	private String qnaCommentWriter;
 }

@@ -222,7 +222,7 @@ const submitHandler = () => {
 	}
 	
 	// JSON Data
-	const member = {
+	member = {
 		condition,
 		keyword,
 		memberLevel,

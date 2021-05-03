@@ -1,6 +1,7 @@
 package com.web.toosome.user.member.service;
 
 import com.web.toosome.admin.adminManagement.vo.AdminVO;
+import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberService {
@@ -55,4 +56,7 @@ public interface IMemberService {
 
 	// 최종 로그인 등록
 	public void updateLastLogin(String email);
+	
+	// 권한 찾기
+	public AuthVO getAuthById(String email);
 }

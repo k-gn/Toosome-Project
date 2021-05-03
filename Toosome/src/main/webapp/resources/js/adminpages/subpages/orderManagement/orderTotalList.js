@@ -13,6 +13,14 @@ const searchResult = document.querySelector('#search-result'); // 검색 결과 
 const memberList = document.querySelectorAll('#member-table tbody tr'); // 회원 리스트
 const profileContainer = document.querySelector('#profile-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+
+let condition = ''; // 검색 타입
+let keyword = ''; // 검색어
+let startDate = ''; // 검색 시작날짜
+let endDate = ''; // 검색 종료날짜
+let orderState = []; // 주문상태 선택
+let rows = 10000;
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -89,102 +97,82 @@ const confirmCheckAll = () => {
 	};
 };
 
-/*// AJAX 전체 리스트 불러오기
-const getAllList = () => {
-	// AJAX 요청
-	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-list", //서버 요청 URI
-		headers: {
-			"Content-Type": "application/json"
-		}, //요청 헤더 정보
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.memberId}
-                      </td>
-                      <td>
-                        ${res.platFormType}
-                      </td>
-                      <td>
-                        ${res.memberEmail}
-                      </td>
-                      <td>
-                        ${res.memberName}
-                      </td>
-                      <td>
-                        ${res.memberPhone}
-                      </td>
-                      <td>
-                        ${res.regDate}
-                      </td>
-                      <td>
-                        ${res.lastLoginDate}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
-		}, 
-		error: function() {
-			alert('시스템과에 문의하세요');
-			history.back();
-		} 
+// 리스트 출력하기
+const showList = (result, wrapper) => {
+	wrapper.innerHTML = ''; // 테이블 초기화
+	
+	// 검색 결과가 없을 경우
+	if(result.length === 0) {
+		let newItem = document.createElement('tr');
+		let itemElement = `
+			<td colspan="7">검색 결과가 없습니다.</td>
+		`;
+		newItem.innerHTML = itemElement;
+		wrapper.appendChild(newItem);
+		return;
+	};
+	
+	// loop를 돌며 element 생성 후 삽입
+	for (let i = 0; i < result.length; i++) {
+		let newEl = document.createElement('tr');
+		newEl.setAttribute( 'onclick', 'listHandler(this)'); // onClick 이벤트 세팅
+		let content = `
+          <td>
+            ${result[i].ordersId}
+          </td>
+          <td>
+            ${result[i].ordersState}
+          </td>
+          <td>
+            ${result[i].memberVO.memberEmail}
+          </td>
+          <td>
+            ${result[i].memberVO.memberName}
+          </td>
+          <td>
+            ${result[i].ordersProductName}
+          </td>
+		  <td>
+            ${result[i].ordersAmount}
+          </td>
+          <td>
+            ${result[i].ordersPayment}
+          </td>
+		`;
+		newEl.innerHTML = content;
+		wrapper.appendChild(newEl);
+	};			
+};
+
+// 페이징 처리 후 데이터 출력
+const setData = (result, wrapper, rows) => {
+	$('#pagination').pagination({
+	    dataSource: result,
+	    pageSize: rows,
+	    pageNumber: 1,
+	    callback: function(data, pagination) {
+			showList(data, wrapper);					
+	    }
 	});
-};*/
+};
 
 // AJAX 검색 리스트 불러오기
-const getList = (data) => {
+const getList = (order, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
-		type: "POST", //서버에 전송하는 HTTP요청 방식
-		url: "/member-search", //서버 요청 URI
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/ddddddddddd", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "text", //응답받을 데이터의 형태
-		data: JSON.stringify(data), //서버로 전송할 데이터
-		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			// 리스트 생성 후 삽입
-			const listTable = document.querySelector('#list-table-thead');
-			listTable.innerHTML = '';
-			result.forEach(res => {
-				let newEl = document.createElement('tr');
-				let content = `
-					<tr>
-                      <td>
-                        ${res.orderId}
-                      </td>
-                      <td>
-                        ${res.orderState}
-                      </td>
-                      <td>
-                        ${res.ordererId}
-                      </td>
-                      <td>
-                        ${res.ordererName}
-                      </td>
-                      <td>
-                        ${res.productVO.productName}
-                      </td>
-                      <td>
-                        ${res.productVO.productCheckCount}
-                      </td>
-                      <td>
-                        ${res.productVO.productPrice}
-                      </td>
-                    </tr>			
-				`;
-				newEl.innerHTML = content;
-				listTable.appendChild(newEl);
-			});		
+		dataType: "json", //응답받을 데이터의 형태
+		data: order, //서버로 전송할 데이터
+		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			// 검색 건수 출력
+			let count = `검색 결과 : ${result.length}건`
+			searchResult.innerText = count;
+			// 리스트 출력
+			setData(result, wrapper, rows);	
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
@@ -195,34 +183,20 @@ const getList = (data) => {
 
 // 검색 버튼 핸들러
 const submitHandler = () => {
-	let orderId = ''; // 주문 번호
-	let productId = ''; // 상품 번호
-	let productName = ''; // 상품명
-	let ordererName = ''; // 주문자명
-	let ordererPhone = ''; // 주문자 연락처
-	let recipientName = ''; // 수령자명
-	let recipientPhone = ''; // 수령자 연락처
-	let orderState = []; // 주문상태
-	let startOrderDate = ''; // 회원가입 검색 시작일
-	let endOrderDate = ''; // 회원가입 검색 종료일
+	condition = ''; // 검색 타입
+	keyword = ''; // 검색어
+	startDate = ''; // 검색 시작날짜
+	endDate = ''; // 검색 종료날짜
+	orderState = []; // 주문상태 선택
 	
-	// 검색어 셀렉트 박스 타입
-	if(searchInput.value !== '') {
-		switch (searchType.options[searchType.selectedIndex].value) {
-			case 'o-id' : orderId = searchInput.value; break;
-			case 'p-id' : productId = searchInput.value; break;
-			case 'p-name' : productName = searchInput.value; break;
-			case 'o-name' : ordererName = searchInput.value; break;
-			case 'o-phone' : ordererPhone = searchInput.value; break;
-			case 'r-name' : recipientName = searchInput.value; break;
-			case 'r-phone' : recipientPhone = searchInput.value; break;
-		}
-	}
+	// 검색 타입, 검색어
+	condition = searchType.options[searchType.selectedIndex].value;
+	keyword = searchInput.value; 
 	
 	// 가입일자
 	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
-		startOrderDate = moment(orderCalendar.value).format('YYYY-MM-DD');
-		endOrderDate = moment(orderCalendar2.value).format('YYYY-MM-DD');
+		startDate = moment(orderCalendar.value).format('YYYY-MM-DD');
+		orderState = moment(orderCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// 주문상태 체크박스
@@ -233,41 +207,47 @@ const submitHandler = () => {
 	});
 
 	// JSON Data
-	const data = {
-		orderId,
-		productId,
-		productName,
-		ordererName,
-		ordererPhone,
-		recipientName,
-		recipientPhone,
+	order = {
+		condition,
+		keyword,
+		startDate,
+		endDate,
 		orderState,
-		startOrderDate,
-		endOrderDate
 	};
 	
-	console.log(data);
-	/*getList(data);*/
+	rows = 10000;
+	getList(order, listTable, rows);/
 };
 
+// 검색 버튼 event hook
 submitBtn.addEventListener('click', submitHandler);
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const tr = e.target.parentNode;
-	const tds = tr.children;
-	const index = tds[0].innerText;
+	const tds = e.children;
+	const id = tds[0].innerText;
 	
 	/* index로 AJAX 요청 */
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/ddddddddddddd" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			$("input[name=ordersId]").val(res.ordersId);			
+			/*$("#lvl").val(res.levelId).prop("selected", true);*/						
+		}, 
+		error: () => {
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
 	
 	profileContainer.style.display = 'block';
-	
+	$("input[name=memberName]").focus();	
 };
-
-// loop 돌며 list에 event hook
-memberList.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
 
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
@@ -330,8 +310,18 @@ const excelDownload = (id, title) => {
 	}
 };
 
+// 정렬 select 핸들러
+const selectHandler = (select) => {
+	// selected value
+	let value = select.options[select.selectedIndex].value;
+	
+	// init
+	rows = +value;
+	getList(order, listTable, rows);
+};
+
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-/*	getAllList();*/
+	/*getList(order, listTable, rows); 테스트시 주석 해제 */
 }); 

@@ -86,6 +86,9 @@ public class LoginController {
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
+			session.setAttribute("name", member.getMemberName());
+			session.setAttribute("auth", member.getAuthList().get(0).getMemberAuth());
+			
 			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			naverLoginBO.deleteToken(oauthToken.getAccessToken());
@@ -142,6 +145,9 @@ public class LoginController {
 			session.setAttribute("id", member.getMemberId());
 			session.setAttribute("email", email);
 			session.setAttribute("platform", member.getPlatFormType());
+			session.setAttribute("name", member.getMemberName());
+			session.setAttribute("auth", member.getAuthList().get(0).getMemberAuth());
+			
 			out.println("<script>window.opener.location.href='" + url + "';self.close();</script>");
 		} else {
 			KakaoLoginApi.deleteToken(code, accessToken);
@@ -165,14 +171,13 @@ public class LoginController {
 		return "subpages/signin/findPwd/findPwd";
 	}
 
-	// access denied control
-	@GetMapping("/accessErrorAdmin")
-	public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
-		ra.addFlashAttribute("msg", "Denied");
-		return "redirect:/admin";
-	}
+    @GetMapping("/accessErrorAdmin")
+    public String accessDeniedAdmin(Authentication auth, RedirectAttributes ra) {
+        ra.addFlashAttribute("msg", "Denied");
+        return "redirect:/admin/signin";
+    }
 
-	@GetMapping("/accessErrorMember")
+    @GetMapping("/accessErrorMember")
 	public String accessDeniedMember(Authentication auth, RedirectAttributes ra) {
 		ra.addFlashAttribute("msg", "Denied");
 		return "redirect:/";

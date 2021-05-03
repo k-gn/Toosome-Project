@@ -17,6 +17,12 @@
 <script
 	src="/resources/js/adminpages/subpages/productManagement/enrollProduct.js"
 	defer></script>
+	<script type="text/javascript">
+	    const msg = "${msg}";
+		if(msg === "success") {
+			alert("상품 등록 완료");
+		}
+	 </script>
 </head>
 
 <body>
@@ -39,12 +45,12 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form enctype="multipart/form-data">
+		                  <form role='form' enctype="multipart/form-data" action="/admin/addProduct?${_csrf.parameterName}=${_csrf.token}" method="post">
 		                    <div class="row">
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품이름</label>
-		                          <input type="text" id="name1" name="productMainTitle" class="form-control">
+		                          <input type="text" id="name1" name="productTitleName" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -52,7 +58,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">상품이름(상세)</label>
-		                          <input type="text" id="name2" name="productSubTitle" class="form-control">
+		                          <input type="text" id="name2" name="productSubName" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>

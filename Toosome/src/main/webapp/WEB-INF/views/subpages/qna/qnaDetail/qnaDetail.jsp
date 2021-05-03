@@ -15,17 +15,7 @@
 	  		location.reload();
 	  	} else if (msg === "updateFail") {
 	  		alert("댓글 등록 실패");
-	  	} else if (msg === "deleteSuccess") {
-	  		alert("댓글 삭제 완료");
-	  		location.reload();
-	  	} else if (msg === "deleteFail") {
-	  		alert("댓글 삭제 실패");
-	  	} else if (msg === "updateSuccess") {
-	  		alert("댓글 수정 완료");
-	  		location.reload();
-	  	} else if (msg === "updateFail") {
-	  		alert("댓글 수정 실패");
-	  	}
+	  	} 
 	</script>
 </head>
 <body>
@@ -88,6 +78,7 @@
 	        	</table>
 	        	<input id="qnaBoardId" type="hidden" name="qnaQnaBoardId" />
 	        	<input name="memberMemberCommentId" type="hidden" value="${id}"/>
+	        	<input name="qnaCommentWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
         	</form>
         </section>
 		<!-- section end -->
