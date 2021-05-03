@@ -150,6 +150,18 @@
 
 					<form action="#" method="get" class="form2">
 						<ul class="comment-end">
+						<div id="reviewBoardList">
+  						<ol class="reviewBoardList">
+					    <c:forEach items="${reviewBoardList}" var="reviewBoardList">
+					      <li>
+					        <p>
+					     	  작성자 : ${reviewList.reviewBoardWriter}<br />
+					      	  작성 날짜 :  <fmt:formatDate value="${reviewList.reviewBoardRegDate}" pattern="yyyy-MM-dd" />
+					        </p>
+					
+					        <p>${reviewList.reviewBoardContent}</p>
+					      </li>
+					    </c:forEach>
 						</ul>
 						<!--
 						<ul class="comment-end">
@@ -163,20 +175,6 @@
 								<span class="dat">2021.04.01</span></li>
 						</ul>
 						 -->
-						 <div id="reviewBoardId">
-  <ol class="reviewBoardList">
-    <c:forEach items="${reviewBoardList}" var="reviewBoardList">
-      <li>
-        <p>
-        작성자 : ${reviewBoardList.reviewBoardWriter}<br />
-        작성 날짜 :  <fmt:formatDate value="${reviewBoardList.reviewBoardRegDate}" pattern="yyyy-MM-dd" />
-        </p>
-
-        <p>${replyList.reviewBoardContent}</p>
-      </li>
-    </c:forEach>   
-  </ol>
-</div>
 					</form>
 				</div>
 			</div>

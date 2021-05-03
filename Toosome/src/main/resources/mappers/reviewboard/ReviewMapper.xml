@@ -7,12 +7,16 @@
 	<resultMap type="reviewBoardVO" id="reviewBoardVO">
 		<id property="reviewBoardId" column="REVIEW_BOARD_ID" />
 		<result property="productId" column="PRODUCT_ID" />
-		<result property="reviewBoardWriter" column="REVIEW_BOARD_WRITER" />
-		<result property="reviewBoardContent" column="REVIEW_BOARD_CONTENT" />
-		<result property="reviewBoardRegDate" column="REVIEW_BOARD_REG_DATE" />
-		<result property="reviewBoardURegDate" column="REVIEW_BOARD_U_REG_DATE" />
+		<result property="reviewBoardWriter"
+			column="REVIEW_BOARD_WRITER" />
+		<result property="reviewBoardContent"
+			column="REVIEW_BOARD_CONTENT" />
+		<result property="reviewBoardRegDate"
+			column="REVIEW_BOARD_REG_DATE" />
+		<result property="reviewBoardURegDate"
+			column="REVIEW_BOARD_U_REG_DATE" />
 	</resultMap>
-	
+
 	<resultMap type="productVO" id="productVO">
 		<result property="productId" column="PRODUCT_ID" />
 		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
@@ -21,31 +25,44 @@
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
 		<result property="productRegDate" column="PRODUCT_REG_DATE" />
-		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
-		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
-		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
-		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productReceivedAmount"
+			column="PRODUCT_RECEIVED_AMOUNT" />
+		<result property="productReceivedPrice"
+			column="PRODUCT_RECEIVED_PRICE" />
+		<result property="productLimitAmount"
+			column="PRODUCT_LIMIT_AMOUNT" />
 		<result property="productStartDay" column="PRODUCT_START_DAY" />
-		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
+		<result property="productCheckCount"
+			column="PRODUCT_CHECK_COUNT" />
 		<result property="productState" column="PRODUCT_STATE" />
 		<result property="productNew" column="PRODUCT_NEW" />
 		<result property="productOnoff" column="PRODUCT_ONOFF" />
+		<collection property="productImageVO"
+			resultMap="productImageVO" />
 	</resultMap>
-	
-<!-- 	
+
+
 	<select id="reviewCount" resultType="int">
-    SELECT COUNT(*) FROM REVIEW_BOARD
+		SELECT COUNT(*) FROM REVIEW_BOARD
 	</select>
--->	
+
 	<select id="reviewList" resultType="reviewBoardVO">
-        SELECT REVIEW_BOARD_ID, REVIEW_BOARD_WRITER, REVIEW_BOARD_CONTENT, REVIEW_BOARD_REG_DATE
-    	FROM REVIEW_BOARD
-    	WHERE PRODUCT_ID = #{productId}
+		SELECT A.REVIEW_BOARD_ID,
+		A.PRODUCT_ID,
+		A.REVIEW_BOARD_WRITER,
+		A.REVIEW_BOARD_CONTENT,
+		A.REVIEW_BOARD_REG_DATE,
+		B.PRODUCT_ID
+		FROM REVIEW_BOARD A
+		INNER JOIN PRODUCT B ON(A.PRODUCT_ID = B.PRODUCT_ID)
+		WHERE A.PRODUCT_ID = #{productId}
+		ORDER BY A.REVIEW_BOARD_REG_DATE DESC
 	</select>
-<!--		
-	<insert id="reviewInsert" parameterType="reviewBoardVO">
-		
-			<selectKey keyProperty="reviewBoardId" order="BEFORE" resultType="int">
+
+	<insert id="reviewInsert">
+
+		<selectKey keyProperty="reviewBoardId" order="BEFORE"
+			resultType="int">
 			SELECT NVL(MAX(REVIEW_BOARD_ID), 0)+1 FROM REVIEW_BOARD
 		</selectKey>
 		INSERT INTO REVIEW_BOARD (
@@ -58,17 +75,16 @@
 		) VALUES (
 		#{reviewBoardId},#{productId},#{reviewBoardWriter},#{reviewBoardContent},#{reviewBoardRegDate},#{reviewBoardURegDate})
 	</insert>
--->	
-<!--	
-	<update id="reviewUpdate" parameterType="reviewBoardVO">
-		UPDATE REVIEW_BOARD SET REVIEW_BOARD_CONTENT = #{reviewBoardContent}
+
+	<update id="reviewUpdate">
+		UPDATE REVIEW_BOARD SET REVIEW_BOARD_CONTENT =
+		#{reviewBoardContent}
 		WHERE REVIEW_BOARD_ID = #{reviewBoardId}
 	</update>
-	-->	
-<!--	
-	<delete id="reviewDelete" parameterType="int">
-		DELETE FROM REVIEW_BOARD WHERE REVIEW_BOARD_ID = #{reviewBoardId}
+
+	<delete id="reviewDelete">
+		DELETE FROM REVIEW_BOARD WHERE REVIEW_BOARD_ID =
+		#{reviewBoardId}
 	</delete>
--->	
 
 </mapper>

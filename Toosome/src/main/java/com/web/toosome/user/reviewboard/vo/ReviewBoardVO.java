@@ -2,7 +2,7 @@ package com.web.toosome.user.reviewboard.vo;
 
 import java.util.Date;
 
-import com.web.toosome.user.product.vo.ProductVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -17,7 +17,9 @@ public class ReviewBoardVO {
 //	private int reviewBoardRating; //별점
 //	private Integer reviewBoardRefGroup;
 //	private Integer reviewBoardType; // 어디 메뉴/상품에 코멘트 남겼는지 확인
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date reviewBoardRegDate; // 댓글 작성 시간
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date reviewBoardURegDate;
 //	private String reviewBoardImageRoute; // 별점 이미지 경로
 
