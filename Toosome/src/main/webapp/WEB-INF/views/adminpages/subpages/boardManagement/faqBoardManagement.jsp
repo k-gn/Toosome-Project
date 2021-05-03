@@ -8,7 +8,9 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/boardManagement/faqBoardManagement.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/faqBoardManagement.js" defer></script>
 </head>
@@ -102,13 +104,13 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">글번호</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="text" name="faqBoardId" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-8">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="faqBoardRegDate" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -116,7 +118,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">질문</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="faqBoardTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -125,7 +127,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">답변</label>
-		                            <textarea class="form-control" rows="5"></textarea>
+		                            <textarea class="form-control" name="faqBoardContent" rows="5"></textarea>
 		                          </div>
 		                        </div>
 		                      </div>
@@ -134,6 +136,7 @@
 		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
 		                    <button id="delete" class="btn btn-primary pull-right btn-r">삭제</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="faqBoardId" />
 		                  </form>
 		                </div>
 		             </div>
@@ -159,7 +162,7 @@
 				                  <h4 class="info-title">질문</h4>
 				                  <div class="form-group">
 				                    <div class="form-group">
-	                                  <textarea class="form-control" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                  <textarea class="form-control" name="faqBoardTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                                </div>
 				                  </div>
 				                </div>
@@ -171,13 +174,13 @@
 				                <h4 class="info-title">답변</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                <textarea class="form-control" name="faqBoardContent" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">업데이트</button>
+				          <button type="submit" class="btn btn-primary pull-right">등록</button>
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
 			        </form>
@@ -199,7 +202,8 @@
     					글등록
 					</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -218,7 +222,7 @@
                    		<col width="50%">
                    		<col width="10%">
                       </colgroup>
-                      <thead class="text-primary" id="list-table-thead">
+                      <thead class="text-primary text-center" id="list-table-thead">
                         <th>
                           글번호
                         </th>
@@ -232,25 +236,10 @@
                           작성일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="faqBoardList" items="${faqBoardList}">
-	                        <tr>
-	                          <td>
-	                            ${faqBoardList.faqBoardId}
-	                          </td>
-	                          <td>
-	                            ${faqBoardList.faqBoardTitle}
-	                          </td>
-	                          <td>
-	                            ${faqBoardList.faqBoardContent}
-	                          </td>
-	                          <td>
-	                            ${faqBoardList.faqBoardRegdate}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-body" class="text-center">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

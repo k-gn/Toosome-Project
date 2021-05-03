@@ -274,6 +274,7 @@
 				            </div>
 				          </div>
 				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right btn-r">등록</button>
+				          <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button> 
 				        </div>
 			        </form>
 			      </div>
@@ -317,7 +318,7 @@
                    		<col width="15%">
                    		<col width="5%">
                       </colgroup>
-                      <thead class="text-primary text-center" id="list-table-thead">
+                      <thead class="text-primary text-center">
                         <th>
                           글번호
                         </th>

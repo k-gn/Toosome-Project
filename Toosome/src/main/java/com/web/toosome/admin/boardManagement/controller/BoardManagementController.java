@@ -258,7 +258,7 @@ public class BoardManagementController {
 		return noticedetail;
 	}
 	
-	@GetMapping(value = "/admin/noticeboard-insert")//공지사항 insert
+	@PostMapping(value = "/admin/noticeboard-insert")//공지사항 insert
 	public String insertNotice(NoticeBoardVO vo, RedirectAttributes ra){
 		
 		int intsertnotice = noticeboardservice.insertNotice(vo);
@@ -271,15 +271,15 @@ public class BoardManagementController {
 		return "redirect:/admin/noticeboard-management";
 	}
 	
-	@GetMapping(value = "/admin/noticeboard-update")//공지사항 update
+	@PostMapping(value = "/admin/noticeboard-update")//공지사항 update
 	public String updateNotice(NoticeBoardVO vo, RedirectAttributes ra){
 		
 		int updatenotice = noticeboardservice.updateNotice(vo);
 		
 		if(updatenotice > 0) {
-			ra.addFlashAttribute("msg", "successBoard");
+			ra.addFlashAttribute("msg", "updateSuccess");
 		}else {
-			ra.addFlashAttribute("msg", "failBoard");
+			ra.addFlashAttribute("msg", "updateFail");
 		}			
 		return "redirect:/admin/noticeboard-management";
 	}
@@ -290,9 +290,9 @@ public class BoardManagementController {
 		int deletenotice = noticeboardservice.deleteNotice(vo);
 		
 		if(deletenotice > 0) {
-			ra.addFlashAttribute("msg", "successBoard");
+			ra.addFlashAttribute("msg", "deleteSuccess");
 		}else {
-			ra.addFlashAttribute("msg", "failBoard");
+			ra.addFlashAttribute("msg", "deleteFail");
 		}			
 		return "redirect:/admin/noticeboard-management";
 	}

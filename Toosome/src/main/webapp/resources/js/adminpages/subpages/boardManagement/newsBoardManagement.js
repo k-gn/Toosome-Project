@@ -8,9 +8,87 @@ const newsCalendar2 = document.querySelector('#calendar2'); // 작성일 달력2
 const resetBtn = document.querySelector('#search-reset'); // 검색 초기화 버튼
 const submitBtn = document.querySelector('#search-submit'); // 검색 버튼
 const searchResult = document.querySelector('#search-result'); // 검색 결과 건수
-const lists = document.querySelectorAll('#list-table tbody tr'); // 리스트
 const boardContainer = document.querySelector('#board-modal'); // 프로필 컨테이너
 const modalCancelBtn = document.querySelector('#modal-cancel'); // 모달 취소 버튼
+const listTable = document.querySelector('#list-table-tbody'); // 테이블
+const enrollSubmitBtn = document.querySelector('#enroll-submit'); // 글등록 버튼
+const updateSubmitBtn = document.querySelector('#update-submit'); // 업데이트 버튼
+
+
+let board = {};
+let condition = ''; // 검색 타입
+let keyword = ''; // 검색 제목
+let startRegDate = ''; // 검색 시작일
+let endRegDate = ''; // 검색 종료일
+let rows = 10000;
+let boardId = '';
+
+// 글 등록 유효성 검사
+const enrollCheck = (title,thumb,image,startDate,endDate) => {
+	if(title.value === '') {
+		alert('제목 입력란이 비어있습니다.');
+		title.focus();
+		return false;
+	} else if(startDate.value === '') {
+		alert('이벤트 시작일을 선택하세요.');
+		startDate.focus();
+		return false;
+	} else if (endDate.value === '') {
+		alert('이벤트 종료일을 선택하세요.');
+		endDate.focus();
+		return false;
+	} else if (startDate.value > endDate.value) {
+		alert('이벤트 시작일은 종료일보다 이후일 수 없습니다');
+		startDate.focus();
+		return false;
+	} else if (thumb.value === '') {
+		alert('썸네일 이미지를 선택하세요.');
+		thumb.focus();
+		return false;
+	} else if (image.value === '') {
+		alert('본문 이미지를 선택하세요.');
+		image.focus();
+		return false;
+	};
+	return true;
+};
+
+// 업데이트 유효성 검사
+const updateCheck = (title,startDate,endDate) => {
+	if(title.value === '') {
+		alert('제목 입력란이 비어있습니다.');
+		title.focus();
+		return false;
+	} else if(startDate.value === '') {
+		alert('이벤트 시작일을 선택하세요.');
+		startDate.focus();
+		return false;
+	} else if (endDate.value === '') {
+		alert('이벤트 종료일을 선택하세요.');
+		endDate.focus();
+		return false;
+	} else if (startDate.value > endDate.value) {
+		alert('이벤트 시작일은 종료일보다 이후일 수 없습니다');
+		startDate.focus();
+		return false;
+	}
+	return true;
+};
+
+// 글등록 버튼 event hook
+enrollSubmitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	const e_title = document.querySelector('#enroll-title');
+	const e_thumb = document.querySelector('#enroll-thumb');
+	const e_image = document.querySelector('#enroll-image');
+	
+	if(!enrollCheck(e_title,e_thumb,e_image,eventCalendar3,eventCalendar4)) {
+		return;
+	} else {
+		document.querySelector('#enroll-form').submit();
+	}
+});
+
 
 // 기간선택 handler
 const changeHandler = (e) => {
@@ -223,10 +301,6 @@ const listHandler = (e) => {
 	
 };
 
-// loop 돌며 list에 event hook
-lists.forEach(list => {
-	list.addEventListener('click', listHandler);
-});
 
 // 모달 취소 버튼 핸들러
 modalCancelBtn.addEventListener('click', (e) => {
