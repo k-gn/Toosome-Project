@@ -214,6 +214,7 @@ const listHandler = (e) => {
 			$("input[name=productCheckCount]").val(res.productCheckCount);
 			$("input[name=productStartDate]").val(res.productStartDay);		
 			$("#productImg").attr("src", productPath);	
+			$("input[name=oldImageName]").val(res.productImagePath);
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');

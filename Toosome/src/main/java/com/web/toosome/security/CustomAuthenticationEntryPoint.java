@@ -16,7 +16,12 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 			AuthenticationException authException) throws IOException, ServletException {
 		String uri = request.getRequestURI();
 		String referer = request.getHeader("Referer");
-		if(referer != null && referer.contains("productDetail")) {
+		if(request.getQueryString() != null) {
+			uri = uri + "?" + request.getQueryString();
+			referer = referer + "?" + request.getQueryString();
+		}
+		
+		if(referer != null && referer.contains("Detail")) {
 			request.getSession().setAttribute("prevURI", referer);
 		}else {
 			request.getSession().setAttribute("prevURI", uri);

@@ -22,16 +22,16 @@ const content = document.querySelector("#content");
 const file = document.querySelector("#file");
 
 const FormCheck = (e) => {
-
+	
 	let formObj = $("form[role='form']");
 	const num_check=/^[0-9]*$/;
 	e.preventDefault();
 	if(name1.value === "" || name1.value.length < 2) {
-		alert("메뉴이름값이 올바르지 않습니다.(3글자 이상)");
+		alert("상품이름값이 올바르지 않습니다.(3글자 이상)");
 	}else if(name2.value === "" || name2.value.length < 2) {
-		alert("메뉴이름(서브)값이 올바르지 않습니다.");
+		alert("상품이름(서브)값이 올바르지 않습니다.");
 	}else if(price.value === "" || !num_check.test(price.value)) {
-		alert("메뉴가격이 올바르지 않습니다.");
+		alert("상품가격이 올바르지 않습니다.");
 	}else if(category.value === "") {
 		alert("카테고리가 올바르지 않습니다.");
 	}else if(count.value === "" || !num_check.test(count.value)) {
@@ -42,7 +42,10 @@ const FormCheck = (e) => {
 		alert("신메뉴여부가 올바르지 않습니다.");
 	}else if(file.value === "") {
 		alert("파일을 선택해주세요.");
+	}else if(content.value === "" || content.value.length < 5) {
+		alert("상품 내용이 올바르지 않습니다.");
 	}else {
+		console.log("submit");
 		formObj.submit();
 	}
 

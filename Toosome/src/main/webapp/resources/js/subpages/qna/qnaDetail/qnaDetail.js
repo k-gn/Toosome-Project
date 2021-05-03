@@ -43,14 +43,19 @@ const deleteHandler = (id) => {
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "json", //응답받을 데이터의 형태
+		dataType: "text", //응답받을 데이터의 형태
 		data: {qnaBoardCommentId: id}, //서버로 전송할 데이터
-		success: () => {
+		success: (result) => {
+			if(result === 'deleteSuccess') {
+				alert("댓글 삭제 완료");
+			}else if(result === 'deleteFail') {
+				alert("댓글 삭제 실패");
+			}
 			location.reload();
 		},
 		error: () => {
 			alert('시스템과에 문의하세요');
-			history.back();
+			//history.back();
 		}
 	});
 };
@@ -70,18 +75,25 @@ const updateHandler = (e, id) => {
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
-		dataType: "json", //응답받을 데이터의 형태
+		dataType: "text", //응답받을 데이터의 형태
 		data: { //서버로 전송할 데이터
 			qnaBoardCommentId: id,
 			qnaBoardCommentTitle: commentTitle,
 			qnaBoardCommentContent: commentContent
 		},
-		success: () => {
+		success: (result) => {
+			console.log(result);
+			if(result === 'updateSuccess') {
+				alert("댓글 수정 완료");
+			}else if(result === 'updateFail') {
+				alert("댓글 수정 실패");
+			}
 			location.reload();
 		}, 
-		error: () => {
+		error: (e) => {
+			console.log(e);
 			alert('시스템과에 문의하세요');
-			history.back();
+			//history.back();
 		}
 	});
 };
@@ -137,13 +149,18 @@ const displayDetail = (title, content, c_content, item, index) => {
 			
 		} else {
 			for(let i=0; i<item[0].qnaBoardComment.length; i++) {
+				
+				let style = '';
+				if(item[0].qnaBoardComment[i].qnaCommentWriter === '관리자') {
+					style = "style='color:blue;'";
+				}
 				// 받은 데이터로 새 댓글 타이틀 생성 후 삽입
 				let commentId = item[0].qnaBoardComment[i].qnaBoardCommentId;
 				let title = item[0].qnaBoardComment[i].qnaBoardCommentTitle;
 				let newCommentTitle = document.createElement('tr');
 				let c_titleElements = `
 					<td scope="col">제목: ${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ? `<input type="text" value=${title} />`: title}</td>
-					<td scope="col">작성자: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
+					<td scope="col" ${style}>작성자: ${item[0].qnaBoardComment[i].qnaCommentWriter}</td>
 					<td scope="col">작성일: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
 					${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ?
 					 `<td><button class="comment-btn" onclick="deleteHandler(${commentId});">삭제</button></td><td><button class="comment-btn" onclick="updateHandler(this,${commentId});">수정</button></td>` 
