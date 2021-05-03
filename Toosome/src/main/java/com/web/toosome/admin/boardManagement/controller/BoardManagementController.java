@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.toosome.admin.boardManagement.service.IEventAdminService;
+import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
+import com.web.toosome.user.board.vo.NewsBoardDetailVO;
+import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 
@@ -32,6 +35,9 @@ public class BoardManagementController {
 	
 	@Autowired
 	private INoticeAdminService noticeboardservice;
+	
+	@Autowired
+	private INewsAdminService newsadminservice;
 	
 	@Autowired
 	private S3Service awsS3;
@@ -51,14 +57,13 @@ public class BoardManagementController {
 	@ResponseBody
 	public EventBoardVO eventBoardDetail(@PathVariable Integer id){
 		EventBoardVO detail = eventboardservice.eventBoardDetail(id);
-	
 		return detail;
 	}
 	
 	
 	//관리자 이벤트 게시판 리스트 값 
 	
-	@GetMapping(value = "/admin/eventboardmanagement" , produces = "application/json")// 이벤트 공지 게시판 진행중 이벤트 화면 값 넘기기
+	@GetMapping(value = "/admin/eventboardmanagement" , produces = "application/json")
 	@ResponseBody
 	public List<EventBoardVO> EventBoardManagement(EventBoardVO vo){
 		List<EventBoardVO> adminevent = eventboardservice.getEventBoard(vo);
@@ -176,6 +181,12 @@ public class BoardManagementController {
 			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 			System.out.println(key);
 			awsS3.upload(file, key);
+			
+			if(up >0) {
+				ra.addFlashAttribute("msg", "updateseccess");
+				}else {
+					ra.addFlashAttribute("msg", "updatefail");
+				}
 		}
 			
 		
@@ -197,38 +208,21 @@ public class BoardManagementController {
 			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
+		
+			if(up2 > 0) {
+				ra.addFlashAttribute("msg", "updateseccess");
+				}else {
+					ra.addFlashAttribute("msg", "updatefail");
+				}
 		}
 		
 		if(vo.getUploadFile().getSize()== 0 && vvo.getUploadFile2().getSize() == 0) {
 			eventboardservice.updateEventText(vo);
+			ra.addFlashAttribute("msg", "updateseccess");
 		}
 		
 		
 		System.out.println("DB 파일 update구문 완료");
-	
-/*
-		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
-			File convFile = new File(vo.getUploadFile().getOriginalFilename());
-			vo.getUploadFile().transferTo(convFile);
-			File file = convFile;
-			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
-			System.out.println(key);
-			awsS3.upload(file, key);
-			
-		//두번쨰 이미지	
-			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
-			vvo.getUploadFile2().transferTo(convFile2);
-			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
-			System.out.println(key2);
-			awsS3.upload(file2, key2);
-			
-			if(up >0 && up2>0) {
-				ra.addFlashAttribute("msg", "successBoard");
-			}else {
-				ra.addFlashAttribute("msg", "failBoard");
-			}
-		*/
 			
 		return "redirect:/admin/eventboard-management";
 	}
@@ -298,9 +292,130 @@ public class BoardManagementController {
 		return "redirect:/admin/noticeboard-management";
 	}
 	
-	@GetMapping("/admin/newsboard-management") // 뉴스 게시판 관리
-	public String NewsBoardManagement() {
+	@RequestMapping("/admin/newsboard-management") // 뉴스 게시판 관리
+	public String NewsBoardManagementView() {
 		return "adminpages/subpages/boardManagement/newsBoardManagement";
+	}
+	
+	@GetMapping(value = "/admin/newsboardmanagement" , produces = "application/json")// 뉴스 관리자 게시물리스트 값
+	@ResponseBody
+	public List<NewsBoardVO> getEventList(NewsBoardVO vo){
+		List<NewsBoardVO> eventlist = newsadminservice.getNewsList(vo);
+		return eventlist;
+	}
+	
+	@GetMapping(value="/admin/newsboardsearch" , produces = "application/json") // 뉴스관리자 게시물 검색기능
+	@ResponseBody
+	public List<NewsBoardVO> searchEventList(BoardSearchVO vo){
+		List<NewsBoardVO> searchevent = newsadminservice.searchNewsBoard(vo);
+		return searchevent;
+	}
+	
+	@GetMapping(value="/admin/newsboard-insert") // 뉴스관리자 게시물 insert
+	public String insertNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vo.setNewsBoardImageRoute("img/pages/subpages/news/");
+		vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		
+		vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vvo.setNewsBoardDetailImageRoute("img/pages/subpages/news/");
+		vvo.setNewsBoardDetailImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		
+		int in = newsadminservice.insertNewsBoard(vo); 
+		int in2 = newsadminservice.insertNewsBoardDetail(vvo);  
+		
+		
+		//파일 변환 업로드	
+		File convFile = new File(vo.getUploadFile().getOriginalFilename());
+		vo.getUploadFile().transferTo(convFile);
+		File file = convFile;
+		String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName()+"."+vo.getNewsBoardImageExtention();
+		System.out.println(key);
+		// 파일 업로드 메서드
+		awsS3.upload(file, key);
+		
+		
+		if(in > 0 && in2 > 0 ) {
+			ra.addFlashAttribute("msg", "insertSeccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		return "redirect:/admin/newsboard-management";
+	}
+	
+	@GetMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
+	public String deleteNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) {
+	   
+		//해당 파일 경로 정보
+		NewsBoardVO selectfile = newsadminservice.selectFile(vo);
+	
+		//해당 파일 경로
+		String key = selectfile.getNewsBoardImageRoute()+selectfile.getNewsBoardImageName()+"."+selectfile.getNewsBoardImageExtention();
+		
+		//파일제거 메서드
+		awsS3.delete(key);
+		
+		int del = newsadminservice.deleteNewsBoard(vo);
+		int del2 = newsadminservice.deleteNewsBoardDetail(vvo);
+		
+		if(del >0 && del2 >0) {
+			ra.addFlashAttribute("msg", "deleteSeccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		return "redirect:/admin/newsboard-management";
+	}
+	
+	@GetMapping(value="/admin/newsboard-update") // 이벤트 게시물 update
+	public String updateNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		//파일 조회후 삭제
+		if(vo.getUploadFile().getSize() != 0) { //파일이 존재 할경우
+		NewsBoardVO fvo = newsadminservice.selectFile(vo);
+		String rote= fvo.getNewsBoardImageRoute()+fvo.getNewsBoardImageName()+"."+fvo.getNewsBoardImageExtention();
+		awsS3.delete(rote);
+		
+		//DB 업데이트 구문 실행
+		vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vo.setNewsBoardImageRoute("img/pages/subpages/news/");
+		vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		
+		vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vvo.setNewsBoardDetailImageRoute("img/pages/subpages/news/");
+		vvo.setNewsBoardDetailImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		
+		
+		int up = newsadminservice.updateNewsBoard(vo);
+		int up2 = newsadminservice.deleteNewsBoardDetail(vvo);
+		
+		File convFile = new File(vo.getUploadFile().getOriginalFilename());
+		vo.getUploadFile().transferTo(convFile);
+		File file = convFile;
+		String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName()+"."+vo.getNewsBoardImageExtention();
+		System.out.println(key);
+		awsS3.upload(file, key);
+		if(up >0 && up2 > 0) {
+		ra.addFlashAttribute("msg", "updateseccess");
+		}else {
+			ra.addFlashAttribute("msg", "updatefail");
+		}
+		}
+		
+		if(vo.getUploadFile().getSize() == 0) { //파일을 건드리지 않고 업데이트 할경우
+			
+		int up = newsadminservice.updateNewsBoardText(vo); 
+		int up2= newsadminservice.updateNewsBoardDetailText(vvo);		
+		
+		
+		if(up >0 && up2 > 0) {
+			ra.addFlashAttribute("msg", "updateseccess");
+			}else {
+				ra.addFlashAttribute("msg", "updatefail");
+			}	
+		}
+	
+		return "redirect:/admin/newsboard-management";
 	}
 	
 	@GetMapping("/admin/faqboard-management") // faq 게시판 관리
