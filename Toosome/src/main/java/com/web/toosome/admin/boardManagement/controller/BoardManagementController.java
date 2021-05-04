@@ -350,7 +350,7 @@ public class BoardManagementController {
 		
 		
 		if(in > 0 && in2 > 0 ) {
-			ra.addFlashAttribute("msg", "insertSeccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
@@ -373,7 +373,7 @@ public class BoardManagementController {
 		int del2 = newsadminservice.deleteNewsBoardDetail(vvo);
 		
 		if(del >0 && del2 >0) {
-			ra.addFlashAttribute("msg", "deleteSeccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
@@ -409,7 +409,7 @@ public class BoardManagementController {
 		System.out.println(key);
 		awsS3.upload(file, key);
 		if(up >0 && up2 > 0) {
-		ra.addFlashAttribute("msg", "updateseccess");
+		ra.addFlashAttribute("msg", "updatesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "updatefail");
 		}
@@ -422,7 +422,7 @@ public class BoardManagementController {
 		
 		
 		if(up >0 && up2 > 0) {
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updatesuccess");
 			}else {
 				ra.addFlashAttribute("msg", "updatefail");
 			}	

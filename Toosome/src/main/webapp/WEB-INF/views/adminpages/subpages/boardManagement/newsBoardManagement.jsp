@@ -16,17 +16,17 @@
   <script src="/resources/js/adminpages/subpages/boardManagement/newsBoardManagement.js" defer></script>
   <script type="text/javascript">
  	const msg = "${msg}";
- 	if(msg === "successBoard") {
+ 	if(msg === "insertsuccess") {
  		alert("정상 등록되었습니다");
- 	}else if(msg === "failBoard") {
+ 	}else if(msg === "insertfail") {
  		alert("입력하신 정보가 올바르지 않습니다.");
- 	}else if(msg === 'updateSuccess') {
+ 	}else if(msg === 'updatesuccess') {
  		alert("수정 완료");
- 	}else if(msg === 'updateFail') {
+ 	}else if(msg === 'updatefail') {
  		alert("수정 실패");
- 	}else if(msg === 'successDelete') {
+ 	}else if(msg === 'deletesuccess') {
  		alert("삭제 완료");
- 	}else if(msg === 'failDelete') {
+ 	}else if(msg === 'deletefail') {
  		alert("삭제 실패");
  	}
   </script>
