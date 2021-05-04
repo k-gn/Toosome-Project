@@ -18,6 +18,7 @@ import com.web.toosome.admin.boardManagement.service.IEventAdminService;
 import com.web.toosome.admin.boardManagement.service.IFaqAdminService;
 import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
+import com.web.toosome.admin.boardManagement.service.IQnaAdminService;
 import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
@@ -26,6 +27,7 @@ import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardVO;
 
 
 
@@ -43,6 +45,9 @@ public class BoardManagementController {
 	
 	@Autowired
 	private IFaqAdminService faqadminservice;
+	
+	@Autowired
+	private IQnaAdminService qnaadminservice;
 	
 	@Autowired
 	private S3Service awsS3;
@@ -493,8 +498,24 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@GetMapping("/admin/qnaboard-management") // qna 게시판 관리
-	public String QnaBoardManagement() {
+	
+	
+	@RequestMapping("/admin/qnaboard-management") // qna 게시판 관리
+	public String QnaBoardManagementView() {
 		return "adminpages/subpages/boardManagement/qnaBoardManagement";
+	}
+	
+	@GetMapping(value = "/admin/qnaboardmanagement" , produces = "application/json")
+	@ResponseBody
+	public List<QnaBoardVO> QnaBoardManagement(QnaBoardVO vo){
+		List<QnaBoardVO> qnaboardlist = qnaadminservice.qnaBoardList(vo);	
+		return qnaboardlist;
+	}
+	
+	@GetMapping(value = "/admin/qnaboarddetail" , produces = "application/json")
+	@ResponseBody
+	public List<QnaBoardVO> QnaBoardDetail(QnaBoardVO vo){
+		List<QnaBoardVO> qnaboarddetail = qnaadminservice.qnaBoardDetail(vo);
+		return qnaboarddetail;
 	}
 }
