@@ -461,7 +461,7 @@ public class BoardManagementController {
 	public String insertFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int in = faqadminservice.insertFaq(vo);
 		if(in>0) {
-			ra.addFlashAttribute("msg", "insertseccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
@@ -473,7 +473,7 @@ public class BoardManagementController {
 	public String deleteFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int del = faqadminservice.deleteFaq(vo);
 		if(del>0) {
-			ra.addFlashAttribute("msg", "deleteseccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
@@ -481,11 +481,11 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "admin/faqboard-update") //faq update
+	@PostMapping(value = "/admin/faqboard-update") //faq update
 	public String updateFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int update = faqadminservice.updateFaq(vo);
 		if(update>0) {
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updatesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "updatefail");
 		}
