@@ -2,6 +2,7 @@ package com.web.toosome.user.board.vo;
 
 import lombok.Data;
 
+
 @Data
 public class BoardSearchVO {
 	

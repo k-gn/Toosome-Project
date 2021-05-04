@@ -45,7 +45,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		mapper.updateLastLogin(authentication.getName());
 		session.setAttribute("id", member.getMemberId());
 		session.setAttribute("email", member.getMemberEmail());
-		
+		session.setAttribute("name", member.getMemberName());
+		session.setAttribute("auth", member.getAuthList().get(0).getMemberAuth());
 		resultRedirectStrategy(request, response, authentication);
 	}
 	

@@ -48,8 +48,9 @@
         	</li>
         </ul>
         <!-- 가프티콘 -->
+        <p class="giftcon"><span class="font-red">기프티콘</span>&nbsp;구매는 조회가 안됩니다.</p>
         <form>
-			<input class="data" type="text" value=""/>
+			<input class="data" type="hidden" value=""/>
         </form>
       </div>
       

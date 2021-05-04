@@ -8,10 +8,27 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/boardManagement/noticeBoardManagement.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/noticeBoardManagement.js" defer></script>
+  <script type="text/javascript">
+ 	const msg = "${msg}";
+ 	if(msg === "successBoard") {
+ 		alert("정상 등록되었습니다");
+ 	}else if(msg === "failBoard") {
+ 		alert("입력하신 정보가 올바르지 않습니다.");
+ 	}else if(msg === 'updateSuccess') {
+ 		alert("수정 완료");
+ 	}else if(msg === 'updateFail') {
+ 		alert("수정 실패");
+ 	}else if(msg === 'deleteSuccess') {
+ 		alert("삭제 완료");
+ 	}else if(msg === 'deleteFail') {
+ 		alert("삭제 실패");
+ 	}
+  </script>
 </head>
 
 <body>
@@ -98,24 +115,24 @@
 		                  <h4 class="card-title">공지사항 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form id="update-form" action="/admin/noticeboard-update?${_csrf.parameterName}=${_csrf.token}" method="post">
 		                    <div class="row">
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">글번호</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="text" name="noticeBoardId" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">조회수</label>
-		                          <input type="email" class="form-control" disabled>
+		                          <input type="text" name="noticeBoardViewCount" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="date" class="form-control">
+		                          <input type="date" name="noticeBoardRegdate" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -123,7 +140,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">제목</label>
-		                          <input type="text" class="form-control">
+		                          <input id="detail-title" type="text" name="noticeBoardTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -132,23 +149,16 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">내용</label>
-		                            <textarea class="form-control" rows="5"></textarea>
+		                            <input id="detail-content" type="text" class="form-control" name="noticeBoardContent" />
 		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-12">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">이미지</label>
-		                          <img class="img" src="" alt="#">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
-		                    <button id="delete" class="btn btn-primary pull-right btn-r">삭제</button>
+		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
+		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제" />
+		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="noticeBoardId" />
 		                  </form>
 		                </div>
 		             </div>
@@ -165,7 +175,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form enctype="multipart/form-data">
+			        <form id="enroll-form" action="/admin/noticeboard-insert?${_csrf.parameterName}=${_csrf.token}" method="post">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -174,30 +184,9 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                  <div class="input-group">
-				                      <input type="text" class="form-control" placeholder="제목을 입력하세요">
+				                      <textarea id="enroll-title" name="noticeBoardTitle" class="form-control" rows="15" placeholder="제목을 입력하세요"></textarea>
 				                  </div>
 				                </div>
-				                </div>
-				              </div>
-							  <div class="info info-horizontal">
-				                <div class="description">
-				                  <h4 class="info-title">이미지</h4>
-				                  <div class="text-center">
-					                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-									    <div class="fileinput-new thumbnail img-raised">
-									        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/admin/subpages/setting/blank.png" rel="nofollow" alt="...">
-									    </div>
-									    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-									    <div>
-									        <span class="btn btn-raised btn-round btn-default btn-file">
-									            <span class="fileinput-new">이미지 선택</span>
-									            <span class="fileinput-exists">수정</span>
-									            <input type="file" name="..." />
-									        </span>	
-									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-									    </div>
-									  </div>
-								  </div>
 				                </div>
 				              </div>
 				            </div>
@@ -207,13 +196,13 @@
 				                <h4 class="info-title">내용</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" rows="15" placeholder="내용을 입력하세요"></textarea>
+	                                <textarea id="enroll-content" name="noticeBoardContent" class="form-control" rows="15" placeholder="내용을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">업데이트</button>
+				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right">등록</button>
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
 			        </form>
@@ -235,7 +224,8 @@
     					글등록
 					</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -250,14 +240,12 @@
                     <table id="list-table" class="table">
                       <colgroup>
                    		<col width="10%">
-                   		<col width="15%">
-                   		<col width="35%">
-                   		<col width="10%">
-                   		<col width="10%">
+                   		<col width="25%">
+                   		<col width="45%">
                    		<col width="10%">
                    		<col width="10%">
                       </colgroup>
-                      <thead class="text-primary" id="list-table-thead">
+                      <thead class="text-primary text-center">
                         <th>
                           글번호
                         </th>
@@ -273,41 +261,11 @@
                         <th>
                           글작성일
                         </th>
-                        <th>
-                          이미지
-                        </th>
-                        <th>
-                          비고
-                        </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="noticeBoardList" items="${noticeBoardList}">
-	                        <tr>
-	                          <td>
-	                            ${noticeBoardList.noticeBoardId}
-	                          </td>
-	                          <td>
-	                            ${noticeBoardList.noticeBoardTitle}
-	                          </td>
-	                          <td>
-	                            ${noticeBoardList.noticeBoardContent}
-	                          </td>
-	                          <td>
-	                            ${noticeBoardList.noticeBoardViewCount}
-	                          </td>
-	                          <td>
-	                            ${noticeBoardList.noticeBoardRegdate}
-	                          </td>
-	                          <td>
-	                            <a href="${noticeBoardList.noticeBoardImageRoute}/${noticeBoardList.noticeBoardImageName}.${noticeBoardList.noticeBoardImageExtention}">상세보기</a>
-	                          </td>
-	                          <td>
-	                            .
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

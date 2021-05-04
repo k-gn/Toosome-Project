@@ -3,6 +3,7 @@ package com.web.toosome.user.member.dao;
 import java.util.Map;
 
 import com.web.toosome.admin.adminManagement.vo.AdminVO;
+import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 
 public interface IMemberMapper {
@@ -61,4 +62,7 @@ public interface IMemberMapper {
 	
 	// 최종 로그인 등록
 	public void updateLastLogin(String email);
+	
+	// 권한 찾기
+	public AuthVO getAuthById(String email);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.productManagement.dao.IProductManagementMapper;
 import com.web.toosome.admin.productManagement.vo.ProductSearchVO;
@@ -39,18 +40,59 @@ public class ProductManagementService implements IProductManagementService {
 		return menu;
 	}
 
+	@Transactional
 	@Override
 	public int addProduct(ProductVO product) {
-		return 0;
+		mapper.aiReset();
+		int index = mapper.getProductIndex();
+		int result = mapper.addProduct(product);
+		
+		ProductImageVO productImage = product.getProductImageVO();
+		productImage.setProductProductId(index);
+		
+		String[] productImageName = product.getFile().getOriginalFilename().split("\\.");
+		productImage.setProductImageRoute(productPath);
+		productImage.setProductImageName(productImageName[0]);
+		productImage.setProductImageExtention(productImageName[1]);
+		
+		mapper.addProductImage(productImage);
+		s3.upload(product.getFile(), productPath + "/");
+		
+		return result;
 	}
-
+	
+	@Transactional
 	@Override
 	public int modProduct(ProductVO product) {
-		return 0;
+		ProductImageVO productImage = product.getProductImageVO();
+		productImage.setProductProductId(product.getProductId());
+		int result = mapper.modProduct(product);
+		String[] productImageNames = product.getFile().getOriginalFilename().split("\\.");
+		
+		String productImageName = "";
+		if(product.getFile() != null) {
+			productImageName = product.getFile().getOriginalFilename();
+		}
+		
+		if(!productImageName.equals("")) {
+			s3.delete(product.getOldImageName());
+			s3.upload(product.getFile(), productPath + "/");
+			
+			productImage.setProductImageRoute(productPath);
+			productImage.setProductImageName(productImageNames[0]);
+			productImage.setProductImageExtention(productImageNames[1]);
+			mapper.modProductImage(productImage);
+		}
+		
+		return result;
 	}
 
+	@Transactional
 	@Override
 	public int delProduct(ProductVO product) {
-		return 0;
+		mapper.delProductImage(product.getProductId());
+		int result = mapper.delProduct(product);
+		s3.delete(product.getOldImageName());
+		return result;
 	}
 }

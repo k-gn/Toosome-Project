@@ -33,6 +33,7 @@ section .smart-post .post-title {
 }
 
 .smart-post .post-text {
+	
 	width: 80%;
 	height: 100px;
 	background: #fff;
@@ -73,6 +74,21 @@ section .smart-post .post-title {
 	width: 30px;
 	height: 30px;
 	bottom: -15px;
+}
+
+.smart-post .giftcon {
+	width: 80%;
+	height: 100px;
+	background: #fff;
+	margin: 50px auto 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.25rem;
+}
+.smart-post .giftcon .font-red {
+	color: #ff0000;
+	font-weight: bold;
 }
 
 section .table-cover {

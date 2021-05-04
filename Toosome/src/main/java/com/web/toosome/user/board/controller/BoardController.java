@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,13 +25,15 @@ import com.web.toosome.user.board.service.IFaqBoardService;
 import com.web.toosome.user.board.service.INewsBoardService;
 import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.service.IQnaBoardService;
-import com.web.toosome.user.board.service.QnaBoardCommentService;
 import com.web.toosome.user.board.vo.EventBoardVO;
 import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
+import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.AuthVO;
+import com.web.toosome.user.member.vo.MemberVO;
 
 @Controller
 public class BoardController {
@@ -51,6 +55,9 @@ public class BoardController {
 	
 	@Autowired
 	private IQnaBoardCommentService qnaBoardCommentService;
+	
+	@Autowired
+	private IMemberService memberService;
 	
 	@Autowired
 	private S3Service awsS3; 
@@ -268,7 +275,7 @@ public class BoardController {
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
 		if(vo.getUploadFile().getSize() != 0) {
-		vo.setQnaBoardImageName("img/qnaImg/"+uploadFile.getOriginalFilename());
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 
@@ -288,43 +295,46 @@ public class BoardController {
 		return "redirect:/qna";
 	}
 	
-	
-	
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/qnacommentinsert")// qna 댓글입력
-	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
-		System.out.println("QnaBoardCommentVO : " + vo);
+	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra, HttpSession session)throws Exception{
 		int insert = qnaBoardCommentService.insertQnaBoardComment(vo);
 		if(insert > 0) {
 			ra.addFlashAttribute("msg", "insertSuccess");
 		}else{
 			ra.addFlashAttribute("msg", "insertFail");
 		}
+		MemberVO member = memberService.getUserById((Integer)session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String)session.getAttribute("email"));
 		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/qnacommentupdate" , produces = "application/json")// qna 댓글 업데이트
 	@ResponseBody
-	public String qnaCommentUpdate(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
+	public String qnaCommentUpdate(QnaBoardCommentVO vo)throws Exception{
 		int update = qnaBoardCommentService.updateQnaBoardComment(vo);
+		String msg = "";
 		if(update > 0) {
-			ra.addFlashAttribute("msg", "updateSuccess");
+			msg =  "updateSuccess";
 		}else {
-			ra.addFlashAttribute("msg", "updateFail");
+			msg =  "updateFail";
 		}
-		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
+		return msg;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/qnacommentdelete" , produces = "application/json")// qna 댓글 삭제
 	@ResponseBody
 	public String qnaCommentDelete(QnaBoardCommentVO vo, RedirectAttributes ra)throws Exception{
 		int delete = qnaBoardCommentService.deleteQnaBoardComment(vo);
-		if(delete > 0 ) {
-			 ra.addFlashAttribute("msg", "deleteSuccess");
-		}else{
-			ra.addFlashAttribute("msg", "deleteFail");;
+		String msg = "";
+		if(delete > 0) {
+			msg =  "deleteSuccess";
+		}else {
+			msg =  "deleteFail";
 		}
-		return "redirect:/qna-detail?index=" + vo.getQnaQnaBoardId();
+		return msg;
 	}
 
 }

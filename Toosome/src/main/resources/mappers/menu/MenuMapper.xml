@@ -335,9 +335,9 @@
 	
 	<insert id="saveGift">
 		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE,
-		 ORDERS_RECEIVER, ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MERCHANT_UID)
+		 ORDERS_RECEIVER, ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MERCHANT_UID, ORDERS_MEMBER_EMAIL, ORDERS_USE_POINT, ORDERS_PRODUCT_PAY, ORDERS_SAL)
 		VALUES(#{memberId}, now(), #{menuPrice}, "기프티콘",
-		 #{memberName}, #{memberPhone}, #{menuMainTitle}, 1, #{merchantUid})
+		 #{memberName}, #{memberPhone}, #{menuMainTitle}, 1, #{merchantUid}, #{memberEmail}, #{ordersUsePoint}, #{ordersProductPay}, #{ordersSal})
 	</insert>
 	
 	<select id="getMenuMainTitle" resultType="String">
