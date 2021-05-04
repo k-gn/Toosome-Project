@@ -11,6 +11,8 @@ public interface INewsAdminMapper {
 
 	List<NewsBoardVO> seachNewsBoard(BoardSearchVO vo);
 	
+	List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo);
+	
 	int insertNewsBoard(NewsBoardVO vo);
 	
 	int insertNewsBoardDetail(NewsBoardDetailVO vo);
