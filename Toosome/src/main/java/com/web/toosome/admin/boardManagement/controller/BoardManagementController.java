@@ -309,6 +309,14 @@ public class BoardManagementController {
 		return eventlist;
 	}
 	
+	@GetMapping(value="/admin/newsboarddetail" , produces = "application/json") // 뉴스관리자 게시물 상세보기값
+	@ResponseBody
+	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo){
+		List<NewsBoardVO> newsboarddetail = newsadminservice.newsBoardDetail(vo);
+		return newsboarddetail;
+	}
+	
+	
 	@GetMapping(value="/admin/newsboardsearch" , produces = "application/json") // 뉴스관리자 게시물 검색기능
 	@ResponseBody
 	public List<NewsBoardVO> searchEventList(BoardSearchVO vo){
