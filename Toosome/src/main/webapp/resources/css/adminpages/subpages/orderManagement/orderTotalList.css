@@ -190,6 +190,7 @@
 	padding: 20px;
 	z-index: 10002;
 	border-radius: 10px;
+	overflow: auto;
 }
 
 .btn.btn-danger.pull-right.btn-r {
