@@ -1,6 +1,6 @@
 const searchType = document.querySelector('#searchType'); // 검색어 선택
 const searchInput = document.querySelector('#search-text'); // 검색어 인풋
-const noticeDate = document.querySelector('#eventDate'); // 작성일 기간선택
+const noticeDate = document.querySelector('#noticeDate'); // 작성일 기간선택
 const noticeDatePeriod = document.querySelector('#noticeDatePeriod'); // 작성일 기간선택 버튼박스
 const noticePeriods = document.querySelectorAll('.period.notice'); // 작성일 기간 버튼들
 const noticeCalendar = document.querySelector('#calendar1'); // 작성일 달력1
@@ -233,7 +233,7 @@ const submitHandler = () => {
 	keyword = searchInput.value;	
 	
 	// 가입일자
-	if(eventDate.options[eventDate.selectedIndex].value === 'use') {
+	if(noticeDate.options[noticeDate.selectedIndex].value === 'use') {
 		startRegDate = moment(noticeCalendar.value).format('YYYY-MM-DD');
 		endRegDate = moment(noticeCalendar2.value).format('YYYY-MM-DD');
 	}
