@@ -231,6 +231,7 @@ public class MenuController {
 		menuVO.setMemberPhone(phone);
 		menuVO.setMerchantUid(merchantUid);
 		menuVO.setMenuMainTitle(menuService.getMenuMainTitle(menuId));
+		menuVO.setMemberEmail(memberService.getUserById(id).getMemberEmail());
 		String imageName = menuService.getMenuImagePath(menuId).getMenuImageName();
 		String imageExtention = menuService.getMenuImagePath(menuId).getMenuImageExtention();
 		String imageRoute = menuService.getMenuImagePath(menuId).getMenuImageRoute();
@@ -240,6 +241,13 @@ public class MenuController {
 		System.out.println(imageRoute);
 		menuVO.setMenuImagePath(imagePath);
 		System.out.println(imagePath);
+		int menuProce = menuService.getMenuPrice(menuId);
+		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
+		double msi = menuProce * (ms / 100);
+		int usePoint = menuProce - ( menuEndPrice + (int)msi);
+		menuVO.setOrdersSal((int)msi);	// 할인 금액
+		menuVO.setOrdersUsePoint(usePoint);		// 사용한 포인트
+		menuVO.setOrdersProductPay(menuProce);	// 순수 상품 금액
 		int num = menuService.saveGift(menuVO);
 		menuVO.setOrdersId(menuService.getOrdersId(id));
 		menuVO.setMenuPrice(menuService.getMenuPrice(menuId));

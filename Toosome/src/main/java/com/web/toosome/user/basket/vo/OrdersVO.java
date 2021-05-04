@@ -2,6 +2,9 @@ package com.web.toosome.user.basket.vo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.web.toosome.user.member.vo.MemberVO;
+
 import lombok.Data;
 
 @Data
@@ -9,6 +12,7 @@ public class OrdersVO {
 	private Integer ordersId;
 	private Integer memberId;
 	private String ordersProductName;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date ordersOrderDate;
 	private Integer ordersPayment;
 	private String ordersState;
@@ -20,5 +24,11 @@ public class OrdersVO {
 	private String ordersContent;
 	private String ordersMerchantUid;
 	private Integer ordersAmount;
+	private String ordersMemberEmail;
+	private Integer ordersUsePoint;
+	private Integer ordersProductPay;
+	private Integer ordersSal;	
+	
+	private MemberVO memberVO;
 	
 }

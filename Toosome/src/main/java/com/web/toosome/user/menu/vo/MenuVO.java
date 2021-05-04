@@ -40,6 +40,10 @@ public class MenuVO {
 	private String memberPhone;
 	private String merchantUid;
 	private Integer ordersId;
+	private String memberEmail;
+	private Integer ordersUsePoint;
+	private Integer ordersProductPay;
+	private Integer ordersSal;
 	
 	
 }
