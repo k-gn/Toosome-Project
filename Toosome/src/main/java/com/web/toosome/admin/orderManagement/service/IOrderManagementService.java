@@ -14,6 +14,7 @@ public interface IOrderManagementService {
 	public OrdersVO getorderDetail(Integer id);
 	
 	// admin order Detail Lsit 페이지 출력.
-	public List<OrdersDetailVO> getorderDetailList(Integer id);
+	public List<OrdersDetailVO> getorderDetailListTwo(Integer id);
+
 
 }

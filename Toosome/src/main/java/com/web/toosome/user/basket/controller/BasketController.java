@@ -330,8 +330,6 @@ public class BasketController {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("id", memberId);
 		map.put("ordersId", ordersId);
-		System.out.println(memberId);
-		System.out.println(ordersId);
 		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map); 
 		System.out.println(ordersDetailList);
 		return ordersDetailList;

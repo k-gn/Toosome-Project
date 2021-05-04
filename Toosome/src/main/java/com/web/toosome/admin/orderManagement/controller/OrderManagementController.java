@@ -2,6 +2,8 @@ package com.web.toosome.admin.orderManagement.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,16 +71,19 @@ public class OrderManagementController {
 	@ResponseBody
 	public OrdersVO getorderDetail(@PathVariable Integer id, OrderManagementVO orderVO) {
 		System.out.println("getorderDetail 메서드 실행");
-		OrdersVO AAAA = orderService.getorderDetail(id);
-		System.out.println(AAAA);
 		return orderService.getorderDetail(id);
 	}
 	
 	@GetMapping("/admin/orderDetail/{id}")
 	@ResponseBody
-	public List<OrdersDetailVO> getorderDetailList(@PathVariable Integer id, OrderManagementVO orderVO) {
+	public List<OrdersDetailVO> getorderDetailList(@PathVariable Integer id, OrderManagementVO orderVO, HttpSession session) {
 		System.out.println("getorderDetailList 메서드 실행");
-		return orderService.getorderDetailList(id);
+		Integer memberId = (Integer) session.getAttribute("id");
+		System.out.println(memberId);
+		System.out.println(id);
+		List<OrdersDetailVO> ordersDetailList = orderService.getorderDetailListTwo(id); 
+		System.out.println(ordersDetailList);
+		return ordersDetailList;
 	}
 	
 }

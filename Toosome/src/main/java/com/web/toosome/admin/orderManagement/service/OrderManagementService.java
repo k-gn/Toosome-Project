@@ -27,8 +27,10 @@ public class OrderManagementService implements IOrderManagementService {
 	}
 	
 	@Override
-	public List<OrdersDetailVO> getorderDetailList(Integer id) {
-		return mapper.getorderDetailList(id);
+	public List<OrdersDetailVO> getorderDetailListTwo(Integer id) {
+		System.out.println("서비스");
+		System.out.println(mapper.getorderDetailListTwo(id));
+		return mapper.getorderDetailListTwo(id);
 	}
 
 	

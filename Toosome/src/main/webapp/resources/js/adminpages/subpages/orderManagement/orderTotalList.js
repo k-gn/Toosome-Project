@@ -267,7 +267,48 @@ const listHandler = (e) => {
 			$("input[name=ordersPayment]").val(res.ordersPayment);	
 			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
 
-			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?			
+			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?	
+			
+			if(res!=null){
+				$.ajax({
+					type: "get", //서버에 전송하는 HTTP요청 방식
+					url: "/admin/orderDetail/" + id, //서버 요청 URI
+					headers: {
+						"Content-Type": "application/json"
+					}, //요청 헤더 정보
+					dataType: "json", //응답받을 데이터의 형태
+					success: (results) => {
+						console.log(results);
+						console.log(id);
+						const tableBody = document.querySelector(`.under-table`);
+						tableBody.innerHTML = '';
+						let new2El = document.createElement('tr');
+						new2El.classList.add('text-bold');
+						let content2 = `
+							<td>이미지</td>
+				           	<td colspan="2">상품명</td>
+				           	<td>수량</td>
+				           	<td>상품가격</td>
+			            	<td>배송상태</td>
+						`;
+						new2El.innerHTML = content2;
+						tableBody.appendChild(new2El);
+						results.forEach(result => {
+							let newEl = document.createElement('tr');
+							newEl.classList.add('under-tr');
+							let content = `
+								<td><img src="${result.ordersDetailImagePath}" alt="" width="60px"></td>
+					            <td colspan="2"><span class="pro-name">${result.ordersDetailName}</span></td>
+					            <td><span class="pro-count">${result.ordersDetailAmount}</span></td>
+					            <td><span class="pro-pay">${result.ordersDetailPrice}</span></td>
+					            <td><span class="post-status">${result.ordersDetailState}</span></td>
+							`;
+							newEl.innerHTML = content;
+							tableBody.appendChild(newEl);
+						})
+					}
+				});	
+			}		
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');

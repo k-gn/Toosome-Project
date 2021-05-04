@@ -35,8 +35,7 @@
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
 		<result property="ordersDetailState" column="ORDERS_DETAIL_STATE" />
-		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />
-		
+		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />	
 	</resultMap>
 
 	<resultMap type="memberVO" id="memberVO">
@@ -70,8 +69,8 @@
 		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID) WHERE A.ORDERS_ID = #{id};
 	</select>
 	
-	<select id="getorderDetailList" resultMap="ordersDetailVO">
-		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{id}
+	<select id="getorderDetailListTwo" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{ordersId};
 	</select>
 	
 </mapper>
