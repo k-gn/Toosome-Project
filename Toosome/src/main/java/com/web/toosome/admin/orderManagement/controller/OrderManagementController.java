@@ -69,6 +69,8 @@ public class OrderManagementController {
 	@ResponseBody
 	public OrdersVO getorderDetail(@PathVariable Integer id, OrderManagementVO orderVO) {
 		System.out.println("getorderDetail 메서드 실행");
+		OrdersVO AAAA = orderService.getorderDetail(id);
+		System.out.println(AAAA);
 		return orderService.getorderDetail(id);
 	}
 	

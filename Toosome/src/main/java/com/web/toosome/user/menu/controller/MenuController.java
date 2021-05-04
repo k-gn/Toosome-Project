@@ -241,6 +241,13 @@ public class MenuController {
 		System.out.println(imageRoute);
 		menuVO.setMenuImagePath(imagePath);
 		System.out.println(imagePath);
+		int menuProce = menuService.getMenuPrice(menuId);
+		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
+		double msi = menuProce * (ms / 100);
+		int usePoint = menuProce - ( menuEndPrice + (int)msi);
+		menuVO.setOrdersSal((int)msi);	// 할인 금액
+		menuVO.setOrdersUsePoint(usePoint);		// 사용한 포인트
+		menuVO.setOrdersProductPay(menuProce);	// 순수 상품 금액
 		int num = menuService.saveGift(menuVO);
 		menuVO.setOrdersId(menuService.getOrdersId(id));
 		menuVO.setMenuPrice(menuService.getMenuPrice(menuId));

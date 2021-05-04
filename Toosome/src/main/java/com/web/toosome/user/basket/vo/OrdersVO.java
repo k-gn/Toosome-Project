@@ -1,7 +1,6 @@
 package com.web.toosome.user.basket.vo;
 
 import java.sql.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.web.toosome.user.member.vo.MemberVO;
@@ -26,8 +25,10 @@ public class OrdersVO {
 	private String ordersMerchantUid;
 	private Integer ordersAmount;
 	private String ordersMemberEmail;
+	private Integer ordersUsePoint;
+	private Integer ordersProductPay;
+	private Integer ordersSal;	
 	
-	
-	private List<MemberVO> memberVO;
+	private MemberVO memberVO;
 	
 }

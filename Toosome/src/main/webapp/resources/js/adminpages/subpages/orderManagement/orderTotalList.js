@@ -241,10 +241,33 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			$("input[name=ordersId]").val(res.ordersId);
-			console.log(res.ordersId);
 			
-			$("#lvl").val(res.levelId).prop("selected", true);				
+			if(res.ordersAddress == null) {
+				res.ordersAddress = 'Gift Buy';
+			}
+			if(res.ordersPostcode == null) {
+				res.ordersPostcode = 'Gift Buy';
+			}
+			if(res.ordersDelivery == null) {
+				res.ordersDelivery = 'Gift Buy';
+			}
+			
+			$("input[name=ordersId]").val(res.ordersId);
+			$("input[name=memberName]").val(res.memberVO.memberName);
+			$("input[name=ordersPhone]").val(res.ordersPhone);
+			$("input[name=ordersState]").val(res.ordersState);
+ 			$("input[name=ordersProductPay]").val(res.ordersProductPay);
+			$("input[name=ordersAmount]").val(res.ordersAmount);
+			$("input[name=ordersReceiver]").val(res.ordersReceiver);
+			$("input[name=ordersPostcode]").val(res.ordersPostcode);
+			$("input[name=ordersAddress]").val(res.ordersAddress);
+			$("input[name=ordersDelivery]").val(res.ordersDelivery);
+			$("input[name=ordersUsePoint]").val(res.ordersUsePoint);
+			$("input[name=ordersSal]").val(res.ordersSal);
+			$("input[name=ordersPayment]").val(res.ordersPayment);	
+			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
+
+			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?			
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');

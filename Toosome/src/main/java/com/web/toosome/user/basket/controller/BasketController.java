@@ -301,9 +301,21 @@ public class BasketController {
 			String name = basketName;
 			order.setOrdersProductName(name);
 		}
-		Integer amount = service.getbasketName(memberId).getBasketAmount();
-		order.setOrdersAmount(amount);
 		order.setOrdersMemberEmail(memberService.getUserById(memberId).getMemberEmail());
+		List<BasketVO> baskets = service.getBasket(memberId);
+		MembershipVO ms = mservice.getMembershipInfo(memberId);
+		basketUtil.utilMethod(baskets, ms, basicImagePath);
+		int msi = basketUtil.getDiscount();	// 할인 금액
+		int ProductPrice = basketUtil.getTotal();	// 전체 상품 금액
+		order.setOrdersSal(msi);  
+		System.out.println(order.getOrdersPayment());
+		int realpay = order.getOrdersPayment(); // 실제 결제 금액
+		int UsePoint = ProductPrice - (msi +realpay);	// 사용한 포인트
+		System.out.println(UsePoint);
+		order.setOrdersUsePoint(UsePoint);
+		order.setOrdersProductPay(ProductPrice);
+		Integer amount = basketUtil.getAmount();
+		order.setOrdersAmount(amount);
 		int result = service.orderSubmit(order);
 		if (result > 0)
 			return "success";

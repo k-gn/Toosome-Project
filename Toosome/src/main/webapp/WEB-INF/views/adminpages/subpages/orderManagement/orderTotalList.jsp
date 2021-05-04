@@ -144,13 +144,13 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자명</label>
-		                          <input type="text" name="" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" name="" class="form-control">
+		                          <input type="text" name="ordersPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -163,8 +163,8 @@
 		                    <div class="row">
 		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문가격</label>
-		                          <input type="text" name="ordersPayment" class="form-control" disabled>
+		                          <label class="bmd-label-floating">상품가격①</label>
+		                          <input type="text" name="ordersProductPay" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-6">
@@ -203,7 +203,7 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-1">
+		                     <!--  <div class="col-md-1">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송번호</label>
 		                          <input type="text" name="ordersDelivery" class="form-control">
@@ -220,34 +220,40 @@
 		                          <label class="bmd-label-floating">송장번호</label>
 		                          <input type="text" class="form-control">
 		                        </div>
-		                      </div>
+		                      </div> -->
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">기본배송비</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">배송비②</label>
+		                          <input type="text" name="ordersDelivery" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송비합계 ②</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">할인 금액③</label>
+		                          <input type="text" name="ordersSal" class="form-control">
+		                        </div>
+		                      </div>
+ 		                      <div class="col-md-2">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">사용한 포인트④</label>
+		                          <input type="text" name="ordersUsePoint" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">실결제금액(① + ②)</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">실결제금액(①+②-③-④)</label>
+		                          <input type="text" name="ordersPayment" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-2">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">결제일자(주문)</label>
+		                          <input type="date" name="ordersOrderDate" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
+		                      <!-- <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제일자</label>
 		                          <input type="date" class="form-control">
@@ -284,7 +290,7 @@
 		                          <label class="bmd-label-floating">구매확정일자</label>
 		                          <input type="date" class="form-control">
 		                        </div>
-		                      </div>
+		                      </div> -->
 		                    </div>
 		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
