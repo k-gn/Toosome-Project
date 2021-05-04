@@ -430,12 +430,60 @@ public class BoardManagementController {
 	
 	@GetMapping(value = "/admin/faqboardmanagement" , produces = "application/json")
 	@ResponseBody
-	public List<FaqBoardVO> FaqBoardList(FaqBoardVO vo){ //faq 게시판 리스트 값
+	public List<FaqBoardVO> FaqBoardList(FaqBoardVO vo){ //faq 관리자 게시판 리스트 값
 		List<FaqBoardVO> faqboardlist = faqadminservice.faqBoardList(vo);
 		return faqboardlist;
 	}
 	
+	@GetMapping(value = "/admin/faqboardsearch" , produces = "application/json")
+	@ResponseBody
+	public List<FaqBoardVO> faqSearch(BoardSearchVO vo){ // faq 관리자 게시판 검색기능
+		List<FaqBoardVO> faqsearch = faqadminservice.faqSearch(vo);
+		return faqsearch;
+	}
 	
+	@GetMapping(value = "/admin/faqboarddetail" , produces = "application/json")
+	@ResponseBody
+	public List<FaqBoardVO> faqBoardDetail(FaqBoardVO vo){ // faq 관리자 게시판 상세정보
+		List<FaqBoardVO> faqboarddetail = faqadminservice.faqBoardDetail(vo);
+		return faqboarddetail;
+	}
+	
+	@PostMapping(value = "/admin/faqboard-insert") // faq insert
+	public String insertFaq(FaqBoardVO vo, RedirectAttributes ra) {
+		int in = faqadminservice.insertFaq(vo);
+		if(in>0) {
+			ra.addFlashAttribute("msg", "insertseccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		
+		return "redirect:/admin/faqboard-management";
+	}
+	
+	@PostMapping(value = "/admin/faqboard-delete") // faq delete
+	public String deleteFaq(FaqBoardVO vo, RedirectAttributes ra) {
+		int del = faqadminservice.deleteFaq(vo);
+		if(del>0) {
+			ra.addFlashAttribute("msg", "deleteseccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		
+		return "redirect:/admin/faqboard-management";
+	}
+	
+	@PostMapping(value = "admin/faqboard-update") //faq update
+	public String updateFaq(FaqBoardVO vo, RedirectAttributes ra) {
+		int update = faqadminservice.updateFaq(vo);
+		if(update>0) {
+			ra.addFlashAttribute("msg", "updateseccess");
+		}else {
+			ra.addFlashAttribute("msg", "updatefail");
+		}
+		
+		return "redirect:/admin/faqboard-management";
+	}
 	
 	@GetMapping("/admin/qnaboard-management") // qna 게시판 관리
 	public String QnaBoardManagement() {
