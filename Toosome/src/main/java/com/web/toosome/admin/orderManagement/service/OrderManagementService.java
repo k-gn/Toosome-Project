@@ -33,6 +33,11 @@ public class OrderManagementService implements IOrderManagementService {
 		return mapper.getorderDetailListTwo(id);
 	}
 
+	@Override
+	public int updateOrders(OrdersVO orderVO) {
+		return mapper.updateOrders(orderVO);
+	}
+
 	
 
 }

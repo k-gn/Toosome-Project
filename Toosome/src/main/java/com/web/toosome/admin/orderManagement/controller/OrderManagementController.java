@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.orderManagement.service.OrderManagementService;
@@ -86,4 +87,15 @@ public class OrderManagementController {
 		return ordersDetailList;
 	}
 	
+	@PostMapping("/admin/orders")
+	@ResponseBody
+	public String updateOrders(OrdersVO orderVO) {
+		System.out.println("updateOrders 메서드 실행");
+		int result = orderService.updateOrders(orderVO);
+		if(result > 0) {
+			return "redirect:/admin/order-totallist";
+		}else {
+			return "redirect:/admin";
+		}
+	}
 }

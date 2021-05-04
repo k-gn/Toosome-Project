@@ -133,7 +133,7 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/orders" method="post">
 		                    <div class="row">
 		                      <div class="col-md-2">
 		                        <div class="form-group">
@@ -150,7 +150,7 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" name="ordersPhone" class="form-control">
+		                          <input type="text" name="memberPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
@@ -294,13 +294,13 @@
 		                    </div>
 		                    <table class="table none">
 					        	<tbody class="under-table">
-					        	<img src="" />
 					        		
 					        	</tbody>
 					        </table>
 		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="ordersId">
 		                  </form>
 		                </div>
 		              </div>

@@ -254,11 +254,12 @@ const listHandler = (e) => {
 			
 			$("input[name=ordersId]").val(res.ordersId);
 			$("input[name=memberName]").val(res.memberVO.memberName);
-			$("input[name=ordersPhone]").val(res.ordersPhone);
+			$("input[name=memberPhone]").val(res.memberVO.memberPhone);
 			$("input[name=ordersState]").val(res.ordersState);
  			$("input[name=ordersProductPay]").val(res.ordersProductPay);
 			$("input[name=ordersAmount]").val(res.ordersAmount);
 			$("input[name=ordersReceiver]").val(res.ordersReceiver);
+			$("input[name=ordersPhone]").val(res.ordersPhone);
 			$("input[name=ordersPostcode]").val(res.ordersPostcode);
 			$("input[name=ordersAddress]").val(res.ordersAddress);
 			$("input[name=ordersDelivery]").val(res.ordersDelivery);
@@ -266,6 +267,7 @@ const listHandler = (e) => {
 			$("input[name=ordersSal]").val(res.ordersSal);
 			$("input[name=ordersPayment]").val(res.ordersPayment);	
 			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
+			$("input[name=ordersId]").val(res.ordersId);			
 
 			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?	
 			

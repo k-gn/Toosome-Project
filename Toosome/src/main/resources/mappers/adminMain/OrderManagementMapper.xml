@@ -41,6 +41,7 @@
 	<resultMap type="memberVO" id="memberVO">
 		<id property="memberId" column="MEMBER_ID"/>
 		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
 	</resultMap>
 	
 	<select id="getOrderList" resultMap="orderVO">
@@ -64,7 +65,8 @@
         A.ORDERS_PRODUCT_PAY,
         A.ORDERS_SAL,
 		B.MEMBER_ID,
-        B.MEMBER_NAME
+        B.MEMBER_NAME,
+        B.MEMBER_PHONE
 		FROM ORDERS A INNER JOIN
 		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID) WHERE A.ORDERS_ID = #{id};
 	</select>
@@ -72,5 +74,11 @@
 	<select id="getorderDetailListTwo" resultMap="ordersDetailVO">
 		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{ordersId};
 	</select>
+	
+	<update id="updateMember">
+		UPDATE ORDERS 
+		 SET ORDERS_RECEIVER = #{ordersReceiver}, ORDERS_PHONE = #{ordersPhone}, ORDERS_POSTCODE = #{ordersPostcode}, ORDERS_ADDRESS = #{ordersAddress}, ORDERS_STATE = #{ordersState} 
+		WHERE ORDERS_ID = #{ordersId};		 
+	</update>
 	
 </mapper>
