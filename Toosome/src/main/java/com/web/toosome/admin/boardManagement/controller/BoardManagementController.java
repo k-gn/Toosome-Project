@@ -23,10 +23,10 @@ import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
+import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
-import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 
@@ -525,4 +525,30 @@ public class BoardManagementController {
 		List<QnaBoardVO> searchqna = qnaadminservice.searchQna(vo);
 		return searchqna;
 	}
+	
+	@PostMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
+	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) {
+		
+		QnaBoardVO vo = qnaadminservice.selectFile(id);
+		
+		//해당 파일 경로
+		String key = "img/qnaImg/"+vo.getQnaBoardImageName();
+				
+		//파일제거 메서드
+		awsS3.delete(key);
+		
+		int del2 = qnaadminservice.deleteQnaComment(id);
+		int del = qnaadminservice.deleteQna(id);
+		
+		if(del>0 && del2 >0) {
+			ra.addFlashAttribute("msg", "deleteseccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	
+	
 }

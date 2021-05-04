@@ -30,4 +30,20 @@ public class QnaAdminService implements IQnaAdminService {
 		return mapper.searchQna(vo);
 	}
 
+	@Override
+	public int deleteQna(Integer id) {
+		return mapper.deleteQna(id);
+	}
+
+	@Override
+	public int deleteQnaComment(Integer id) {
+		return mapper.deleteQnaComment(id);
+	}
+
+	@Override
+	public QnaBoardVO selectFile(Integer id) {
+		return mapper.selectFile(id);
+	}
+
+
 }

@@ -12,4 +12,10 @@ public interface IQnaAdminService {
 	List<QnaBoardVO> qnaBoardDetail(QnaBoardVO vo);
 	
 	List<QnaBoardVO> searchQna(BoardSearchVO vo);
+	
+	QnaBoardVO selectFile(Integer id);
+	
+	int deleteQna(Integer id);
+	
+	int deleteQnaComment(Integer id);
 }

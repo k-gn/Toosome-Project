@@ -69,12 +69,25 @@
 		<include refid="search"/>
 	</select>
 	
+	<select id="selectFile" resultMap="QnaBoardMap">
+		SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID = #{id}
+	</select>
+	
 	<delete id="deleteQnaComment">
-		
+		DELETE FROM QNA_BOARD_COMMENT WHERE QNA_QNA_BOARD_ID = #{id}
 	</delete>
 			
 	<delete id="deleteQna">
-	
+		DELETE FROM QNA_BOARD WHERE QNA_BOARD_ID = #{id}
 	</delete>
+	<!-- 
+	<insert id="insertQna">
+		INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, 
+		QNA_BOARD_TITLE, QNA_BOARD_CONTENT, QNA_BOARD_REG_DATE, QNA_BOARD_VIEW_COUNT, 
+		QNA_BOARD_PASSWORD, QNA_BOARD_IMAGE_NAME, QNA_BOARD_SECRET) 
+		VALUES(#{qnaBoardId}, #{memberMemberId}, #{qnaBoardType},
+		#{qnaBoardTitle}, #{qnaBoardContent}, NOW(), 0, #{qnaBoardPassword}, 
+		#{qnaBoardImageName}, #{qnaBoardSecret})
+	</insert> -->
 	
 </mapper>
