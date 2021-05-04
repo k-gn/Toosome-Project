@@ -29,6 +29,25 @@
 	 	<result property="qnaCommentWriter" column="QNA_COMMENT_WRITER" />
 	</resultMap>
 	
+	<sql id ="search">
+	
+		<if test="condition == 'title'">
+			WHERE QNA_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE QNA_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startRegDate != null and startRegDate != ''">
+			AND QNA_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
+		</if>
+		<if test="keyword != null">
+			ORDER BY QNA_BOARD_ID DESC
+		</if>
+		
+	</sql>
+	
+	
+	
 	<select id="qnaBoardList" resultMap="QnaBoardMap">
 		SELECT * FROM QNA_BOARD ORDER BY QNA_BOARD_ID DESC
 	</select>
@@ -45,11 +64,17 @@
 	</select>
 	
 	
+	<select id="searchQna" resultMap="QnaBoardMap">
+		SELECT * FROM QNA_BOARD
+		<include refid="search"/>
+	</select>
 	
-	
-	<!--   LIKE CONCAT('%',#{keyword},'%') -->
-	
+	<delete id="deleteQnaComment">
+		
+	</delete>
 			
+	<delete id="deleteQna">
 	
+	</delete>
 	
 </mapper>

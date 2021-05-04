@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.boardManagement.dao.IQnaAdminMapper;
+import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 @Service
@@ -22,6 +23,11 @@ public class QnaAdminService implements IQnaAdminService {
 	@Override
 	public List<QnaBoardVO> qnaBoardDetail(QnaBoardVO vo) {
 		return mapper.qnaBoardDetail(vo);
+	}
+
+	@Override
+	public List<QnaBoardVO> searchQna(BoardSearchVO vo) {
+		return mapper.searchQna(vo);
 	}
 
 }

@@ -275,7 +275,7 @@ public class BoardController {
 		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
 
 		if(vo.getUploadFile().getSize() != 0) {
-		vo.setQnaBoardImageName("img/qnaImg/"+uploadFile.getOriginalFilename());
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
 		qnaBoardService.insertQnaBoard(vo);
 
 		//multipartFile 형식 파일을 file 형식으로 변환후  upload 

@@ -506,16 +506,23 @@ public class BoardManagementController {
 	}
 	
 	@GetMapping(value = "/admin/qnaboardmanagement" , produces = "application/json")
-	@ResponseBody
+	@ResponseBody //qna 관리자 페이지 게시물 리스트
 	public List<QnaBoardVO> QnaBoardManagement(QnaBoardVO vo){
 		List<QnaBoardVO> qnaboardlist = qnaadminservice.qnaBoardList(vo);	
 		return qnaboardlist;
 	}
 	
 	@GetMapping(value = "/admin/qnaboarddetail" , produces = "application/json")
-	@ResponseBody
+	@ResponseBody  //qna 관리자 페이지 게시물 상세 정보
 	public List<QnaBoardVO> QnaBoardDetail(QnaBoardVO vo){
 		List<QnaBoardVO> qnaboarddetail = qnaadminservice.qnaBoardDetail(vo);
 		return qnaboarddetail;
+	}
+	
+	@GetMapping(value = "/admin/qnaboardsearch" , produces = "application/json")
+	@ResponseBody //qna 관리자 페이지 게시물 검색기능
+	public List<QnaBoardVO> SearchQna(BoardSearchVO vo){
+		List<QnaBoardVO> searchqna = qnaadminservice.searchQna(vo);
+		return searchqna;
 	}
 }
