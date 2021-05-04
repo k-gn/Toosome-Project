@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,13 +25,30 @@
 
 		<div class="menuDetail-container">
 			<div class="title-container">
-
-				<span class="menuDetail-title big">NEW</span>
+			<c:if test="${menubeverageDetail.menuType == 1}">
 				<span class="menuDetail-title big">커피 &amp; 음료</span>
-				<span class="menuDetail-title big">디저트</span>
-				<span class="menuDetail-title big">델리</span>
-				<span class="menuDetail-title big">홀케이크</span>
-
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType != 1}">
+				<span class="menuDetail-title">커피 &amp; 음료</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType == 2}">
+			 	<span class="menuDetail-title big">디저트</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType != 2}">
+			 	<span class="menuDetail-title">디저트</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType == 3}">
+			    <span class="menuDetail-title big">델리</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType != 3}">
+			    <span class="menuDetail-title">델리</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType == 4}">
+			    <span class="menuDetail-title big">홀케이크</span>
+			</c:if>
+			<c:if test="${menubeverageDetail.menuType != 4}">
+			    <span class="menuDetail-title">홀케이크</span>
+			</c:if>
 			</div>
 
 			<div class="contents">

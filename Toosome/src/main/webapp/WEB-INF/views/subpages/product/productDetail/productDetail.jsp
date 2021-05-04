@@ -19,10 +19,24 @@
 
 		<div class="productDetail-container">
 			<div class="title-container">
-				<span class="productDetail-title big">NEW</span> <span
-					class="productDetail-title big">커피상품</span> <span
-					class="productDetail-title big">커피웨어 / 기타</span> <span
-					class="productDetail-title big">기프트세트</span>
+			<c:if test="${productDetail.productType == 1}">
+				<span class="productDetail-title big">커피상품</span>
+			</c:if>
+			<c:if test="${productDetail.productType != 1}">
+				<span class="productDetail-title">커피상품</span>
+			</c:if>
+			<c:if test="${productDetail.productType == 2}">
+			 	<span class="productDetail-title big">커피웨어 / 기타</span>
+			</c:if>
+			<c:if test="${productDetail.productType != 2}">
+			 	<span class="productDetail-title">커피웨어 / 기타</span>
+			</c:if>
+			<c:if test="${productDetail.productType == 3}">
+			    <span class="productDetail-title big">기프트세트</span>
+			</c:if>
+			<c:if test="${productDetail.productType != 3}">
+			    <span class="productDetail-title">기프트세트</span>
+			</c:if>
 			</div>
 			<div class="contents">
 
@@ -89,7 +103,7 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="review-insert" method="post" class="form1">
+					<form action="#" method="post" class="form1">
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}">
 
@@ -145,14 +159,13 @@
 
 						<input type="text" placeholder="제품 한마디를 등록해 주세요."> <input
 							type="submit" value="쓰기">
-
 					</form>
 
-					<form action="#" method="get" class="form2">
+					<form action="reviewlist" method="get" class="form2">
 						<ul class="comment-end">
-						<div id="reviewBoardList">
-  						<ol class="reviewBoardList">
-					    <c:forEach items="${reviewBoardList}" var="reviewBoardList">
+					<div id="reviewList">
+  						<ol class="reviewList">
+					    <c:forEach items="${reviewList}" var="reviewList">
 					      <li>
 					        <p>
 					     	  작성자 : ${reviewList.reviewBoardWriter}<br />
@@ -162,6 +175,7 @@
 					        <p>${reviewList.reviewBoardContent}</p>
 					      </li>
 					    </c:forEach>
+					 
 						</ul>
 						<!--
 						<ul class="comment-end">
@@ -173,9 +187,10 @@
 									src="/resources/img/subpages/menuDetail/ico_star_3.png" alt=""></span>
 								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
 								<span class="dat">2021.04.01</span></li>
-						</ul>
-						 -->
+						</ul>-->
+						
 					</form>
+					
 				</div>
 			</div>
 		</div>
@@ -184,7 +199,25 @@
 
 
 	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
-
+<script type="text/javascript">
+	  	const msg = "${msg}";
+	  	if(msg === "insertSuccess") {
+	  		alert("댓글 등록 완료");
+	  		location.reload();
+	  	} else if (msg === "updateFail") {
+	  		alert("댓글 등록 실패");
+	  	} else if (msg === "deleteSuccess") {
+	  		alert("댓글 삭제 완료");
+	  		location.reload();
+	  	} else if (msg === "deleteFail") {
+	  		alert("댓글 삭제 실패");
+	  	} else if (msg === "updateSuccess") {
+	  		alert("댓글 수정 완료");
+	  		location.reload();
+	  	} else if (msg === "updateFail") {
+	  		alert("댓글 수정 실패");
+	  	}
+	</script>
 	<script>	
 
 const coms = document.querySelectorAll('.com');

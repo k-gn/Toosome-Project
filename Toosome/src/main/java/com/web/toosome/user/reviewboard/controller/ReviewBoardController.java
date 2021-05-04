@@ -1,69 +1,54 @@
 package com.web.toosome.user.reviewboard.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.web.toosome.user.reviewboard.service.IReviewBoardService;
+import com.web.toosome.user.reviewboard.vo.ReviewBoardVO;
+
 public class ReviewBoardController {
-/*
+
 	@Autowired
 	private IReviewBoardService reviewBoardService;
 
-	// 댓글 리스트
-	@RequestMapping(value = "/review-list", produces = "application/json; charset=UTF-8")
-	public List<ReviewBoardVO> reviewBoardList(@RequestParam int productId, Model model) throws Exception {
-		System.out.println("댓글리스트 출력");
-		List<ReviewBoardVO> reviewBoardList = reviewBoardService.reviewListService(productId);
-
-		return reviewBoardList;// List<ReviewBoardVO> 객체(reviewBoardList) 전달
-	}
-
-	// 댓글 작성
-	@RequestMapping(value = "/review-insert", produces = "application/json; charset=UTF-8")
-	public int reviewBoardInsert(ReviewBoardVO reviewBoardVO, HttpSession session) throws Exception {
-		System.out.println("댓글 등록 처리");
-		reviewBoardVO.setReviewBoardWriter((String) session.getAttribute("id"));
-		return reviewBoardService.reviewInsertService(reviewBoardVO);
-	}
-
-
-	// 댓글 수정 GET
-	@RequestMapping(value = "/reviewUpdate", method = RequestMethod.GET)
-	public String reviewUpdate(ReviewBoardVO reviewBoardVO,  Model model) throws Exception {
-
-
-		model.addAttribute("reviewUpdateService", reviewBoardService.reviewCount(reviewBoardVO.getReviewBoardId()));
-
-		return "subpages/product/productDetail/productDetail";
-	}
-
-	// 댓글 수정 POST
-	@RequestMapping(value="/reviewUpdate", method = RequestMethod.POST)
-		public String reviewUpdate(ReviewBoardVO reviewBoardVO, RedirectAttributes rttr) throws Exception {
-			
-			reviewBoardService.reviewUpdateService(reviewBoardVO);
-			
-			rttr.addAttribute("productId", reviewBoardVO.getProductId());
-			
-			return "redirect:/subpages/product/productDetail/productDetail";
-	}
-
-	
-	//댓글 삭제 GET
-		@RequestMapping(value="/reviewDelete", method = RequestMethod.GET)
-		public String replyDelete(ReviewBoardVO reviewBoardVO, Model model) throws Exception {
-			
-			model.addAttribute("replyDelete", reviewBoardService.reviewCount(reviewBoardVO.getReviewBoardId()));
-			
-
-			return "subpages/product/productDetail/productDetail";
+	@PostMapping("/reviewInsert") // 상품 댓글 입력
+	public String reviewInsert(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
+		System.out.println("ReviewBoardVO : " + reviewBoardVO);
+		int insert = reviewBoardService.reviewInsert(reviewBoardVO);
+		if (insert > 0) {
+			ra.addFlashAttribute("msg", "insertSuccess");
+		} else {
+			ra.addFlashAttribute("msg", "insertFail");
 		}
-		
-		//댓글 삭제
-		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
-		public String replyDelete(ReviewBoardVO reviewBoardVO, RedirectAttributes rttr) throws Exception {
-			
-			reviewBoardService.reviewDeleteService(reviewBoardVO);
-			
-			rttr.addAttribute("productId", reviewBoardVO.getProductId());
-		
-			return "redirect:/subpages/product/productDetail/productDetail";
+		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
+	}
+
+	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
+	@ResponseBody
+	public String reviewUpdate(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
+		int update = reviewBoardService.reviewUpdate(reviewBoardVO);
+		if (update > 0) {
+			ra.addFlashAttribute("msg", "updateSuccess");
+		} else {
+			ra.addFlashAttribute("msg", "updateFail");
 		}
-*/		
+		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
+	}
+
+	@GetMapping(value = "/reviewDelete", produces = "application/json") // 상품 댓글 삭제
+	@ResponseBody
+	public String reviewDelete(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
+		int delete = reviewBoardService.reviewDelete(reviewBoardVO);
+		if (delete > 0) {
+			ra.addFlashAttribute("msg", "deleteSuccess");
+		} else {
+			ra.addFlashAttribute("msg", "deleteFail");
+		}
+		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
+	}
+
 }

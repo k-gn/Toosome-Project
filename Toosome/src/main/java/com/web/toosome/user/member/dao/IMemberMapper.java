@@ -61,4 +61,7 @@ public interface IMemberMapper {
 	
 	// 최종 로그인 등록
 	public void updateLastLogin(String email);
+
+	//유저의 id 값을 가져올 수 있어야 한다
+	public int getUserIdByEmail(String email);
 }

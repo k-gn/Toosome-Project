@@ -96,10 +96,8 @@ public class ProductService implements IProductService{
 		return productmapper.getproductDetailById(pid);
 	}
 
-	@Override
-	public List<ProductVO> getreviewList(Integer productId) {
-		
-		return productmapper.getreviewList(productId);
-	}
+
+
+
 
 }

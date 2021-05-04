@@ -1,5 +1,7 @@
 package com.web.toosome.user.product.controller;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.toosome.user.member.service.IMemberService;
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
 import com.web.toosome.user.reviewboard.service.IReviewBoardService;
@@ -25,7 +29,10 @@ public class ProductController {
 
 	@Autowired
 	private IReviewBoardService reviewBoardService;
-
+	
+	@Autowired
+	private IMemberService memberService;
+	
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
@@ -62,72 +69,45 @@ public class ProductController {
 		return "subpages/product/productGift";
 	}
 
-	@GetMapping("/productDetail") // 주문가능한 상품 리스트
-	public String productDetail(Model model,@ModelAttribute("reviewBoardVO")ReviewBoardVO reviewBoardVO,ProductVO productVO) {
+	@RequestMapping(value = "/productDetail", method = RequestMethod.GET) // 주문가능한 상품 리스트
+	public String productDetail(Principal principal,Model model,ProductVO productVO,ReviewBoardVO review) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
 		System.out.println(productDetail);
-		System.out.println("댓글 디테일 출력");
-		int productId = productVO.getProductId();
-		List<ReviewBoardVO> reviewBoardList = reviewBoardService.reviewList(productId);
-		System.out.println(productVO.getProductId());
-
+		
+		List<ReviewBoardVO> reviewList = reviewBoardService.reviewList(review);
+		System.out.println(reviewList);
+		
+		
+		review.setProductId(productVO.getProductId());
+		model.addAttribute("review", review);
+		System.out.println(review);
+		
+		// 평점 옵션
+		Map ratingOptions = new HashMap();
+		ratingOptions.put(5, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png");
+		ratingOptions.put(4, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png");
+		ratingOptions.put(3, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png");
+		ratingOptions.put(2, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png");
+		ratingOptions.put(1, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png");
+		ratingOptions.put(0, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_off.png");
+		model.addAttribute("ratingOptions", ratingOptions);
 		// 리스트 값 체크
-		if (reviewBoardList.isEmpty()) {
-			// 리스트에 값이 존재하지 않음
-			System.out.println("List is empty");
-		} else { // 리스트에 값이 존재
-			
-			System.out.println("List is not empty");
-			for (int i = 0; i < reviewBoardList.size(); i++) {
-				// 리스트 안에 값에 대한 null 체크
-				if (reviewBoardList.get(i) == null) {
-					System.out.println("list[" + i + "]의 값은 null 입니다. ");
-				}
-			}
-		}
-		System.out.println(reviewBoardService.reviewList(productVO.getProductId()));
-		model.addAttribute("reviewBoardList", reviewBoardList);
-		System.out.println(reviewBoardList);
+//		if (review.isEmpty()) {
+//			// 리스트에 값이 존재하지 않음
+//			System.out.println("List is empty");
+//		} else { // 리스트에 값이 존재
+//			
+//			System.out.println("List is not empty");
+//			for (int i = 1; i < review.size(); i++) {
+//				// 리스트 안에 값에 대한 null 체크
+//				if (review.get(i) == null) {
+//					System.out.println("list[" + i + "]의 값은 null 입니다. ");
+//				}
+//			}
+//		}
 		return "subpages/product/productDetail/productDetail";
-	}
-
-	@PostMapping("/reviewInsert") // qna 댓글입력
-	public String reviewInsert(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
-		System.out.println("ReviewBoardVO : " + reviewBoardVO);
-		int insert = reviewBoardService.reviewInsert(reviewBoardVO);
-		if (insert > 0) {
-			ra.addFlashAttribute("msg", "insertSuccess");
-		} else {
-			ra.addFlashAttribute("msg", "insertFail");
-		}
-		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
-	}
-
-	@GetMapping(value = "/reviewUpdate", produces = "application/json") // qna 댓글 업데이트
-	@ResponseBody
-	public String reviewUpdate(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
-		int update = reviewBoardService.reviewUpdate(reviewBoardVO);
-		if (update > 0) {
-			ra.addFlashAttribute("msg", "updateSuccess");
-		} else {
-			ra.addFlashAttribute("msg", "updateFail");
-		}
-		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
-	}
-
-	@GetMapping(value = "/reviewDelete", produces = "application/json") // qna 댓글 삭제
-	@ResponseBody
-	public String reviewDelete(ReviewBoardVO reviewBoardVO, RedirectAttributes ra) throws Exception {
-		int delete = reviewBoardService.reviewDelete(reviewBoardVO);
-		if (delete > 0) {
-			ra.addFlashAttribute("msg", "deleteSuccess");
-		} else {
-			ra.addFlashAttribute("msg", "deleteFail");
-			;
-		}
-		return "redirect:/productDetail?productId=" + reviewBoardVO.getProductId();
 	}
 
 	// Product image & Product event 관련 추가...

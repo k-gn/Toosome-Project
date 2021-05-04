@@ -13,6 +13,7 @@ public interface IProductMapper {
 	public ProductVO getproductDetail(ProductVO productVO);
 	public ProductVO getproductDetailById(Integer pid);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
-	public List<ProductVO> getreviewList(Integer productId);
+	
+	
 
 }

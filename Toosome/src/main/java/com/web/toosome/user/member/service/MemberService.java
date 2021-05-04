@@ -222,4 +222,12 @@ public class MemberService implements IMemberService {
 		return mapper.changePassword(map);
 	}
 
+	@Override
+	public int getUserIdByEmail(String email) {
+		// TODO Auto-generated method stub
+		return mapper.getUserIdByEmail(email);
+	}
+
+
+
 }

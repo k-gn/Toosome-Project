@@ -28,57 +28,25 @@ public class ReviewBoardService implements IReviewBoardService{
 	@Autowired
 	private IReviewBoardMapper reviewBoardMapper;
 	
-	public int s3Upload(MultipartFile file, String fname) {
-		AmazonS3 amazonS3 = null;
-		String bucket = null;
-
-		AWSCredentials creds = new BasicAWSCredentials("AKIA2EEFD7LC3HPT4W5F",
-				"HysDDMERwtehAGKvBMK35xeUr2NsM++Bwz66l615");
-		amazonS3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds))
-				.withRegion(Regions.AP_NORTHEAST_2) // region
-				.withForceGlobalBucketAccessEnabled(true) // access
-				.build();
-		bucket = "toosome";
-		TransferManager tm = TransferManagerBuilder.standard().withS3Client(amazonS3).build();
-		PutObjectRequest request;
-		try {
-			ObjectMetadata metadata = new ObjectMetadata();
-			metadata.setCacheControl("604800"); // 60*60*24*7 일주일
-			metadata.setContentType("image/jpeg");
-			request = new PutObjectRequest(bucket, fname, file.getInputStream(), metadata)
-					.withCannedAcl(CannedAccessControlList.PublicRead);
-			// amazonS3.putObject(request);
-			Upload upload = tm.upload(request);
-			upload.waitForCompletion();
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
 	
+
 	@Override
-	public int reviewCount(int reviewBoardId) throws Exception {
-		return reviewBoardMapper.reviewCount(reviewBoardId);
+	public List<ReviewBoardVO> reviewList(ReviewBoardVO reviewBoardVO){
+		return reviewBoardMapper.reviewList(reviewBoardVO);
 	}
 
 	@Override
-	public List<ReviewBoardVO> reviewList(int productId){
-		return reviewBoardMapper.reviewList(productId);
-	}
-
-	@Override
-	public int reviewInsert(ReviewBoardVO reviewBoardVO) throws Exception {
+	public int reviewInsert(ReviewBoardVO reviewBoardVO){
 		return reviewBoardMapper.reviewInsert(reviewBoardVO);
 	}
 
 	@Override
-	public int reviewUpdate(ReviewBoardVO reviewBoardVO) throws Exception {
+	public int reviewUpdate(ReviewBoardVO reviewBoardVO) {
 		return reviewBoardMapper.reviewUpdate(reviewBoardVO);
 	}
 
 	@Override
-	public int reviewDelete(ReviewBoardVO reviewBoardVO) throws Exception {
+	public int reviewDelete(ReviewBoardVO reviewBoardVO) {
 		return reviewBoardMapper.reviewDelete(reviewBoardVO);
 	}
 
