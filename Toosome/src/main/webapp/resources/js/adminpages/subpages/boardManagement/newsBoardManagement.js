@@ -274,7 +274,7 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/newsboardmanagement", //서버 요청 URI
+		url: "/admin/newsboarddetail", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보

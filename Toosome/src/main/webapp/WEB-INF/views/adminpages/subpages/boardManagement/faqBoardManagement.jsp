@@ -13,6 +13,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/faqBoardManagement.js" defer></script>
+  <script type="text/javascript">
+ 	const msg = "${msg}";
+ 	if(msg === "insertsuccess") {
+ 		alert("정상 등록되었습니다");
+ 	}else if(msg === "insertfail") {
+ 		alert("입력하신 정보가 올바르지 않습니다.");
+ 	}else if(msg === 'updatesuccess') {
+ 		alert("수정 완료");
+ 	}else if(msg === 'updatefail') {
+ 		alert("수정 실패");
+ 	}else if(msg === 'deletesuccess') {
+ 		alert("삭제 완료");
+ 	}else if(msg === 'deletefail') {
+ 		alert("삭제 실패");
+ 	}
+  </script>
 </head>
 
 <body>
@@ -99,7 +115,7 @@
 		                  <h4 class="card-title">FAQ 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form id="update-form">
+		                  <form id="update-form" method="post" action="/admin/faqboard-update?${_csrf.parameterName}=${_csrf.token}">
 		                    <div class="row">
 		                      <div class="col-md-4">
 		                        <div class="form-group">
@@ -110,7 +126,7 @@
 		                      <div class="col-md-8">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="date" name="faqBoardRegDate" class="form-control">
+		                          <input type="date" name="faqBoardRegDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -127,14 +143,14 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">답변</label>
-		                            <textarea id="detail-content" class="form-control" name="faqBoardContent" rows="5"></textarea>
+		                            <input id="detail-content" type="text" class="form-control" name="faqBoardContent">
 		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
 		                    <input type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc();" />
-		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="삭제" />
+		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="faqBoardId" />
 		                  </form>
@@ -153,7 +169,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form id="enroll-form">
+			        <form id="enroll-form" method="post" action="/admin/faqboard-insert?${_csrf.parameterName}=${_csrf.token}">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">

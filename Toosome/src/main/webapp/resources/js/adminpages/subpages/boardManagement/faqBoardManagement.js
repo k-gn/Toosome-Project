@@ -21,7 +21,8 @@ let keyword = ''; // 검색 제목
 let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
 let rows = 10000;
-let boardId = '';
+let boardId = -1;
+let url = '';
 
 // 글 등록 유효성 검사
 const enrollCheck = (title, content) => {
@@ -69,12 +70,12 @@ const delBtnFunc = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/',
+			url: '/admin/faqboard-delete',
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
 			data: {
-				noticeBoardId: boardId
+				faqBoardId: +boardId
 			},
 			success: () => {
 				
@@ -159,7 +160,6 @@ const showList = (result, wrapper) => {
 		wrapper.appendChild(newItem);
 		return;
 	};
-	console.log(result);
 	
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < result.length; i++) {
@@ -198,11 +198,11 @@ const setData = (result, wrapper, rows) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (board, wrapper, rows) => {
+const getList = (url, board, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/faqboardmanagement", //서버 요청 URI
+		url, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -247,7 +247,8 @@ const submitHandler = () => {
 	};
 	
 	rows = 10000;
-	getList(board, listTable, rows);
+	url = '/admin/faqboardsearch';
+	getList(url, board, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -260,7 +261,7 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/", //서버 요청 URI
+		url: "/admin/faqboarddetail", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -272,7 +273,7 @@ const listHandler = (e) => {
 			boardId = res[0].faqBoardId;
 			$('input[name=faqBoardId]').val(res[0].faqBoardId);			
 			$('input[name=faqBoardViewCount]').val(res[0].faqBoardViewCount);			
-			$('input[name=faqBoardRegdate]').val(res[0].faqBoardRegdate);	
+			$('input[name=faqBoardRegDate]').val(res[0].faqBoardRegDate);	
 			$('#detail-title').val(res[0].faqBoardTitle);		
 			$('#detail-content').val(res[0].faqBoardContent);		
 		}, 
@@ -293,7 +294,8 @@ const selectHandler = (select) => {
 	// init
 	rows = +value;
 	
-	getList(board, listTable, rows);
+	url = '/admin/faqboardmanagement';
+	getList(url, board, listTable, rows);
 };
 
 // 모달 취소 버튼 핸들러
@@ -305,5 +307,6 @@ modalCancelBtn.addEventListener('click', (e) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(board, listTable, rows);
+	url = '/admin/faqboardmanagement';
+	getList(url, board, listTable, rows);
 }); 
