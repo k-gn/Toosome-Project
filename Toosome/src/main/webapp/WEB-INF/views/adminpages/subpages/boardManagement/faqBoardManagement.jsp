@@ -99,7 +99,7 @@
 		                  <h4 class="card-title">FAQ 게시글 상세</h4>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form id="update-form">
 		                    <div class="row">
 		                      <div class="col-md-4">
 		                        <div class="form-group">
@@ -118,7 +118,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">질문</label>
-		                          <input type="text" name="faqBoardTitle" class="form-control">
+		                          <input id="detail-title" type="text" name="faqBoardTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -127,14 +127,14 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">답변</label>
-		                            <textarea class="form-control" name="faqBoardContent" rows="5"></textarea>
+		                            <textarea id="detail-content" class="form-control" name="faqBoardContent" rows="5"></textarea>
 		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>
-		                    <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                    <button id="modal-cancel" class="btn btn-primary pull-right btn-r">취소</button>
-		                    <button id="delete" class="btn btn-primary pull-right btn-r">삭제</button>
+		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
+		                    <input type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc();" />
+		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="삭제" />
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="faqBoardId" />
 		                  </form>
@@ -153,7 +153,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form>
+			        <form id="enroll-form">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -162,7 +162,7 @@
 				                  <h4 class="info-title">질문</h4>
 				                  <div class="form-group">
 				                    <div class="form-group">
-	                                  <textarea class="form-control" name="faqBoardTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                  <textarea id="enroll-title" class="form-control" name="faqBoardTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                                </div>
 				                  </div>
 				                </div>
@@ -174,13 +174,13 @@
 				                <h4 class="info-title">답변</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" name="faqBoardContent" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                <textarea id="enroll-content" class="form-control" name="faqBoardContent" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">등록</button>
+				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right">등록</button>
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
 			        </form>
@@ -222,7 +222,7 @@
                    		<col width="50%">
                    		<col width="10%">
                       </colgroup>
-                      <thead class="text-primary text-center" id="list-table-thead">
+                      <thead class="text-primary text-center">
                         <th>
                           글번호
                         </th>
@@ -236,7 +236,7 @@
                           작성일
                         </th>
                       </thead>
-                      <tbody id="list-table-body" class="text-center">
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>
