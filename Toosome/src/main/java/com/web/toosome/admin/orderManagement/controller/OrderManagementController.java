@@ -106,8 +106,8 @@ public class OrderManagementController {
 	
 	@GetMapping("/admin/orderCancel/{id}")
 	@ResponseBody
-	public OrdersVO getorderCancelDetail(@PathVariable Integer id) {
-		System.out.println("getorderDetail 메서드 실행");
+	public OrdersCancelVO getorderCancelDetail(@PathVariable Integer id) {
+		System.out.println("getorderCancelDetail 메서드 실행");
 		return orderService.getorderCancelDetail(id);
 	}
 	
@@ -115,8 +115,9 @@ public class OrderManagementController {
 	@ResponseBody
 	public List<OrdersCancelDetailVO> getorderCancelDetailList(@PathVariable Integer id) {
 		System.out.println("getorderCancelDetailList 메서드 실행");
-		List<OrdersCancelDetailVO> ordersDetailList = orderService.getorderCancelDetailList(id); 
-		return ordersDetailList;
+		List<OrdersCancelDetailVO> getorderCancelDetailList = orderService.getorderCancelDetailList(id); 
+		System.out.println(getorderCancelDetailList);
+		return getorderCancelDetailList;
 	}
 	
 }

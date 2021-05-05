@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class OrdersCancelDetailVO {
+	private Integer ordersCancelDetailId;
+	private Integer ordersCancelId;
 	private Integer ordersDetailId;
 	private Integer ordersId;
 	private Integer memberId;

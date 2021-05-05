@@ -105,7 +105,7 @@
 	<insert id="basketsendorder">
 		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
 		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
-		VALUES(#{ordersId}, #{memberId},  #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
+		VALUES(#{ordersId}, #{memberId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
 	</insert>
 	
 	<select id="getBasketList" resultMap="basketMap">
@@ -151,6 +151,23 @@
 	
 	<select id="getLookPostList" resultType="String">
 		SELECT ORDERS_STATE FROM ORDERS WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
+	<insert id="setordersCancel">
+		INSERT INTO ORDERS_CANCEL(ORDERS_ID, MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_CANCEL_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_MERCHANT_UID, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MEMBER_EMAIL, ORDERS_USE_POINT, ORDERS_PRODUCT_PAY, ORDERS_SAL)
+		VALUES(#{ordersId}, #{memberId}, #{ordersOrderDate}, now(), #{ordersPayment}, '결제취소', #{ordersAddress}, #{ordersPostcode},
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersMerchantUid}, #{ordersProductName}, #{ordersAmount}, #{ordersMemberEmail}, #{ordersUsePoint}, #{ordersProductPay}, #{ordersSal})
+	</insert>
+	
+	<insert id="setordersCancelDetail">
+		INSERT INTO ORDERS_CANCEL_DETAIL(ORDERS_CANCEL_ID ,ORDERS_DETAIL_ID, ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME, ORDERS_DETAIL_STATE,
+		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersCancelId}, #{ordersDetailId}, #{ordersId}, #{memberId}, #{ordersDetailAmount}, #{ordersDetailName}, #{ordersDetailState}, #{ordersDetailPrice}, #{ordersDetailImagePath})
+	</insert>
+	
+	<select id="getOrdersCancelId" resultType="Integer">
+		SELECT ORDERS_CANCEL_ID FROM ORDERS_CANCEL WHERE ORDERS_ID = #{ordersId}
 	</select>
 	
 </mapper>

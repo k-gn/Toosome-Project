@@ -31,7 +31,6 @@ public class OrderManagementService implements IOrderManagementService {
 	
 	@Override
 	public List<OrdersDetailVO> getorderDetailListTwo(Integer id) {
-		System.out.println("1");
 		return mapper.getorderDetailListTwo(id);
 	}
 
@@ -46,7 +45,8 @@ public class OrderManagementService implements IOrderManagementService {
 	}
 
 	@Override
-	public OrdersVO getorderCancelDetail(Integer id) {
+	public OrdersCancelVO getorderCancelDetail(Integer id) {
+		System.out.println("1");
 		return mapper.getorderCancelDetail(id);
 	}
 	

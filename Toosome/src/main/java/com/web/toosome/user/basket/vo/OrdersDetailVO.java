@@ -14,5 +14,7 @@ public class OrdersDetailVO {
 	private Integer ordersDetailPrice;
 	private String ordersDetailState;
 	private String ordersDetailImagePath;
+	
+	private Integer ordersCancelId;
 
 }

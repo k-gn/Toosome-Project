@@ -156,6 +156,9 @@ const showList = (result, wrapper) => {
           <td>
             ${result[i].ordersOrderDate}
           </td>
+          <td>
+            ${result[i].ordersCancelDate}
+          </td>
 		`;
 		newEl.innerHTML = content;
 		wrapper.appendChild(newEl);
@@ -267,13 +270,96 @@ submitBtn.addEventListener('click', submitHandler);
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const tr = e.target.parentNode;
-	const tds = tr.children;
-	const index = tds[0].innerText;
+	const tds = e.children;
+	const id = tds[0].innerText;
 	
 	/* index로 AJAX 요청 */
+	$.ajax({
+		type: "get", //서버에 전송하는 HTTP요청 방식
+		url: "/admin/orderCancel/" + id, //서버 요청 URI
+		headers: {
+			"Content-Type": "application/json"
+		}, //요청 헤더 정보
+		dataType: "json", //응답받을 데이터의 형태
+		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			
+			if(res.ordersAddress == null) {
+				res.ordersAddress = 'Gift Buy';
+			}
+			if(res.ordersPostcode == null) {
+				res.ordersPostcode = 'Gift Buy';
+			}
+			if(res.ordersDelivery == null) {
+				res.ordersDelivery = 'Gift Buy';
+			}
+			$("input[name=ordersId]").val(res.ordersId);
+			$("input[name=memberName]").val(res.memberVO.memberName);
+			$("input[name=memberPhone]").val(res.memberVO.memberPhone);
+			$("input[name=ordersState]").val(res.ordersState);
+ 			$("input[name=ordersProductPay]").val(res.ordersProductPay);
+			$("input[name=ordersAmount]").val(res.ordersAmount);
+			$("input[name=ordersReceiver]").val(res.ordersReceiver);
+			$("input[name=ordersPhone]").val(res.ordersPhone);
+			$("input[name=ordersPostcode]").val(res.ordersPostcode);
+			$("input[name=ordersAddress]").val(res.ordersAddress);
+			$("input[name=ordersDelivery]").val(res.ordersDelivery);
+			$("input[name=ordersUsePoint]").val(res.ordersUsePoint);
+			$("input[name=ordersSal]").val(res.ordersSal);
+			$("input[name=ordersPayment]").val(res.ordersPayment);	
+			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
+			$("input[name=ordersCancelDate]").val(res.ordersCancelDate);
+			$("input[name=ordersId]").val(res.ordersId);			
+			
+			if(res!=null){
+				$.ajax({
+					type: "get", //서버에 전송하는 HTTP요청 방식
+					url: "/admin/orderCancelDetail/" + id, //서버 요청 URI
+					headers: {
+						"Content-Type": "application/json"
+					}, //요청 헤더 정보
+					dataType: "json", //응답받을 데이터의 형태
+					success: (results) => {
+						console.log(results);
+						console.log(id);
+						const tableBody = document.querySelector(`.under-table`);
+						tableBody.innerHTML = '';
+						let new2El = document.createElement('tr');
+						new2El.classList.add('text-bold');
+						let content2 = `
+							<td>이미지</td>
+				           	<td colspan="2">상품명</td>
+				           	<td>수량</td>
+				           	<td>상품가격</td>
+			            	<td>배송상태</td>
+						`;
+						new2El.innerHTML = content2;
+						tableBody.appendChild(new2El);
+						results.forEach(result => {
+							let newEl = document.createElement('tr');
+							newEl.classList.add('under-tr');
+							let content = `
+								<td><img src="${result.ordersDetailImagePath}" alt="" width="60px"></td>
+					            <td colspan="2"><span class="pro-name">${result.ordersDetailName}</span></td>
+					            <td><span class="pro-count">${result.ordersDetailAmount}</span></td>
+					            <td><span class="pro-pay">${result.ordersDetailPrice}</span></td>
+					            <td><span class="post-status">${result.ordersDetailState}</span></td>
+							`;
+							newEl.innerHTML = content;
+							tableBody.appendChild(newEl);
+						})
+					}
+				});	
+			}		
+		}, 
+		error: () => {
+			alert('시스템과에 문의하세요');
+			alert('시스템과에 문의하세요');
+			history.back();
+		} 
+	});
 	
 	profileContainer.style.display = 'block';
+	$("input[name=memberName]").focus();
 	
 };
 

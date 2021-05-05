@@ -9,12 +9,14 @@ import lombok.Data;
 
 @Data
 public class OrdersCancelVO {
+	private Integer ordersCancelId;
 	private Integer ordersId;
 	private Integer memberId;
 	private String ordersProductName;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date ordersOrderDate;
-	private Date ordersCancelOrderDate;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+	private Date ordersCancelDate;
 	private Integer ordersPayment;
 	private String ordersState;
 	private String ordersAddress;

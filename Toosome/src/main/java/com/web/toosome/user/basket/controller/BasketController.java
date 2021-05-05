@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.web.toosome.admin.orderManagement.service.IOrderManagementService;
 import com.web.toosome.user.basket.service.IBasketService;
 import com.web.toosome.user.basket.vo.BasketUtil;
 import com.web.toosome.user.basket.vo.BasketVO;
@@ -56,6 +57,9 @@ public class BasketController {
 
 	@Autowired
 	private IMemberService memberService;
+	
+	@Autowired
+	private IOrderManagementService omService;
 
 	// 장바구니 페이지 이동
 	@GetMapping("/basket") // 장바구니
@@ -345,9 +349,21 @@ public class BasketController {
 	@PostMapping("/ordersCancelReceipt")
 	@ResponseBody
 	public int ordersCancelReceipt(Integer ordersId) {
+		System.out.println("ordersCancelReceipt");
+		OrdersVO ordersVO = omService.getorderDetail(ordersId);
+		System.out.println(ordersVO);
+		List<OrdersDetailVO> ordersDetailVO = omService.getorderDetailListTwo(ordersId);
+
+		System.out.println(ordersDetailVO);
+		int num1 = service.setordersCancel(ordersVO);
+		for (OrdersDetailVO OrdersDetailOne : ordersDetailVO) {
+			OrdersDetailOne.setOrdersCancelId(service.getOrdersCancelId(ordersId));
+			System.out.println(service.getOrdersCancelId(ordersId));
+			service.setordersCancelDetail(OrdersDetailOne);
+		}
 		int detailDel = service.ordersDetailDel(ordersId);
 		int ordersDel = service.ordersDel(ordersId);
-		if(detailDel == 1 && ordersDel == 1) {
+		if(detailDel == 1 && ordersDel == 1 && num1>0) {
 			return 1;
 		}else {
 			return 0;
@@ -358,10 +374,9 @@ public class BasketController {
 	@ResponseBody
 	public String lookPost(Integer ordersId) {
 		String lookPost = service.getLookPostList(ordersId);
-		System.out.println(lookPost);
 		return lookPost;
+
 	}
-	
 	
 	
 	

@@ -63,7 +63,7 @@
                          </tr>
                          <tr>
                            <td>
-                             <span><strong>기간</strong></span>
+                             <span><strong>주문기간</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
@@ -89,7 +89,7 @@
                          </tr>
                          <tr>
                            <td>
-                             <span><strong>기간</strong></span>
+                             <span><strong>주문취소기간</strong></span>
                            </td>
                            <td>
                              <div class="select-box">
@@ -231,7 +231,7 @@
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제취소일자(주문)</label>
-		                          <input type="date" name="ordersOrderCancelDate" class="form-control">
+		                          <input type="date" name=ordersCancelDate class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>

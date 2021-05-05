@@ -26,7 +26,7 @@ public interface IOrderManagementService {
 	public List<OrdersCancelVO> getOrderCancelList(OrderCancelManagementVO ocmVO);
 	
 	// admin orderCancel Detaildp 출력할 orders 데이터 가져오기.
-	public OrdersVO getorderCancelDetail(Integer id);
+	public OrdersCancelVO getorderCancelDetail(Integer id);
 	
 	// admin orderCancel Detail Lsit 페이지 출력.
 	public List<OrdersCancelDetailVO> getorderCancelDetailList(Integer id);

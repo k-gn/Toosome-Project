@@ -29,8 +29,6 @@
 		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
 		<result property="ordersId" column="ORDERS_ID" />
 		<result property="memberId" column="MEMBER_ID" />
-		<result property="productId" column="PRODUCT_ID" />
-		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
 		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
@@ -43,6 +41,11 @@
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="memberPhone" column="MEMBER_PHONE"/>
 	</resultMap>
+	
+	
+	
+	
+	
 	
 	<resultMap type="orderCancelVO" id="orderCancelVO">
 		<result property="ordersCancelId" column="ORDERS_CANCEL_ID" />
@@ -70,11 +73,10 @@
 	
 	<resultMap type="ordersCancelDetailVO" id="ordersCancelDetailVO">
 		<result property="ordersCancelDetailId" column="ORDERS_CANCEL_DETAIL_ID" />
+		<result property="ordersCancelId" column="ORDERS_CANCEL_ID" />
 		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
 		<result property="ordersId" column="ORDERS_ID" />
 		<result property="memberId" column="MEMBER_ID" />
-		<result property="productId" column="PRODUCT_ID" />
-		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
 		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
@@ -112,7 +114,7 @@
 	</sql>
 	
 	<sql id="ocmVO">
-		WHERE A.ORDERS_STATE = '기프트콘'
+		WHERE ORDERS_CANCEL_ID
 		<if test="condition == 'o-id'">
 			AND A.ORDERS_ID = #{keyword}
 		</if>
@@ -160,17 +162,20 @@
 	
 	<select id="getorderDetail" resultMap="orderVO">
 		SELECT A.ORDERS_ID,
+		A.MEMBER_MEMBER_ID,
 		A.ORDERS_ORDER_DATE,
-		A.ORDERS_STATE,
-		A.ORDERS_RECEIVER,
-		A.ORDERS_PRODUCT_NAME,
-        A.ORDERS_AMOUNT,
         A.ORDERS_PAYMENT,
-        A.ORDERS_MEMBER_EMAIL,
-        A.ORDERS_ADDRESS,
+		A.ORDERS_STATE,
+		A.ORDERS_ADDRESS,
         A.ORDERS_POSTCODE,
+		A.ORDERS_RECEIVER,
         A.ORDERS_DELIVERY,
         A.ORDERS_PHONE,
+        A.ORDERS_CONTENT,
+        A.ORDERS_MERCHANT_UID,
+		A.ORDERS_PRODUCT_NAME,
+        A.ORDERS_AMOUNT,
+        A.ORDERS_MEMBER_EMAIL,
         A.ORDERS_USE_POINT,
         A.ORDERS_PRODUCT_PAY,
         A.ORDERS_SAL,
@@ -192,8 +197,11 @@
 	</update>
 	
 	<select id="getOrderCancelList" resultMap="orderCancelVO">
-		SELECT A.ORDERS_ID,
+		SELECT A.ORDERS_CANCEL_ID,
+		A.ORDERS_ID,
+		A.MEMBER_MEMBER_ID,
 		A.ORDERS_ORDER_DATE,
+		A.ORDERS_CANCEL_DATE,
 		A.ORDERS_STATE,
 		A.ORDERS_RECEIVER,
 		A.ORDERS_PRODUCT_NAME,
@@ -207,7 +215,7 @@
 		B.MEMBER_ID,
         B.MEMBER_NAME,
         B.MEMBER_PHONE 
-		FROM ORDERS A INNER JOIN
+		FROM ORDERS_CANCEL A INNER JOIN
 		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID)
 		<include refid="ocmVO"/>
 		ORDER BY ORDERS_ID DESC
@@ -239,7 +247,7 @@
 	</select>
 	
 	<select id="getorderCancelDetailListTwo" resultMap="ordersCancelDetailVO">
-		SELECT * FROM ORDERS_CANCEL_DETAIL WHERE ORDERS_ID = #{ordersId};
+		SELECT * FROM ORDERS_CANCEL_DETAIL WHERE ORDERS_ID = #{id};
 	</select>
 	
 </mapper>
