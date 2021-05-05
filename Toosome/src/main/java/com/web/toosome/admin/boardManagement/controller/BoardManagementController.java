@@ -18,14 +18,17 @@ import com.web.toosome.admin.boardManagement.service.IEventAdminService;
 import com.web.toosome.admin.boardManagement.service.IFaqAdminService;
 import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
+import com.web.toosome.admin.boardManagement.service.IQnaAdminService;
 import com.web.toosome.common.s3.S3Service;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
+import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
-import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
+import com.web.toosome.user.board.vo.QnaBoardVO;
 
 
 
@@ -43,6 +46,9 @@ public class BoardManagementController {
 	
 	@Autowired
 	private IFaqAdminService faqadminservice;
+	
+	@Autowired
+	private IQnaAdminService qnaadminservice;
 	
 	@Autowired
 	private S3Service awsS3;
@@ -309,6 +315,15 @@ public class BoardManagementController {
 		return eventlist;
 	}
 	
+	@GetMapping(value="/admin/newsboarddetail" , produces = "application/json") // 뉴스관리자 게시물 상세보기값
+	@ResponseBody
+	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo){
+		List<NewsBoardVO> newsboarddetail = newsadminservice.newsBoardDetail(vo);
+		System.out.println(newsboarddetail);
+		return newsboarddetail;
+	}
+	
+	
 	@GetMapping(value="/admin/newsboardsearch" , produces = "application/json") // 뉴스관리자 게시물 검색기능
 	@ResponseBody
 	public List<NewsBoardVO> searchEventList(BoardSearchVO vo){
@@ -342,7 +357,7 @@ public class BoardManagementController {
 		
 		
 		if(in > 0 && in2 > 0 ) {
-			ra.addFlashAttribute("msg", "insertSeccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
@@ -365,7 +380,7 @@ public class BoardManagementController {
 		int del2 = newsadminservice.deleteNewsBoardDetail(vvo);
 		
 		if(del >0 && del2 >0) {
-			ra.addFlashAttribute("msg", "deleteSeccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
@@ -401,7 +416,7 @@ public class BoardManagementController {
 		System.out.println(key);
 		awsS3.upload(file, key);
 		if(up >0 && up2 > 0) {
-		ra.addFlashAttribute("msg", "updateseccess");
+		ra.addFlashAttribute("msg", "updatesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "updatefail");
 		}
@@ -414,7 +429,7 @@ public class BoardManagementController {
 		
 		
 		if(up >0 && up2 > 0) {
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updatesuccess");
 			}else {
 				ra.addFlashAttribute("msg", "updatefail");
 			}	
@@ -453,7 +468,7 @@ public class BoardManagementController {
 	public String insertFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int in = faqadminservice.insertFaq(vo);
 		if(in>0) {
-			ra.addFlashAttribute("msg", "insertseccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
@@ -461,11 +476,11 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "/admin/faqboard-delete") // faq delete
+	@GetMapping(value = "/admin/faqboard-delete") // faq delete
 	public String deleteFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int del = faqadminservice.deleteFaq(vo);
 		if(del>0) {
-			ra.addFlashAttribute("msg", "deleteseccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
@@ -473,11 +488,11 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "admin/faqboard-update") //faq update
+	@PostMapping(value = "/admin/faqboard-update") //faq update
 	public String updateFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int update = faqadminservice.updateFaq(vo);
 		if(update>0) {
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updatesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "updatefail");
 		}
@@ -485,8 +500,78 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@GetMapping("/admin/qnaboard-management") // qna 게시판 관리
-	public String QnaBoardManagement() {
+	
+	
+	@RequestMapping("/admin/qnaboard-management") // qna 게시판 관리
+	public String QnaBoardManagementView() {
 		return "adminpages/subpages/boardManagement/qnaBoardManagement";
 	}
+	
+	@GetMapping(value = "/admin/qnaboardmanagement" , produces = "application/json")
+	@ResponseBody //qna 관리자 페이지 게시물 리스트
+	public List<QnaBoardVO> QnaBoardManagement(QnaBoardVO vo){
+		List<QnaBoardVO> qnaboardlist = qnaadminservice.qnaBoardList(vo);	
+		return qnaboardlist;
+	}
+	
+	@GetMapping(value = "/admin/qnaboarddetail" , produces = "application/json")
+	@ResponseBody  //qna 관리자 페이지 게시물 상세 정보
+	public List<QnaBoardVO> QnaBoardDetail(QnaBoardVO vo){
+		List<QnaBoardVO> qnaboarddetail = qnaadminservice.qnaBoardDetail(vo);
+		return qnaboarddetail;
+	}
+	
+	@GetMapping(value = "/admin/qnaboardsearch" , produces = "application/json")
+	@ResponseBody //qna 관리자 페이지 게시물 검색기능
+	public List<QnaBoardVO> SearchQna(BoardSearchVO vo){
+		List<QnaBoardVO> searchqna = qnaadminservice.searchQna(vo);
+		return searchqna;
+	}
+	
+	@GetMapping(value = "/admin/qnacommentlist" , produces = "application/json")
+	@ResponseBody //qna댓글 리스트 보기
+	public List<QnaBoardCommentVO> qnaBoardCommentList(QnaBoardCommentVO vo){
+		List<QnaBoardCommentVO> commentlist = qnaadminservice.selectQnaComment(vo);
+		return commentlist;
+	}
+	
+	@PostMapping(value="/admin/qnacomment-insert") //qna댓글! insert
+	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int iqc = qnaadminservice.insertQnaComment(vo);
+		if(iqc > 0 ) {
+			ra.addFlashAttribute("msg", "insertsuccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	
+	
+	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
+	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) { //qna 게시판 delete
+		
+		QnaBoardVO vo = qnaadminservice.selectFile(id);
+		
+		//해당 파일 경로
+		String key = "img/qnaImg/"+vo.getQnaBoardImageName();
+				
+		//파일제거 메서드
+		awsS3.delete(key);
+		
+		int del2 = qnaadminservice.deleteQnaComment(id);
+		int del = qnaadminservice.deleteQna(id);
+		
+		if(del>0 && del2 >0) {
+			ra.addFlashAttribute("msg", "deletesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	
+	
 }

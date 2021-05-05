@@ -57,12 +57,15 @@
 		SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{newsBoardId}
 	</select>
 	
+	<select id="newsBoardDetail" resultMap="NewsBoardMap">
+	SELECT * FROM NEWS_BOARD A JOIN NEWS_BOARD_DETAIL B ON (A.NEWS_BOARD_ID = B.NEWS_BOARD_DETAIL_ID) WHERE NEWS_BOARD_ID = #{newsBoardId}
+	</select>
 	
 	<insert id= "insertNewsBoard">
 		INSERT INTO NEWS_BOARD(NEWS_BOARD_ID, NEWS_BOARD_IMAGE_ROUTE, NEWS_BOARD_IMAGE_NAME, 
 		NEWS_BOARD_IMAGE_EXTENTION, NEWS_BOARD_VIEW_COUNT, NEWS_BOARD_TITLE, 
-		NEWS_BOARD_REGDATE) VALUES(#{newsBoardId}, #{newsBoardImageRoute}, #{newsBoardImageName}, 
-		#{newsBoardImageExtention}, 0 , #{newBoardTitle}, 
+		NEWS_BOARD_REG_DATE) VALUES(#{newsBoardId}, #{newsBoardImageRoute}, #{newsBoardImageName}, 
+		#{newsBoardImageExtention}, 0 , #{newsBoardTitle}, 
 		NOW())
 	</insert>
 	

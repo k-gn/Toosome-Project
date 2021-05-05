@@ -87,6 +87,8 @@ const delBtnFunc = ()  => {
 				noticeBoardId: boardId
 			},
 			success: () => {
+			alert('글삭제를 완료하였습니다.');
+				location.reload();
 				
 			},
 			error: () => {

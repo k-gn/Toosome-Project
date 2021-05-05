@@ -110,6 +110,10 @@ const delBtnFunc = ()  => {
 		$.ajax({
 			type: 'post',
 			url: `/admin/eventboard-delete/${boardId}`,
+
+			success: () => {
+			
+			},
 			error: () => {
 				alert('통신장애');
 				window.history.back();

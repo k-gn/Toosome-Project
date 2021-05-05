@@ -59,5 +59,9 @@ public class NewsAdminService implements INewsAdminService {
 	public int updateNewsBoardDetailText(NewsBoardDetailVO vo) {
 		return mapper.updateNewsBoardDetailText(vo);
 	}
+	@Override
+	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo) {
+		return mapper.newsBoardDetail(vo);
+	}
 
 }

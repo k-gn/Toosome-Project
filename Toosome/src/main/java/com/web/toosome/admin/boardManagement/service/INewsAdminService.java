@@ -12,6 +12,8 @@ public interface INewsAdminService {
 	
 	List<NewsBoardVO> searchNewsBoard(BoardSearchVO vo);
 	
+	List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo);
+	
 	int insertNewsBoard(NewsBoardVO vo);
 	
 	int insertNewsBoardDetail(NewsBoardDetailVO vo);
