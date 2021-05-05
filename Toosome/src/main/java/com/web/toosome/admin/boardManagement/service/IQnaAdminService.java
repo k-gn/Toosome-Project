@@ -21,4 +21,6 @@ public interface IQnaAdminService {
 	int deleteQnaComment(Integer id);
 	
 	int insertQnaComment(QnaBoardCommentVO vo);
+	
+	List<QnaBoardCommentVO> selectQnaComment(QnaBoardCommentVO vo);
 }

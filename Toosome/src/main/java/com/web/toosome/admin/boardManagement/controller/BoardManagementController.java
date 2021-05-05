@@ -319,6 +319,7 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo){
 		List<NewsBoardVO> newsboarddetail = newsadminservice.newsBoardDetail(vo);
+		System.out.println(newsboarddetail);
 		return newsboarddetail;
 	}
 	
@@ -527,7 +528,14 @@ public class BoardManagementController {
 		return searchqna;
 	}
 	
-	@PostMapping(value="/admin/qnacomment-insert")
+	@GetMapping(value = "/admin/qnacommentlist" , produces = "application/json")
+	@ResponseBody //qna댓글 리스트 보기
+	public List<QnaBoardCommentVO> qnaBoardCommentList(QnaBoardCommentVO vo){
+		List<QnaBoardCommentVO> commentlist = qnaadminservice.selectQnaComment(vo);
+		return commentlist;
+	}
+	
+	@PostMapping(value="/admin/qnacomment-insert") //qna댓글! insert
 	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
 		int iqc = qnaadminservice.insertQnaComment(vo);
 		if(iqc > 0 ) {
@@ -542,7 +550,7 @@ public class BoardManagementController {
 	
 	
 	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
-	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) {
+	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) { //qna 게시판 delete
 		
 		QnaBoardVO vo = qnaadminservice.selectFile(id);
 		
