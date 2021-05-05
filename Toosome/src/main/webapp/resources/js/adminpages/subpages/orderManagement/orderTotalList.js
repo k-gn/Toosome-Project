@@ -180,6 +180,7 @@ const getList = (orders, wrapper, rows) => {
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
+			alert('시스템과에 문의하세요');
 			history.back();
 		} 
 	});
@@ -193,11 +194,41 @@ const submitHandler = () => {
 	endDate = ''; // 검색 종료날짜
 	orderState = []; // 주문상태 선택
 	
-	// 검색 타입, 검색어
-	condition = searchType.options[searchType.selectedIndex].value;
-	keyword = searchInput.value; 
+	// 체크박스
+	$("input[name='state']:checked").each(function(i){   //jQuery로 for문 돌면서 check 된값 배열에 담는다
+		orderState.push($(this).val());
+	});
+	console.log(orderState);
 	
-	// 가입일자
+	// 검색 타입, 검색어
+	if(searchType.options[searchType.selectedIndex].value === 'o-id') { // 아이디로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
+		}
+	} else if(searchType.options[searchType.selectedIndex].value === 'o-name') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'o-phone') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'r-name') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'r-phone') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	};
+	
+	// 결제일자
 	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
 		startDate = moment(orderCalendar.value).format('YYYY-MM-DD');
 		orderState = moment(orderCalendar2.value).format('YYYY-MM-DD');
@@ -217,9 +248,7 @@ const submitHandler = () => {
 		startDate,
 		endDate,
 		orderState,
-		orders,
 	};
-	
 	rows = 10000;
 	getList(orders, listTable, rows);
 };
@@ -268,8 +297,6 @@ const listHandler = (e) => {
 			$("input[name=ordersPayment]").val(res.ordersPayment);	
 			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
 			$("input[name=ordersId]").val(res.ordersId);			
-
-			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?	
 			
 			if(res!=null){
 				$.ajax({
@@ -398,3 +425,9 @@ $(document).ready(() => {
 	calendarInit();
 	getList(orders, listTable, rows); //테스트시 주석 해제 
 }); 
+
+  
+
+
+
+

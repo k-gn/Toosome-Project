@@ -17,8 +17,9 @@ public class OrderManagementService implements IOrderManagementService {
 	private IOrderManagementMapper mapper;
 	
 	@Override
-	public List<OrdersVO> getOrderList(OrderManagementVO orderVO) {
-		return mapper.getOrderList(orderVO);
+	public List<OrdersVO> getOrderList(OrderManagementVO odVO) {
+		System.out.println("1");
+		return mapper.getOrderList(odVO);
 	}
 
 	@Override
@@ -36,6 +37,12 @@ public class OrderManagementService implements IOrderManagementService {
 	@Override
 	public int updateOrders(OrdersVO orderVO) {
 		return mapper.updateOrders(orderVO);
+	}
+
+	@Override
+	public List<OrdersVO> checkOrders(List<String> checkArray) {
+		System.out.println("2");
+		return mapper.checkOrders(checkArray);
 	}
 
 	

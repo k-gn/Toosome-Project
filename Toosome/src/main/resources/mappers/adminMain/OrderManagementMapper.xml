@@ -44,8 +44,55 @@
 		<result property="memberPhone" column="MEMBER_PHONE"/>
 	</resultMap>
 	
+	<!-- 중복되는 동적 SQL문 처리-->
+	<sql id="odVO">
+		WHERE ORDERS_ID
+		<if test="condition == 'o-id'">
+			AND A.ORDERS_ID = #{keyword}
+		</if>
+		<if test="condition == 'o-name'">
+			AND B.MEMBER_NAME = #{keyword}
+		</if>
+		<if test="condition == 'o-phone'">
+			AND B.MEMBER_PHONE = #{keyword}
+		</if>
+		<if test="condition == 'r-name'">
+			AND A.ORDERS_RECEIVER = #{keyword}
+		</if>
+		<if test="condition == 'r-phone'">
+			AND A.ORDERS_PHONE = #{keyword}
+		</if>		
+		<if test="startDate != null and startDate != ''">
+			AND A.ORDERS_ORDER_DATE BETWEEN DATE(#{startDate}) AND DATE(#{endDate})+1
+		</if>
+		<if test="orderState != '' and orderState != null">
+			AND ORDERS_STATE IN
+			<foreach collection="orderState" item="arr" open="(" close=")" separator=",">
+			#{arr}
+			</foreach>
+		</if>		
+	</sql>
+	
 	<select id="getOrderList" resultMap="orderVO">
-		SELECT * FROM ORDERS
+		SELECT A.ORDERS_ID,
+		A.ORDERS_ORDER_DATE,
+		A.ORDERS_STATE,
+		A.ORDERS_RECEIVER,
+		A.ORDERS_PRODUCT_NAME,
+        A.ORDERS_AMOUNT,
+        A.ORDERS_PAYMENT,
+        A.ORDERS_MEMBER_EMAIL,
+        A.ORDERS_ADDRESS,
+        A.ORDERS_POSTCODE,
+        A.ORDERS_DELIVERY,
+        A.ORDERS_PHONE,
+		B.MEMBER_ID,
+        B.MEMBER_NAME,
+        B.MEMBER_PHONE 
+		FROM ORDERS A INNER JOIN
+		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID)
+		<include refid="odVO"/>
+		ORDER BY ORDERS_ID DESC
 	</select>
 	
 	<select id="getorderDetail" resultMap="orderVO">
@@ -80,5 +127,12 @@
 		 SET ORDERS_RECEIVER = #{ordersReceiver}, ORDERS_PHONE = #{ordersPhone}, ORDERS_POSTCODE = #{ordersPostcode}, ORDERS_ADDRESS = #{ordersAddress}, ORDERS_STATE = #{ordersState} 
 		WHERE ORDERS_ID = #{ordersId};		 
 	</update>
+	
+	<select id="checkOrders" resultMap="orderVO">
+		SELECT * FROM ORDERS WHERE ORDERS_STATE IN
+		<foreach collection="list" item="arr" open="(" close=")" separator=",">
+			#{arr}
+		</foreach>
+	</select>
 	
 </mapper>

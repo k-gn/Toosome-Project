@@ -12,15 +12,16 @@ public class MemberSearchVO{
 	private String endRegDate;
 	private String startLoginDate;
 	private String endLoginDate;
+	private Integer status;
 	
+	//탈퇴회원
 	private String startOutDate;
 	private String endOutDate;
-	
 	private String startBlackDate;
 	private String endBlackDate;
-	
 	private String startSleepDate;
 	private String endSleepDate;
 	
-	private Integer status;
+
+
 }

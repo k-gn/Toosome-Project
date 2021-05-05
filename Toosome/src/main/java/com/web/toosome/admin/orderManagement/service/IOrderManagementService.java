@@ -8,7 +8,7 @@ import com.web.toosome.user.basket.vo.OrdersVO;
 
 public interface IOrderManagementService {
 	// admin order 페이지 List출력.
-	public List<OrdersVO> getOrderList(OrderManagementVO orderVO);
+	public List<OrdersVO> getOrderList(OrderManagementVO odVO);
 	
 	// admin order Detaildp 출력할 orders 데이터 가져오기.
 	public OrdersVO getorderDetail(Integer id);
@@ -19,4 +19,7 @@ public interface IOrderManagementService {
 	// admin order Update.
 	public int updateOrders(OrdersVO orderVO);
 	
+	// check Box.
+	public List<OrdersVO> checkOrders(List<String> checkArray);
+		
 }
