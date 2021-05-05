@@ -79,7 +79,7 @@ const delBtnFunc = ()  => {
 			},
 			success: () => {
 				alert('글삭제를 완료하였습니다.');
-				window.location.href = "http://localhost:8080/admin/faqboard-management";
+				location.reload();
 			},
 			error: () => {
 				alert('통신장애');
