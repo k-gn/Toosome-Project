@@ -110,6 +110,9 @@ const delBtnFunc = ()  => {
 		$.ajax({
 			type: 'post',
 			url: `/admin/eventboard-delete/${boardId}`,
+			success: () => {
+				alert('글삭제를 완료하였습니다.');
+			},
 			error: () => {
 				alert('통신장애');
 				window.history.back();

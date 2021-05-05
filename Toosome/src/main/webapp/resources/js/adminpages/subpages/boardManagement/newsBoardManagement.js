@@ -90,7 +90,7 @@ const delBtnFunc = ()  => {
 				newsBoardId: boardId
 			},
 			success: () => {
-				
+				alert('글삭제를 성공하였습니다.');
 			},
 			error: () => {
 				alert('통신장애');

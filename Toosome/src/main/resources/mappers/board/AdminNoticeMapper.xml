@@ -54,7 +54,7 @@
 	</update>
 	
 	<delete id="deleteNotice">
-		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID ={noticeBoardId} 
+		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId} 
 	</delete>
 	
 	<!-- LIKE CONCAT('%',#{keyword},'%') -->
