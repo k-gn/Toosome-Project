@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.web.toosome.user.board.vo.QnaBoardVO;
 import com.web.toosome.user.board.vo.BoardSearchVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 
 public interface IQnaAdminService {
 	
@@ -18,4 +19,6 @@ public interface IQnaAdminService {
 	int deleteQna(Integer id);
 	
 	int deleteQnaComment(Integer id);
+	
+	int insertQnaComment(QnaBoardCommentVO vo);
 }

@@ -20,7 +20,7 @@ public interface IQnaAdminMapper {
 	
 	QnaBoardVO selectFile(Integer id);
 	
-	
+	int insertQnaComment(QnaBoardCommentVO vo);
 	
 	
 
