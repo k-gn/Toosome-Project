@@ -231,15 +231,8 @@ const submitHandler = () => {
 	// 결제일자
 	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
 		startDate = moment(orderCalendar.value).format('YYYY-MM-DD');
-		orderState = moment(orderCalendar2.value).format('YYYY-MM-DD');
+		endDate = moment(orderCalendar2.value).format('YYYY-MM-DD');
 	}
-	
-	// 주문상태 체크박스
-	stateChecks.forEach(stateCheck => {
-		if(stateCheck.checked === true) {
-			orderState.push(stateCheck.value);
-		};
-	});
 
 	// JSON Data
 	orders = {
