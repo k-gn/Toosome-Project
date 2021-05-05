@@ -201,24 +201,6 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                     <!--  <div class="col-md-1">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송번호</label>
-		                          <input type="text" name="ordersDelivery" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">택배사</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">송장번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div> -->
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송비②</label>
@@ -259,6 +241,7 @@
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="ordersId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>

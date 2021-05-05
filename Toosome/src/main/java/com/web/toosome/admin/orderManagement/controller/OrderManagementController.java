@@ -1,20 +1,19 @@
 package com.web.toosome.admin.orderManagement.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.admin.orderManagement.service.OrderManagementService;
+import com.web.toosome.admin.orderManagement.vo.OrderCancelManagementVO;
 import com.web.toosome.admin.orderManagement.vo.OrderManagementVO;
+import com.web.toosome.user.basket.vo.OrdersCancelDetailVO;
+import com.web.toosome.user.basket.vo.OrdersCancelVO;
 import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 
@@ -67,8 +66,6 @@ public class OrderManagementController {
 	@ResponseBody
 	public List<OrdersVO> getorderList(OrderManagementVO odVO) {
 		System.out.println("getorderList 메서드 실행");
-		List<OrdersVO> aaa = orderService.getOrderList(odVO);
-		System.out.println(aaa);
 		return orderService.getOrderList(odVO);
 	}
 	
@@ -88,7 +85,6 @@ public class OrderManagementController {
 	}
 	
 	@PostMapping("/admin/orders")
-	@ResponseBody
 	public String updateOrders(OrdersVO orderVO) {
 		System.out.println("updateOrders 메서드 실행");
 		int result = orderService.updateOrders(orderVO);
@@ -99,14 +95,28 @@ public class OrderManagementController {
 		}
 	}
 	
-	@GetMapping("/admin/orders/checkBox")
+	@GetMapping("/admin/orderCancelList")
 	@ResponseBody
-	public List<OrdersVO> getcheckOrders(@RequestParam(value = "orderState[]") ArrayList<String> orderState){
-		System.out.println("getcheckOrders 메서드 실행");
-		System.out.println(orderState);
-		List<OrdersVO> getcheckOrders = orderService.checkOrders(orderState);
-		System.out.println("1");
-		System.out.println(getcheckOrders);
-		return getcheckOrders;
+	public List<OrdersCancelVO> getorderCancelList(OrderCancelManagementVO odVO) {
+		System.out.println("getorderCancelList 메서드 실행");
+		List<OrdersCancelVO> aaa = orderService.getOrderCancelList(odVO);
+		System.out.println(aaa);
+		return orderService.getOrderCancelList(odVO);
 	}
+	
+	@GetMapping("/admin/orderCancel/{id}")
+	@ResponseBody
+	public OrdersVO getorderCancelDetail(@PathVariable Integer id) {
+		System.out.println("getorderDetail 메서드 실행");
+		return orderService.getorderCancelDetail(id);
+	}
+	
+	@GetMapping("/admin/orderCancelDetail/{id}")
+	@ResponseBody
+	public List<OrdersCancelDetailVO> getorderCancelDetailList(@PathVariable Integer id) {
+		System.out.println("getorderCancelDetailList 메서드 실행");
+		List<OrdersCancelDetailVO> ordersDetailList = orderService.getorderCancelDetailList(id); 
+		return ordersDetailList;
+	}
+	
 }
