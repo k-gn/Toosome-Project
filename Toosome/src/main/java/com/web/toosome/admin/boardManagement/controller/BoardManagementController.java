@@ -362,7 +362,7 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@PostMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
+	@GetMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
 	public String deleteNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) {
 	   
 		//해당 파일 경로 정보
@@ -474,7 +474,7 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "/admin/faqboard-delete") // faq delete
+	@GetMapping(value = "/admin/faqboard-delete") // faq delete
 	public String deleteFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int del = faqadminservice.deleteFaq(vo);
 		if(del>0) {
@@ -526,7 +526,7 @@ public class BoardManagementController {
 		return searchqna;
 	}
 	
-	@PostMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
+	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
 	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) {
 		
 		QnaBoardVO vo = qnaadminservice.selectFile(id);

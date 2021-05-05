@@ -46,7 +46,7 @@
 
 	<insert id="insertNotice">
 		INSERT INTO NOTICE_BOARD(NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_VIEW_COUNT, NOTICE_BOARD_REG_DATE) 
-		 VALUES(#{NOTICE_BOARD_ID},#{NOTICE_BOARD_TITLE},#{NOTICE_BOARD_CONTENT},0,NOW())
+		 VALUES(#{noticeBoardId},#{noticeBoardTitle},#{noticeBoardContent},0,NOW())
 	</insert>
 	
 	<update id="updateNotice">
