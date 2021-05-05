@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="newsBoardDetail" resultMap="NewsBoardMap">
-	SELECT * FROM NEWS_BOARD A JOIN NEWS_BOARD_DETAIL B ON (A.NEWS_BOARD_ID = B.NEWS_BOARD_DETAIL_ID) 
+	SELECT * FROM NEWS_BOARD A JOIN NEWS_BOARD_DETAIL B ON (A.NEWS_BOARD_ID = B.NEWS_BOARD_DETAIL_ID) WHERE NEWS_BOARD_ID = #{newsBoardId}
 	</select>
 	
 	<insert id= "insertNewsBoard">

@@ -73,6 +73,10 @@
 		SELECT * FROM QNA_BOARD WHERE QNA_BOARD_ID = #{id}
 	</select>
 	
+	<select id="selectQnaComment" resultMap="QnaBoardCommentMap">
+		SELECT * FROM QNA_BOARD_COMMENT WHERE QNA_QNA_BOARD_ID = #{qnaQnaBoardId}
+	</select>
+	
 	<delete id="deleteQnaComment">
 		DELETE FROM QNA_BOARD_COMMENT WHERE QNA_QNA_BOARD_ID = #{id}
 	</delete>
@@ -84,9 +88,9 @@
 	<insert id="insertQnaComment">
 		INSERT INTO QNA_BOARD_COMMENT(QNA_BOARD_COMMENT_ID, QNA_QNA_BOARD_ID, 
 		MEMBER_MEMBER_COMMENT_ID, QNA_BOARD_COMMENT_TITLE, QNA_BOARD_COMMENT_CONTENT, 
-		QNA_BOARD_COMMENT_DAY, QNA_COMMENT_WRITER) VALUES(#{qnaBoardComment}, #{qnaQnaBoardId}, 
+		QNA_BOARD_COMMENT_DAY, QNA_COMMENT_WRITER) VALUES(#{qnaBoardCommentId}, #{qnaQnaBoardId}, 
 		#{memberMemberCommentId}, #{qnaBoardCommentTitle}, #{qnaBoardCommentContent}, 
-		#{qnaBoardCommentDay}, #{qnaCommentWriter}) 
+		NOW(), #{qnaCommentWriter}) 
 	</insert>
 	
 	

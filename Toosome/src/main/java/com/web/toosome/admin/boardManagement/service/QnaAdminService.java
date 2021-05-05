@@ -51,5 +51,10 @@ public class QnaAdminService implements IQnaAdminService {
 		return mapper.insertQnaComment(vo);
 	}
 
+	@Override
+	public List<QnaBoardCommentVO> selectQnaComment(QnaBoardCommentVO vo) {
+		return mapper.selectQnaComment(vo);
+	}
+
 
 }
