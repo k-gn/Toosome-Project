@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.boardManagement.dao.IQnaAdminMapper;
 import com.web.toosome.user.board.vo.BoardSearchVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 @Service
@@ -43,6 +44,11 @@ public class QnaAdminService implements IQnaAdminService {
 	@Override
 	public QnaBoardVO selectFile(Integer id) {
 		return mapper.selectFile(id);
+	}
+
+	@Override
+	public int insertQnaComment(QnaBoardCommentVO vo) {
+		return mapper.insertQnaComment(vo);
 	}
 
 

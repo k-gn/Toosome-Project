@@ -27,6 +27,7 @@ import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 
@@ -526,6 +527,20 @@ public class BoardManagementController {
 		return searchqna;
 	}
 	
+	@PostMapping(value="/admin/qnacomment-insert")
+	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int iqc = qnaadminservice.insertQnaComment(vo);
+		if(iqc > 0 ) {
+			ra.addFlashAttribute("msg", "insertsuccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	
+	
 	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
 	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) {
 		
@@ -541,7 +556,7 @@ public class BoardManagementController {
 		int del = qnaadminservice.deleteQna(id);
 		
 		if(del>0 && del2 >0) {
-			ra.addFlashAttribute("msg", "deleteseccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}

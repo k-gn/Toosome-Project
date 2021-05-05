@@ -80,6 +80,16 @@
 	<delete id="deleteQna">
 		DELETE FROM QNA_BOARD WHERE QNA_BOARD_ID = #{id}
 	</delete>
+	
+	<insert id="insertQnaComment">
+		INSERT INTO QNA_BOARD_COMMENT(QNA_BOARD_COMMENT_ID, QNA_QNA_BOARD_ID, 
+		MEMBER_MEMBER_COMMENT_ID, QNA_BOARD_COMMENT_TITLE, QNA_BOARD_COMMENT_CONTENT, 
+		QNA_BOARD_COMMENT_DAY, QNA_COMMENT_WRITER) VALUES(#{qnaBoardComment}, #{qnaQnaBoardId}, 
+		#{memberMemberCommentId}, #{qnaBoardCommentTitle}, #{qnaBoardCommentContent}, 
+		#{qnaBoardCommentDay}, #{qnaCommentWriter}) 
+	</insert>
+	
+	
 	<!-- 
 	<insert id="insertQna">
 		INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, 
