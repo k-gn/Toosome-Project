@@ -60,4 +60,13 @@ public interface IBasketService {
 	// order테이블에 맞는 배송상태 출력
 	public String getLookPostList(Integer id);
 
+	// 삭제하는 orders 데이터를 ordersCancel로 옮김.
+	public int setordersCancel(OrdersVO ordersVO);
+	
+	// 삭제하는 ordersDetail 데이터를 ordersCancelDetail로 옮김.
+	public void setordersCancelDetail(OrdersDetailVO ordersDetailVO);
+	
+	// orderCancel Id 얻어오기.
+	public int getOrdersCancelId(Integer id);
+		
 }

@@ -52,8 +52,6 @@
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="searchType">
                                 <option value="o-id">주문번호</option>
-                                <option value="p-id">상품번호</option>
-                                <option value="p-name">상품명</option>
                                 <option value="o-name">주문자명</option>
                                 <option value="o-phone">주문자연락처</option>
                                 <option value="r-name">수령자명</option>
@@ -99,22 +97,22 @@
 						     	<input type="checkbox" id="check-all" value="total" onclick="checkAll(this);" >전체선택
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="o-finish" onclick="confirmCheckAll();">결제완료
+						     	<input type="checkbox" name="state" value="결제완료" onclick="confirmCheckAll();">결제완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="p-ready" onclick="confirmCheckAll();">접수완료
+						     	<input type="checkbox" name="state" value="접수완료" onclick="confirmCheckAll();">접수완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-ready" onclick="confirmCheckAll();">배송준비중
+						     	<input type="checkbox" name="state" value="배송준비중" onclick="confirmCheckAll();">배송준비중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-ing" onclick="confirmCheckAll();">배송중
+						     	<input type="checkbox" name="state" value="배송중" onclick="confirmCheckAll();">배송중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-finish" onclick="confirmCheckAll();">배송완료
+						     	<input type="checkbox" name="state" value="배송완료" onclick="confirmCheckAll();">배송완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="ok" onclick="confirmCheckAll();">기프티콘
+						     	<input type="checkbox" name="state" value="기프티콘" onclick="confirmCheckAll();">기프티콘
 						     </label>
                            </td>
                          </tr>
@@ -249,6 +247,7 @@
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="ordersId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>

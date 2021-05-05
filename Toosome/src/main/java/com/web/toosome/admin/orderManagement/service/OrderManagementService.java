@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.orderManagement.dao.IOrderManagementMapper;
+import com.web.toosome.admin.orderManagement.vo.OrderCancelManagementVO;
 import com.web.toosome.admin.orderManagement.vo.OrderManagementVO;
+import com.web.toosome.user.basket.vo.OrdersCancelDetailVO;
+import com.web.toosome.user.basket.vo.OrdersCancelVO;
 import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
 
@@ -17,8 +20,8 @@ public class OrderManagementService implements IOrderManagementService {
 	private IOrderManagementMapper mapper;
 	
 	@Override
-	public List<OrdersVO> getOrderList(OrderManagementVO orderVO) {
-		return mapper.getOrderList(orderVO);
+	public List<OrdersVO> getOrderList(OrderManagementVO odVO) {
+		return mapper.getOrderList(odVO);
 	}
 
 	@Override
@@ -28,8 +31,6 @@ public class OrderManagementService implements IOrderManagementService {
 	
 	@Override
 	public List<OrdersDetailVO> getorderDetailListTwo(Integer id) {
-		System.out.println("서비스");
-		System.out.println(mapper.getorderDetailListTwo(id));
 		return mapper.getorderDetailListTwo(id);
 	}
 
@@ -38,6 +39,21 @@ public class OrderManagementService implements IOrderManagementService {
 		return mapper.updateOrders(orderVO);
 	}
 
+	@Override
+	public List<OrdersCancelVO> getOrderCancelList(OrderCancelManagementVO ocmVO) {
+		return mapper.getOrderCancelList(ocmVO);
+	}
+
+	@Override
+	public OrdersCancelVO getorderCancelDetail(Integer id) {
+		System.out.println("1");
+		return mapper.getorderCancelDetail(id);
+	}
 	
+	@Override
+	public List<OrdersCancelDetailVO> getorderCancelDetailList(Integer id) {
+		return mapper.getorderCancelDetailList(id);
+	}
+
 
 }

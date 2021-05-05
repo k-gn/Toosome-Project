@@ -3,7 +3,9 @@ package com.web.toosome.user.basket.vo;
 import lombok.Data;
 
 @Data
-public class OrdersDetailVO {
+public class OrdersCancelDetailVO {
+	private Integer ordersCancelDetailId;
+	private Integer ordersCancelId;
 	private Integer ordersDetailId;
 	private Integer ordersId;
 	private Integer memberId;
@@ -14,7 +16,4 @@ public class OrdersDetailVO {
 	private Integer ordersDetailPrice;
 	private String ordersDetailState;
 	private String ordersDetailImagePath;
-	
-	private Integer ordersCancelId;
-
 }
