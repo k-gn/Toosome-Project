@@ -24,6 +24,8 @@ public interface IQnaAdminMapper {
 	
 	int insertQnaComment(QnaBoardCommentVO vo); 
 	
+	int updateQnaComment(QnaBoardCommentVO vo);
 	
+	int deleteQnaComment(QnaBoardCommentVO vo);
 
 }

@@ -580,20 +580,6 @@ public class BoardManagementController {
 		return commentlist;
 	}
 	
-	@PostMapping(value="/admin/qnacomment-insert") //qna댓글! insert
-	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
-		int iqc = qnaadminservice.insertQnaComment(vo);
-		if(iqc > 0 ) {
-			ra.addFlashAttribute("msg", "insertsuccess");
-		}else {
-			ra.addFlashAttribute("msg", "insertfail");
-		}
-		
-		return "redirect:/admin/qnaboard-management";
-	}
-	
-	
-	
 	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
 	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) { //qna 게시판 delete
 		
@@ -617,6 +603,38 @@ public class BoardManagementController {
 		return "redirect:/admin/qnaboard-management";
 	}
 	
+	@PostMapping(value="/admin/qnacomment-insert") //qna댓글! insert
+	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int iqc = qnaadminservice.insertQnaComment(vo);
+		if(iqc > 0 ) {
+			ra.addFlashAttribute("msg", "insertsuccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
 	
+	@PostMapping(value = "/admin/qnacomment-update" , produces = "application/json")
+	public String UpdateQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int up = qnaadminservice.updateQnaComment(vo);		
+		if(up > 0 ) {
+			ra.addFlashAttribute("msg", "updatesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "updatefail");
+		}
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	@GetMapping(value = "/admin/qnacomment-delete" , produces = "application/json")
+	public String DeleteQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int del = qnaadminservice.deleteQnaComment(vo);
+		if(del > 0 ) {
+			ra.addFlashAttribute("msg", "deletesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		return "redirect:/admin/qnaboard-management";
+	}
 	
 }
