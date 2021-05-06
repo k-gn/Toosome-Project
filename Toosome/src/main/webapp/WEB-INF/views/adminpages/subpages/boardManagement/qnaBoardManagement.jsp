@@ -284,7 +284,7 @@
 				            </div>
 				          </div>
 				          <button id="comment-update-submit" type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                  <input type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc2();" />
+		                  <input id="comment-delete" type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc2();" />
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
 				        <input type="hidden" name="qnaQnaBoardId" />
