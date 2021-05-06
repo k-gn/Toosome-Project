@@ -84,8 +84,8 @@
 	</select>
 	
 	<insert id="addMenu">
-		INSERT INTO MENU(MENU_MAIN_TITLE, MENU_SUB_TITLE, MENU_CONTENT, MENU_PRICE, MENU_NEW, MENU_TYPE, MENU_CHECK_COUNT, MENU_STATE, MENU_START_DAY)
-		VALUES(#{menuMainTitle}, #{menuSubTitle}, #{menuContent}, #{menuPrice}, #{menuNew}, #{menuType}, #{menuCheckCount}, #{menuState}, #{menuStartDay})
+		INSERT INTO MENU(MENU_MAIN_TITLE, MENU_SUB_TITLE, MENU_CONTENT, MENU_PRICE, MENU_NEW, MENU_TYPE, MENU_STATE, MENU_START_DAY)
+		VALUES(#{menuMainTitle}, #{menuSubTitle}, #{menuContent}, #{menuPrice}, #{menuNew}, #{menuType}, #{menuState}, #{menuStartDay})
 	</insert>
 	
 	<insert id="addMenuImage">

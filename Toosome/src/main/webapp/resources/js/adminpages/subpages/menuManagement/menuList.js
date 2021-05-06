@@ -89,9 +89,6 @@ const showList = (result, wrapper) => {
             ${mstate}
           </td>
           <td>
-            ${result[i].menuCheckCount}
-          </td>
-          <td>
             ${result[i].menuPrice}
           </td>
           <td>
