@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/subpages/qna/qnaDetail/qnaDetail.css">
   	<script src="/resources/js/subpages/qna/qnaDetail/qnaDetail.js" defer></script>
+  	
+  	<!-- 댓글 등록시 알림 -->
   	<script type="text/javascript">
 	  	const msg = "${msg}";
 	  	if(msg === "insertSuccess") {
@@ -55,6 +57,7 @@
         		<tbody id="comment"></tbody>
         	</table>
         	<h3>댓글 등록</h3>
+        	<!-- 댓글 등록시 같이 보낼 토큰 -->
         	<form action="/qnacommentinsert?${_csrf.parameterName}=${_csrf.token}" method="POST">
 	        	<table summary="QnAComment" class="comment-table enroll">
 	        		<colgroup>
@@ -78,6 +81,7 @@
 	        	</table>
 	        	<input id="qnaBoardId" type="hidden" name="qnaQnaBoardId" />
 	        	<input name="memberMemberCommentId" type="hidden" value="${id}"/>
+	        	<!-- user인지 관리자인지 -->
 	        	<input name="qnaCommentWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
         	</form>
         </section>
