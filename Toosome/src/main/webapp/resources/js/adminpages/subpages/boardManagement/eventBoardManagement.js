@@ -108,11 +108,11 @@ const delBtnFunc = ()  => {
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		$.ajax({
-			type: 'post',
-			url: `/admin/eventboard-delete/${boardId}`,
-
+			type: 'get',
+			url: '/admin/eventboard-delete/' + boardId,
 			success: () => {
-			
+				alert('ㅎㅇ');
+				location.reload();
 			},
 			error: () => {
 				alert('통신장애');

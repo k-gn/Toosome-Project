@@ -132,9 +132,9 @@ public class BoardManagementController {
 	}
 	
 	
-	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
+	@GetMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
 	public String eventdelete(@PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
-		
+		System.out.println("111");
 		//이미지 삭제
 		//1.셀렉트 구문으로 경로를 불러온다
 		
@@ -364,7 +364,7 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@PostMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
+	@GetMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
 	public String deleteNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) {
 	   
 		//해당 파일 경로 정보
