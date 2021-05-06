@@ -114,7 +114,16 @@
 		NOW(), #{qnaCommentWriter}) 
 	</insert>
 	
+	<update id="updateQnaComment">
+	 UPDATE QNA_BOARD_COMMENT SET 
+	 QNA_BOARD_COMMENT_TITLE = #{qnaBoardCommentTitle}, 
+	 QNA_BOARD_COMMENT_CONTENT = #{qnaBoardCommentContent}
+	 WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
+	</update>
 	
+	<delete id="deleteQnaComment">
+	DELETE FROM QNA_BOARD_COMMENT WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
+	</delete>
 	<!-- 
 	<insert id="insertQna">
 		INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, 
