@@ -199,12 +199,6 @@
 		                          <input type="text" name="menuPrice" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-6">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" name="menuCheckCount" class="form-control">
-		                        </div>
-		                      </div>
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-6">
@@ -289,9 +283,6 @@
                         </th>
                         <th>
                           판매상태
-                        </th>
-                        <th>
-                          재고수량
                         </th>
                         <th>
                           메뉴가격
