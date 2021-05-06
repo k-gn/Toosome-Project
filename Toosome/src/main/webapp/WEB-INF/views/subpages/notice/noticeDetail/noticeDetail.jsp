@@ -26,6 +26,7 @@
         			</ul>
         		</nav>
         	</div>
+        	<!-- 공기사항 디테일 내용 출력 -->
         	<table summary="NoticeDetail" class="notice-table">
         		<colgroup>
         			<col width="80%">
@@ -34,6 +35,7 @@
         		<thead></thead>
         		<tbody id="noticeDetail"></tbody>
         	</table>
+        	<!-- 목록 버튼 -->
         	<div class="list-btn">
         		<a href="#" onclick="location.href='/notice'">목록</a>
         	</div>

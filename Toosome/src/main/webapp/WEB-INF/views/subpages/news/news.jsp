@@ -15,9 +15,11 @@
     <div id="container">
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<!-- section start -->
+		<!-- 뉴스 시작 -->
         <section>
         	<div class="sub-header-container">
         		<h3>뉴스</h3>
+        		<!-- 뉴스 navigation -->
         		<div class="navigation-container">
         			<ul>
         				<li><a href="/">HOME</a></li>
@@ -27,6 +29,7 @@
         		</div>
         	</div>
 			<p>TOOSOME PLACE의 뉴스를 확인하세요</p>
+			<!-- 검색기능 -->
         	<div class="search-container">
         		<select class="search-select" onchange="selectHandler(this);">
         			<option value="0">번호순</option>
@@ -56,9 +59,11 @@
         				<th scope="col">조회수</th>
         			</tr>
         		</thead>
+        		<!-- 내용 출력 -->
         		<tbody id="news">
         		</tbody>
         	</table>
+        	<!-- 페이징 처리 -->
         	<div id="pagination"></div>
         </section>
 		<!-- section end -->
