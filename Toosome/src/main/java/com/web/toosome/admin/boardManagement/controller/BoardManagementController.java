@@ -628,7 +628,7 @@ public class BoardManagementController {
 	
 	@GetMapping(value = "/admin/qnacomment-delete" , produces = "application/json")
 	public String DeleteQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
-		int del = qnaadminservice.deleteQnaComment(vo);
+		int del = qnaadminservice.delQnaComment(vo);
 		if(del > 0 ) {
 			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {

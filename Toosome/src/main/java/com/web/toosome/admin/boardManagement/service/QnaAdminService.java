@@ -62,8 +62,8 @@ public class QnaAdminService implements IQnaAdminService {
 	}
 
 	@Override
-	public int deleteQnaComment(QnaBoardCommentVO vo) {
-		return mapper.deleteQnaComment(vo);
+	public int delQnaComment(QnaBoardCommentVO vo) {
+		return mapper.delQnaComment(vo);
 	}
 
 
