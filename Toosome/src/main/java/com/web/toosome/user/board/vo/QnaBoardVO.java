@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,7 @@ public class QnaBoardVO {
 	private Integer qnaBoardType;
 	private String qnaBoardTitle;
 	private String qnaBoardContent;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date qnaBoardRegdate;
 	private Integer qnaBoardViewCount;
 	private String qnaBoardPassword;

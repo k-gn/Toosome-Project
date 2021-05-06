@@ -304,7 +304,8 @@ modalCancelBtn.addEventListener('click', (e) => {
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const id = e.parentNode.parentNode.children[0].innerText;
+	let id = e.parentNode.parentNode.children[0].innerText;
+	
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
