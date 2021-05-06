@@ -11,12 +11,12 @@
 	</resultMap>
 	
 	<sql id ="search">
-	
+			WHERE 1=1 
 		<if test="condition == 'title'">
-			WHERE FAQ_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+			AND FAQ_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="condition == 'content'">
-			WHERE FAQ_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+			AND FAQ_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="startRegDate != null and startRegDate != ''">
 			AND FAQ_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
