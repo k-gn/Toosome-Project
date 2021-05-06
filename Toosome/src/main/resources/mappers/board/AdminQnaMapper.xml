@@ -52,8 +52,6 @@
 		<result property="memberAuth" column="MEMBER_AUTH" />
 	</resultMap>
 	
-	
-	
 	<sql id ="search">
 		WHERE 1=1
 		<if test="condition == 'title'">

@@ -222,7 +222,7 @@ const showList = (result, wrapper) => {
             ${result[i].eventBoardEndday}
           </td>
           <td>
-            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${result[i].eventBoardDetailVO.eventBoardDetailImageRoute}/${result[i].eventBoardDetailVO.eventBoardDetailImageName}.${result[i].eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
+            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${result[i].eventBoardDetailVO.eventBoardDetailImageRoute}${result[i].eventBoardDetailVO.eventBoardDetailImageName}.${result[i].eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
           </td>
 		`;
 		newEl.innerHTML = content;

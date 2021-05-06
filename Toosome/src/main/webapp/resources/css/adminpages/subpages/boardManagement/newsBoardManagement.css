@@ -170,9 +170,9 @@
 
 .profile-container {
 	width: 1000px;
-	height: 560px;
+	height: 600px;
 	position: absolute;
-	top: calc(50% - 280px);
+	top: calc(50% - 300px);
 	left: calc(50% - 500px);
 	background: #fff;
 	margin: 0 auto;

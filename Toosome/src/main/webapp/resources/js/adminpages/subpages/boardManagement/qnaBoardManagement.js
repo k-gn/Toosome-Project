@@ -366,7 +366,7 @@ const listHandler = (e) => {
 			$('#modal-isLocked').val(res[0].qnaBoardSecret).prop('selected', true);
 			$('#detail-title').val(res[0].qnaBoardTitle);
 			$('#detail-content').val(res[0].qnaBoardContent);			
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].qnaBoardImageName}`;
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/img/qnaImg/${res[0].qnaBoardImageName}`;
 			$('#qnaImg').attr("src", imageURL);
 		}, 
 		error: () => {
