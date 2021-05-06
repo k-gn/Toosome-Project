@@ -19,6 +19,7 @@
 <title>A TOOSOME PLACE</title>
 </head>
 <body>
+<!-- 영양성분표 시작 -->
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<div class="nutrient-container">
@@ -28,6 +29,7 @@
 			</div>
 			<div class="sub-header-container">
 	      		<h3>영양성분표</h3>
+	      		<!-- 영양성분표 navigation -->
 	      		<div class="navigation-container">
 	      			<ul>
 	      				<li><a href="/">HOME</a></li>
@@ -38,22 +40,22 @@
 	      		</div>
 	        </div>
 			<div class="contents">
+			<!-- 영양성분표 퀵메뉴 -->
 				<ul class="menu-tab">
 					<li><a href="/nutrient1">디저트</a></li>
 					<li><a href="/nutrient2">케이크</a></li>
 					<li><a href="/nutrient3">커피 &amp; 음료</a></li>
 					<li class="click"><a href="/nutrient4">델리</a></li>
 				</ul>
-
+			<!-- 검색기능 -->
 			<form action="/nutrient4/search" method="get">
 				<div class="search">
 					<input type="search" name="keyword" value="${menuVO.keyword}" placeholder="제품명을 입력하세요."> <input
 						type="image" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/nutrient/search.gif"
 						alt="">
 				</div>
-
 			</form>
-			
+			<!-- 영양성분표 테이블 -->
 				<table class="table table-hover">
 					<thead class="thead-dark">
 						<tr>
@@ -74,9 +76,9 @@
 							</th>
 						</tr>
 					</thead>
+					<!-- 받은 데이터 내용 -->
 					<div class="menu-content4">
 						<c:forEach var="nutrient4" items="${nutrient4}">
-							<li>
 							<tr>
 								<td>${nutrient4.menuMainTitle}</td>
 								<td>${nutrient4.iatVO.iatFullSupply}</td>
@@ -88,9 +90,7 @@
 								<td>${nutrient4.iatVO.iatSaturatedFat}</td>
 								<td>${nutrient4.iatVO.iatNatrium}</td>
 							</tr>
-							</li>
 						</c:forEach>
-
 					</div>
 				</table>
 			</div>
