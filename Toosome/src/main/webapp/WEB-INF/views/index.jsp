@@ -24,6 +24,7 @@
     <script src="/resources/js/main/slick.js"></script>
     <script src="/resources/js/main/script.js"></script>
     <title>A TOOSOME PLACE</title>
+    <!-- 상태 알림 -->
     <script>
 		const msg = "${msg}"
 		if(msg === "Denied") {
@@ -38,6 +39,7 @@
       <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
       <div id="img-wrap" class="img-slide">       
         <div class="slide">
+        <!-- banner 이미지  -->
           <ul class="slide-imgs cf slider autoplay">
           	<c:forEach var="banner" items="${bannerList}" varStatus="i">
 	            <li class="img">
@@ -50,6 +52,7 @@
           </ul>
         </div>
       </div>
+      <!-- 신메뉴 이미지 -->
       <div id="new-menu" class="img-slide">
         <div class="new-cover">
           <div class="new-wrap">
@@ -140,6 +143,7 @@
           </div>
         </div>
       </div>
+      <!-- section -->
       <div class="section">
         <div class="quick-menu">
           <div class="quick-menu-coffee">
@@ -174,6 +178,7 @@
           </div>
         </div>
       </div>
+      <!-- 사이드 버튼 -->
       <div class="button-logo">
         <div class="button-img"></div>
         <a class="offbutton" href="#">
@@ -192,7 +197,7 @@
               >
             </li>
             <li>
-              <a href="#"
+              <a href="/product-new"
                 ><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/giftbox.png" alt="" /><span
                   >온라인주문</span
                 ></a
@@ -201,6 +206,7 @@
           </ul>
         </div>
       </div>
+      <!-- 간편 지도 검색 -->
       <div class="map">
         <div class="form-cover">
           <form action="/map?" method="GET">
@@ -225,6 +231,7 @@
       <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
   </body>
+  <!-- 휴면 계정 / 정지계정 알람 -->
   <script type="text/javascript">
   	const state = "${state}";
   	console.log(state);
