@@ -24,7 +24,7 @@ public interface IQnaAdminService {
 	
 	int updateQnaComment(QnaBoardCommentVO vo);
 	
-	int deleteQnaComment(QnaBoardCommentVO vo);
+	int delQnaComment(QnaBoardCommentVO vo);
 	
 	List<QnaBoardCommentVO> selectQnaComment(QnaBoardCommentVO vo);
 }

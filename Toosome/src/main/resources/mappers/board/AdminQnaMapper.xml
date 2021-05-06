@@ -113,7 +113,7 @@
 		#{memberMemberCommentId}, #{qnaBoardCommentTitle}, #{qnaBoardCommentContent}, 
 		NOW(), #{qnaCommentWriter}) 
 	</insert>
-	
+	 
 	<update id="updateQnaComment">
 	 UPDATE QNA_BOARD_COMMENT SET 
 	 QNA_BOARD_COMMENT_TITLE = #{qnaBoardCommentTitle}, 
@@ -121,7 +121,8 @@
 	 WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
 	</update>
 	
-	<delete id="deleteQnaComment">
+	
+	<delete id="delQnaComment">
 	DELETE FROM QNA_BOARD_COMMENT WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
 	</delete>
 	<!-- 
