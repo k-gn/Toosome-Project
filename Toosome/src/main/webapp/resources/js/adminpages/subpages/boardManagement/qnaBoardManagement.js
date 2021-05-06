@@ -94,7 +94,7 @@ const delBtnFunc = ()  => {
 
 // 댓글 삭제 버튼
 const delBtnFunc2 = ()  => {
-	let commentId = commentSelect.options[commentSelect.selectedIndex].value;
+	let commentId = +(commentSelect.options[commentSelect.selectedIndex].value);
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		$.ajax({
@@ -104,7 +104,7 @@ const delBtnFunc2 = ()  => {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
 			data: {
-				qnaBoardCommentId: +commentId
+				qnaBoardCommentId: commentId
 			},
 			success: () => {
 				alert('댓글 삭제에 성공하였습니다.');
