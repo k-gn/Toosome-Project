@@ -117,6 +117,13 @@ public class BoardController {
 		model.addAttribute("faqBoardList",faqBoardList);
 		return "subpages/faq/faq";
 	}
+	
+	@GetMapping(value = "/faqsearch", produces = "application/json") // 게시판 목록 조회값
+	@ResponseBody
+	public List<FaqBoardVO> faqSearch(String keyword){
+		List<FaqBoardVO> search = faqBoardService.getFaqSearchBoardList(keyword);
+		return search;
+	}
 
 	@RequestMapping(value = "/notice") //게시판 화면
 	public String noticeView() {

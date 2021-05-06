@@ -16,6 +16,7 @@
 		<result property="qnaBoardImageName" column="QNA_BOARD_IMAGE_NAME" />
 		<result property="qnaBoardSecret" column="QNA_BOARD_SECRET" />
 		<collection property="qnaBoardComment" resultMap="QnaBoardCommentMap" />
+		<collection property="member" resultMap="memberMap" />
 	</resultMap>
 	
 	<!-- QNA board Comment -->
@@ -27,6 +28,23 @@
 		<result property="qnaBoardCommentContent" column="QNA_BOARD_COMMENT_CONTENT" />
 	 	<result property="qnaBoardCommentDay" column="QNA_BOARD_COMMENT_DAY" /> 
 	 	<result property="qnaCommentWriter" column="QNA_COMMENT_WRITER" />
+	</resultMap>
+	
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 	
 	<sql id ="search">
@@ -56,10 +74,13 @@
 		SELECT A.QNA_BOARD_ID, A.MEMBER_MEMBER_ID, A.QNA_BOARD_TYPE, A.QNA_BOARD_TITLE,
 		A.QNA_BOARD_CONTENT, A.QNA_BOARD_REG_DATE, A.QNA_BOARD_VIEW_COUNT, A.QNA_BOARD_PASSWORD, 
 		A.QNA_BOARD_IMAGE_NAME, A.QNA_BOARD_SECRET,
-		B.QNA_BOARD_COMMENT_ID, B.QNA_QNA_BOARD_ID, B.MEMBER_MEMBER_COMMENT_ID, B.QNA_BOARD_COMMENT_TITLE, B.QNA_BOARD_COMMENT_CONTENT, B.QNA_BOARD_COMMENT_DAY, QNA_COMMENT_WRITER 
+		B.QNA_BOARD_COMMENT_ID, B.QNA_QNA_BOARD_ID, B.MEMBER_MEMBER_COMMENT_ID, B.QNA_BOARD_COMMENT_TITLE, B.QNA_BOARD_COMMENT_CONTENT, B.QNA_BOARD_COMMENT_DAY, 
+		C.MEMBER_NAME 
 		FROM QNA_BOARD A
 		LEFT OUTER JOIN QNA_BOARD_COMMENT B
 		ON(A.QNA_BOARD_ID = B.QNA_QNA_BOARD_ID)
+		JOIN MEMBER C
+		ON(A.MEMBER_MEMBER_ID = C.MEMBER_ID)
 		WHERE QNA_BOARD_ID = #{qnaBoardId}	
 	</select>
 	
@@ -93,7 +114,16 @@
 		NOW(), #{qnaCommentWriter}) 
 	</insert>
 	
+	<update id="updateQnaComment">
+	 UPDATE QNA_BOARD_COMMENT SET 
+	 QNA_BOARD_COMMENT_TITLE = #{qnaBoardCommentTitle}, 
+	 QNA_BOARD_COMMENT_CONTENT = #{qnaBoardCommentContent}
+	 WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
+	</update>
 	
+	<delete id="deleteQnaComment">
+	DELETE FROM QNA_BOARD_COMMENT WHERE QNA_BOARD_COMMENT_ID = #{qnaBoardCommentId}
+	</delete>
 	<!-- 
 	<insert id="insertQna">
 		INSERT INTO QNA_BOARD(QNA_BOARD_ID, MEMBER_MEMBER_ID, QNA_BOARD_TYPE, 
