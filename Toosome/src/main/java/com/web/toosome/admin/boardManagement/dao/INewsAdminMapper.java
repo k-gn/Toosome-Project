@@ -9,7 +9,7 @@ import com.web.toosome.user.board.vo.NewsBoardVO;
 public interface INewsAdminMapper {
 	List<NewsBoardVO> getNewsList(NewsBoardVO vo);
 
-	List<NewsBoardVO> seachNewsBoard(BoardSearchVO vo);
+	List<NewsBoardVO> searchNewsBoard(BoardSearchVO vo);
 	
 	List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo);
 	
