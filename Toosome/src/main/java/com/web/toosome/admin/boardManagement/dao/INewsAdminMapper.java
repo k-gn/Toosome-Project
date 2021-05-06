@@ -21,13 +21,20 @@ public interface INewsAdminMapper {
 	
 	int updateNewsBoardDetail(NewsBoardDetailVO vo);
 	
-	int deleteNewsBoard(NewsBoardVO vo);
+	int deleteNewsBoard(Integer id);
 	
-	int deleteNewsBoardDetail(NewsBoardDetailVO vo);
+	int deleteNewsBoardDetail(Integer id);
 	
 	int updateNewsBoardText(NewsBoardVO vo);
 	
 	int updateNewsBoardDetailText(NewsBoardDetailVO vo);
 	
-	NewsBoardVO selectFile(NewsBoardVO vo);
+	NewsBoardVO selectFile(Integer id);
+	
+	NewsBoardDetailVO selectDFile(Integer id);
+	
+	NewsBoardVO selectUpdateFile(NewsBoardVO vo);
+	
+	NewsBoardDetailVO selectUpdateDFile(NewsBoardDetailVO vo);
+	
 }
