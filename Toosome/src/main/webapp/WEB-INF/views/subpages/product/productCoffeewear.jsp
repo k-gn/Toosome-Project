@@ -10,6 +10,7 @@
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
+<!-- 상품 메뉴 페이지 -->
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>   
     <div class="product-container">
@@ -18,6 +19,7 @@
       </div>
 	  <div class="sub-header-container">
 		<h3>PRODUCT</h3>
+		<!-- 상품 navigation -->
 		<div class="navigation-container">
 			<ul>
 				<li><a href="/">HOME</a></li>
@@ -27,6 +29,7 @@
 			</ul>
 		</div>
       </div>
+      <!-- 상품 퀵 메뉴 -->
       <div class="contents">
         <div class="contents-top">
           <ul class="menu-tab">
@@ -36,29 +39,37 @@
             <li><a href="/product-gift">기프트세트</a></li>
           </ul>
         </div>
-    	
+    	<!-- 상품 이미지 출력 -->
         <div class="product-box">
-					<ul class="all">
-						<c:forEach var="productCoffeewearList" items="${productCoffeewearList}">
-							<li>
-								<a href="/productDetail?productId=${productCoffeewearList.productId}">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productCoffeewearList.productImageVO.productImageRoute}/${productCoffeewearList.productImageVO.productImageName}.${productCoffeewearList.productImageVO.productImageExtention}" alt="">
-									<c:if test="${productCoffeewearList.productNew == 1}">
-									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
-									</c:if>
-									<c:if test="${productCoffeewearList.productState == 2}">
-									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
-									</c:if>
-									<span>${productCoffeewearList.productTitleName}</span>
-									<div class="pay-box">
-										<span class="com" style="float: left;">${productCoffeewearList.productPrice}</span>
-										<span style="float: left;">&nbsp;원</span>
-									</div>
-								</a>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
+			<ul class="all">
+				<c:forEach var="productCoffeewearList" items="${productCoffeewearList}">
+					<li>
+					  <!-- 상품 Id -->
+						<a href="/productDetail?productId=${productCoffeewearList.productId}">
+							<!-- 상품 이미지 -->
+							<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productCoffeewearList.productImageVO.productImageRoute}/${productCoffeewearList.productImageVO.productImageName}.${productCoffeewearList.productImageVO.productImageExtention}" alt="">
+							<!-- 만약 상품이 신메뉴일 경우 -->
+							<c:if test="${productCoffeewearList.productNew == 1}">
+							  <!-- new 딱지 배치 -->
+							  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
+							</c:if>
+							<!-- 만약 상품재고가 없을 경우 -->
+							<c:if test="${productCoffeewearList.productState == 2}">
+							  <!-- soldout이미지 배치 -->
+							  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
+							</c:if>
+							<!-- 상품 이름 -->
+							<span>${productCoffeewearList.productTitleName}</span>
+							<!-- 상품의 금액 -->
+							<div class="pay-box">
+								<span class="com" style="float: left;">${productCoffeewearList.productPrice}</span>
+								<span style="float: left;">&nbsp;원</span>
+							</div>
+						</a>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
          
       </div>
     </div>
