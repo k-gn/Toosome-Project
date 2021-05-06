@@ -81,7 +81,7 @@ const delBtnFunc = ()  => {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
 			success: () => {
-				alert('글삭제를 성공하였습니다.');
+				alert('글삭제에 성공하였습니다.');
 				location.reload();
 			},
 			error: () => {
@@ -94,17 +94,20 @@ const delBtnFunc = ()  => {
 
 // 댓글 삭제 버튼
 const delBtnFunc2 = ()  => {
-	let commentId = commentSelect.options[commentSelect.selectedIndex].value;
+	let commentId = +(commentSelect.options[commentSelect.selectedIndex].value);
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/qnaboardcomment-delete/' + commentId,
+			url: '/admin/qnaboardcomment-delete/',
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
+			data: {
+				qnaBoardCommentId: commentId
+			},
 			success: () => {
-				alert('글삭제를 성공하였습니다.');
+				alert('댓글 삭제에 성공하였습니다.');
 				location.reload();
 			},
 			error: () => {
@@ -251,6 +254,7 @@ const getCommentList = (index) => {
 				commentList = [...result]; // 댓글리스트 복사
 				commentSelect.innerHTML = ''; // select 초기화
 				commentUpdateBtn.disabled = false;
+				document.querySelector('#comment-delete').disabled = false;
 				// option 생성 후 삽입
 				for(let i=0; i<result.length; i++) {
 					let option = document.createElement('option');
@@ -262,11 +266,13 @@ const getCommentList = (index) => {
 				document.querySelector('#comment-title').innerText = result[0].qnaBoardCommentTitle;
 				document.querySelector('#comment-content').innerText = result[0].qnaBoardCommentContent;
 				document.querySelector('#comment-writer').value = result[0].qnaCommentWriter;
+				document.querySelector('#hidden-id').value = result[0].qnaBoardCommentId;
 				commentSelect.options[0].selected = true;				
 			} else {
 				document.querySelector('#comment-title').innerText = '댓글 없음';
 				document.querySelector('#comment-content').innerText = '댓글 없음';
 				document.querySelector('#comment-writer').value = '';
+				document.querySelector('#comment-delete').disabled = true;
 				commentUpdateBtn.disabled = true;
 			}
 		}, 
@@ -404,6 +410,7 @@ const commentChange = (select) => {
 			title.innerText = list.qnaBoardCommentTitle;
 			content.innerText = list.qnaBoardCommentContent;
 			writer.value = list.qnaCommentWriter;
+			document.querySelector('#hidden-id').value = list.qnaBoardCommentId;
 			title.focus();
 		};
 	});
