@@ -46,19 +46,19 @@
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
-	
+		
 	<resultMap type="authVO" id="authMap">
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberAuth" column="MEMBER_AUTH" />
 	</resultMap>
 	
 	<sql id ="search">
-	
+		WHERE 1=1
 		<if test="condition == 'title'">
-			WHERE QNA_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+			AND QNA_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="condition == 'content'">
-			WHERE QNA_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+			AND QNA_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="startRegDate != null and startRegDate != ''">
 			AND QNA_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
@@ -92,7 +92,7 @@
 	
 	<select id="searchQna" resultMap="QnaBoardMap">
 		SELECT * FROM QNA_BOARD
-		<include refid="search"/>
+		 <include refid="search"/>
 	</select>
 	
 	<select id="selectFile" resultMap="QnaBoardMap">
