@@ -47,6 +47,11 @@
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 	
+	<resultMap type="authVO" id="authMap">
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberAuth" column="MEMBER_AUTH" />
+	</resultMap>
+	
 	<sql id ="search">
 	
 		<if test="condition == 'title'">
