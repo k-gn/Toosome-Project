@@ -334,25 +334,7 @@ public class BasketController {
 		order.setOrdersProductPay(ProductPrice);
 		Integer amount = basketUtil.getAmount();
 		order.setOrdersAmount(amount);
-		
-		int ordersId = service.getOrdersList(memberId).getOrdersId();
-		Map<String, Integer> map3 = new HashMap<>();
-		map3.put("id", memberId);
-		map3.put("ordersId", ordersId);
-		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map3);
-		for(OrdersDetailVO OrdersDetailListOne : ordersDetailList) {
-			ProductVO productList = service.setproductAmountCheck(OrdersDetailListOne);
-			if(productList != null) {
-				array.add(productList);
-			}else {
-				array2.add(OrdersDetailListOne);
-			}
-		}
-		for(int i=0; i < array2.size()+1; i++) {
-			if(array2 != null) {
-				array2.get()
-			}
-		}
+	
 		int result = service.orderSubmit(order);
 		if (result > 0)
 			return "success";
