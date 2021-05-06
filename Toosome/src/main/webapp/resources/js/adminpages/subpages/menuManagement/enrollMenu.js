@@ -15,7 +15,6 @@ const name1 = document.querySelector("#name1");
 const name2 = document.querySelector("#name2");
 const price = document.querySelector("#price");
 const category = document.querySelector("#category");
-const count = document.querySelector("#count");
 const state = document.querySelector("#state");
 const isNew = document.querySelector("#isNew");
 const content = document.querySelector("#content");
@@ -42,8 +41,6 @@ const FormCheck = (e) => {
 		alert("메뉴가격이 올바르지 않습니다.");
 	}else if(category.value === "") {
 		alert("카테고리가 올바르지 않습니다.");
-	}else if(count.value === "" || !num_check.test(count.value)) {
-		alert("재고수량이 올바르지 않습니다.");
 	}else if(state.value === "") {
 		alert("판매상태가 올바르지 않습니다.");
 	}else if(isNew.value === "") {

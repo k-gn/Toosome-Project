@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.toosome.admin.boardManagement.dao.INoticeAdminMapper;
+import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
 
 @Service
@@ -37,6 +38,11 @@ public class NoticeAdminService implements INoticeAdminService {
 	@Override
 	public List<NoticeBoardVO> noticeDetail(NoticeBoardVO vo) {
 		return mapper.noticeDetail(vo);
+	}
+
+	@Override
+	public List<NoticeBoardVO> searchNoticeBoard(BoardSearchVO vo) {
+		return mapper.searchNoticeBoard(vo);
 	}
 
 }

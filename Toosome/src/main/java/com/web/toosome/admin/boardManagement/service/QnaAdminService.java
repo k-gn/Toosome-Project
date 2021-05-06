@@ -56,5 +56,15 @@ public class QnaAdminService implements IQnaAdminService {
 		return mapper.selectQnaComment(vo);
 	}
 
+	@Override
+	public int updateQnaComment(QnaBoardCommentVO vo) {
+		return mapper.updateQnaComment(vo);
+	}
+
+	@Override
+	public int delQnaComment(QnaBoardCommentVO vo) {
+		return mapper.delQnaComment(vo);
+	}
+
 
 }
