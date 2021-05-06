@@ -91,6 +91,7 @@ const delBtnFunc = ()  => {
 			},
 			success: () => {
 				alert('글삭제를 성공하였습니다.');
+				location.reload();
 			},
 			error: () => {
 				alert('통신장애');
