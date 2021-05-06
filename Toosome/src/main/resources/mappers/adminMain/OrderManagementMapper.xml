@@ -246,7 +246,7 @@
 		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID) WHERE A.ORDERS_ID = #{id};
 	</select>
 	
-	<select id="getorderCancelDetailListTwo" resultMap="ordersCancelDetailVO">
+	<select id="getorderCancelDetailList" resultMap="ordersCancelDetailVO">
 		SELECT * FROM ORDERS_CANCEL_DETAIL WHERE ORDERS_ID = #{id};
 	</select>
 	
