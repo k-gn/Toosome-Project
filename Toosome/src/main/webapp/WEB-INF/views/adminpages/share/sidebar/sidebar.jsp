@@ -109,21 +109,6 @@
        			<a href="/admin/order-totallist">주문통합 리스트</a>
        		</li>
        		<li>
-       			<a href="/admin/order-finishlist">결제완료 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-product-readylist">접수완료 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-delivery-readylist">배송준비중 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-delivery-finishlist">배송완료 리스트</a>
-       		</li>
-       		<li>
-       			<a href="/admin/order-confirm-finishlist">기프티콘 리스트</a>
-       		</li>
-       		<li>
        			<a href="/admin/order-cancellist">주문취소 리스트</a>
        		</li>
           </ul>

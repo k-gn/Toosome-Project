@@ -256,7 +256,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form id="comment-update-form" action="/qnacomment-update?${_csrf.parameterName}=${_csrf.token}" method="post">
+			        <form id="comment-update-form" action="/admin/qnacomment-update?${_csrf.parameterName}=${_csrf.token}" method="post">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -287,7 +287,7 @@
 		                  <input id="comment-delete" type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc2();" />
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
-				        <input type="hidden" name="qnaQnaBoardId" />
+				        <input id="hidden-id" type="hidden" name="qnaBoardCommentId" />
 			        </form>
 			      </div>
 			    </div>
