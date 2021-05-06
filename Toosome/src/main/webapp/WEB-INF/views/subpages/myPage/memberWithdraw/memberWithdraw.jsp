@@ -11,10 +11,12 @@
 </head>
 <body>
   <div id="container">
+  <!-- 회원탈퇴 시작 -->
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     <form id="dologout" action="/dologout" method="POST">
 	  <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	</form>
+	<!-- 비밀번호 확인및 탈퇴 알림 -->
   <script>
 	const msg = "${msg}"
 	if(msg === "delFail") {
@@ -31,6 +33,7 @@
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
           <span class="signup-title">회원탈퇴</span>
         </div>
+        <!-- 회원 탈퇴 양식 -->
         <form class="signup-form-container" action="/mypage/memberwithdraw/${id}" method="post">
           <input type="hidden" name="email" value="${email}">
           <div class="signup-wrapper">

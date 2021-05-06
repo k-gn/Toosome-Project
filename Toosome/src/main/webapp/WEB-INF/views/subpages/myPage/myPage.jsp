@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/resources/css/subpages/myPage/myPage.css">
 <script src="/resources/js/subpages/myPage/myPageTap.js"></script>
 <title>A TOOSOME PLACE</title>
+<!-- 마이페이지 이용 관련 알림 -->
 <script>
 	const msg = "${msg}"
 	if(msg === "modSuccess") {
@@ -23,10 +24,13 @@
 </script> 
 </head>
 <body>
+<!-- 뒷 배경 -->
   <div class="bg"></div>
+  <!-- 마이페이지 시작 -->
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     <div class="my-container">
+    <!-- 가운데 메인 내용시작 -->
       <div id="main">
           <span class="myTitle">개인정보관리</span>
           <div class="grid-box">
@@ -69,7 +73,7 @@
             </ul>
           </div>
       </div>
-
+	<!-- 오른쪽 메뉴 탭 -->
       <div class="nav-cover">
         <div class="nav">
           <ul>
