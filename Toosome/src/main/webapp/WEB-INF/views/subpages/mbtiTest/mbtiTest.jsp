@@ -39,6 +39,7 @@
   <article class="result">
     <img id="img" class="rounded-circle mt-5" src="" alt="coffee">
     <h2 id="coffee" class="text-center mt-5">커피이름</h2>
+    <button class="detail">해당 메뉴로 이동</button>
     <h3 id="explain" class="text-center mt-5">설명</h3>
     <!-- Go to www.addthis.com/dashboard to customize your tools --> 
     <!-- sns 공유 -->
