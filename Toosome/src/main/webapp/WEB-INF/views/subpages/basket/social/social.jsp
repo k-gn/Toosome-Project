@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <meta charset="UTF-8">
   <title>A TOOSOME PLACE</title>
   <style>
@@ -72,4 +75,9 @@
     </ul>
   </div>
 </body>
+
+<script type="text/javascript">
+let csrfTokenValue = $("meta[name='_csrf']").attr("content");
+let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
+</script>
 </html>
