@@ -45,21 +45,21 @@ const FormCheck = (e) => {
 		alert("판매상태가 올바르지 않습니다.");
 	}else if(isNew.value === "") {
 		alert("신메뉴여부가 올바르지 않습니다.");
-	}else if(full.value === "" || !num_check.test(full.value)) {
+	}else if(full.value === "") {
 		alert("총 제공량이 올바르지 않습니다.");
-	}else if(one.value === "" || !num_check.test(one.value)) {
+	}else if(one.value === "") {
 		alert("1회 제공량이 올바르지 않습니다.");
-	}else if(weight.value === "" || !num_check.test(weight.value)) {
+	}else if(weight.value === "") {
 		alert("용량이 올바르지 않습니다.");
-	}else if(kcal.value === "" || !num_check.test(kcal.value)) {
+	}else if(kcal.value === "") {
 		alert("열량이 올바르지 않습니다.");
-	}else if(sugar.value === "" || !num_check.test(sugar.value)) {
+	}else if(sugar.value === "" || sugar.value.length < 2) {
 		alert("당류가 올바르지 않습니다.");
-	}else if(protein.value === "" || !num_check.test(protein.value)) {
+	}else if(protein.value === "" || protein.value.length < 2) {
 		alert("단백질값이 올바르지 않습니다.");
-	}else if(fat.value === "" || !num_check.test(fat.value)) {
+	}else if(fat.value === "" || fat.value.length < 2) {
 		alert("포화지방율이 올바르지 않습니다.");
-	}else if(natrium.value === "" || !num_check.test(natrium.value)) {
+	}else if(natrium.value === "" || natrium.value.length < 2) {
 		alert("나트륨값이 올바르지 않습니다.");
 	}else if(file.value === "") {
 		alert("파일을 선택해주세요.");

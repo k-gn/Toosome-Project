@@ -52,7 +52,7 @@
 						<tbody>
 							<tr class="table-active">
 								<td>총 용량(ml/잔)</td>
-								<td>${menubeverageDetail.iatVO.iatWeight} (총제공량 : ${menubeverageDetail.iatVO.iatFullSupply})</td>
+								<td>${menubeverageDetail.iatVO.iatWeight}/${menubeverageDetail.iatVO.iatFullSupply}</td>
 							</tr>
 							<tr>
 								<td>1회 제공량(ml)</td>
