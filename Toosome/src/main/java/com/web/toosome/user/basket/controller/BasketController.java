@@ -89,7 +89,6 @@ public class BasketController {
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		MemberVO memberList = memberService.getUserById(memberId);
 		Map<String, String> map = new HashMap<>();
-		System.out.println(memberList);
 		if (memberList.getMemberPhone() != null && memberList.getMemberAddress() != null) {
 			// 01040178803
 			String tel1 = memberList.getMemberPhone().substring(0, 3);
@@ -116,11 +115,8 @@ public class BasketController {
 				&& memberService.getUserById(memberId).getMemberPhone() != null) {
 			return "subpages/basket/order/order";
 		} else {
-
-			return "mypage/update/" + memberId;
-
+			return "subpages/basket/social/social";
 		}
-
 	}
 
 	@GetMapping("/basket/ordercomplete") // 주문완료
@@ -335,11 +331,25 @@ public class BasketController {
 		Integer amount = basketUtil.getAmount();
 		order.setOrdersAmount(amount);
 	
+		int ordersId = service.getOrdersList(memberId).getOrdersId();
+		Map<String, Integer> map3 = new HashMap<>();
+		map3.put("id", memberId);
+		map3.put("ordersId", ordersId);
+		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map3);
+		for(OrdersDetailVO OrdersDetailListOne : ordersDetailList) {
+			ProductVO productList = service.setproductAmountCheck(OrdersDetailListOne);
+			if(productList != null) {  // null이 아니라는 것은 재고가 부족하다는 것.
+				array.add(productList);
+			}else {						// null이라는 것은 재고가 있다는 것.
+				array2.add(OrdersDetailListOne);
+			}
+		}
 		int result = service.orderSubmit(order);
-		if (result > 0)
+		if (result > 0) {
 			return "success";
-		else
+		}else {
 			return "fail";
+		}
 	}
 
 	@PostMapping("/ordersViewContent")

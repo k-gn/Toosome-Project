@@ -198,7 +198,7 @@
 	
 	<select id="setproductAmountCheck" resultMap="productVO">
 		<![CDATA[
-			SELECT * FROM PRODUCT WHERE PRODUCT_CHECK_COUNT > #{ordersDetailAmount} AND PRODUCT_TITLE_NAME = #{ordersDetailName};
+			SELECT PRODUCT_TITLE_NAME FROM PRODUCT WHERE PRODUCT_CHECK_COUNT < #{ordersDetailAmount} AND PRODUCT_TITLE_NAME = #{ordersDetailName};
 		]]>	
 	</select>
 </mapper>
