@@ -77,3 +77,11 @@ const searchHandler = () => {
 		getPage(url);		
 	}
 };
+
+// 검색 event hook
+searchBtn.addEventListener('click', searchHandler);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+});
