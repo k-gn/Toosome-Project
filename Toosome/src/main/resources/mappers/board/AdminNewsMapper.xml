@@ -77,11 +77,11 @@
 	
 	
 	<delete id="deleteNewsBoard">
-		DELETE FROM NEWS_BOARD WHERE NEW_BOARD_ID = #{id}
+		DELETE FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{id}
 	</delete>
 	
 	<delete id ="deleteNewsBoardDetail">
-		DELETE FROM NEWS_BOARD_DETAIL WHERE NEW_BOARD_DETAIL_ID = #{id}	
+		DELETE FROM NEWS_BOARD_DETAIL WHERE NEWS_BOARD_DETAIL_ID = #{id}	
 	</delete>
 	
 	<select id="selectUpdateFile" resultMap="NewsBoardMap">

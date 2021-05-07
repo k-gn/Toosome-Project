@@ -319,10 +319,7 @@ const submitHandler = () => {
 		} else if(searchType.options[searchType.selectedIndex].value === 'content') { // 내용으로 검색시
 			condition = searchType.options[searchType.selectedIndex].value;
 			keyword = searchInput.value;			
-		} else { // 작성자로 검색시
-			condition = searchType.options[searchType.selectedIndex].value;
-			keyword = searchInput.value;
-		};
+		}
 	};
 	
 	// 가입일자
@@ -366,6 +363,7 @@ const listHandler = (e) => {
 			$('input[name=qnaBoardId]').val(res[0].qnaBoardId);			
 			$('input[name=newsBoardViewCount]').val(res[0].newsBoardViewCount);			
 			$('input[name=qnaBoardRegdate]').val(res[0].qnaBoardRegdate);	
+			$('input[name=memberName]').val(res[0].member[0].memberName);	
 			$('#modal-isLocked').val(res[0].qnaBoardSecret).prop('selected', true);
 			$('#detail-title').val(res[0].qnaBoardTitle);
 			$('#detail-content').val(res[0].qnaBoardContent);			
