@@ -24,27 +24,19 @@
 		
 	</select>
 	
-<!--  <insert id="insertNoticeBoard" resultMap="NoticeBoardMap">
-		INSERT INTO NOTICE_BOARD VAULES(#{noticeBoardId}, #{noticeBoardTitle}, #{noticeBoardContent}, #{noticeBoardView}, #{noticeBoardRegdate})
-	
-	</insert> -->
+
 	<select id="getNoticeBoard" resultMap="NoticeBoardMap">
-		<![CDATA[ SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID >= #{index}-1 AND NOTICE_BOARD_ID <= #{index}+1 ]]>
-	<!--   SELECT * FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = 1; -->
+		<![CDATA[SELECT * FROM NOTICE_BOARD 
+WHERE NOTICE_BOARD_ID IN (
+    (SELECT NOTICE_BOARD_ID FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID < #{index}  ORDER BY NOTICE_BOARD_ID DESC LIMIT 1),
+    (SELECT NOTICE_BOARD_ID FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID > #{index}  ORDER BY NOTICE_BOARD_ID LIMIT 1),
+    (SELECT NOTICE_BOARD_ID FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{index}))]]>
 	</select>
 	
 	<update id="NoticeBoardCount">
 		<![CDATA[ UPDATE NOTICE_BOARD SET NOTICE_BOARD_VIEW_COUNT = IFNULL(NOTICE_BOARD_VIEW_COUNT,0)+1 WHERE NOTICE_BOARD_ID = #{index} ]]>
 	</update>
 	
-	<!--  <update id="updateNoticeBoard" parameterType="hashMap">
-		UPDATE NOTICE_BOARD SET NOTICE_BOARD_TITLE = #{}, NOTICE_BOARD_COUTENT = #{}, NOTICE_BOARD_REG_DATE = #{} WHERE NOTICE_BOARD_ID = #{noticeBoardId}
-	</update> -->
-<!--  
-	<delete id="deleteNoticeBoard" parameterType="">
-		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId}	
-	</delete>
--->
 
 	<select id="getNewNoticeList" resultMap="NoticeBoardMap">
 		SELECT * FROM NOTICE_BOARD ORDER BY NOTICE_BOARD_REG_DATE DESC LIMIT 0, 5;
