@@ -21,7 +21,7 @@ public class NewsAdminService implements INewsAdminService {
 	}
 	@Override
 	public List<NewsBoardVO> searchNewsBoard(BoardSearchVO vo) {
-		return mapper.seachNewsBoard(vo);
+		return mapper.searchNewsBoard(vo);
 	}
 	@Override
 	public int insertNewsBoard(NewsBoardVO vo) {

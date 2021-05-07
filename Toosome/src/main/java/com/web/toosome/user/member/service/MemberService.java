@@ -11,15 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.adminManagement.vo.AdminVO;
 import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
-import com.web.toosome.user.basket.dao.IBasketMapper;
-import com.web.toosome.user.board.dao.IQnaBoardCommentMapper;
-import com.web.toosome.user.board.dao.IQnaBoardMapper;
 import com.web.toosome.user.member.dao.IMemberMapper;
 import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
-import com.web.toosome.user.membership.dao.IMembershipMapper;
 
-import net.nurigo.java_sdk.api.Image;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -30,20 +25,8 @@ public class MemberService implements IMemberService {
 	private IMemberMapper mapper;
 	
 	@Autowired
-	private IMembershipMapper msmapper;
-	
-	@Autowired
-	private IBasketMapper bmapper;
-	
-	@Autowired
-	private IQnaBoardMapper qmapper;
-	
-	@Autowired
 	private IMemberManageMapper mmapper;
 	
-	@Autowired
-	private IQnaBoardCommentMapper qcmapper;
-
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -192,16 +175,11 @@ public class MemberService implements IMemberService {
 	}
 
 	// 회원 탈퇴
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional
 	@Override
 	public int deleteMember(String email, Integer id) {
 		mapper.insertWithdrawInfo(mapper.getUserById(id));
-		bmapper.delBasketById(id);
-		msmapper.deleteMembership(id);
-		qcmapper.delQnaCommentById(id);
-		qmapper.delQna(id);
 		// 해당 회원 댓글 삭제 추가 예정
-		mapper.deleteMemberAuth(email);
 		int result = mapper.deleteMember(id);
 		return result;
 	}
