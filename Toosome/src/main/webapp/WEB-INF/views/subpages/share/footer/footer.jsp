@@ -35,8 +35,8 @@
       </li>
     </ul>
     <!-- sns 공유 버튼 -->
-    <div class="addthis_inline_share_toolbox_jro3"></div>
+    <div class="addthis_inline_share_toolbox"></div>
     <!-- Go to www.addthis.com/dashboard to customize your tools --> 
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60687a2158f87593"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6094f857c045b54e"></script>
   </div>
 </div>

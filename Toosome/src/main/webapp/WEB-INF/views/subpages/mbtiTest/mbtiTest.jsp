@@ -19,7 +19,10 @@
   <title>A TOOSOME PLACE</title>
 </head>
 <body class="container">
-  <div id="bg-img"></div>
+  <div id="bg-img">
+  	<img alt="" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/main/map.png">
+  	<div class="black-cover"></div>
+  </div>
   <article class="start">
     <h1 class="mt-5 text-center title">나에게 어울리는 커피는?</h1>
     <button type="button" class="btn btn-info mt-5" onclick="start()">테스트 시작하기</button>
