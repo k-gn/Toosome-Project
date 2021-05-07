@@ -53,6 +53,24 @@
 		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />
 	</resultMap>
 	
+	<resultMap type="productVO" id="productVO">
+		<id property="productId" column="PRODUCT_ID" />
+		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
+		<result property="productSubName" column="PRODUCT_SUB_NAME" />
+		<result property="productContent" column="PRODUCT_CONTENT" />
+		<result property="productPrice" column="PRODUCT_PRICE" />
+		<result property="productType" column="PRODUCT_TYPE" />
+		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
+		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
+		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStartDay" column="PRODUCT_START_DAY" />
+		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
+		<result property="productState" column="PRODUCT_STATE" />
+		<result property="productNew" column="PRODUCT_NEW" />
+		<result property="productOnoff" column="PRODUCT_ONOFF" />
+	</resultMap>
+	
 	<insert id="addBasket">
 		INSERT INTO BASKET(MEMBER_ID, PRODUCT_ID, BASKET_NAME, BASKET_PRICE, PRODUCT_IMAGE_ID)
 		VALUES(#{memberId}, #{productId}, #{basketName}, #{basketPrice}, #{productImageId})
@@ -170,4 +188,17 @@
 		SELECT ORDERS_CANCEL_ID FROM ORDERS_CANCEL WHERE ORDERS_ID = #{ordersId}
 	</select>
 	
+	<update id="setproductAmountDownCounter">
+		UPDATE PRODUCT SET PRODUCT_CHECK_COUNT = PRODUCT_CHECK_COUNT-#{ordersDetailAmount} WHERE PRODUCT_TITLE_NAME = #{ordersDetailName}
+	</update>
+	
+	<update id="setproductAmountUpCounter">
+		UPDATE PRODUCT SET PRODUCT_CHECK_COUNT = PRODUCT_CHECK_COUNT+#{ordersDetailAmount} WHERE PRODUCT_TITLE_NAME = #{ordersDetailName}
+	</update>
+	
+	<select id="setproductAmountCheck" resultMap="productVO">
+		<![CDATA[
+			SELECT PRODUCT_TITLE_NAME FROM PRODUCT WHERE PRODUCT_CHECK_COUNT < #{ordersDetailAmount} AND PRODUCT_TITLE_NAME = #{ordersDetailName};
+		]]>	
+	</select>
 </mapper>

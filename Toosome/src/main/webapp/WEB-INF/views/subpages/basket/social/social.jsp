@@ -67,7 +67,7 @@
     <p class="sub"><span class="red">추가 정보를 반드시!</span> 입력하셔야 합니다.</p>
     <p class="sub-mt">정보를 입력하시지 않으면 주문을 하실 수 없습니다.</p>
     <ul class="btn">
-      <li><a href="/memberupdate">개인정보입력</a></li>
+      <li><a href="/mypage/update/${memberList.memberId}">개인정보입력</a></li>
       <li><a href="/">메인으로</a></li>
     </ul>
   </div>

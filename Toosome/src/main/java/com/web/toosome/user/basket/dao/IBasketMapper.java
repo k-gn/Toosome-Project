@@ -6,6 +6,7 @@ import java.util.Map;
 import com.web.toosome.user.basket.vo.BasketVO;
 import com.web.toosome.user.basket.vo.OrdersDetailVO;
 import com.web.toosome.user.basket.vo.OrdersVO;
+import com.web.toosome.user.product.vo.ProductVO;
 
 public interface IBasketMapper {
 	
@@ -77,5 +78,17 @@ public interface IBasketMapper {
 	
 	// orderCancel Id 얻어오기.
 	public int getOrdersCancelId(Integer id);
+	
+	// ordersDetail에 상품이름과 수량을 Product에 입력하여 이름에 맞는 수량 감소(주문).
+	public int setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne);
+	
+	// ordersDetail에 상품이름과 수량을 Product에 입력하여 이름에 맞는 수량 증가 (주문취소).
+	public int setproductAmountUpCounter(OrdersDetailVO ordersDetailListOne);
+	
+	// Product에 상품이름을 조건으로 재고가 주문 수량 보다 작은지 확인
+	public ProductVO setproductAmountCheck(OrdersDetailVO ordersDetailListOne);
+		
+		
+
 	
 }
