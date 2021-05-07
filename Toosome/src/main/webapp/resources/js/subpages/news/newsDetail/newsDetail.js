@@ -20,16 +20,16 @@ const getParam = (param) => {
 const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
-	
+	console.log(items);
 	// 날짜 변환
-	let date = new Date(items[1].newsBoardRegdate);
+	let date = new Date(items[0].newsBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 	
-	if(items[1].newsBoardId === +index) {
+	if(items[0].newsBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
-			<th colspan="3">제목: ${items[1].newsBoardTitle}</th>
+			<th colspan="3">제목: ${items[0].newsBoardTitle}</th>
 			<th colspan="1">작성일: ${newDate}</th>
 		`;
 		newTitle.innerHTML = titleElement;
@@ -38,7 +38,7 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		let contentElement = `
-			<td colspan="4"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[1].newsBoardDetailVO.newsBoardDetailImageRoute}${items[1].newsBoardDetailVO.newsBoardDetailImageName}.${items[1].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
+			<td colspan="4"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[0].newsBoardDetailVO.newsBoardDetailImageRoute}${items[0].newsBoardDetailVO.newsBoardDetailImageName}.${items[0].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
@@ -53,7 +53,7 @@ const displayDetail = (title, content, items, index) => {
 // 이전글, 다음글 생성 함수
 const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
-	if(items[0].newsBoardId !== +index + 1) {
+	if(!items[0].newsBoardId) {
 		let newPrev = `
 			<td colspan="1">윗글</td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -62,13 +62,13 @@ const displayLocator = (items, index) => {
 	} else {
 		let newPrev = `
 			<td colspan="1">윗글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index + 1}'">${items[0].newsBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${items[0].newsBoardId}'">${items[0].newsBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].newsBoardId !== +index - 1) {
+	if(!items[2].newsBoardId) {
 		let newNext = `
 			<td colspan="1">아랫글</td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -77,7 +77,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index - 1}'">${items[2].newsBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${items[2].newsBoardId}'">${items[2].newsBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -90,12 +90,14 @@ $(document).ready(() => {
 	// 게시글 데이터 요청 AJAX
 	$.ajax({
 		url: '/newsdetail?index='+index,
-		success: (res) => {
-			
+		success: (res) => {	
 			// 데이터 역순		
 			const newRes = res.reverse();
+			const result = newRes.sort((a,b) => {
+				return a.noticeBoardId - b.noticeBoardId;
+			})
 			// 처음 혹은 마지막 게시물
-			if(newRes.length === 2) {
+			if(result.length === 2) {
 				// null data 생성
 				const nullData = {
 					newsBoardId: null,
@@ -107,13 +109,13 @@ $(document).ready(() => {
 					newsBoardDetailImageExtention: null
 				};
 				// 첫 게시물 
-				if(+newRes[1].newsBoardId === 1) {
-					newRes.push(nullData);
+				if(+result[1].newsBoardId === 1) {
+					result.push(nullData);
 				} else { // 마지막 게시물
-					newRes.unshift(nullData);
+					result.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, newRes, index);
+			displayDetail(detailTitle, detailContent, result, index);
 		},
 		error: () => {
 			alert('통신장애');
