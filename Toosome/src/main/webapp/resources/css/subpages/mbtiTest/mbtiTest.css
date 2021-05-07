@@ -76,10 +76,27 @@ button {
   margin: 0 auto;
 }
 
-#animal {
+#coffee {
   color: #fff;
 }
 
 #explain {
   color: #fff;
+}
+
+.detail {
+  margin-top: 50px;
+  display: block;
+  width: 250px;
+  height: 80px;
+  outline: none;
+  appearance: none;
+  border-radius: 10px;
+  border: none;
+  background: #a62326 !important;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.5rem;
 }
