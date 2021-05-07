@@ -43,14 +43,13 @@
 	
 	<insert id="insertFaq"> 
 	INSERT INTO FAQ_BOARD(FAQ_BOARD_ID, FAQ_BOARD_TITLE, FAQ_BOARD_CONTENT, FAQ_BOARD_REG_DATE) 
-	VALUES(#{faqBoardId}, #{faqBoardTitle}, #{faqBoardContent}, #{faqBoardRegDate})
+	VALUES(#{faqBoardId}, #{faqBoardTitle}, #{faqBoardContent}, NOW())
 	</insert>
 	
 	<update id="updateFaq">
 		UPDATE FAQ_BOARD SET 
 		FAQ_BOARD_TITLE = #{faqBoardTitle}, 
-		FAQ_BOARD_CONTENT = #{faqBoardContent}, 
-		FAQ_BOARD_REG_DATE = #{faqBoardRegDate} 
+		FAQ_BOARD_CONTENT = #{faqBoardContent}
 		WHERE FAQ_BOARD_ID = #{faqBoardId}
 	</update>
 	
