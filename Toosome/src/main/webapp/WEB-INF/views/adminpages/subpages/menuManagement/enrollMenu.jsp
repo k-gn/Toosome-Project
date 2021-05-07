@@ -101,12 +101,6 @@
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">재고수량</label>
-		                          <input type="text" id="count" name="menuCheckCount" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-4">
 		                        <div class="form-group cal">
 		                          <label class="bmd-label-floating">판매 시작일</label>
 								  <input id="calendar3" class="calendar" type="date" name="menuStartDay" value="">

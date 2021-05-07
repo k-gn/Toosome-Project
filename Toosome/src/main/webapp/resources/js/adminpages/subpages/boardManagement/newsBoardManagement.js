@@ -68,8 +68,10 @@ enrollSubmitBtn.addEventListener('click', (e) => {
 updateSubmitBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	const u_title = document.querySelector('#detail-title');
+	const u_thumb = document.querySelector('#detail-thumb');
+	const u_image = document.querySelector('#detail-image');
 	
-	if(!enrollCheck(u_title)) {
+	if(!enrollCheck(u_title, u_thumb, u_image)) {
 		return;
 	} else {
 		document.querySelector('#update-form').submit();
@@ -91,6 +93,7 @@ const delBtnFunc = ()  => {
 			},
 			success: () => {
 				alert('글삭제를 성공하였습니다.');
+				location.reload();
 			},
 			error: () => {
 				alert('통신장애');
@@ -284,7 +287,7 @@ const listHandler = (e) => {
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
 			console.log(res);
-			/*boardId = res[0].newsBoardId;
+			boardId = res[0].newsBoardId;
 			$('input[name=newsBoardId]').val(res[0].newsBoardId);			
 			$('input[name=newsBoardViewCount]').val(res[0].newsBoardViewCount);			
 			$('input[name=newsBoardRegdate]').val(res[0].newsBoardRegdate);	
@@ -293,7 +296,7 @@ const listHandler = (e) => {
 			$('#thumbnail').attr("src", thumbnailURL);	
 			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardImageRoute}${res[0].newsBoardImageName}.${res[0].newsBoardImageExtention}`;
 			$('#detail-img').attr("src", imageURL);
-			$('input[name=newsBoardDetailId]').val(res[0].newsBoardDetailVO.newsBoardDetailId);*/
+			$('input[name=newsBoardDetailId]').val(res[0].newsBoardDetailVO.newsBoardDetailId);
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');

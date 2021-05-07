@@ -12,12 +12,14 @@
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     
     <!-- Section Start -->
+    <!-- 개인정보 확인 시작 -->
     <section>
       <div class="signup-container">
         <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
           <span class="signup-title">개인정보</span>
         </div>
+        <!-- 수정 안되게 내용만 출력 -->
         <div class="signup-form-container">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
@@ -51,6 +53,7 @@
             <input class="signup-form addr2" type="text" name="address2" value="${map.address2}" disabled/>
             <p class="validation addr2"></p>
           </div>
+          <!-- 정보 수정 페이지와 마이페이지로 이동 버튼 -->
           <div class="signform-btn-wrapper">
             <a href="/mypage/update/${id}" class="signform-btn" style="margin-bottom: 30px;">정보수정</a>
             <a href="/mypage" class="signform-btn">마이페이지로</a>

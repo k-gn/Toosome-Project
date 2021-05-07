@@ -13,6 +13,7 @@
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     <!-- Section Start -->
+    <!-- 비밀번호 찾기 -->
 	<section>
        	<div class="info">
        		<h3>비밀번호 재설정</h3>

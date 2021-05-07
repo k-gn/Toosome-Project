@@ -132,7 +132,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="date" name="noticeBoardRegdate" class="form-control">
+		                          <input type="date" name="noticeBoardRegdate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>

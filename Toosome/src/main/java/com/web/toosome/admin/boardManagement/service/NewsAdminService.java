@@ -21,7 +21,7 @@ public class NewsAdminService implements INewsAdminService {
 	}
 	@Override
 	public List<NewsBoardVO> searchNewsBoard(BoardSearchVO vo) {
-		return mapper.seachNewsBoard(vo);
+		return mapper.searchNewsBoard(vo);
 	}
 	@Override
 	public int insertNewsBoard(NewsBoardVO vo) {
@@ -32,16 +32,16 @@ public class NewsAdminService implements INewsAdminService {
 		return mapper.insertNewsBoardDetail(vo);
 	}
 	@Override
-	public int deleteNewsBoard(NewsBoardVO vo) {
-		return mapper.deleteNewsBoard(vo);
+	public int deleteNewsBoard(Integer id) {
+		return mapper.deleteNewsBoard(id);
 	}
 	@Override
-	public int deleteNewsBoardDetail(NewsBoardDetailVO vo) {
-		return mapper.deleteNewsBoardDetail(vo);
+	public int deleteNewsBoardDetail(Integer id) {
+		return mapper.deleteNewsBoardDetail(id);
 	}
 	@Override
-	public NewsBoardVO selectFile(NewsBoardVO vo) {
-		return mapper.selectFile(vo);
+	public NewsBoardVO selectFile(Integer id) {
+		return mapper.selectFile(id);
 	}
 	@Override
 	public int updateNewsBoard(NewsBoardVO vo) {
@@ -62,6 +62,18 @@ public class NewsAdminService implements INewsAdminService {
 	@Override
 	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo) {
 		return mapper.newsBoardDetail(vo);
+	}
+	@Override
+	public NewsBoardDetailVO selectDFile(Integer id) {
+		return mapper.selectDFile(id);
+	}
+	@Override
+	public NewsBoardVO selectUpdateFile(NewsBoardVO vo) {
+		return mapper.selectUpdateFile(vo);
+	}
+	@Override
+	public NewsBoardDetailVO selectUpdateDFile(NewsBoardDetailVO vo) {
+		return mapper.selectUpdateDFile(vo);
 	}
 
 }

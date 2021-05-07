@@ -13,20 +13,24 @@
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     
     <!-- Section Start -->
+    <!-- 비밀번호 변경 페이지 -->
     <section>
       <div class="signup-container">
         <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
           <span class="signup-title">비밀번호 변경</span>
         </div>
+        <!-- 시작 -->
         <form class="signup-form-container" action="/mypage/passwordmodify/${id}" method="post">
           <div class="signup-wrapper">
             <div class="signform-email-wrapper">
               <span>이메일</span>
             </div>
+            <!-- 현재 아이디 출력 -->
             <input class="signup-form email" type="email" name="email" value="${email}" disabled />
             <input type="hidden" name="email" value="${email}"/>
           </div>
+          <!-- 현재 비밀번호 입력 후 새 비밀번호 입력 -->
           <div class="signup-wrapper">
             <span>현재 비밀번호</span>
             <input class="signup-form old-pwd" type="password" name="password" placeholder="현재 비밀번호를 입력해주세요">

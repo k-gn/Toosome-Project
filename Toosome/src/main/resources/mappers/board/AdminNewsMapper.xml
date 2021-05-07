@@ -31,12 +31,12 @@
 	</select>
 	
 	<sql id ="search">
-	
+		WHERE 1=1
 		<if test="condition == 'title'">
-			WHERE NEWS_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+			AND NEWS_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="condition == 'content'">
-			WHERE NEWS_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+			AND NEWS_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="startRegDate != null and startRegDate != ''">
 			AND NEWS_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
@@ -54,7 +54,11 @@
 	</select>
 	
 	<select id ="selectFile" resultMap="NewsBoardMap">
-		SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{newsBoardId}
+		SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{id}
+	</select>
+	
+	<select id = "selectDFile" resultMap="NewsBoardDetailMap">
+		SELECT * FROM NEWS_BOARD_DETAIL WHERE NEWS_BOARD_DETAIL_ID = #{id}
 	</select>
 	
 	<select id="newsBoardDetail" resultMap="NewsBoardMap">
@@ -79,17 +83,25 @@
 	
 	
 	<delete id="deleteNewsBoard">
-		DELETE FROM NEWS_BOARD WHERE NEW_BOARD_ID = #{newsBoardId}
+		DELETE FROM NEWS_BOARD WHERE NEW_BOARD_ID = #{id}
 	</delete>
 	
 	<delete id ="deleteNewsBoardDetail">
-		DELETE FROM NEWS_BOARD_DETAIL WHERE NEW_BOARD_DETAIL_ID = #{newsBoardDetailId}	
+		DELETE FROM NEWS_BOARD_DETAIL WHERE NEW_BOARD_DETAIL_ID = #{id}	
 	</delete>
+	
+	<select id="selectUpdateFile" resultMap="NewsBoardMap">
+		SELECT * FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{newsBoardId}
+	</select>
+	
+	<select id="selectUpdateDFile" resultMap="NewsBoardDetailMap">
+		SELECT * FROM NEWS_BOARD_DETAIL WHERE NEWS_BOARD_DETAIL_ID = #{newsBoardDetailId}
+	</select>
 	
 	<update id="updateNewsBoard">
 		UPDATE NEWS_BOARD SET NEWS_BOARD_IMAGE_ROUTE = #{newsBoardImageRoute}, 
 		NEWS_BOARD_IMAGE_NAME = #{newsBoardImageName}, NEWS_BOARD_IMAGE_EXTENTION = #{newsBoardImageExtention}, 
-		NEWS_BOARD_TITLE =#{newsBoardTitle} WHERE NEWS_BOARD_ID = {newsBoardId}
+		NEWS_BOARD_TITLE =#{newsBoardTitle} WHERE NEWS_BOARD_ID = #{newsBoardId}
 	</update>
 	
 	<update id="updateNewsBoardDetail">

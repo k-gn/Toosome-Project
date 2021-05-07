@@ -13,11 +13,12 @@
   <title>A TOOSOME PLACE</title>
 </head>
 <body>
+<!-- 상품 디테일 페이지 -->
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     
     <div class="productDetail-container"> 
-    
+    <!-- 상품 카테고리 -->
 	<div class="title-container">
 		<span class="productDetail-title big">NEW</span>
 		<span class="productDetail-title big">커피상품</span>
@@ -26,30 +27,35 @@
 	</div>     
       <div class="contents">
       
-
+		<!-- 상품 이미지 -->
         <img class="product-img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productDetail.productImageVO.productImageRoute}/${productDetail.productImageVO.productImageName}.${productDetail.productImageVO.productImageExtention}" alt="">
 
         <ul class="star cf">
           <li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/productDetail/ico_star_off.png" alt=""></li>
+          <!-- 상품 영어 이름 -->
           <li>${productDetail.productSubName}</li>
         </ul> 
+        <!-- 상품 이름 -->
         <p class="strong">${productDetail.productTitleName}</p>
+        <!-- 상품 가격 -->
         <p class="product-pay"><span class="com">${productDetail.productPrice}</span> 원</p>
+        <!-- 상품 코멘트 -->
         <p class="title-text">${productDetail.productContent}</p>
         
-        
+        <!-- 상품 주문 버튼 -->
         <ul class="order-btn cf">
-          <li><a href="#" class="online">온라인 주문</a></li>
+          <!-- <li><a href="#" class="online">온라인 주문</a></li> -->
           <li><a class="basket" onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
         </ul>
         
+        <!-- 상품 공지사항 -->
         <ul class="notice-box">
           <li>${productDetail.productPrecautionsVO.productPrecautionsContent}</li>
        
         </ul>
 
         <div class="comment-box">
-          
+          <!-- 주문 주의사항 -->
           <div class="precaution">
             <h3 class="pretitle">${productDetail.productPrecautionsVO.productPrecautionsTitle}</h3>
             <ul class="precau">
@@ -72,10 +78,12 @@
               </li>
             </ul>
           </div>
+          <!-- 상품 목록으로 가는 버튼 -->
           <div class="btn-group">
             <button class="list">목록</button>
           </div>
             
+          <!-- 댓글 -->
           <ul class="one-comment">
             <li class="bold">
               COMMENT 맛있는 제품 한마디
@@ -84,7 +92,7 @@
               ※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.
             </li>
           </ul>
-
+		
           <form action="#" method="post" class="form1">
             <div class="star-catch-cover">
               <div class="star-catch">
@@ -134,6 +142,7 @@
     </div>
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
   </div>
+  <!-- 금액 1,000단위 마다 ','찍기 -->
 <script>
 const coms = document.querySelectorAll('.com');
 coms.forEach((com => {

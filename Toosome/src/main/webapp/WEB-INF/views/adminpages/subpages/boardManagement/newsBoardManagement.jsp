@@ -149,7 +149,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">본문 이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile" accept="image/*" />
+								            <input id="detail-image" type="file" name="uploadFile2" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -165,7 +165,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile2" accept="image/*" />
+								            <input id="detail-thumb" type="file" name="uploadFile" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
