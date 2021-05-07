@@ -55,11 +55,12 @@ $(function () {
     return false;
   });*/
 
-
+// .kyEsUG
   // menu-bar click
   $(".menu-bar").click(function () {
     $(".menu-bar").toggleClass("mon");
     $("header .mobile-nav").toggleClass("clickNav");
+	$(".kyEsUG").toggleClass("zindex");
     return false;
   });
 
