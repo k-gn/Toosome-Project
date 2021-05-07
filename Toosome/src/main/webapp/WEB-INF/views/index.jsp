@@ -178,34 +178,49 @@
           </div>
         </div>
       </div>
-      <!-- 사이드 버튼 -->
-      <div class="button-logo">
-        <div class="button-img"></div>
-        <a class="offbutton" href="#">
-          <span class="button-text">Click!!</span>
-        </a>
-        <a class="onbutton" href="#">Click!!</a>
-      </div>
-      <div class="button-bar-block">
-        <div class="button-bar">
-          <ul class="online-icon">
-            <li>
-              <a href="#"
-                ><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/conversation.png" alt="" /><span
-                  >온라인상담</span
-                ></a
-              >
-            </li>
-            <li>
-              <a href="/product-new"
-                ><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/giftbox.png" alt="" /><span
-                  >온라인주문</span
-                ></a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
+      <!-- 쳇봇 버튼 -->
+      <script>
+		  (function() {
+		    var w = window;
+		    if (w.ChannelIO) {
+		      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+		    }
+		    var ch = function() {
+		      ch.c(arguments);
+		    };
+		    ch.q = [];
+		    ch.c = function(args) {
+		      ch.q.push(args);
+		    };
+		    w.ChannelIO = ch;
+		    function l() {
+		      if (w.ChannelIOInitialized) {
+		        return;
+		      }
+		      w.ChannelIOInitialized = true;
+		      var s = document.createElement('script');
+		      s.type = 'text/javascript';
+		      s.async = true;
+		      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+		      s.charset = 'UTF-8';
+		      var x = document.getElementsByTagName('script')[0];
+		      x.parentNode.insertBefore(s, x);
+		    }
+		    if (document.readyState === 'complete') {
+		      l();
+		    } else if (window.attachEvent) {
+		      window.attachEvent('onload', l);
+		    } else {
+		      window.addEventListener('DOMContentLoaded', l, false);
+		      window.addEventListener('load', l, false);
+		    }
+		  })();
+		  ChannelIO('boot', {
+		    "pluginKey": "da283034-998c-46aa-b9d4-f284589b8309"
+		  });
+		</script>
+		<!-- End Channel Plugin -->
+		
       <!-- 간편 지도 검색 -->
       <div class="map">
         <div class="form-cover">
