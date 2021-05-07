@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+body {
+  background-color: #000;
+  /* background: url("./cafe-3537801.jpg") no-repeat center /cover; */
+}
+#bg-img {
+  background: url("./cafe.jpg") no-repeat center /cover;
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.title {
+  color: #fff;
+  font-weight: bold;
+}
+#title {
+  color: #fff;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 0 auto;
+  /* width: 500px; */
+  background-color: #6A5E46 !important;
+}
+
+.progress-bar {
+  background-color: #8c531b !important;
+}
+.question {
+  display: none;
+  visibility: visible;
+}
+
+.result {
+  display: none;
+}
+
+#img {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.share {
+  margin: 0 auto;
+}
+
+.kakao_ad {
+  width: 320px;
+  margin: 0 auto;
+}
+
+#animal {
+  color: #fff;
+}
+
+#explain {
+  color: #fff;
+}
