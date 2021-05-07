@@ -99,13 +99,10 @@ const delBtnFunc2 = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/qnaboardcomment-delete',
+			url: '/admin/qnacomment-delete/' + commentId,
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
-			data: {
-				qnaBoardCommentId: commentId
-			},
 			success: () => {
 				alert('댓글 삭제에 성공하였습니다.');
 				location.reload();

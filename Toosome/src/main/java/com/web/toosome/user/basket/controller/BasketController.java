@@ -43,6 +43,7 @@ import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
+import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
 public class BasketController {
@@ -88,7 +89,6 @@ public class BasketController {
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		MemberVO memberList = memberService.getUserById(memberId);
 		Map<String, String> map = new HashMap<>();
-		System.out.println(memberList);
 		if (memberList.getMemberPhone() != null && memberList.getMemberAddress() != null) {
 			// 01040178803
 			String tel1 = memberList.getMemberPhone().substring(0, 3);
@@ -115,11 +115,8 @@ public class BasketController {
 				&& memberService.getUserById(memberId).getMemberPhone() != null) {
 			return "subpages/basket/order/order";
 		} else {
-
-			return "mypage/update/" + memberId;
-
+			return "subpages/basket/social/social";
 		}
-
 	}
 
 	@GetMapping("/basket/ordercomplete") // 주문완료
@@ -201,18 +198,16 @@ public class BasketController {
 	@GetMapping("/productStactpoint")
 	public String productStactpoint(BasketUtil basketUtil, HttpSession session, Integer basketEndPrice,
 			Integer basketsal, String merchantUid, OrdersVO ordersVO) {
-		System.out.println("상품 결제 후 포인트 적립");
+		System.out.println("productStactpoint 메서드 실행");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
 		MembershipVO ms = mservice.getMembershipInfo(memberId);
 		basketUtil.utilMethod(baskets, ms, basicImagePath);
 		double basketPrice = basketUtil.getTotal();
-		System.out.println(basketPrice);
 		double imsipoint = basketPrice * 0.01; // 적립 포인트
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("id", memberId);
-		map.put("imsipoint", (int) imsipoint);
-		System.out.println((int) imsipoint); // 적립포인트
+		map.put("imsipoint", (int) imsipoint);// 적립포인트
 		mservice.getStackPoint(map);
 		System.out.println("getStackPoint 실행 완료");
 		Integer usedPoint = basketsal - basketEndPrice;
@@ -226,7 +221,7 @@ public class BasketController {
 		service.updateMerchantUid(ordersVO);
 		return "OK";
 	}
-
+	
 	@GetMapping("/orderComplete")
 	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice,
 			Integer basketsal) {
@@ -282,8 +277,19 @@ public class BasketController {
 		model.addAttribute("orderList", orderList);
 		for (BasketVO basketOne : baskets) {
 			basketOne.setOrdersId(service.getOrdersList(memberId).getOrdersId());
-			service.basketsendorder(basketOne);
-			service.orderBasketDel(memberId);
+			service.basketsendorder(basketOne);			// 디테일에 저장.
+			service.orderBasketDel(memberId);			// 장바구니 데이터 삭제.
+		}
+		
+		System.out.println("setproductAmountDownCounter 시작");
+		int ordersId = service.getOrdersList(memberId).getOrdersId();
+		Map<String, Integer> map3 = new HashMap<>();
+		map3.put("id", memberId);
+		map3.put("ordersId", ordersId);
+		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map3);
+		System.out.println(ordersDetailList);
+		for (OrdersDetailVO ordersDetailListOne : ordersDetailList) {
+			service.setproductAmountDownCounter(ordersDetailListOne);		
 		}
 		return "subpages/basket/order/orderComplete/orderComplete";
 	}
@@ -292,6 +298,10 @@ public class BasketController {
 	@ResponseBody
 	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil, String merchantUid) {
 		System.out.println("ordersubmit 메서드 실행");
+		
+		List<ProductVO> array = new ArrayList<ProductVO>();
+		List<OrdersDetailVO> array2 = new ArrayList<OrdersDetailVO>();
+		
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
 		order.setOrdersDelivery(basketUtil.getDeliveryPay());
@@ -320,11 +330,26 @@ public class BasketController {
 		order.setOrdersProductPay(ProductPrice);
 		Integer amount = basketUtil.getAmount();
 		order.setOrdersAmount(amount);
+	
+		int ordersId = service.getOrdersList(memberId).getOrdersId();
+		Map<String, Integer> map3 = new HashMap<>();
+		map3.put("id", memberId);
+		map3.put("ordersId", ordersId);
+		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map3);
+		for(OrdersDetailVO OrdersDetailListOne : ordersDetailList) {
+			ProductVO productList = service.setproductAmountCheck(OrdersDetailListOne);
+			if(productList != null) {  // null이 아니라는 것은 재고가 부족하다는 것.
+				array.add(productList);
+			}else {						// null이라는 것은 재고가 있다는 것.
+				array2.add(OrdersDetailListOne);
+			}
+		}
 		int result = service.orderSubmit(order);
-		if (result > 0)
+		if (result > 0) {
 			return "success";
-		else
+		}else {
 			return "fail";
+		}
 	}
 
 	@PostMapping("/ordersViewContent")
@@ -348,22 +373,34 @@ public class BasketController {
 	
 	@PostMapping("/ordersCancelReceipt")
 	@ResponseBody
-	public int ordersCancelReceipt(Integer ordersId) {
-		System.out.println("ordersCancelReceipt");
+	public int ordersCancelReceipt(Integer ordersId, HttpSession session) {
+		System.out.println("ordersCancelReceipt 메서드 실행");
+		
+		System.out.println("setproductAmountUpCounter 시작");
+		Integer memberId = (Integer) session.getAttribute("id");
+		Map<String, Integer> map3 = new HashMap<>();
+		map3.put("id", memberId);
+		map3.put("ordersId", ordersId);
+		List<OrdersDetailVO> ordersDetailList = service.getOrdersDetailList(map3);
+		System.out.println(ordersDetailList);
+		for (OrdersDetailVO ordersDetailListOne : ordersDetailList) {
+			service.setproductAmountUpCounter(ordersDetailListOne);		
+		}
+		
 		OrdersVO ordersVO = omService.getorderDetail(ordersId);
-		System.out.println(ordersVO);
 		List<OrdersDetailVO> ordersDetailVO = omService.getorderDetailListTwo(ordersId);
-
 		System.out.println(ordersDetailVO);
 		int num1 = service.setordersCancel(ordersVO);
+		System.out.println(num1);
 		for (OrdersDetailVO OrdersDetailOne : ordersDetailVO) {
 			OrdersDetailOne.setOrdersCancelId(service.getOrdersCancelId(ordersId));
-			System.out.println(service.getOrdersCancelId(ordersId));
 			service.setordersCancelDetail(OrdersDetailOne);
 		}
 		int detailDel = service.ordersDetailDel(ordersId);
+		System.out.println(detailDel);
 		int ordersDel = service.ordersDel(ordersId);
-		if(detailDel == 1 && ordersDel == 1 && num1>0) {
+		System.out.println(ordersDel);
+		if(detailDel > 0 && ordersDel > 0 && num1>0) {
 			return 1;
 		}else {
 			return 0;
