@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/resources/css/subpages/mbtiTest/mbtiTest.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="/resources/js/subpages/mbtiTest/mbtiTest.js" defer></script>
   <title>A TOOSOME PLACE</title>
 </head>
@@ -37,9 +38,10 @@
     <button id="B" type="button" class="btn btn-dark mt-5">Dark</button>
   </article>
   <article class="result">
-    <img id="img" class="rounded-circle mt-5" src="" alt="coffee">
+  	<div class="innerimg">
+    </div>
     <h2 id="coffee" class="text-center mt-5">커피이름</h2>
-    <button class="detail">해당 메뉴로 이동</button>
+    <button class="detail" onclick="goMenuDetail()">해당 메뉴로 이동</button>
     <h3 id="explain" class="text-center mt-5">설명</h3>
     <!-- Go to www.addthis.com/dashboard to customize your tools --> 
     <!-- sns 공유 -->
