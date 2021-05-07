@@ -21,4 +21,7 @@ public interface IQnaBoardCommentMapper {
 	//회원 댓글 삭제
 	int delQnaCommentById(Integer id);
 
+	
+
+
 }

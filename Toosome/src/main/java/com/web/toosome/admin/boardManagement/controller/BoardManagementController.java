@@ -20,6 +20,7 @@ import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.admin.boardManagement.service.IQnaAdminService;
 import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
@@ -96,7 +97,7 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail/");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
 		int in = eventboardservice.insertEvent(vo);
@@ -626,9 +627,11 @@ public class BoardManagementController {
 		return "redirect:/admin/qnaboard-management";
 	}
 	
-	@GetMapping(value = "/admin/qnacomment-delete" , produces = "application/json")
-	public String DeleteQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
-		int del = qnaadminservice.delQnaComment(vo);
+	@GetMapping(value = "/admin/qnacomment-delete/{id}" , produces = "application/json")
+	public String DeleteQnaComment(@PathVariable Integer id, RedirectAttributes ra) {
+		
+		int del = qnaadminservice.delQnaCommentId(id);
+		
 		if(del > 0 ) {
 			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
