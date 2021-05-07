@@ -16,8 +16,10 @@
 <body>
 <div id="container">
   <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
+  <!-- 주문 페이지 -->
   <section>
       <p>주문 / 결제</p>
+      <!-- 주문 상단 아이콘 -->
       <div class="process-container">
         <div>
           <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/payment.png" alt="#">
@@ -28,7 +30,7 @@
           <span>결제완료</span>
         </div>
       </div>
-      
+      <!-- 메뉴 이미지와 이름 가격 -->
       <div class="menu-content">
         <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/b05.png" alt="">
         <p class="menu-text">${menuOrderList.menuMainTitle}</p>
@@ -37,7 +39,7 @@
           <span>&nbsp;원</span>
         </div>
       </div>
-
+	  <!-- 주문 테이블(주문하시는 분 내용) -->
       <div id="order1" class="order">
         <p class="order-title"><span class="big">01.</span><strong>주문하시는 분</strong></p>
         <form id="or1" action="#" method="post" name="form1">
@@ -57,31 +59,18 @@
                     전화번호
                   </td>
                   <td>
-                    <!-- <select name="phone1" id="tel">
-                      <option value="010" selected>010</option>
-                      <option value="011">011</option>
-                      <option value="016">016</option>
-                      <option value="017">017</option>
-                      <option value="018">018</option>
-                      <option value="019">019</option>
-                    </select>
-                    &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" placeholder="1234" required>
-                    &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" placeholder="1234" required> -->
                     <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderList.memberPhone}" required>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
         </form>
       </div>
       
+      <!-- 결제금액 확인 테이블 -->
       <div class="total-test">
         <p class="order-title"><span class="big">02.</span><strong>결제금액 확인</strong></p>
-
         <table class="table table-borderless">
           <tbody>
             <tr>
@@ -115,6 +104,7 @@
               <td>결제금액</td>
               <td><span class="bold txt_blue com">${menusal}</span>원</td>
             </tr>
+            <!-- 포인트 사용부분 -->
             <tr>
               <td> 포 인 트 </td>
               <td>
@@ -129,13 +119,12 @@
                 <span> <input type="text" name="use_pnt" id="use_pnt" min="100" onchange="changePoint(${menusal},${memberPoint.membershipPoint},100,10)"></span> p 
                 <span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt">${memberPoint.membershipPoint}</span>p )
               </td>
-            </tr>
-                
+             </tr>
           </tbody>
         </table>
+        <!-- 최종결제금액 -->
         <div class="pay-do">
           <p class="txt-red"> 최종 결제 금액 : <span class="bold txt_red com" id="result_pnt">${menusal}</span> 원</p>
-          <!-- <input type="submit" value="결제하기"> -->
           <a id="abcd" href="/import1?menuId=${menuOrderList.menuId}&menuEndPrice=${menusal}&menusal=${menusal}">결제하기</a>
         </div>
 
@@ -146,6 +135,7 @@
  </div>
   
 <script>
+  // 1000단위 마다 , 찍기
   const coms = document.querySelectorAll('.com');
   coms.forEach((com => {
       let num = +(com.innerHTML);

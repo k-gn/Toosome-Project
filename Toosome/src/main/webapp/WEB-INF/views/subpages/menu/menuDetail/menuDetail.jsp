@@ -21,8 +21,9 @@
 <body>
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-
+		<!-- 메뉴 디테일 페이지 시작 -->
 		<div class="menuDetail-container">
+			<!-- 메뉴 내용들 -->
 			<div class="title-container">
 				<span class="menuDetail-title big">NEW</span>
 				<span class="menuDetail-title big">커피 &amp; 음료</span>
@@ -32,21 +33,29 @@
 			</div>
 
 			<div class="contents">
+				<!-- 해당 메뉴 이미지 -->
 				<img
 					src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menubeverageDetail.menuImageVO.menuImageRoute}/${menubeverageDetail.menuImageVO.menuImageName}.${menubeverageDetail.menuImageVO.menuImageExtention}">
-
+				
 				<ul class="star cf">
+					<!-- 평균별점 -->
 					<li><img
 						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_off.png" alt=""></li>
+					<!-- 메뉴 서브내용 -->
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
+				<!-- 메뉴 이름 -->
 				<h3>${menubeverageDetail.menuMainTitle}</h3>
+				<!-- 메뉴 코멘트 -->
 				<p class="title-text">${menubeverageDetail.menuContent}</p>
+				<!-- 메뉴 가격 -->
 				<div class="pay-box">
 				  <span class="com" style="float: left;">${menubeverageDetail.menuPrice}</span>
 				  <span style="float: left;">&nbsp;원</span>
 				</div>
+				<!-- 기프티콘 구매 버튼 -->
 				<a href="/menuorder?menuId=${menubeverageDetail.menuId}" class="gift">기프티콘 구매</a>
+				<!-- 해당메뉴 영양성분표 -->
 				<div class="table-cover">
 					<table class="table">
 						<tbody>
@@ -81,19 +90,19 @@
 						</tbody>
 					</table>
 				</div>
-
+				<!-- 메뉴 관련 공지 -->
 				<ul class="notice-box">
 					<li>※ 상기 이미지는 실제 제품과 다소 차이가 있을 수 있습니다. (토핑 과일은 계절에 따라 달라질 수
 						있습니다.)</li>
 					<li>※ 제품의 취급여부는 매장별로 상이할 수 있습니다.</li>
 				</ul>
-
+				
 				<div class="comment-box">
-
+					<!-- 목록으로 가기 버튼 -->
 					<div class="btn-group">
 						<button class="list">목록</button>
 					</div>
-
+					
 					<ul class="one-comment">
 						<li class="bold">COMMENT 맛있는 제품 한마디</li>
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
@@ -139,13 +148,10 @@
 										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></a></li>
 							</ul>
 						</div>
-
 						<input type="text" placeholder="제품 한마디를 등록해 주세요."> 
 						<input	type="submit" value="쓰기">
-
 					</form>
 					<form action="#" method="get" class="form2">
-
 						<ul class="comment-end">
 							<li><span class="star-fin"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
