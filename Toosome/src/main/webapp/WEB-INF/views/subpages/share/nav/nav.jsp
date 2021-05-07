@@ -31,6 +31,7 @@
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product-new">상품</a></li>
           <li><a href="/nutrient1">영양성분표</a></li>
+          <li><a href="/mbtitest">커피 MBTI</a></li>
         </ul>
       </li>
       <li class="menu-title">
@@ -114,6 +115,7 @@
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product">상품</a></li>
           <li><a href="/nutrienta">영양성분표</a></li>
+          <li><a href="/mbtitest">커피 MBTI</a></li>
         </ul>
       </li>
       <li class="m-menu-title">

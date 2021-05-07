@@ -84,13 +84,10 @@ const delBtnFunc = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/newsboard-delete',
+			url: '/admin/newsboard-delete/' + boardId,
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
-			data: {
-				newsBoardId: boardId
-			},
 			success: () => {
 				alert('글삭제를 성공하였습니다.');
 				location.reload();
@@ -286,8 +283,7 @@ const listHandler = (e) => {
 		},
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(res);
-			boardId = res[0].newsBoardId;
+			boardId = +(res[0].newsBoardId);
 			$('input[name=newsBoardId]').val(res[0].newsBoardId);			
 			$('input[name=newsBoardViewCount]').val(res[0].newsBoardViewCount);			
 			$('input[name=newsBoardRegdate]').val(res[0].newsBoardRegdate);	

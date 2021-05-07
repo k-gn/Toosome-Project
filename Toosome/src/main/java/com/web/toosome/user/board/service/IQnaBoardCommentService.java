@@ -13,5 +13,7 @@ public interface IQnaBoardCommentService {
 	int updateQnaBoardComment(QnaBoardCommentVO vo);
 	
 	int deleteQnaBoardComment(QnaBoardCommentVO vo);
+	
+	
 
 }

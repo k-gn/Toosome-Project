@@ -39,7 +39,7 @@ const displayDetail = (title, content, items, index) => {
 		let newContent = document.createElement('tr');
 		let contentElement = `
 			<td colspan="4">
-				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${items[1].eventBoardDetailVO.eventBoardDetailImageRoute}/${items[1].eventBoardDetailVO.eventBoardDetailImageName}.${items[1].eventBoardDetailVO.eventBoardDetailImageExtention}" alt="#">
+				<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[1].eventBoardDetailVO.eventBoardDetailImageRoute}${items[1].eventBoardDetailVO.eventBoardDetailImageName}.${items[1].eventBoardDetailVO.eventBoardDetailImageExtention}" alt="#">
 			</td>
 		`;
 		newContent.innerHTML = contentElement;
@@ -55,7 +55,7 @@ const displayDetail = (title, content, items, index) => {
 // 이전글, 다음글 생성 함수
 const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
-	if(items[0].eventBoardId !== +index + 1) {
+	if(!items[0].eventBoardId) {
 		let newPrev = `
 			<td colspan="1"><a href="#">이전글</a></td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -64,13 +64,13 @@ const displayLocator = (items, index) => {
 	} else {
 		let newPrev = `
 			<td colspan="1"><a href="#">이전글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${+index + 1}'">${items[0].eventBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${items[0].eventBoardId}'">${items[0].eventBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].eventBoardId !== +index - 1) {
+	if(!items[2].eventBoardId) {
 		let newNext = `
 			<td colspan="1"><a href="#">다음글</a></td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -79,7 +79,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newNext = `
 			<td colspan="1"><a href="#">다음글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${+index - 1}'">${items[2].eventBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${items[2].eventBoardId}'">${items[2].eventBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	};
@@ -93,11 +93,13 @@ $(document).ready(() => {
 	$.ajax({
 		url: '/eventdetail?index='+index,
 		success: (res) => {	
-			console.log(res);
 			// 데이터 역순		
 			const newRes = res.reverse();
+			const result = newRes.sort((a,b) => {
+				return a.noticeBoardId - b.noticeBoardId;
+			});
 			// 처음 혹은 마지막 게시물
-			if(newRes.length === 2) {
+			if(result.length === 2) {
 				// null data 생성
 				const nullData = {
 					eventBoardId: null,
@@ -107,13 +109,13 @@ $(document).ready(() => {
 					eventBoardDetailDay: null,
 				};
 				// 첫 게시물 
-				if(+newRes[1].eventBoardId === 1) {
-					newRes.push(nullData);
+				if(+result[1].eventBoardId === 1) {
+					result.push(nullData);
 				} else { // 마지막 게시물
-					newRes.unshift(nullData);
+					result.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, newRes, index);
+			displayDetail(detailTitle, detailContent, result, index);
 		},
 		error: () => {
 			alert('통신장애');

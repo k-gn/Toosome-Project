@@ -31,13 +31,7 @@
 	</select>
 	
 	<sql id ="search">
-		WHERE 1=1
-		<if test="condition == 'title'">
-			AND NEWS_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
-		</if>
-		<if test="condition == 'content'">
-			AND NEWS_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
-		</if>
+		WHERE 1=1 AND NEWS_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
 		<if test="startRegDate != null and startRegDate != ''">
 			AND NEWS_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
 		</if>
@@ -83,11 +77,11 @@
 	
 	
 	<delete id="deleteNewsBoard">
-		DELETE FROM NEWS_BOARD WHERE NEW_BOARD_ID = #{id}
+		DELETE FROM NEWS_BOARD WHERE NEWS_BOARD_ID = #{id}
 	</delete>
 	
 	<delete id ="deleteNewsBoardDetail">
-		DELETE FROM NEWS_BOARD_DETAIL WHERE NEW_BOARD_DETAIL_ID = #{id}	
+		DELETE FROM NEWS_BOARD_DETAIL WHERE NEWS_BOARD_DETAIL_ID = #{id}	
 	</delete>
 	
 	<select id="selectUpdateFile" resultMap="NewsBoardMap">

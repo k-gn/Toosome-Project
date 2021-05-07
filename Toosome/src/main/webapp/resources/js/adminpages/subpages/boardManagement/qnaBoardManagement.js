@@ -99,13 +99,10 @@ const delBtnFunc2 = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/qnaboardcomment-delete/',
+			url: '/admin/qnacomment-delete/' + commentId,
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
-			data: {
-				qnaBoardCommentId: commentId
-			},
 			success: () => {
 				alert('댓글 삭제에 성공하였습니다.');
 				location.reload();
@@ -194,6 +191,14 @@ const showList = (result, wrapper) => {
 	
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < result.length; i++) {
+		let type = '';
+		switch(result[i].qnaBoardType) {
+			case 1: type = '메뉴문의'; break;
+			case 2: type = '상품문의'; break;
+			case 3: type = '배송문의'; break;
+			case 4: type = '창업문의'; break;
+			case 5: type = '기타'; break;
+		}
 
 		let newEl = document.createElement('tr');
 		let content = `
@@ -202,7 +207,7 @@ const showList = (result, wrapper) => {
                         ${result[i].qnaBoardId}
                       </td>
                       <td>
-                        ${result[i].qnaBoardType}
+                        ${type}
                       </td>
                       <td onclick="listHandler(this);">
                         <a href="#">${result[i].qnaBoardTitle}</a>
@@ -322,10 +327,7 @@ const submitHandler = () => {
 		} else if(searchType.options[searchType.selectedIndex].value === 'content') { // 내용으로 검색시
 			condition = searchType.options[searchType.selectedIndex].value;
 			keyword = searchInput.value;			
-		} else { // 작성자로 검색시
-			condition = searchType.options[searchType.selectedIndex].value;
-			keyword = searchInput.value;
-		};
+		}
 	};
 	
 	// 가입일자
@@ -369,6 +371,7 @@ const listHandler = (e) => {
 			$('input[name=qnaBoardId]').val(res[0].qnaBoardId);			
 			$('input[name=newsBoardViewCount]').val(res[0].newsBoardViewCount);			
 			$('input[name=qnaBoardRegdate]').val(res[0].qnaBoardRegdate);	
+			$('input[name=memberName]').val(res[0].member[0].memberName);	
 			$('#modal-isLocked').val(res[0].qnaBoardSecret).prop('selected', true);
 			$('#detail-title').val(res[0].qnaBoardTitle);
 			$('#detail-content').val(res[0].qnaBoardContent);			

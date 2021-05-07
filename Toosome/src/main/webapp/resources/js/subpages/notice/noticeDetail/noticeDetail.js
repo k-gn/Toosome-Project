@@ -20,7 +20,7 @@ const getParam = (param) => {
 const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
-	
+
 	// 날짜 변환
 	let date = new Date(items[1].noticeBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
@@ -53,7 +53,7 @@ const displayDetail = (title, content, items, index) => {
 // 이전글, 다음글 생성 함수
 const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
-	if(items[0].noticeBoardId !== +index + 1) {
+	if(!items[0].noticeBoardId) {
 		let newPrev = `
 			<td colspan="1">윗글</th>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -62,13 +62,13 @@ const displayLocator = (items, index) => {
 	} else {
 		let newPrev = `
 			<td colspan="1">윗글</th>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].noticeBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${items[0].noticeBoardId}'">${items[0].noticeBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].noticeBoardId !== +index - 1) {
+	if(!items[2].noticeBoardId) {
 		let newNext = `
 			<td colspan="1">아랫글</td>
     		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -77,7 +77,7 @@ const displayLocator = (items, index) => {
 	} else {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].noticeBoardTitle}</a></td>
+    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${items[2].noticeBoardId}'">${items[2].noticeBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -93,8 +93,11 @@ $(document).ready(() => {
 		success: (res) => {
 			// 데이터 역순		
 			const newRes = res.reverse();
+			const result = newRes.sort((a,b) => {
+				return a.noticeBoardId - b.noticeBoardId;
+			});
 			// 처음 혹은 마지막 게시물
-			if(newRes.length === 2) {
+			if(result.length === 2) {
 				// null data 생성
 				const nullData = {
 					noticeBoardId: null,
@@ -104,13 +107,13 @@ $(document).ready(() => {
 					noticeBoardRegdate: null
 				};
 				// 첫 게시물 
-				if(+newRes[1].noticeBoardId === 1) {
-					newRes.push(nullData);
+				if(+result[1].noticeBoardId === 2) {
+					result.push(nullData);
 				} else { // 마지막 게시물
-					newRes.unshift(nullData);
+					result.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, newRes, index);
+			displayDetail(detailTitle, detailContent, result, index);
 		}
 	});	
 });

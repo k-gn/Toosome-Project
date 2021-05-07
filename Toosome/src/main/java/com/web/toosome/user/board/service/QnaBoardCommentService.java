@@ -34,4 +34,6 @@ public class QnaBoardCommentService implements IQnaBoardCommentService{
 		return mapper.deleteQnaBoardComment(vo);
 	}
 
+	
+	
 }

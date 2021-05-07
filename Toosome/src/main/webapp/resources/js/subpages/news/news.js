@@ -81,8 +81,8 @@ const selectHandler = (select) => {
 const setData = (result) => {
 	$('#pagination').pagination({
 	    dataSource: result,
-	    pageSize: 10,
-	    pageNumber: 5,
+	    pageSize: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			displayList(data, newsBoard);					
 	    }
