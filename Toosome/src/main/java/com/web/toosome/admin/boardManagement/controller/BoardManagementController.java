@@ -379,7 +379,7 @@ public class BoardManagementController {
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@GetMapping(value="/admin/newsboard-delete/{id}") // 이벤트 게시물 delete
+	@GetMapping(value="/admin/newsboard-delete/{id}") // 뉴스 게시물 delete
 	public String deleteNews(@PathVariable Integer id, RedirectAttributes ra) {
 	   
 		//해당 파일 경로 정보
