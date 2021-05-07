@@ -13,6 +13,7 @@
     <div id="container">
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<!-- section start -->
+		<!-- 글 등록 페이지 -->
         <section>
         	<div class="sub-header-container">
         		<h3>QnA</h3>
@@ -33,6 +34,7 @@
 					<span>고객의 소리 운영시간 : 09:00~18:00 (연중무휴)</span>
         		</div>
         	</div>
+        	<!-- qna 등록하며 토큰 같이 보냄 -->
         	<form id="qna-form" enctype="multipart/form-data" action="/qnaenrollment?${_csrf.parameterName}=${_csrf.token}" method="POST">
 	        	<div class="qna-type-container">
 	        		<span class="title">카테고리</span>

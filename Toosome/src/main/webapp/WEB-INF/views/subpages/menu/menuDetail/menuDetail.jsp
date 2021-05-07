@@ -55,7 +55,7 @@
 								<td>${menubeverageDetail.iatVO.iatWeight}/${menubeverageDetail.iatVO.iatFullSupply}</td>
 							</tr>
 							<tr>
-								<td>1회 제공량(ml)</td>
+								<td>1회 제공량(ml/g)</td>
 								<td>${menubeverageDetail.iatVO.iatOneSupply}</td>
 							</tr>
 							<tr>

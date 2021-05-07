@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!-- footer 시작 -->
 <div class="footer">
   <div class="foot-cover">
     <ul class="foot-first cf">
@@ -32,6 +34,7 @@
         RESERVED.
       </li>
     </ul>
+    <!-- sns 공유 버튼 -->
     <div class="addthis_inline_share_toolbox_jro3"></div>
     <!-- Go to www.addthis.com/dashboard to customize your tools --> 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60687a2158f87593"></script>
