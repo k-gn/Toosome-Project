@@ -139,5 +139,8 @@
 		#{qnaBoardTitle}, #{qnaBoardContent}, NOW(), 0, #{qnaBoardPassword}, 
 		#{qnaBoardImageName}, #{qnaBoardSecret})
 	</insert> -->
+	<delete id="delQnaCommentId">
+		DELETE FROM QNA_BOARD_COMMENT WHERE QNA_BOARD_COMMENT_ID = #{id}
+	</delete>
 	
 </mapper>
