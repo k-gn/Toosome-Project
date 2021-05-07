@@ -98,7 +98,7 @@ public class MemberController {
 	}
 
 	// 회원 정보 수정 처리
-	@PreAuthorize("principal.username == #member.memberEmail")
+//	@PreAuthorize("principal.username == #member.memberEmail")
 	@PostMapping("/mypage/update")
 	@ResponseBody
 	public String memberupdate(@RequestBody MemberVO member) {
