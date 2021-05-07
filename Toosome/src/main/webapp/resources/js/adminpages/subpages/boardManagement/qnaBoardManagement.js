@@ -191,6 +191,14 @@ const showList = (result, wrapper) => {
 	
 	// loop를 돌며 element 생성 후 삽입
 	for (let i = 0; i < result.length; i++) {
+		let type = '';
+		switch(result[i].qnaBoardType) {
+			case 1: type = '메뉴문의'; break;
+			case 2: type = '상품문의'; break;
+			case 3: type = '배송문의'; break;
+			case 4: type = '창업문의'; break;
+			case 5: type = '기타'; break;
+		}
 
 		let newEl = document.createElement('tr');
 		let content = `
@@ -199,7 +207,7 @@ const showList = (result, wrapper) => {
                         ${result[i].qnaBoardId}
                       </td>
                       <td>
-                        ${result[i].qnaBoardType}
+                        ${type}
                       </td>
                       <td onclick="listHandler(this);">
                         <a href="#">${result[i].qnaBoardTitle}</a>

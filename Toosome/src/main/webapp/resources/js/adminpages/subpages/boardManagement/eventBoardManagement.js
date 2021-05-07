@@ -111,7 +111,7 @@ const delBtnFunc = ()  => {
 			type: 'get',
 			url: '/admin/eventboard-delete/' + boardId,
 			success: () => {
-				alert('ㅎㅇ');
+				alert('글삭제를 완료하였습니다.');
 				location.reload();
 			},
 			error: () => {
