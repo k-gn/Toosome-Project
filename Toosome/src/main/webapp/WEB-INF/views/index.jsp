@@ -179,6 +179,7 @@
         </div>
       </div>
       <!-- 쳇봇 버튼 -->
+      <!-- 채널톡 API -->
       <script>
 		  (function() {
 		    var w = window;

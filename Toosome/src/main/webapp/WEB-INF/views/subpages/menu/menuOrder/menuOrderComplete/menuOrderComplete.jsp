@@ -15,9 +15,10 @@
 <body>
   <div id="container">
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-  
+  	<!-- 결제 완료 페이지 -->
     <section>
       <p>결제 완료</p>
+      <!-- 주문 상단 아이콘 -->
       <div class="process-container">
         <div>
           <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/basket/payment.png" alt="#">
@@ -29,7 +30,7 @@
         </div>
       </div>
       <p class="pay-title">결제 완료가 되었습니다.</p>
-      
+      <!-- 주문자 정보 확인 -->
       <div id="order1" class="order">
         <p class="order-title"><span class="big">01.</span><strong>주문하시는 분</strong></p>
         <form id="or1" action="#" method="post" name="form1">
@@ -49,11 +50,6 @@
                     전화번호
                   </td>
                   <td>
-                    <!-- <input type="tel" name="phone1" id="tel2" value="010" disabled>
-                    &nbsp;-&nbsp;
-                    <input type="tel" name="phone2" id="tel3" value="1111" disabled>
-                    &nbsp;-&nbsp;
-                    <input type="tel" name="phone3" id="tel4" value="1111" disabled> -->
                     <input type="text" name="orderName" id="orderName" placeholder="01012341234" value="${memberOrderCompleteList.memberPhone}" disabled>
                   </td>
                 </tr>
@@ -62,10 +58,9 @@
           </div>
         </form>
       </div>
-      
+      <!-- 결제내용 확인 -->
       <div class="total-test">
         <p class="order-title"><span class="big">02.</span><strong>결제내용</strong></p>
-
         <table class="table">
           <tbody>
             <tr>
@@ -123,13 +118,12 @@
           <a href="/menu-new">구매계속하기</a>
         </div>
       </div>
-
-      
     </section>
     <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
  </div>
   
 <script>
+  // 1000단위마다 , 찍기
   const coms = document.querySelectorAll('.com');
   coms.forEach((com => {
       let num = +(com.innerHTML);
