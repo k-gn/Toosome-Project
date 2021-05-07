@@ -139,6 +139,11 @@ public class MenuController {
 		System.out.println(model);
 		return "subpages/nutrient/nutrient4";
 	}
+	
+	@GetMapping("/mbtitest") // mbti-test
+	public String mbtitest() {
+		return "subpages/mbtiTest/mbtiTest";
+	}
 
 	@RequestMapping("/nutrient4/search") // 영양성분표4 검색기능
 	public String searchNutrient4(MenuVO vo, Model model) {
