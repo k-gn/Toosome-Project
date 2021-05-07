@@ -61,5 +61,10 @@ public interface IMenuService {
 		
 	// 메뉴 가격 가져오기
 	public int getMenuPrice(Integer id);
+	
+	// MBTI 데이터 가져오기
+	public MenuVO getmbtiMenu(String coffeeName);
+	
+	
 				
 }

@@ -190,6 +190,11 @@ public class MenuService implements IMenuService {
 		return mapper.getMenuPrice(id);
 	}
 
+	@Override
+	public MenuVO getmbtiMenu(String coffeeName) {
+		return mapper.getmbtiMenu(coffeeName);
+	}
+
 
 	
 	

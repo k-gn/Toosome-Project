@@ -11,7 +11,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.toosome.user.member.service.IMemberService;
@@ -136,13 +139,21 @@ public class MenuController {
 		System.out.println("영양성분표4");
 		List<MenuVO> nutrient4 = menuService.getIatListFour(vo);
 		model.addAttribute("nutrient4", nutrient4);
-		System.out.println(model);
 		return "subpages/nutrient/nutrient4";
 	}
 	
 	@GetMapping("/mbtitest") // mbti-test
 	public String mbtitest() {
 		return "subpages/mbtiTest/mbtiTest";
+	}
+	
+	@GetMapping("/mbti")
+	@ResponseBody
+	public MenuVO getmbtiData(@RequestParam("coffeeName") String coffeeName) {
+		MenuVO mbtiMenu = menuService.getmbtiMenu(coffeeName);
+		System.out.println(coffeeName);
+		System.out.println(mbtiMenu);
+		return mbtiMenu;
 	}
 
 	@RequestMapping("/nutrient4/search") // 영양성분표4 검색기능
@@ -166,15 +177,11 @@ public class MenuController {
 	@GetMapping("/import1") // 결제 화면...
 	public String import1(MenuVO menuVO, Model model, HttpSession session, int menuEndPrice, int menusal) {
 		System.out.println("결제화면 호출");
-		System.out.println(menuEndPrice);
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO importList = menuService.getimportList(menuVO);
 		model.addAttribute("importList", importList);
 		model.addAttribute("menuEndPrice", menuEndPrice);
 		model.addAttribute("menusal", menusal);
-		System.out.println(importList);
-		System.out.println(id);
-		System.out.println(menusal);
 		MemberVO memberImportList = memberService.getUserById(id);
 		model.addAttribute("memberImportList", memberImportList);
 		return "import";
