@@ -139,5 +139,20 @@ public class BasketService implements IBasketService {
 		return bmapper.getOrdersCancelId(id);
 	}
 
+	@Override
+	public int setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne) {
+		return bmapper.setproductAmountDownCounter(ordersDetailListOne);
+	}
+
+	@Override
+	public int setproductAmountUpCounter(OrdersDetailVO ordersDetailListOne) {
+		return bmapper.setproductAmountUpCounter(ordersDetailListOne);
+	}
+
+	@Override
+	public ProductVO setproductAmountCheck(OrdersDetailVO ordersDetailListOne) {
+		return bmapper.setproductAmountCheck(ordersDetailListOne);
+	}
+
 
 }

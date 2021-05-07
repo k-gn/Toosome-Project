@@ -38,9 +38,9 @@ IMP.request_pay({
         	type : "GET",
             url: "/productStactpoint?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}&merchantUid="+rsp.merchant_uid,
             success : function(ser) {
-            	if(ser=="OK"){
-            		location.href="/orderComplete?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}";
-            	}
+		        if(ser=="OK"){
+		        	location.href="/orderComplete?basketEndPrice=${basketEndPrice}&basketsal=${basketsal}";
+		    	}
             }
         });
 
