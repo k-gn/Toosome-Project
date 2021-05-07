@@ -66,5 +66,12 @@ public class QnaAdminService implements IQnaAdminService {
 		return mapper.delQnaComment(vo);
 	}
 
+	@Override
+	public int delQnaCommentId(Integer id) {
+		return mapper.delQnaCommentId(id);
+	}
+
+	
+
 
 }
