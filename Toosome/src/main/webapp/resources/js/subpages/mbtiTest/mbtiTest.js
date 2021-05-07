@@ -224,4 +224,18 @@ function next() {
     $("#B").html(q[num]["B"]);
     num++;
   }
+	var coffeeName = $(".coffeeName").var();
+	$.ajax({
+			type: "POST", //서버에 전송하는 HTTP요청 방식
+			url: "/mbti", //서버 요청 URI
+			headers: {
+				"Content-Type": "application/json"
+			}, //요청 헤더 정보
+			dataType: "text", //응답받을 데이터의 형태
+			data: JSON.stringify(coffeeName), //서버로 전송할 데이터
+			success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+				console.log("통신 성공!: " + result);
+				
+			}
+	});
 }

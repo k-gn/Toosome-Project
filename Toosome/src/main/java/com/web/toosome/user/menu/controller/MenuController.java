@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -143,6 +144,13 @@ public class MenuController {
 	@GetMapping("/mbtitest") // mbti-test
 	public String mbtitest() {
 		return "subpages/mbtiTest/mbtiTest";
+	}
+	
+	@PostMapping("/mbti")
+	@ResponseBody
+	public MenuVO getmbtiData(String coffeeName) {
+		MenuVO mbtiMenu = menuService.getmbtiMenu(coffeeName);
+		return mbtiMenu;
 	}
 
 	@RequestMapping("/nutrient4/search") // 영양성분표4 검색기능
