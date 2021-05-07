@@ -80,7 +80,7 @@ const delBtnFunc = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/noticeboard-delete/',
+			url: '/admin/noticeboard-delete',
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보

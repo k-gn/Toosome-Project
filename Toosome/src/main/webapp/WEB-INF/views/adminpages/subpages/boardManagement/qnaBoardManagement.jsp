@@ -70,7 +70,6 @@
                               <select name="searchType" class="search-select" id="searchType">
                                 <option value="title">제목</option>
                                 <option value="content">내용</option>
-                                <option value="name">작성자</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -128,7 +127,7 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성자</label>
-		                          <input type="text" class="memberName" disabled>
+		                          <input type="text" name="memberName" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">

@@ -235,8 +235,8 @@ const submitHandler = () => {
 	
 	// 가입일자
 	if(faqDate.options[faqDate.selectedIndex].value === 'use') {
-		startRegDate = moment(newsCalendar.value).format('YYYY-MM-DD');
-		endRegDate = moment(newsCalendar2.value).format('YYYY-MM-DD');
+		startRegDate = moment(faqCalendar.value).format('YYYY-MM-DD');
+		endRegDate = moment(faqCalendar2.value).format('YYYY-MM-DD');
 	}
 	
 	// JSON Data
