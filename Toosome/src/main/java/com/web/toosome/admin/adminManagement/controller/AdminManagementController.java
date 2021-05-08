@@ -33,11 +33,6 @@ public class AdminManagementController {
 		return "adminpages/subpages/adminManagement/adminList";
 	}
 	
-	@GetMapping("/admin-connectionrecord") // 운영자 접속기록 조회
-	public String AdminRecord() {
-		return "adminpages/subpages/adminManagement/adminRecord";
-	}
-	
 	@GetMapping("/new") // 운영자 등록
 	public String AdminNew() {
 		return "adminpages/subpages/adminManagement/adminNew";
