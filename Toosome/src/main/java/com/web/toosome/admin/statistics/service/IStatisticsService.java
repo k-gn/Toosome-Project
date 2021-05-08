@@ -7,9 +7,9 @@ import com.web.toosome.admin.statistics.vo.StatisticsVO;
 
 public interface IStatisticsService {
 	
-	public int getTotalPayment(StatisticsVO vo);
+	public Integer getTotalPayment(StatisticsVO vo);
 
-	public int getTotalSalesCount(StatisticsVO vo);
+	public Integer getTotalSalesCount(StatisticsVO vo);
 	
 	public List<StatisticsVO> getDailyOrdersList(StatisticsVO vo);
 	
