@@ -24,7 +24,7 @@ const displayDetail = (title, content, items, index) => {
 	// 날짜 변환
 	let date = new Date(items[1].eventBoardDetailVO.eventBoardDetailDay);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-	console.log(items);
+
 	if(items[1].eventBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
@@ -45,7 +45,7 @@ const displayDetail = (title, content, items, index) => {
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
 		
-		displayLocator(items, index);
+		displayLocator(items);
 	} else {
 	    window.history.go(-1);
 		alert('잘못된 요청입니다');
@@ -53,7 +53,7 @@ const displayDetail = (title, content, items, index) => {
 };
 
 // 이전글, 다음글 생성 함수
-const displayLocator = (items, index) => {
+const displayLocator = (items) => {
 	// 이전글 생성 후 삽입
 	if(!items[0].eventBoardId) {
 		let newPrev = `
@@ -93,17 +93,22 @@ $(document).ready(() => {
 	$.ajax({
 		url: '/eventdetail?index='+index,
 		success: (res) => {	
-			// 데이터 역순		
-			// 처음 혹은 마지막 게시물
+			// null data 생성
+			const nullData = {
+				eventBoardId: null,
+				eventBoardDetailImageRoute: null,
+				eventBoardDetailImageName: null,
+				eventBoardDetailImageExtention: null,
+				eventBoardDetailDay: null,
+			};
+			// 게시글이 하나일 때
+			if(res.length === 1) {
+				res.unshift(nullData);
+				res.push(nullData);
+			}
+			
+			// 처음 혹은 마지막 게시물일 때
 			if(res.length === 2) {
-				// null data 생성
-				const nullData = {
-					eventBoardId: null,
-					eventBoardDetailImageRoute: null,
-					eventBoardDetailImageName: null,
-					eventBoardDetailImageExtention: null,
-					eventBoardDetailDay: null,
-				};
 				// 첫 게시물 
 				if(res[0].eventBoardId != index) {
 					res.push(nullData);
