@@ -24,7 +24,7 @@ const displayDetail = (title, content, items, index) => {
 	// 날짜 변환
 	let date = new Date(items[1].eventBoardDetailVO.eventBoardDetailDay);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-	
+	console.log(items);
 	if(items[1].eventBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
@@ -47,8 +47,8 @@ const displayDetail = (title, content, items, index) => {
 		
 		displayLocator(items, index);
 	} else {
+	    window.history.go(-1);
 		alert('잘못된 요청입니다');
-		window.history.go(-1);
 	};
 };
 
@@ -57,14 +57,14 @@ const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
 	if(!items[0].eventBoardId) {
 		let newPrev = `
-			<td colspan="1"><a href="#">이전글</a></td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1"><a >이전글</a></td>
+    		<td colspan="3"><a  onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
-			<td colspan="1"><a href="#">이전글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${items[0].eventBoardId}'">${items[0].eventBoardTitle}</a></td>
+			<td colspan="1"><a >이전글</a></td>
+    		<td colspan="3"><a  onclick="location.href='/event-detail?index=${items[0].eventBoardId}'">${items[0].eventBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
@@ -72,14 +72,14 @@ const displayLocator = (items, index) => {
 	// 다음글 생성 후 삽입
 	if(!items[2].eventBoardId) {
 		let newNext = `
-			<td colspan="1"><a href="#">다음글</a></td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1"><a >다음글</a></td>
+    		<td colspan="3"><a  onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
-			<td colspan="1"><a href="#">다음글</a></td>
-    		<td colspan="3"><a href="#" onclick="location.href='/event-detail?index=${items[2].eventBoardId}'">${items[2].eventBoardTitle}</a></td>
+			<td colspan="1"><a >다음글</a></td>
+    		<td colspan="3"><a onclick="location.href='/event-detail?index=${items[2].eventBoardId}'">${items[2].eventBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	};
@@ -94,12 +94,8 @@ $(document).ready(() => {
 		url: '/eventdetail?index='+index,
 		success: (res) => {	
 			// 데이터 역순		
-			const newRes = res.reverse();
-			const result = newRes.sort((a,b) => {
-				return a.noticeBoardId - b.noticeBoardId;
-			});
 			// 처음 혹은 마지막 게시물
-			if(result.length === 2) {
+			if(res.length === 2) {
 				// null data 생성
 				const nullData = {
 					eventBoardId: null,
@@ -109,13 +105,13 @@ $(document).ready(() => {
 					eventBoardDetailDay: null,
 				};
 				// 첫 게시물 
-				if(+result[1].eventBoardId === 1) {
-					result.push(nullData);
+				if(res[0].eventBoardId != index) {
+					res.push(nullData);
 				} else { // 마지막 게시물
-					result.unshift(nullData);
+					res.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, result, index);
+			displayDetail(detailTitle, detailContent, res, index);
 		},
 		error: () => {
 			alert('통신장애');

@@ -49,7 +49,7 @@ public class MembershipMangementService implements IMembershipManagementService 
 		
 		LevelVO maxLvl = mapper.getLevel(mapper.countLevel());
 		LevelVO maxPrevLvl = mapper.getLevel(mapper.countLevel() - 1);
-		maxLvl.setLevelMaxRange(maxLvl.getLevelMinRange() + (maxPrevLvl.getLevelMaxRange() - maxPrevLvl.getLevelMinRange() + 1));
+		maxLvl.setLevelMaxRange(maxLvl.getLevelMinRange() + (maxPrevLvl.getLevelMaxRange() - maxPrevLvl.getLevelMinRange()));
 		mapper.updateLevel(maxLvl);
 		
 		mapper.aiReset();

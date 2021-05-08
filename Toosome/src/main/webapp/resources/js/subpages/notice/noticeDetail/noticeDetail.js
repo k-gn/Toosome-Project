@@ -20,11 +20,9 @@ const getParam = (param) => {
 const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
-
 	// 날짜 변환
 	let date = new Date(items[1].noticeBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-	
 	if(items[1].noticeBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
@@ -46,7 +44,6 @@ const displayDetail = (title, content, items, index) => {
 		displayLocator(items, index);
 	} else {
 		alert('잘못된 요청입니다');
-		window.history.go(-1);
 	}
 };
 
