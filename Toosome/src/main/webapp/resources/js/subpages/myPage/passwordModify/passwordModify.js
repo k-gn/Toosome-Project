@@ -7,6 +7,8 @@ const pwd3Err = document.querySelector(".validation.pwd3");
 const submitBtn = document.querySelector(".signform-btn");
 
 // 현재 비밀번호 유효성 검사
+// 비밀번호 찾기를 하면 숫자로 비밀번호가 나오기 때문에 유효성 검사로 인해 변경을 못함
+/*
 const pwd1FormCheck = (e) => {
   e.preventDefault();
   const pwd1Pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
@@ -28,6 +30,7 @@ const pwd1FormCheck = (e) => {
   }
   activateSubmitBtn();
 };
+*/
 
 // 새 비밀번호 유효성 검사
 const pwd2FormCheck = (e) => {
