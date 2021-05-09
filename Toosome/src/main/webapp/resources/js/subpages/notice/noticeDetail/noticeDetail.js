@@ -53,13 +53,13 @@ const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
 	if(!items[0].noticeBoardId) {
 		let newPrev = `
-			<td colspan="1">윗글</th>
+			<td colspan="1">이전글</th>
     		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
-			<td colspan="1">윗글</th>
+			<td colspan="1">이전글</th>
     		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[0].noticeBoardId}'">${items[0].noticeBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
@@ -68,13 +68,13 @@ const displayLocator = (items, index) => {
 	// 다음글 생성 후 삽입
 	if(!items[2].noticeBoardId) {
 		let newNext = `
-			<td colspan="1">아랫글</td>
+			<td colspan="1">다음글</td>
     		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
-			<td colspan="1">아랫글</td>
+			<td colspan="1">다음글</td>
     		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[2].noticeBoardId}'">${items[2].noticeBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
