@@ -241,7 +241,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input id="enroll-thumb" type="file" name="uploadFile2" accept="image/*" />
+									            <input id="enroll-thumb" type="file" name="uploadFile" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
@@ -264,7 +264,7 @@
 									        <span class="btn btn-raised btn-round btn-default btn-file">
 									            <span class="fileinput-new">이미지 선택</span>
 									            <span class="fileinput-exists">수정</span>
-									            <input id="enroll-image" type="file" name="uploadFile" accept="image/*" />
+									            <input id="enroll-image" type="file" name="uploadFile2" accept="image/*" />
 									        </span>	
 									        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 									    </div>
