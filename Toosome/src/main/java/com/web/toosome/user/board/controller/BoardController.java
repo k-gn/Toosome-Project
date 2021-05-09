@@ -211,6 +211,7 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
+		System.out.println("디테일값" + newsdetail);
 		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
