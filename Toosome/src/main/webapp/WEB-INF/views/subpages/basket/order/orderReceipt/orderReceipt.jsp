@@ -103,7 +103,6 @@
       </div>
       
       <ul class="btn-group">
-      	<li></li>
         <li><a class="main" href="/">MAIN</a></li>
       </ul>
       
