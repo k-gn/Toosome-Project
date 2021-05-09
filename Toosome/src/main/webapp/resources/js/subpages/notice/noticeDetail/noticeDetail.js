@@ -23,7 +23,8 @@ const displayDetail = (title, content, items, index) => {
 	// 날짜 변환
 	let date = new Date(items[1].noticeBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-	if(items[1].noticeBoardId === +index) {
+	
+	if(+items[1].noticeBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
@@ -53,13 +54,13 @@ const displayLocator = (items, index) => {
 	if(!items[0].noticeBoardId) {
 		let newPrev = `
 			<td colspan="1">윗글</th>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
 			<td colspan="1">윗글</th>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${items[0].noticeBoardId}'">${items[0].noticeBoardTitle}</a></td>
+    		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[0].noticeBoardId}'">${items[0].noticeBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
@@ -68,13 +69,13 @@ const displayLocator = (items, index) => {
 	if(!items[2].noticeBoardId) {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
 			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${items[2].noticeBoardId}'">${items[2].noticeBoardTitle}</a></td>
+    		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[2].noticeBoardId}'">${items[2].noticeBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -93,24 +94,36 @@ $(document).ready(() => {
 			const result = newRes.sort((a,b) => {
 				return a.noticeBoardId - b.noticeBoardId;
 			});
+			
+			// null data 생성
+			const nullData = {
+				noticeBoardId: null,
+				noticeBoardTitle: null,
+				noticeBoardContent: null,
+				noticeBoardViewCount: null,
+				noticeBoardRegdate: null
+			};
+			
+			// 게시글이 하나일 때
+			if(result.length === 1) {
+				result.unshift(nullData);
+				result.push(nullData);
+			}
+			
 			// 처음 혹은 마지막 게시물
 			if(result.length === 2) {
-				// null data 생성
-				const nullData = {
-					noticeBoardId: null,
-					noticeBoardTitle: null,
-					noticeBoardContent: null,
-					noticeBoardViewCount: null,
-					noticeBoardRegdate: null
-				};
+				
 				// 첫 게시물 
-				if(+result[1].noticeBoardId === 2) {
+				if(+result[1].noticeBoardId === +index) {
 					result.push(nullData);
 				} else { // 마지막 게시물
 					result.unshift(nullData);
 				}
 			}
 			displayDetail(detailTitle, detailContent, result, index);
+		},
+		error: () => {
+			alert('통신장애');
 		}
 	});	
 });
