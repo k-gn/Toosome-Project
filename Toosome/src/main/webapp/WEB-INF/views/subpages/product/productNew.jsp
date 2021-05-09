@@ -16,7 +16,6 @@
     <div class="product-container">
       <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-          <span class="product-title">상품</span>
       </div>
       <div class="sub-header-container">
 		<h3>PRODUCT</h3>
