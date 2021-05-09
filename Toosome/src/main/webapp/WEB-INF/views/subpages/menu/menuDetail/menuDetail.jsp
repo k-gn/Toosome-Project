@@ -155,7 +155,7 @@
 						<ul class="comment-end">
 							<li><span class="star-fin"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡdddddddddddddddddddddddddddddddddddddddddddd</span> <span class="nik">admin**</span>
+								<span class="cocom">불량식품 맛 나요..ㅡㅡ</span> <span class="nik">admin**</span>
 								<span class="dat">2021.04.02</span></li>
 							<li><span class="star-fin"><img
 									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></span>
