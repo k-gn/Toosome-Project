@@ -69,8 +69,6 @@ public class OrderManagementController {
 	@ResponseBody
 	public List<OrdersCancelVO> getorderCancelList(OrderCancelManagementVO odVO) {
 		System.out.println("getorderCancelList 메서드 실행");
-		List<OrdersCancelVO> aaa = orderService.getOrderCancelList(odVO);
-		System.out.println(aaa);
 		return orderService.getOrderCancelList(odVO);
 	}
 	
@@ -86,7 +84,6 @@ public class OrderManagementController {
 	public List<OrdersCancelDetailVO> getorderCancelDetailList(@PathVariable Integer id) {
 		System.out.println("getorderCancelDetailList 메서드 실행");
 		List<OrdersCancelDetailVO> getorderCancelDetailList = orderService.getorderCancelDetailList(id); 
-		System.out.println(getorderCancelDetailList);
 		return getorderCancelDetailList;
 	}
 	

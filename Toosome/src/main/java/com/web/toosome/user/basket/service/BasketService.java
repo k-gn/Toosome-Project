@@ -1,6 +1,8 @@
 package com.web.toosome.user.basket.service;
 
+
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,9 +11,16 @@ import org.springframework.stereotype.Service;
 
 import com.web.toosome.user.basket.dao.IBasketMapper;
 import com.web.toosome.user.basket.vo.BasketVO;
+
+
+import com.web.toosome.user.product.dao.IProductMapper;
+
+
 import com.web.toosome.user.basket.vo.OrdersDetailVO;
+
 import com.web.toosome.user.basket.vo.OrdersVO;
-import com.web.toosome.user.product.dao.ProductMapper;
+
+
 import com.web.toosome.user.product.vo.ProductVO;
 
 @Service
@@ -21,7 +30,7 @@ public class BasketService implements IBasketService {
 	private IBasketMapper bmapper;
 	
 	@Autowired
-	private ProductMapper pmapper;
+	private IProductMapper pmapper;
 
 	@Override
 	public int addBasket(BasketVO basket) {
@@ -45,6 +54,7 @@ public class BasketService implements IBasketService {
 	public List<BasketVO> getBasket(Integer id) {
 		return bmapper.getBasket(id);
 	}
+
 
 	@Override
 	public int delBasket(Integer id) {
@@ -153,6 +163,7 @@ public class BasketService implements IBasketService {
 	public ProductVO setproductAmountCheck(OrdersDetailVO ordersDetailListOne) {
 		return bmapper.setproductAmountCheck(ordersDetailListOne);
 	}
+
 
 
 }

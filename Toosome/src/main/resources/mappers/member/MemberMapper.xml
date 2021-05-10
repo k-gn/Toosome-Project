@@ -130,5 +130,10 @@
 	
 	<select id="getAuthById" resultMap="authMap">
 		SELECT MEMBER_AUTH FROM MEMBER_AUTH WHERE MEMBER_EMAIL = #{email}
+
+	</select>
+	
+	<select id="getUserIdByEmail" resultMap="memberMap">
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_EMAIL = #{email}
 	</select>
 </mapper>

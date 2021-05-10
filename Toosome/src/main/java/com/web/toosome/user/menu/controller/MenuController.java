@@ -11,17 +11,22 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.MembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.menu.service.IMenuService;
+import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -37,6 +42,7 @@ public class MenuController {
 
 	@Autowired
 	private MembershipService memberShipService;
+	
 
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망
 	public String menuNew(MenuVO menuVO, Model model) {
@@ -165,13 +171,59 @@ public class MenuController {
 	}
 
 	@GetMapping("/menuDetail") // menu Detail page
-	public String beverageDetail(MenuVO menuVO, Model model) {
+	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
 		System.out.println("음료 메뉴 디테일 출력");
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
+		
+		MenuVO menuavg = menuService.menuRatingAVG(menuVO);
+		
+		List<MenuReviewBoardVO> menuReviewList = menuService.menuReviewList(menuReviewBoardVO.getMenuId());
+		model.addAttribute("menuReviewList", menuReviewList);
+		System.out.println("리뷰VO" + menuReviewList);
+		
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		
 		System.out.println(model);
 		return "subpages/menu/menuDetail/menuDetail";
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/menuReviewInsert")
+	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
+		menuService.menuReviewInsert(menuReviewBoardVO);
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		System.out.println("menuReviewInsert" + menuReviewBoardVO.getMenuReviewBoardId());
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		return "redirect:/menuDetail";
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/menuReviewUpdate")
+//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
+	@ResponseBody
+	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		menuService.menuReviewUpdate(menuReviewBoardVO);
+		System.out.println("menuReviewUpdate" + menuReviewBoardVO.getMenuReviewBoardContent());
+	
+		return new RedirectView("/menuDetail");
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/menuReviewDelete")
+	@ResponseBody
+	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		rttr.addAttribute("menuReviewBoardId", menuReviewBoardVO.getMenuReviewBoardId());
+		menuService.menuReviewDelete(menuReviewBoardVO);
+		System.out.println("getReviewBoardId : "+menuReviewBoardVO.getMenuReviewBoardId());
+		
+		return new RedirectView("/menuDetail");
+	}
+	
 
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/import1") // 결제 화면...

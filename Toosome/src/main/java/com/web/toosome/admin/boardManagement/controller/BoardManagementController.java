@@ -19,7 +19,7 @@ import com.web.toosome.admin.boardManagement.service.IFaqAdminService;
 import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.admin.boardManagement.service.IQnaAdminService;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;

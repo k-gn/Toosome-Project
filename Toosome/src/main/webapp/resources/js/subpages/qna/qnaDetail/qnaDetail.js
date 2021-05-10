@@ -17,6 +17,7 @@ const getParam = (param) => {
 	}
 };
 
+
 // 댓글 유효성 검사
 const enrollCheck = () => {
 	const title = document.querySelector('#comment-title');
