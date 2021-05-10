@@ -146,9 +146,6 @@ public class BoardManagementController {
 		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 		
-		System.out.println("이벤트 게시판 이미지 경로" + key);
-		System.out.println("이벤트 디테일 이미지 경로" + key2);
-		
 		//3.awsS3 delete 구문을 사용하여 파일을 제거한다.
 		awsS3.delete(key);
 		awsS3.delete(key2);
@@ -180,7 +177,6 @@ public class BoardManagementController {
 		
 			String rote = ebvo.getEventBoardImageRoute()+ebvo.getEventBoardImageName()+"."+ebvo.getEventBoardImageExtention();
 			awsS3.delete(rote);
-			System.out.println("첫번쨰 파일 삭제 성공");
 			vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
 			vo.setEventBoardImageRoute("img/pages/subpages/event/");
 			vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
@@ -191,7 +187,6 @@ public class BoardManagementController {
 			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
 			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
-			System.out.println(key);
 			awsS3.upload(file, key);
 			
 			if(up >0) {
@@ -206,7 +201,7 @@ public class BoardManagementController {
 			
 			String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
 			awsS3.delete(rote2);
-			System.out.println("두번쨰 파일 삭제 성공");
+			
 			vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
 			vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail/");
 			vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
@@ -218,7 +213,7 @@ public class BoardManagementController {
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
 			String key2 = "img/pages/subpages/event/eventdetail/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
-			System.out.println(key2);
+			
 			awsS3.upload(file2, key2);
 		
 			if(up2 > 0) {
@@ -234,7 +229,7 @@ public class BoardManagementController {
 		}
 		
 		
-		System.out.println("DB 파일 update구문 완료");
+		
 			
 		return "redirect:/admin/eventboard-management";
 	}
@@ -253,7 +248,6 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<NoticeBoardVO> NoticeBoardManagement(NoticeBoardVO vo){
 		List<NoticeBoardVO> adminnotice = noticeboardservice.getNoticeBoard(vo);
-		System.out.println(adminnotice);
 		return adminnotice;
 	}
 	@GetMapping(value = "/admin/searchnotice" , produces = "application/json")// 공지사항 게시판 리스트 값 넘기기
@@ -268,7 +262,6 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<NoticeBoardVO> NoticeBoarddetail(NoticeBoardVO vo){
 		List<NoticeBoardVO> noticedetail = noticeboardservice.noticeDetail(vo);
-		System.out.println(noticedetail);
 		return noticedetail;
 	}
 	
@@ -327,7 +320,6 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<NewsBoardVO> newsBoardDetail(NewsBoardVO vo){
 		List<NewsBoardVO> newsboarddetail = newsadminservice.newsBoardDetail(vo);
-		System.out.println(newsboarddetail);
 		return newsboarddetail;
 	}
 	
@@ -360,7 +352,6 @@ public class BoardManagementController {
 		vo.getUploadFile().transferTo(convFile);
 		File file = convFile;
 		String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName()+"."+vo.getNewsBoardImageExtention();
-		System.out.println(key);
 		awsS3.upload(file, key);
 		
 	//두번쨰 이미지	
@@ -368,7 +359,6 @@ public class BoardManagementController {
 		vvo.getUploadFile2().transferTo(convFile2);
 		File file2 = convFile2;
 		String key2 = "img/pages/subpages/news/" + vvo.getNewsBoardDetailImageName()+"."+vvo.getNewsBoardDetailImageExtention();
-		System.out.println(key2);
 		awsS3.upload(file2, key2);
 		
 		
@@ -419,7 +409,6 @@ public class BoardManagementController {
 			String rote = ebvo.getNewsBoardImageRoute() + ebvo.getNewsBoardImageName() + "."
 					+ ebvo.getNewsBoardImageExtention();
 			awsS3.delete(rote);
-			System.out.println("첫번쨰 파일 삭제 성공");
 			vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
 			vo.setNewsBoardImageRoute("img/pages/subpages/news/");
 			vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
@@ -427,11 +416,11 @@ public class BoardManagementController {
 			int up = newsadminservice.updateNewsBoard(vo); //업데이트 구문 확인필요
 
 			File convFile = new File(vo.getUploadFile().getOriginalFilename());
+			
 			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
 			String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName() + "."
 					+ vo.getNewsBoardImageExtention();
-			System.out.println(key);
 			awsS3.upload(file, key);
 
 			if (up > 0) {
@@ -446,7 +435,7 @@ public class BoardManagementController {
 			String rote2 = ebvo2.getNewsBoardDetailImageRoute() + ebvo2.getNewsBoardDetailImageName() + "."
 					+ ebvo2.getNewsBoardDetailImageExtention();
 			awsS3.delete(rote2);
-			System.out.println("두번쨰 파일 삭제 성공");
+	
 			vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
 			vvo.setNewsBoardDetailImageRoute("img/pages/subpages/event/news/");
 			vvo.setNewsBoardDetailImageExtention(
@@ -459,7 +448,7 @@ public class BoardManagementController {
 			File file2 = convFile2;
 			String key2 = "img/pages/subpages/event/news/" + vvo.getNewsBoardDetailImageName() + "."
 					+ vvo.getNewsBoardDetailImageExtention();
-			System.out.println(key2);
+	
 			awsS3.upload(file2, key2);
 
 			if (up2 > 0) {

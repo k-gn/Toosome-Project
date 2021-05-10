@@ -8,6 +8,7 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/orderManagement/orderCancelList.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
@@ -139,19 +140,26 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자명</label>
-		                          <input type="text" name="memberName" class="form-control">
+		                          <input type="text" name="memberName" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" name="memberPhone" class="form-control">
+		                          <input type="text" name="memberPhone" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문상태</label>
-		                          <input type="tel" name="ordersState" class="form-control">
+		                          <select class="custom-select" id="modal-state" name="ordersState" disabled>
+				                  	<option value="결제완료">결제완료</option>
+				                  	<option value="접수완료">접수완료</option>
+				                  	<option value="배송준비중">배송준비중</option>
+				                  	<option value="배송중">배송중</option>
+				                  	<option value="배송완료">배송완료</option>
+				                  	<option value="결제취소">결제취소</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -201,46 +209,44 @@
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송비②</label>
-		                          <input type="text" name="ordersDelivery" class="form-control">
+		                          <input type="text" name="ordersDelivery" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">할인 금액③</label>
-		                          <input type="text" name="ordersSal" class="form-control">
+		                          <input type="text" name="ordersSal" class="form-control" disabled>
 		                        </div>
 		                      </div>
  		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">사용한 포인트④</label>
-		                          <input type="text" name="ordersUsePoint" class="form-control">
+		                          <input type="text" name="ordersUsePoint" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">실결제금액(①+②-③-④)</label>
-		                          <input type="text" name="ordersPayment" class="form-control">
+		                          <input type="text" name="ordersPayment" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제일자(주문)</label>
-		                          <input type="date" name="ordersOrderDate" class="form-control">
+		                          <input type="date" name="ordersOrderDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제취소일자(주문)</label>
-		                          <input type="date" name=ordersCancelDate class="form-control">
+		                          <input type="date" name=ordersCancelDate class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <table class="table none">
 					        	<tbody class="under-table">
-					        		
 					        	</tbody>
 					        </table>
-		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="ordersId">
@@ -262,6 +268,7 @@
                     <button id="excel-down" onclick="excelDownload('member-table', '주문통합리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
 	                    <select id="memberList-select">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -274,7 +281,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-danger" id="list-table-thead">
+                      <thead class="text-danger text-center">
                         <th>
                           주문번호
                         </th>
@@ -297,7 +304,10 @@
                           결제금액
                         </th>
 						<th>
-           	  구매일
+           				  구매일
+                        </th>
+                        <th>
+           				  구매취소일
                         </th>
                       </thead>
                       <tbody>

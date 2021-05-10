@@ -71,7 +71,6 @@ public class EventAdminService implements IEventAdminService {
 	@Override
 	public int updateEventDetail(EventBoardDetailVO vo) {
 		int updateeventdetail = mapper.updateEventDetail(vo);
-		System.out.println(updateeventdetail + "이벤트 디테일 업데이트 구문");
 		return updateeventdetail;
 	}
 
