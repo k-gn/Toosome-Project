@@ -78,7 +78,6 @@ function chkPoint(amt, pnt, min, unit) {
       //결제금액보다 포인트가 더 클 때
       v_point = amt - ((amt % unit)+100); //사용할 포인트는 결제금액과 동일하게 설정
     }
-	console.log(v_point);
 	
 	if (v_point < min) {
     	//최소 사용 단위보다 작을 때
@@ -220,9 +219,7 @@ const orderSubmitBtnHandler = (e) => {
 		dataType: "text", //응답받을 데이터의 형태
 		data: JSON.stringify(order), //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log("통신 성공!: " + result);
 			if(result === "success") {
-				console.log("수령자 정보 저장 완료");
 				location.href="/import2?basketEndPrice=" + basketEndPrice + "&basketsal=" + basketsal;
 			} else {
 				alert("수령자 정보 저장 실패");
@@ -230,7 +227,8 @@ const orderSubmitBtnHandler = (e) => {
 			}
 		}, 
 		error: function() {
-			console.log("통신 실패!");
+			alert("통신 실패!");
+			window.history.go(-1);
 		} 
 	});
   };

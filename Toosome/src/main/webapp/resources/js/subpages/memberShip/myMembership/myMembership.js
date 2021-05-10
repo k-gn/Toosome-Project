@@ -24,9 +24,7 @@ $(function () {
 		}
 		let tier = imgPath + level.levelImg;
 		let mul = 1 / 50;
-		console.log("mul : ", mul);
 		let result = 100 - (mul * (level.levelMaxRange - point));
-		console.log("result : ", result);
 		
         $(".member-tier img").attr("src", tier);
 	    $(".pro-text ul .min").html(level.levelMinRange + " p");

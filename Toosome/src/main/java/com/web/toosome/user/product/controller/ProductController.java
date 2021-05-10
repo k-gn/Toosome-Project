@@ -34,9 +34,14 @@ public class ProductController {
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
+
+		List<ProductVO> productAllList = productService.getproductnewList(productVO);
+		model.addAttribute("productAllList", productAllList);
+
 		List<ProductVO> productNewList = productService.getproductnewList(productVO);
 		model.addAttribute("productNewList", productNewList);
 		System.out.println(model);
+
 		return "subpages/product/productNew";
 	}
 
@@ -45,7 +50,6 @@ public class ProductController {
 		System.out.println("커피 상품 출력");
 		List<ProductVO> productCoffeeList = productService.getcoffeeList(productVO);
 		model.addAttribute("productCoffeeList", productCoffeeList);
-		System.out.println(model);
 		return "subpages/product/productCoffee";
 	}
 
@@ -54,7 +58,6 @@ public class ProductController {
 		System.out.println("커피웨어 상품 출력");
 		List<ProductVO> productCoffeewearList = productService.getcoffeewearList(productVO);
 		model.addAttribute("productCoffeewearList", productCoffeewearList);
-		System.out.println(model);
 		return "subpages/product/productCoffeewear";
 	}
 
@@ -63,7 +66,6 @@ public class ProductController {
 		System.out.println("기프트세트 상품 출력");
 		List<ProductVO> productGiftList = productService.getgiftList(productVO);
 		model.addAttribute("productGiftList", productGiftList);
-		System.out.println(model);
 		return "subpages/product/productGift";
 	}
 
@@ -76,13 +78,14 @@ public class ProductController {
 		System.out.println(productDetail);
 		//별점 평균값
 		ProductVO productavg = productService.productRatingAVG(productVO);
-		
+	
 		model.addAttribute("productReviewList", productService.productReviewList(productReviewBoardVO.getProductId()));
-//		System.out.println("리뷰VO" + model);
-		
-		
+
+		System.out.println("리뷰VO" + model);
+
 		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
 		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+
 		return "subpages/product/productDetail/productDetail";
 	}
 
