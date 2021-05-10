@@ -100,7 +100,7 @@
 				<div class="comment-box">
 					<!-- 목록으로 가기 버튼 -->
 					<div class="btn-group">
-						<button class="list">목록</button>
+						<button class="list" onclick="history.back()">목록</button>
 					</div>
 					
 					<ul class="one-comment">
