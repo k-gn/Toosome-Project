@@ -15,7 +15,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
@@ -97,9 +96,7 @@
 						</ul>
 					</div>
 					<div class="btn-group">
-						<button class="prev">&lt;</button>
-						<button class="list">목록</button>
-						<button class="next">&gt;</button>
+						<button class="list" onclick="location.href='/product'">목록</button>
 					</div>
 
 					<ul class="one-comment">
