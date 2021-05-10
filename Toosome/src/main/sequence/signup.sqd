@@ -73,7 +73,7 @@
           <net.java.amateras.uml.sequencediagram.model.LifeLineModel reference="../../.."/>
         </children>
         <filterProperty/>
-        <name>Instance9</name>
+        <name>MemberController</name>
         <type class="net.java.amateras.uml.classdiagram.model.ClassModel">
           <showIcon>true</showIcon>
           <listeners serialization="custom">
@@ -693,7 +693,7 @@
           <net.java.amateras.uml.sequencediagram.model.LifeLineModel reference="../../.."/>
         </children>
         <filterProperty/>
-        <name>Instance10</name>
+        <name>IMemberMapper</name>
         <type class="net.java.amateras.uml.classdiagram.model.InterfaceModel">
           <showIcon>true</showIcon>
           <listeners serialization="custom">
@@ -1304,7 +1304,7 @@
           <net.java.amateras.uml.sequencediagram.model.LifeLineModel reference="../../.."/>
         </children>
         <filterProperty/>
-        <name>Instance11</name>
+        <name>IMemberService</name>
         <type class="net.java.amateras.uml.classdiagram.model.InterfaceModel">
           <showIcon>true</showIcon>
           <listeners serialization="custom">
