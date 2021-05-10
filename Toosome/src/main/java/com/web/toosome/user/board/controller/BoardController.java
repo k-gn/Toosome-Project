@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;

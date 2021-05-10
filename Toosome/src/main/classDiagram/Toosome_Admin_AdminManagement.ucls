@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.web.toosome.admin.adminManagement.vo.AdminSearchVO" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/vo/AdminSearchVO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="261" width="209" x="29" y="-125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.web.toosome.admin.adminManagement.vo.AdminVO" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/vo/AdminVO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="477" width="209" x="278" y="-125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.web.toosome.admin.adminManagement.service.AdminManagementService" 
+    project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/service/AdminManagementService.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="277" x="527" y="-125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="com.web.toosome.admin.adminManagement.dao.IAdminManagementMapper" 
+    project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/dao/IAdminManagementMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="664" y="288"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="com.web.toosome.admin.adminManagement.controller.AdminManagementController" 
+    project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/controller/AdminManagementController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="267" x="844" y="-125"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="com.web.toosome.admin.adminManagement.service.IAdminManagementService" 
+    project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/adminManagement/service/IAdminManagementService.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="975" y="270"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="7">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="8" name="adminService"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="10">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="11">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="12" name="mapper"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

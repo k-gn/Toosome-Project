@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.web.toosome.admin.settings.dao.ISettingMapper;
 import com.web.toosome.admin.settings.vo.BannerListVO;
 import com.web.toosome.admin.settings.vo.BannerVO;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.terms.vo.TermsVO;
 
 @Service
