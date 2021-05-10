@@ -61,12 +61,8 @@
 				<ul class="star cf">
 					<!-- 평균별점 -->
 					<li><img
-<<<<<<< HEAD
 						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
-=======
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_off.png" alt=""></li>
 					<!-- 메뉴 서브내용 -->
->>>>>>> origin/bang
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
 				<!-- 메뉴 이름 -->
