@@ -3,6 +3,7 @@ package com.web.toosome.user.menu.dao;
 import java.util.List;
 
 import com.web.toosome.user.menu.vo.MenuImageVO;
+import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 public interface IMenuMapper {
@@ -19,6 +20,27 @@ public interface IMenuMapper {
 	public MenuVO getdessertDetail(MenuVO menuVO);
 	public MenuVO getwholecakeDetail(MenuVO menuVO);
 	public MenuVO getimportList(MenuVO menuVO);
+	
+	//별점 평균값
+	public MenuVO menuRatingAVG(MenuVO menuVO);
+	
+	// 댓글 조회
+	public List<MenuReviewBoardVO> menuReviewList(Integer menuId);
+		
+	// 댓글 작성
+	public int menuReviewInsert(MenuReviewBoardVO menuReviewBoardVO);
+
+	// 댓글 수정
+	public int menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO);
+
+	// 댓글 삭제
+	public int menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO);
+	
+	// 정보조회
+	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId);
+
+	//회원 댓글 삭제
+	public int delmenuById(Integer id);
 	
 	public List<MenuVO> getIatListOne(MenuVO vo);
 	public List<MenuVO> getSearchIatListOne(MenuVO vo);

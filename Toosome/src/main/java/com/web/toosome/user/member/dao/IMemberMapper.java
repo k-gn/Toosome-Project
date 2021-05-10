@@ -62,7 +62,11 @@ public interface IMemberMapper {
 	
 	// 최종 로그인 등록
 	public void updateLastLogin(String email);
+
 	
 	// 권한 찾기
 	public AuthVO getAuthById(String email);
+	
+	public Integer getUserIdByEmail(String email);
+
 }

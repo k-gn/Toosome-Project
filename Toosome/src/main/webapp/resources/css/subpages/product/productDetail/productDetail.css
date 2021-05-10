@@ -304,6 +304,7 @@
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 16px;
 }
+
 .productDetail-container .contents .form2 {
   width: 100%;
 }
@@ -359,7 +360,52 @@
   display: block;
 }
 
-
+.c-test {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	padding: 5px 10px;
+	border-bottom: 1px solid #333;
+}
+.c-test .star-fin {
+	display: flex;
+	align-items: center;
+}
+.c-test .cocom {
+	display: flex;
+	align-items: center;
+}
+.c-test .nik {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.c-test .dat {
+	display: flex;
+	align-items: center;
+	text-align: right;
+}
+.c-test .c-btn {
+	
+	text-align: right;
+}
+.c-test .c-btn span {
+	display: block;
+	margin: 3px 0;
+}
+.c-test .c-btn button {
+	outline: none;
+	appearance: none;
+	border-radius: 5px;
+	border: none;
+	background: #a62326;
+	color: white;
+	cursor: pointer;
+	padding: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
 
 
 

@@ -124,7 +124,6 @@ const getList = (menu, wrapper, rows) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: menu, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
 			// 리스트 생성 후 삽입
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;	
@@ -190,9 +189,6 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			
-			console.log(res);
-			
 			if(res.menuStartDay == null) {
 				res.menuStartDay = '';
 			}

@@ -26,7 +26,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 1000,
+        high: 500,
         chartPadding: {
           top: 0,
           right: 0,
@@ -39,7 +39,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 50,
+        high: 10,
         chartPadding: {
           top: 0,
           right: 0,
@@ -52,7 +52,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 50,
+        high: 10,
         chartPadding: {
           top: 0,
           right: 0,
@@ -87,7 +87,6 @@ ct = {
         },
 		dataType: "json",
 		success: function(results) {
-			console.log(results);
 			// AJAX로 얻은 데이터를 차트 데이터에 삽입
 			let temp = [];
 			let temp2 = [];

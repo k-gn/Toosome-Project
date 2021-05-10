@@ -202,7 +202,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 50,
+        high: 15,
         chartPadding: {
           top: 0,
           right: 0,
@@ -235,7 +235,6 @@ ct = {
 	dataCaseChart.labels = dates;
 	dataSalesChart.series.push(temp2);
 	dataCaseChart.series.push(temp);
-	console.log(dataCaseChart);
 	
 	// 차트 선언
 	var salesChart = new Chartist.Line('#salesChart', dataSalesChart, optionsSalesChart);

@@ -211,4 +211,9 @@ public class MemberService implements IMemberService {
 		return mapper.getAuthById(email);
 	}
 
+	@Override
+	public Integer getUserIdByEmail(String email) {
+		return mapper.getUserIdByEmail(email);
+	}
+
 }

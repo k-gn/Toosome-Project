@@ -11,11 +11,10 @@
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
 		<result property="productRegDate" column="PRODUCT_REG_DATE" />
-		<result property="productRemainingAmount" column="PRODUCT_REMAINING_AMOUNT" />
-		<result property="productregDate" column="PRODUCT_REG_DATE" />
 		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
 		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
 		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStar" column="PRODUCT_STAR" />
 		<result property="productStartDay" column="PRODUCT_START_DAY" />
 		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
 		<result property="productState" column="PRODUCT_STATE" />
@@ -23,8 +22,7 @@
 		<result property="productOnoff" column="PRODUCT_ONOFF" />
 		<collection property="productImageVO" resultMap="productImageVO" />
 		<collection property="productPrecautionsVO" resultMap="productPrecautionsVO" />
-	<!--	<collection property="reviewBoardVO" resultMap="reviewBoardVO" />
-		<collection property="memberVO" resultMap="memberVO" /> -->
+		<!--<collection property="memberVO" resultMap="memberVO" /> -->
 	</resultMap>
 
 	<resultMap type="productImageVO" id="productImageVO">
@@ -47,21 +45,8 @@
 		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
 		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
 	</resultMap>
-<!--	
-	<resultMap type="reviewBoardVO" id="reviewBoardVO">
-		<id property="reviewBoardId" column="REVIEW_BOARD_ID" />
-		<result property="memberMemberId" column="MEMBER_MEMBER_ID" />
-		<result property="productProductId" column="PRODUCT_PRODUCT_ID" />
-		<result property="menuMenuId" column="MENU_MENU_ID" />
-		<result property="reviewBoardWriter" column="REVIEW_BOARD_WRITER" />
-		<result property="reviewBoardContent" column="REVIEW_BOARD_CONTENT" />
-		<result property="reviewBoardRating" column="REVIEW_BOARD_RATING" />
-		<result property="reviewBoardType" column="REVIEW_BOARD_TYPE" />
-		<result property="reviewBoardRegDate" column="REVIEW_BOARD_REG_DATE" />
-		<result property="reviewBoardImageRoute" column="REVIEW_BOARD_IMAGE_ROUTE" />
-	</resultMap>
 	
-	<resultMap type="memberVO" id="memberVO">
+	<resultMap type="memberVO" id="memberMap">
 		<id property="memberId" column="MEMBER_ID"/>
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="memberEmail" column="MEMBER_EMAIL"/>
@@ -75,9 +60,18 @@
 		<result property="status" column="MEMBER_STATUS"/>
 		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
 		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
-		<result property="memberEnabled" column="MEMBER_ENABLED"/>
 	</resultMap>
--->
+	
+	<resultMap type="productReviewBoardVO" id="productReviewBoardVO">
+		<id property="productReviewBoardId" column="PRODUCT_REVIEW_BOARD_ID" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="productReviewBoardRating" column="PRODUCT_REVIEW_BOARD_RATING" />
+		<result property="productReviewBoardContent" column="PRODUCT_REVIEW_BOARD_CONTENT" />
+		<result property="productReviewBoardWriter" column="PRODUCT_REVIEW_BOARD_WRITER" />
+		<result property="productReviewBoardRegDate" column="PRODUCT_REVIEW_BOARD_REG_DATE" />
+	</resultMap>
+
 	<select id="getproductnewList" resultMap="productVO">
 		<![CDATA[ 
 			SELECT A.PRODUCT_ID,
@@ -150,10 +144,10 @@
 		A.PRODUCT_PRICE,
 		A.PRODUCT_TYPE,
 		A.PRODUCT_REG_DATE,
-		A.PRODUCT_REMAINING_AMOUNT,
 		A.PRODUCT_RECEIVED_AMOUNT,
 		A.PRODUCT_RECEIVED_PRICE,
 		A.PRODUCT_LIMIT_AMOUNT,
+		A.PRODUCT_STAR,
 		A.PRODUCT_START_DAY,
 		A.PRODUCT_CHECK_COUNT,
 		A.PRODUCT_STATE,
@@ -179,6 +173,7 @@
 		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
         WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3
 	</select> 
+<<<<<<< HEAD
 	 <!-- 댓글 목록 -->
   <!--   
   <select id="getproductDetail" resultMap="productVO" parameterType="productVO">
@@ -243,6 +238,9 @@
         JOIN MEMBER C ON (A.MEMBER_MEMBER_ID = C.MEMBER_ID)
         WHERE  B.PRODUCT_ID=#{productProductId} AND B.PRODUCT_STATE != 3 AND C.MEMBER_ID=#{memberMemberId};
     </select>-->
+=======
+
+>>>>>>> origin/dong
 	<select id="getproductDetailById" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
@@ -251,6 +249,7 @@
 		A.PRODUCT_NEW,
 		A.PRODUCT_CONTENT,
 		A.PRODUCT_ONOFF,
+		A.PRODUCT_STATE,
 		B.PRODUCT_IMAGE_ID,
 		B.PRODUCT_IMAGE_NAME,
 		B.PRODUCT_IMAGE_EXTENTION,
@@ -272,6 +271,47 @@
 		WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3;
 	</select> 
 	
+	<select id="productReviewList" resultMap="productReviewBoardVO">
+	<![CDATA[
+		SELECT PRODUCT_REVIEW_BOARD_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_ID = #{productId} ORDER BY PRODUCT_REVIEW_BOARD_ID DESC;
+	]]>
+	</select>
 	
+
+	<insert id="productReviewInsert">
+		INSERT INTO PRODUCT_REVIEW_BOARD (PRODUCT_REVIEW_BOARD_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		) VALUES (
+		#{productReviewBoardId},#{productId}, #{memberId},#{productReviewBoardRating},#{productReviewBoardContent},#{productReviewBoardWriter},NOW())
+	</insert>
+
+	<update id="productReviewUpdate">
+		UPDATE PRODUCT_REVIEW_BOARD SET PRODUCT_REVIEW_BOARD_CONTENT = #{productReviewBoardContent}
+		WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
+	</update>
+
+	<delete id="productReviewDelete">
+		DELETE FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
+	</delete>
+	
+	<delete id="delproductById">
+		DELETE FROM PRODUCT_REVIEW_BOARD_CONTENT WHERE MEMBER_ID = #{id}
+	</delete>
+	
+	<select id="productReviewSelect" resultMap="productReviewBoardVO">
+		SELECT PRODUCT_REVIEW_BOARD_ID,PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
+	</select>
+	
+ 	<!-- 별점 평균값 -->
+	<select id="productRatingAVG" resultMap="productVO">
+		UPDATE PRODUCT SET PRODUCT_STAR = 
+		(SELECT ROUND(AVG(R.PRODUCT_REVIEW_BOARD_RATING),0) STAR_AVG
+		FROM PRODUCT_REVIEW_BOARD R
+		JOIN PRODUCT P ON(P.PRODUCT_ID = R.PRODUCT_ID)
+		WHERE P.PRODUCT_ID = #{productId})
+		WHERE PRODUCT_ID = #{productId}
+	</select>
+	 
 
 </mapper>

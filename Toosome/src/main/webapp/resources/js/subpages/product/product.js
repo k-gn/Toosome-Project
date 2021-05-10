@@ -1,4 +1,5 @@
 const coms = document.querySelectorAll(".com");
+
 coms.forEach((com) => {
   let num = +com.innerHTML;
   com.innerHTML = num.toLocaleString("en");
@@ -34,20 +35,5 @@ function AddToCart(pid) {
 		 }
 	   }
     });
-
 }
-
-	
-
-
-$(function(){
-	
-	$(".product-container .contents .all li a").click(function(e){
-		if($(this).children(".sold").length) {
-			e.preventDefault();
-		}
-	});
-	
-	
-});
 

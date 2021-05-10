@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.web.toosome.HomeController" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/HomeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="173" x="18" y="8"/>    
+    <position height="-1" width="-1" x="134" y="31"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.web.toosome.common.VisitCounter" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/common/VisitCounter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="275" x="523" y="-27"/>    
+    <position height="-1" width="-1" x="625" y="40"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,8 +30,12 @@
   </class>  
   <association id="4">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="5" name="instance"/>      
-      <multiplicity id="6" minimum="0" maximum="1"/>    
+      <attribute id="5" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="6" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

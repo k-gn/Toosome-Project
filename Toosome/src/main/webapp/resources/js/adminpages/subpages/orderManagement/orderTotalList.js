@@ -180,7 +180,6 @@ const getList = (orders, wrapper, rows) => {
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
-			alert('시스템과에 문의하세요');
 			history.back();
 		} 
 	});
@@ -266,9 +265,16 @@ const listHandler = (e) => {
 				res.ordersAddress = 'Gift Buy';
 				res.ordersPostcode = 'Gift Buy';
 				res.ordersDelivery = 'Gift Buy';
+				
+				const element = document.createElement('option');
+				element.setAttribute('value','기프티콘');
+				element.innerText = '기프티콘';
+				$("#modal-state").append(element);
+				
 				$("#modal-submit").attr('disabled', true);
 				$("#modal-state").attr('disabled', true);
 			} else {
+				$("#modal-state").children().last().remove();
 				$("#modal-submit").attr('disabled', false);
 				$("#modal-state").attr('disabled', false);
 			} 				

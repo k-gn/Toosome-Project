@@ -194,7 +194,6 @@ $(function () {
     var type = $("#type").val();
     var preValue = $("#" + type).val();
     $("#" + type).val(parseInt(preValue) + 1);
-    // console.log(parseInt(preValue) + 1);
     next();
   });
   $("#B").click(function () {
@@ -217,7 +216,6 @@ function next() {
     $("#coffee").html(result[mbti]["coffee"]);
     $("#explain").html(result[mbti]["explain"]);
 	var coffeeName = $(".coffeeName").text();
-	console.log(coffeeName);
 	var Data = { "coffeeName": coffeeName };
 	$.ajax({
 			type: "get", //서버에 전송하는 HTTP요청 방식
@@ -227,7 +225,6 @@ function next() {
 			}, //요청 헤더 정보
 			data: Data, //서버로 전송할 데이터
 			success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-				console.log("통신 성공!: " + result);
 				const img = document.querySelector(`.innerimg`);
 				img.innerHTML = '';
 				let content2 = `
@@ -235,6 +232,10 @@ function next() {
 					<input type="hidden" class="hiddenMenuId" value="${result.menuId}">
 				`;
 				img.innerHTML = content2;
+			},
+			error: () => {
+				alert('통신 장애');
+				window.history.go(-1);
 			}
 	});
   } else {

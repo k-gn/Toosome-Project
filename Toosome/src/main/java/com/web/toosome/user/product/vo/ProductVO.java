@@ -20,12 +20,11 @@ public class ProductVO {
 //	private Integer productScope; //별점
 	private String productType;//상품 페이지 타입\n1. 전체\n2. 커피\n3. 커피웨어\n4. 기프트세트; 
 
-	private Date productRegDate; //상품 등록일
+
 	private Integer productStar;
-	private Integer productRemainingAmount; //상품의 재고수량
 
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	private Date productregDate; //상품 등록일
+	private Date productRegDate; //상품 등록일
 
 	private Integer productReceivedAmount; //상품 입고 수량
 	private Integer productReceivedPrice; //상품 입고 가격
@@ -38,7 +37,7 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
-
+	private ProductReviewBoardVO productReviewBoardVO;
 	private MemberVO memberVO;
 
 //	private String searchCondition; //검색 조건
