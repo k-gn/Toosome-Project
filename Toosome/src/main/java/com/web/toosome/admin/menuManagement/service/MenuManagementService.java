@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.menuManagement.dao.IMenuManagementMapper;
 import com.web.toosome.admin.menuManagement.vo.MenuSearchVO;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.menu.vo.IatVO;
 import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuVO;

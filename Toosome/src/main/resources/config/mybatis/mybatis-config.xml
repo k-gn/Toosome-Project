@@ -24,18 +24,21 @@
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuVO" alias="menuVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.MenuImageVO" alias="menuImageVO"/>
 		<typeAlias type="com.web.toosome.user.menu.vo.IatVO" alias="iatVO"/>
+		<typeAlias type="com.web.toosome.user.menu.vo.MenuReviewBoardVO" alias="menuReviewBoardVO"/>
 
 		<!-- user.Product -->
 		<typeAlias type="com.web.toosome.user.product.vo.ProductVO" alias="productVO"/>
 		<typeAlias type="com.web.toosome.user.product.vo.ProductImageVO" alias="productImageVO"/>
 		<typeAlias type="com.web.toosome.user.product.vo.ProductPrecautionsVO" alias="productPrecautionsVO"/>
-		<typeAlias type="com.web.toosome.user.product.vo.ProductScoreVO" alias="productScoreVO"/>
+		<typeAlias type="com.web.toosome.user.product.vo.ProductReviewBoardVO" alias="productReviewBoardVO"/>
 		
 		<typeAlias type="com.web.toosome.user.basket.vo.BasketVO" alias="basketVO"/>
 		
 		<typeAlias type="com.web.toosome.user.membership.vo.MembershipVO" alias="membershipVO"/>
 		<typeAlias type="com.web.toosome.user.membership.vo.LevelVO" alias="levelVO"/>
 		
+
+
 		<typeAlias type="com.web.toosome.user.basket.vo.OrdersVO" alias="orderVO"/>
 		<typeAlias type="com.web.toosome.user.basket.vo.OrdersDetailVO" alias="ordersDetailVO"/>
 		<typeAlias type="com.web.toosome.user.basket.vo.OrdersCancelVO" alias="orderCancelVO"/>
@@ -44,9 +47,10 @@
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.DailyVO" alias="dailyVO"/>
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.VisitorVO" alias="visitorVO"/>
 		<typeAlias type="com.web.toosome.admin.memberManagement.vo.WithdrawVO" alias="withdrawVO"/>
+
 		<typeAlias type="com.web.toosome.admin.settings.vo.BannerVO" alias="bannerVO"/>
 		<typeAlias type="com.web.toosome.admin.statistics.vo.StatisticsVO" alias="statisticsVO"/>
 		<typeAlias type="com.web.toosome.admin.statistics.vo.DailyOrderVO" alias="dailyOrderVO"/>
-	
+
 	</typeAliases>
 </configuration>

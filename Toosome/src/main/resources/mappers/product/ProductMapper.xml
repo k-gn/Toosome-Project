@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.web.toosome.user.product.dao.ProductMapper">
+<mapper namespace="com.web.toosome.user.product.dao.IProductMapper">
 
 	<resultMap type="productVO" id="productVO">
 		<id property="productId" column="PRODUCT_ID" />
@@ -10,10 +10,11 @@
 		<result property="productContent" column="PRODUCT_CONTENT" />
 		<result property="productPrice" column="PRODUCT_PRICE" />
 		<result property="productType" column="PRODUCT_TYPE" />
-		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productRegDate" column="PRODUCT_REG_DATE" />
 		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
 		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
 		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStar" column="PRODUCT_STAR" />
 		<result property="productStartDay" column="PRODUCT_START_DAY" />
 		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
 		<result property="productState" column="PRODUCT_STATE" />
@@ -21,6 +22,7 @@
 		<result property="productOnoff" column="PRODUCT_ONOFF" />
 		<collection property="productImageVO" resultMap="productImageVO" />
 		<collection property="productPrecautionsVO" resultMap="productPrecautionsVO" />
+		<!--<collection property="memberVO" resultMap="memberVO" /> -->
 	</resultMap>
 
 	<resultMap type="productImageVO" id="productImageVO">
@@ -43,13 +45,31 @@
 		<result property="productPrecautionsContent3" column="PRODUCT_PRECAUTIONS_CONTENT3" />
 		<result property="productPrecautionsOnoff" column="PRODUCT_PRECAUTIONS_ONOFF" />
 	</resultMap>
-	<resultMap type="productScoreVO" id="productScoreVO">
-		<result property="scoreImageId" column="SCORE_IMAGE_ID" />
-		<result property="scoreImageName" column="SCORE_IMAGE_NAME" />
-		<result property="scoreImageExtention" column="SCORE_IMAGE_EXTENTION" />
-		<result property="scoreImageRoute" column="SCORE_IMAGE_ROUTE" />
-		<result property="scoreImageOnoff" column="SCORE_IMAGE_ONOFF" />
-		<collection property="productVO" resultMap="productVO" />
+	
+	<resultMap type="memberVO" id="memberMap">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="memberEmail" column="MEMBER_EMAIL"/>
+		<result property="memberPassword" column="MEMBER_PASSWORD"/>
+		<result property="memberBirth" column="MEMBER_BIRTH"/>
+		<result property="memberPhone" column="MEMBER_PHONE"/>
+		<result property="memberPostcode" column="MEMBER_POSTCODE"/>
+		<result property="memberAddress" column="MEMBER_ADDRESS"/>
+		<result property="platFormType" column="MEMBER_PLATFORM_TYPE"/>
+		<result property="regDate" column="MEMBER_REG_DATE"/>
+		<result property="status" column="MEMBER_STATUS"/>
+		<result property="lastLoginDate" column="MEMBER_LAST_LOGIN_DATE"/>
+		<result property="memberRePassword" column="MEMBER_REPASSWORD"/>
+	</resultMap>
+	
+	<resultMap type="productReviewBoardVO" id="productReviewBoardVO">
+		<id property="productReviewBoardId" column="PRODUCT_REVIEW_BOARD_ID" />
+		<result property="productId" column="PRODUCT_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="productReviewBoardRating" column="PRODUCT_REVIEW_BOARD_RATING" />
+		<result property="productReviewBoardContent" column="PRODUCT_REVIEW_BOARD_CONTENT" />
+		<result property="productReviewBoardWriter" column="PRODUCT_REVIEW_BOARD_WRITER" />
+		<result property="productReviewBoardRegDate" column="PRODUCT_REVIEW_BOARD_REG_DATE" />
 	</resultMap>
 
 	<select id="getproductnewList" resultMap="productVO">
@@ -120,14 +140,23 @@
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
 		A.PRODUCT_SUB_NAME,
-		A.PRODUCT_PRICE,
-		A.PRODUCT_NEW,
 		A.PRODUCT_CONTENT,
+		A.PRODUCT_PRICE,
+		A.PRODUCT_TYPE,
+		A.PRODUCT_REG_DATE,
+		A.PRODUCT_RECEIVED_AMOUNT,
+		A.PRODUCT_RECEIVED_PRICE,
+		A.PRODUCT_LIMIT_AMOUNT,
+		A.PRODUCT_STAR,
+		A.PRODUCT_START_DAY,
+		A.PRODUCT_CHECK_COUNT,
+		A.PRODUCT_STATE,
+		A.PRODUCT_NEW,
 		A.PRODUCT_ONOFF,
 		A.PRODUCT_STATE,
 		B.PRODUCT_IMAGE_NAME,
 		B.PRODUCT_IMAGE_EXTENTION,
-		B.PRODUCT_IMAGE_ROUTE,	
+		B.PRODUCT_IMAGE_ROUTE,
 		C.PRODUCT_PRECAUTIONS_ID,
 		C.PRODUCT_PRECAUTIONS_TITLE,
 		C.PRODUCT_PRECAUTIONS_CONTENT,
@@ -137,13 +166,14 @@
 		C.PRODUCT_PRECAUTIONS_CONTENT2,
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
 		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF		
+		C.PRODUCT_PRECAUTIONS_ONOFF
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
-		INNER JOIN
-		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
-		WHERE A.PRODUCT_ID=#{productId};
+		INNER JOIN 
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
+        WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3
 	</select> 
+
 	<select id="getproductDetailById" resultMap="productVO">
 		SELECT A.PRODUCT_ID,
 		A.PRODUCT_TITLE_NAME,
@@ -165,45 +195,56 @@
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME2,
 		C.PRODUCT_PRECAUTIONS_CONTENT2,
 		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
-		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF		
+		C.PRODUCT_PRECAUTIONS_CONTENT3,	
+		C.PRODUCT_PRECAUTIONS_ONOFF
 		FROM PRODUCT A INNER JOIN
 		PRODUCT_IMAGE B ON (A.PRODUCT_ID = B.PRODUCT_PRODUCT_ID)
 		INNER JOIN
-		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF) 
-		WHERE A.PRODUCT_ID=#{productId};
+		PRODUCT_PRECAUTIONS C ON (A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF)
+		WHERE A.PRODUCT_ID=#{productId} AND A.PRODUCT_STATE != 3;
 	</select> 
-<!--
-	<select id="getproductprecautionsDetail" resultMap="productVO" >
-		SELECT A.PRODUCT_ID,
-		A.PRODUCT_ONOFF,
-		C.PRODUCT_PRECAUTIONS_ID,
-		C.PRODUCT_PRECAUTIONS_TITLE,
-		C.PRODUCT_PRECAUTIONS_CONTENT,
-		C.PRODUCT_PRECAUTIONS_CONTENT_NAME1,
-		C.PRODUCT_PRECAUTIONS_CONTENT1,
-		C.PRODUCT_PRECAUTIONS_CONTENT_NAME2,
-		C.PRODUCT_PRECAUTIONS_CONTENT2,
-		C.PRODUCT_PRECAUTIONS_CONTENT_NAME3,
-		C.PRODUCT_PRECAUTIONS_CONTENT3,
-		C.PRODUCT_PRECAUTIONS_ONOFF
-		FROM PRODUCT A , PRODUCT_PRECAUTIONS C ON WHERE A.PRODUCT_ONOFF = C.PRODUCT_PRECAUTIONS_ONOFF
+	
+	<select id="productReviewList" resultMap="productReviewBoardVO">
+	<![CDATA[
+		SELECT PRODUCT_REVIEW_BOARD_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_ID = #{productId} ORDER BY PRODUCT_REVIEW_BOARD_ID DESC;
+	]]>
 	</select>
--->
+	
 
+	<insert id="productReviewInsert">
+		INSERT INTO PRODUCT_REVIEW_BOARD (PRODUCT_REVIEW_BOARD_ID, PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		) VALUES (
+		#{productReviewBoardId},#{productId}, #{memberId},#{productReviewBoardRating},#{productReviewBoardContent},#{productReviewBoardWriter},NOW())
+	</insert>
+
+	<update id="productReviewUpdate">
+		UPDATE PRODUCT_REVIEW_BOARD SET PRODUCT_REVIEW_BOARD_CONTENT = #{productReviewBoardContent}
+		WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
+	</update>
+
+	<delete id="productReviewDelete">
+		DELETE FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
+	</delete>
 	
-<!--	
-	<select id="getscoreDetail" resultMap="productScoreVO">
-		SELECT D.SCORE_IMAGE_ID,
-		D.PRODUCT_IMAGE_NAME,
-		D.PRODUCT_IMAGE_EXTENTION,
-		D.PRODUCT_IMAGE_ROUTE,
-		A.PRODUCT_ONOFF
-		FROM SCORE_IMAGE D INNER JOIN
-		PRODUCT A ON (D.SCORE_IMAGE_ONOFF = A.PRODUCT_ONOFF) WHERE D.SCORE_IMAGE_ID=${scoreImageId};
+	<delete id="delproductById">
+		DELETE FROM PRODUCT_REVIEW_BOARD_CONTENT WHERE MEMBER_ID = #{id}
+	</delete>
+	
+	<select id="productReviewSelect" resultMap="productReviewBoardVO">
+		SELECT PRODUCT_REVIEW_BOARD_ID,PRODUCT_ID, MEMBER_ID, PRODUCT_REVIEW_BOARD_RATING, PRODUCT_REVIEW_BOARD_CONTENT, PRODUCT_REVIEW_BOARD_WRITER, PRODUCT_REVIEW_BOARD_REG_DATE
+		FROM PRODUCT_REVIEW_BOARD WHERE PRODUCT_REVIEW_BOARD_ID = #{productReviewBoardId}
 	</select>
--->
 	
-	
+ 	<!-- 별점 평균값 -->
+	<select id="productRatingAVG" resultMap="productVO">
+		UPDATE PRODUCT SET PRODUCT_STAR = 
+		(SELECT ROUND(AVG(R.PRODUCT_REVIEW_BOARD_RATING),0) STAR_AVG
+		FROM PRODUCT_REVIEW_BOARD R
+		JOIN PRODUCT P ON(P.PRODUCT_ID = R.PRODUCT_ID)
+		WHERE P.PRODUCT_ID = #{productId})
+		WHERE PRODUCT_ID = #{productId}
+	</select>
+	 
 
 </mapper>

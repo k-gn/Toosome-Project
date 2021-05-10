@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
@@ -278,6 +278,7 @@ public class BoardController {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}
 	
+
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/qnaenrollment") // qna 등록 처리
 	public String qnaEnrollment(MultipartFile uploadFile ,QnaBoardVO vo, RedirectAttributes ra) throws IllegalStateException, IOException {
@@ -302,7 +303,7 @@ public class BoardController {
 		
 		return "redirect:/qna";
 	}
-	
+
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/qnacommentinsert")// qna 댓글입력
 	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra, HttpSession session)throws Exception{

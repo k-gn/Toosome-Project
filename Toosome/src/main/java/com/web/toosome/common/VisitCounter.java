@@ -1,4 +1,4 @@
-package com.web.toosome.common.listener;
+package com.web.toosome.common;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

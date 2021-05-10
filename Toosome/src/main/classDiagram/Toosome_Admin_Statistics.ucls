@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.web.toosome.admin.statistics.vo.StatisticsVO" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/vo/StatisticsVO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="477" width="189" x="26" y="-184"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" language="java" name="com.web.toosome.admin.statistics.dao.IStatisticsMapper" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/dao/IStatisticsMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="275" x="255" y="333"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" language="java" name="com.web.toosome.admin.statistics.service.StatisticsService" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/service/StatisticsService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="275" x="255" y="-184"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="com.web.toosome.admin.statistics.service.IStatisticsService" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/service/IStatisticsService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="275" x="570" y="333"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="com.web.toosome.admin.statistics.controller.StatisticsController" 
+    project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/controller/StatisticsController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="262" x="570" y="-184"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.web.toosome.admin.statistics.vo.DailyOrderVO" project="Toosome" 
+    file="/Toosome/src/main/java/com/web/toosome/admin/statistics/vo/DailyOrderVO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="315" width="169" x="872" y="-184"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="7">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="8">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="9" name="service"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="11">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="12" name="mapper"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

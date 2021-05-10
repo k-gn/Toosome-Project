@@ -16,6 +16,10 @@
     <div class="product-container">
       <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
+<<<<<<< HEAD
+          <span class="product-title"></span>
+=======
+>>>>>>> origin/bang
       </div>
       <div class="sub-header-container">
 		<h3>PRODUCT</h3>
@@ -41,6 +45,31 @@
         </div>
     	<!-- 상품 이미지 출력 -->
         <div class="product-box">
+<<<<<<< HEAD
+					<ul class="all">
+						<c:forEach var="productNewList" items="${productNewList}">
+							<li>
+								<a href="/productDetail?productId=${productNewList.productId}">
+									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
+									<c:if test="${productNewList.productNew == 1}">
+									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
+									</c:if>
+									<c:if test="${productNewList.productState == 2}">
+									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
+
+									</c:if>
+									<span>${productNewList.productTitleName}</span>
+
+									<div class="pay-box">
+										<span class="com" style="float: left;">${productNewList.productPrice}</span>
+										<span style="float: left;">&nbsp;원</span>
+									</div>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+=======
 			<ul class="all">
 				<c:forEach var="productAllList" items="${productAllList}">
 					<li>
@@ -70,6 +99,7 @@
 				</c:forEach>
 			</ul>
 		</div>
+>>>>>>> origin/bang
          
       </div>
     </div>
