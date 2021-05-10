@@ -7,3 +7,8 @@
 .card-body .table tbody tr td a:hover {
 	color: #9c27b0; 
 }
+
+.card-body.flex {
+	display: flex;
+	justify-content: space-between;
+}
