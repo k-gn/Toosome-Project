@@ -120,7 +120,7 @@ const showList = (result, wrapper) => {
 	if(result.length === 0) {
 		let newItem = document.createElement('tr');
 		let itemElement = `
-			<td colspan="7">검색 결과가 없습니다.</td>
+			<td colspan="9">검색 결과가 없습니다.</td>
 		`;
 		newItem.innerHTML = itemElement;
 		wrapper.appendChild(newItem);
@@ -196,7 +196,6 @@ const getList = (orders, wrapper, rows) => {
 			setData(result, wrapper, rows);	
 		}, 
 		error: function() {
-			alert('시스템과에 문의하세요');
 			alert('시스템과에 문의하세요');
 			history.back();
 		} 
@@ -295,7 +294,7 @@ const listHandler = (e) => {
 			$("input[name=ordersId]").val(res.ordersId);
 			$("input[name=memberName]").val(res.memberVO.memberName);
 			$("input[name=memberPhone]").val(res.memberVO.memberPhone);
-			$("input[name=ordersState]").val(res.ordersState);
+			$("#modal-state").val(res.ordersState).prop("selected", true);
  			$("input[name=ordersProductPay]").val(res.ordersProductPay);
 			$("input[name=ordersAmount]").val(res.ordersAmount);
 			$("input[name=ordersReceiver]").val(res.ordersReceiver);
@@ -319,8 +318,6 @@ const listHandler = (e) => {
 					}, //요청 헤더 정보
 					dataType: "json", //응답받을 데이터의 형태
 					success: (results) => {
-						console.log(results);
-						console.log(id);
 						const tableBody = document.querySelector(`.under-table`);
 						tableBody.innerHTML = '';
 						let new2El = document.createElement('tr');
@@ -353,13 +350,12 @@ const listHandler = (e) => {
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');
-			alert('시스템과에 문의하세요');
 			history.back();
 		} 
 	});
 	
 	profileContainer.style.display = 'block';
-	$("input[name=memberName]").focus();
+	$("input[name=ordersReceiver]").focus();
 	
 };
 
