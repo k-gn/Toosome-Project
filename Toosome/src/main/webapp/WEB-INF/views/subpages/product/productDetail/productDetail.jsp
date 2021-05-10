@@ -196,7 +196,24 @@
 						
 				   
 
+<script type="text/javascript">
+		function answerEdit(productReviewBoardId, awriter, acontent, productId){
+			$('#acontent'+answer_idx).html(
+				"<textarea id='productReviewUpdBtn${status.count}"+answer_idx+"'>"+productReviewBoardContent+"</textarea>"
+				+"<style>#productReviewUpdBtn${status.count}"+answer_idx+"{width:740px; height:80px; resize:none;} </style>"
+			);
+			
+			$('#abt'+answer_idx).html(
+				"<a onclick='answerEditSave("+answer_idx+","+productId+")' id='btnEdit'>완료</a> "
+				+"<a onclick='location.href='qnaDetail.do?idx="+productId+"' id='btnCancel'>취소</a>"
+			);
+		}
 
+		function answerEditSave(productReviewBoardId, qna_idx){
+			var acontent = $("#edit_acontent"+productReviewBoardId).val();
+			location.href='answerEdit.do?idx='+answer_idx+"&acontent="+acontent;
+		}
+</script>
 <script type="text/javascript">
 var locked = 0;
 

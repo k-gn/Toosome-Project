@@ -117,14 +117,14 @@
                 <div class="card-header card-header-success">
                   <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
-                <div class="card-body">
+                <div class="card-body flex">
                   <h4 class="card-title">데일리 세일즈</h4>
                   <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                    <i class="material-icons">show_chart</i>Daily Sales Chart</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                    <i class="material-icons">access_time</i> updated 1 minutes ago
                   </div>
                 </div>
               </div>
@@ -134,14 +134,14 @@
                 <div class="card-header card-header-warning">
                   <div class="ct-chart" id="websiteViewsChart"></div>
                 </div>
-                <div class="card-body">
-                  <h4 class="card-title">월별 접속자수</h4>
+                <div class="card-body flex">
+                  <h4 class="card-title">데일리 접속자수</h4>
                   <p class="card-category">
-                  	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
+                  	<i class="material-icons">bar_chart</i>Daily Visitors Chart</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
+                   <i class="material-icons">access_time</i> updated 1 minutes ago
                   </div>
                 </div>
               </div>
@@ -151,14 +151,14 @@
                 <div class="card-header card-header-danger">
                   <div class="ct-chart" id="dailyOrderChart"></div>
                 </div>
-                <div class="card-body">
+                <div class="card-body flex">
                   <h4 class="card-title">데일리 주문건수</h4>
                   <p class="card-category">
-                  	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
+                  	<i class="material-icons">show_chart</i>Daily Orders Chart</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
+                   <i class="material-icons">access_time</i> updated 1 minutes ago
                   </div>
                 </div>
               </div>

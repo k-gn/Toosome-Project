@@ -366,26 +366,71 @@
 
   emailForm.addEventListener('keyup', emailFormCheck);
   emailForm.addEventListener('blur', emailFormCheck);
+  emailForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
 /*  emailAuthBtn.addEventListener('click', emailAuthHandler);*/
   authCodeForm.addEventListener('keyup', authFormCheck);
   authCodeForm.addEventListener('blur', authFormCheck);
+  authCodeForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   submitAuthBtn.addEventListener('click', submitAuthBtnHandler);
   pwd1Form.addEventListener('keyup', pwd1FormCheck);
   pwd1Form.addEventListener('blur', pwd1FormCheck);
+  pwd1Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   pwd2Form.addEventListener('keyup', pwd2FormCheck);
   pwd2Form.addEventListener('blur', pwd2FormCheck);
+  pwd2Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   nameForm.addEventListener('keyup', nameFormCheck);
   nameForm.addEventListener('blur', nameFormCheck);
+  nameForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   birthYearForm.addEventListener('keyup', birthYearFormCheck);
   birthYearForm.addEventListener('blur', birthYearFormCheck);
+  birthYearForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   birthMonthForm.addEventListener('change', birthMonthFormCheck);
   birthMonthForm.addEventListener('blur', birthMonthFormCheck);
   birthDateForm.addEventListener('keyup', birthDateFormCheck);
   birthDateForm.addEventListener('blur', birthDateFormCheck);
+  birthDateForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   tel1Form.addEventListener('keyup', tel1FormCheck);
   tel1Form.addEventListener('blur', tel1FormCheck);
+  tel1Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   tel2Form.addEventListener('keyup', tel2FormCheck);
   tel2Form.addEventListener('blur', tel2FormCheck);
+  tel2Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
 
   /* 우편번호 검색 */
   const postSearch = document.querySelector('.post-search');
@@ -454,7 +499,17 @@
 
   postSearch.addEventListener('click', daumPostcode);
   postcodeForm.addEventListener('click', postcodeFormCheck);
+  postcodeForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
   addr1Form.addEventListener('click', addr1FormCheck);
+  addr1Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  emailFormCheck();
+	};		
+  });
 
   // 회원가입 버튼 활성화
   const activateSubmitBtn = () => {

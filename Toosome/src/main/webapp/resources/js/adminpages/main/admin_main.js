@@ -26,7 +26,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 1000,
+        high: 500,
         chartPadding: {
           top: 0,
           right: 0,
@@ -39,7 +39,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 50,
+        high: 10,
         chartPadding: {
           top: 0,
           right: 0,
@@ -52,7 +52,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 50,
+        high: 10,
         chartPadding: {
           top: 0,
           right: 0,
