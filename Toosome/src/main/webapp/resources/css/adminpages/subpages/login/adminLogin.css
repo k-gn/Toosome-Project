@@ -8,7 +8,7 @@
 .bg {
 	width: 100vw;
 	height: 100vh;
-	background: url('/resources/img/admin/subpages/login/admin_bg.jpg') no-repeat center center;
+	background: url('https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/sub_bg.jpg') no-repeat center center;
 	background-size: cover;
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
