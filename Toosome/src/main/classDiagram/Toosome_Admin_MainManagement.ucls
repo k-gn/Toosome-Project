@@ -4,7 +4,7 @@
   <interface id="1" language="java" name="com.web.toosome.admin.mainManagement.dao.IMainMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/dao/IMainMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1385" y="253"/>    
+    <position height="-1" width="-1" x="936" y="275"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -14,7 +14,7 @@
   <interface id="2" language="java" name="com.web.toosome.admin.mainManagement.persistence.IVisitorMapper" 
     project="Toosome" file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/persistence/IVisitorMapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="577" y="240"/>    
+    <position height="-1" width="-1" x="128" y="262"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -25,7 +25,7 @@
     project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/persistence/VisitorMapperImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="171" width="241" x="458" y="-141"/>    
+    <position height="-1" width="-1" x="129" y="-34"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -36,7 +36,7 @@
     project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/controller/MainManagementController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="231" x="1003" y="-141"/>    
+    <position height="-1" width="-1" x="669" y="-52"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -46,7 +46,7 @@
   <interface id="5" language="java" name="com.web.toosome.admin.mainManagement.service.IMainService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/service/IMainService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1118" y="264"/>    
+    <position height="-1" width="-1" x="669" y="286"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -56,7 +56,7 @@
   <class id="6" language="java" name="com.web.toosome.admin.mainManagement.service.VisitorService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/service/VisitorService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="153" width="224" x="739" y="-141"/>    
+    <position height="-1" width="-1" x="402" y="-43"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   <class id="7" language="java" name="com.web.toosome.admin.mainManagement.vo.DailyVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/vo/DailyVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="369" width="204" x="-30" y="-141"/>    
+    <position height="-1" width="-1" x="1172" y="66"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,7 +76,7 @@
   <interface id="8" language="java" name="com.web.toosome.admin.mainManagement.service.IVisitorService" 
     project="Toosome" file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/service/IVisitorService.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="851" y="240"/>    
+    <position height="-1" width="-1" x="402" y="262"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -86,7 +86,7 @@
   <class id="9" language="java" name="com.web.toosome.admin.mainManagement.vo.VisitorVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/vo/VisitorVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="315" width="204" x="214" y="-141"/>    
+    <position height="-1" width="-1" x="1389" y="39"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -96,55 +96,71 @@
   <class id="10" language="java" name="com.web.toosome.admin.mainManagement.service.MainService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/admin/mainManagement/service/MainService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="261" width="226" x="1274" y="-141"/>    
+    <position height="-1" width="-1" x="938" y="11"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="11">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <association id="13">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="14" name="mainService"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="16">    
+  <association id="11">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="17" name="mapper"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="12" name="mapper">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="19">    
+  <association id="14">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="15" name="visitService">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="17">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="8"/>  
   </realization>  
-  <association id="20">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="21" name="mapper"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+  <association id="18">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="19" name="mainService">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="22">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
   <association id="23">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="24" name="visitService"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="24" name="mapper">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-449" y="22"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
