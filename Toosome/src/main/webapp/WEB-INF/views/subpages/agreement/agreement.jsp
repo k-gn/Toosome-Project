@@ -15,6 +15,7 @@
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
     <!-- Section Start -->
+    <!-- 회원가입 동의 -->
     <section>
       <div class="signup-container">
         <div class="title-container">
@@ -26,6 +27,7 @@
             <span class="sign-all-info">전체 동의</span>
             <div class="sign-all-btn"></div>
           </div>
+          <!-- 약관 동의 내용 -->
           <div class="sign-each-wrapper">
           <c:forEach var="termsList" items="${termsList}">
           <div class="sign-each">

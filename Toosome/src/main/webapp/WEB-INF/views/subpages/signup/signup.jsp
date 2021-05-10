@@ -33,6 +33,7 @@
             <p class="validation email"></p>
             <p class="email-auth-ok">인증 완료</p>
           </div>
+          <!-- 인증 버튼 누르면 나오는 박스 -->
           <div id="email-auth-form">
             <div class="auth-info-wrapper">
               <p class="email-auth-info">입력하신 이메일 주소로 인증번호가 발송되었습니다.<br>
@@ -48,6 +49,7 @@
               <p class="validation auth"></p>
             </div>
           </div>
+          
           <div class="signup-wrapper">
             <span>비밀번호</span>
             <input class="signup-form pwd1" type="password" name="password" placeholder="비밀번호를 입력해주세요">

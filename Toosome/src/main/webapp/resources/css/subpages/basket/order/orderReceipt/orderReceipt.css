@@ -215,7 +215,7 @@ section .btn-group {
   margin-top: 50px;
   width: 90%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 section .btn-group li {
   display: flex;

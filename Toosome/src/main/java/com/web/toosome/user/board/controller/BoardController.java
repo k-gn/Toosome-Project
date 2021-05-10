@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.board.service.IBoardNoticeService;
 import com.web.toosome.user.board.service.IEventBoardService;
 import com.web.toosome.user.board.service.IFaqBoardService;
@@ -117,6 +117,13 @@ public class BoardController {
 		model.addAttribute("faqBoardList",faqBoardList);
 		return "subpages/faq/faq";
 	}
+	
+	@GetMapping(value = "/faqsearch", produces = "application/json") // 게시판 목록 조회값
+	@ResponseBody
+	public List<FaqBoardVO> faqSearch(String keyword){
+		List<FaqBoardVO> search = faqBoardService.getFaqSearchBoardList(keyword);
+		return search;
+	}
 
 	@RequestMapping(value = "/notice") //게시판 화면
 	public String noticeView() {
@@ -128,7 +135,7 @@ public class BoardController {
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO) throws Exception {
 	
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
-		System.out.println(noticeBoardList);
+		
 		return noticeBoardList;
 
 	}
@@ -144,6 +151,7 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
+		
 		return noticeBoard;
 	}
 	
@@ -203,6 +211,7 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
+		
 		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
@@ -269,6 +278,34 @@ public class BoardController {
 		return "subpages/qna/qnaEnrollment/qnaEnrollment";
 	}
 	
+<<<<<<< HEAD
+=======
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/qnaenrollment") // qna 등록 처리
+	public String qnaEnrollment(MultipartFile uploadFile ,QnaBoardVO vo, RedirectAttributes ra) throws IllegalStateException, IOException {
+		String uploadFolder = "https://thisisthat.s3.ap-mortheast-2.amazonaws.com/";
+
+		if(vo.getUploadFile().getSize() != 0) {
+		vo.setQnaBoardImageName(uploadFile.getOriginalFilename());
+		qnaBoardService.insertQnaBoard(vo);
+
+		//multipartFile 형식 파일을 file 형식으로 변환후  upload 
+			File convFile = new File(uploadFile.getOriginalFilename());
+			uploadFile.transferTo(convFile);
+			File file = convFile;
+			String key = "img/qnaImg/" + vo.getQnaBoardImageName();
+			awsS3.upload(file, key);
+		}
+		
+		if(vo.getUploadFile().getSize() == 0 ) {
+			qnaBoardService.insertQnaBoardText(vo);
+		}
+		ra.addFlashAttribute("msg", "successBoard");
+		
+		return "redirect:/qna";
+	}
+	
+>>>>>>> origin/bang
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/qnacommentinsert")// qna 댓글입력
 	public String qnaCommentinsert(QnaBoardCommentVO vo, RedirectAttributes ra, HttpSession session)throws Exception{

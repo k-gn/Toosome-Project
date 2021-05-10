@@ -14,10 +14,20 @@ public interface IQnaAdminMapper {
 	
 	List<QnaBoardVO> searchQna(BoardSearchVO vo);
 	
-	int deleteQnaComment(QnaBoardCommentVO vo);
+	int deleteQnaComment(Integer id);
 	
-	int deleteQna(QnaBoardVO vo);
+	int deleteQna(Integer id);
 	
+	QnaBoardVO selectFile(Integer id);
 	
+	List<QnaBoardCommentVO> selectQnaComment(QnaBoardCommentVO vo);
+	
+	int insertQnaComment(QnaBoardCommentVO vo); 
+	
+	int updateQnaComment(QnaBoardCommentVO vo);
+	
+	int delQnaCommentId(Integer id);
+	
+	int delQnaComment(QnaBoardCommentVO vo);
 
 }

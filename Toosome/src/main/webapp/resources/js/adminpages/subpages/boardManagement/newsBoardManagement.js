@@ -68,8 +68,10 @@ enrollSubmitBtn.addEventListener('click', (e) => {
 updateSubmitBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	const u_title = document.querySelector('#detail-title');
+	const u_thumb = document.querySelector('#detail-thumb');
+	const u_image = document.querySelector('#detail-image');
 	
-	if(!enrollCheck(u_title)) {
+	if(!enrollCheck(u_title, u_thumb, u_image)) {
 		return;
 	} else {
 		document.querySelector('#update-form').submit();
@@ -82,15 +84,13 @@ const delBtnFunc = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/newsboard-delete',
+			url: '/admin/newsboard-delete/' + boardId,
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
-			data: {
-				newsBoardId: boardId
-			},
 			success: () => {
-				
+				alert('글삭제를 성공하였습니다.');
+				location.reload();
 			},
 			error: () => {
 				alert('통신장애');
@@ -274,7 +274,7 @@ const listHandler = (e) => {
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/newsboardmanagement", //서버 요청 URI
+		url: "/admin/newsboarddetail", //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -283,17 +283,16 @@ const listHandler = (e) => {
 		},
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(res);
-			/*boardId = res[0].newsBoardId;
+			boardId = +(res[0].newsBoardId);
 			$('input[name=newsBoardId]').val(res[0].newsBoardId);			
 			$('input[name=newsBoardViewCount]').val(res[0].newsBoardViewCount);			
 			$('input[name=newsBoardRegdate]').val(res[0].newsBoardRegdate);	
 			$('#detail-title').val(res[0].newsBoardTitle);
 			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardImageRoute}${res[0].newsBoardImageName}.${res[0].newsBoardImageExtention}`;		
 			$('#thumbnail').attr("src", thumbnailURL);	
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardImageRoute}${res[0].newsBoardImageName}.${res[0].newsBoardImageExtention}`;
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardDetailVO.newsBoardDetailImageRoute}${res[0].newsBoardDetailVO.newsBoardDetailImageName}.${res[0].newsBoardDetailVO.newsBoardDetailImageExtention}`;
 			$('#detail-img').attr("src", imageURL);
-			$('input[name=newsBoardDetailId]').val(res[0].newsBoardDetailVO.newsBoardDetailId);*/
+			$('input[name=newsBoardDetailId]').val(res[0].newsBoardDetailVO.newsBoardDetailId);
 		}, 
 		error: () => {
 			alert('시스템과에 문의하세요');

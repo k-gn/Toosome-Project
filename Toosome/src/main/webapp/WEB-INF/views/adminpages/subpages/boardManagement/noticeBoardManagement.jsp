@@ -132,7 +132,7 @@
 		                      <div class="col-md-6">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성일</label>
-		                          <input type="date" name="noticeBoardRegdate" class="form-control">
+		                          <input type="date" name="noticeBoardRegdate" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -226,10 +226,10 @@
                     <div class="select-box">
 	                    <select id="memberList-select" onchange="selectHandler(this);">
 	                      <option value="10000">전체보기</option>
+	                      <option value="5">5개씩 보기</option>
+	                      <option value="10">10개씩 보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
-	                      <option value="100">100개씩 보기</option>
-	                      <option value="200">200개씩 보기</option>
 	                    </select>
 	                    <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                     </div>

@@ -108,8 +108,12 @@ const delBtnFunc = ()  => {
 	let flag = confirm('정말로 삭제하시겠습니까?');
 	if(flag) {
 		$.ajax({
-			type: 'post',
-			url: `/admin/eventboard-delete/${boardId}`,
+			type: 'get',
+			url: '/admin/eventboard-delete/' + boardId,
+			success: () => {
+				alert('글삭제를 완료하였습니다.');
+				location.reload();
+			},
 			error: () => {
 				alert('통신장애');
 				window.history.back();
@@ -218,7 +222,7 @@ const showList = (result, wrapper) => {
             ${result[i].eventBoardEndday}
           </td>
           <td>
-            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${result[i].eventBoardDetailVO.eventBoardDetailImageRoute}/${result[i].eventBoardDetailVO.eventBoardDetailImageName}.${result[i].eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
+            <a target="_blank" href="https://toosome.s3.ap-northeast-2.amazonaws.com/${result[i].eventBoardDetailVO.eventBoardDetailImageRoute}${result[i].eventBoardDetailVO.eventBoardDetailImageName}.${result[i].eventBoardDetailVO.eventBoardDetailImageExtention}">상세보기</a>
           </td>
 		`;
 		newEl.innerHTML = content;
@@ -300,7 +304,8 @@ modalCancelBtn.addEventListener('click', (e) => {
 
 // 리스트 항목 클릭 핸들러
 const listHandler = (e) => {
-	const id = e.parentNode.parentNode.children[0].innerText;
+	let id = e.parentNode.parentNode.children[0].innerText;
+	
 	/* index로 AJAX 요청 */
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식

@@ -20,12 +20,12 @@ const getParam = (param) => {
 const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
-	
+
 	// 날짜 변환
 	let date = new Date(items[1].newsBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 	
-	if(items[1].newsBoardId === +index) {
+	if(+items[1].newsBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
@@ -38,12 +38,12 @@ const displayDetail = (title, content, items, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		let contentElement = `
-			<td colspan="4"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/news/${items[1].newsBoardDetailVO.newsBoardDetailImageRoute}/${items[1].newsBoardDetailVO.newsBoardDetailImageName}.${items[1].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
+			<td colspan="4"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[1].newsBoardDetailVO.newsBoardDetailImageRoute}${items[1].newsBoardDetailVO.newsBoardDetailImageName}.${items[1].newsBoardDetailVO.newsBoardDetailImageExtention}"></td>
 		`;
 		newContent.innerHTML = contentElement;
 		content.appendChild(newContent);
 		
-		displayLocator(items, index);
+		displayLocator(items);
 	} else {
 		alert('잘못된 요청입니다');
 		window.history.go(-1);
@@ -51,33 +51,33 @@ const displayDetail = (title, content, items, index) => {
 };
 
 // 이전글, 다음글 생성 함수
-const displayLocator = (items, index) => {
+const displayLocator = (items) => {
 	// 이전글 생성 후 삽입
-	if(items[0].newsBoardId !== +index + 1) {
+	if(!items[2].newsBoardId) {
 		let newPrev = `
-			<td colspan="1">윗글</td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1">이전글</td>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
-			<td colspan="1">윗글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index + 1}'">${items[0].newsBoardTitle}</a></td>
+			<td colspan="1">이전글</td>
+    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[2].newsBoardId}'">${items[2].newsBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].newsBoardId !== +index - 1) {
+	if(!items[0].newsBoardId) {
 		let newNext = `
-			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1">다음글</td>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
-			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/news-detail?index=${+index - 1}'">${items[2].newsBoardTitle}</a></td>
+			<td colspan="1">다음글</td>
+    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[0].newsBoardId}'">${items[0].newsBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -90,24 +90,31 @@ $(document).ready(() => {
 	// 게시글 데이터 요청 AJAX
 	$.ajax({
 		url: '/newsdetail?index='+index,
-		success: (res) => {
-			
+		success: (res) => {	
 			// 데이터 역순		
 			const newRes = res.reverse();
+			
+			// null data 생성
+			const nullData = {
+				newsBoardId: null,
+				newsBoardTitle: null,
+				newsBoardViewCount: null,
+				newsBoardRegdate: null,
+				newsBoardDetailImageRoute: null,
+				newsBoardDetailImageName: null,
+				newsBoardDetailImageExtention: null
+			};
+			
+			// 게시글이 하나일 때
+			if(newRes.length === 1) {
+				newRes.unshift(nullData);
+				newRes.push(nullData);
+			}
+			
 			// 처음 혹은 마지막 게시물
-			if(newRes.length === 2) {
-				// null data 생성
-				const nullData = {
-					newsBoardId: null,
-					newsBoardTitle: null,
-					newsBoardViewCount: null,
-					newsBoardRegdate: null,
-					newsBoardDetailImageRoute: null,
-					newsBoardDetailImageName: null,
-					newsBoardDetailImageExtention: null
-				};
+			if(newRes.length === 2) {		
 				// 첫 게시물 
-				if(+newRes[1].newsBoardId === 1) {
+				if(+newRes[0].newsBoardId !== +index) {
 					newRes.push(nullData);
 				} else { // 마지막 게시물
 					newRes.unshift(nullData);

@@ -16,12 +16,12 @@ public class StatisticsService implements IStatisticsService {
 	private IStatisticsMapper mapper;
 
 	@Override
-	public int getTotalPayment(StatisticsVO vo) {
+	public Integer getTotalPayment(StatisticsVO vo) {
 		return mapper.getTotalPayment(vo);
 	}
 
 	@Override
-	public int getTotalSalesCount(StatisticsVO vo) {
+	public Integer getTotalSalesCount(StatisticsVO vo) {
 		return mapper.getTotalSalesCount(vo);
 	}
 

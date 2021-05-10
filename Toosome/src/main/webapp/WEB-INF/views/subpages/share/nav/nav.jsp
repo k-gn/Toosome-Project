@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- header 시작 -->
 <header>
+  <!-- 좌측 로고 -->
   <h1 class="logo">
     <a href="/">
       A TOOSOME PLACE
     </a>
   </h1>
+  <!-- 중앙 gnb -->
   <nav>
     <ul class="nav">
       <li class="menu-title">
@@ -28,6 +31,7 @@
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product-new">상품</a></li>
           <li><a href="/nutrient1">영양성분표</a></li>
+          <li><a href="/mbtitest">커피 MBTI</a></li>
         </ul>
       </li>
       <li class="menu-title">
@@ -58,13 +62,17 @@
     </ul>
   </nav>
   <div class="full-cover"></div>
+  
+  <!-- 우측 상단  -->
   <ul class="log">
+  	<!-- 로그인 안했을시 -->
   	<c:if test="${id == null}">
 	    <li><a href="/signin" id="login">LOGIN</a></li>
 	    <li><a href="/agreement">SIGN UP</a></li>
 	    <li><a href="/basket">BASKET</a></li>
 	    <li><a href="/faq">FAQ</a></li>
   	</c:if>
+  	<!-- 로그인 했을 시 -->
   	<c:if test="${id != null}">
 	    <li><a href="#" id="logout" onclick="document.getElementById('dologout').submit();">LOGOUT</a></li>
 	    <li><a href="/mypage">MYPAGE</a></li>
@@ -73,16 +81,19 @@
   	</c:if>
   </ul>
   
+  <!-- 로그아웃 관련 -->
   <form id="dologout" action="/dologout" method="POST">
     <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
   </form>
 
+  <!-- 모바일 버전 보일 버튼 -->
   <div class="menu-bar">
     <span class="long-bar bar"></span>
     <span class="short-bar bar"></span>
     <span class="bar"></span>
   </div>
-
+ 
+  <!-- 모바일 버전 메뉴 -->
   <div class="mobile-nav">
     <ul class="m-nav">
       <li class="m-menu-title">
@@ -104,6 +115,7 @@
           <li><a href="/menu-wholecake">홀케이크</a></li>
           <li><a href="/product">상품</a></li>
           <li><a href="/nutrienta">영양성분표</a></li>
+          <li><a href="/mbtitest">커피 MBTI</a></li>
         </ul>
       </li>
       <li class="m-menu-title">
@@ -130,6 +142,7 @@
       </li>
     </ul>
     
+    <!-- 모바일버전 로그인관련 -->
     <ul class="m-log">
     <c:if test="${id == null}">
       <li><a href="/signin">LOGIN</a></li>

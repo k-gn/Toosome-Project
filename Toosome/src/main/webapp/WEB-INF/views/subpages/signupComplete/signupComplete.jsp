@@ -10,7 +10,7 @@
 <body>
     <div id="container">
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-
+		<!-- 회원가입 완료  -->
         <div class="login-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">

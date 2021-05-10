@@ -16,17 +16,17 @@
   <script src="/resources/js/adminpages/subpages/boardManagement/newsBoardManagement.js" defer></script>
   <script type="text/javascript">
  	const msg = "${msg}";
- 	if(msg === "successBoard") {
+ 	if(msg === "insertsuccess") {
  		alert("정상 등록되었습니다");
- 	}else if(msg === "failBoard") {
+ 	}else if(msg === "insertfail") {
  		alert("입력하신 정보가 올바르지 않습니다.");
- 	}else if(msg === 'updateSuccess') {
+ 	}else if(msg === 'updatesuccess') {
  		alert("수정 완료");
- 	}else if(msg === 'updateFail') {
+ 	}else if(msg === 'updatefail') {
  		alert("수정 실패");
- 	}else if(msg === 'successDelete') {
+ 	}else if(msg === 'deletesuccess') {
  		alert("삭제 완료");
- 	}else if(msg === 'failDelete') {
+ 	}else if(msg === 'deletefail') {
  		alert("삭제 실패");
  	}
   </script>
@@ -149,7 +149,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">본문 이미지 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile" accept="image/*" />
+								            <input id="detail-image" type="file" name="uploadFile2" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>
@@ -165,7 +165,7 @@
 								        <span class="btn btn-raised btn-round btn-default btn-file">
 								            <span class="fileinput-new">썸네일 선택</span>
 								            <span class="fileinput-exists">수정</span>
-								            <input type="file" name="uploadFile2" accept="image/*" />
+								            <input id="detail-thumb" type="file" name="uploadFile" accept="image/*" />
 								        </span>	
 								        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i>삭제</a>
 								    </div>

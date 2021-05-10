@@ -11,13 +11,14 @@
 <body>
     <div id="container">
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
-
+		<!-- 커피&음료 메뉴 시작 -->
         <div class="menu-container">
             <div class="title-container">
                 <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
             </div>
             <div class="sub-header-container">
        			<h3>MENU</h3>
+       			<!-- 메뉴 navigation -->
        			<div class="navigation-container">
        				<ul>
        					<li><a href="/">HOME</a></li>
@@ -29,6 +30,7 @@
         	</div>
 
             <div class="tab-container">
+            <!-- tab menu -->
                 <div class="menu-btn">
                     <ul class="btn-tab">
                         <li><a href="/menu-new">NEW</a></li>
@@ -39,16 +41,24 @@
                     </ul>
                 </div>
                 <div class="menu-content">
+                <!-- 메뉴 데이터 꺼내오기 -->
                         <h3>홀케이크</h3>
                     <ul id="whole-cake" class="cf">
+                        <!-- 메뉴 리스트 반복 -->
                         <c:forEach var="menuWholecakeList" items="${menuWholecakeList}">
 							<li>
+							<!-- 메뉴 아이디 -->
 								<a href="/menuDetail?menuId=${menuWholecakeList.menuId}">
+									<!-- 해당 아이디값에 맞는 이미지 불러오기 -->
 									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuWholecakeList.menuImageVO.menuImageRoute}/${menuWholecakeList.menuImageVO.menuImageName}.${menuWholecakeList.menuImageVO.menuImageExtention}" alt="">
+									<!-- 그 메뉴가 신메뉴라면 -->
 									<c:if test="${menuWholecakeList.menuNew == 1}">
+										<!-- New 딱지 붙이기 -->
 										<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 									</c:if>
+									 <!-- 메뉴 이름 -->
 									<span>${menuWholecakeList.menuMainTitle}</span> 
+									<!-- 메뉴 가격 -->
 									<div class="pay-box">
 										<span class="com" style="float: left;">${menuWholecakeList.menuPrice}</span>
 										<span style="float: left;">&nbsp;원</span>

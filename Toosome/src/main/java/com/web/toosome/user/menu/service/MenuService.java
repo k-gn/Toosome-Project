@@ -193,6 +193,7 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public MenuVO menuRatingAVG(MenuVO menuVO) {
 		
 		return mapper.menuRatingAVG(menuVO);
@@ -233,6 +234,10 @@ public class MenuService implements IMenuService {
 	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId) {
 
 		return mapper.menuReviewSelect(menuReviewBoardId);
+=======
+	public MenuVO getmbtiMenu(String coffeeName) {
+		return mapper.getmbtiMenu(coffeeName);
+>>>>>>> origin/bang
 	}
 
 

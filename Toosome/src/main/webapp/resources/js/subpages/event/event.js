@@ -21,7 +21,7 @@ const getElements = (data, number) => {
 			const li = document.createElement('li');
 			li.innerHTML = `
 				<a href="/event-detail?index=${result.eventBoardId}">
-					<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${result.eventBoardImageRoute}${result.eventBoardImageName}.${result.eventBoardImageExtention}" alt="#">
+					<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${result.eventBoardImageRoute}${result.eventBoardImageName}.${result.eventBoardImageExtention}" alt="#">
 					<p>${result.eventBoardTitle}</p>
 					<p>${newStartDate}~${newEndDate}</p>														
 				</a>
@@ -42,7 +42,7 @@ const getElements = (data, number) => {
 			const li = document.createElement('li');
 			li.innerHTML = `
 				<a href="/event-detail?index=${result.eventBoardId}">
-					<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/event/${result.eventBoardImageRoute}/${result.eventBoardImageName}.${result.eventBoardImageExtention}" alt="#">
+					<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${result.eventBoardImageRoute}${result.eventBoardImageName}.${result.eventBoardImageExtention}" alt="#">
 					<p>${result.eventBoardTitle}</p>
 					<p>${newStartDate}~${newEndDate}</p>														
 				</a>

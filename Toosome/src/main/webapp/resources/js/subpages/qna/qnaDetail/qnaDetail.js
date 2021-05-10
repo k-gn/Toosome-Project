@@ -132,7 +132,7 @@ const displayDetail = (title, content, c_content, item, index) => {
 		// 받은 데이터로 새 본문 생성 후 삽입
 		let newContent = document.createElement('tr');
 		// 문의사항 이미지 존재 여부
-		let existImg = item[0].qnaBoardImageName ? `<img src='https://toosome.s3.ap-northeast-2.amazonaws.com/${item[0].qnaBoardImageName}' alt="#">` : "";
+		let existImg = item[0].qnaBoardImageName ? `<img src='https://toosome.s3.ap-northeast-2.amazonaws.com/img/qnaImg/${item[0].qnaBoardImageName}' alt="#">` : "";
 		let contentElement = `
 			<td colspan="5">${item[0].qnaBoardContent}<br>${existImg}</td>
 		`;

@@ -7,6 +7,8 @@ const pwd3Err = document.querySelector(".validation.pwd3");
 const submitBtn = document.querySelector(".signform-btn");
 
 // 현재 비밀번호 유효성 검사
+// 비밀번호 찾기를 하면 숫자로 비밀번호가 나오기 때문에 유효성 검사로 인해 변경을 못함
+/*
 const pwd1FormCheck = (e) => {
   e.preventDefault();
   const pwd1Pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
@@ -28,6 +30,7 @@ const pwd1FormCheck = (e) => {
   }
   activateSubmitBtn();
 };
+*/
 
 // 새 비밀번호 유효성 검사
 const pwd2FormCheck = (e) => {
@@ -81,8 +84,8 @@ const pwd3FormCheck = (e) => {
   activateSubmitBtn();
 };
 
-pwd1Form.addEventListener("keyup", pwd1FormCheck);
-pwd1Form.addEventListener("blur", pwd1FormCheck);
+// pwd1Form.addEventListener("keyup", pwd1FormCheck);
+// pwd1Form.addEventListener("blur", pwd1FormCheck);
 pwd2Form.addEventListener("keyup", pwd2FormCheck);
 pwd2Form.addEventListener("blur", pwd2FormCheck);
 pwd3Form.addEventListener("keyup", pwd3FormCheck);
@@ -92,7 +95,7 @@ pwd3Form.addEventListener("blur", pwd3FormCheck);
 
 const activateSubmitBtn = () => {
   if (
-    pwd1Err.style.display === "none" &&
+    // pwd1Err.style.display === "none" &&
     pwd2Err.style.display === "none" &&
     pwd3Err.style.display === "none"
   ) {

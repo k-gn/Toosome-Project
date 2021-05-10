@@ -14,6 +14,22 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="/resources/js/adminpages/main/share/plugins/jasny-bootstrap.min.js"></script>
   <script src="/resources/js/adminpages/subpages/boardManagement/qnaBoardManagement.js" defer></script>
+  <script>
+	  const msg = "${msg}";
+		if(msg === "insertsuccess") {
+			alert("정상 등록되었습니다");
+		}else if(msg === "insertfail") {
+			alert("입력하신 정보가 올바르지 않습니다.");
+		}else if(msg === 'updatesuccess') {
+			alert("수정 완료");
+		}else if(msg === 'updatefail') {
+			alert("수정 실패");
+		}else if(msg === 'deletesuccess') {
+			alert("삭제 완료");
+		}else if(msg === 'deletefail') {
+			alert("삭제 실패");
+		}
+  </script>
 </head>
 
 <body>
@@ -54,7 +70,6 @@
                               <select name="searchType" class="search-select" id="searchType">
                                 <option value="title">제목</option>
                                 <option value="content">내용</option>
-                                <option value="name">작성자</option>
                               </select>
                               <div class="arrow-down"><i class="material-icons">arrow_drop_down</i></div>
                              </div>
@@ -109,10 +124,10 @@
 		                          <input type="text" name="qnaBoardId" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">작성자</label>
-		                          <input type="text" class="memberName" disabled>
+		                          <input type="text" name="memberName" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
@@ -121,7 +136,7 @@
 		                          <input type="date" name="qnaBoardRegdate" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">잠금여부</label>
 		                          <select class="custom-select" id="modal-isLocked" name="qnaBoardSecret" disabled>
@@ -135,7 +150,7 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">제목</label>
-		                          <input type="text" name="qnaBoardTitle" class="form-control">
+		                          <input id="detail-title" type="text" name="qnaBoardTitle" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -144,7 +159,7 @@
 		                        <div class="form-group">
 		                          <div class="form-group">
 		                            <label class="bmd-label-floating">내용</label>
-		                            <textarea class="form-control" name="qnaBoardContent" rows="5"></textarea>
+		                            <input id="detail-content" type="text" class="form-control" name="qnaBoardContent" />
 		                          </div>
 		                        </div>
 		                      </div>
@@ -167,7 +182,6 @@
 								</div>
 		                      </div>
 		                    </div>
-		                    <input id="update-submit" type="submit" class="btn btn-primary pull-right" value="업데이트" />
 		                    <input type="button" class="btn btn-primary pull-right btn-r" onclick="delBtnFunc();" value="삭제" />
 		                    <input type="button" id="modal-cancel" class="btn btn-primary pull-right btn-r" value="취소" />
 		                    <div class="clearfix"></div>
@@ -188,7 +202,7 @@
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form id="enroll-form" action="/qnacommentinsert?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+			        <form id="enroll-form" action="/admin/qnacomment-insert?${_csrf.parameterName}=${_csrf.token}" method="post">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -197,7 +211,7 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                    <div class="form-group">
-	                                  <textarea class="form-control" name="qnaBoardCommentTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                  <textarea id="enroll-title" class="form-control" name="qnaBoardCommentTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                                </div>
 				                  </div>
 				                </div>
@@ -209,15 +223,16 @@
 				                <h4 class="info-title">내용</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" name="qnaBoardCommentContent" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                <textarea id="enroll-content" class="form-control" name="qnaBoardCommentContent" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">등록</button>
+				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right">등록</button>
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				          <input type="hidden" name="qnaQnaBoardId" />
+				          <input type="hidden" name="qnaCommentWriter" value="관리자" />
 				          <input type="hidden" name="memberMemberCommentId" value="${id}" />
 				        </div>
 			        </form>
@@ -230,12 +245,17 @@
 			    <div class="modal-content">
 			      <div class="card card-signup card-plain">
 			        <div class="modal-header">
-			          <h5 class="modal-title card-title">댓글 리스트</h5>
+			          <div class="title-container">
+				          <h5 class="modal-title card-title">댓글 리스트</h5>
+				          <select class="custom-select" id="comment-list" onchange="commentChange(this);">
+					      </select>
+					      <input id="comment-writer" type="text" class="form-control" disabled />
+			          </div>
 			          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <i class="material-icons">clear</i>
 			          </button>
 			        </div>
-			        <form action="/qnacommentupdate" method="get">
+			        <form id="comment-update-form" action="/admin/qnacomment-update?${_csrf.parameterName}=${_csrf.token}" method="post">
 				        <div class="modal-body">
 				          <div class="row">
 				            <div class="col-md-5 ml-auto">
@@ -244,7 +264,7 @@
 				                  <h4 class="info-title">제목</h4>
 				                  <div class="form-group">
 				                    <div class="form-group">
-	                                  <textarea class="form-control" name="qnaBoardCommentTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                  <textarea id="comment-title" class="form-control" name="qnaBoardCommentTitle" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                                </div>
 				                  </div>
 				                </div>
@@ -256,17 +276,17 @@
 				                <h4 class="info-title">내용</h4>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                <textarea class="form-control" name="qnaBoardCommentContent" rows="10" placeholder="답변을 입력하세요"></textarea>
+	                                <textarea id="comment-content" class="form-control" name="qnaBoardCommentContent" rows="10" placeholder="답변을 입력하세요"></textarea>
 	                              </div>
 	                            </div> 
 	                          </div>         
 				            </div>
 				          </div>
-				          <button type="submit" class="btn btn-primary pull-right">업데이트</button>
-		                  <input type="button" class="btn btn-primary pull-right btn-r" value="삭제" />
+				          <button id="comment-update-submit" type="submit" class="btn btn-primary pull-right">업데이트</button>
+		                  <input id="comment-delete" type="button" class="btn btn-primary pull-right btn-r" value="삭제" onclick="delBtnFunc2();" />
 		                  <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button>   
 				        </div>
-				        <input type="hidden" name="qnaQnaBoardId" />
+				        <input id="hidden-id" type="hidden" name="qnaBoardCommentId" />
 			        </form>
 			      </div>
 			    </div>
@@ -282,7 +302,8 @@
                   <h4 class="card-title" id="search-result">검색 결과: 0건</h4>
                   <div class="list-btn-box">
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -323,28 +344,7 @@
                           액션
                         </th>
                       </thead>
-                      <tbody id="list-table-body" class="text-center">
-                      <tr>
-	                          <td>
-	                            1
-	                          </td>
-	                          <td>
-	                            ㅂㅈㅇ
-	                          </td>
-	                          <td onclick="listHandler(this);">
-	                            <a href="#">ㅂㅂㅂ</a>
-	                          </td>
-	                          <td>
-	                            ㅂㅈㅇㅂㅈㅇ
-	                          </td>
-	                          <td>
-	                            2222
-	                          </td>
-	                          <td class="td-actions">
-				                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#commentListModal">댓글보기</button>
-	                          	<button type="button" rel="tooltip" class="btn btn-success" data-toggle="modal" data-target="#commentModal">댓글등록</button>
-	                          </td>
-	                        </tr>
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
                     <div id="pagination"></div>
