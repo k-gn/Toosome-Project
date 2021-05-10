@@ -33,7 +33,7 @@ public class QnaBoardService implements IQnaBoardService {
 
 	@Override
 	public QnaBoardVO passwordQnaBoard(Integer index) {
-		System.out.println("qna 비밀번호 :" + mapper.passwordQnaBoard(index));
+		
 		return mapper.passwordQnaBoard(index);
 	}
 

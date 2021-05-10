@@ -135,7 +135,7 @@ public class BoardController {
 	public List<NoticeBoardVO> notice(NoticeBoardVO noticeboardVO) throws Exception {
 	
 		List<NoticeBoardVO> noticeBoardList = noticeBoardService.getNoticeBoardList(noticeboardVO);
-		System.out.println(noticeBoardList);
+		
 		return noticeBoardList;
 
 	}
@@ -151,7 +151,7 @@ public class BoardController {
 	public List<NoticeBoardVO> noticeDetail(String index) throws Exception {	
 		List<NoticeBoardVO> noticeBoard = noticeBoardService.getNoticeBoard(index);
 		noticeBoardService.NoticeBoardCount(index);
-		System.out.println(noticeBoard);
+		
 		return noticeBoard;
 	}
 	
@@ -211,7 +211,7 @@ public class BoardController {
 	@ResponseBody
 	public List<NewsBoardVO> getNewsBoardDetail(String index)throws Exception{
 		List<NewsBoardVO> newsdetail = newsBoardService.getNewsBoardDetail(index);
-		System.out.println("디테일값" + newsdetail);
+		
 		newsBoardService.newsBoardCount(index);
 		return newsdetail;
 	}
@@ -292,7 +292,6 @@ public class BoardController {
 			uploadFile.transferTo(convFile);
 			File file = convFile;
 			String key = "img/qnaImg/" + vo.getQnaBoardImageName();
-			System.out.println(key);
 			awsS3.upload(file, key);
 		}
 		

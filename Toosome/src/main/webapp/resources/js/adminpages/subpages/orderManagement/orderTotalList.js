@@ -198,7 +198,6 @@ const submitHandler = () => {
 	$("input[name='state']:checked").each(function(i){   //jQuery로 for문 돌면서 check 된값 배열에 담는다
 		orderState.push($(this).val());
 	});
-	console.log(orderState);
 	
 	// 검색 타입, 검색어
 	if(searchType.options[searchType.selectedIndex].value === 'o-id') { // 아이디로 검색시
