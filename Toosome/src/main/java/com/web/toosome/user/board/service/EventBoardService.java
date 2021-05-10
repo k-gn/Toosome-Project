@@ -35,7 +35,6 @@ public class EventBoardService implements IEventBoardService {
 		map.put("index", index);
 		map.put("check", check);
 		
-		System.out.println("check : " + check);
 		for(EventBoardVO e : mapper.getEventBoardDetail(map)) {
 			System.out.println(e);
 		}
