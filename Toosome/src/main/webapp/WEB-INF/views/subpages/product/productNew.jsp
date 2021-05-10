@@ -42,51 +42,22 @@
         </div>
     	<!-- 상품 이미지 출력 -->
         <div class="product-box">
-					<ul class="all">
-						<c:forEach var="productNewList" items="${productNewList}">
-							<li>
-								<a href="/productDetail?productId=${productNewList.productId}">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
-									<c:if test="${productNewList.productNew == 1}">
-									  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
-									</c:if>
-									<c:if test="${productNewList.productState == 2}">
-									  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
-
-									</c:if>
-									<span>${productNewList.productTitleName}</span>
-
-									<div class="pay-box">
-										<span class="com" style="float: left;">${productNewList.productPrice}</span>
-										<span style="float: left;">&nbsp;원</span>
-									</div>
-								</a>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
 			<ul class="all">
-				<c:forEach var="productAllList" items="${productAllList}">
+				<c:forEach var="productNewList" items="${productNewList}">
 					<li>
-					<!-- 상품 Id -->
-						<a href="/productDetail?productId=${productAllList.productId}">
-							<!-- 상품 이미지 -->
-							<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productAllList.productImageVO.productImageRoute}/${productAllList.productImageVO.productImageName}.${productAllList.productImageVO.productImageExtention}" alt="">
-							<!-- 만약 상품이 신메뉴일 경우 -->
-							<c:if test="${productAllList.productNew == 1}">
-							  <!-- new 딱지 배치 -->
+						<a href="/productDetail?productId=${productNewList.productId}">
+							<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${productNewList.productImageVO.productImageRoute}/${productNewList.productImageVO.productImageName}.${productNewList.productImageVO.productImageExtention}" alt="">
+							<c:if test="${productNewList.productNew == 1}">
 							  <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/ico_new.png" alt=""/>
 							</c:if>
-							<!-- 만약 상품재고가 없을 경우 -->
-							<c:if test="${productAllList.productState == 2}">
-							  <!-- soldout이미지 배치 -->
+							<c:if test="${productNewList.productState == 2}">
 							  <img class="sold" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/product/soldOut.png" alt=""/>
+
 							</c:if>
-							<!-- 상품 이름 -->
-							<span>${productAllList.productTitleName}</span>
-							<!-- 상품의 금액 -->
+							<span>${productNewList.productTitleName}</span>
+
 							<div class="pay-box">
-								<span class="com" style="float: left;">${productAllList.productPrice}</span>
+								<span class="com" style="float: left;">${productNewList.productPrice}</span>
 								<span style="float: left;">&nbsp;원</span>
 							</div>
 						</a>
