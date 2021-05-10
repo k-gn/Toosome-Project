@@ -53,7 +53,7 @@ const displayDetail = (title, content, items, index) => {
 // 이전글, 다음글 생성 함수
 const displayLocator = (items) => {
 	// 이전글 생성 후 삽입
-	if(!items[0].newsBoardId) {
+	if(!items[2].newsBoardId) {
 		let newPrev = `
 			<td colspan="1">이전글</td>
     		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -62,13 +62,13 @@ const displayLocator = (items) => {
 	} else {
 		let newPrev = `
 			<td colspan="1">이전글</td>
-    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[0].newsBoardId}'">${items[0].newsBoardTitle}</a></td>
+    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[2].newsBoardId}'">${items[2].newsBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(!items[2].newsBoardId) {
+	if(!items[0].newsBoardId) {
 		let newNext = `
 			<td colspan="1">다음글</td>
     		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
@@ -77,7 +77,7 @@ const displayLocator = (items) => {
 	} else {
 		let newNext = `
 			<td colspan="1">다음글</td>
-    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[2].newsBoardId}'">${items[2].newsBoardTitle}</a></td>
+    		<td colspan="3"><a onclick="location.href='/news-detail?index=${items[0].newsBoardId}'">${items[0].newsBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -93,9 +93,6 @@ $(document).ready(() => {
 		success: (res) => {	
 			// 데이터 역순		
 			const newRes = res.reverse();
-			const result = newRes.sort((a,b) => {
-				return a.noticeBoardId - b.noticeBoardId;
-			});
 			
 			// null data 생성
 			const nullData = {
@@ -109,21 +106,21 @@ $(document).ready(() => {
 			};
 			
 			// 게시글이 하나일 때
-			if(result.length === 1) {
-				result.unshift(nullData);
-				result.push(nullData);
+			if(newRes.length === 1) {
+				newRes.unshift(nullData);
+				newRes.push(nullData);
 			}
 			
 			// 처음 혹은 마지막 게시물
-			if(result.length === 2) {		
+			if(newRes.length === 2) {		
 				// 첫 게시물 
-				if(+result[0].newsBoardId !== +index) {
-					result.push(nullData);
+				if(+newRes[0].newsBoardId !== +index) {
+					newRes.push(nullData);
 				} else { // 마지막 게시물
-					result.unshift(nullData);
+					newRes.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, result, index);
+			displayDetail(detailTitle, detailContent, newRes, index);
 		},
 		error: () => {
 			alert('통신장애');
