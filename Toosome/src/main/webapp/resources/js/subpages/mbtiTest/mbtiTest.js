@@ -217,7 +217,6 @@ function next() {
     $("#coffee").html(result[mbti]["coffee"]);
     $("#explain").html(result[mbti]["explain"]);
 	var coffeeName = $(".coffeeName").text();
-	console.log(coffeeName);
 	var Data = { "coffeeName": coffeeName };
 	$.ajax({
 			type: "get", //서버에 전송하는 HTTP요청 방식
