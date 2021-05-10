@@ -59,4 +59,7 @@ public interface IMemberService {
 	
 	// 권한 찾기
 	public AuthVO getAuthById(String email);
+	
+	public Integer getUserIdByEmail(String email);
+
 }

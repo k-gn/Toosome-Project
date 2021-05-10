@@ -12,6 +12,7 @@
 		<result property="menuType" column="MENU_TYPE" />
 		<result property="menuRegDate" column="MENU_REG_DATE" />
 		<result property="menuStartDay" column="MENU_START_DAY" />
+		<result property="menuStar" column="MENU_STAR" />
 		<result property="menuCheckCount" column="MENU_CHECK_COUNT" />
 		<result property="menuState" column="MENU_STATE" />
 		<result property="menuNew" column="MENU_NEW" />
@@ -40,8 +41,21 @@
 		<result property="iatSaturatedFat" column="IAT_SATURATED_FAT" />
 		<result property="iatNatrium" column="IAT_NATRIUM" />
 	</resultMap>
-	
-	
+
+	<resultMap type="menuReviewBoardVO" id="menuReviewBoardVO">
+		<id property="menuReviewBoardId" column="MENU_REVIEW_BOARD_ID" />
+		<result property="menuId" column="MENU_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="menuReviewBoardRating"
+			column="MENU_REVIEW_BOARD_RATING" />
+		<result property="menuReviewBoardContent"
+			column="MENU_REVIEW_BOARD_CONTENT" />
+		<result property="menuReviewBoardWriter"
+			column="MENU_REVIEW_BOARD_WRITER" />
+		<result property="menuReviewBoardRegDate"
+			column="MENU_REVIEW_BOARD_REG_DATE" />
+	</resultMap>
+
 	<!-- 영양성분표 1 -->
 	<select id="getIatListOne" resultMap="menuVO">
 		SELECT A.MENU_ID,
@@ -57,12 +71,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
+		FROM MENU
+		A JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 		WHERE A.MENU_TYPE = 2;
 	</select>
-	
-	<!-- 영양성분표1 검색기능 구현  select 쿼리문 -->
+
+	<!-- 영양성분표1 검색기능 구현 select 쿼리문 -->
 	<select id="getSearchIatListOne" resultMap="menuVO">
 		SELECT A.MENU_ID,
 		A.MENU_MAIN_TITLE,
@@ -77,10 +92,12 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 2 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
+		FROM MENU
+		A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 2 WHERE
+		MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	
+
 	<!-- 영양성분표 2 -->
 	<select id="getIatListTwo" resultMap="menuVO">
 		SELECT A.MENU_ID,
@@ -96,12 +113,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
+		FROM MENU
+		A JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 		WHERE A.MENU_TYPE = 4;
 	</select>
-	
-	<!-- 영양성분표2 검색기능 구현  select 쿼리문 -->
+
+	<!-- 영양성분표2 검색기능 구현 select 쿼리문 -->
 	<select id="getSearchIatListTwo" resultMap="menuVO">
 		SELECT A.MENU_ID,
 		A.MENU_MAIN_TITLE,
@@ -116,11 +134,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 4 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
+		FROM MENU
+		A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 4 WHERE
+		MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	
-	
+
+
 	<!-- 영양성분표 3 -->
 	<select id="getIatListThree" resultMap="menuVO">
 		SELECT A.MENU_ID,
@@ -136,12 +156,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
+		FROM MENU
+		A JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 		WHERE A.MENU_TYPE = 1;
 	</select>
-	
-	<!-- 영양성분표3 검색기능 구현  select 쿼리문 -->
+
+	<!-- 영양성분표3 검색기능 구현 select 쿼리문 -->
 	<select id="getSearchIatListThree" resultMap="menuVO">
 		SELECT A.MENU_ID,
 		A.MENU_MAIN_TITLE,
@@ -156,11 +177,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 1 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
+		FROM MENU
+		A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 1 WHERE
+		MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	
-	
+
+
 	<!-- 영양성분표 4 -->
 	<select id="getIatListFour" resultMap="menuVO">
 		SELECT A.MENU_ID,
@@ -176,12 +199,13 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
+		FROM MENU
+		A JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID)
 		WHERE A.MENU_TYPE = 3;
 	</select>
-	
-	<!-- 영양성분표4 검색기능 구현  select 쿼리문 -->
+
+	<!-- 영양성분표4 검색기능 구현 select 쿼리문 -->
 	<select id="getSearchIatListFour" resultMap="menuVO">
 		SELECT A.MENU_ID,
 		A.MENU_MAIN_TITLE,
@@ -196,10 +220,12 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 3 WHERE MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%') 
+		FROM MENU
+		A JOIN
+		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) AND A.MENU_TYPE = 3 WHERE
+		MENU_MAIN_TITLE LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	
+
 	<select id="getnewList" resultMap="menuVO">
 		<![CDATA[
 			SELECT A.MENU_ID,
@@ -287,6 +313,8 @@
 		A.MENU_SUB_TITLE,
 		A.MENU_CONTENT,
 		A.MENU_PRICE,
+		A.MENU_STAR,
+		A.MENU_TYPE,
 		A.MENU_NEW,
 		B.MENU_IMAGE_NAME,
 		B.MENU_IMAGE_EXTENTION,
@@ -301,10 +329,12 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A INNER JOIN
+		FROM MENU
+		A INNER JOIN
 		MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID)
 		INNER JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
+		IAT
+		C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
 	
 	<select id="getimportList" resultMap="menuVO"
@@ -328,40 +358,121 @@
 		C.IAT_PROTEIN,
 		C.IAT_SATURATED_FAT,
 		C.IAT_NATRIUM
-		FROM MENU A INNER JOIN
+		FROM MENU
+		A INNER JOIN
 		MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID)
 		INNER JOIN
-		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
+		IAT
+		C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
-	
+
 	<insert id="saveGift">
-		INSERT INTO ORDERS(MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE,
-		 ORDERS_RECEIVER, ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MERCHANT_UID, ORDERS_MEMBER_EMAIL, ORDERS_USE_POINT, ORDERS_PRODUCT_PAY, ORDERS_SAL)
-		VALUES(#{memberId}, now(), #{menuPrice}, "기프티콘",
-		 #{memberName}, #{memberPhone}, #{menuMainTitle}, 1, #{merchantUid}, #{memberEmail}, #{ordersUsePoint}, #{ordersProductPay}, #{ordersSal})
+		INSERT INTO ORDERS(MEMBER_MEMBER_ID,
+		ORDERS_ORDER_DATE, ORDERS_PAYMENT, ORDERS_STATE,
+		ORDERS_RECEIVER,
+		ORDERS_PHONE, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT,
+		ORDERS_MERCHANT_UID,
+		ORDERS_MEMBER_EMAIL, ORDERS_USE_POINT,
+		ORDERS_PRODUCT_PAY, ORDERS_SAL)
+		VALUES(#{memberId}, now(),
+		#{menuPrice}, "기프티콘",
+		#{memberName},
+		#{memberPhone}, #{menuMainTitle}, 1, #{merchantUid}, #{memberEmail},
+		#{ordersUsePoint}, #{ordersProductPay}, #{ordersSal})
 	</insert>
-	
+
 	<select id="getMenuMainTitle" resultType="String">
-		SELECT MENU_MAIN_TITLE FROM MENU WHERE MENU_ID = #{id}
+		SELECT MENU_MAIN_TITLE
+		FROM MENU WHERE MENU_ID = #{id}
 	</select>
-	
+
 	<insert id="giftSendOrder">
-		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
-		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
-		VALUES(#{ordersId}, #{memberId}, 1, #{menuMainTitle}, #{menuPrice}, #{menuImagePath})
+		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,
+		ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
+		ORDERS_DETAIL_PRICE,
+		ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersId}, #{memberId}, 1,
+		#{menuMainTitle}, #{menuPrice}, #{menuImagePath})
 	</insert>
-	
+
 	<select id="getMenuImagePath" resultMap="menuImageVO">
-		SELECT * FROM MENU_IMAGE WHERE MENU_MENU_ID = #{id}
+		SELECT * FROM MENU_IMAGE
+		WHERE MENU_MENU_ID = #{id}
 	</select>
-	
+
 	<select id="getOrdersId" resultType="Integer">
-		SELECT ORDERS_ID FROM ORDERS WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
+		SELECT ORDERS_ID FROM ORDERS
+		WHERE MEMBER_MEMBER_ID = #{id} ORDER BY ORDERS_ID DESC limit 1
 	</select>
-	
+
 	<select id="getMenuPrice" resultType="Integer">
-		SELECT MENU_PRICE FROM MENU WHERE MENU_ID = #{id}
+		SELECT MENU_PRICE FROM MENU
+		WHERE MENU_ID = #{id}
 	</select>
+
+	<select id="menuReviewList" resultMap="menuReviewBoardVO">
+	<![CDATA[
+		SELECT MENU_REVIEW_BOARD_ID, MENU_ID, MEMBER_ID, MENU_REVIEW_BOARD_RATING, MENU_REVIEW_BOARD_CONTENT, MENU_REVIEW_BOARD_WRITER, MENU_REVIEW_BOARD_REG_DATE
+		FROM MENU_REVIEW_BOARD WHERE MENU_ID = #{menuId} ORDER BY MENU_REVIEW_BOARD_ID DESC;
+	]]>
+	</select>
+
+	<insert id="menuReviewInsert">
+		INSERT INTO MENU_REVIEW_BOARD
+		(MENU_REVIEW_BOARD_ID,
+		MENU_ID, MEMBER_ID,
+		MENU_REVIEW_BOARD_RATING,
+		MENU_REVIEW_BOARD_CONTENT,
+		MENU_REVIEW_BOARD_WRITER,
+		MENU_REVIEW_BOARD_REG_DATE
+		) VALUES (
+		#{menuReviewBoardId},#{menuId},
+		#{memberId},#{menuReviewBoardRating},#{menuReviewBoardContent},#{menuReviewBoardWriter},NOW())
+	</insert>
+
+	<update id="menuReviewUpdate">
+		UPDATE MENU_REVIEW_BOARD SET
+		MENU_REVIEW_BOARD_CONTENT = #{menuReviewBoardContent}
+		WHERE
+		MENU_REVIEW_BOARD_ID = #{menuReviewBoardId}
+	</update>
+
+	<delete id="menuReviewDelete">
+		DELETE FROM MENU_REVIEW_BOARD WHERE
+		MENU_REVIEW_BOARD_ID = #{menuReviewBoardId}
+	</delete>
+
+	<delete id="delmenuById">
+		DELETE FROM MENU_REVIEW_BOARD_CONTENT WHERE
+		MEMBER_ID
+		= #{id}
+	</delete>
+
+	<select id="menuReviewSelect" resultMap="menuReviewBoardVO">
+		SELECT
+		MENU_REVIEW_BOARD_ID,MENU_ID, MEMBER_ID,
+		MENU_REVIEW_BOARD_RATING,
+		MENU_REVIEW_BOARD_CONTENT,
+		MENU_REVIEW_BOARD_WRITER,
+		MENU_REVIEW_BOARD_REG_DATE
+		FROM
+		MENU_REVIEW_BOARD WHERE
+		MENU_REVIEW_BOARD_ID =
+		#{menuReviewBoardId}
+	</select>
+
+	<!-- 별점 평균값 -->
+	<select id="menuRatingAVG" resultMap="menuVO">
+		UPDATE MENU SET MENU_STAR =
+		(SELECT ROUND(AVG(R.MENU_REVIEW_BOARD_RATING),0) STAR_AVG
+		FROM
+		MENU_REVIEW_BOARD R
+		JOIN MENU M ON(M.MENU_ID = R.MENU_ID)
+		WHERE
+		M.MENU_ID = #{menuId})
+		WHERE MENU_ID = #{menuId};
+	</select>
+
 	
 	<select id="getmbtiMenu" resultMap="menuVO"
 		parameterType="menuVO">
@@ -378,4 +489,5 @@
 		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) 
 		WHERE A.MENU_MAIN_TITLE = #{coffeeName}
 	</select>
+
 </mapper>

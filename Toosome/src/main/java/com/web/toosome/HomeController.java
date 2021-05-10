@@ -18,6 +18,5 @@ public class HomeController {
 		model.addAttribute("bannerList", settingService.getBannerList());
 		model.addAttribute("path", "https://toosome.s3.ap-northeast-2.amazonaws.com");
 		return "index";
-	}
-	
+	}	
 }

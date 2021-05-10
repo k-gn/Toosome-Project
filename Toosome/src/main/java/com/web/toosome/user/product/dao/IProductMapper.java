@@ -1,12 +1,12 @@
-package com.web.toosome.user.product.service;
+package com.web.toosome.user.product.dao;
 
 import java.util.List;
 
 import com.web.toosome.user.product.vo.ProductVO;
+import com.web.toosome.user.menu.vo.MenuVO;
 import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
-
-public interface IProductService {
+public interface IProductMapper {
 	public List<ProductVO> getproductnewList(ProductVO productVO);
 	public List<ProductVO> getcoffeeList(ProductVO productVO);
 	public List<ProductVO> getcoffeewearList(ProductVO productVO);
@@ -14,6 +14,7 @@ public interface IProductService {
 	public ProductVO getproductDetail(ProductVO productVO);
 	public ProductVO getproductDetailById(Integer pid);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
+	
 	
 	//별점 평균값
 	public ProductVO productRatingAVG(ProductVO productVO);
@@ -37,4 +38,3 @@ public interface IProductService {
 	public int delproductById(Integer id);
 
 }
-
