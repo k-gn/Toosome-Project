@@ -17,6 +17,7 @@ const getParam = (param) => {
 	}
 };
 
+
 // 댓글 유효성 검사
 const enrollCheck = () => {
 	const title = document.querySelector('#comment-title');
@@ -193,8 +194,7 @@ $(document).ready(() => {
 	
 	$.ajax({
 		url: '/qnadetail?index='+index,
-		success: (res) => {
-			console.log(res);	
+		success: (res) => {	
 			displayDetail(detailTitle, detailContent, commentContent, res, index);
 		},
 		error: () => {

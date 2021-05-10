@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.membershipManagement.dao.IMembershipManagementMapper;
 import com.web.toosome.admin.membershipManagement.vo.MembershipSearchVO;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.membership.vo.LevelVO;
 import com.web.toosome.user.membership.vo.MembershipVO;
 

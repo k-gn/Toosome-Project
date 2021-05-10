@@ -81,7 +81,7 @@
 			}
 		},
 		error: function() {
-			console.log("통신 실패!");
+			alert("통신실패");
 		}
 	  });
     };
@@ -565,7 +565,7 @@
 		dataType: "text", //응답받을 데이터의 형태
 		data: JSON.stringify(member), //서버로 전송할 데이터
 		success: function(result) { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log("통신 성공!: " + result);
+			
 			if(result === "success") {
 				alert("회원가입에 성공했습니다!");
 				location.href="/signupcomplete";
@@ -575,7 +575,7 @@
 			}
 		}, 
 		error: function() {
-			console.log("통신 실패!");
+			alert("통신 실패");
 		} 
 	});
   };

@@ -18,10 +18,11 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
-import com.web.toosome.user.product.dao.ProductMapper;
+import com.web.toosome.user.menu.vo.MenuVO;
+import com.web.toosome.user.product.dao.IProductMapper;
 import com.web.toosome.user.product.vo.ProductPrecautionsVO;
-import com.web.toosome.user.product.vo.ProductScoreVO;
 import com.web.toosome.user.product.vo.ProductVO;
+import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 
 
@@ -29,7 +30,7 @@ import com.web.toosome.user.product.vo.ProductVO;
 public class ProductService implements IProductService{
 	
 	@Autowired
-	private ProductMapper productmapper;
+	private IProductMapper productmapper;
 	
 	public int s3Upload(MultipartFile file, String fname) {
 		AmazonS3 amazonS3 = null;
@@ -86,13 +87,6 @@ public class ProductService implements IProductService{
 	}
 	
 
-
-	@Override
-	public ProductScoreVO getscoreDetail(ProductScoreVO productScoreVO) {
-		
-		return productmapper.getscoreDetail(productScoreVO);
-	}
-
 	@Override
 	public ProductVO getproductprecautionsDetail(ProductVO productVO) {
 		return productmapper.getproductprecautionsDetail(productVO);
@@ -102,6 +96,46 @@ public class ProductService implements IProductService{
 	public ProductVO getproductDetailById(Integer pid) {
 		return productmapper.getproductDetailById(pid);
 	}
+	
+	
+	@Override
+	public ProductVO productRatingAVG(ProductVO productVO) {
+		return productmapper.productRatingAVG(productVO);
+	}
+	
+	@Override
+	public List<ProductReviewBoardVO> productReviewList(Integer productId){
+		return productmapper.productReviewList(productId);
+	}
+
+	@Override
+	public int productReviewInsert(ProductReviewBoardVO productReviewBoardVO){
+		return productmapper.productReviewInsert(productReviewBoardVO);
+	}
+
+	@Override
+	public int productReviewUpdate(ProductReviewBoardVO productReviewBoardVO) {
+		return productmapper.productReviewUpdate(productReviewBoardVO);
+	}
+
+	@Override
+	public int productReviewDelete(ProductReviewBoardVO productReviewBoardVO) {
+		return productmapper.productReviewDelete(productReviewBoardVO);
+	}
+
+
+	@Override
+	public ProductReviewBoardVO productReviewSelect(Integer productReviewBoardId) {
+
+		return productmapper.productReviewSelect(productReviewBoardId);
+	}
+
+	@Override
+	public int delproductById(Integer id) {
+		return productmapper.delproductById(id);
+	}
+
+
 
 
 }

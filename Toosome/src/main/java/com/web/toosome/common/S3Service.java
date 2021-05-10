@@ -1,4 +1,4 @@
-package com.web.toosome.common.s3;
+package com.web.toosome.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

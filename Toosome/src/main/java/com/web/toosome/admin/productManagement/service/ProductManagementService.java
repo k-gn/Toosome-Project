@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.productManagement.dao.IProductManagementMapper;
 import com.web.toosome.admin.productManagement.vo.ProductSearchVO;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.product.vo.ProductImageVO;
 import com.web.toosome.user.product.vo.ProductVO;
 

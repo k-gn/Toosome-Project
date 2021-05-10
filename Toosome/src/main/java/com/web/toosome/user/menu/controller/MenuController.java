@@ -11,17 +11,21 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.MembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.menu.service.IMenuService;
+import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
 
 @Controller
@@ -37,13 +41,13 @@ public class MenuController {
 
 	@Autowired
 	private MembershipService memberShipService;
+	
 
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망
 	public String menuNew(MenuVO menuVO, Model model) {
 		System.out.println("신메뉴 출력");
 		List<MenuVO> menuNewList = menuService.getnewList(menuVO);
 		model.addAttribute("menuNewList", menuNewList);
-		System.out.println(model);
 		return "subpages/menu/menuNew";
 	}
 
@@ -52,7 +56,6 @@ public class MenuController {
 		System.out.println("음료 메뉴 출력");
 		List<MenuVO> menuBeverageList = menuService.getbeverageList(menuVO);
 		model.addAttribute("menuBeverageList", menuBeverageList);
-		System.out.println(model);
 		return "subpages/menu/menuBeverage";
 	}
 
@@ -61,7 +64,6 @@ public class MenuController {
 		System.out.println("델리 메뉴 출력");
 		List<MenuVO> menuDelhiList = menuService.getdelhiList(menuVO);
 		model.addAttribute("menuDelhiList", menuDelhiList);
-		System.out.println(model);
 		return "subpages/menu/menuDelhi";
 	}
 
@@ -70,7 +72,6 @@ public class MenuController {
 		System.out.println("디저트 메뉴 출력");
 		List<MenuVO> menuDessertList = menuService.getdessertList(menuVO);
 		model.addAttribute("menuDessertList", menuDessertList);
-		System.out.println(model);
 		return "subpages/menu/menuDessert";
 	}
 
@@ -79,7 +80,6 @@ public class MenuController {
 		System.out.println("홀케이크 메뉴 출력");
 		List<MenuVO> menuWholecakeList = menuService.getwholecaketList(menuVO);
 		model.addAttribute("menuWholecakeList", menuWholecakeList);
-		System.out.println(model);
 		return "subpages/menu/menuWholecake";
 	}
 
@@ -88,7 +88,6 @@ public class MenuController {
 		System.out.println("영양 성분표 1");
 		List<MenuVO> nutrient1 = menuService.getIatListOne(vo);
 		model.addAttribute("nutrient1", nutrient1);
-		System.out.println(model);
 		return "subpages/nutrient/nutrient1";
 	}
 
@@ -105,7 +104,6 @@ public class MenuController {
 		System.out.println("영양성분표2");
 		List<MenuVO> nutrient2 = menuService.getIatListTwo(vo);
 		model.addAttribute("nutrient2", nutrient2);
-		System.out.println(model);
 		return "subpages/nutrient/nutrient2";
 	}
 
@@ -122,7 +120,6 @@ public class MenuController {
 		System.out.println("영양성분표3");
 		List<MenuVO> nutrient3 = menuService.getIatListThree(vo);
 		model.addAttribute("nutrient3", nutrient3);
-		System.out.println(model);
 		return "subpages/nutrient/nutrient3";
 	}
 
@@ -151,8 +148,6 @@ public class MenuController {
 	@ResponseBody
 	public MenuVO getmbtiData(@RequestParam("coffeeName") String coffeeName) {
 		MenuVO mbtiMenu = menuService.getmbtiMenu(coffeeName);
-		System.out.println(coffeeName);
-		System.out.println(mbtiMenu);
 		return mbtiMenu;
 	}
 
@@ -165,13 +160,58 @@ public class MenuController {
 	}
 
 	@GetMapping("/menuDetail") // menu Detail page
-	public String beverageDetail(MenuVO menuVO, Model model) {
+	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
 		System.out.println("음료 메뉴 디테일 출력");
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
+		MenuVO menuavg = menuService.menuRatingAVG(menuVO);
+		
+		List<MenuReviewBoardVO> menuReviewList = menuService.menuReviewList(menuReviewBoardVO.getMenuId());
+		model.addAttribute("menuReviewList", menuReviewList);
+		System.out.println("리뷰VO" + menuReviewList);
+		
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		
 		System.out.println(model);
 		return "subpages/menu/menuDetail/menuDetail";
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/menuReviewInsert")
+	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
+		menuService.menuReviewInsert(menuReviewBoardVO);
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		System.out.println("menuReviewInsert" + menuReviewBoardVO.getMenuReviewBoardId());
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		return "redirect:/menuDetail";
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/menuReviewUpdate")
+//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
+	@ResponseBody
+	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		menuService.menuReviewUpdate(menuReviewBoardVO);
+		System.out.println("menuReviewUpdate" + menuReviewBoardVO.getMenuReviewBoardContent());
+	
+		return new RedirectView("/menuDetail");
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/menuReviewDelete")
+	@ResponseBody
+	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
+		rttr.addAttribute("menuReviewBoardId", menuReviewBoardVO.getMenuReviewBoardId());
+		menuService.menuReviewDelete(menuReviewBoardVO);
+		System.out.println("getReviewBoardId : "+menuReviewBoardVO.getMenuReviewBoardId());
+		
+		return new RedirectView("/menuDetail");
+	}
+	
 
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/import1") // 결제 화면...
@@ -204,7 +244,6 @@ public class MenuController {
 		model.addAttribute("point", (int) point);
 		MembershipVO memberPoint = memberShipService.getMembershipInfo(id);
 		model.addAttribute("memberPoint", memberPoint);
-		System.out.println(id);
 		MemberVO memberOrderList = memberService.getUserById(id);
 		model.addAttribute("memberOrderList", memberOrderList);
 		return "subpages/menu/menuOrder/menuOrder";
@@ -221,11 +260,9 @@ public class MenuController {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("id", id);
 		map.put("imsipoint", (int)imsipoint);
-		System.out.println((int)imsipoint);
 		memberShipService.getStackPoint(map);
 		System.out.println("getStackPoint 실행 완료");
 		Integer usedPoint = menusalt - menuEndPrice;
-		System.out.println(usedPoint);
 		map.put("usedPoint", usedPoint);
 		memberShipService.getDownPoint(map);
 		System.out.println("getDownPoint 실행 완료");
@@ -248,11 +285,7 @@ public class MenuController {
 		String imageExtention = menuService.getMenuImagePath(menuId).getMenuImageExtention();
 		String imageRoute = menuService.getMenuImagePath(menuId).getMenuImageRoute();
 		String imagePath = basicImagePath + imageRoute + "/" + imageName + "." + imageExtention;
-		System.out.println(imageName);
-		System.out.println(imageExtention);
-		System.out.println(imageRoute);
 		menuVO.setMenuImagePath(imagePath);
-		System.out.println(imagePath);
 		int menuProce = menuService.getMenuPrice(menuId);
 		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
 		double msi = menuProce * (ms / 100);
@@ -287,9 +320,6 @@ public class MenuController {
 		model.addAttribute("usedPoint", usedPoint);
 		model.addAttribute("salprice", salprice);
 		model.addAttribute("sPoint", (int)sPoint);
-		System.out.println(menuEndPrice);
-		System.out.println(menusalt);
-		System.out.println(id);
 		MemberVO memberOrderCompleteList = memberService.getUserById(id);
 		model.addAttribute("memberOrderCompleteList", memberOrderCompleteList);
 		return "subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete";

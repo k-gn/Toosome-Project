@@ -91,3 +91,7 @@ function modBasket(i, bid) {
 		}
 	 });
 }
+
+function deleteAll(all){
+	var  all 
+}
