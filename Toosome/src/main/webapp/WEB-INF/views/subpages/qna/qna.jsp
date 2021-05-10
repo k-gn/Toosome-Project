@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   	<script src="/resources/js/subpages/qna/qna.js" defer></script>
     <title>A TOOSOME PLACE</title>
+    
+    <!-- 게시글 등록 메시지 -->
     <script type="text/javascript">
     	const msg = "${msg}"
     	if(msg === "successBoard") {
@@ -23,9 +25,11 @@
     <div id="container">
         <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<!-- section start -->
+		<!-- qna 시작 -->
         <section>
         	<div class="sub-header-container">
         		<h3>QnA</h3>
+        		<!-- 상단 navigation -->
         		<div class="navigation-container">
         			<ul>
         				<li><a href="/">HOME</a></li>
@@ -67,6 +71,8 @@
         				<th scope="col">조회수</th>
         			</tr>
         		</thead>
+        		
+        		<!-- javascript로 추가될 내용 -->
         		<tbody id="qna">
         		</tbody>
         	</table>

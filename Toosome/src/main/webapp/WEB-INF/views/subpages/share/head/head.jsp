@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- favicon -->
 <link
       rel="shortcut icon"
       href="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/AnyConv.com__favicon.ico"

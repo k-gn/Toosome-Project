@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.toosome.admin.membershipManagement.dao.IMembershipManagementMapper;
 import com.web.toosome.admin.membershipManagement.vo.MembershipSearchVO;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
 import com.web.toosome.user.membership.vo.LevelVO;
 import com.web.toosome.user.membership.vo.MembershipVO;
 
@@ -49,7 +49,7 @@ public class MembershipMangementService implements IMembershipManagementService 
 		
 		LevelVO maxLvl = mapper.getLevel(mapper.countLevel());
 		LevelVO maxPrevLvl = mapper.getLevel(mapper.countLevel() - 1);
-		maxLvl.setLevelMaxRange(maxLvl.getLevelMinRange() + (maxPrevLvl.getLevelMaxRange() - maxPrevLvl.getLevelMinRange() + 1));
+		maxLvl.setLevelMaxRange(maxLvl.getLevelMinRange() + (maxPrevLvl.getLevelMaxRange() - maxPrevLvl.getLevelMinRange()));
 		mapper.updateLevel(maxLvl);
 		
 		mapper.aiReset();

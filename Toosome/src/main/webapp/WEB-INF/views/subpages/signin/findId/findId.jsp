@@ -15,6 +15,7 @@
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 		<!-- Section Start -->
+		<!-- ID 찾기 -->
 		<section>
 			<div class="info">
 				<h3>아이디 찾기</h3>

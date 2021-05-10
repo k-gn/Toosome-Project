@@ -366,6 +366,12 @@ const getStatistics = (data) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: data, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
+			if(result.totalPayment == null) {
+				result.totalPayment = 0;
+			}
+			if(result.totalSales == null) {
+				result.totalSales = 0;
+			}
 			$("#totalPayment").html(result.totalPayment.toLocaleString() + ' <small>원<small>');
 			$("#totalSalesCount").html(result.totalSales.toLocaleString() + ' <small>건<small>');
 			chartData = [...result.dailyInfo];

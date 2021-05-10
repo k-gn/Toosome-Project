@@ -19,14 +19,16 @@ import com.web.toosome.admin.boardManagement.service.IFaqAdminService;
 import com.web.toosome.admin.boardManagement.service.INewsAdminService;
 import com.web.toosome.admin.boardManagement.service.INoticeAdminService;
 import com.web.toosome.admin.boardManagement.service.IQnaAdminService;
-import com.web.toosome.common.s3.S3Service;
+import com.web.toosome.common.S3Service;
+import com.web.toosome.user.board.service.IQnaBoardCommentService;
 import com.web.toosome.user.board.vo.BoardSearchVO;
 import com.web.toosome.user.board.vo.EventBoardDetailVO;
 import com.web.toosome.user.board.vo.EventBoardVO;
+import com.web.toosome.user.board.vo.FaqBoardVO;
 import com.web.toosome.user.board.vo.NewsBoardDetailVO;
 import com.web.toosome.user.board.vo.NewsBoardVO;
 import com.web.toosome.user.board.vo.NoticeBoardVO;
-import com.web.toosome.user.board.vo.FaqBoardVO;
+import com.web.toosome.user.board.vo.QnaBoardCommentVO;
 import com.web.toosome.user.board.vo.QnaBoardVO;
 
 
@@ -95,7 +97,7 @@ public class BoardManagementController {
 		vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
 		vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
+		vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail/");
 		vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
 		int in = eventboardservice.insertEvent(vo);
@@ -115,7 +117,7 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			String key2 = "img/pages/subpages/event/eventdetail/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
 			System.out.println(key2);
 			awsS3.upload(file2, key2);
 		
@@ -131,9 +133,9 @@ public class BoardManagementController {
 	}
 	
 	
-	@PostMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
+	@GetMapping("/admin/eventboard-delete/{id}") // 관리자 이벤트게시판 삭제기능
 	public String eventdelete(@PathVariable Integer id, RedirectAttributes ra) throws IllegalStateException, IOException {
-		
+		System.out.println("111");
 		//이미지 삭제
 		//1.셀렉트 구문으로 경로를 불러온다
 		
@@ -143,9 +145,6 @@ public class BoardManagementController {
 		//2.vo로 연결해서 key 값에 경로를 넣는다 
 		String key = vo.getEventBoardImageRoute()+vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
 		String key2 = vvo.getEventBoardDetailImageRoute()+vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
-		
-		System.out.println("이벤트 게시판 이미지 경로" + key);
-		System.out.println("이벤트 디테일 이미지 경로" + key2);
 		
 		//3.awsS3 delete 구문을 사용하여 파일을 제거한다.
 		awsS3.delete(key);
@@ -178,7 +177,6 @@ public class BoardManagementController {
 		
 			String rote = ebvo.getEventBoardImageRoute()+ebvo.getEventBoardImageName()+"."+ebvo.getEventBoardImageExtention();
 			awsS3.delete(rote);
-			System.out.println("첫번쨰 파일 삭제 성공");
 			vo.setEventBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
 			vo.setEventBoardImageRoute("img/pages/subpages/event/");
 			vo.setEventBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
@@ -189,7 +187,6 @@ public class BoardManagementController {
 			vo.getUploadFile().transferTo(convFile);
 			File file = convFile;
 			String key = "img/pages/subpages/event/" + vo.getEventBoardImageName()+"."+vo.getEventBoardImageExtention();
-			System.out.println(key);
 			awsS3.upload(file, key);
 			
 			if(up >0) {
@@ -204,9 +201,9 @@ public class BoardManagementController {
 			
 			String rote2= ebvo2.getEventBoardDetailImageRoute()+ebvo2.getEventBoardDetailImageName()+"."+ebvo2.getEventBoardDetailImageExtention();
 			awsS3.delete(rote2);
-			System.out.println("두번쨰 파일 삭제 성공");
+			
 			vvo.setEventBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
-			vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail");
+			vvo.setEventBoardDetailImageRoute("img/pages/subpages/event/eventdetail/");
 			vvo.setEventBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 			
 			int up2 = eventboardservice.updateEventDetail(vvo);
@@ -215,8 +212,8 @@ public class BoardManagementController {
 			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
 			vvo.getUploadFile2().transferTo(convFile2);
 			File file2 = convFile2;
-			String key2 = "img/pages/subpages/event/eventdetail" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
-			System.out.println(key2);
+			String key2 = "img/pages/subpages/event/eventdetail/" + vvo.getEventBoardDetailImageName()+"."+vvo.getEventBoardDetailImageExtention();
+			
 			awsS3.upload(file2, key2);
 		
 			if(up2 > 0) {
@@ -232,7 +229,7 @@ public class BoardManagementController {
 		}
 		
 		
-		System.out.println("DB 파일 update구문 완료");
+		
 			
 		return "redirect:/admin/eventboard-management";
 	}
@@ -251,15 +248,20 @@ public class BoardManagementController {
 	@ResponseBody
 	public List<NoticeBoardVO> NoticeBoardManagement(NoticeBoardVO vo){
 		List<NoticeBoardVO> adminnotice = noticeboardservice.getNoticeBoard(vo);
-		System.out.println(adminnotice);
 		return adminnotice;
 	}
+	@GetMapping(value = "/admin/searchnotice" , produces = "application/json")// 공지사항 게시판 리스트 값 넘기기
+	@ResponseBody  // 공지사항 관리자 검색기능
+	public List<NoticeBoardVO> SearchNotice(BoardSearchVO vo){
+		List<NoticeBoardVO> search = noticeboardservice.searchNoticeBoard(vo);
+		return search;
+	}
+	
 	
 	@GetMapping(value = "/admin/noticeboarddetail" , produces = "application/json")// 공지사항 게시판 디테일 값 넘기기
 	@ResponseBody
 	public List<NoticeBoardVO> NoticeBoarddetail(NoticeBoardVO vo){
 		List<NoticeBoardVO> noticedetail = noticeboardservice.noticeDetail(vo);
-		System.out.println(noticedetail);
 		return noticedetail;
 	}
 	
@@ -336,103 +338,138 @@ public class BoardManagementController {
 		vo.setNewsBoardImageRoute("img/pages/subpages/news/");
 		vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
 		
-		vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+		vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
 		vvo.setNewsBoardDetailImageRoute("img/pages/subpages/news/");
-		vvo.setNewsBoardDetailImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+		vvo.setNewsBoardDetailImageExtention(FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
 		
 		int in = newsadminservice.insertNewsBoard(vo); 
 		int in2 = newsadminservice.insertNewsBoardDetail(vvo);  
 		
 		
 		//파일 변환 업로드	
+		//multipartFile 형식 파일을 file 형식으로 변환후  upload 첫번쨰 이미지
 		File convFile = new File(vo.getUploadFile().getOriginalFilename());
 		vo.getUploadFile().transferTo(convFile);
 		File file = convFile;
 		String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName()+"."+vo.getNewsBoardImageExtention();
-		System.out.println(key);
-		// 파일 업로드 메서드
 		awsS3.upload(file, key);
+		
+	//두번쨰 이미지	
+		File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
+		vvo.getUploadFile2().transferTo(convFile2);
+		File file2 = convFile2;
+		String key2 = "img/pages/subpages/news/" + vvo.getNewsBoardDetailImageName()+"."+vvo.getNewsBoardDetailImageExtention();
+		awsS3.upload(file2, key2);
 		
 		
 		if(in > 0 && in2 > 0 ) {
-			ra.addFlashAttribute("msg", "insertSeccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@PostMapping(value="/admin/newsboard-delete") // 이벤트 게시물 delete
-	public String deleteNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) {
+	@GetMapping(value="/admin/newsboard-delete/{id}") // 뉴스 게시물 delete
+	public String deleteNews(@PathVariable Integer id, RedirectAttributes ra) {
 	   
 		//해당 파일 경로 정보
-		NewsBoardVO selectfile = newsadminservice.selectFile(vo);
-	
+		NewsBoardVO selectfile = newsadminservice.selectFile(id);
+		NewsBoardDetailVO selectDfile = newsadminservice.selectDFile(id);
+		
 		//해당 파일 경로
 		String key = selectfile.getNewsBoardImageRoute()+selectfile.getNewsBoardImageName()+"."+selectfile.getNewsBoardImageExtention();
+		String key2 = selectDfile.getNewsBoardDetailImageRoute()+selectDfile.getNewsBoardDetailImageName()+"."+selectDfile.getNewsBoardDetailImageExtention();
 		
 		//파일제거 메서드
 		awsS3.delete(key);
+		awsS3.delete(key2);
 		
-		int del = newsadminservice.deleteNewsBoard(vo);
-		int del2 = newsadminservice.deleteNewsBoardDetail(vvo);
+		int del = newsadminservice.deleteNewsBoard(id);
+		int del2 = newsadminservice.deleteNewsBoardDetail(id);
 		
 		if(del >0 && del2 >0) {
-			ra.addFlashAttribute("msg", "deleteSeccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
 		return "redirect:/admin/newsboard-management";
 	}
 	
-	@PostMapping(value="/admin/newsboard-update") // 이벤트 게시물 update
-	public String updateNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra) throws IllegalStateException, IOException {
+	@PostMapping(value = "/admin/newsboard-update") // 이벤트 게시물 update
+	public String updateNews(NewsBoardVO vo, NewsBoardDetailVO vvo, RedirectAttributes ra)
+			throws IllegalStateException, IOException {
 		
-		//파일 조회후 삭제
-		if(vo.getUploadFile().getSize() != 0) { //파일이 존재 할경우
-		NewsBoardVO fvo = newsadminservice.selectFile(vo);
-		String rote= fvo.getNewsBoardImageRoute()+fvo.getNewsBoardImageName()+"."+fvo.getNewsBoardImageExtention();
-		awsS3.delete(rote);
-		
-		//DB 업데이트 구문 실행
-		vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
-		vo.setNewsBoardImageRoute("img/pages/subpages/news/");
-		vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
-		
-		vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
-		vvo.setNewsBoardDetailImageRoute("img/pages/subpages/news/");
-		vvo.setNewsBoardDetailImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
-		
-		
-		int up = newsadminservice.updateNewsBoard(vo);
-		int up2 = newsadminservice.deleteNewsBoardDetail(vvo);
-		
-		File convFile = new File(vo.getUploadFile().getOriginalFilename());
-		vo.getUploadFile().transferTo(convFile);
-		File file = convFile;
-		String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName()+"."+vo.getNewsBoardImageExtention();
-		System.out.println(key);
-		awsS3.upload(file, key);
-		if(up >0 && up2 > 0) {
-		ra.addFlashAttribute("msg", "updateseccess");
-		}else {
-			ra.addFlashAttribute("msg", "updatefail");
-		}
-		}
-		
-		if(vo.getUploadFile().getSize() == 0) { //파일을 건드리지 않고 업데이트 할경우
+		//지워야할 파일 경로 지정
+		NewsBoardVO ebvo = newsadminservice.selectUpdateFile(vo);
+		NewsBoardDetailVO ebvo2 = newsadminservice.selectUpdateDFile(vvo);
+		//첫번쨰 파일
+		if (vo.getUploadFile().getSize() != 0) {
+
+			String rote = ebvo.getNewsBoardImageRoute() + ebvo.getNewsBoardImageName() + "."
+					+ ebvo.getNewsBoardImageExtention();
+			awsS3.delete(rote);
+			vo.setNewsBoardImageName(FilenameUtils.getBaseName(vo.getUploadFile().getOriginalFilename()));
+			vo.setNewsBoardImageRoute("img/pages/subpages/news/");
+			vo.setNewsBoardImageExtention(FilenameUtils.getExtension(vo.getUploadFile().getOriginalFilename()));
+
+			int up = newsadminservice.updateNewsBoard(vo); //업데이트 구문 확인필요
+
+			File convFile = new File(vo.getUploadFile().getOriginalFilename());
 			
-		int up = newsadminservice.updateNewsBoardText(vo); 
-		int up2= newsadminservice.updateNewsBoardDetailText(vvo);		
-		
-		
-		if(up >0 && up2 > 0) {
-			ra.addFlashAttribute("msg", "updateseccess");
-			}else {
-				ra.addFlashAttribute("msg", "updatefail");
-			}	
+			vo.getUploadFile().transferTo(convFile);
+			File file = convFile;
+			String key = "img/pages/subpages/news/" + vo.getNewsBoardImageName() + "."
+					+ vo.getNewsBoardImageExtention();
+			awsS3.upload(file, key);
+
+			if (up > 0) {
+				ra.addFlashAttribute("msg", "updateSuccess");
+			} else {
+				ra.addFlashAttribute("msg", "updateFail");
+			}
 		}
+
+		if (vvo.getUploadFile2().getSize() != 0) {
+			//두번쨰 파일
+			String rote2 = ebvo2.getNewsBoardDetailImageRoute() + ebvo2.getNewsBoardDetailImageName() + "."
+					+ ebvo2.getNewsBoardDetailImageExtention();
+			awsS3.delete(rote2);
 	
+			vvo.setNewsBoardDetailImageName(FilenameUtils.getBaseName(vvo.getUploadFile2().getOriginalFilename()));
+			vvo.setNewsBoardDetailImageRoute("img/pages/subpages/event/news/");
+			vvo.setNewsBoardDetailImageExtention(
+					FilenameUtils.getExtension(vvo.getUploadFile2().getOriginalFilename()));
+
+			int up2 = newsadminservice.updateNewsBoardDetail(vvo);
+			
+			File convFile2 = new File(vvo.getUploadFile2().getOriginalFilename());
+			vvo.getUploadFile2().transferTo(convFile2);
+			File file2 = convFile2;
+			String key2 = "img/pages/subpages/event/news/" + vvo.getNewsBoardDetailImageName() + "."
+					+ vvo.getNewsBoardDetailImageExtention();
+	
+			awsS3.upload(file2, key2);
+
+			if (up2 > 0) {
+				ra.addFlashAttribute("msg", "updateSuccess");
+			} else {
+				ra.addFlashAttribute("msg", "updateFail");
+			}
+		}
+
+		if (vo.getUploadFile().getSize() == 0 && vvo.getUploadFile2().getSize() == 0) {
+			//파일을 건드리지않고 업데이트 를하는 경우
+			int up = newsadminservice.updateNewsBoardText(vo);
+			int up2 = newsadminservice.updateNewsBoardDetailText(vvo);
+
+			if(up>0 && up2>0) {
+				ra.addFlashAttribute("msg", "updateSuccess");
+			}else {
+				ra.addFlashAttribute("msg", "updateFail");
+			}
+		}
+
 		return "redirect:/admin/newsboard-management";
 	}
 	
@@ -466,7 +503,7 @@ public class BoardManagementController {
 	public String insertFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int in = faqadminservice.insertFaq(vo);
 		if(in>0) {
-			ra.addFlashAttribute("msg", "insertseccess");
+			ra.addFlashAttribute("msg", "insertsuccess");
 		}else {
 			ra.addFlashAttribute("msg", "insertfail");
 		}
@@ -474,11 +511,11 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "/admin/faqboard-delete") // faq delete
+	@GetMapping(value = "/admin/faqboard-delete") // faq delete
 	public String deleteFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int del = faqadminservice.deleteFaq(vo);
 		if(del>0) {
-			ra.addFlashAttribute("msg", "deleteseccess");
+			ra.addFlashAttribute("msg", "deletesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "deletefail");
 		}
@@ -486,11 +523,11 @@ public class BoardManagementController {
 		return "redirect:/admin/faqboard-management";
 	}
 	
-	@PostMapping(value = "admin/faqboard-update") //faq update
+	@PostMapping(value = "/admin/faqboard-update") //faq update
 	public String updateFaq(FaqBoardVO vo, RedirectAttributes ra) {
 		int update = faqadminservice.updateFaq(vo);
 		if(update>0) {
-			ra.addFlashAttribute("msg", "updateseccess");
+			ra.addFlashAttribute("msg", "updatesuccess");
 		}else {
 			ra.addFlashAttribute("msg", "updatefail");
 		}
@@ -525,4 +562,71 @@ public class BoardManagementController {
 		List<QnaBoardVO> searchqna = qnaadminservice.searchQna(vo);
 		return searchqna;
 	}
+	
+	@GetMapping(value = "/admin/qnacommentlist" , produces = "application/json")
+	@ResponseBody //qna댓글 리스트 보기
+	public List<QnaBoardCommentVO> qnaBoardCommentList(QnaBoardCommentVO vo){
+		List<QnaBoardCommentVO> commentlist = qnaadminservice.selectQnaComment(vo);
+		return commentlist;
+	}
+	
+	@GetMapping(value = "/admin/qnaboard-delete/{id}" , produces = "application/json")
+	public String DeleteQna(@PathVariable Integer id, RedirectAttributes ra) { //qna 게시판 delete
+		
+		QnaBoardVO vo = qnaadminservice.selectFile(id);
+		
+		//해당 파일 경로
+		String key = "img/qnaImg/"+vo.getQnaBoardImageName();
+				
+		//파일제거 메서드
+		awsS3.delete(key);
+		
+		int del2 = qnaadminservice.deleteQnaComment(id);
+		int del = qnaadminservice.deleteQna(id);
+		
+		if(del>0 && del2 >0) {
+			ra.addFlashAttribute("msg", "deletesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	@PostMapping(value="/admin/qnacomment-insert") //qna댓글! insert
+	public String InsertQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int iqc = qnaadminservice.insertQnaComment(vo);
+		if(iqc > 0 ) {
+			ra.addFlashAttribute("msg", "insertsuccess");
+		}else {
+			ra.addFlashAttribute("msg", "insertfail");
+		}
+		
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	@PostMapping(value = "/admin/qnacomment-update" , produces = "application/json")
+	public String UpdateQnaComment(QnaBoardCommentVO vo, RedirectAttributes ra) {
+		int up = qnaadminservice.updateQnaComment(vo);		
+		if(up > 0 ) {
+			ra.addFlashAttribute("msg", "updatesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "updatefail");
+		}
+		return "redirect:/admin/qnaboard-management";
+	}
+	
+	@GetMapping(value = "/admin/qnacomment-delete/{id}" , produces = "application/json")
+	public String DeleteQnaComment(@PathVariable Integer id, RedirectAttributes ra) {
+		
+		int del = qnaadminservice.delQnaCommentId(id);
+		
+		if(del > 0 ) {
+			ra.addFlashAttribute("msg", "deletesuccess");
+		}else {
+			ra.addFlashAttribute("msg", "deletefail");
+		}
+		return "redirect:/admin/qnaboard-management";
+	}
+	
 }

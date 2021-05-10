@@ -13,11 +13,12 @@
 	</resultMap>
 	
 	<sql id ="search">
+		WHERE 1=1
 		<if test="condition == 'title'">
-			WHERE NOTICE_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+			AND NOTICE_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="condition == 'content'">
-			WHERE NOTICE_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+			AND NOTICE_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="startRegDate != null and startRegDate != ''">
 			AND NOTICE_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
@@ -46,7 +47,7 @@
 
 	<insert id="insertNotice">
 		INSERT INTO NOTICE_BOARD(NOTICE_BOARD_ID, NOTICE_BOARD_TITLE, NOTICE_BOARD_CONTENT, NOTICE_BOARD_VIEW_COUNT, NOTICE_BOARD_REG_DATE) 
-		 VALUES(#{NOTICE_BOARD_ID},#{NOTICE_BOARD_TITLE},#{NOTICE_BOARD_CONTENT},0,NOW())
+		 VALUES(#{noticeBoardId},#{noticeBoardTitle},#{noticeBoardContent},0,NOW())
 	</insert>
 	
 	<update id="updateNotice">
@@ -54,7 +55,7 @@
 	</update>
 	
 	<delete id="deleteNotice">
-		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID ={noticeBoardId} 
+		DELETE FROM NOTICE_BOARD WHERE NOTICE_BOARD_ID = #{noticeBoardId} 
 	</delete>
 	
 	<!-- LIKE CONCAT('%',#{keyword},'%') -->

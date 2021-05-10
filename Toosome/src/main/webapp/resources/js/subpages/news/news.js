@@ -36,7 +36,7 @@ const displayList = (items, wrapper) => {
 		let itemElement = `
 			<tr>
 				<td>${items[i].newsBoardId}</td>
-				<td><a href="#" onclick="locateNewsDetail(${items[i].newsBoardId})"><img class="img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[i].newsBoardImageRoute}/${items[i].newsBoardImageName}.${items[i].newsBoardImageExtention}"></a></td>
+				<td><a href="#" onclick="locateNewsDetail(${items[i].newsBoardId})"><img class="img" src="https://toosome.s3.ap-northeast-2.amazonaws.com/${items[i].newsBoardImageRoute}${items[i].newsBoardImageName}.${items[i].newsBoardImageExtention}"></a></td>
 				<td class="left"><a href="#" onclick="locateNewsDetail(${items[i].newsBoardId})">${items[i].newsBoardTitle}</a></td>
 				<td>${newDate}</td>
 				<td>${items[i].newsBoardViewCount}</td>
@@ -81,8 +81,8 @@ const selectHandler = (select) => {
 const setData = (result) => {
 	$('#pagination').pagination({
 	    dataSource: result,
-	    pageSize: 10,
-	    pageNumber: 5,
+	    pageSize: 5,
+	    pageNumber: 1,
 	    callback: function(data, pagination) {
 			displayList(data, newsBoard);					
 	    }

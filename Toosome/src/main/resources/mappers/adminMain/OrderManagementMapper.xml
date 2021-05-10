@@ -29,8 +29,6 @@
 		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
 		<result property="ordersId" column="ORDERS_ID" />
 		<result property="memberId" column="MEMBER_ID" />
-		<result property="productId" column="PRODUCT_ID" />
-		<result property="productImageId" column="PRODUCT_IMAGE_ID" />
 		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
 		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
 		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
@@ -44,13 +42,190 @@
 		<result property="memberPhone" column="MEMBER_PHONE"/>
 	</resultMap>
 	
+	
+	
+	
+	
+	
+	<resultMap type="orderCancelVO" id="orderCancelVO">
+		<result property="ordersCancelId" column="ORDERS_CANCEL_ID" />
+		<result property="ordersId" column="ORDERS_ID" />
+		<result property="memberId" column="MEMBER_MEMBER_ID" />
+		<result property="ordersOrderDate" column="ORDERS_ORDER_DATE" />
+		<result property="ordersCancelDate" column="ORDERS_CANCEL_DATE" />
+		<result property="ordersPayment" column="ORDERS_PAYMENT" />
+		<result property="ordersState" column="ORDERS_STATE" />
+		<result property="ordersAddress" column="ORDERS_ADDRESS" />
+		<result property="ordersPostcode" column="ORDERS_POSTCODE" />
+		<result property="ordersReceiver" column="ORDERS_RECEIVER" />
+		<result property="ordersDelivery" column="ORDERS_DELIVERY" />
+		<result property="ordersPhone" column="ORDERS_PHONE" />
+		<result property="ordersContent" column="ORDERS_CONTENT" />	
+		<result property="ordersMerchantUid" column="ORDERS_MERCHANT_UID" />	
+		<result property="ordersProductName" column="ORDERS_PRODUCT_NAME" />	
+		<result property="ordersAmount" column="ORDERS_AMOUNT" />
+		<result property="ordersMemberEmail" column="ORDERS_MEMBER_EMAIL" />
+		<result property="ordersUsePoint" column="ORDERS_USE_POINT" />
+		<result property="ordersProductPay" column="ORDERS_PRODUCT_PAY" />
+		<result property="ordersSal" column="ORDERS_SAL" />
+		<collection property="memberVO" resultMap="memberVO" />
+	</resultMap>
+	
+	<resultMap type="ordersCancelDetailVO" id="ordersCancelDetailVO">
+		<result property="ordersCancelDetailId" column="ORDERS_CANCEL_DETAIL_ID" />
+		<result property="ordersCancelId" column="ORDERS_CANCEL_ID" />
+		<result property="ordersDetailId" column="ORDERS_DETAIL_ID" />
+		<result property="ordersId" column="ORDERS_ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="ordersDetailAmount" column="ORDERS_DETAIL_AMOUNT" />
+		<result property="ordersDetailName" column="ORDERS_DETAIL_NAME" />
+		<result property="ordersDetailPrice" column="ORDERS_DETAIL_PRICE" />
+		<result property="ordersDetailState" column="ORDERS_DETAIL_STATE" />
+		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />	
+	</resultMap>
+	
+	<!-- 중복되는 동적 SQL문 처리-->
+	<sql id="odVO">
+		WHERE ORDERS_ID
+		<if test="condition == 'o-id'">
+			AND A.ORDERS_ID = #{keyword}
+		</if>
+		<if test="condition == 'o-name'">
+			AND B.MEMBER_NAME = #{keyword}
+		</if>
+		<if test="condition == 'o-phone'">
+			AND B.MEMBER_PHONE = #{keyword}
+		</if>
+		<if test="condition == 'r-name'">
+			AND A.ORDERS_RECEIVER = #{keyword}
+		</if>
+		<if test="condition == 'r-phone'">
+			AND A.ORDERS_PHONE = #{keyword}
+		</if>		
+		<if test="startDate != null and startDate != ''">
+			AND A.ORDERS_ORDER_DATE BETWEEN DATE(#{startDate}) AND DATE(#{endDate})+1
+		</if>
+		<if test="orderState != '' and orderState != null">
+			AND ORDERS_STATE IN
+			<foreach collection="orderState" item="arr" open="(" close=")" separator=",">
+			#{arr}
+			</foreach>
+		</if>		
+	</sql>
+	
+	<sql id="ocmVO">
+		WHERE ORDERS_CANCEL_ID
+		<if test="condition == 'o-id'">
+			AND A.ORDERS_ID = #{keyword}
+		</if>
+		<if test="condition == 'o-name'">
+			AND B.MEMBER_NAME = #{keyword}
+		</if>
+		<if test="condition == 'o-phone'">
+			AND B.MEMBER_PHONE = #{keyword}
+		</if>
+		<if test="condition == 'r-name'">
+			AND A.ORDERS_RECEIVER = #{keyword}
+		</if>
+		<if test="condition == 'r-phone'">
+			AND A.ORDERS_PHONE = #{keyword}
+		</if>		
+		<if test="startDate != null and startDate != ''">
+			AND A.ORDERS_ORDER_DATE BETWEEN DATE(#{startDate}) AND DATE(#{endDate})+1
+		</if>
+		<if test="cancelstartDate != null and cancelstartDate != ''">
+			AND A.ORDERS_CANCEL_DATE BETWEEN DATE(#{cancelstartDate}) AND DATE(#{cancelendDate})+1
+		</if>		
+	</sql>
+	
 	<select id="getOrderList" resultMap="orderVO">
-		SELECT * FROM ORDERS
+		SELECT A.ORDERS_ID,
+		A.ORDERS_ORDER_DATE,
+		A.ORDERS_STATE,
+		A.ORDERS_RECEIVER,
+		A.ORDERS_PRODUCT_NAME,
+        A.ORDERS_AMOUNT,
+        A.ORDERS_PAYMENT,
+        A.ORDERS_MEMBER_EMAIL,
+        A.ORDERS_ADDRESS,
+        A.ORDERS_POSTCODE,
+        A.ORDERS_DELIVERY,
+        A.ORDERS_PHONE,
+		B.MEMBER_ID,
+        B.MEMBER_NAME,
+        B.MEMBER_PHONE 
+		FROM ORDERS A INNER JOIN
+		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID)
+		<include refid="odVO"/>
+		ORDER BY ORDERS_ID DESC
 	</select>
 	
 	<select id="getorderDetail" resultMap="orderVO">
 		SELECT A.ORDERS_ID,
+		A.MEMBER_MEMBER_ID,
 		A.ORDERS_ORDER_DATE,
+        A.ORDERS_PAYMENT,
+		A.ORDERS_STATE,
+		A.ORDERS_ADDRESS,
+        A.ORDERS_POSTCODE,
+		A.ORDERS_RECEIVER,
+        A.ORDERS_DELIVERY,
+        A.ORDERS_PHONE,
+        A.ORDERS_CONTENT,
+        A.ORDERS_MERCHANT_UID,
+		A.ORDERS_PRODUCT_NAME,
+        A.ORDERS_AMOUNT,
+        A.ORDERS_MEMBER_EMAIL,
+        A.ORDERS_USE_POINT,
+        A.ORDERS_PRODUCT_PAY,
+        A.ORDERS_SAL,
+		B.MEMBER_ID,
+        B.MEMBER_NAME,
+        B.MEMBER_PHONE
+		FROM ORDERS A INNER JOIN
+		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID) WHERE A.ORDERS_ID = #{id};
+	</select>
+	
+	<select id="getorderDetailListTwo" resultMap="ordersDetailVO">
+		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{ordersId};
+	</select>
+	
+	<update id="updateOrders">
+		UPDATE ORDERS 
+		 SET ORDERS_RECEIVER = #{ordersReceiver}, ORDERS_PHONE = #{ordersPhone}, ORDERS_POSTCODE = #{ordersPostcode}, ORDERS_ADDRESS = #{ordersAddress}, ORDERS_STATE = #{ordersState} 
+		WHERE ORDERS_ID = #{ordersId};		 
+	</update>
+	
+	<select id="getOrderCancelList" resultMap="orderCancelVO">
+		SELECT A.ORDERS_CANCEL_ID,
+		A.ORDERS_ID,
+		A.MEMBER_MEMBER_ID,
+		A.ORDERS_ORDER_DATE,
+		A.ORDERS_CANCEL_DATE,
+		A.ORDERS_STATE,
+		A.ORDERS_RECEIVER,
+		A.ORDERS_PRODUCT_NAME,
+        A.ORDERS_AMOUNT,
+        A.ORDERS_PAYMENT,
+        A.ORDERS_MEMBER_EMAIL,
+        A.ORDERS_ADDRESS,
+        A.ORDERS_POSTCODE,
+        A.ORDERS_DELIVERY,
+        A.ORDERS_PHONE,
+		B.MEMBER_ID,
+        B.MEMBER_NAME,
+        B.MEMBER_PHONE 
+		FROM ORDERS_CANCEL A INNER JOIN
+		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID)
+		<include refid="ocmVO"/>
+		ORDER BY ORDERS_ID DESC
+	</select>
+	
+	<select id="getorderCancelDetail" resultMap="orderCancelVO">
+		SELECT A.ORDERS_CANCEL_ID,
+		A.ORDERS_ID,
+		A.ORDERS_ORDER_DATE,
+		A.ORDERS_CANCEL_DATE,
 		A.ORDERS_STATE,
 		A.ORDERS_RECEIVER,
 		A.ORDERS_PRODUCT_NAME,
@@ -67,18 +242,12 @@
 		B.MEMBER_ID,
         B.MEMBER_NAME,
         B.MEMBER_PHONE
-		FROM ORDERS A INNER JOIN
+		FROM ORDERS_CANCEL A INNER JOIN
 		MEMBER B ON (A.MEMBER_MEMBER_ID = B.MEMBER_ID) WHERE A.ORDERS_ID = #{id};
 	</select>
 	
-	<select id="getorderDetailListTwo" resultMap="ordersDetailVO">
-		SELECT * FROM ORDERS_DETAIL WHERE ORDERS_ID = #{ordersId};
+	<select id="getorderCancelDetailList" resultMap="ordersCancelDetailVO">
+		SELECT * FROM ORDERS_CANCEL_DETAIL WHERE ORDERS_ID = #{id};
 	</select>
-	
-	<update id="updateMember">
-		UPDATE ORDERS 
-		 SET ORDERS_RECEIVER = #{ordersReceiver}, ORDERS_PHONE = #{ordersPhone}, ORDERS_POSTCODE = #{ordersPostcode}, ORDERS_ADDRESS = #{ordersAddress}, ORDERS_STATE = #{ordersState} 
-		WHERE ORDERS_ID = #{ordersId};		 
-	</update>
 	
 </mapper>

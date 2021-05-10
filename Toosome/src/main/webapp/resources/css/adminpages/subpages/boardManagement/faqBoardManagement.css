@@ -198,3 +198,11 @@
 	width: 100px;
 	margin-left: 30px;
 }
+
+#detail-title {
+	height: 100px;
+}
+
+#detail-content {
+	height: 150px;
+}

@@ -40,6 +40,8 @@
 
 		<typeAlias type="com.web.toosome.user.basket.vo.OrdersVO" alias="orderVO"/>
 		<typeAlias type="com.web.toosome.user.basket.vo.OrdersDetailVO" alias="ordersDetailVO"/>
+		<typeAlias type="com.web.toosome.user.basket.vo.OrdersCancelVO" alias="orderCancelVO"/>
+		<typeAlias type="com.web.toosome.user.basket.vo.OrdersCancelDetailVO" alias="ordersCancelDetailVO"/>
 
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.DailyVO" alias="dailyVO"/>
 		<typeAlias type="com.web.toosome.admin.mainManagement.vo.VisitorVO" alias="visitorVO"/>

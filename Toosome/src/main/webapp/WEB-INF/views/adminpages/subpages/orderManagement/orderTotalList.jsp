@@ -52,8 +52,6 @@
                              <div class="select-box">
                               <select name="searchType" class="search-select" id="searchType">
                                 <option value="o-id">주문번호</option>
-                                <option value="p-id">상품번호</option>
-                                <option value="p-name">상품명</option>
                                 <option value="o-name">주문자명</option>
                                 <option value="o-phone">주문자연락처</option>
                                 <option value="r-name">수령자명</option>
@@ -99,22 +97,22 @@
 						     	<input type="checkbox" id="check-all" value="total" onclick="checkAll(this);" >전체선택
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="o-finish" onclick="confirmCheckAll();">결제완료
+						     	<input type="checkbox" name="state" value="결제완료" onclick="confirmCheckAll();">결제완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="p-ready" onclick="confirmCheckAll();">접수완료
+						     	<input type="checkbox" name="state" value="접수완료" onclick="confirmCheckAll();">접수완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-ready" onclick="confirmCheckAll();">배송준비중
+						     	<input type="checkbox" name="state" value="배송준비중" onclick="confirmCheckAll();">배송준비중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-ing" onclick="confirmCheckAll();">배송중
+						     	<input type="checkbox" name="state" value="배송중" onclick="confirmCheckAll();">배송중
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="d-finish" onclick="confirmCheckAll();">배송완료
+						     	<input type="checkbox" name="state" value="배송완료" onclick="confirmCheckAll();">배송완료
 						     </label>
 						     <label class="checkbox-label">
-						     	<input type="checkbox" name="state" value="ok" onclick="confirmCheckAll();">기프티콘
+						     	<input type="checkbox" name="state" value="기프티콘" onclick="confirmCheckAll();">기프티콘
 						     </label>
                            </td>
                          </tr>
@@ -130,7 +128,7 @@
 		              <div class="card">
 		                <div class="card-header card-header-danger">
 		                  <h4 class="card-title">주문정보 상세</h4>
-		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
+		                  <p class="card-category">* 기프티콘 주문은 수정불가</p>
 		                </div>
 		                <div class="card-body">
 		                  <form action="/admin/orders" method="post">
@@ -144,19 +142,26 @@
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자명</label>
-		                          <input type="text" name="memberName" class="form-control">
+		                          <input type="text" name="memberName" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" name="memberPhone" class="form-control">
+		                          <input type="text" name="memberPhone" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문상태</label>
-		                          <input type="tel" name="ordersState" class="form-control">
+		                          <select class="custom-select" id="modal-state" name="ordersState">
+				                  	<option value="결제완료">결제완료</option>
+				                  	<option value="접수완료">접수완료</option>
+				                  	<option value="배송준비중">배송준비중</option>
+				                  	<option value="배송중">배송중</option>
+				                  	<option value="배송완료">배송완료</option>
+				                  	<option value="기프티콘">기프티콘</option>
+				                  </select>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -203,104 +208,46 @@
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                     <!--  <div class="col-md-1">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송번호</label>
-		                          <input type="text" name="ordersDelivery" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">택배사</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">송장번호</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div> -->
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송비②</label>
-		                          <input type="text" name="ordersDelivery" class="form-control">
+		                          <input type="text" name="ordersDelivery" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">할인 금액③</label>
-		                          <input type="text" name="ordersSal" class="form-control">
+		                          <input type="text" name="ordersSal" class="form-control" disabled>
 		                        </div>
 		                      </div>
  		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">사용한 포인트④</label>
-		                          <input type="text" name="ordersUsePoint" class="form-control">
+		                          <input type="text" name="ordersUsePoint" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">실결제금액(①+②-③-④)</label>
-		                          <input type="text" name="ordersPayment" class="form-control">
+		                          <input type="text" name="ordersPayment" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-2">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제일자(주문)</label>
-		                          <input type="date" name="ordersOrderDate" class="form-control">
+		                          <input type="date" name="ordersOrderDate" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <!-- <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">결제일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품준비처리일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송준비처리일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송중처리일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송완료처리일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">구매확정일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div> -->
 		                    </div>
 		                    <table class="table none">
 					        	<tbody class="under-table">
-					        		
 					        	</tbody>
 					        </table>
-		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
+		                    <button id="modal-submit" type="submit" class="btn btn-danger pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
 		                    <input type="hidden" name="ordersId">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		                  </form>
 		                </div>
 		              </div>

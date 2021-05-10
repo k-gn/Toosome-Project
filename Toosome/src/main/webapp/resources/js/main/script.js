@@ -76,30 +76,6 @@ $(function () {
 		]
 	});
 
-  $('.button-logo a.offbutton').click(function () {
-    $(this).css('display', 'none');
-    $('.button-logo a.onbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: 0,
-      },
-      1000
-    );
-
-    return false;
-  });
-
-  $('.button-logo a.onbutton').click(function () {
-    $(this).css('display', 'none');
-    $('.button-logo a.offbutton').css('display', 'block');
-    $('.button-bar').stop().animate(
-      {
-        top: '100%',
-      },
-      1000
-    );
-    return false;
-  });
 
   // section image slide start------------------------------------------------------------
 

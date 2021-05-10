@@ -20,4 +20,5 @@ public interface IEventBoardService {
 	
 	//게시물 검색 기능
 	public List<EventBoardVO> getSearchList(String keyword) throws Exception;
+	
 }

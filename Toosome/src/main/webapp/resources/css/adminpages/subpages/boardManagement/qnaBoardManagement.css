@@ -241,3 +241,16 @@
     opacity: 0;
     direction: ltr;
 }
+
+.title-container {
+	display: flex;
+	align-items: center;
+}
+
+#comment-list {
+	margin-left: 50px;
+}
+
+#comment-writer {
+	margin-left: 50px;
+}

@@ -21,6 +21,7 @@ let startRegDate = ''; // 검색 시작일
 let endRegDate = ''; // 검색 종료일
 let rows = 10000;
 let boardId = '';
+let url = '';
 
 // 글 등록 유효성 검사
 const enrollCheck = (title, content) => {
@@ -79,7 +80,7 @@ const delBtnFunc = ()  => {
 	if(flag) {
 		$.ajax({
 			type: 'get',
-			url: '/admin/noticeboard-delete/',
+			url: '/admin/noticeboard-delete',
 			headers: {
 				"Content-Type": "application/json"
 			}, //요청 헤더 정보
@@ -87,6 +88,8 @@ const delBtnFunc = ()  => {
 				noticeBoardId: boardId
 			},
 			success: () => {
+			alert('글삭제를 완료하였습니다.');
+				location.reload();
 				
 			},
 			error: () => {
@@ -198,11 +201,11 @@ const setData = (result, wrapper, rows) => {
 };
 
 // AJAX 검색 리스트 불러오기
-const getList = (board, wrapper, rows) => {
+const getList = (url, board, wrapper, rows) => {
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
-		url: "/admin/noticeboardmanagement", //서버 요청 URI
+		url, //서버 요청 URI
 		headers: {
 			"Content-Type": "application/json"
 		}, //요청 헤더 정보
@@ -247,7 +250,8 @@ const submitHandler = () => {
 	};
 	
 	rows = 10000;
-	getList(board, listTable, rows);
+	url = '/admin/searchnotice';
+	getList(url, board, listTable, rows);
 };
 
 submitBtn.addEventListener('click', submitHandler);
@@ -291,8 +295,8 @@ const selectHandler = (select) => {
 	
 	// init
 	rows = +value;
-	
-	getList(board, listTable, rows);
+	url = '/admin/noticeboardmanagement';
+	getList(url, board, listTable, rows);
 };
 
 // 모달 취소 버튼 핸들러
@@ -304,5 +308,6 @@ modalCancelBtn.addEventListener('click', (e) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(board, listTable, rows);
+	url = '/admin/noticeboardmanagement';
+	getList(url, board, listTable, rows);
 }); 

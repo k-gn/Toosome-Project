@@ -53,6 +53,24 @@
 		<result property="ordersDetailImagePath" column="ORDERS_DETAIL_IMAGE_PATH" />
 	</resultMap>
 	
+	<resultMap type="productVO" id="productVO">
+		<id property="productId" column="PRODUCT_ID" />
+		<result property="productTitleName" column="PRODUCT_TITLE_NAME" />
+		<result property="productSubName" column="PRODUCT_SUB_NAME" />
+		<result property="productContent" column="PRODUCT_CONTENT" />
+		<result property="productPrice" column="PRODUCT_PRICE" />
+		<result property="productType" column="PRODUCT_TYPE" />
+		<result property="productregDate" column="PRODUCT_REG_DATE" />
+		<result property="productReceivedAmount" column="PRODUCT_RECEIVED_AMOUNT" />
+		<result property="productReceivedPrice" column="PRODUCT_RECEIVED_PRICE" />
+		<result property="productLimitAmount" column="PRODUCT_LIMIT_AMOUNT" />
+		<result property="productStartDay" column="PRODUCT_START_DAY" />
+		<result property="productCheckCount" column="PRODUCT_CHECK_COUNT" />
+		<result property="productState" column="PRODUCT_STATE" />
+		<result property="productNew" column="PRODUCT_NEW" />
+		<result property="productOnoff" column="PRODUCT_ONOFF" />
+	</resultMap>
+	
 	<insert id="addBasket">
 		INSERT INTO BASKET(MEMBER_ID, PRODUCT_ID, BASKET_NAME, BASKET_PRICE, PRODUCT_IMAGE_ID)
 		VALUES(#{memberId}, #{productId}, #{basketName}, #{basketPrice}, #{productImageId})
@@ -105,7 +123,7 @@
 	<insert id="basketsendorder">
 		INSERT INTO ORDERS_DETAIL(ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME,
 		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
-		VALUES(#{ordersId}, #{memberId},  #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
+		VALUES(#{ordersId}, #{memberId}, #{basketAmount}, #{basketName}, #{basketPrice}, #{imagePath})
 	</insert>
 	
 	<select id="getBasketList" resultMap="basketMap">
@@ -153,4 +171,34 @@
 		SELECT ORDERS_STATE FROM ORDERS WHERE ORDERS_ID = #{ordersId}
 	</select>
 	
+	<insert id="setordersCancel">
+		INSERT INTO ORDERS_CANCEL(ORDERS_ID, MEMBER_MEMBER_ID, ORDERS_ORDER_DATE, ORDERS_CANCEL_DATE, ORDERS_PAYMENT, ORDERS_STATE, ORDERS_ADDRESS,
+		 ORDERS_POSTCODE, ORDERS_RECEIVER, ORDERS_DELIVERY, ORDERS_PHONE, ORDERS_CONTENT, ORDERS_MERCHANT_UID, ORDERS_PRODUCT_NAME, ORDERS_AMOUNT, ORDERS_MEMBER_EMAIL, ORDERS_USE_POINT, ORDERS_PRODUCT_PAY, ORDERS_SAL)
+		VALUES(#{ordersId}, #{memberId}, #{ordersOrderDate}, now(), #{ordersPayment}, '결제취소', #{ordersAddress}, #{ordersPostcode},
+		 #{ordersReceiver}, #{ordersDelivery}, #{ordersPhone}, #{ordersContent}, #{ordersMerchantUid}, #{ordersProductName}, #{ordersAmount}, #{ordersMemberEmail}, #{ordersUsePoint}, #{ordersProductPay}, #{ordersSal})
+	</insert>
+	
+	<insert id="setordersCancelDetail">
+		INSERT INTO ORDERS_CANCEL_DETAIL(ORDERS_CANCEL_ID ,ORDERS_DETAIL_ID, ORDERS_ID, MEMBER_ID,  ORDERS_DETAIL_AMOUNT, ORDERS_DETAIL_NAME, ORDERS_DETAIL_STATE,
+		 ORDERS_DETAIL_PRICE, ORDERS_DETAIL_IMAGE_PATH)
+		VALUES(#{ordersCancelId}, #{ordersDetailId}, #{ordersId}, #{memberId}, #{ordersDetailAmount}, #{ordersDetailName}, #{ordersDetailState}, #{ordersDetailPrice}, #{ordersDetailImagePath})
+	</insert>
+	
+	<select id="getOrdersCancelId" resultType="Integer">
+		SELECT ORDERS_CANCEL_ID FROM ORDERS_CANCEL WHERE ORDERS_ID = #{ordersId}
+	</select>
+	
+	<update id="setproductAmountDownCounter">
+		UPDATE PRODUCT SET PRODUCT_CHECK_COUNT = PRODUCT_CHECK_COUNT-#{ordersDetailAmount} WHERE PRODUCT_TITLE_NAME = #{ordersDetailName}
+	</update>
+	
+	<update id="setproductAmountUpCounter">
+		UPDATE PRODUCT SET PRODUCT_CHECK_COUNT = PRODUCT_CHECK_COUNT+#{ordersDetailAmount} WHERE PRODUCT_TITLE_NAME = #{ordersDetailName}
+	</update>
+	
+	<select id="setproductAmountCheck" resultMap="productVO">
+		<![CDATA[
+			SELECT PRODUCT_TITLE_NAME FROM PRODUCT WHERE PRODUCT_CHECK_COUNT < #{ordersDetailAmount} AND PRODUCT_TITLE_NAME = #{ordersDetailName};
+		]]>	
+	</select>
 </mapper>

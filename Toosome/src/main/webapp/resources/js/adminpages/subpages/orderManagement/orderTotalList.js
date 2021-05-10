@@ -180,6 +180,7 @@ const getList = (orders, wrapper, rows) => {
 		}, 
 		error: function() {
 			alert('시스템과에 문의하세요');
+			alert('시스템과에 문의하세요');
 			history.back();
 		} 
 	});
@@ -193,22 +194,44 @@ const submitHandler = () => {
 	endDate = ''; // 검색 종료날짜
 	orderState = []; // 주문상태 선택
 	
-	// 검색 타입, 검색어
-	condition = searchType.options[searchType.selectedIndex].value;
-	keyword = searchInput.value; 
+	// 체크박스
+	$("input[name='state']:checked").each(function(i){   //jQuery로 for문 돌면서 check 된값 배열에 담는다
+		orderState.push($(this).val());
+	});
 	
-	// 가입일자
+	// 검색 타입, 검색어
+	if(searchType.options[searchType.selectedIndex].value === 'o-id') { // 아이디로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;	
+		}
+	} else if(searchType.options[searchType.selectedIndex].value === 'o-name') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'o-phone') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'r-name') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	}else if(searchType.options[searchType.selectedIndex].value === 'r-phone') { // 이름으로 검색시
+		if(searchInput.value !== '') {
+			condition = searchType.options[searchType.selectedIndex].value;
+			keyword = searchInput.value;			
+		}
+	};
+	
+	// 결제일자
 	if(orderDate.options[orderDate.selectedIndex].value === 'order-use') {
 		startDate = moment(orderCalendar.value).format('YYYY-MM-DD');
-		orderState = moment(orderCalendar2.value).format('YYYY-MM-DD');
+		endDate = moment(orderCalendar2.value).format('YYYY-MM-DD');
 	}
-	
-	// 주문상태 체크박스
-	stateChecks.forEach(stateCheck => {
-		if(stateCheck.checked === true) {
-			orderState.push(stateCheck.value);
-		};
-	});
 
 	// JSON Data
 	orders = {
@@ -217,9 +240,7 @@ const submitHandler = () => {
 		startDate,
 		endDate,
 		orderState,
-		orders,
 	};
-	
 	rows = 10000;
 	getList(orders, listTable, rows);
 };
@@ -241,21 +262,21 @@ const listHandler = (e) => {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: (res) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			
-			if(res.ordersAddress == null) {
+			if(res.ordersState === '기프티콘') {
 				res.ordersAddress = 'Gift Buy';
-			}
-			if(res.ordersPostcode == null) {
 				res.ordersPostcode = 'Gift Buy';
-			}
-			if(res.ordersDelivery == null) {
 				res.ordersDelivery = 'Gift Buy';
-			}
+				$("#modal-submit").attr('disabled', true);
+				$("#modal-state").attr('disabled', true);
+			} else {
+				$("#modal-submit").attr('disabled', false);
+				$("#modal-state").attr('disabled', false);
+			} 				
 			
 			$("input[name=ordersId]").val(res.ordersId);
 			$("input[name=memberName]").val(res.memberVO.memberName);
 			$("input[name=memberPhone]").val(res.memberVO.memberPhone);
-			$("input[name=ordersState]").val(res.ordersState);
+			$("#modal-state").val(res.ordersState).prop("selected", true);
  			$("input[name=ordersProductPay]").val(res.ordersProductPay);
 			$("input[name=ordersAmount]").val(res.ordersAmount);
 			$("input[name=ordersReceiver]").val(res.ordersReceiver);
@@ -269,7 +290,6 @@ const listHandler = (e) => {
 			$("input[name=ordersOrderDate]").val(res.ordersOrderDate);
 			$("input[name=ordersId]").val(res.ordersId);			
 
-			$("#lvl").val(res.levelId).prop("selected", true);	// 이건 뭐지?	
 			
 			if(res!=null){
 				$.ajax({
@@ -280,8 +300,6 @@ const listHandler = (e) => {
 					}, //요청 헤더 정보
 					dataType: "json", //응답받을 데이터의 형태
 					success: (results) => {
-						console.log(results);
-						console.log(id);
 						const tableBody = document.querySelector(`.under-table`);
 						tableBody.innerHTML = '';
 						let new2El = document.createElement('tr');
@@ -319,7 +337,7 @@ const listHandler = (e) => {
 	});
 	
 	profileContainer.style.display = 'block';
-	$("input[name=memberName]").focus();	
+	$("input[name=ordersReceiver]").focus();	
 };
 
 // 모달 취소 버튼 핸들러
@@ -396,5 +414,11 @@ const selectHandler = (select) => {
 // 기간선택 달력 Jquery
 $(document).ready(() => {
 	calendarInit();
-	getList(orders, listTable, rows); //테스트시 주석 해제 
+	getList(orders, listTable, rows);
 }); 
+
+  
+
+
+
+

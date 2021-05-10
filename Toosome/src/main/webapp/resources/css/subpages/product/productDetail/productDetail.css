@@ -85,7 +85,8 @@
 .productDetail-container .contents .order-btn {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 
 }
 .productDetail-container .contents .order-btn li {

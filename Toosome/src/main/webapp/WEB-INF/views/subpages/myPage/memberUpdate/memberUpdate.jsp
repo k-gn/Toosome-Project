@@ -14,6 +14,7 @@
 </head>
 <body>
   <div id="container">
+  <!-- 회원정보 수정 -->
     <jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
     <section>
       <div class="signup-container">
@@ -21,6 +22,7 @@
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="#">
           <span class="signup-title">회원정보수정</span>
         </div>
+        <!-- 회원정보 출력 -->
         <form class="signup-form-container" action="/mypage/update" method="post">
            <input class="signup-form email" type="hidden" name="email" value="${member.memberEmail}"/>
           <div class="signup-wrapper">

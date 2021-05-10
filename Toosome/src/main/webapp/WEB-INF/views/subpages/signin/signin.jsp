@@ -8,6 +8,7 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="/resources/js/subpages/signin/login.js"></script>
 	<title>A TOOSOME PLACE</title>
+	<!-- 로그인 안하고 접근시 경고 메시지 -->
 	<script type="text/javascript">
 		const msg = "${msg}";
 		if(msg === "notLogin") {
@@ -20,12 +21,14 @@
 <div id="container">
 	<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
+	<!-- 로그인 페이지 -->
 	<div class="login-container">
 		<div class="title-container">
 			<img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt=""/>
 			<span class="login-title">Welcome!</span><span>투썸플레이스에 오신 것을 환영합니다</span>
 		</div>
 		<div class="login-form">
+			<!-- 아이디/비밀번호 관련 -->
 			<form action="/signin" method="POST">
 				<input type="text" name="memberEmail" id="ID" placeholder="이메일을 입력해주세요." value="${mid}" required />
 				<input type="password" name="memberPassword" id="PW" placeholder="비밀번호를 입력해주세요." required />
@@ -35,10 +38,13 @@
 			      <input id="remember" name="remember" type="checkbox">Remember Me
 			    </div>
 				<input type="submit" value="로그인">
+				
+				<!-- 간편 로그인 -->
 				<div class="login-value">
 					<a class="kaka" onclick="loginWithKakao()"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/kakao_login.png"></a>
 					<a class="naver" onclick="loginWithNaver()"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/signin/naver_login.png"/></a>
 				</div>
+				<!-- 시큐리티 csrf 공격 방지 토큰 -->
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
 		</div>

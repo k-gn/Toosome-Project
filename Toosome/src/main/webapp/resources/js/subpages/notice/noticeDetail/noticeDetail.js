@@ -20,12 +20,11 @@ const getParam = (param) => {
 const displayDetail = (title, content, items, index) => {
 	title.innerHTML = ""; // 타이틀 초기화
 	content.innerHTML = ""; // 본문 초기화
-	
 	// 날짜 변환
 	let date = new Date(items[1].noticeBoardRegdate);
 	let newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
 	
-	if(items[1].noticeBoardId === +index) {
+	if(+items[1].noticeBoardId === +index) {
 		// 받은 데이터로 새 타이틀 생성 후 삽입
 		let newTitle = document.createElement('tr');
 		let titleElement = `
@@ -46,38 +45,37 @@ const displayDetail = (title, content, items, index) => {
 		displayLocator(items, index);
 	} else {
 		alert('잘못된 요청입니다');
-		window.history.go(-1);
 	}
 };
 
 // 이전글, 다음글 생성 함수
 const displayLocator = (items, index) => {
 	// 이전글 생성 후 삽입
-	if(items[0].noticeBoardId !== +index + 1) {
+	if(!items[0].noticeBoardId) {
 		let newPrev = `
-			<td colspan="1">윗글</th>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1">이전글</th>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	} else {
 		let newPrev = `
-			<td colspan="1">윗글</th>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index + 1}'">${items[0].noticeBoardTitle}</a></td>
+			<td colspan="1">이전글</th>
+    		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[0].noticeBoardId}'">${items[0].noticeBoardTitle}</a></td>
 		`;
 		prev.innerHTML = newPrev;
 	};
 	
 	// 다음글 생성 후 삽입
-	if(items[2].noticeBoardId !== +index - 1) {
+	if(!items[2].noticeBoardId) {
 		let newNext = `
-			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
+			<td colspan="1">다음글</td>
+    		<td colspan="3"><a onclick="alert('해당 글이 존재하지 않습니다')">해당 글이 존재하지 않습니다.</a></td>
 		`;
 		next.innerHTML = newNext;
 	} else {
 		let newNext = `
-			<td colspan="1">아랫글</td>
-    		<td colspan="3"><a href="#" onclick="location.href='/notice-detail?index=${+index - 1}'">${items[2].noticeBoardTitle}</a></td>
+			<td colspan="1">다음글</td>
+    		<td colspan="3"><a onclick="location.href='/notice-detail?index=${items[2].noticeBoardId}'">${items[2].noticeBoardTitle}</a></td>
 		`;
 		next.innerHTML = newNext;
 	}
@@ -93,24 +91,39 @@ $(document).ready(() => {
 		success: (res) => {
 			// 데이터 역순		
 			const newRes = res.reverse();
+			const result = newRes.sort((a,b) => {
+				return a.noticeBoardId - b.noticeBoardId;
+			});
+			
+			// null data 생성
+			const nullData = {
+				noticeBoardId: null,
+				noticeBoardTitle: null,
+				noticeBoardContent: null,
+				noticeBoardViewCount: null,
+				noticeBoardRegdate: null
+			};
+			
+			// 게시글이 하나일 때
+			if(result.length === 1) {
+				result.unshift(nullData);
+				result.push(nullData);
+			}
+			
 			// 처음 혹은 마지막 게시물
-			if(newRes.length === 2) {
-				// null data 생성
-				const nullData = {
-					noticeBoardId: null,
-					noticeBoardTitle: null,
-					noticeBoardContent: null,
-					noticeBoardViewCount: null,
-					noticeBoardRegdate: null
-				};
+			if(result.length === 2) {
+				
 				// 첫 게시물 
-				if(+newRes[1].noticeBoardId === 1) {
-					newRes.push(nullData);
+				if(+result[1].noticeBoardId === +index) {
+					result.push(nullData);
 				} else { // 마지막 게시물
-					newRes.unshift(nullData);
+					result.unshift(nullData);
 				}
 			}
-			displayDetail(detailTitle, detailContent, newRes, index);
+			displayDetail(detailTitle, detailContent, result, index);
+		},
+		error: () => {
+			alert('통신장애');
 		}
 	});	
 });

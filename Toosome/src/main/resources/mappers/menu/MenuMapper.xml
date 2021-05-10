@@ -306,6 +306,7 @@
 		INNER JOIN
 		IAT C ON (A.MENU_ID = C.MENU_MENU_ID) WHERE A.MENU_ID=${menuId};
 	</select>
+	
 	<select id="getimportList" resultMap="menuVO"
 		parameterType="menuVO">
 		SELECT A.MENU_ID,
@@ -362,4 +363,19 @@
 		SELECT MENU_PRICE FROM MENU WHERE MENU_ID = #{id}
 	</select>
 	
+	<select id="getmbtiMenu" resultMap="menuVO"
+		parameterType="menuVO">
+		SELECT A.MENU_ID,
+		A.MENU_MAIN_TITLE,
+		A.MENU_SUB_TITLE,
+		A.MENU_CONTENT,
+		A.MENU_PRICE,
+		A.MENU_NEW,
+		B.MENU_IMAGE_NAME,
+		B.MENU_IMAGE_EXTENTION,
+		B.MENU_IMAGE_ROUTE
+		FROM MENU A INNER
+		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) 
+		WHERE A.MENU_MAIN_TITLE = #{coffeeName}
+	</select>
 </mapper>
