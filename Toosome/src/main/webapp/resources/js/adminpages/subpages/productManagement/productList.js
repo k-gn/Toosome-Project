@@ -43,7 +43,6 @@ function delBtnFunc() {
 
 // 리스트 출력하기
 const showList = (result, wrapper) => {
-	console.log(result, wrapper);
 	wrapper.innerHTML = ''; // 테이블 초기화
 	let p_Type = ''; // 카테고리 초기화
 	let p_State = ''; // 판매상태 초기화
@@ -118,7 +117,6 @@ const setData = (result, wrapper, rows) => {
 
 // AJAX 검색 리스트 불러오기
 const getList = (product, wrapper, rows) => {
-	console.log(product);
 	// AJAX 요청
 	$.ajax({
 		type: "get", //서버에 전송하는 HTTP요청 방식
@@ -129,7 +127,6 @@ const getList = (product, wrapper, rows) => {
 		dataType: "json", //응답받을 데이터의 형태
 		data: product, //서버로 전송할 데이터
 		success: (result) => { //함수의 매개변수는 통신성공시의 데이터가 저장될 곳.
-			console.log(result);
 			// 리스트 생성 후 삽입
 			let count = `검색 결과 : ${result.length}건`
 			searchResult.innerText = count;	

@@ -89,7 +89,6 @@ function viewContent(s) {
 		}, //요청 헤더 정보
 		dataType: "json", //응답받을 데이터의 형태
 		success: function(results) {
-		console.log(results);
 			const tableBody = document.querySelector(`.under-table.a${s}`);
 			tableBody.innerHTML = '';
 			let new2El = document.createElement('tr');
@@ -135,7 +134,6 @@ function lookPost(s) {
         },
 		dataType: "text",
 		success: function(resul) {
-			console.log(resul);
 			$(".data").val(resul);
 			var testData = $(".data").val();
 			//var testData = "기프티콘";

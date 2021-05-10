@@ -46,12 +46,15 @@ function deleteRow(ths, bid) {
 	    }, 
 	    dataType: "text",
 	    success: function (res) {
-		  console.log(res);
 		  if(res === 'success') {
 			  alert("해당 상품을 장바구니에서 삭제하였습니다.");
 			  location.href="/basket";
 		  }
-	    }
+	    },
+		error: () => {
+			alert('통신 실패');
+			window.history.go(-1);
+		}
 	  });
   }
 }
@@ -75,14 +78,17 @@ function modBasket(i, bid) {
         data: amount,
 	    success: function(basketUtil) {
 			basketInfo = basketUtil;
-			console.log(basketInfo);
 			$(".product-count").html(basketUtil.amount + "개");
 			$(".product-pay").html(basketUtil.total.toLocaleString());
 			$(".product-discount").html(basketUtil.discount.toLocaleString());
 			$(".product-delivery").html(basketUtil.deliveryPay.toLocaleString());
 			$(".product-point").html(basketUtil.point.toLocaleString());
 			$(".product-total").html(basketUtil.realPayment.toLocaleString());
-	    }
+	    },
+		error: () => {
+			alert('통신 실패');
+			window.history.go(-1);
+		}
 	 });
 }
 
