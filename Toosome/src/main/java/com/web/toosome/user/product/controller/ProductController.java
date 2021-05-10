@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
-import com.web.toosome.user.reviewboard.service.IReviewBoardService;
-import com.web.toosome.user.reviewboard.vo.ReviewBoardVO;
+
 
 @Controller
 public class ProductController {
@@ -24,8 +23,7 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 
-	@Autowired
-	private IReviewBoardService reviewBoardService;
+
 	
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
