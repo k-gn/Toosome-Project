@@ -34,10 +34,6 @@ public class EventBoardService implements IEventBoardService {
 		if(end.getTime() >= now.getTime()) check = 0;
 		map.put("index", index);
 		map.put("check", check);
-		
-		for(EventBoardVO e : mapper.getEventBoardDetail(map)) {
-			System.out.println(e);
-		}
 
 		List<EventBoardVO> eventBoard = mapper.getEventBoardDetail(map);
 		return eventBoard;
