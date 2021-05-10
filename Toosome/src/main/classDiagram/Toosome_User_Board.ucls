@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.web.toosome.user.board.vo.QnaBoardVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/QnaBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="891" width="303" x="689" y="-409"/>    
+    <position height="-1" width="-1" x="661" y="60"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   <interface id="2" language="java" name="com.web.toosome.user.board.dao.IBoardNoticeMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/IBoardNoticeMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2630" y="-288"/>    
+    <position height="-1" width="-1" x="2683" y="-275"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   <class id="3" language="java" name="com.web.toosome.user.board.service.EventBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/EventBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2958" y="165"/>    
+    <position height="-1" width="-1" x="3039" y="159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -33,7 +33,7 @@
   <interface id="4" language="java" name="com.web.toosome.user.board.dao.IQnaBoardMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/IQnaBoardMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="5153" y="-286"/>    
+    <position height="-1" width="-1" x="3032" y="382"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -42,7 +42,7 @@
   </interface>  
   <class id="5" language="java" name="com.web.toosome.user.board.vo.BoardSearchVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/BoardSearchVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="164" x="3" y="-409"/>    
+    <position height="-1" width="-1" x="1881" y="458"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -52,7 +52,7 @@
   <class id="6" language="java" name="com.web.toosome.user.board.vo.EventBoardDetailVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/EventBoardDetailVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="477" width="254" x="1032" y="522"/>    
+    <position height="-1" width="-1" x="962" y="422"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -62,7 +62,7 @@
   <class id="7" language="java" name="com.web.toosome.user.board.vo.QnaBoardCommentVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/QnaBoardCommentVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="531" width="233" x="689" y="522"/>    
+    <position height="-1" width="-1" x="957" y="-124"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -72,7 +72,7 @@
   <interface id="8" language="java" name="com.web.toosome.user.board.dao.INewsBoardMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/INewsBoardMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2630" y="-44"/>    
+    <position height="-1" width="-1" x="2700" y="-43"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -92,7 +92,7 @@
   <class id="10" language="java" name="com.web.toosome.user.board.service.BoardNoticeService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/BoardNoticeService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2972" y="-291"/>    
+    <position height="-1" width="-1" x="3029" y="-285"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -112,7 +112,7 @@
   <class id="12" language="java" name="com.web.toosome.user.board.service.NewsBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/NewsBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2964" y="-42"/>    
+    <position height="-1" width="-1" x="3032" y="-45"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -122,7 +122,7 @@
   <interface id="13" language="java" name="com.web.toosome.user.board.dao.IFaqBoardMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/IFaqBoardMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="5151" y="-93"/>    
+    <position height="-1" width="-1" x="4153" y="225"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -132,7 +132,7 @@
   <interface id="14" language="java" name="com.web.toosome.user.board.service.IFaqBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/IFaqBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4188" y="-96"/>    
+    <position height="-1" width="-1" x="4151" y="-103"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -141,7 +141,7 @@
   </interface>  
   <class id="15" language="java" name="com.web.toosome.user.board.vo.NoticeBoardVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/NoticeBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="218" x="207" y="-409"/>    
+    <position height="-1" width="-1" x="1544" y="464"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -150,7 +150,7 @@
   </class>  
   <class id="16" language="java" name="com.web.toosome.user.board.vo.EventBoardVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/EventBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="675" width="268" x="1032" y="-409"/>    
+    <position height="-1" width="-1" x="1244" y="-54"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -160,7 +160,7 @@
   <interface id="17" language="java" name="com.web.toosome.user.board.dao.IQnaBoardCommentMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/IQnaBoardCommentMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="5123" y="61"/>    
+    <position height="-1" width="-1" x="4498" y="196"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -170,7 +170,7 @@
   <interface id="18" language="java" name="com.web.toosome.user.board.service.IQnaBoardCommentService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/IQnaBoardCommentService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4248" y="57"/>    
+    <position height="-1" width="-1" x="4499" y="-327"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -179,7 +179,7 @@
   </interface>  
   <class id="19" language="java" name="com.web.toosome.user.board.vo.FaqBoardVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/FaqBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="184" x="465" y="-409"/>    
+    <position height="-1" width="-1" x="1244" y="486"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -189,7 +189,7 @@
   <class id="20" language="java" name="com.web.toosome.user.board.vo.NewsBoardDetailVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/NewsBoardDetailVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="585" width="256" x="1326" y="522"/>    
+    <position height="-1" width="-1" x="1877" y="-77"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -199,7 +199,7 @@
   <class id="21" language="java" name="com.web.toosome.user.board.service.FaqBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/FaqBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4683" y="-94"/>    
+    <position height="-1" width="-1" x="4154" y="47"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -208,7 +208,7 @@
   </class>  
   <class id="22" language="java" name="com.web.toosome.user.board.vo.NewsBoardVO" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/vo/NewsBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="621" width="272" x="1340" y="-409"/>    
+    <position height="-1" width="-1" x="1539" y="-82"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -218,7 +218,7 @@
   <interface id="23" language="java" name="com.web.toosome.user.board.dao.IEventBoardMapper" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/dao/IEventBoardMapper.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2626" y="162"/>    
+    <position height="-1" width="-1" x="2690" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,7 +228,7 @@
   <interface id="24" language="java" name="com.web.toosome.user.board.service.IQnaBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/IQnaBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4193" y="-295"/>    
+    <position height="-1" width="-1" x="3790" y="377"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -248,7 +248,7 @@
   <class id="26" language="java" name="com.web.toosome.user.board.service.QnaBoardCommentService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/QnaBoardCommentService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4682" y="56"/>    
+    <position height="-1" width="-1" x="4499" y="-64"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -258,7 +258,7 @@
   <class id="27" language="java" name="com.web.toosome.user.board.service.QnaBoardService" project="Toosome" 
     file="/Toosome/src/main/java/com/web/toosome/user/board/service/QnaBoardService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4692" y="-287"/>    
+    <position height="-1" width="-1" x="3384" y="383"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -276,147 +276,207 @@
     </display>  
   </class>  
   <association id="29">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="30" name="qnaBoardCommentService"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="32">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="33">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="34" name="newsBoardService"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="36">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="37" name="faqBoardService"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
     <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="40" name="newsBoardDetailVO"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+      <attribute id="30" name="newsBoardDetailVO">        
+        <position height="0" width="0" x="423" y="-891"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="423" y="-891"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="42">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <association id="43">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="44" name="noticeBoardService"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="27" navigable="false">      
-      <attribute id="47" name="mapper"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="49">    
+  <realization id="32">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="14"/>  
   </realization>  
-  <realization id="50">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <association id="51">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="52" name="qnaBoardService"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="55" name="qnaBoardComment"/>      
-      <multiplicity id="56" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="58" name="eventBoardDetailVO"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
+  <association id="33">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="61" name="mapper"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+      <attribute id="34" name="mapper">        
+        <position height="0" width="0" x="70" y="1"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="70" y="1"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="63">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="64" name="mapper"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="67" name="mapper"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="69">    
+  <association id="36">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="70" name="mapper"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+      <attribute id="37" name="mapper">        
+        <position height="0" width="0" x="-998" y="318"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-998" y="318"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="72">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="18"/>  
-  </realization>  
-  <realization id="73">    
+  <realization id="39">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <association id="74">    
+  <realization id="40">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="42">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="43" name="mapper">        
+        <position height="0" width="0" x="53" y="1"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="53" y="1"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="46" name="mapper">        
+        <position height="0" width="0" x="-625" y="135"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-625" y="135"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
     <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="75" name="eventBoardService"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
+      <attribute id="49" name="qnaBoardCommentService">        
+        <position height="0" width="0" x="251" y="-384"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="251" y="-384"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="51">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="52">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="53" name="qnaBoardComment">        
+        <position height="0" width="0" x="152" y="-911"/>      
+      </attribute>      
+      <multiplicity id="54" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="152" y="-911"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="56" name="mapper">        
+        <position height="0" width="0" x="64" y="-2"/>      
+      </attribute>      
+      <multiplicity id="57" minimum="0" maximum="1">        
+        <position height="0" width="0" x="64" y="-2"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="59" name="eventBoardService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="60" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="77">    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="78" name="mapper"/>      
-      <multiplicity id="79" minimum="0" maximum="1"/>    
+  <association id="61">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="62" name="faqBoardService">        
+        <position height="0" width="0" x="-37" y="-7"/>      
+      </attribute>      
+      <multiplicity id="63" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-37" y="-7"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="64">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <association id="65">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="66" name="noticeBoardService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="69" name="eventBoardDetailVO">        
+        <position height="0" width="0" x="-197" y="-338"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-197" y="-338"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="72" name="qnaBoardService">        
+        <position height="0" width="0" x="-403" y="672"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-403" y="672"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="75" name="newsBoardService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="78" name="mapper">        
+        <position height="0" width="0" x="-2121" y="668"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-2121" y="668"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
