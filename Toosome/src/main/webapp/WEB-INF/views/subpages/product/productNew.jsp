@@ -16,10 +16,7 @@
     <div class="product-container">
       <div class="title-container">
           <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
-<<<<<<< HEAD
           <span class="product-title"></span>
-=======
->>>>>>> origin/bang
       </div>
       <div class="sub-header-container">
 		<h3>PRODUCT</h3>
@@ -45,7 +42,6 @@
         </div>
     	<!-- 상품 이미지 출력 -->
         <div class="product-box">
-<<<<<<< HEAD
 					<ul class="all">
 						<c:forEach var="productNewList" items="${productNewList}">
 							<li>
@@ -69,7 +65,6 @@
 						</c:forEach>
 					</ul>
 				</div>
-=======
 			<ul class="all">
 				<c:forEach var="productAllList" items="${productAllList}">
 					<li>
@@ -99,7 +94,6 @@
 				</c:forEach>
 			</ul>
 		</div>
->>>>>>> origin/bang
          
       </div>
     </div>
