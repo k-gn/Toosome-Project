@@ -78,9 +78,8 @@ public class ProductController {
 		ProductVO productavg = productService.productRatingAVG(productVO);
 		
 		model.addAttribute("productReviewList", productService.productReviewList(productReviewBoardVO.getProductId()));
-		System.out.println("리뷰VO" + model);
+//		System.out.println("리뷰VO" + model);
 		
-	
 		
 		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
 		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
@@ -92,7 +91,7 @@ public class ProductController {
 	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
 		productService.productReviewInsert(productReviewBoardVO);
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
-		System.out.println("reviewInsert" + productReviewBoardVO.getProductReviewBoardId());
+		System.out.println("reviewInsert : " + productReviewBoardVO.getProductReviewBoardId());
 		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
 		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
 		return "redirect:/productDetail";
@@ -105,7 +104,6 @@ public class ProductController {
 	public RedirectView productReviewUpdate(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		productService.productReviewUpdate(productReviewBoardVO);
-		System.out.println("reviewUpdate" + productReviewBoardVO.getProductReviewBoardContent());
 	
 		return new RedirectView("/productDetail");
 	}
@@ -114,6 +112,7 @@ public class ProductController {
 	@GetMapping("/productReviewDelete")
 	@ResponseBody
 	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		System.out.println(productReviewBoardVO.getProductReviewBoardId());
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		rttr.addAttribute("reviewBoardId", productReviewBoardVO.getProductReviewBoardId());
 		productService.productReviewDelete(productReviewBoardVO);
