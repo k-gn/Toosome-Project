@@ -22,7 +22,6 @@ public class ProductController {
 		System.out.println("신상품 출력");
 		List<ProductVO> productAllList = productService.getproductnewList(productVO);
 		model.addAttribute("productAllList", productAllList);
-		System.out.println(model);
 		return "subpages/product/productNew";
 	}
 
@@ -31,7 +30,6 @@ public class ProductController {
 		System.out.println("커피 상품 출력");
 		List<ProductVO> productCoffeeList = productService.getcoffeeList(productVO);
 		model.addAttribute("productCoffeeList", productCoffeeList);
-		System.out.println(model);
 		return "subpages/product/productCoffee";
 	}
 
@@ -40,7 +38,6 @@ public class ProductController {
 		System.out.println("커피웨어 상품 출력");
 		List<ProductVO> productCoffeewearList = productService.getcoffeewearList(productVO);
 		model.addAttribute("productCoffeewearList", productCoffeewearList);
-		System.out.println(model);
 		return "subpages/product/productCoffeewear";
 	}
 
@@ -49,7 +46,6 @@ public class ProductController {
 		System.out.println("기프트세트 상품 출력");
 		List<ProductVO> productGiftList = productService.getgiftList(productVO);
 		model.addAttribute("productGiftList", productGiftList);
-		System.out.println(model);
 		return "subpages/product/productGift";
 	}
 
@@ -58,7 +54,6 @@ public class ProductController {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
-		System.out.println(productDetail);
 //		System.out.println("상품 주의사항 디테일 출력");
 //		ProductVO productprecautionsDetail = productService.getproductprecautionsDetail(productVO);
 //		model2.addAttribute("productprecautionsDetail", productprecautionsDetail);
