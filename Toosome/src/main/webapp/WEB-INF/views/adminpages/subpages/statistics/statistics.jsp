@@ -32,14 +32,14 @@
                 <div class="card-header card-header-info">
                   <div class="ct-chart" id="salesChart"></div>
                 </div>
-                <div class="card-body">
+                <div class="card-body flex">
                   <h4 class="card-title">결제금액 추이</h4>
                   <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                    <i class="material-icons">show_chart</i>Monthly Sales Chart</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                    <i class="material-icons">access_time</i> updated 1 minutes ago
                   </div>
                 </div>
               </div>
@@ -49,14 +49,14 @@
                 <div class="card-header card-header-info">
                   <div class="ct-chart" id="caseChart"></div>
                 </div>
-                <div class="card-body">
+                <div class="card-body flex">
                   <h4 class="card-title">판매건수 추이</h4>
                   <p class="card-category">
-                  	<span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
+                  	<i class="material-icons">bar_chart</i>Monthly Orders Chart</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                   <i class="material-icons">access_time</i> updated 4 minutes ago
+                   <i class="material-icons">access_time</i> updated 1 minutes ago
                   </div>
                 </div>
               </div>

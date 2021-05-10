@@ -15,7 +15,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
@@ -97,9 +96,7 @@
 						</ul>
 					</div>
 					<div class="btn-group">
-						<button class="prev">&lt;</button>
-						<button class="list">목록</button>
-						<button class="next">&gt;</button>
+						<button class="list" onclick="location.href='/product'">목록</button>
 					</div>
 
 					<ul class="one-comment">
@@ -174,18 +171,20 @@
 	        				<input name="productReviewBoardId"  type="hidden" value="${productReviewList.productReviewBoardId}" />							        	
 					        <input name="productReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
 			        		
-			        		<li>
+			        		<div class="c-test">
 								<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productReviewList.productReviewBoardRating }.png" alt=""></span>
 								<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
 								<span class="nik">${productReviewList.productReviewBoardWriter}</span>
 								<span class="dat"><fmt:formatDate value="${productReviewList.productReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
-							</li>
-							<div>
-								<c:if test="${productReviewList.memberId == sessionScope.id }">
-								<span><button id="productReviewDelBtn${status.count}" type="submit" name="productReviewBoardId" >삭제</button>//${productReviewList.productReviewBoardId}</span>
-						        <span><button class="productReviewUpdBtn${status.count }" type="submit" value="${productReviewList.productReviewBoardId}" formaction="/productReviewUpdate" >수정</button>//${productReviewList.productReviewBoardId}</span>
-								<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
-								</c:if>
+								
+								
+								<div class="c-btn">
+									<c:if test="${productReviewList.memberId == sessionScope.id }">
+										<span><button id="productReviewDelBtn${status.count}" type="submit" name="productReviewBoardId" >삭제</button></span>
+								        <span><button class="productReviewUpdBtn${status.count }" type="submit" value="${productReviewList.productReviewBoardId}" formaction="/productReviewUpdate" >수정</button></span>
+										<!-- <span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span> -->
+									</c:if>
+								</div>
 							</div>
 	
 						</form>
