@@ -202,7 +202,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 50,
+        high: 15,
         chartPadding: {
           top: 0,
           right: 0,
