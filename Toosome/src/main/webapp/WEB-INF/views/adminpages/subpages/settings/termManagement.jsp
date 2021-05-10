@@ -11,18 +11,14 @@
 <link
 	href="/resources/css/adminpages/subpages/settings/termManagement.css"
 	rel="stylesheet" />
-<script
-	src="/resources/js/adminpages/subpages/settings/termManagement.js"
-	defer></script>
-	
-	<script type="text/javascript">
-		const msg = "${msg}";
-		if(msg === "success") {
-			alert("약관을 수정하였습니다.");
-		}else if(msg === "fail") {
-			alert("약관을 수정을 실패하였습니다.");
-		}
-	</script>
+<script type="text/javascript">
+	const msg = "${msg}";
+	if(msg === "success") {
+		alert("약관을 수정하였습니다.");
+	}else if(msg === "fail") {
+		alert("약관을 수정을 실패하였습니다.");
+	}
+</script>
 </head>
 
 <body>

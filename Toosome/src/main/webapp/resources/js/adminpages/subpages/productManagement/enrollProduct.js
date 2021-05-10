@@ -45,7 +45,6 @@ const FormCheck = (e) => {
 	}else if(content.value === "" || content.value.length < 5) {
 		alert("상품 내용이 올바르지 않습니다.");
 	}else {
-		console.log("submit");
 		formObj.submit();
 	}
 

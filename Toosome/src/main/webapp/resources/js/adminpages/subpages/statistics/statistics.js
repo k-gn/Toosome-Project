@@ -235,7 +235,6 @@ ct = {
 	dataCaseChart.labels = dates;
 	dataSalesChart.series.push(temp2);
 	dataCaseChart.series.push(temp);
-	console.log(dataCaseChart);
 	
 	// 차트 선언
 	var salesChart = new Chartist.Line('#salesChart', dataSalesChart, optionsSalesChart);
