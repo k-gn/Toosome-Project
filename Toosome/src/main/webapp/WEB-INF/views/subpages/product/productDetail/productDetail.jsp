@@ -168,7 +168,7 @@
         		</form>
         			<ul class="comment-end">
         			<c:forEach var="productReviewList" items="${productReviewList}" varStatus="status">
-		        		<form method="get" class="form2" id="productReviewLists" action="/productReviewDelete">
+		        		<form method="get" class="form2" id="productReviewLists">
 		        			<input name="productId"  type="hidden" value="${productDetail.productId}" />
 		        			<input name="memberId" type="hidden" value="${id}"/>
 	        				<input name="productReviewBoardId"  type="hidden" value="${productReviewList.productReviewBoardId}" />							        	
@@ -177,14 +177,16 @@
 			        		<li>
 								<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productReviewList.productReviewBoardRating }.png" alt=""></span>
 								<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
+								<c:if test="${productReviewList.memberId == sessionScope.id }">
+								<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
+								</c:if>
 								<span class="nik">${productReviewList.productReviewBoardWriter}</span>
 								<span class="dat"><fmt:formatDate value="${productReviewList.productReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
 							</li>
 							<div>
 								<c:if test="${productReviewList.memberId == sessionScope.id }">
-								<span><button id="productReviewDelBtn${status.count}" type="submit" name="productReviewBoardId" >삭제</button>//${productReviewList.productReviewBoardId}</span>
-						        <span><button class="productReviewUpdBtn${status.count }" type="submit" value="${productReviewList.productReviewBoardId}" formaction="/productReviewUpdate" >수정</button>//${productReviewList.productReviewBoardId}</span>
-								<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
+								<span><button id="productReviewDelBtn${status.count}" type="submit" formaction="/productReviewDelete" >삭제</button></span>
+						        <span><button id="productReviewUpdBtn${status.count }" type="submit" formaction="/productReviewUpdate" >수정</button></span>
 								</c:if>
 							</div>
 	
@@ -222,6 +224,10 @@ $(document).ready(function() {
     $('#productReviewInsert').submit(function() {
         if ($('#productReviewBoardContent').val() == '') {
             alert('코멘트를 입력해주세요.');
+            return false;
+        }
+        if ($('#productReviewBoardRating').val() == ''){
+        	alert('별점을 선택해주세요.');
             return false;
         }
     }); // end submit()

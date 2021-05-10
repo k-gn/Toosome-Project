@@ -60,13 +60,11 @@
 				
 				<ul class="star cf">
 					<!-- 평균별점 -->
-					<li><img
-<<<<<<< HEAD
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
-=======
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_off.png" alt=""></li>
+					<li><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
+
+
 					<!-- 메뉴 서브내용 -->
->>>>>>> origin/bang
+
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
 				<!-- 메뉴 이름 -->
@@ -177,7 +175,7 @@
 										src="/resources/img/subpages/product/productDetail/ico_star_1.png"
 										alt=""></a></li>
 							</ul>
-<<<<<<< HEAD
+
 							<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
 
 					</div>
@@ -188,17 +186,15 @@
 			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
 	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
 						<input	type="submit" value="쓰기">
-				
-=======
-						</div>
-						<input type="text" placeholder="제품 한마디를 등록해 주세요."> 
-						<input	type="submit" value="쓰기">
->>>>>>> origin/bang
+					</div>
+						
+
 					</form>
-					<form action="#" method="get" class="form2">
-						<ul class="comment-end">
-<<<<<<< HEAD
+					<ul class="comment-end">
+					
 					<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
+					<form method="get" class="form2">
+				
 	        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
 	        			<input name="memberId" type="hidden" value="${id}"/>
         				<input name="menuReviewBoardId"  type="hidden" value="${menuReviewList.menuReviewBoardId}" />							        	
@@ -207,6 +203,9 @@
 		        		<li>
 							<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menuReviewList.menuReviewBoardRating }.png" alt=""></span>
 							<span class="cocom">${menuReviewList.menuReviewBoardContent}//${menuReviewList.menuReviewBoardId}</span> 
+							<c:if test="${menuReviewList.memberId == sessionScope.id }">
+							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+							</c:if>
 							<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
 							<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
 							
@@ -214,25 +213,14 @@
 						</li>
 						<div>
 							<c:if test="${menuReviewList.memberId == sessionScope.id }">
-							<span><button id="menuReviewDelBtn${status.count}" type="submit" name="menuReviewBoardId" formaction="/menuReviewDelete" >삭제</button>//${menuReviewList.menuReviewBoardId}</span>
-					        <span><button class="menuReviewUpdBtn${status.count }" type="submit" value="${menuReviewList.menuReviewBoardId}" formaction="/menuReviewUpdate" />수정</button>//${menuReviewList.menuReviewBoardId}</span>
-							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+							<span><button id="menuReviewDelBtn${status.count}" type="submit" formaction="/menuReviewDelete" >삭제</button></span>
+					        <span><button id="menuReviewUpdBtn${status.count}" type="submit"  formaction="/menuReviewUpdate" >수정</button></span>
 							</c:if>
 						</div>
-
-					   </c:forEach>
-=======
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡ</span> <span class="nik">admin**</span>
-								<span class="dat">2021.04.02</span></li>
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
-								<span class="dat">2021.04.01</span></li>
->>>>>>> origin/bang
-						</ul>
 					</form>
+					   </c:forEach>
+						</ul>
+					
 		<script type="text/javascript">
 var locked = 0;
 function show(menuReviewBoardRating){
@@ -257,8 +245,12 @@ function mark(menuReviewBoardRating){
 }
 $(document).ready(function() {
     $('#menuReviewInsert').submit(function() {
-        if ($('#menuReviewBoardContent').val() == '') {
+        if ($('#menuReviewBoardContent').val() == ''){
             alert('코멘트를 입력해주세요.');
+            return false;
+        }
+        if ($('#menuReviewBoardRating').val() == ''){
+        	alert('별점을 선택해주세요.');
             return false;
         }
     }); // end submit()
