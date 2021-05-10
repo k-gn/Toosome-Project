@@ -20,7 +20,9 @@ import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.web.toosome.user.menu.dao.IMenuMapper;
 import com.web.toosome.user.menu.vo.MenuImageVO;
+import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
+import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 @Service
 public class MenuService implements IMenuService {
@@ -188,6 +190,49 @@ public class MenuService implements IMenuService {
 	@Override
 	public int getMenuPrice(Integer id) {
 		return mapper.getMenuPrice(id);
+	}
+
+	@Override
+	public MenuVO menuRatingAVG(MenuVO menuVO) {
+		
+		return mapper.menuRatingAVG(menuVO);
+	}
+
+
+	@Override
+	public int delmenuById(Integer id){
+
+		return mapper.delmenuById(id);
+	}
+
+	@Override
+	public List<MenuReviewBoardVO> menuReviewList(Integer menuId) {
+
+		return mapper.menuReviewList(menuId);
+	}
+
+	@Override
+	public int menuReviewInsert(MenuReviewBoardVO menuReviewBoardVO) {
+
+		return mapper.menuReviewInsert(menuReviewBoardVO);
+	}
+
+	@Override
+	public int menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO) {
+
+		return mapper.menuReviewUpdate(menuReviewBoardVO);
+	}
+
+	@Override
+	public int menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO) {
+
+		return mapper.menuReviewDelete(menuReviewBoardVO);
+	}
+
+	@Override
+	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId) {
+
+		return mapper.menuReviewSelect(menuReviewBoardId);
 	}
 
 

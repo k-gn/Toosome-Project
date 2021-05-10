@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -57,7 +58,7 @@
 
 				<ul class="star cf">
 					<li><img
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_off.png" alt=""></li>
+						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
 				<h3>${menubeverageDetail.menuMainTitle}</h3>
@@ -119,70 +120,127 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="#" method="post" class="form1">
+					<form action="/menuReviewInsert" method="post" id="menuReviewInsert" name="menuReviewform1" class="form1">
 						<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_5.png"
-										alt="">
+									<img id="starimg5" onclick=mark(5) onload=mark(5) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png">
 								</p>
 								<p class="star_img">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_4.png"
-										alt="">
+									<img id="starimg4" onclick=mark(4) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png">
 								</p>
 								<p class="star_img">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png"
-										alt="">
+									<img id="starimg3" onclick=mark(3) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png">
 								</p>
 								<p class="star_img">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_2.png"
-										alt="">
+									<img id="starimg2" onclick=mark(2) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png">
 								</p>
 								<p class="star_img">
-									<img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png"
-										alt="">
+									<img id="starimg1" onclick=mark(1) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png">
 								</p>
 							</div>
 
 							<div class="triangle-cover">▼</div>
 
 							<ul class="star-drop">
-								<li><a href="#"><img
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_5.png" alt=""></a></li>
-								<li><a href="#"><img
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_4.png" alt=""></a></li>
-								<li><a href="#"><img
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></a></li>
-								<li><a href="#"><img
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_2.png" alt=""></a></li>
-								<li><a href="#"><img
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></a></li>
+								<li><a href="#"><img id="starimg5"
+										onclick=mark(5)
+										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"
+										alt=""></a></li>
+								<li><a href="#"><img id="starimg4"
+										onclick=mark(4)
+										src="/resources/img/subpages/product/productDetail/ico_star_4.png"
+										alt=""></a></li>
+								<li><a href="#"><img id="starimg3"
+										onclick=mark(3)
+										src="/resources/img/subpages/product/productDetail/ico_star_3.png"
+										alt=""></a></li>
+								<li><a href="#"><img id="starimg2"
+										onclick=mark(2)
+										src="/resources/img/subpages/product/productDetail/ico_star_2.png"
+										alt=""></a></li>
+								<li><a href="#"><img id="starimg1"
+										onclick=mark(1)
+										src="/resources/img/subpages/product/productDetail/ico_star_1.png"
+										alt=""></a></li>
 							</ul>
-						</div>
+							<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
 
-						<input type="text" placeholder="제품 한마디를 등록해 주세요."> 
+					</div>
+
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
+			        	<input name="memberId" type="hidden" value="${id}"/>
+			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
 						<input	type="submit" value="쓰기">
-
+				
 					</form>
 					<form action="#" method="get" class="form2">
 
 						<ul class="comment-end">
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡdddddddddddddddddddddddddddddddddddddddddddd</span> <span class="nik">admin**</span>
-								<span class="dat">2021.04.02</span></li>
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
-								<span class="dat">2021.04.01</span></li>
+					<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
+	        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
+	        			<input name="memberId" type="hidden" value="${id}"/>
+        				<input name="menuReviewBoardId"  type="hidden" value="${menuReviewList.menuReviewBoardId}" />							        	
+				        <input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+		        		
+		        		<li>
+							<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menuReviewList.menuReviewBoardRating }.png" alt=""></span>
+							<span class="cocom">${menuReviewList.menuReviewBoardContent}//${menuReviewList.menuReviewBoardId}</span> 
+							<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
+							<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
+							
+							
+						</li>
+						<div>
+							<c:if test="${menuReviewList.memberId == sessionScope.id }">
+							<span><button id="menuReviewDelBtn${status.count}" type="submit" name="menuReviewBoardId" formaction="/menuReviewDelete" >삭제</button>//${menuReviewList.menuReviewBoardId}</span>
+					        <span><button class="menuReviewUpdBtn${status.count }" type="submit" value="${menuReviewList.menuReviewBoardId}" formaction="/menuReviewUpdate" />수정</button>//${menuReviewList.menuReviewBoardId}</span>
+							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+							</c:if>
+						</div>
+
+					   </c:forEach>
 						</ul>
 					</form>
+		<script type="text/javascript">
+var locked = 0;
+function show(menuReviewBoardRating){
+	if(locked)
+		return;
+	var i;
+	var starimg;
+	for(i=1; i<=menuReviewBoardRating; i++){
+		starimg = 'starimg'+i;
+		el = document.getElementById(starimg);	
+	}
+}
+
+function lock(menuReviewBoardRating){
+	show(menuReviewBoardRating);
+	locked=1;
+}
+function mark(menuReviewBoardRating){
+	lock(menuReviewBoardRating);
+		document.menuReviewform1.menuReviewBoardRating.value=menuReviewBoardRating;
+	
+}
+$(document).ready(function() {
+    $('#menuReviewInsert').submit(function() {
+        if ($('#menuReviewBoardContent').val() == '') {
+            alert('코멘트를 입력해주세요.');
+            return false;
+        }
+    }); // end submit()
+}); // end ready()
+</script> 
 				</div>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 	</div>
-</body>
+</body>   		
 <script>
 const coms = document.querySelectorAll('.com');
 coms.forEach((com => {

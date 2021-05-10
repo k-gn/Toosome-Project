@@ -1,6 +1,6 @@
 package com.web.toosome.user.product.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +37,7 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
-
+	private ProductReviewBoardVO productReviewBoardVO;
 	private MemberVO memberVO;
 
 //	private String searchCondition; //검색 조건

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.toosome.admin.boardManagement.dao.IFaqAdminMapper">
+
+	<resultMap type="faqBoardVO" id="FaqBoardMap">
+		<id property="faqBoardId" column="FAQ_BOARD_ID"/>
+		<result property="faqBoardTitle" column="FAQ_BOARD_TITLE"/>
+		<result property="faqBoardContent" column="FAQ_BOARD_CONTENT"/>
+		<result property="faqBoardRegDate" column="FAQ_BOARD_REG_DATE"/>
+	</resultMap>
+	
+	<sql id ="search">
+	
+		<if test="condition == 'title'">
+			WHERE NEWS_BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE NEWS_BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="startRegDate != null and startRegDate != ''">
+			AND NEWS_BOARD_REG_DATE BETWEEN DATE(#{startRegDate}) AND DATE(#{endRegDate})+1 
+		</if>
+		<if test="keyword != null">
+			ORDER BY NEWS_BOARD_ID DESC
+		</if>
+		
+	</sql>
+	
+	<select id="faqSearch" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD
+	<include refid="search"/>
+	</select>
+	
+	
+	<select id="faqBoardList" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD ORDER BY FAQ_BOARD_ID DESC;
+	</select>
+	
+	<select id="faqBoardDetail" resultMap="FaqBoardMap">
+		SELECT * FROM FAQ_BOARD WHERE FAQ_BOARD_ID = #{faqBoardId}
+	</select>
+	
+	<insert id="insertFaq"> 
+	INSERT INTO FAQ_BOARD(FAQ_BOARD_ID, FAQ_BOARD_TITLE, FAQ_BOARD_CONTENT, FAQ_BOARD_REG_DATE) 
+	VALUES(#{faqBoardId}, #{faqBoardTitle}, #{faqBoardContent}, #{faqBoardRegDate})
+	</insert>
+	
+	<update id="updateFaq">
+		UPDATE FAQ_BOARD SET 
+		FAQ_BOARD_TITLE = #{faqBoardTitle}, 
+		FAQ_BOARD_CONTENT = #{faqBoardContent}, 
+		FAQ_BOARD_REG_DATE = #{faqBoardRegDate} 
+		WHERE FAQ_BOARD_ID = #{faqBoardId}
+	</update>
+	
+	<delete id="deleteFaq">
+		DELETE FROM FAQ_BOARD WHERE FAQ_BOARD_ID = #{faqBoardId}
+	</delete>
+	
+	
+	
+	
+</mapper>

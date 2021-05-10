@@ -14,7 +14,7 @@
 	
 	<!-- admin -->
 	<security:http auto-config="true" pattern="/admin/**" use-expressions="true" entry-point-ref="authenticationEntryPoint">
-		<security:intercept-url pattern="/admin/signin" access="isAnonymous()" />
+		<security:intercept-url pattern="/admin/signin" access="permitAll"/>
 		<security:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_HEAD','ROLE_ADMIN')"/>
 		<security:form-login
 			username-parameter="adminId"

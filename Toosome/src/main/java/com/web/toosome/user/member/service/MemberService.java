@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.web.toosome.admin.adminManagement.vo.AdminVO;
 import com.web.toosome.admin.memberManagement.dao.IMemberManageMapper;
 import com.web.toosome.user.basket.dao.IBasketMapper;
+import com.web.toosome.user.board.dao.IQnaBoardCommentMapper;
 import com.web.toosome.user.board.dao.IQnaBoardMapper;
 import com.web.toosome.user.member.dao.IMemberMapper;
+import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.dao.IMembershipMapper;
 
@@ -38,6 +40,9 @@ public class MemberService implements IMemberService {
 	
 	@Autowired
 	private IMemberManageMapper mmapper;
+	
+	@Autowired
+	private IQnaBoardCommentMapper qcmapper;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -193,6 +198,7 @@ public class MemberService implements IMemberService {
 		mapper.insertWithdrawInfo(mapper.getUserById(id));
 		bmapper.delBasketById(id);
 		msmapper.deleteMembership(id);
+		qcmapper.delQnaCommentById(id);
 		qmapper.delQna(id);
 		// 해당 회원 댓글 삭제 추가 예정
 		mapper.deleteMemberAuth(email);
@@ -223,11 +229,13 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public int getUserIdByEmail(String email) {
-		// TODO Auto-generated method stub
-		return mapper.getUserIdByEmail(email);
+	public AuthVO getAuthById(String email) {
+		return mapper.getAuthById(email);
 	}
 
-
+	@Override
+	public Integer getUserIdByEmail(String email) {
+		return mapper.getUserIdByEmail(email);
+	}
 
 }

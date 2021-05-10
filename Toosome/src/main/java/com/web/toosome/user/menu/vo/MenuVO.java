@@ -20,6 +20,7 @@ public class MenuVO {
 	private Date menuRegDate;
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date menuStartDay;
+	private Integer menuStar;
 	private Integer menuCheckCount;
 	private Integer menuState;
 	private Integer menuNew;
@@ -40,6 +41,10 @@ public class MenuVO {
 	private String memberPhone;
 	private String merchantUid;
 	private Integer ordersId;
+	private String memberEmail;
+	private Integer ordersUsePoint;
+	private Integer ordersProductPay;
+	private Integer ordersSal;
 	
 	
 }

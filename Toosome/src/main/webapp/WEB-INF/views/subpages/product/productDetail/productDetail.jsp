@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,8 +18,8 @@
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
-		<div class="productDetail-container">
-			<div class="title-container">
+	<div class="productDetail-container">
+		<div class="title-container">
 			<c:if test="${productDetail.productType == 1}">
 				<span class="productDetail-title big">커피상품</span>
 			</c:if>
@@ -37,7 +38,7 @@
 			<c:if test="${productDetail.productType != 3}">
 			    <span class="productDetail-title">기프트세트</span>
 			</c:if>
-			</div>
+		</div>
 			<div class="contents">
 
 				<img class="product-img"
@@ -46,8 +47,9 @@
 
 				<ul class="star cf">
 					<li><img
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_off.png"
+						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productDetail.productStar}.png"
 						alt=""></li>
+						
 					<li>${productDetail.productSubName}</li>
 				</ul>
 				<p class="strong">${productDetail.productTitleName}</p>
@@ -89,7 +91,8 @@
 									<li>${productDetail.productPrecautionsVO.productPrecautionsContent3}
 
 									</li>
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 					<div class="btn-group">
@@ -102,124 +105,153 @@
 						<li class="bold">COMMENT 맛있는 제품 한마디</li>
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
-
-					<form action="#" method="post" class="form1">
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}">
-
-						<div class="star-catch-cover">
+	
+        	<form action="/productReviewInsert" method="POST" class="form1" id="productReviewInsert" name="productReviewform1">
+	        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input name="productId"  type="hidden" value="${productDetail.productId}" />
+	        	<input name="memberId" type="hidden" value="${id}"/>
+	        	<input name="productReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+				<input id="productReviewBoardContent" type="text" name="productReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
+				<input type="submit" id="check()" value="쓰기">
+	        	
+        		<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
-									<img id="starimg5"
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png">
+									<img id="starimg5" 
+										onclick=mark(5) onload=mark(5) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png">
 								</p>
 								<p class="star_img">
 									<img id="starimg4"
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png">
+										onclick=mark(4) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png">
 								</p>
 								<p class="star_img">
 									<img id="starimg3"
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png">
+										onclick=mark(3) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png">
 								</p>
 								<p class="star_img">
 									<img id="starimg2"
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png">
+										onclick=mark(2) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png">
 								</p>
 								<p class="star_img">
 									<img id="starimg1"
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png">
+										onclick=mark(1) src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png">
 								</p>
 							</div>
 
 							<div class="triangle-cover">▼</div>
 
 							<ul class="star-drop">
-								<li><a href="#"><img id="starimg5" onmouseover=show(5)
+								<li><a href="#"><img id="starimg5"
 										onclick=mark(5)
 										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"
 										alt=""></a></li>
-								<li><a href="#"><img id="starimg4" onmouseover=show(4)
+								<li><a href="#"><img id="starimg4"
 										onclick=mark(4)
 										src="/resources/img/subpages/product/productDetail/ico_star_4.png"
 										alt=""></a></li>
-								<li><a href="#"><img id="starimg3" onmouseover=show(3)
+								<li><a href="#"><img id="starimg3"
 										onclick=mark(3)
 										src="/resources/img/subpages/product/productDetail/ico_star_3.png"
 										alt=""></a></li>
-								<li><a href="#"><img id="starimg2" onmouseover=show(2)
+								<li><a href="#"><img id="starimg2"
 										onclick=mark(2)
 										src="/resources/img/subpages/product/productDetail/ico_star_2.png"
 										alt=""></a></li>
-								<li><a href="#"><img id="starimg1" onmouseover=show(1)
+								<li><a href="#"><img id="starimg1"
 										onclick=mark(1)
 										src="/resources/img/subpages/product/productDetail/ico_star_1.png"
 										alt=""></a></li>
 							</ul>
+							<input id="productReviewBoardRating" type="hidden" name="productReviewBoardRating" />
+					</div>
+        		</form>
+        		<form method="get" class="form2" id="productReviewLists">
+        			<ul class="comment-end">
+        			<c:forEach var="productReviewList" items="${productReviewList}" varStatus="status">
+        			<input name="productId"  type="hidden" value="${productDetail.productId}" />
+        			<input name="memberId" type="hidden" value="${id}"/>
+        				<input name="productReviewBoardId"  type="hidden" value="${productReviewList.productReviewBoardId}" />							        	
+				        <input name="productReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+		        		
+		        		<li>
+							<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productReviewList.productReviewBoardRating }.png" alt=""></span>
+							<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
+							<span class="nik">${productReviewList.productReviewBoardWriter}</span>
+							<span class="dat"><fmt:formatDate value="${productReviewList.productReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
+						</li>
+						<div>
+							<c:if test="${productReviewList.memberId == sessionScope.id }">
+							<span><button id="productReviewDelBtn${status.count}" type="submit" name="productReviewBoardId" formaction="/productReviewDelete" >삭제</button>//${productReviewList.productReviewBoardId}</span>
+					        <span><button class="productReviewUpdBtn${status.count }" type="submit" value="${productReviewList.productReviewBoardId}" formaction="/productReviewUpdate" />수정</button>//${productReviewList.productReviewBoardId}</span>
+							<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
+							</c:if>
 						</div>
 
-						<input type="text" placeholder="제품 한마디를 등록해 주세요."> <input
-							type="submit" value="쓰기">
-					</form>
-
-					<form action="reviewlist" method="get" class="form2">
-						<ul class="comment-end">
-					<div id="reviewList">
-  						<ol class="reviewList">
-					    <c:forEach items="${reviewList}" var="reviewList">
-					      <li>
-					        <p>
-					     	  작성자 : ${reviewList.reviewBoardWriter}<br />
-					      	  작성 날짜 :  <fmt:formatDate value="${reviewList.reviewBoardRegDate}" pattern="yyyy-MM-dd" />
-					        </p>
-					
-					        <p>${reviewList.reviewBoardContent}</p>
-					      </li>
-					    </c:forEach>
-					 
-						</ul>
-						<!--
-						<ul class="comment-end">
-							<li><span class="star-fin"><img
-									src="/resources/img/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡ</span> <span class="nik">admin**</span>
-								<span class="dat">2021.04.02</span></li>
-							<li><span class="star-fin"><img
-									src="/resources/img/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
-								<span class="dat">2021.04.01</span></li>
-						</ul>-->
+					   </c:forEach>
+					</ul>	
 						
-					</form>
-					
-				</div>
+				</form>
+				   
+
+
+<script type="text/javascript">
+var locked = 0;
+
+function show(productReviewBoardRating){
+	if(locked)
+		return;
+	var i;
+	var starimg;
+	for(i=1; i<=productReviewBoardRating; i++){
+		starimg = 'starimg'+i;
+		el = document.getElementById(starimg);	
+	}
+}
+
+function lock(productReviewBoardRating){
+	show(productReviewBoardRating);
+	locked=1;
+}
+function mark(productReviewBoardRating){
+	lock(productReviewBoardRating);
+		document.productReviewform1.productReviewBoardRating.value=productReviewBoardRating;
+	
+}
+$(document).ready(function() {
+    $('#productReviewInsert').submit(function() {
+        if ($('#productReviewBoardContent').val() == '') {
+            alert('코멘트를 입력해주세요.');
+            return false;
+        }
+    }); // end submit()
+}); // end ready()
+</script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#reviewDelBtn${status.count}').on('click', function() {  // 클래스값이 delete인 엘리먼트가 눌리면?
+        if(confirm("정말로 삭제하시겠습니까?")) {  // 확인 창이 열림
+         
+        }
+    });
+});
+
+
+</script>
+				
+				</div>							
 			</div>
+			
 		</div>
+		
 	</div>
 
 
 
-	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
-<script type="text/javascript">
-	  	const msg = "${msg}";
-	  	if(msg === "insertSuccess") {
-	  		alert("댓글 등록 완료");
-	  		location.reload();
-	  	} else if (msg === "updateFail") {
-	  		alert("댓글 등록 실패");
-	  	} else if (msg === "deleteSuccess") {
-	  		alert("댓글 삭제 완료");
-	  		location.reload();
-	  	} else if (msg === "deleteFail") {
-	  		alert("댓글 삭제 실패");
-	  	} else if (msg === "updateSuccess") {
-	  		alert("댓글 수정 완료");
-	  		location.reload();
-	  	} else if (msg === "updateFail") {
-	  		alert("댓글 수정 실패");
-	  	}
-	</script>
-	<script>	
 
+	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
+
+<script type="text/javascript">
 const coms = document.querySelectorAll('.com');
 coms.forEach((com => {
     let num = +(com.innerHTML);

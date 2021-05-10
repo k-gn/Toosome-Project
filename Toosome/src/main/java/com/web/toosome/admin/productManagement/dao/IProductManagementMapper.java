@@ -3,7 +3,6 @@ package com.web.toosome.admin.productManagement.dao;
 import java.util.List;
 
 import com.web.toosome.admin.productManagement.vo.ProductSearchVO;
-import com.web.toosome.user.menu.vo.MenuVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
 import com.web.toosome.user.product.vo.ProductVO;
 

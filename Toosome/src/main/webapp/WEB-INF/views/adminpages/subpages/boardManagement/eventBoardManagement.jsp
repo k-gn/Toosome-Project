@@ -20,6 +20,14 @@
  		alert("정상 등록되었습니다");
  	}else if(msg === "failBoard") {
  		alert("입력하신 정보가 올바르지 않습니다.");
+ 	}else if(msg === 'updateSuccess') {
+ 		alert("수정 완료");
+ 	}else if(msg === 'updateFail') {
+ 		alert("수정 실패");
+ 	}else if(msg === 'successDelete') {
+ 		alert("삭제 완료");
+ 	}else if(msg === 'failDelete') {
+ 		alert("삭제 실패");
  	}
   </script>
 </head>
@@ -266,6 +274,7 @@
 				            </div>
 				          </div>
 				          <button id="enroll-submit" type="submit" class="btn btn-primary pull-right btn-r">등록</button>
+				          <button type="reset" class="btn btn-primary pull-right btn-r">초기화</button> 
 				        </div>
 			        </form>
 			      </div>
@@ -309,7 +318,7 @@
                    		<col width="15%">
                    		<col width="5%">
                       </colgroup>
-                      <thead class="text-primary text-center" id="list-table-thead">
+                      <thead class="text-primary text-center">
                         <th>
                           글번호
                         </th>

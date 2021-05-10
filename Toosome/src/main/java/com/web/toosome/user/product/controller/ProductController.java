@@ -1,38 +1,36 @@
 package com.web.toosome.user.product.controller;
 
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.toosome.user.member.service.IMemberService;
+import com.web.toosome.user.member.vo.AuthVO;
+import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
-import com.web.toosome.user.reviewboard.service.IReviewBoardService;
-import com.web.toosome.user.reviewboard.vo.ReviewBoardVO;
+import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 @Controller
 public class ProductController {
 
 	@Autowired
 	private IProductService productService;
-
-	@Autowired
-	private IReviewBoardService reviewBoardService;
-	
 	@Autowired
 	private IMemberService memberService;
-	
+
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
@@ -69,46 +67,64 @@ public class ProductController {
 		return "subpages/product/productGift";
 	}
 
-	@RequestMapping(value = "/productDetail", method = RequestMethod.GET) // 주문가능한 상품 리스트
-	public String productDetail(Principal principal,Model model,ProductVO productVO,ReviewBoardVO review) {
+//	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
+	@GetMapping(value = "/productDetail", produces = "application/json") // 주문가능한 상품 리스트
+	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
 		System.out.println(productDetail);
+		//별점 평균값
+		ProductVO productavg = productService.productRatingAVG(productVO);
 		
-		List<ReviewBoardVO> reviewList = reviewBoardService.reviewList(review);
-		System.out.println(reviewList);
+		model.addAttribute("productReviewList", productService.productReviewList(productReviewBoardVO.getProductId()));
+		System.out.println("리뷰VO" + model);
 		
+	
 		
-		review.setProductId(productVO.getProductId());
-		model.addAttribute("review", review);
-		System.out.println(review);
-		
-		// 평점 옵션
-		Map ratingOptions = new HashMap();
-		ratingOptions.put(5, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png");
-		ratingOptions.put(4, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png");
-		ratingOptions.put(3, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png");
-		ratingOptions.put(2, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png");
-		ratingOptions.put(1, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png");
-		ratingOptions.put(0, "https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_off.png");
-		model.addAttribute("ratingOptions", ratingOptions);
-		// 리스트 값 체크
-//		if (review.isEmpty()) {
-//			// 리스트에 값이 존재하지 않음
-//			System.out.println("List is empty");
-//		} else { // 리스트에 값이 존재
-//			
-//			System.out.println("List is not empty");
-//			for (int i = 1; i < review.size(); i++) {
-//				// 리스트 안에 값에 대한 null 체크
-//				if (review.get(i) == null) {
-//					System.out.println("list[" + i + "]의 값은 null 입니다. ");
-//				}
-//			}
-//		}
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
 		return "subpages/product/productDetail/productDetail";
 	}
+
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/productReviewInsert")
+	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
+		productService.productReviewInsert(productReviewBoardVO);
+		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
+		System.out.println("reviewInsert" + productReviewBoardVO.getProductReviewBoardId());
+		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
+		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		return "redirect:/productDetail";
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/productReviewUpdate")
+//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
+	@ResponseBody
+	public RedirectView productReviewUpdate(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
+		productService.productReviewUpdate(productReviewBoardVO);
+		System.out.println("reviewUpdate" + productReviewBoardVO.getProductReviewBoardContent());
+	
+		return new RedirectView("/productDetail");
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/productReviewDelete")
+	@ResponseBody
+	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
+		rttr.addAttribute("reviewBoardId", productReviewBoardVO.getProductReviewBoardId());
+		productService.productReviewDelete(productReviewBoardVO);
+		System.out.println("getReviewBoardId : "+productReviewBoardVO.getProductReviewBoardId());
+		
+		return new RedirectView("/productDetail");
+	}
+	
+
+
+
 
 	// Product image & Product event 관련 추가...
 

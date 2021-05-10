@@ -8,8 +8,10 @@
   <title>Toosomeplace - Admin</title>
   <!-- meta & link -->
   <jsp:include page="/WEB-INF/views/adminpages/share/head/head.jsp"></jsp:include>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
   <link href="/resources/css/adminpages/subpages/orderManagement/orderTotalList.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script src="/resources/js/adminpages/subpages/orderManagement/orderTotalList.js" defer></script>
 </head>
 
@@ -131,100 +133,44 @@
 		                  <p class="card-category">빈 칸을 모두 입력하세요</p>
 		                </div>
 		                <div class="card-body">
-		                  <form>
+		                  <form action="/admin/orders" method="post">
 		                    <div class="row">
-		                      <div class="col-md-1">
+		                      <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문번호</label>
-		                          <input type="text" class="form-control" disabled>
+		                          <input type="text" name="ordersId" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">결제수단</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
+		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자명</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberName" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-3">
+		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문자연락처</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="memberPhone" class="form-control">
 		                        </div>
 		                      </div>
-		                      <div class="col-md-2">
+		                      <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주문상태</label>
-		                          <input type="tel" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">클레임상태</label>
-		                          <input type="tel" class="form-control">
+		                          <input type="tel" name="ordersState" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-1">
+		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품번호</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">상품가격①</label>
+		                          <input type="text" name="ordersProductPay" class="form-control" disabled>
 		                        </div>
 		                      </div>
-		                      <div class="col-md-5">
+		                      <div class="col-md-6">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품명</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품가격</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품수량</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">교환신청</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                    </div>
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">상품할인가</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">포인트사용</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">판매가(할인,포인트적용)</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문금액 ①</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">주문수량</label>
+		                          <input type="text" name="ordersAmount" class="form-control" disabled>
 		                        </div>
 		                      </div>
 		                    </div>
@@ -232,19 +178,19 @@
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">수령자명</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="ordersReceiver" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">수령자연락처</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="ordersPhone" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">우편번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="ordersPostcode" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
@@ -252,15 +198,15 @@
 		                      <div class="col-md-12">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">주소</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="ordersAddress" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-1">
+		                     <!--  <div class="col-md-1">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">배송번호</label>
-		                          <input type="text" class="form-control">
+		                          <input type="text" name="ordersDelivery" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
@@ -274,34 +220,40 @@
 		                          <label class="bmd-label-floating">송장번호</label>
 		                          <input type="text" class="form-control">
 		                        </div>
-		                      </div>
+		                      </div> -->
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">기본배송비</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">배송비②</label>
+		                          <input type="text" name="ordersDelivery" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">배송비합계 ②</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">할인 금액③</label>
+		                          <input type="text" name="ordersSal" class="form-control">
+		                        </div>
+		                      </div>
+ 		                      <div class="col-md-2">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">사용한 포인트④</label>
+		                          <input type="text" name="ordersUsePoint" class="form-control">
 		                        </div>
 		                      </div>
 		                      <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="bmd-label-floating">실결제금액(① + ②)</label>
-		                          <input type="text" class="form-control">
+		                          <label class="bmd-label-floating">실결제금액(①+②-③-④)</label>
+		                          <input type="text" name="ordersPayment" class="form-control">
+		                        </div>
+		                      </div>
+		                      <div class="col-md-2">
+		                        <div class="form-group">
+		                          <label class="bmd-label-floating">결제일자(주문)</label>
+		                          <input type="date" name="ordersOrderDate" class="form-control">
 		                        </div>
 		                      </div>
 		                    </div>
 		                    <div class="row">
-		                      <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">주문일자</label>
-		                          <input type="date" class="form-control">
-		                        </div>
-		                      </div>
-		                      <div class="col-md-2">
+		                      <!-- <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="bmd-label-floating">결제일자</label>
 		                          <input type="date" class="form-control">
@@ -338,17 +290,17 @@
 		                          <label class="bmd-label-floating">구매확정일자</label>
 		                          <input type="date" class="form-control">
 		                        </div>
-		                      </div>
-		                      <div class="col-md-10">
-		                        <div class="form-group">
-		                          <label class="bmd-label-floating">비고</label>
-		                          <input type="text" class="form-control">
-		                        </div>
-		                      </div>
+		                      </div> -->
 		                    </div>
+		                    <table class="table none">
+					        	<tbody class="under-table">
+					        		
+					        	</tbody>
+					        </table>
 		                    <button type="submit" class="btn btn-danger pull-right">업데이트</button>
 		                    <button id="modal-cancel" class="btn btn-danger pull-right btn-r">취소</button>
 		                    <div class="clearfix"></div>
+		                    <input type="hidden" name="ordersId">
 		                  </form>
 		                </div>
 		              </div>
@@ -366,7 +318,8 @@
                   <div class="list-btn-box">
                     <button id="excel-down" onclick="excelDownload('member-table', '주문통합리스트');"><i class="material-icons">fact_check</i>엑셀 다운로드</button>
                     <div class="select-box">
-	                    <select id="memberList-select">
+	                    <select id="memberList-select" onchange="selectHandler(this);">
+	                      <option value="10000">전체보기</option>
 	                      <option value="30">30개씩 보기</option>
 	                      <option value="50">50개씩 보기</option>
 	                      <option value="100">100개씩 보기</option>
@@ -379,7 +332,7 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="member-table" class="table">
-                      <thead class="text-danger" id="list-table-thead">
+                      <thead class="text-danger text-center">
                         <th>
                           주문번호
                         </th>
@@ -399,37 +352,16 @@
                           상품수량
                         </th>
                         <th>
-                          상품가격
+                          결제금액
+                        </th>
+						<th>
+           	 구매일
                         </th>
                       </thead>
-                      <tbody>
-                     	 <c:forEach var="orderList" items="${orderList}">
-	                        <tr>
-	                          <td>
-	                            ${orderList.orderId}
-	                          </td>
-	                          <td>
-	                            ${orderList.orderState}
-	                          </td>
-	                          <td>
-	                            ${orderList.ordererId}
-	                          </td>
-	                          <td>
-	                            ${orderList.ordererName}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productName}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productCheckCount}
-	                          </td>
-	                          <td>
-	                            ${orderList.productVO.productPrice}
-	                          </td>
-	                        </tr>
-                        </c:forEach>
+                      <tbody id="list-table-tbody" class="text-center">
                       </tbody>
                     </table>
+                    <div id="pagination"></div>
                   </div>
                 </div>
               </div>

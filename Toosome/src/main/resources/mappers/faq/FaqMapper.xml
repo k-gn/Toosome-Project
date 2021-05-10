@@ -7,6 +7,7 @@
 		<id property="faqBoardId" column="FAQ_BOARD_ID"/>
 		<result property="faqBoardTitle" column="FAQ_BOARD_TITLE"/>
 		<result property="faqBoardContent" column="FAQ_BOARD_CONTENT"/>
+		<result property="faqBoardRegDate" column="FAQ_BOARD_REG_DATE"/>
 	</resultMap>
 	
 	<select id="getFaqBoardList" resultMap="FaqBoardMap">

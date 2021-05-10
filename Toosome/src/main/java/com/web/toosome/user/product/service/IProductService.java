@@ -3,7 +3,7 @@ package com.web.toosome.user.product.service;
 import java.util.List;
 
 import com.web.toosome.user.product.vo.ProductVO;
-import com.web.toosome.user.reviewboard.vo.ReviewBoardVO;
+import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 
 public interface IProductService {
@@ -15,5 +15,26 @@ public interface IProductService {
 	public ProductVO getproductDetailById(Integer pid);
 	public ProductVO getproductprecautionsDetail(ProductVO productVO);
 	
+	//별점 평균값
+	public ProductVO productRatingAVG(ProductVO productVO);
+	
+	// 댓글 조회
+	public List<ProductReviewBoardVO> productReviewList(Integer productId);
+		
+	// 댓글 작성
+	public int productReviewInsert(ProductReviewBoardVO productReviewBoardVO);
+
+	// 댓글 수정
+	public int productReviewUpdate(ProductReviewBoardVO productReviewBoardVO);
+
+	// 댓글 삭제
+	public int productReviewDelete(ProductReviewBoardVO productReviewBoardVO);
+	
+	// 정보조회
+	public ProductReviewBoardVO productReviewSelect(Integer productReviewBoardId);
+
+	//회원 댓글 삭제
+	public int delproductById(Integer id);
+
 }
 
