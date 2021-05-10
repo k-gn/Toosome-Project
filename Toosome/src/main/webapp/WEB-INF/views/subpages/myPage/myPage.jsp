@@ -94,7 +94,7 @@
             <li>
               <a href="#">온라인 주문</a>
               <ul>
-                <li><a href="/basket">투썸바구니</a></li>
+                <li><a href="/basket">장바구니</a></li>
                 <li><a href="/orderreceipt">주문내역</a></li>
               </ul>
             </li>

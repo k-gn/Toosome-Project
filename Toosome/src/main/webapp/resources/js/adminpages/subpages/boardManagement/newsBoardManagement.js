@@ -290,7 +290,7 @@ const listHandler = (e) => {
 			$('#detail-title').val(res[0].newsBoardTitle);
 			let thumbnailURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardImageRoute}${res[0].newsBoardImageName}.${res[0].newsBoardImageExtention}`;		
 			$('#thumbnail').attr("src", thumbnailURL);	
-			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardImageRoute}${res[0].newsBoardImageName}.${res[0].newsBoardImageExtention}`;
+			let imageURL = `https://toosome.s3.ap-northeast-2.amazonaws.com/${res[0].newsBoardDetailVO.newsBoardDetailImageRoute}${res[0].newsBoardDetailVO.newsBoardDetailImageName}.${res[0].newsBoardDetailVO.newsBoardDetailImageExtention}`;
 			$('#detail-img').attr("src", imageURL);
 			$('input[name=newsBoardDetailId]').val(res[0].newsBoardDetailVO.newsBoardDetailId);
 		}, 

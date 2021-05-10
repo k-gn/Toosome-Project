@@ -80,7 +80,7 @@
           </div>
           <!-- 상품 목록으로 가는 버튼 -->
           <div class="btn-group">
-            <button class="list">목록</button>
+            <button class="list" onclick="history.back()">목록</button>
           </div>
             
           <!-- 댓글 -->

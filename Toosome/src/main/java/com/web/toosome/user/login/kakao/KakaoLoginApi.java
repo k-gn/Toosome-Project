@@ -19,7 +19,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class KakaoLoginApi {
 
 	private final static String K_CLIENT_ID = "a9429d75d2f8b8a489689e1b99f8b226";
-	private final static String K_REDIRECT_URI = "http://ec2-13-125-224-136.ap-northeast-2.compute.amazonaws.com/ksignproc";
+	private final static String K_REDIRECT_URI = "http://ec2-15-164-100-122.ap-northeast-2.compute.amazonaws.com/ksignproc";
 
 	public static String getAuthorizationUrl() {
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + K_CLIENT_ID + "&redirect_uri="
