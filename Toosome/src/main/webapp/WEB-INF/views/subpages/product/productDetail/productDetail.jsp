@@ -16,6 +16,10 @@
 
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
@@ -260,7 +264,6 @@ $(document).ready(function(){
     });
 });
 
-
 </script>
 				
 				</div>							
@@ -273,9 +276,15 @@ $(document).ready(function(){
 
 
 
+
 	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 
+
+      
+
+
 <script type="text/javascript">
+
 const coms = document.querySelectorAll('.com');
 coms.forEach((com => {
     let num = +(com.innerHTML);

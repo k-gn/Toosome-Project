@@ -21,16 +21,26 @@ import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
+<<<<<<< HEAD
+
+=======
 import com.web.toosome.user.product.vo.ProductReviewBoardVO;
+>>>>>>> origin/dong
 
 @Controller
 public class ProductController {
 
 	@Autowired
 	private IProductService productService;
+<<<<<<< HEAD
+
+
+	
+=======
 	@Autowired
 	private IMemberService memberService;
 
+>>>>>>> origin/dong
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
