@@ -193,8 +193,7 @@ $(document).ready(() => {
 	
 	$.ajax({
 		url: '/qnadetail?index='+index,
-		success: (res) => {
-			console.log(res);	
+		success: (res) => {	
 			displayDetail(detailTitle, detailContent, commentContent, res, index);
 		},
 		error: () => {

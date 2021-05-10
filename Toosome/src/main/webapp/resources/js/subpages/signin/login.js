@@ -7,12 +7,12 @@ function kakaoLogin() {
   window.Kakao.Auth.login({
     scope: "profile, account_email, gender, birthday",
     success: function (authObj) {
-      console.log(authObj);
+      
       window.Kakao.API.request({
         url: "/v2/user/me",
         success: (res) => {
           const kakao_account = res.kakao_account;
-          console.log(kakao_account);
+          
         },
       });
     },
@@ -29,8 +29,8 @@ function loginWithKakao() {
        success: function (res) {
 			let _left = (window.screen.width/2) - (500/2);
    			let _top = (window.screen.height/2) - (500/2);
-			console.log(_left);
-			console.log(_top);
+			
+			
 			window.open(res, 'Toosome', "width=500, height=500, location=no, menubar=no, top=" + _top + ", left=" + _left);
        }
    });
@@ -50,8 +50,7 @@ function loginWithNaver() {
         success: function (res) {
             let _left = (window.screen.width/2) - (500/2);
    			let _top = (window.screen.height/2) - (700/2);
-			console.log(_left);
-			console.log(_top);
+			
 			window.open(res, 'Toosome', "width=500, height=700, location=no, menubar=no, top=" + _top + ", left=" + _left);
         }
     });
