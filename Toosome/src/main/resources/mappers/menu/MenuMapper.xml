@@ -472,8 +472,7 @@
 		M.MENU_ID = #{menuId})
 		WHERE MENU_ID = #{menuId};
 	</select>
-<<<<<<< HEAD
-=======
+
 	
 	<select id="getmbtiMenu" resultMap="menuVO"
 		parameterType="menuVO">
@@ -490,5 +489,5 @@
 		JOIN MENU_IMAGE B ON (A.MENU_ID = B.MENU_MENU_ID) 
 		WHERE A.MENU_MAIN_TITLE = #{coffeeName}
 	</select>
->>>>>>> origin/bang
+
 </mapper>
