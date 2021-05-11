@@ -22,6 +22,8 @@
     />
     <script src="/resources/js/main/jquery.mousewheel.min.js"></script>
     <script src="/resources/js/main/slick.js"></script>
+    <script src="/resources/js/main/jquery-ui.js"></script>
+    <script src="/resources/js/main/jquery.cookie.js"></script>
     <script src="/resources/js/main/script.js"></script>
     <title>A TOOSOME PLACE</title>
     <!-- 상태 알림 -->
@@ -32,7 +34,52 @@
 		}else if(msg === "duplogin") {
 			alert("다른 기기에서 접속중인 계정입니다.");
 		}
-	</script>   
+	</script>
+	<style>
+	#notice_wrap{
+		width:300px;
+		position:fixed;
+		left:100px;
+		top:100px;
+		box-shadow:0 0 8px #000;
+	}
+	
+	#notice_wrap .text{
+		width: 100%;
+		height: 300px;
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: column;
+		background-color: #000;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 1.5rem;
+		color: #fff;
+		text-align: center;
+	}
+	#notice_wrap .text strong {
+		font-size: 2rem;
+		margin-bottom: 10px;
+	}
+	
+	#notice_wrap .closeWrap{
+		background-color:#000;
+		color:#fff;
+		text-align:right;
+		padding:5px 10px;
+		font-size:12px;
+	}
+	
+	#notice_wrap .closeWrap >  *{
+		vertical-align:middle;
+	}
+	
+	#notice_wrap .closeWrap button{
+		margin: 0 auto;
+		cursor:pointer;
+	}
+	
+	</style>  
   </head>
   <body>
     <div id="container">
@@ -171,6 +218,17 @@
           </form>
         </div>
       </div>
+      <div id="notice_wrap">
+		<p class="text">
+			<strong >포트폴리오로 만든 사이트 입니다.</strong>
+			상업용이 아닌 개인 포트폴리오를 위한 사이트입니다.<br/>
+		</p>
+		<div class="closeWrap">
+			<!-- <input type="checkbox" name="expiresChk" id="expiresChk"/>
+			<label for="expiresChk">3일동안 이 창 열지 않기</label> -->
+			<button class="closeBtn">닫기</button>
+		</div>
+	  </div>
       <jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
     </div>
   </body>

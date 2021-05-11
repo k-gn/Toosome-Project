@@ -15,6 +15,40 @@ $(function () {
     $('.nav > .menu-title > .sub-con').stop().fadeOut(400);
   });
 
+  // popup 창
+  $("#notice_wrap").draggable({
+	  /* axis:"y" y축으로만 옮기기가능(지울경우 축 고정없이 어디든 옮기기 가능) */
+	}); //드래그해서 옮기기가 가능한 실행문
+	
+	if($.cookie("popup")=="none"){
+		// 3일동안 이 내용을 열지않기 버튼 클릭 후에 해당 페이지를 열었을 때
+		$("#notice_wrap").css("display","none");
+	}
+	
+	var chkbox =$("#expiresChk");
+	
+	//변수 chkbox에 input#expiresChk저장
+	
+	$('.closeBtn').click(function(){
+		closePop();
+	});
+	
+	//닫기 버튼 클릭시 아래 closePop실행
+	
+	function closePop(){
+		if(chkbox.is(":checked")){
+			//체크박스에 체크가 되어있을 때
+			$.cookie("popup","none",{expires:3});
+			//쿠키함수(팝업, none, {3일동안})
+			
+		}
+		
+		
+		$("#notice_wrap").fadeOut("fast");
+	}
+
+
+
   // 배너 이미지 슬라이드
   $('.img-slide').mousewheel(function (event, d) {
     var i = $(this).index();
