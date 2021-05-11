@@ -123,19 +123,4 @@ public class ProductService implements IProductService{
 		return productmapper.productReviewDelete(productReviewBoardVO);
 	}
 
-
-	@Override
-	public ProductReviewBoardVO productReviewSelect(Integer productReviewBoardId) {
-
-		return productmapper.productReviewSelect(productReviewBoardId);
-	}
-
-	@Override
-	public int delproductById(Integer id) {
-		return productmapper.delproductById(id);
-	}
-
-
-
-
 }

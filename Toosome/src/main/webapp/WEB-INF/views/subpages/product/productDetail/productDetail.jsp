@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/subpages/share/nav/nav.jsp"></jsp:include>
 
@@ -145,19 +146,19 @@
 										alt=""></a></li>
 								<li><a href="#"><img id="starimg4"
 										onclick=mark(4)
-										src="/resources/img/subpages/product/productDetail/ico_star_4.png"
+										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png"
 										alt=""></a></li>
 								<li><a href="#"><img id="starimg3"
 										onclick=mark(3)
-										src="/resources/img/subpages/product/productDetail/ico_star_3.png"
+										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png"
 										alt=""></a></li>
 								<li><a href="#"><img id="starimg2"
 										onclick=mark(2)
-										src="/resources/img/subpages/product/productDetail/ico_star_2.png"
+										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png"
 										alt=""></a></li>
 								<li><a href="#"><img id="starimg1"
 										onclick=mark(1)
-										src="/resources/img/subpages/product/productDetail/ico_star_1.png"
+										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png"
 										alt=""></a></li>
 							</ul>
 							<input id="productReviewBoardRating" type="hidden" name="productReviewBoardRating" />
@@ -165,7 +166,7 @@
         		</form>
         			<ul class="comment-end">
         			<c:forEach var="productReviewList" items="${productReviewList}" varStatus="status">
-		        		<form method="get" class="form2" id="productReviewLists" action="/productReviewDelete">
+		        		<form method="get" class="form2" id="productReviewLists" >
 		        			<input name="productId"  type="hidden" value="${productDetail.productId}" />
 		        			<input name="memberId" type="hidden" value="${id}"/>
 	        				<input name="productReviewBoardId"  type="hidden" value="${productReviewList.productReviewBoardId}" />							        	
@@ -173,16 +174,21 @@
 			        		
 			        		<div class="c-test">
 								<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productReviewList.productReviewBoardRating }.png" alt=""></span>
+								<c:if test="${productReviewList.memberId != sessionScope.id }">
 								<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
+								</c:if>
+								<c:if test="${productReviewList.memberId == sessionScope.id }">
+								<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
+								</c:if>
 								<span class="nik">${productReviewList.productReviewBoardWriter}</span>
 								<span class="dat"><fmt:formatDate value="${productReviewList.productReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
 								
 								
 								<div class="c-btn">
 									<c:if test="${productReviewList.memberId == sessionScope.id }">
-										<span><button id="productReviewDelBtn${status.count}" type="submit" name="productReviewBoardId" >삭제</button></span>
-								        <span><button class="productReviewUpdBtn${status.count }" type="submit" value="${productReviewList.productReviewBoardId}" formaction="/productReviewUpdate" >수정</button></span>
-										<!-- <span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span> -->
+										<span><button id="productReviewDelBtn${status.count}" type="submit"  formaction="/productReviewDelete" >삭제</button></span>
+								        <span><button id="productReviewUpdBtn${status.count}" type="submit" formaction="/productReviewUpdate" >수정</button></span>
+										
 									</c:if>
 								</div>
 							</div>
@@ -195,6 +201,7 @@
 
 
 <script type="text/javascript">
+//별점 점수 기능
 var locked = 0;
 
 function show(productReviewBoardRating){
@@ -217,27 +224,22 @@ function mark(productReviewBoardRating){
 		document.productReviewform1.productReviewBoardRating.value=productReviewBoardRating;
 	
 }
+// 댓글 유효성 검사
 $(document).ready(function() {
     $('#productReviewInsert').submit(function() {
         if ($('#productReviewBoardContent').val() == '') {
             alert('코멘트를 입력해주세요.');
             return false;
         }
+        if ($('#productReviewBoardRating').val() == ''){
+        	alert('별점을 선택해주세요.');
+            return false;
+        }
     }); // end submit()
 }); // end ready()
-</script>
-<script type="text/javascript">
-
-$(document).ready(function(){
-    $('#reviewDelBtn${status.count}').on('click', function() {  // 클래스값이 delete인 엘리먼트가 눌리면?
-        if(confirm("정말로 삭제하시겠습니까?")) {  // 확인 창이 열림
-         
-        }
-    });
-});
-
 
 </script>
+
 				
 				</div>							
 			</div>
@@ -249,9 +251,15 @@ $(document).ready(function(){
 
 
 
+
 	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 
+
+      
+
+
 <script type="text/javascript">
+
 const coms = document.querySelectorAll('.com');
 coms.forEach((com => {
     let num = +(com.innerHTML);
