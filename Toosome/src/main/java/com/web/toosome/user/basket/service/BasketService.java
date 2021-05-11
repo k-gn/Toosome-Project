@@ -150,15 +150,15 @@ public class BasketService implements IBasketService {
 	}
 
 	@Override
-	public int setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne) {
-		return bmapper.setproductAmountDownCounter(ordersDetailListOne);
+	public void setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne) {
+		bmapper.setproductAmountDownCounter(ordersDetailListOne);
 	}
 
 	@Override
 	public int setproductAmountUpCounter(OrdersDetailVO ordersDetailListOne) {
 		return bmapper.setproductAmountUpCounter(ordersDetailListOne);
 	}
-
+	
 	@Override
 	public ProductVO setproductAmountCheck(OrdersDetailVO ordersDetailListOne) {
 		return bmapper.setproductAmountCheck(ordersDetailListOne);
