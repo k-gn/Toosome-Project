@@ -30,13 +30,8 @@ public class ProductController {
 
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
-
-		List<ProductVO> productAllList = productService.getproductnewList(productVO);
-		model.addAttribute("productAllList", productAllList);
-
 		List<ProductVO> productNewList = productService.getproductnewList(productVO);
 		model.addAttribute("productNewList", productNewList);
-
 		return "subpages/product/productNew";
 	}
 
