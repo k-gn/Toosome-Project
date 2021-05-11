@@ -147,7 +147,7 @@ public class MenuController {
 	}
 
 	@GetMapping("/menuDetail") // menu Detail page
-	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
+	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO) {
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
 		System.out.println("메뉴 디테일 출력");
@@ -162,7 +162,7 @@ public class MenuController {
 	//메뉴 댓글 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/menuReviewInsert")
-	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
+	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr) {
 		menuService.menuReviewInsert(menuReviewBoardVO);
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
 		System.out.println("댓글 등록");
@@ -173,7 +173,7 @@ public class MenuController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewUpdate")
 	@ResponseBody
-	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
 		menuService.menuReviewUpdate(menuReviewBoardVO);
 		System.out.println("댓글 수정");
@@ -184,7 +184,7 @@ public class MenuController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewDelete")
 	@ResponseBody
-	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
 		menuService.menuReviewDelete(menuReviewBoardVO);
 		System.out.println("댓글 삭제 ");

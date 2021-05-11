@@ -177,10 +177,10 @@
 			        		
 			        		<div class="c-test">
 								<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${productReviewList.productReviewBoardRating }.png" alt=""></span>
-								<c:if test="${productReviewList.memberId != sessionScope.id }">
+								<c:if test="${productReviewList.memberId != sessionScope.id}">
 								<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
 								</c:if>
-								<c:if test="${productReviewList.memberId == sessionScope.id }">
+								<c:if test="${productReviewList.memberId == sessionScope.id}">
 								<span class="cocom"><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
 								</c:if>
 								<span class="nik">${productReviewList.productReviewBoardWriter}</span>
@@ -189,7 +189,7 @@
 								
 								<div class="c-btn">
 									<c:if test="${productReviewList.memberId == sessionScope.id }">
-										<span><button id="productReviewDelBtn${status.count}" type="submit"  formaction="/productReviewDelete" >삭제</button></span>
+										<span><button id="productReviewDelBtn${status.count}" type="submit" formaction="/productReviewDelete" >삭제</button></span>
 								        <span><button id="productReviewUpdBtn${status.count}" type="submit" formaction="/productReviewUpdate" >수정</button></span>
 										
 									</c:if>
@@ -227,6 +227,7 @@ function mark(productReviewBoardRating){
 		document.productReviewform1.productReviewBoardRating.value=productReviewBoardRating;
 	
 }
+
 // 댓글 유효성 검사
 $(document).ready(function() {
     $('#productReviewInsert').submit(function() {
@@ -240,6 +241,7 @@ $(document).ready(function() {
         }
     }); // end submit()
 }); // end ready()
+
 
 </script>
 
