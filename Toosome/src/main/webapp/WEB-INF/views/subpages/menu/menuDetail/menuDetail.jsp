@@ -55,7 +55,7 @@
 
 			<div class="contents">
 				<!-- 해당 메뉴 이미지 -->
-				<img
+				<img class="con-main-img"
 					src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menubeverageDetail.menuImageVO.menuImageRoute}/${menubeverageDetail.menuImageVO.menuImageName}.${menubeverageDetail.menuImageVO.menuImageExtention}">
 				
 				<ul class="star cf">
