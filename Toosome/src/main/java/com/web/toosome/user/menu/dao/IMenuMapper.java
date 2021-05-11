@@ -36,12 +36,6 @@ public interface IMenuMapper {
 	// 댓글 삭제
 	public int menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO);
 	
-	// 정보조회
-	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId);
-
-	//회원 댓글 삭제
-	public int delmenuById(Integer id);
-	
 	public List<MenuVO> getIatListOne(MenuVO vo);
 	public List<MenuVO> getSearchIatListOne(MenuVO vo);
 	

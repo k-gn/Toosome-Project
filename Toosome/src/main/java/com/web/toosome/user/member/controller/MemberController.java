@@ -241,12 +241,10 @@ public class MemberController {
 		vo.setMemberPhone(phoneNumber);
 		vo.setMemberName(email);
 		MemberVO result = service.getMail(vo);
-		System.out.println(result);
 		if (result != null && result.getMemberEmail().equals(email)) {
 			Random random = new Random();
 			int checkNum = random.nextInt(899999) + 100000; // 랜덤한 6자리 인증번호 생성.
 			String num = Integer.toString(checkNum);
-			System.out.println("2");
 			service.certifiedPhoneNumber(phoneNumber, num);
 			return num;
 		} else {
@@ -266,7 +264,6 @@ public class MemberController {
 		vo.setMemberPassword(num);
 		service.getRepassword(vo);
 		MemberVO result = service.getPassword(vo);
-		System.out.println(result.getMemberPassword());
 		return num;
 	}
 

@@ -44,7 +44,6 @@ public class MenuController {
 	
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망
 	public String menuNew(MenuVO menuVO, Model model) {
-		System.out.println("신메뉴 출력");
 		List<MenuVO> menuNewList = menuService.getnewList(menuVO);
 		model.addAttribute("menuNewList", menuNewList);
 		return "subpages/menu/menuNew";
@@ -52,7 +51,6 @@ public class MenuController {
 	
 	@GetMapping("/menu-beverage")
 	public String menuBeverage(MenuVO menuVO, Model model) {
-		System.out.println("음료 메뉴 출력");
 		List<MenuVO> menuBeverageList = menuService.getbeverageList(menuVO);
 		model.addAttribute("menuBeverageList", menuBeverageList);
 		return "subpages/menu/menuBeverage";
@@ -60,7 +58,6 @@ public class MenuController {
 
 	@GetMapping("/menu-delhi")
 	public String menuDelhi(MenuVO menuVO, Model model) {
-		System.out.println("델리 메뉴 출력");
 		List<MenuVO> menuDelhiList = menuService.getdelhiList(menuVO);
 		model.addAttribute("menuDelhiList", menuDelhiList);
 		return "subpages/menu/menuDelhi";
@@ -68,7 +65,6 @@ public class MenuController {
 
 	@GetMapping("/menu-dessert")
 	public String menuDessert(MenuVO menuVO, Model model) {
-		System.out.println("디저트 메뉴 출력");
 		List<MenuVO> menuDessertList = menuService.getdessertList(menuVO);
 		model.addAttribute("menuDessertList", menuDessertList);
 		return "subpages/menu/menuDessert";
@@ -76,7 +72,6 @@ public class MenuController {
 
 	@GetMapping("/menu-wholecake")
 	public String menuWholecake(MenuVO menuVO, Model model) {
-		System.out.println("홀케이크 메뉴 출력");
 		List<MenuVO> menuWholecakeList = menuService.getwholecaketList(menuVO);
 		model.addAttribute("menuWholecakeList", menuWholecakeList);
 		return "subpages/menu/menuWholecake";
@@ -84,7 +79,6 @@ public class MenuController {
 
 	@GetMapping("/nutrient1") // 영양성분표 페이지1
 	public String nutrient1(MenuVO vo, Model model) {
-		System.out.println("영양 성분표 1");
 		List<MenuVO> nutrient1 = menuService.getIatListOne(vo);
 		model.addAttribute("nutrient1", nutrient1);
 		return "subpages/nutrient/nutrient1";
@@ -92,7 +86,6 @@ public class MenuController {
 
 	@RequestMapping("/nutrient1/search") // 영양성분표1 검색기능
 	public String searchNutrient1(MenuVO vo, Model model) {
-		System.out.println("영양 성분표 1");
 		List<MenuVO> nutrient1 = menuService.getSearchIatListOne(vo);
 		model.addAttribute("nutrient1", nutrient1);
 		return "subpages/nutrient/nutrient1";
@@ -100,7 +93,6 @@ public class MenuController {
 
 	@GetMapping("/nutrient2") // 영양성분표 페이지2
 	public String nutrient2(MenuVO vo, Model model) {
-		System.out.println("영양성분표2");
 		List<MenuVO> nutrient2 = menuService.getIatListTwo(vo);
 		model.addAttribute("nutrient2", nutrient2);
 		return "subpages/nutrient/nutrient2";
@@ -108,7 +100,6 @@ public class MenuController {
 
 	@RequestMapping("/nutrient2/search") // 영양성분표2 검색기능
 	public String searchNutrient2(MenuVO vo, Model model) {
-		System.out.println("영양 성분표 2");
 		List<MenuVO> nutrient2 = menuService.getSearchIatListTwo(vo);
 		model.addAttribute("nutrient2", nutrient2);
 		return "subpages/nutrient/nutrient2";
@@ -116,7 +107,6 @@ public class MenuController {
 
 	@GetMapping("/nutrient3") // 영양성분표 페이지3
 	public String nutrient3(MenuVO vo, Model model) {
-		System.out.println("영양성분표3");
 		List<MenuVO> nutrient3 = menuService.getIatListThree(vo);
 		model.addAttribute("nutrient3", nutrient3);
 		return "subpages/nutrient/nutrient3";
@@ -124,7 +114,6 @@ public class MenuController {
 
 	@RequestMapping("/nutrient3/search") // 영양성분표3 검색기능
 	public String searchNutrient3(MenuVO vo, Model model) {
-		System.out.println("영양 성분표 3");
 		List<MenuVO> nutrient3 = menuService.getSearchIatListThree(vo);
 		model.addAttribute("nutrient3", nutrient3);
 		return "subpages/nutrient/nutrient3";
@@ -132,7 +121,6 @@ public class MenuController {
 
 	@GetMapping("/nutrient4") // 영양성분표 페이지4
 	public String nutrient4(MenuVO vo, Model model) {
-		System.out.println("영양성분표4");
 		List<MenuVO> nutrient4 = menuService.getIatListFour(vo);
 		model.addAttribute("nutrient4", nutrient4);
 		return "subpages/nutrient/nutrient4";
@@ -152,7 +140,6 @@ public class MenuController {
 
 	@RequestMapping("/nutrient4/search") // 영양성분표4 검색기능
 	public String searchNutrient4(MenuVO vo, Model model) {
-		System.out.println("영양 성분표 4");
 		List<MenuVO> nutrient4 = menuService.getSearchIatListFour(vo);
 		model.addAttribute("nutrient4", nutrient4);
 		return "subpages/nutrient/nutrient4";
@@ -160,53 +147,45 @@ public class MenuController {
 
 	@GetMapping("/menuDetail") // menu Detail page
 	public String menuDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
-		System.out.println("음료 메뉴 디테일 출력");
+		System.out.println("menuDetail 메소드 실행");
 		MenuVO menubeverageDetail = menuService.getmenuDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
-		MenuVO menuavg = menuService.menuRatingAVG(menuVO);
-		
+		//메뉴 디테일 별점 평균값
+		menuService.menuRatingAVG(menuVO);
+		//메뉴 댓글 목록
 		List<MenuReviewBoardVO> menuReviewList = menuService.menuReviewList(menuReviewBoardVO.getMenuId());
 		model.addAttribute("menuReviewList", menuReviewList);
-		System.out.println("리뷰VO" + menuReviewList);
-		
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
-		
-		System.out.println(model);
 		return "subpages/menu/menuDetail/menuDetail";
 	}
-	
+	//메뉴 댓글 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/menuReviewInsert")
 	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
 		menuService.menuReviewInsert(menuReviewBoardVO);
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
-		System.out.println("menuReviewInsert" + menuReviewBoardVO.getMenuReviewBoardId());
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		System.out.println("댓글 등록");
+
 		return "redirect:/menuDetail";
 	}
-
+	//메뉴 댓글 수정
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewUpdate")
-//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
 	@ResponseBody
 	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
 		menuService.menuReviewUpdate(menuReviewBoardVO);
-		System.out.println("menuReviewUpdate" + menuReviewBoardVO.getMenuReviewBoardContent());
+		System.out.println("댓글 수정");
 	
 		return new RedirectView("/menuDetail");
 	}
-	
+	//메뉴 댓글 삭제
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewDelete")
 	@ResponseBody
 	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
-		rttr.addAttribute("menuReviewBoardId", menuReviewBoardVO.getMenuReviewBoardId());
 		menuService.menuReviewDelete(menuReviewBoardVO);
-		System.out.println("getReviewBoardId : "+menuReviewBoardVO.getMenuReviewBoardId());
+		System.out.println("댓글 삭제 ");
 		
 		return new RedirectView("/menuDetail");
 	}

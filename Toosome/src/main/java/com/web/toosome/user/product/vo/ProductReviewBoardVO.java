@@ -13,7 +13,7 @@ public class ProductReviewBoardVO {
 	
 	private Integer productReviewBoardRating; //별점
 	private String productReviewBoardContent; //댓글 내용
-	private String productReviewBoardWriter;
+	private String productReviewBoardWriter; // 사용자 이름
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date productReviewBoardRegDate; // 댓글 작성 시간
 	
