@@ -32,7 +32,7 @@
       </div>
       <!-- 메뉴 이미지와 이름 가격 -->
       <div class="menu-content">
-        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/b05.png" alt="">
+        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuOrderList.menuImageVO.menuImageRoute}/${menuOrderList.menuImageVO.menuImageName}.${menuOrderList.menuImageVO.menuImageExtention}" alt="">
         <p class="menu-text">${menuOrderList.menuMainTitle}</p>
         <div class="pay-box">
           <span class="com">${menuOrderList.menuPrice}</span>
