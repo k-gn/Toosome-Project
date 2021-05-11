@@ -7409,7 +7409,7 @@
                                                                           <movable>true</movable>
                                                                         </target>
                                                                         <bendpoints/>
-                                                                        <name></name>
+                                                                        <name>DelSuccess or DelFail</name>
                                                                         <direction>false</direction>
                                                                       </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                                                                       <net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
@@ -7508,7 +7508,7 @@
                                                                     <movable>true</movable>
                                                                   </target>
                                                                   <bendpoints/>
-                                                                  <name></name>
+                                                                  <name>int (Check Num)</name>
                                                                   <direction>false</direction>
                                                                 </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                                                                 <net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
@@ -7541,7 +7541,7 @@
                                                               <movable>true</movable>
                                                             </target>
                                                             <bendpoints/>
-                                                            <name></name>
+                                                            <name>int (Check Num)</name>
                                                             <direction>false</direction>
                                                           </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                                                         </sourceConnections>
