@@ -2,6 +2,7 @@ package com.web.toosome.user.login.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -54,7 +55,17 @@ public class LoginController {
 
 	// naver login proc
 	@GetMapping("/nsignproc")
-	public void naverSignin(String code, String state, HttpSession session, HttpServletResponse response) throws Exception {
+	public void naverSignin(String code, String state, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String error = request.getParameter("error");
+		if (error != null){
+	        if(error.equals("access_denied")){
+	            out.println("<script>window.opener.location.href='/signin';self.close();</script>");
+	            out.flush();
+	            return;
+	        }
+	    }
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 로그인 사용자 정보를 읽어온다.
@@ -63,10 +74,9 @@ public class LoginController {
 		jsonObject = (JSONObject) jsonObject.get("response");
 		String email = (String) jsonObject.get("email");
 		String name = (String) jsonObject.get("name");
+		MemberVO registerMember = service.getUserByEmail(email);
+		boolean flag = loginUtil.socialLoginProc(email, name, "naver", registerMember);
 		MemberVO member = service.getUserByEmail(email);
-		boolean flag = loginUtil.socialLoginProc(email, name, "naver", member);
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 		if(member.getStatus() == 3) {
 			session.setAttribute("state", 3);
 			out.println("<script>window.opener.location.href='/';self.close();</script>");
@@ -122,8 +132,9 @@ public class LoginController {
  
         String name = properties.path("nickname").asText();
         String email = kakao_account.path("email").asText();
+        MemberVO registerMember = service.getUserByEmail(email);
+        boolean flag = loginUtil.socialLoginProc(email, name, "kakao", registerMember);
         MemberVO member = service.getUserByEmail(email);
-        boolean flag = loginUtil.socialLoginProc(email, name, "kakao", member);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(member.getStatus() == 3) {

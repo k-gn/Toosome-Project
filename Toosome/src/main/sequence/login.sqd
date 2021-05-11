@@ -3983,7 +3983,7 @@
                         <source class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../.."/>
                         <target class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../../../../.."/>
                         <bendpoints/>
-                        <name></name>
+                        <name>Login Success or Fail</name>
                         <direction>false</direction>
                       </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                       <net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
@@ -4033,7 +4033,7 @@
                               <source class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../.."/>
                               <target class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../../../../.."/>
                               <bendpoints/>
-                              <name></name>
+                              <name>MemberVO</name>
                               <direction>false</direction>
                             </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                             <net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
@@ -4083,7 +4083,7 @@
                                     <source class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../.."/>
                                     <target class="net.java.amateras.uml.sequencediagram.model.ActivationModel" reference="../../../../../.."/>
                                     <bendpoints/>
-                                    <name></name>
+                                    <name>MemberVO</name>
                                     <direction>false</direction>
                                   </net.java.amateras.uml.sequencediagram.model.ReturnMessageModel>
                                 </sourceConnections>
@@ -4707,10 +4707,10 @@
                                 <movable>true</movable>
                               </target>
                               <bendpoints/>
-                              <name></name>
+                              <name> getUserByEmail(username)</name>
                               <direction>true</direction>
                               <order>3</order>
-                              <oldOrder>0</oldOrder>
+                              <oldOrder>3</oldOrder>
                             </net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
                           </sourceConnections>
                           <targetConnections>
@@ -5306,7 +5306,7 @@
                           <movable>true</movable>
                         </target>
                         <bendpoints/>
-                        <name></name>
+                        <name> loadUserByUsername(String username)</name>
                         <direction>true</direction>
                         <order>2</order>
                         <oldOrder>2</oldOrder>
@@ -5476,7 +5476,7 @@
                     <movable>true</movable>
                   </target>
                   <bendpoints/>
-                  <name>숫자</name>
+                  <name> signin()</name>
                   <direction>true</direction>
                   <order>1</order>
                   <oldOrder>1</oldOrder>
