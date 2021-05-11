@@ -43,7 +43,6 @@ import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
-import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
 public class BasketController {
@@ -175,8 +174,7 @@ public class BasketController {
 	}
 
 	@GetMapping("/import2") // 결제 화면...
-	public String import1(BasketVO basket, Model model, HttpSession session, Integer basketEndPrice,
-			Integer basketsal) {
+	public String import1(BasketVO basket, Model model, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제화면 호출");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
