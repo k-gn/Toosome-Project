@@ -216,8 +216,7 @@ public class BasketController {
 	}
 	
 	@GetMapping("/orderComplete")
-	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice,
-			Integer basketsal) {
+	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제 완료 페이지 호출");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
@@ -290,10 +289,6 @@ public class BasketController {
 	@ResponseBody
 	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil, String merchantUid) {
 		System.out.println("ordersubmit 메서드 실행");
-		
-		List<ProductVO> array = new ArrayList<ProductVO>();
-		List<OrdersDetailVO> array2 = new ArrayList<OrdersDetailVO>();
-		
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
 		order.setOrdersDelivery(basketUtil.getDeliveryPay());
