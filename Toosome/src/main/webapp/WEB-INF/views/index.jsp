@@ -41,7 +41,7 @@
         <div class="slide">
         <!-- banner 이미지  -->
           <ul class="slide-imgs cf slider autoplay">
-          	<c:forEach var="banner" items="${bannerList}" varStatus="i">
+          	<c:forEach var="banner" items="${bannerList}">
 	            <li class="img">
 	            	<img src="${path}${banner.bannerRoute}${banner.bannerName}" alt=""/>
 	            	<div class="img-title">
@@ -61,84 +61,11 @@
           </div>
           <div class="img_box">
             <ul class="new-menu-box cf slider autoplay2">
-              <li>
-                <a href="#"><img src="/resources/img/c-001.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/c-002.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/c-003.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/c-004.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/c-005.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-001.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-002.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-003.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-004.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-005.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-006.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-007.PNG" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-008.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/h-009.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-001.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-002.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-003.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-004.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-005.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-006.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-007.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-008.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-009.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-010.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-011.png" alt="" /></a>
-              </li>
-              <li>
-                <a href="#"><img src="/resources/img/K-012.png" alt="" /></a>
-              </li>
+              <c:forEach var="news" items="${newList}">
+	              <li>
+	                <a href="/menuDetail?menuId=${news.menuId}"><img src="${path}/${news.menuImageVO.menuImageRoute}/${news.menuImageVO.menuImageName}.${news.menuImageVO.menuImageExtention}" alt="" /></a>
+	              </li>
+              </c:forEach>
             </ul>
           </div>
         </div>

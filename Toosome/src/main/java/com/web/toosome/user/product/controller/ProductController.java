@@ -30,21 +30,18 @@ public class ProductController {
 
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
-		System.out.println("신상품 출력");
 
 		List<ProductVO> productAllList = productService.getproductnewList(productVO);
 		model.addAttribute("productAllList", productAllList);
 
 		List<ProductVO> productNewList = productService.getproductnewList(productVO);
 		model.addAttribute("productNewList", productNewList);
-		System.out.println(model);
 
 		return "subpages/product/productNew";
 	}
 
 	@GetMapping("/product-coffee")
 	public String productCoffee(ProductVO productVO, Model model) {
-		System.out.println("커피 상품 출력");
 		List<ProductVO> productCoffeeList = productService.getcoffeeList(productVO);
 		model.addAttribute("productCoffeeList", productCoffeeList);
 		return "subpages/product/productCoffee";
@@ -52,7 +49,6 @@ public class ProductController {
 
 	@GetMapping("/product-coffeewear")
 	public String productCoffeewear(ProductVO productVO, Model model) {
-		System.out.println("커피웨어 상품 출력");
 		List<ProductVO> productCoffeewearList = productService.getcoffeewearList(productVO);
 		model.addAttribute("productCoffeewearList", productCoffeewearList);
 		return "subpages/product/productCoffeewear";
@@ -60,7 +56,6 @@ public class ProductController {
 
 	@GetMapping("/product-gift")
 	public String productGift(ProductVO productVO, Model model) {
-		System.out.println("기프트세트 상품 출력");
 		List<ProductVO> productGiftList = productService.getgiftList(productVO);
 		model.addAttribute("productGiftList", productGiftList);
 		return "subpages/product/productGift";
@@ -68,7 +63,6 @@ public class ProductController {
 
 	@GetMapping(value = "/productDetail", produces = "application/json") // 주문가능한 상품 리스트
 	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
-		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
 		//별점 평균값
@@ -76,6 +70,7 @@ public class ProductController {
 		//댓글 리스트
 		System.out.println("댓글 리스트 출력");
 		model.addAttribute("productReviewList", productService.productReviewList(productReviewBoardVO.getProductId()));
+
 
 		return "subpages/product/productDetail/productDetail";
 	}
@@ -85,7 +80,9 @@ public class ProductController {
 	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
 		productService.productReviewInsert(productReviewBoardVO);
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
+
 		System.out.println("댓글 등록");
+
 		return "redirect:/productDetail";
 	}
 	//상품 댓글 수정
@@ -105,7 +102,9 @@ public class ProductController {
 	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		productService.productReviewDelete(productReviewBoardVO);
+
 		System.out.println("댓글 삭제");
+
 		return new RedirectView("/productDetail");
 	}
 	
