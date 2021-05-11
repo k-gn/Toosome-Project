@@ -71,7 +71,7 @@ public interface IBasketService {
 	public int getOrdersCancelId(Integer id);
 	
 	// ordersDetail에 상품이름과 수량을 Product에 입력하여 이름에 맞는 수량 감소(주문).
-	public void setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne);
+	public int setproductAmountDownCounter(OrdersDetailVO ordersDetailListOne);
 	
 	// ordersDetail에 상품이름과 수량을 Product에 입력하여 이름에 맞는 수량 증가 (주문취소).
 	public int setproductAmountUpCounter(OrdersDetailVO ordersDetailListOne);
