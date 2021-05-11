@@ -29,12 +29,7 @@ public interface IProductService {
 
 	// 댓글 삭제
 	public int productReviewDelete(ProductReviewBoardVO productReviewBoardVO);
-	
-	// 정보조회
-	public ProductReviewBoardVO productReviewSelect(Integer productReviewBoardId);
 
-	//회원 댓글 삭제
-	public int delproductById(Integer id);
 
 }
 

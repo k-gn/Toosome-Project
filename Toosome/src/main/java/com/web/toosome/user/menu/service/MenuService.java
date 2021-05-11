@@ -22,7 +22,6 @@ import com.web.toosome.user.menu.dao.IMenuMapper;
 import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
-import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 @Service
 public class MenuService implements IMenuService {
@@ -198,13 +197,6 @@ public class MenuService implements IMenuService {
 		return mapper.menuRatingAVG(menuVO);
 	}
 
-
-	@Override
-	public int delmenuById(Integer id){
-
-		return mapper.delmenuById(id);
-	}
-
 	@Override
 	public List<MenuReviewBoardVO> menuReviewList(Integer menuId) {
 
@@ -229,11 +221,6 @@ public class MenuService implements IMenuService {
 		return mapper.menuReviewDelete(menuReviewBoardVO);
 	}
 
-	@Override
-	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId) {
-
-		return mapper.menuReviewSelect(menuReviewBoardId);
-	}
 	public MenuVO getmbtiMenu(String coffeeName) {
 		return mapper.getmbtiMenu(coffeeName);
 	}

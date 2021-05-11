@@ -129,7 +129,8 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="/menuReviewInsert" method="post" id="menuReviewInsert" name="menuReviewform1" class="form1">
+					<form action="/menuReviewInsert" method="post" name="menuReviewform1" class="form1">
+				
 						<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
@@ -151,50 +152,45 @@
 
 							<div class="triangle-cover">▼</div>
 
-							<ul class="star-drop">
-								<li><a href="#"><img id="starimg5"
-										onclick=mark(5)
-										src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"
-										alt=""></a></li>
-								<li><a href="#"><img id="starimg4"
-										onclick=mark(4)
-										src="/resources/img/subpages/product/productDetail/ico_star_4.png"
-										alt=""></a></li>
-								<li><a href="#"><img id="starimg3"
-										onclick=mark(3)
-										src="/resources/img/subpages/product/productDetail/ico_star_3.png"
-										alt=""></a></li>
-								<li><a href="#"><img id="starimg2"
-										onclick=mark(2)
-										src="/resources/img/subpages/product/productDetail/ico_star_2.png"
-										alt=""></a></li>
-								<li><a href="#"><img id="starimg1"
-										onclick=mark(1)
-										src="/resources/img/subpages/product/productDetail/ico_star_1.png"
-										alt=""></a></li>
-							</ul>
-<<<<<<< HEAD
-							<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
+								<ul class="star-drop">
+									<li><a href="#"><img id="starimg5"
+											onclick=mark(5)
+											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_5.png"
+											alt=""></a></li>
+									<li><a href="#"><img id="starimg4"
+											onclick=mark(4)
+											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_4.png"
+											alt=""></a></li>
+									<li><a href="#"><img id="starimg3"
+											onclick=mark(3)
+											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_3.png"
+											alt=""></a></li>
+									<li><a href="#"><img id="starimg2"
+											onclick=mark(2)
+											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_2.png"
+											alt=""></a></li>
+									<li><a href="#"><img id="starimg1"
+											onclick=mark(1)
+											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png"
+											alt=""></a></li>
+								</ul>
 
-					</div>
+								<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
 
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-						<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
-			        	<input name="memberId" type="hidden" value="${id}"/>
-			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
-	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
-						<input	type="submit" value="쓰기">
-				
-=======
-						</div>
-						<input type="text" placeholder="제품 한마디를 등록해 주세요."> 
-						<input	type="submit" value="쓰기">
->>>>>>> origin/bang
-					</form>
-					<form action="#" method="get" class="form2">
+							</div>
+
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
+				        	<input name="memberId" type="hidden" value="${id}"/>
+				        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+		        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
+							<input	type="submit" value="쓰기">
+						
+						</form>
 						<ul class="comment-end">
-<<<<<<< HEAD
+
 					<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
+					<form method="get" class="form2">
 	        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
 	        			<input name="memberId" type="hidden" value="${id}"/>
         				<input name="menuReviewBoardId"  type="hidden" value="${menuReviewList.menuReviewBoardId}" />							        	
@@ -202,7 +198,12 @@
 		        		
 		        		<li>
 							<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menuReviewList.menuReviewBoardRating }.png" alt=""></span>
-							<span class="cocom">${menuReviewList.menuReviewBoardContent}//${menuReviewList.menuReviewBoardId}</span> 
+							<c:if test="${menuReviewList.memberId != sessionScope.id }">
+							<span class="cocom">${menuReviewList.menuReviewBoardContent}</span> 
+							</c:if>
+							<c:if test="${menuReviewList.memberId == sessionScope.id }">
+							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+							</c:if>
 							<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
 							<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
 							
@@ -210,26 +211,17 @@
 						</li>
 						<div>
 							<c:if test="${menuReviewList.memberId == sessionScope.id }">
-							<span><button id="menuReviewDelBtn${status.count}" type="submit" name="menuReviewBoardId" formaction="/menuReviewDelete" >삭제</button>//${menuReviewList.menuReviewBoardId}</span>
-					        <span><button class="menuReviewUpdBtn${status.count }" type="submit" value="${menuReviewList.menuReviewBoardId}" formaction="/menuReviewUpdate" />수정</button>//${menuReviewList.menuReviewBoardId}</span>
-							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+							<span><button id="menuReviewDelBtn${status.count}" type="submit" formaction="/menuReviewDelete" >삭제</button></span>
+					        <span><button id="menuReviewUpdBtn${status.count }" type="submit"  formaction="/menuReviewUpdate" >수정</button></span>
 							</c:if>
 						</div>
-
-					   </c:forEach>
-=======
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_1.png" alt=""></span>
-								<span class="cocom">불량식품 맛 나요..ㅡㅡ</span> <span class="nik">admin**</span>
-								<span class="dat">2021.04.02</span></li>
-							<li><span class="star-fin"><img
-									src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_3.png" alt=""></span>
-								<span class="cocom">달달하니 좋네용용용</span> <span class="nik">Tommy.Lee**</span>
-								<span class="dat">2021.04.01</span></li>
->>>>>>> origin/bang
-						</ul>
 					</form>
-		<script type="text/javascript">
+					  </c:forEach>
+						</ul>
+					
+	
+<script type="text/javascript">
+//별점기능
 var locked = 0;
 function show(menuReviewBoardRating){
 	if(locked)
@@ -251,10 +243,15 @@ function mark(menuReviewBoardRating){
 		document.menuReviewform1.menuReviewBoardRating.value=menuReviewBoardRating;
 	
 }
+//댓글 유효성 확인
 $(document).ready(function() {
     $('#menuReviewInsert').submit(function() {
-        if ($('#menuReviewBoardContent').val() == '') {
+        if ($('#menuReviewBoardContent').val() == ''){
             alert('코멘트를 입력해주세요.');
+            return false;
+        }
+        if ($('#menuReviewBoardRating').val() == ''){
+        	alert('별점을 선택해주세요.');
             return false;
         }
     }); // end submit()

@@ -409,14 +409,14 @@
 		SELECT MENU_PRICE FROM MENU
 		WHERE MENU_ID = #{id}
 	</select>
-
+	<!-- 댓글 목록-->
 	<select id="menuReviewList" resultMap="menuReviewBoardVO">
 	<![CDATA[
 		SELECT MENU_REVIEW_BOARD_ID, MENU_ID, MEMBER_ID, MENU_REVIEW_BOARD_RATING, MENU_REVIEW_BOARD_CONTENT, MENU_REVIEW_BOARD_WRITER, MENU_REVIEW_BOARD_REG_DATE
 		FROM MENU_REVIEW_BOARD WHERE MENU_ID = #{menuId} ORDER BY MENU_REVIEW_BOARD_ID DESC;
 	]]>
 	</select>
-
+	<!-- 댓글 등록 -->
 	<insert id="menuReviewInsert">
 		INSERT INTO MENU_REVIEW_BOARD
 		(MENU_REVIEW_BOARD_ID,
@@ -429,37 +429,18 @@
 		#{menuReviewBoardId},#{menuId},
 		#{memberId},#{menuReviewBoardRating},#{menuReviewBoardContent},#{menuReviewBoardWriter},NOW())
 	</insert>
-
+	<!-- 댓글 수정 -->
 	<update id="menuReviewUpdate">
 		UPDATE MENU_REVIEW_BOARD SET
 		MENU_REVIEW_BOARD_CONTENT = #{menuReviewBoardContent}
 		WHERE
 		MENU_REVIEW_BOARD_ID = #{menuReviewBoardId}
 	</update>
-
+	<!-- 댓글 삭제 -->
 	<delete id="menuReviewDelete">
 		DELETE FROM MENU_REVIEW_BOARD WHERE
 		MENU_REVIEW_BOARD_ID = #{menuReviewBoardId}
 	</delete>
-
-	<delete id="delmenuById">
-		DELETE FROM MENU_REVIEW_BOARD_CONTENT WHERE
-		MEMBER_ID
-		= #{id}
-	</delete>
-
-	<select id="menuReviewSelect" resultMap="menuReviewBoardVO">
-		SELECT
-		MENU_REVIEW_BOARD_ID,MENU_ID, MEMBER_ID,
-		MENU_REVIEW_BOARD_RATING,
-		MENU_REVIEW_BOARD_CONTENT,
-		MENU_REVIEW_BOARD_WRITER,
-		MENU_REVIEW_BOARD_REG_DATE
-		FROM
-		MENU_REVIEW_BOARD WHERE
-		MENU_REVIEW_BOARD_ID =
-		#{menuReviewBoardId}
-	</select>
 
 	<!-- 별점 평균값 -->
 	<select id="menuRatingAVG" resultMap="menuVO">

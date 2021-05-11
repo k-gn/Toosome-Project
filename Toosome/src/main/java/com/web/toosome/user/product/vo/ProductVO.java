@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.web.toosome.user.member.vo.MemberVO;
+
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class ProductVO {
 	private String productType;//상품 페이지 타입\n1. 전체\n2. 커피\n3. 커피웨어\n4. 기프트세트; 
 
 
-	private Integer productStar;
+	private Integer productStar; //상품 댓글의 평균 별점
 
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date productRegDate; //상품 등록일
@@ -37,8 +37,6 @@ public class ProductVO {
 	private Integer productOnoff; //주의사항 확인\n0 은 TRUE\n1은 FALSE
 	private ProductImageVO productImageVO; //상품이지미 VO
 	private ProductPrecautionsVO productPrecautionsVO;//주의사항 VO
-	private ProductReviewBoardVO productReviewBoardVO;
-	private MemberVO memberVO;
 
 //	private String searchCondition; //검색 조건
 //	private String searchKeyword; //검색 키워드
