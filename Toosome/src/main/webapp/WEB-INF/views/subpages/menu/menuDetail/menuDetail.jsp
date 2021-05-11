@@ -61,7 +61,7 @@
 				<ul class="star cf">
 					<!-- 평균별점 -->
 					<li><img
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
+						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
 					<!-- 메뉴 서브내용 -->
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
