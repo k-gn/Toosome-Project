@@ -111,7 +111,7 @@
 	        	<input name="memberId" type="hidden" value="${id}"/>
 	        	<input name="productReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
 				<input id="productReviewBoardContent" type="text" name="productReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
-				<input type="submit" id="check()" value="쓰기">
+				<input type="submit" value="쓰기">
 	        	
         		<div class="star-catch-cover">
 							<div class="star-catch">
