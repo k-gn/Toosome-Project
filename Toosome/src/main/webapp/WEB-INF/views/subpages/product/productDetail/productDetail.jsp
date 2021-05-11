@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <jsp:include page="/WEB-INF/views/subpages/share/head/head.jsp"></jsp:include>
 <link rel="stylesheet"
 	href="/resources/css/subpages/product/productDetail/productDetail.css">
@@ -254,17 +256,5 @@ $(document).ready(function() {
 
 	<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 
-
-      
-
-
-<script type="text/javascript">
-
-const coms = document.querySelectorAll('.com');
-coms.forEach((com => {
-    let num = +(com.innerHTML);
-    com.innerHTML = num.toLocaleString('en');
-}));
-</script>
 </body>
 </html>
