@@ -60,8 +60,8 @@
 				<p class="title-text">${productDetail.productContent}
 				<p>
 				<ul class="order-btn cf">
-					<li><a href="/basket?productId=${productDetail.productId}"
-						class="online">온라인 주문</a></li>
+					<!-- <li><a href="/basket?productId=${productDetail.productId}"
+						class="online">온라인 주문</a></li> -->
 					<li><a class="basket"
 						onclick="AddToCart('${productDetail.productId}')">장바구니 담기</a></li>
 
@@ -97,7 +97,7 @@
 						</ul>
 					</div>
 					<div class="btn-group">
-						<button class="list" onclick="location.href='/product'">목록</button>
+						<button class="list" onclick="location.href='/productNew'">목록</button>
 					</div>
 
 					<ul class="one-comment">
@@ -165,6 +165,7 @@
 					</div>
         		</form>
         			<ul class="comment-end">
+        			
         			<c:forEach var="productReviewList" items="${productReviewList}" varStatus="status">
 		        		<form method="get" class="form2" id="productReviewLists" >
 		        			<input name="productId"  type="hidden" value="${productDetail.productId}" />
@@ -178,7 +179,7 @@
 								<span class="cocom">${productReviewList.productReviewBoardContent}</span> 
 								</c:if>
 								<c:if test="${productReviewList.memberId == sessionScope.id }">
-								<span><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
+								<span class="cocom"><input class="productReviewBoardContent" type="text" name="productReviewBoardContent" value="${productReviewList.productReviewBoardContent}"></span>
 								</c:if>
 								<span class="nik">${productReviewList.productReviewBoardWriter}</span>
 								<span class="dat"><fmt:formatDate value="${productReviewList.productReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
