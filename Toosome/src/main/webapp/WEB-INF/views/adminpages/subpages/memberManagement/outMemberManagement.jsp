@@ -16,7 +16,7 @@
   <script type="text/javascript">
     const msg = "${msg}";
 	if(msg === "modSuccess") {
-		alert("회원정보 수정 완료");
+		alert("회원정보 삭제 완료");
 	}
   </script>
 </head>
