@@ -2,7 +2,6 @@ package com.web.toosome.user.product.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,37 +9,25 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.web.toosome.user.member.service.IMemberService;
-import com.web.toosome.user.member.vo.AuthVO;
-import com.web.toosome.user.member.vo.MemberVO;
+
 import com.web.toosome.user.product.service.IProductService;
 import com.web.toosome.user.product.vo.ProductVO;
-<<<<<<< HEAD
 
-=======
 import com.web.toosome.user.product.vo.ProductReviewBoardVO;
->>>>>>> origin/dong
+
 
 @Controller
 public class ProductController {
 
 	@Autowired
 	private IProductService productService;
-<<<<<<< HEAD
 
 
-	
-=======
-	@Autowired
-	private IMemberService memberService;
-
->>>>>>> origin/dong
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
 		System.out.println("신상품 출력");
@@ -79,58 +66,46 @@ public class ProductController {
 		return "subpages/product/productGift";
 	}
 
-//	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
 	@GetMapping(value = "/productDetail", produces = "application/json") // 주문가능한 상품 리스트
 	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
 		System.out.println("상품 메뉴 디테일 출력");
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
-		System.out.println(productDetail);
 		//별점 평균값
-		ProductVO productavg = productService.productRatingAVG(productVO);
-	
+		productService.productRatingAVG(productVO);
+		//댓글 리스트
+		System.out.println("댓글 리스트 출력");
 		model.addAttribute("productReviewList", productService.productReviewList(productReviewBoardVO.getProductId()));
-
-		System.out.println("리뷰VO" + model);
-
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
 
 		return "subpages/product/productDetail/productDetail";
 	}
-
+	//상품 댓글 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/productReviewInsert")
 	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
 		productService.productReviewInsert(productReviewBoardVO);
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
-		System.out.println("reviewInsert : " + productReviewBoardVO.getProductReviewBoardId());
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		System.out.println("댓글 등록");
 		return "redirect:/productDetail";
 	}
-
+	//상품 댓글 수정
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/productReviewUpdate")
-//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
 	@ResponseBody
 	public RedirectView productReviewUpdate(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		productService.productReviewUpdate(productReviewBoardVO);
-	
+		System.out.println("댓글 수정");
 		return new RedirectView("/productDetail");
 	}
-	
+	//상품 댓글 삭제
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/productReviewDelete")
 	@ResponseBody
 	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
-		System.out.println(productReviewBoardVO.getProductReviewBoardId());
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
-		rttr.addAttribute("reviewBoardId", productReviewBoardVO.getProductReviewBoardId());
 		productService.productReviewDelete(productReviewBoardVO);
-		System.out.println("getReviewBoardId : "+productReviewBoardVO.getProductReviewBoardId());
-		
+		System.out.println("댓글 삭제");
 		return new RedirectView("/productDetail");
 	}
 	

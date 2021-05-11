@@ -164,50 +164,43 @@ public class MenuController {
 		System.out.println("음료 메뉴 디테일 출력");
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
-		MenuVO menuavg = menuService.menuRatingAVG(menuVO);
-		
+		//메뉴 디테일 별점 평균값
+		menuService.menuRatingAVG(menuVO);
+		//메뉴 댓글 목록
 		List<MenuReviewBoardVO> menuReviewList = menuService.menuReviewList(menuReviewBoardVO.getMenuId());
 		model.addAttribute("menuReviewList", menuReviewList);
-		System.out.println("리뷰VO" + menuReviewList);
-		
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
-		
-		System.out.println(model);
+	
 		return "subpages/menu/menuDetail/menuDetail";
 	}
-	
+	//메뉴 댓글 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/menuReviewInsert")
 	public String reviewInsert(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
 		menuService.menuReviewInsert(menuReviewBoardVO);
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
-		System.out.println("menuReviewInsert" + menuReviewBoardVO.getMenuReviewBoardId());
-		MemberVO member = memberService.getUserById((Integer) session.getAttribute("id"));
-		AuthVO auth = memberService.getAuthById((String) session.getAttribute("email"));
+		System.out.println("댓글 등록");
+
 		return "redirect:/menuDetail";
 	}
-
+	//메뉴 댓글 수정
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewUpdate")
-//	@GetMapping(value = "/reviewUpdate", produces = "application/json") // 상품 댓글 수정
 	@ResponseBody
 	public RedirectView menuReviewUpdate(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
 		menuService.menuReviewUpdate(menuReviewBoardVO);
-		System.out.println("menuReviewUpdate" + menuReviewBoardVO.getMenuReviewBoardContent());
+		System.out.println("댓글 수정");
 	
 		return new RedirectView("/menuDetail");
 	}
-	
+	//메뉴 댓글 삭제
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/menuReviewDelete")
 	@ResponseBody
 	public RedirectView menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO, RedirectAttributes rttr, HttpSession session){
 		rttr.addAttribute("menuId", menuReviewBoardVO.getMenuId());
-		rttr.addAttribute("menuReviewBoardId", menuReviewBoardVO.getMenuReviewBoardId());
 		menuService.menuReviewDelete(menuReviewBoardVO);
-		System.out.println("getReviewBoardId : "+menuReviewBoardVO.getMenuReviewBoardId());
+		System.out.println("댓글 삭제 ");
 		
 		return new RedirectView("/menuDetail");
 	}
