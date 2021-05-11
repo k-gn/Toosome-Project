@@ -129,7 +129,7 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="/menuReviewInsert" method="post" name="menuReviewform1" class="form1">
+					<form action="/menuReviewInsert" id="menuReviewInsert" method="post" name="menuReviewform1" class="form1">
 				
 						<div class="star-catch-cover">
 							<div class="star-catch">
@@ -219,7 +219,11 @@
 					  </c:forEach>
 						</ul>
 					
-	
+				</div>
+			</div>
+		</div>
+		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
+	</div>
 <script type="text/javascript">
 //별점기능
 var locked = 0;
@@ -256,12 +260,8 @@ $(document).ready(function() {
         }
     }); // end submit()
 }); // end ready()
-</script> 
-				</div>
-			</div>
-		</div>
-		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
-	</div>
+</script> 	
+	
 </body>   		
 <script>
 const coms = document.querySelectorAll('.com');
