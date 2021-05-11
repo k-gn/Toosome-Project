@@ -231,6 +231,7 @@
   padding-left: 15px;
   display: flex;
   position: relative;
+  z-index: 999999999999999;
 }
 .productDetail-container .contents .form1 .star-catch-cover .star-catch {
   width: 90px;

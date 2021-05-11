@@ -129,8 +129,14 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
-					<form action="/menuReviewInsert" method="post" name="menuReviewform1" class="form1">
-				
+					<form action="/menuReviewInsert" method="post" name="menuReviewform1" id="menuReviewInsert" class="form1">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
+			        	<input name="memberId" type="hidden" value="${id}"/>
+			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
+						<input	type="submit" value="쓰기">
+						
 						<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
@@ -174,57 +180,42 @@
 											alt=""></a></li>
 								</ul>
 
-
 								<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
-
-
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-						<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
-			        	<input name="memberId" type="hidden" value="${id}"/>
-			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
-	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
-						<input	type="submit" value="쓰기">
-				
-
-						</div>
-					
-
-					</form>
-				
+							</div>
+						</form>
 						<ul class="comment-end">
 
-					<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
-					<form method="get" class="form2">
-
-	        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
-	        			<input name="memberId" type="hidden" value="${id}"/>
-        				<input name="menuReviewBoardId"  type="hidden" value="${menuReviewList.menuReviewBoardId}" />							        	
-				        <input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
-		        		
-		        		<li>
-							<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menuReviewList.menuReviewBoardRating }.png" alt=""></span>
-							<c:if test="${menuReviewList.memberId != sessionScope.id }">
-							<span class="cocom">${menuReviewList.menuReviewBoardContent}</span> 
-							</c:if>
-							<c:if test="${menuReviewList.memberId == sessionScope.id }">
-							<span><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
-							</c:if>
-							<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
-							<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
-							
-							
-						</li>
-						<div>
-							<c:if test="${menuReviewList.memberId == sessionScope.id }">
-							<span><button id="menuReviewDelBtn${status.count}" type="submit" formaction="/menuReviewDelete" >삭제</button></span>
-					        <span><button id="menuReviewUpdBtn${status.count }" type="submit"  formaction="/menuReviewUpdate" >수정</button></span>
-							</c:if>
-						</div>
-					</form>
-					  </c:forEach>
-						</ul>
-					
+							<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
+								<form method="get" class="form2">
+				        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
+				        			<input name="memberId" type="hidden" value="${id}"/>
+			        				<input name="menuReviewBoardId"  type="hidden" value="${menuReviewList.menuReviewBoardId}" />							        	
+							        <input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
+					        		
+					        		<div class="c-test">
+										<span class="star-fin"><img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menuReviewList.menuReviewBoardRating }.png" alt=""></span>
+										<c:if test="${menuReviewList.memberId != sessionScope.id }">
+										<span class="cocom">${menuReviewList.menuReviewBoardContent}</span> 
+										</c:if>
+										<c:if test="${menuReviewList.memberId == sessionScope.id }">
+										<span class="cocom"><input class="menuReviewBoardContent" type="text" name="menuReviewBoardContent" value="${menuReviewList.menuReviewBoardContent}"></span>
+										</c:if>
+										<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
+										<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
+									
+									<div class="c-btn">
+										<c:if test="${menuReviewList.memberId == sessionScope.id }">
+											<span><button id="menuReviewDelBtn${status.count}" type="submit" formaction="/menuReviewDelete" >삭제</button></span>
+									        <span><button id="menuReviewUpdBtn${status.count }" type="submit"  formaction="/menuReviewUpdate" >수정</button></span>
+										</c:if>
+									</div>
+								</div>
 	
+							</form>
+					   </c:forEach>
+					</ul>	
+					</div>
+	</div>
 <script type="text/javascript">
 //별점기능
 var locked = 0;
@@ -262,8 +253,8 @@ $(document).ready(function() {
     }); // end submit()
 }); // end ready()
 </script> 
-				</div>
-			</div>
+			
+		
 		</div>
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 	</div>
