@@ -114,7 +114,6 @@
 			MENU_PRICE = #{menuPrice},
 			MENU_NEW = #{menuNew},
 			MENU_TYPE = #{menuType},
-			MENU_CHECK_COUNT = #{menuCheckCount},
 			MENU_STATE = #{menuState},
 			MENU_START_DAY = #{menuStartDay}
 		WHERE MENU_ID = #{menuId};

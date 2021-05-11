@@ -113,13 +113,13 @@
           <li><a href="/menu-dessert">디저트</a></li>
           <li><a href="/menu-delhi">델리</a></li>
           <li><a href="/menu-wholecake">홀케이크</a></li>
-          <li><a href="/product">상품</a></li>
-          <li><a href="/nutrienta">영양성분표</a></li>
+          <li><a href="/product-new">상품</a></li>
+          <li><a href="/nutrient1">영양성분표</a></li>
           <li><a href="/mbtitest">커피 MBTI</a></li>
         </ul>
       </li>
       <li class="m-menu-title">
-        <a href="/map">매장안내</a>
+        <a href="#" onclick="location.href='/map'">매장안내</a>
       </li>
       <li class="m-menu-title">
         <a href="/event">WHAT'S NEWS</a>
@@ -147,7 +147,7 @@
     <c:if test="${id == null}">
       <li><a href="/signin">LOGIN</a></li>
       <li><a href="/agreement">SIGN UP</a></li>
-      <li><a href="#">BASKET</a></li>
+      <li><a href="/basket">BASKET</a></li>
       <li><a href="/faq">FAQ</a></li>
     </c:if>
     <c:if test="${id != null}">
