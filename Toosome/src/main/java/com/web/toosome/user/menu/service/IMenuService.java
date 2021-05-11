@@ -15,7 +15,7 @@ public interface IMenuService {
 	
 	
 	public MenuVO getnewDetail(MenuVO menuVO);
-	public MenuVO getbeverageDetail(MenuVO menuVO);
+	public MenuVO getmenuDetail(MenuVO menuVO);
 	public MenuVO getdelhiDetail(MenuVO menuVO);
 	public MenuVO getdessertDetail(MenuVO menuVO);
 	public MenuVO getwholecakeDetail(MenuVO menuVO);

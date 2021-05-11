@@ -55,13 +55,13 @@
 
 			<div class="contents">
 				<!-- 해당 메뉴 이미지 -->
-				<img
+				<img class="con-main-img"
 					src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menubeverageDetail.menuImageVO.menuImageRoute}/${menubeverageDetail.menuImageVO.menuImageName}.${menubeverageDetail.menuImageVO.menuImageExtention}">
 				
 				<ul class="star cf">
 					<!-- 평균별점 -->
 					<li><img
-						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/menuDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
+						src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_${menubeverageDetail.menuStar}.png" alt=""></li>
 					<!-- 메뉴 서브내용 -->
 					<li>${menubeverageDetail.menuSubTitle}</li>
 				</ul>
@@ -129,6 +129,7 @@
 						<li class="thin">※ 게시판 성격과 맞지 않거나, 비방글은 언제든지 삭제될 수 있습니다.</li>
 					</ul>
 
+
 					<form action="/menuReviewInsert" method="post" name="menuReviewform1" id="menuReviewInsert" class="form1">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
@@ -136,7 +137,7 @@
 			        	<input name="menuReviewBoardWriter" type="hidden" value="${auth == 'ROLE_USER' ? name : '관리자'}"/>
 	        			<input id="menuReviewBoardContent" type="text" name="menuReviewBoardContent" placeholder="제품 한마디를 등록해 주세요."> 
 						<input	type="submit" value="쓰기">
-						
+
 						<div class="star-catch-cover">
 							<div class="star-catch">
 								<p class="star_img star">
@@ -157,7 +158,6 @@
 							</div>
 
 							<div class="triangle-cover">▼</div>
-
 								<ul class="star-drop">
 									<li><a href="#"><img id="starimg5"
 											onclick=mark(5)
@@ -180,11 +180,11 @@
 											src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/productDetail/ico_star_1.png"
 											alt=""></a></li>
 								</ul>
+
 								<input id="menuReviewBoardRating" type="hidden" name="menuReviewBoardRating" />
 							</div>
 						</form>
 						<ul class="comment-end">
-
 							<c:forEach var="menuReviewList" items="${menuReviewList}" varStatus="status">
 								<form method="get" class="form2">
 				        			<input name="menuId"  type="hidden" value="${menubeverageDetail.menuId}" />
@@ -202,19 +202,21 @@
 										</c:if>
 										<span class="nik">${menuReviewList.menuReviewBoardWriter}</span>
 										<span class="dat"><fmt:formatDate value="${menuReviewList.menuReviewBoardRegDate}" pattern="yyyy.MM.dd" /></span>
-										
-									</div>
+									
 									<div class="c-btn">
 										<c:if test="${menuReviewList.memberId == sessionScope.id }">
 											<span><button id="menuReviewDelBtn${status.count}" type="submit" formaction="/menuReviewDelete" >삭제</button></span>
 									        <span><button id="menuReviewUpdBtn${status.count }" type="submit"  formaction="/menuReviewUpdate" >수정</button></span>
 										</c:if>
 									</div>
-								</form>
-							 </c:forEach>
-						</ul>
-					
+								</div>
 	
+							</form>
+					   </c:forEach>
+					</ul>	
+					</div>
+
+	</div>
 <script type="text/javascript">
 //별점기능
 var locked = 0;
@@ -251,12 +253,14 @@ $(document).ready(function() {
         }
     }); // end submit()
 }); // end ready()
+
 </script> 
-				</div>
-			</div>
+			
+		
 		</div>
 		<jsp:include page="/WEB-INF/views/subpages/share/footer/footer.jsp"></jsp:include>
 	</div>
+
 </body>   		
 <script>
 const coms = document.querySelectorAll('.com');

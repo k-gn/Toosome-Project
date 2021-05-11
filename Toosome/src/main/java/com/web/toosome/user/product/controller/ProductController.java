@@ -30,13 +30,8 @@ public class ProductController {
 
 	@GetMapping("/product-new")
 	public String productNew(ProductVO productVO, Model model) {
-
-		List<ProductVO> productAllList = productService.getproductnewList(productVO);
-		model.addAttribute("productAllList", productAllList);
-
 		List<ProductVO> productNewList = productService.getproductnewList(productVO);
 		model.addAttribute("productNewList", productNewList);
-
 		return "subpages/product/productNew";
 	}
 
@@ -65,6 +60,7 @@ public class ProductController {
 	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
+		System.out.println("상품 디테일 출력");
 		//별점 평균값
 		productService.productRatingAVG(productVO);
 		//댓글 리스트
