@@ -290,7 +290,7 @@
                           주문자ID
                         </th>
                         <th>
-                          주문자명
+                          수령자명
                         </th>
                         <th>
                           상품명
@@ -302,7 +302,7 @@
                           결제금액
                         </th>
 						<th>
-           	 구매일
+           				  구매일
                         </th>
                       </thead>
                       <tbody id="list-table-tbody" class="text-center">
