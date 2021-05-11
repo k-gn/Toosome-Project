@@ -5,7 +5,6 @@ import java.util.List;
 import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
-import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 public interface IMenuService {
 	public List<MenuVO> getnewList(MenuVO menuVO);
@@ -37,11 +36,6 @@ public interface IMenuService {
 	// 댓글 삭제
 	public int menuReviewDelete(MenuReviewBoardVO menuReviewBoardVO);
 	
-	// 정보조회
-	public MenuReviewBoardVO menuReviewSelect(Integer menuReviewBoardId);
-
-	//회원 댓글 삭제
-	public int delmenuById(Integer id);
 	
 	//영양성분표 리스트 1
 	public List<MenuVO> getIatListOne(MenuVO vo);
