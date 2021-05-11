@@ -95,7 +95,7 @@ const showList = (result, wrapper) => {
             ${result[i].productPrice}
           </td>
           <td>
-            ${result[i].productregDate}
+            ${result[i].productRegDate}
           </td>
 		`;
 		newEl.innerHTML = content;
