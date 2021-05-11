@@ -86,7 +86,6 @@ public class MemberService implements IMemberService {
 		String api_key = "NCSYDBSNPVO2LUFF";
 		String api_secret = "KX2XFULHJHUWMWIETWORN3ZN0TD3K4LD";
 		Message coolsms = new Message(api_key, api_secret);
-		System.out.println("3");
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", phoneNumber); // 발신번호
@@ -94,10 +93,8 @@ public class MemberService implements IMemberService {
 		params.put("type", "SMS");
 		params.put("text", "CoolSMS<br>" + "인증 번호는 " + num + "입니다." + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.");
 		params.put("app_version", "test app 1.2"); // application name and version
-		System.out.println("4");
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
-			System.out.println(obj.toString());
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCode());
@@ -120,7 +117,6 @@ public class MemberService implements IMemberService {
 		params.put("image", "C:/gitSpring/Toosome/2.jpeg"); // image file (지원형식 : 200KB 이하의 JPEG)
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
-			System.out.println(obj.toString());
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCode());
