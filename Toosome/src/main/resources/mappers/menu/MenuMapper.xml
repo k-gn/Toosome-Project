@@ -306,7 +306,7 @@
 			WHERE A.MENU_TYPE = 4 AND MENU_STATE = 1 AND MENU_START_DAY <= NOW()
 		]]>
 	</select>
-	<select id="getbeverageDetail" resultMap="menuVO"
+	<select id="getmenuDetail" resultMap="menuVO"
 		parameterType="menuVO">
 		SELECT A.MENU_ID,
 		A.MENU_MAIN_TITLE,

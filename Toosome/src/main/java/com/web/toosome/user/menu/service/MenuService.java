@@ -22,7 +22,6 @@ import com.web.toosome.user.menu.dao.IMenuMapper;
 import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
-import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 @Service
 public class MenuService implements IMenuService {
@@ -90,8 +89,8 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
-	public MenuVO getbeverageDetail(MenuVO menuVO) {
-		return mapper.getbeverageDetail(menuVO);
+	public MenuVO getmenuDetail(MenuVO menuVO) {
+		return mapper.getmenuDetail(menuVO);
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.List;
 import com.web.toosome.user.menu.vo.MenuImageVO;
 import com.web.toosome.user.menu.vo.MenuReviewBoardVO;
 import com.web.toosome.user.menu.vo.MenuVO;
-import com.web.toosome.user.product.vo.ProductReviewBoardVO;
 
 public interface IMenuService {
 	public List<MenuVO> getnewList(MenuVO menuVO);
@@ -16,7 +15,7 @@ public interface IMenuService {
 	
 	
 	public MenuVO getnewDetail(MenuVO menuVO);
-	public MenuVO getbeverageDetail(MenuVO menuVO);
+	public MenuVO getmenuDetail(MenuVO menuVO);
 	public MenuVO getdelhiDetail(MenuVO menuVO);
 	public MenuVO getdessertDetail(MenuVO menuVO);
 	public MenuVO getwholecakeDetail(MenuVO menuVO);
