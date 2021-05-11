@@ -7528,7 +7528,7 @@
                                                                   <name> deleteMember(Integer id) / insertWithdrawInfo(MemberVO vo)</name>
                                                                   <direction>true</direction>
                                                                   <order>11</order>
-                                                                  <oldOrder>0</oldOrder>
+                                                                  <oldOrder>11</oldOrder>
                                                                 </net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
                                                               </sourceConnections>
                                                               <targetConnections>
