@@ -42,14 +42,13 @@ public class MenuController {
 	@Autowired
 	private MembershipService memberShipService;
 	
-
 	@GetMapping("/menu-new") // 이거 cafe로 변경 요망
 	public String menuNew(MenuVO menuVO, Model model) {
 		List<MenuVO> menuNewList = menuService.getnewList(menuVO);
 		model.addAttribute("menuNewList", menuNewList);
 		return "subpages/menu/menuNew";
 	}
-
+	
 	@GetMapping("/menu-beverage")
 	public String menuBeverage(MenuVO menuVO, Model model) {
 		List<MenuVO> menuBeverageList = menuService.getbeverageList(menuVO);
@@ -147,8 +146,9 @@ public class MenuController {
 	}
 
 	@GetMapping("/menuDetail") // menu Detail page
-	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
-		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
+	public String menuDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
+		System.out.println("menuDetail 메소드 실행");
+		MenuVO menubeverageDetail = menuService.getmenuDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
 		System.out.println("메뉴 디테일 출력");
 		//메뉴 디테일 별점 평균값
@@ -214,14 +214,23 @@ public class MenuController {
 		Integer id = (Integer) session.getAttribute("id");
 		MenuVO menuOrderList = menuService.getimportList(menuVO);  // 여기 메뉴금액...
 		model.addAttribute("menuOrderList", menuOrderList);
-		double menuPrice = menuService.getimportList(menuVO).getMenuPrice();
-		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
-		double msi = menuPrice * (ms / 100);
-		double menusal = menuPrice - msi;   // 결제 금액....
-		model.addAttribute("msi", (int) msi);
-		model.addAttribute("menusal", (int) menusal);
-		double point = menuPrice * 0.01;
-		model.addAttribute("point", (int) point);
+		double menuPrice = menuOrderList.getMenuPrice();//menuService.getimportList(menuVO).getMenuPrice();
+		if(memberShipService.getMembershipInfo(id) != null) {
+			double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
+			double msi = menuPrice * (ms / 100);
+			double menusal = menuPrice - msi;   // 결제 금액....
+			model.addAttribute("msi", (int) msi);
+			model.addAttribute("menusal", (int) menusal);
+			double point = menuPrice * 0.01;
+			model.addAttribute("point", (int) point);
+		}else {
+			double msi = 0;
+			double menusal = menuPrice - msi;   // 결제 금액....
+			model.addAttribute("msi", (int) msi);
+			model.addAttribute("menusal", (int) menusal);
+			double point = 0;
+			model.addAttribute("point", (int) point);
+		}
 		MembershipVO memberPoint = memberShipService.getMembershipInfo(id);
 		model.addAttribute("memberPoint", memberPoint);
 		MemberVO memberOrderList = memberService.getUserById(id);
