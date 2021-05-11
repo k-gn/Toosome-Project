@@ -30,7 +30,9 @@
 }
 .menuDetail-container .contents img {
   display: block;
-  margin: 0 auto;
+}
+.menuDetail-container .contents img.con-main-img {
+	margin: 0 auto;
 }
 .menuDetail-container .contents .star {
   margin: 10px auto;
@@ -173,6 +175,7 @@
   padding-left: 15px;
   display: flex;
   position: relative;
+  z-index: 99;
 }
 .menuDetail-container .contents .form1 .star-catch-cover .star-catch {
   width: 90px;
@@ -244,62 +247,9 @@
   font-size: 16px;
 }
 .menuDetail-container .contents .form2 {
-  width: 100%;
-}
-.menuDetail-container .contents .form2 .comment-end {
-  width: 100%;
-  padding: 20px 5px;
-}
-.menuDetail-container .contents .form2 .comment-end li {
-  display: flex;
-  height: 30px;
+  padding: 5px 10px;
   border-bottom: 1px solid #333;
-  position: relative;
 }
-.menuDetail-container .contents .form2 .comment-end li span {
-  display: flex;
-  position: absolute;
-  height: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 5px;
-  display: none;
-}
-.menuDetail-container .contents .form2 .comment-end li .star-fin {
-  width: 70px;
-  left: 10px;
-  display: block;
-  top: 9px;
-}
-.menuDetail-container .contents .form2 .comment-end li .star-fin img {
-  display: block;
-  width: 65px;
-  height: 12px;
-}
-.menuDetail-container .contents .form2 .comment-end li .cocom {
-  width: 60%;
-  height: 26px;
-  font-size: 15px;
-  display: block;
-  top: 4px;
-  left: 90px;
-}
-.menuDetail-container .contents .form2 .comment-end li .nik {
-  width: 15%;
-  top: 4px; 
-  display: block;
-  right: 100px;
-}
-.menuDetail-container .contents .form2 .comment-end li .dat {
-  width: 10%;
-  text-align: right;
-  top: 4px;
-  right: 0px;
-  display: block;
-}
-
-
 
 .gift-popup {
   width: 100%;
@@ -308,7 +258,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999999999999999999999999999999999999999;
+  z-index: 99;
   background-color: rgba(0, 0, 0, 0.7);
 }
 .gift-popup .close {
@@ -332,6 +282,68 @@
   width: 100%;
   height: auto;
 }
+
+
+.c-test {
+	display: flex;
+	/*display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;*/
+	width: 100%;
+	justify-content: space-between;
+	position: relative;
+}
+
+.c-test span {
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	
+}
+.c-test .star-fin {
+	display: flex;
+	align-items: center;
+}
+.c-test .cocom {
+	display: flex;
+	align-items: center;
+}
+.c-test .nik {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	justify-content: flex-end;
+}
+.c-test .dat {
+	display: flex;
+	align-items: center;
+	text-align: right;
+	justify-content: flex-end;
+}
+.c-test .c-btn {
+	margin-left: 5px;
+	text-align: right;
+}
+.c-test .c-btn span {
+	display: block;
+	margin: 3px 0;
+}
+.c-test .c-btn button {
+	outline: none;
+	appearance: none;
+	border-radius: 5px;
+	border: none;
+	background: #a62326;
+	color: white;
+	cursor: pointer;
+	padding: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+
 
 
 

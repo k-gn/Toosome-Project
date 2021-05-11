@@ -89,8 +89,8 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
-	public MenuVO getbeverageDetail(MenuVO menuVO) {
-		return mapper.getbeverageDetail(menuVO);
+	public MenuVO getmenuDetail(MenuVO menuVO) {
+		return mapper.getmenuDetail(menuVO);
 	}
 
 	@Override
