@@ -65,6 +65,7 @@ public class ProductController {
 	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
+		System.out.println("상품 디테일 출력");
 		//별점 평균값
 		productService.productRatingAVG(productVO);
 		//댓글 리스트

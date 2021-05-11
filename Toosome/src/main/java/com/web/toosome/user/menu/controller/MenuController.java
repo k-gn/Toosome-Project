@@ -150,8 +150,10 @@ public class MenuController {
 	public String beverageDetail(MenuVO menuVO, Model model, MenuReviewBoardVO menuReviewBoardVO, HttpSession session) {
 		MenuVO menubeverageDetail = menuService.getbeverageDetail(menuVO);
 		model.addAttribute("menubeverageDetail", menubeverageDetail);
+		System.out.println("메뉴 디테일 출력");
 		//메뉴 디테일 별점 평균값
 		menuService.menuRatingAVG(menuVO);
+		System.out.println("댓글 목록 출력");
 		//메뉴 댓글 목록
 		List<MenuReviewBoardVO> menuReviewList = menuService.menuReviewList(menuReviewBoardVO.getMenuId());
 		model.addAttribute("menuReviewList", menuReviewList);
