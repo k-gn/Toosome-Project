@@ -271,8 +271,6 @@ public class MemberController {
 	@RequestMapping("/sendGift")
 	public String sendGift(String phoneNumber) {
 		System.out.println("/sendGift 실행");
-		MemberVO vo = new MemberVO();
-		vo.setMemberPhone(phoneNumber);
 		service.sendImage(phoneNumber);
 		return "OK";
 	}
