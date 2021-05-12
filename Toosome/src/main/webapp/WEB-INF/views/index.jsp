@@ -39,9 +39,21 @@
 	#notice_wrap{
 		width:300px;
 		position:fixed;
+		background: ivory;
 		left:100px;
 		top:100px;
 		box-shadow:0 0 8px #000;
+		z-index: 9999999999;
+		padding: 10px;
+	}
+	.title-container {
+	}
+	.title-container .title-logo {
+	    display: flex;
+	    width: 250px;
+	    height: auto;
+	    margin: 0 auto;
+	    
 	}
 	
 	#notice_wrap .text{
@@ -50,21 +62,21 @@
 		display: flex;
 		flex-wrap: nowrap;
 		flex-direction: column;
-		background-color: #000;
+		background: #fff;
 		justify-content: space-around;
 		align-items: center;
-		font-size: 1.5rem;
-		color: #fff;
+		font-size: 1.2rem;
 		text-align: center;
 	}
 	#notice_wrap .text strong {
 		font-size: 2rem;
+		font-family: gsdr;
+		font-weight: 400;
 		margin-bottom: 10px;
 	}
 	
 	#notice_wrap .closeWrap{
-		background-color:#000;
-		color:#fff;
+		background-color:#fff;
 		text-align:right;
 		padding:5px 10px;
 		font-size:12px;
@@ -75,8 +87,17 @@
 	}
 	
 	#notice_wrap .closeWrap button{
-		margin: 0 auto;
-		cursor:pointer;
+	  margin-left: 10px;
+	  outline: none;
+	  appearance: none;
+	  border-radius: 5px;
+	  border: none;
+	  background: #a62326;
+	  color: white;
+	  cursor: pointer;
+	  padding: 5px;
+	  font-family: 'Noto Sans KR', sans-serif;
+	  font-size: 1rem;
 	}
 	
 	</style>  
@@ -219,13 +240,16 @@
         </div>
       </div>
       <div id="notice_wrap">
+      	<div class="title-container">
+             <img class="title-logo" src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/share/banner.png" alt="">
+         </div>
 		<p class="text">
 			<strong >포트폴리오로 만든 사이트 입니다.</strong>
 			상업용이 아닌 개인 포트폴리오를 위한 사이트입니다.<br/>
 		</p>
 		<div class="closeWrap">
-			<!-- <input type="checkbox" name="expiresChk" id="expiresChk"/>
-			<label for="expiresChk">3일동안 이 창 열지 않기</label> -->
+			<input type="checkbox" name="expiresChk" id="expiresChk"/>
+			<label for="expiresChk">하루동안 이 창 열지 않기</label>
 			<button class="closeBtn">닫기</button>
 		</div>
 	  </div>

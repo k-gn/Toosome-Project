@@ -22,6 +22,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 		}
 		
 		if(referer != null && referer.contains("Detail")) {
+			System.out.println(referer);
 			request.getSession().setAttribute("prevURI", referer);
 		}else {
 			request.getSession().setAttribute("prevURI", uri);

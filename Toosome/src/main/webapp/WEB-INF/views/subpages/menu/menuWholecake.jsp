@@ -22,8 +22,7 @@
        			<div class="navigation-container">
        				<ul>
        					<li><a href="/">HOME</a></li>
-       					<li><a href="/menu-new">ABOUT US</a></li>
-       					<li><a href="/menu-new">메뉴</a></li>
+       					<li><a href="/menu-new">MENU</a></li>
        					<li><a href="/menu-wholecake">홀케이크</a></li>
        				</ul>
        			</div>
@@ -34,7 +33,7 @@
                 <div class="menu-btn">
                     <ul class="btn-tab">
                         <li><a href="/menu-new">NEW</a></li>
-                        <li><a href="/menu-beverage">커피&음료</a></li>
+                        <li><a href="/menu-beverage">커피&amp;음료</a></li>
                         <li><a href="/menu-dessert">디저트</a></li>
                         <li><a href="/menu-delhi">델리</a></li>
                         <li class="select"><a href="/menu-wholecake">홀케이크</a></li>
