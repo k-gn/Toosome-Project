@@ -228,13 +228,17 @@ const submitBtn = document.querySelector('.signform-btn');
 // 정보수정 버튼 활성화
 
   const activateSubmitBtn = () => {
+	
+	
+
     if (
-      ((nameErr.style.display === 'none') || (nameErr.style.display === '')) &&
-      ((telErr.style.display === 'none') || (telErr.style.display === '')) &&
-      ((postcodeErr.style.display === 'none') || (postcodeErr.style.display === '')) &&
-      ((addr1Err.style.display === 'none') || (addr1Err.style.display === ''))
+      nameForm.value === '' || 
+	  tel1Form.value === '' || 
+	  tel2Form.value === '' || 
+	  postcodeForm.value === '' || 
+	  addr1Form.value === ''
     ) {
-      submitBtn.disabled = false;
+      submitBtn.disabled = true;
     } else if (
 		nameErr.style.display === 'block' ||
         telErr.style.display === 'block' ||
@@ -242,6 +246,13 @@ const submitBtn = document.querySelector('.signform-btn');
         addr1Err.style.display === 'block'
 	) {
 	  submitBtn.disabled = true;
+	} else if (
+	  ((nameErr.style.display === 'none') || (nameErr.style.display === '')) &&
+      ((telErr.style.display === 'none') || (telErr.style.display === '')) &&
+      ((postcodeErr.style.display === 'none') || (postcodeErr.style.display === '')) &&
+      ((addr1Err.style.display === 'none') || (addr1Err.style.display === ''))
+	) {
+	  submitBtn.disabled = false;
 	}
   };
 
