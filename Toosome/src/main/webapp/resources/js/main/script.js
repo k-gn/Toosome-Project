@@ -21,7 +21,7 @@ $(function () {
 	}); //드래그해서 옮기기가 가능한 실행문
 	
 	if($.cookie("popup")=="none"){
-		// 3일동안 이 내용을 열지않기 버튼 클릭 후에 해당 페이지를 열었을 때
+		// 1일동안 이 내용을 열지않기 버튼 클릭 후에 해당 페이지를 열었을 때
 		$("#notice_wrap").css("display","none");
 	}
 	
@@ -38,8 +38,8 @@ $(function () {
 	function closePop(){
 		if(chkbox.is(":checked")){
 			//체크박스에 체크가 되어있을 때
-			$.cookie("popup","none",{expires:3});
-			//쿠키함수(팝업, none, {3일동안})
+			$.cookie("popup","none",{expires:1});
+			//쿠키함수(팝업, none, {1일동안})
 			
 		}
 		
