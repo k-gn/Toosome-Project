@@ -209,8 +209,12 @@ public class BasketController {
 		Integer id =  service.getOrdersList(memberId).getOrdersId();
 		ordersVO.setOrdersId(id);
 		ordersVO.setOrdersMerchantUid(merchantUid);
-		service.updateMerchantUid(ordersVO);
-		return "OK";
+		int num = service.updateMerchantUid(ordersVO);
+        if(num > 0) {
+            return "OK";
+        }else {
+            return "NO";
+        }
 	}
 	
 	@GetMapping("/orderComplete")
