@@ -38,7 +38,6 @@
 
   // 이메일 유효성 검사
   const emailFormCheck = (e) => {
-    e.preventDefault();
     let value = e.target.value;
     const emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
 
@@ -89,7 +88,6 @@
   
   // 인증번호 유효성 검사
   const authFormCheck = (e) => {
-    e.preventDefault();
     let value = e.target.value;
     const authCodePattern = /[0123456789]{6}/;
 
@@ -172,7 +170,6 @@
   
   // 인증번호 확인 버튼 핸들러
   const submitAuthBtnHandler = (e) => {
-    e.preventDefault();
 
 	if(authCodeForm.value === code) {
 		isAuthenticated = true;
@@ -194,7 +191,6 @@
 
   // 비밀번호1 유효성 검사
   const pwd1FormCheck = (e) => {
-    e.preventDefault();
     const pwd1Pattern = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
     let value = e.target.value;
 
@@ -217,7 +213,6 @@
 
   // 비밀번호2 유효성 검사
   const pwd2FormCheck = (e) => {
-    e.preventDefault();
     const pwd1 = pwd1Form.value;
     let value = e.target.value;
 
@@ -239,7 +234,6 @@
 
   // 이름 유효성 검사
   const nameFormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
     const namePattern = /[a-zA-Z가-힣]/;
 
@@ -261,9 +255,8 @@
 
   // 출생년도 유효성 검사
   const birthYearFormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const yearPattern = /^(19|20)\d{2}/;
+    const yearPattern = /^(19|20)[0-9]{2}$/;
 
     if (value === '') {
       birthYearForm.style.border = '2px solid red';
@@ -277,14 +270,12 @@
     } else {
       birthYearForm.style.border = '1px solid #ccc';
       birthErr.style.display = 'none';
-      birthMonthForm.focus();
     }
     activateSubmitBtn();
   };
 
   // 생년월일 유효성 검사(월)
   const birthMonthFormCheck = (e) => {
-    e.preventDefault();
     const value = birthMonthForm.options[birthMonthForm.selectedIndex].text;
 
     if (value === '월') {
@@ -300,7 +291,6 @@
 
   // 생년월일 유효성 검사(일)
   const birthDateFormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
     const datePattern = /^[0-9].{0,1}$/;
 
@@ -322,9 +312,8 @@
 
   // 전화번호 유효성 검사(앞)
   const tel1FormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const telPattern = /^[0-9].{0,3}$/;
+    const telPattern = /^[0-9]{4}$/;
 
     if (value === '') {
       tel1Form.style.border = '2px solid red';
@@ -344,9 +333,8 @@
 
   // 전화번호 유효성 검사(뒤)
   const tel2FormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const telPattern = /^[0-9].{0,3}$/;
+    const telPattern = /^[0-9]{4}$/;
 
     if (value === '') {
       tel2Form.style.border = '2px solid red';
@@ -368,7 +356,7 @@
   emailForm.addEventListener('blur', emailFormCheck);
   emailForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  authFormCheck(e);
 	};		
   });
 /*  emailAuthBtn.addEventListener('click', emailAuthHandler);*/
@@ -376,7 +364,7 @@
   authCodeForm.addEventListener('blur', authFormCheck);
   authCodeForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  emailFormCheck(e);
 	};		
   });
   submitAuthBtn.addEventListener('click', submitAuthBtnHandler);
@@ -384,51 +372,56 @@
   pwd1Form.addEventListener('blur', pwd1FormCheck);
   pwd1Form.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  pwd1FormCheck(e);
 	};		
   });
   pwd2Form.addEventListener('keyup', pwd2FormCheck);
   pwd2Form.addEventListener('blur', pwd2FormCheck);
   pwd2Form.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  pwd2FormCheck(e);
 	};		
   });
   nameForm.addEventListener('keyup', nameFormCheck);
   nameForm.addEventListener('blur', nameFormCheck);
   nameForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  nameFormCheck(e);
 	};		
   });
   birthYearForm.addEventListener('keyup', birthYearFormCheck);
   birthYearForm.addEventListener('blur', birthYearFormCheck);
   birthYearForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  birthYearFormCheck(e);
 	};		
   });
   birthMonthForm.addEventListener('change', birthMonthFormCheck);
   birthMonthForm.addEventListener('blur', birthMonthFormCheck);
+  birthMonthForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  birthMonthFormCheck(e);
+	};		
+  });
   birthDateForm.addEventListener('keyup', birthDateFormCheck);
   birthDateForm.addEventListener('blur', birthDateFormCheck);
   birthDateForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  birthDateFormCheck(e);
 	};		
   });
   tel1Form.addEventListener('keyup', tel1FormCheck);
   tel1Form.addEventListener('blur', tel1FormCheck);
   tel1Form.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  tel1FormCheck(e);
 	};		
   });
   tel2Form.addEventListener('keyup', tel2FormCheck);
   tel2Form.addEventListener('blur', tel2FormCheck);
   tel2Form.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  tel2FormCheck(e);
 	};		
   });
 
@@ -464,7 +457,7 @@
   // 우편번호 유효성 검사
   const postcodeFormCheck = () => {
     const value = postcodeForm.value;
-    const postcodePattern = /^[0-9].{0,4}$/;
+    const postcodePattern = /^[0-9]{5}$/;
 
     if (value === '') {
       postcodeForm.style.border = '2px solid red';
@@ -499,15 +492,18 @@
 
   postSearch.addEventListener('click', daumPostcode);
   postcodeForm.addEventListener('click', postcodeFormCheck);
+  postcodeForm.addEventListener('keyup', postcodeFormCheck);
+  postcodeForm.addEventListener('blur', postcodeFormCheck);
+  postcodeForm.addEventListener('change', postcodeFormCheck);
   postcodeForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  postcodeFormCheck(e);
 	};		
   });
   addr1Form.addEventListener('click', addr1FormCheck);
   addr1Form.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
-  	  emailFormCheck();
+  	  addr1FormCheck(e);
 	};		
   });
 

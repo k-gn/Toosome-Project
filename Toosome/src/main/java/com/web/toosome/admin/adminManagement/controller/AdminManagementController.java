@@ -44,6 +44,7 @@ public class AdminManagementController {
 		return adminService.getAdminList(search);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_HEAD')")
 	@PostMapping("/register")
 	public String register(AdminVO member, RedirectAttributes ra) {
 		System.out.println(member);
