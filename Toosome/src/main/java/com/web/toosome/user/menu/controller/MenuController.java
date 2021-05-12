@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.toosome.user.member.service.IMemberService;
-import com.web.toosome.user.member.vo.AuthVO;
 import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.MembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
@@ -278,12 +276,20 @@ public class MenuController {
 		String imagePath = basicImagePath + imageRoute + "/" + imageName + "." + imageExtention;
 		menuVO.setMenuImagePath(imagePath);
 		int menuProce = menuService.getMenuPrice(menuId);
-		double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
-		double msi = menuProce * (ms / 100);
-		int usePoint = menuProce - ( menuEndPrice + (int)msi);
-		menuVO.setOrdersSal((int)msi);	// 할인 금액
-		menuVO.setOrdersUsePoint(usePoint);		// 사용한 포인트
-		menuVO.setOrdersProductPay(menuProce);	// 순수 상품 금액
+		if(memberShipService.getMembershipInfo(id) != null) {
+			double ms = memberShipService.getMembershipInfo(id).getLevel().getLevelDiscountRate();
+			double msi = menuProce * (ms / 100);
+			int usePoint = menuProce - ( menuEndPrice + (int)msi);
+			menuVO.setOrdersSal((int)msi);	// 할인 금액
+			menuVO.setOrdersUsePoint(usePoint);		// 사용한 포인트
+			menuVO.setOrdersProductPay(menuProce);
+		}else {
+			double msi = 0;
+			int usePoint = menuProce - ( menuEndPrice + (int)msi);
+			menuVO.setOrdersSal((int)msi);	// 할인 금액
+			menuVO.setOrdersUsePoint(usePoint);		// 사용한 포인트
+			menuVO.setOrdersProductPay(menuProce);	// 순수 상품 금액
+		}
 		int num = menuService.saveGift(menuVO);
 		menuVO.setOrdersId(menuService.getOrdersId(id));
 		menuVO.setMenuPrice(menuService.getMenuPrice(menuId));
@@ -307,10 +313,15 @@ public class MenuController {
 		model.addAttribute("menuEndPrice", menuEndPrice); 						// 최종 결제 금액
 		Integer usedPoint = menusalt - menuEndPrice; 
 		Integer salprice = menuPrice - menusalt;
-		double sPoint = menuPrice * 0.01;
+		if(memberShipService.getMembershipInfo(id) != null) {
+			double sPoint = menuPrice * 0.01;
+			model.addAttribute("sPoint", (int)sPoint);
+		}else {
+			double sPoint = 0;
+			model.addAttribute("sPoint", (int)sPoint);
+		}
 		model.addAttribute("usedPoint", usedPoint);
 		model.addAttribute("salprice", salprice);
-		model.addAttribute("sPoint", (int)sPoint);
 		MemberVO memberOrderCompleteList = memberService.getUserById(id);
 		model.addAttribute("memberOrderCompleteList", memberOrderCompleteList);
 		return "subpages/menu/menuOrder/menuOrderComplete/menuOrderComplete";
