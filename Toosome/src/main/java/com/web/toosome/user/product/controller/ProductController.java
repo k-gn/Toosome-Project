@@ -57,7 +57,7 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/productDetail", produces = "application/json") // 주문가능한 상품 리스트
-	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO,HttpSession session) {
+	public String productDetail(Model model, ProductVO productVO, ProductReviewBoardVO productReviewBoardVO) {
 		ProductVO productDetail = productService.getproductDetail(productVO);
 		model.addAttribute("productDetail", productDetail);
 		System.out.println("상품 디테일 출력");
@@ -73,7 +73,7 @@ public class ProductController {
 	//상품 댓글 등록
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/productReviewInsert")
-	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session) {
+	public String productReviewInsert(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr) {
 		productService.productReviewInsert(productReviewBoardVO);
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 
@@ -85,7 +85,7 @@ public class ProductController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/productReviewUpdate")
 	@ResponseBody
-	public RedirectView productReviewUpdate(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+	public RedirectView productReviewUpdate(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr){
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		productService.productReviewUpdate(productReviewBoardVO);
 		System.out.println("댓글 수정");
@@ -95,7 +95,7 @@ public class ProductController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/productReviewDelete")
 	@ResponseBody
-	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr, HttpSession session){
+	public RedirectView productReviewDelete(ProductReviewBoardVO productReviewBoardVO, RedirectAttributes rttr){
 		rttr.addAttribute("productId", productReviewBoardVO.getProductId());
 		productService.productReviewDelete(productReviewBoardVO);
 

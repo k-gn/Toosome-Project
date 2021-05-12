@@ -34,19 +34,19 @@ public class ProductManagementController {
 	}
 	
 	@GetMapping("/plist")
-	@ResponseBody
+	@ResponseBody//상품 목록 리스트
 	public List<ProductVO> getProductList(ProductSearchVO product) {
 		System.out.println(product);
 		return service.getProductList(product);
 	}
 	
 	@GetMapping("/product/{id}")
-	@ResponseBody
+	@ResponseBody//상품 상세조회
 	public ProductVO getProduct(@PathVariable Integer id) {
 		return service.getProduct(id);
 	}
 	
-	@PostMapping("/addProduct")
+	@PostMapping("/addProduct") //상품 등록
 	public String addProduct(ProductVO product, RedirectAttributes ra) {
 		ProductImageVO productImage = new ProductImageVO();
 		product.setProductImageVO(productImage);
@@ -57,7 +57,7 @@ public class ProductManagementController {
 		return "redirect:/admin/enroll-product";
 	}
 	
-	@PostMapping("/modProduct")
+	@PostMapping("/modProduct") // 상품 수정
 	public String modProduct(ProductVO product, RedirectAttributes ra) {
 		ProductImageVO productImage = new ProductImageVO();
 		product.setProductImageVO(productImage);
@@ -68,7 +68,7 @@ public class ProductManagementController {
 		return "redirect:/admin/product-list";
 	}
 	
-	@PostMapping("/delProduct")
+	@PostMapping("/delProduct") //상품 삭제
 	public String delProduct(ProductVO product, RedirectAttributes ra) {
 		ProductImageVO productImage = new ProductImageVO();
 		product.setProductImageVO(productImage);
