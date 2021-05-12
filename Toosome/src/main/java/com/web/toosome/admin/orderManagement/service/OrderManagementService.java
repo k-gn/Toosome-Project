@@ -46,7 +46,6 @@ public class OrderManagementService implements IOrderManagementService {
 
 	@Override
 	public OrdersCancelVO getorderCancelDetail(Integer id) {
-		System.out.println("1");
 		return mapper.getorderCancelDetail(id);
 	}
 	
