@@ -32,7 +32,7 @@
       </div>
       <!-- 메뉴 이미지와 이름 가격 -->
       <div class="menu-content">
-        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/img/pages/subpages/product/b05.png" alt="">
+        <img src="https://toosome.s3.ap-northeast-2.amazonaws.com/${menuOrderList.menuImageVO.menuImageRoute}/${menuOrderList.menuImageVO.menuImageName}.${menuOrderList.menuImageVO.menuImageExtention}" alt="">
         <p class="menu-text">${menuOrderList.menuMainTitle}</p>
         <div class="pay-box">
           <span class="com">${menuOrderList.menuPrice}</span>
@@ -110,7 +110,7 @@
               <td>
                 사용가능 포인트 : <span name="left_pnt">${memberPoint.membershipPoint}</span>p <span><br/>
                 <input type="checkbox" id="chk_use" onclick="chkPoint(${menusal},${memberPoint.membershipPoint},100,10)">&nbsp;포인트 전체 사용</span>
-                <span style="color: #ff0000; font-size: 16px;">(포인트는 최소 3,000p부터 100p단위로 사용 가능합니다.)</span>
+                <span style="color: #ff0000; font-size: 16px;">(포인트는 최소 3000p부터 10p단위로 사용 가능합니다. 최소 결제금액은 100원입니다.)</span>
               </td>
             </tr>
             <tr>

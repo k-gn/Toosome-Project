@@ -40,7 +40,7 @@ public class MembershipController {
 	public String successmembership(Integer id, HttpSession session) {
 		MembershipVO ms = service.getMembershipInfo(id);
 		if (ms != null) {
-			return "redirect:/mypage"; // 나중에 마이 멤버쉽으로 바꾸기
+			return "redirect:/mypage";
 		}else {
 			service.registerMembership(id);
 			return "subpages/memberShip/successMembership/successMembership";

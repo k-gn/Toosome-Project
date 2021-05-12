@@ -43,7 +43,6 @@ import com.web.toosome.user.member.vo.MemberVO;
 import com.web.toosome.user.membership.service.IMembershipService;
 import com.web.toosome.user.membership.vo.MembershipVO;
 import com.web.toosome.user.product.vo.ProductImageVO;
-import com.web.toosome.user.product.vo.ProductVO;
 
 @Controller
 public class BasketController {
@@ -175,8 +174,7 @@ public class BasketController {
 	}
 
 	@GetMapping("/import2") // 결제 화면...
-	public String import1(BasketVO basket, Model model, HttpSession session, Integer basketEndPrice,
-			Integer basketsal) {
+	public String import1(BasketVO basket, Model model, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제화면 호출");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
@@ -211,13 +209,16 @@ public class BasketController {
 		Integer id =  service.getOrdersList(memberId).getOrdersId();
 		ordersVO.setOrdersId(id);
 		ordersVO.setOrdersMerchantUid(merchantUid);
-		service.updateMerchantUid(ordersVO);
-		return "OK";
+		int num = service.updateMerchantUid(ordersVO);
+        if(num > 0) {
+            return "OK";
+        }else {
+            return "NO";
+        }
 	}
 	
 	@GetMapping("/orderComplete")
-	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice,
-			Integer basketsal) {
+	public String orderComplete(BasketUtil basketUtil, Model model, HttpSession session, Integer basketEndPrice, Integer basketsal) {
 		System.out.println("상품 결제 완료 페이지 호출");
 		Integer memberId = (Integer) session.getAttribute("id");
 		List<BasketVO> baskets = service.getBasket(memberId);
@@ -290,10 +291,6 @@ public class BasketController {
 	@ResponseBody
 	public String ordersubmit(@RequestBody OrdersVO order, HttpSession session, BasketUtil basketUtil, String merchantUid) {
 		System.out.println("ordersubmit 메서드 실행");
-		
-		List<ProductVO> array = new ArrayList<ProductVO>();
-		List<OrdersDetailVO> array2 = new ArrayList<OrdersDetailVO>();
-		
 		Integer memberId = (Integer) session.getAttribute("id");
 		order.setMemberId(memberId);
 		order.setOrdersDelivery(basketUtil.getDeliveryPay());
