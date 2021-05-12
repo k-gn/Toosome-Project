@@ -6363,7 +6363,7 @@
                   <constraint>
                     <height>421</height>
                     <width>10</width>
-                    <x>45</x>
+                    <x>65</x>
                     <y>122</y>
                   </constraint>
                   <sourceConnections>
@@ -6409,7 +6409,7 @@
                     <constraint>
                       <height>704</height>
                       <width>5</width>
-                      <x>50</x>
+                      <x>70</x>
                       <y>20</y>
                     </constraint>
                     <sourceConnections/>
@@ -6433,7 +6433,7 @@
                         <constraint>
                           <height>83</height>
                           <width>10</width>
-                          <x>45</x>
+                          <x>65</x>
                           <y>611</y>
                         </constraint>
                         <sourceConnections>
@@ -7683,7 +7683,7 @@
                                         <name>addProduct(ProductVO product) : int</name>
                                         <direction>true</direction>
                                         <order>12</order>
-                                        <oldOrder>0</oldOrder>
+                                        <oldOrder>12</oldOrder>
                                       </net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
                                     </sourceConnections>
                                     <targetConnections>
@@ -8046,7 +8046,7 @@
                       <constraint>
                         <height>-1</height>
                         <width>100</width>
-                        <x>4</x>
+                        <x>24</x>
                         <y>20</y>
                       </constraint>
                       <sourceConnections/>

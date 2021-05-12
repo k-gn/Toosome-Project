@@ -188,7 +188,7 @@
 								
 								
 								<div class="c-btn">
-									<c:if test="${productReviewList.memberId == sessionScope.id }">
+									<c:if test="${productReviewList.memberId == sessionScope.id}">
 										<span><button id="productReviewDelBtn${status.count}" type="submit" formaction="/productReviewDelete" >삭제</button></span>
 								        <span><button id="productReviewUpdBtn${status.count}" type="submit" formaction="/productReviewUpdate" >수정</button></span>
 										
