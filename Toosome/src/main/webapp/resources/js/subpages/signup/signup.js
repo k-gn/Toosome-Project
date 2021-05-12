@@ -457,7 +457,7 @@
   // 우편번호 유효성 검사
   const postcodeFormCheck = () => {
     const value = postcodeForm.value;
-    const postcodePattern = /^[0-9].{5}$/;
+    const postcodePattern = /^[0-9]{5}$/;
 
     if (value === '') {
       postcodeForm.style.border = '2px solid red';
@@ -492,6 +492,9 @@
 
   postSearch.addEventListener('click', daumPostcode);
   postcodeForm.addEventListener('click', postcodeFormCheck);
+  postcodeForm.addEventListener('keyup', postcodeFormCheck);
+  postcodeForm.addEventListener('blur', postcodeFormCheck);
+  postcodeForm.addEventListener('change', postcodeFormCheck);
   postcodeForm.addEventListener('keydown', (e) => {
 	if(e.keyCode === 8) {
   	  postcodeFormCheck(e);
