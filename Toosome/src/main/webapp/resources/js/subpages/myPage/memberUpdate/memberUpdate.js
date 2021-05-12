@@ -49,7 +49,7 @@ function updateMember() {
 	// 우편번호
 	const postcode = $(".signup-form.postcode").val();
 	// 주소
-	const address = $(".signup-form.postcode").val() + "-" + $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
+	const address = $(".signup-form.addr1").val() + "-" + $(".signup-form.addr2").val();
 	const member = {
 		memberId: id,
 		memberEmail: email,
@@ -106,7 +106,6 @@ const submitBtn = document.querySelector('.signform-btn');
 
 // 이름 유효성 검사
   const nameFormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
     const namePattern = /[a-zA-Z가-힣]/;
 
@@ -130,9 +129,8 @@ const submitBtn = document.querySelector('.signform-btn');
 
 // 전화번호 유효성 검사(앞)
   const tel1FormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const telPattern = /^[0-9].{0,3}$/;
+    const telPattern = /^[0-9]{4}$/;
 
     if (value === '') {
       tel1Form.style.border = '2px solid red';
@@ -152,9 +150,8 @@ const submitBtn = document.querySelector('.signform-btn');
 
   // 전화번호 유효성 검사(뒤)
   const tel2FormCheck = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const telPattern = /^[0-9].{0,3}$/;
+    const telPattern = /^[0-9]{4}$/;
 
     if (value === '') {
       tel2Form.style.border = '2px solid red';
@@ -180,13 +177,23 @@ const submitBtn = document.querySelector('.signform-btn');
   nameForm.addEventListener('blur', nameFormCheck);
   tel1Form.addEventListener('keyup', tel1FormCheck);
   tel1Form.addEventListener('blur', tel1FormCheck);
+  tel1Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  tel1FormCheck(e);
+	};		
+  });
   tel2Form.addEventListener('keyup', tel2FormCheck);
   tel2Form.addEventListener('blur', tel2FormCheck);
+  tel2Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  tel2FormCheck(e);
+	};		
+  });
 
 // 우편번호 유효성 검사
   const postcodeFormCheck = () => {
     const value = postcodeForm.value;
-    const postcodePattern = /^[0-9].{0,4}$/;
+    const postcodePattern = /^[0-9]{5}$/;
 
     if (value === '') {
       postcodeForm.style.border = '2px solid red';
@@ -222,15 +229,24 @@ const submitBtn = document.querySelector('.signform-btn');
 
 
   postcodeForm.addEventListener('keyup', postcodeFormCheck);
+  postcodeForm.addEventListener('blur', postcodeFormCheck);
+  postcodeForm.addEventListener('change', postcodeFormCheck);
+  postcodeForm.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  postcodeFormCheck(e);
+	};		
+  });
   addr1Form.addEventListener('keyup', addr1FormCheck);
+  addr1Form.addEventListener('keydown', (e) => {
+	if(e.keyCode === 8) {
+  	  addr1FormCheck(e);
+	};		
+  });
 
 
 // 정보수정 버튼 활성화
 
   const activateSubmitBtn = () => {
-	
-	
-
     if (
       nameForm.value === '' || 
 	  tel1Form.value === '' || 
