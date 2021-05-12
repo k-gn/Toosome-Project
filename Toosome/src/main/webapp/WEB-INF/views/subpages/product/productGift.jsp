@@ -23,7 +23,7 @@
 		<div class="navigation-container">
 			<ul>
 				<li><a href="/">HOME</a></li>
-				<li><a href="/product-new">MENU</a></li>
+				<li><a href="/menu-new">MENU</a></li>
 				<li><a href="/product-new">상품</a></li>
 				<li><a href="/product-gift">기프트세트</a></li>
 			</ul>

@@ -1,8 +1,4 @@
 @charset "utf-8";
-@font-face {
-    font-family: gsdr;
-    src: url(../../font/a고속도로.ttf) format('truetype');
-}
 /* .menu-container > .title-container > .menu-title */
 
 .menu-container {

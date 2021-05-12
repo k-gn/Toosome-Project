@@ -24,8 +24,8 @@
 			<ul>
 				<li><a href="/">HOME</a></li>
 				<li><a href="/menu-new">MENU</a></li>
-				<li><a href="/menu-new">메뉴</a></li>
-				<li><a href="/menu-new">커피웨어/기타</a></li>
+				<li><a href="/product-new">상품</a></li>
+				<li><a href="/product-coffeewear">커피웨어/기타</a></li>
 			</ul>
 		</div>
       </div>
