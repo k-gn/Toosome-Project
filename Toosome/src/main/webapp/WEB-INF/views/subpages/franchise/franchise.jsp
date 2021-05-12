@@ -185,15 +185,15 @@
                 <ul class="download">
                     <li>
                         <span>브랜드북</span>
-                        <button type="submit">다운로드</button>
+                        <button onclick="window.open('https://toosome.s3.ap-northeast-2.amazonaws.com/download/[PDF] 브랜드북.pdf')">다운로드</button>
                     </li>
                     <li>
                         <span>가보고 싶은 투썸</span>
-                        <button type="submit">다운로드</button>
+                        <button onclick="window.open('https://toosome.s3.ap-northeast-2.amazonaws.com/download/[PDF] 가보고 싶은 투썸플레이스.pdf')">다운로드</button>
                     </li>
                     <li>
                         <span>Drive Thru, Drive in</span>
-                        <button type="submit">다운로드</button>
+                        <button onclick="window.open('https://toosome.s3.ap-northeast-2.amazonaws.com/download/[PDF] DRIVE THRU, DRIVE IN.pdf')">다운로드</button>
                     </li>
                 </ul>
             </div>
