@@ -42,6 +42,7 @@
 		left:100px;
 		top:100px;
 		box-shadow:0 0 8px #000;
+		z-index: 9999999999;
 	}
 	
 	#notice_wrap .text{
