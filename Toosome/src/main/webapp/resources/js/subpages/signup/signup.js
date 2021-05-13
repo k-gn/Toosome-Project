@@ -521,7 +521,9 @@
       addr1Err.style.display === 'none'
     ) {
       submitBtn.disabled = false;
-    }
+    } else {
+      submitBtn.disabled = true;
+}
   };
 
   const submitBtnHandler = (e) => {
