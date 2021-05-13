@@ -114,7 +114,7 @@ public class MemberService implements IMemberService {
 		params.put("from", "01056592176"); // 수신번호
 		params.put("type", "MMS");
 		params.put("text", "CoolSMS");
-		params.put("image", "C:/gitSpring/Toosome/2.jpeg"); // image file (지원형식 : 200KB 이하의 JPEG)
+		params.put("image", "C:/Users/Administrator/Desktop/apache-tomcat-9.0.43/webapps/Toosome/2.jpeg"); // image file (지원형식 : 200KB 이하의 JPEG)
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
 		} catch (CoolsmsException e) {
