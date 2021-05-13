@@ -189,12 +189,12 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 50000,
+        high: 70000,
         chartPadding: {
           top: 0,
           right: 0,
           bottom: 0,
-          left: 0
+          left: 10
         },
     };
 	var optionsCaseChart = {
@@ -202,7 +202,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 30,
+        high: 10,
         chartPadding: {
           top: 0,
           right: 0,
