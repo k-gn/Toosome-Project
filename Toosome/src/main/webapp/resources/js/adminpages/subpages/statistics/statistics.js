@@ -189,12 +189,16 @@ ct = {
           tension: 0
         }),
         low: 0,
+<<<<<<< HEAD
         high: 50000,
+=======
+        high: 70000,
+>>>>>>> origin/dong
         chartPadding: {
           top: 0,
           right: 0,
           bottom: 0,
-          left: 0
+          left: 10
         },
     };
 	var optionsCaseChart = {
@@ -202,7 +206,11 @@ ct = {
           showGrid: false
         },
         low: 0,
+<<<<<<< HEAD
         high: 30,
+=======
+        high: 10,
+>>>>>>> origin/dong
         chartPadding: {
           top: 0,
           right: 0,

@@ -26,7 +26,11 @@ ct = {
           tension: 0
         }),
         low: 0,
+<<<<<<< HEAD
         high: 50000,
+=======
+        high: 60000,
+>>>>>>> origin/dong
         chartPadding: {
           top: 0,
           right: 0,
@@ -52,7 +56,11 @@ ct = {
           showGrid: false
         },
         low: 0,
+<<<<<<< HEAD
         high: 50,
+=======
+        high: 60,
+>>>>>>> origin/dong
         chartPadding: {
           top: 0,
           right: 0,
