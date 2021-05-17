@@ -18,11 +18,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 		String referer = request.getHeader("Referer");
 		if(request.getQueryString() != null) {
 			uri = uri + "?" + request.getQueryString();
-			referer = referer + "?" + request.getQueryString();
 		}
 		
 		if(referer != null && referer.contains("Detail")) {
-			System.out.println(referer);
 			request.getSession().setAttribute("prevURI", referer);
 		}else {
 			request.getSession().setAttribute("prevURI", uri);

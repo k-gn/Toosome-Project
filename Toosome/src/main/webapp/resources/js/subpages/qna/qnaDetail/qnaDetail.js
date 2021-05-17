@@ -158,7 +158,7 @@ const displayDetail = (title, content, c_content, item, index) => {
 				let title = item[0].qnaBoardComment[i].qnaBoardCommentTitle;
 				let newCommentTitle = document.createElement('tr');
 				let c_titleElements = `
-					<td scope="col">제목: ${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ? `<input type="text" value=${title} />`: title}</td>
+					<td scope="col">제목: ${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ? `<input type="text" value="${title}" />`: title}</td>
 					<td scope="col" ${style}>작성자: ${item[0].qnaBoardComment[i].qnaCommentWriter}</td>
 					<td scope="col">작성일: ${item[0].qnaBoardComment[i].qnaBoardCommentDay}</td>
 					${+id === +item[0].qnaBoardComment[i].memberMemberCommentId ?

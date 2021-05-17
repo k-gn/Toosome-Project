@@ -26,12 +26,12 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 500,
+        high: 50000,
         chartPadding: {
           top: 0,
           right: 0,
           bottom: 0,
-          left: 0
+          left: 10
         },
       }
 	  var optionsDailyOrderChart = {
@@ -39,7 +39,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 10,
+        high: 20,
         chartPadding: {
           top: 0,
           right: 0,
@@ -52,7 +52,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 10,
+        high: 50,
         chartPadding: {
           top: 0,
           right: 0,

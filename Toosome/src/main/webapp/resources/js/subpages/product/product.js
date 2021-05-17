@@ -1,3 +1,10 @@
+$(function(){
+   $(".product-container .contents .all li a").click(function(e){
+      if($(this).children(".sold").length) {
+         e.preventDefault();
+      }
+   });
+});
 
 let csrfTokenValue = $("meta[name='_csrf']").attr("content");
 let csrfHeaderName = $("meta[name='_csrf_header']").attr("content");

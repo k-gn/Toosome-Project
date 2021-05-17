@@ -1868,7 +1868,7 @@
                       <net.java.amateras.uml.sequencediagram.model.LifeLineModel reference="../../.."/>
                     </children>
                     <filterProperty/>
-                    <name>actor</name>
+                    <name>관리자</name>
                     <lifeLine reference="../.."/>
                     <root reference="../../../../../../../../../.."/>
                   </owner>

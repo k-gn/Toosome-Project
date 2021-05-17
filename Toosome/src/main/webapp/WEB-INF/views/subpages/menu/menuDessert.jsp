@@ -22,8 +22,7 @@
        			<div class="navigation-container">
        				<ul>
        					<li><a href="/">HOME</a></li>
-       					<li><a href="/menu-new">ABOUT US</a></li>
-       					<li><a href="/menu-new">메뉴</a></li>
+       					<li><a href="/menu-new">MENU</a></li>
        					<li><a href="/menu-dessert">디저트</a></li>
        				</ul>
        			</div>

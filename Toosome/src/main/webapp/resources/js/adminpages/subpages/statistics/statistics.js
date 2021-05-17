@@ -189,7 +189,7 @@ ct = {
           tension: 0
         }),
         low: 0,
-        high: 5000,
+        high: 50000,
         chartPadding: {
           top: 0,
           right: 0,
@@ -202,7 +202,7 @@ ct = {
           showGrid: false
         },
         low: 0,
-        high: 15,
+        high: 30,
         chartPadding: {
           top: 0,
           right: 0,
